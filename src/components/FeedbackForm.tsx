@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const inputStyle = {
   width: '100%',
@@ -30,16 +31,17 @@ export default function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
     content: ''
   });
   const [error, setError] = useState('');
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     if (!isAnonymous && !formData.fullName.trim()) {
-      return setError('Vui lòng nhập họ tên hoặc chọn Ẩn danh.');
+      return setError(t.errorName);
     }
-    if (!formData.content.trim()) {
-      return setError('Vui lòng nhập nội dung phản hồi.');
+    if (!formData.content.trim() || formData.content.length < 30 || formData.content.length > 500) {
+      return setError(t.errorContent);
     }
 
     try {
@@ -55,7 +57,7 @@ export default function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
       onSuccess();
     } catch (err) {
       console.error("Error adding document: ", err);
-      setError('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+      setError(t.errorSubmit);
     }
   };
 
@@ -74,12 +76,12 @@ export default function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
           checked={isAnonymous} 
           onChange={(e) => setIsAnonymous(e.target.checked)} 
         />
-        <label htmlFor="anon-feedback" style={{ cursor: 'pointer', fontSize: '0.9rem' }}>Tôi muốn phản hồi Ẩn danh</label>
+        <label htmlFor="anon-feedback" style={{ cursor: 'pointer', fontSize: '0.9rem' }}>{t.formAnon}</label>
       </div>
 
       {!isAnonymous && (
         <div>
-          <label style={labelStyle}>Họ và Tên đầy đủ *</label>
+          <label style={labelStyle}>{t.formNameReq}</label>
           <input 
             style={inputStyle} 
             value={formData.fullName}
@@ -90,12 +92,12 @@ export default function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
       )}
 
       <div>
-        <label style={labelStyle}>Nội dung phản hồi *</label>
+        <label style={labelStyle}>{t.formContentFeedback}</label>
         <textarea 
           style={{ ...inputStyle, minHeight: '150px', resize: 'vertical' }} 
           value={formData.content}
           onChange={(e) => setFormData({...formData, content: e.target.value})}
-          placeholder="Nhập góp ý, phản hồi của bạn..."
+          placeholder={t.formPlaceholderFeedback}
         />
       </div>
 
@@ -112,7 +114,7 @@ export default function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
           marginTop: '8px'
         }}
       >
-        GỬI PHẢN HỒI
+        {t.formSubmitFeedback}
       </button>
     </form>
   );

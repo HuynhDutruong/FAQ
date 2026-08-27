@@ -5,11 +5,11 @@ import { LucideIcon } from 'lucide-react';
 interface LiquidButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: LucideIcon;
   label: string;
-  variant?: 'red' | 'yellow';
+  variant?: 'red' | 'yellow' | 'beige';
 }
 
 export default function LiquidButton({ icon: Icon, label, variant = 'red', className, ...props }: LiquidButtonProps) {
-  const accentColor = variant === 'red' ? 'var(--color-red)' : 'var(--color-yellow)';
+  const accentColor = variant === 'red' ? 'var(--color-red)' : variant === 'yellow' ? 'var(--color-yellow)' : '#8B5A2B';
   
   return (
     <button 

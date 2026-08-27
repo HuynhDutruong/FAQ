@@ -1,15 +1,17 @@
 'use client';
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Rating({ onSubmit }: { onSubmit: (rating: number) => void }) {
   const [hover, setHover] = useState(0);
   const [rating, setRating] = useState(0);
+  const { t } = useLanguage();
 
   return (
     <div style={{ textAlign: 'center', padding: '24px 0' }}>
       <h3 style={{ marginBottom: '16px', color: 'var(--color-dark)', fontSize: '1.1rem' }}>
-        Bạn đánh giá thế nào về trải nghiệm này?
+        {t.ratingTitle}
       </h3>
       <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginBottom: '24px' }}>
         {[1, 2, 3, 4, 5].map((star) => (
@@ -43,7 +45,7 @@ export default function Rating({ onSubmit }: { onSubmit: (rating: number) => voi
           opacity: rating > 0 ? 1 : 0.5
         }}
       >
-        Gửi Đánh Giá
+        {t.ratingSubmitText}
       </button>
     </div>
   );

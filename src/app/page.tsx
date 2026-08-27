@@ -1,12 +1,15 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import LiquidButton from '@/components/LiquidButton';
 import Modal from '@/components/Modal';
 import FAQForm from '@/components/FAQForm';
 import FeedbackForm from '@/components/FeedbackForm';
 import Rating from '@/components/Rating';
-import { MessageCircleQuestion, MessageSquarePlus, CheckCircle } from 'lucide-react';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { MessageCircleQuestion, MessageSquarePlus, CheckCircle, Clock } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import confetti from 'canvas-confetti';
@@ -16,6 +19,8 @@ type Step = 'form' | 'rating' | 'success';
 export default function Home() {
   const [activeModal, setActiveModal] = useState<'faq' | 'feedback' | null>(null);
   const [step, setStep] = useState<Step>('form');
+  const router = useRouter();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (step === 'success') {
@@ -83,6 +88,7 @@ export default function Home() {
       padding: '24px',
       position: 'relative'
     }}>
+      <LanguageSwitcher />
       
       <div style={{
         textAlign: 'center',
@@ -119,7 +125,7 @@ export default function Home() {
           lineHeight: '1.3',
           textTransform: 'uppercase'
         }}>
-          XỨ ĐOÀN CÁC THÁNH TỬ ĐẠO VIỆT NAM
+          {t.title}
         </h1>
         <h2 style={{
           fontSize: 'clamp(1rem, 3vw, 1.4rem)',
@@ -128,7 +134,7 @@ export default function Home() {
           marginBottom: '20px',
           textTransform: 'uppercase'
         }}>
-          Giáo Xứ Chánh Toà - Giáo Phận Mỹ Tho
+          {t.subtitle}
         </h2>
         <p style={{ 
           color: 'var(--color-dark)', 
@@ -138,7 +144,7 @@ export default function Home() {
           margin: '0 auto',
           lineHeight: '1.6'
         }}>
-          Lắng nghe, thấu hiểu và đồng hành cùng bạn. Vui lòng chọn một trong hai lựa chọn bên dưới để bắt đầu.
+          {t.description}
         </p>
       </div>
 
@@ -150,16 +156,23 @@ export default function Home() {
       }}>
         <LiquidButton 
           icon={MessageCircleQuestion} 
-          label="Vấn Đáp" 
+          label={t.btnFAQ} 
           variant="red"
           onClick={() => setActiveModal('faq')}
         />
         
         <LiquidButton 
           icon={MessageSquarePlus} 
-          label="Phản Hồi" 
+          label={t.btnFeedback} 
           variant="yellow"
           onClick={() => setActiveModal('feedback')}
+        />
+        
+        <LiquidButton 
+          icon={Clock} 
+          label={t.btnMassTimes} 
+          variant="beige"
+          onClick={() => router.push('/gio-le')}
         />
       </div>
 
@@ -167,15 +180,15 @@ export default function Home() {
       <Modal 
         isOpen={activeModal === 'faq'} 
         onClose={handleClose} 
-        title={step === 'form' ? 'Gửi Câu Hỏi / Vấn Đáp' : step === 'rating' ? 'Đánh giá hệ thống' : 'Thành công!'}
+        title={step === 'form' ? t.modalFAQTitle : step === 'rating' ? t.modalRatingTitle : t.modalSuccessTitle}
       >
         {step === 'form' && <FAQForm onSuccess={handleFormSuccess} />}
         {step === 'rating' && <Rating onSubmit={handleRatingSubmit} />}
         {step === 'success' && (
           <div style={{ textAlign: 'center', padding: '32px 0', color: 'var(--color-red)' }}>
             <CheckCircle size={64} style={{ margin: '0 auto 16px' }} />
-            <h2>Cảm ơn bạn!</h2>
-            <p style={{ opacity: 0.8, marginTop: '8px' }}>Câu hỏi của bạn đã được ghi nhận.</p>
+            <h2>{t.thanksTitle}</h2>
+            <p style={{ opacity: 0.8, marginTop: '8px' }}>{t.thanksDescFAQ}</p>
           </div>
         )}
       </Modal>
@@ -183,15 +196,15 @@ export default function Home() {
       <Modal 
         isOpen={activeModal === 'feedback'} 
         onClose={handleClose} 
-        title={step === 'form' ? 'Gửi Phản Hồi / Góp Ý' : step === 'rating' ? 'Đánh giá hệ thống' : 'Thành công!'}
+        title={step === 'form' ? t.modalFeedbackTitle : step === 'rating' ? t.modalRatingTitle : t.modalSuccessTitle}
       >
         {step === 'form' && <FeedbackForm onSuccess={handleFormSuccess} />}
         {step === 'rating' && <Rating onSubmit={handleRatingSubmit} />}
         {step === 'success' && (
           <div style={{ textAlign: 'center', padding: '32px 0', color: 'var(--color-yellow)' }}>
             <CheckCircle size={64} style={{ margin: '0 auto 16px' }} />
-            <h2>Cảm ơn bạn!</h2>
-            <p style={{ opacity: 0.8, marginTop: '8px' }}>Góp ý của bạn đã được ghi nhận.</p>
+            <h2>{t.thanksTitle}</h2>
+            <p style={{ opacity: 0.8, marginTop: '8px' }}>{t.thanksDescFeedback}</p>
           </div>
         )}
       </Modal>

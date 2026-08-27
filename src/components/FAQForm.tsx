@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const inputStyle = {
   width: '100%',
@@ -32,6 +33,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
     content: ''
   });
   const [error, setError] = useState('');
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,13 +41,13 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
 
     // Validation
     if (!isAnonymous && !formData.fullName.trim()) {
-      return setError('Vui lòng nhập họ tên hoặc chọn Ẩn danh.');
+      return setError(t.errorName);
     }
     if (!formData.phone.trim()) {
-      return setError('Vui lòng nhập số điện thoại.');
+      return setError(t.errorPhone);
     }
     if (formData.content.length < 30 || formData.content.length > 500) {
-      return setError('Câu hỏi phải từ 30 đến 500 ký tự.');
+      return setError(t.errorContent);
     }
 
     // TODO: Call AI Spelling check API here
@@ -65,7 +67,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
       onSuccess();
     } catch (err) {
       console.error("Error adding document: ", err);
-      setError('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+      setError(t.errorSubmit);
     }
   };
 
@@ -84,12 +86,12 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
           checked={isAnonymous} 
           onChange={(e) => setIsAnonymous(e.target.checked)} 
         />
-        <label htmlFor="anon-faq" style={{ cursor: 'pointer', fontSize: '0.9rem' }}>Tôi muốn gửi Ẩn danh</label>
+        <label htmlFor="anon-faq" style={{ cursor: 'pointer', fontSize: '0.9rem' }}>{t.formAnon}</label>
       </div>
 
       {!isAnonymous && (
         <div>
-          <label style={labelStyle}>Họ và Tên đầy đủ *</label>
+          <label style={labelStyle}>{t.formNameReq}</label>
           <input 
             style={inputStyle} 
             value={formData.fullName}
@@ -100,7 +102,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
       )}
 
       <div>
-        <label style={labelStyle}>Email liên lạc (Không bắt buộc)</label>
+        <label style={labelStyle}>{t.formEmailLabel}</label>
         <input 
           type="email" 
           style={inputStyle} 
@@ -111,7 +113,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
       </div>
 
       <div>
-        <label style={labelStyle}>Số điện thoại *</label>
+        <label style={labelStyle}>{t.formPhoneReq}</label>
         <input 
           type="tel" 
           style={inputStyle} 
@@ -122,12 +124,12 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
       </div>
 
       <div>
-        <label style={labelStyle}>Câu hỏi (30 - 500 ký tự) *</label>
+        <label style={labelStyle}>{t.formContentFAQ}</label>
         <textarea 
           style={{ ...inputStyle, minHeight: '120px', resize: 'vertical' }} 
           value={formData.content}
           onChange={(e) => setFormData({...formData, content: e.target.value})}
-          placeholder="Nhập câu hỏi của bạn tại đây..."
+          placeholder={t.formPlaceholderFAQ}
         />
         <div style={{ textAlign: 'right', fontSize: '0.8rem', color: formData.content.length < 30 || formData.content.length > 500 ? 'var(--color-red)' : 'gray', marginTop: '-12px', marginBottom: '16px' }}>
           {formData.content.length} / 500
@@ -147,7 +149,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
           marginTop: '8px'
         }}
       >
-        GỬI CÂU HỎI
+        {t.formSubmitFAQ}
       </button>
     </form>
   );

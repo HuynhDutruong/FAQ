@@ -1,15 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Be_Vietnam_Pro, Inter, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const beVietnamPro = Be_Vietnam_Pro({
+  variable: "--font-be-vietnam-pro",
+  subsets: ["vietnamese", "latin"],
+  weight: ['400', '500', '600', '700', '800', '900']
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoSansSC = Noto_Sans_SC({
+  variable: "--font-noto-sans-sc",
+  subsets: ["latin"], // next/font automatically handles Chinese subsets for Noto Sans SC
+  weight: ['400', '500', '700', '900']
 });
 
 export const viewport: Viewport = {
@@ -24,10 +32,14 @@ export const metadata: Metadata = {
   description: "Hệ thống Vấn đáp và Phản hồi dành cho Xứ Đoàn Các Thánh Tử Đạo Việt Nam.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${beVietnamPro.variable} ${inter.variable} ${notoSansSC.variable}`}>
+      <body>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+      </body>
     </html>
   );
 }

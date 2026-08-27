@@ -6,6 +6,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { LogOut, Trash2, CheckCircle, Clock } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, doc, updateDoc, Timestamp } from 'firebase/firestore';
+import MassTimeAdmin from '@/components/MassTimeAdmin';
 
 interface Submission {
   id: string;
@@ -19,7 +20,7 @@ interface Submission {
   createdAt: Timestamp;
 }
 
-type TabType = 'faq' | 'feedback' | 'history' | 'facebook';
+type TabType = 'faq' | 'feedback' | 'giole' | 'history' | 'facebook';
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
@@ -113,7 +114,7 @@ export default function AdminDashboard() {
           borderBottom: '1px solid #E5E7EB',
           paddingBottom: '2px'
         }}>
-          {(['faq', 'feedback', 'history', 'facebook'] as TabType[]).map((tab) => (
+          {(['faq', 'feedback', 'giole', 'history', 'facebook'] as TabType[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -130,7 +131,7 @@ export default function AdminDashboard() {
                 textTransform: 'uppercase'
               }}
             >
-              {tab === 'faq' ? 'Vấn đáp' : tab === 'feedback' ? 'Phản hồi' : tab === 'history' ? 'Lịch sử' : 'Facebook'}
+              {tab === 'faq' ? 'Vấn đáp' : tab === 'feedback' ? 'Phản hồi' : tab === 'giole' ? 'Giờ lễ' : tab === 'history' ? 'Lịch sử' : 'Facebook'}
             </button>
           ))}
         </div>
@@ -142,13 +143,11 @@ export default function AdminDashboard() {
               Nếu thấy lỗi "Missing or insufficient permissions", có nghĩa là Firestore Security Rules đang khoá quyền đọc. Vui lòng cập nhật luật thành <code>allow read, write: if true;</code> trên Firebase Console.
             </p>
           </div>
+        ) : activeTab === 'giole' ? (
+          <MassTimeAdmin />
         ) : dataLoading ? (
           <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280' }}>
             Đang tải dữ liệu từ Firestore...
-          </div>
-        ) : submissions.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280', backgroundColor: 'white', borderRadius: '12px' }}>
-            Chưa có vấn đáp hoặc phản hồi nào.
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
