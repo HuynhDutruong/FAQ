@@ -11,7 +11,14 @@ export interface MassTime {
   province: string;
   address: string;
   weekdayMass: string[];
+  /** Lễ chiều Thứ Bảy (lễ vọng Chúa Nhật) — giole.vn tách riêng bucket này. */
+  saturdayMass?: string[];
   sundayMass: string[];
+  /**
+   * Giờ lễ chi tiết theo từng thứ — chỉ có ở nhà thờ lấy từ gioleconggiao.com.
+   * null = admin đã sửa tay và chọn dùng cặp ngày thường / Chúa Nhật thay thế.
+   */
+  byDay?: Record<string, string[]> | null;
   lat?: number | null;
   lng?: number | null;
   source?: string;
@@ -20,21 +27,35 @@ export interface MassTime {
 export const massCol = collection(db, 'massTimes');
 const metaRef = doc(db, 'massTimesMeta', 'dioceses');
 
+export interface Bucket { name: string; count: number }
+
 /** Xoá dấu tiếng Việt để tìm kiếm không cần gõ dấu. Đ/đ không tách được bằng NFD nên xử lý riêng. */
 export const removeAccents = (str: string) =>
   str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/đ/g, 'd');
 
-/** Danh sách giáo phận + số nhà thờ. 1 document => 1 lượt đọc, thay vì quét cả collection. */
-export async function getDioceses(): Promise<{ name: string; count: number }[]> {
+/**
+ * Danh sách tỉnh/thành + giáo phận kèm số nhà thờ.
+ * Gói trong 1 document => 1 lượt đọc, thay vì quét cả collection 3600+ document.
+ */
+export async function getFacets(): Promise<{ provinces: Bucket[]; dioceses: Bucket[] }> {
   const snap = await getDoc(metaRef);
-  return snap.exists() ? (snap.data().list as { name: string; count: number }[]) : [];
+  const d = snap.data();
+  return { provinces: (d?.provinces ?? []) as Bucket[], dioceses: (d?.list ?? []) as Bucket[] };
 }
 
 /**
- * Chỉ tải nhà thờ của 1 giáo phận. Toàn quốc là 548+ document — tải hết mỗi lượt
+ * Chỉ tải nhà thờ của 1 tỉnh/thành. Toàn quốc là 3600+ document — tải hết mỗi lượt
  * truy cập sẽ đốt quota đọc của Firestore rất nhanh.
  * Sắp xếp ở client để khỏi phải tạo composite index trên Firebase Console.
  */
+export async function getByProvince(province: string): Promise<MassTime[]> {
+  const snap = await getDocs(query(massCol, where('province', '==', province)));
+  return snap.docs
+    .map(d => ({ ...(d.data() as Omit<MassTime, 'id'>), id: d.id }))
+    .sort((a, b) => a.parish.localeCompare(b.parish, 'vi'));
+}
+
+/** Như getByProvince nhưng lọc theo giáo phận. '' = nhóm chưa gắn nhãn giáo phận. */
 export async function getByDiocese(diocese: string): Promise<MassTime[]> {
   const snap = await getDocs(query(massCol, where('diocese', '==', diocese)));
   return snap.docs
@@ -46,19 +67,23 @@ export const createMass = (data: Omit<MassTime, 'id'>) => addDoc(massCol, data);
 export const updateMass = (id: string, data: Partial<MassTime>) => updateDoc(doc(massCol, id), data);
 export const deleteMass = (id: string) => deleteDoc(doc(massCol, id));
 
-/** Đếm lại số nhà thờ mỗi giáo phận rồi ghi vào document meta. Gọi sau khi CRUD/import. */
-export async function refreshDioceseMeta() {
+/** Đếm lại số nhà thờ theo tỉnh/thành và theo giáo phận, ghi vào document meta. */
+export async function refreshFacets() {
   const snap = await getDocs(massCol);
-  const counts = new Map<string, number>();
-  snap.docs.forEach(d => {
-    const name = (d.data().diocese as string) || 'Chưa rõ giáo phận';
-    counts.set(name, (counts.get(name) ?? 0) + 1);
-  });
-  const list = [...counts.entries()]
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => a.name.localeCompare(b.name, 'vi'));
-  await setDoc(metaRef, { list, total: snap.size, updatedAt: Date.now() });
-  return list;
+  const tally = (pick: (d: Record<string, unknown>) => string, fallback: string) => {
+    const counts = new Map<string, number>();
+    snap.docs.forEach(doc => {
+      const name = pick(doc.data()) || fallback;
+      counts.set(name, (counts.get(name) ?? 0) + 1);
+    });
+    return [...counts.entries()]
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+  };
+  const provinces = tally(d => d.province as string, 'Chưa rõ tỉnh/thành');
+  const list = tally(d => d.diocese as string, 'Chưa rõ giáo phận');
+  await setDoc(metaRef, { provinces, list, total: snap.size, updatedAt: Date.now() });
+  return { provinces, dioceses: list };
 }
 
 /** Chuỗi "5:00, 17h30" -> ['05:00','17:30'] cho ô nhập giờ trong trang admin. */
@@ -90,6 +115,6 @@ export async function importFromJson(onProgress?: (done: number, total: number) 
     await batch.commit();
     onProgress?.(Math.min(i + 400, rows.length), rows.length);
   }
-  await refreshDioceseMeta();
+  await refreshFacets();
   return rows.length;
 }

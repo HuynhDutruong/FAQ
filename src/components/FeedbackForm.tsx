@@ -86,7 +86,7 @@ export default function FeedbackForm({ onSuccess }: { onSuccess: () => void }) {
             style={inputStyle} 
             value={formData.fullName}
             onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-            placeholder="VD: Nguyễn Văn A"
+            placeholder={t.formPlaceholderName}
           />
         </div>
       )}

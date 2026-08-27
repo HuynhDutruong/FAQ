@@ -9,15 +9,16 @@ import FeedbackForm from '@/components/FeedbackForm';
 import Rating from '@/components/Rating';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { MessageCircleQuestion, MessageSquarePlus, CheckCircle, Clock } from 'lucide-react';
+import { MessageCircleQuestion, MessageSquarePlus, CheckCircle, Clock, Info } from 'lucide-react';
 import { db } from '@/lib/firebase';
+import IntroModalContent from '@/components/IntroModalContent';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import confetti from 'canvas-confetti';
 
 type Step = 'form' | 'rating' | 'success';
 
 export default function Home() {
-  const [activeModal, setActiveModal] = useState<'faq' | 'feedback' | null>(null);
+  const [activeModal, setActiveModal] = useState<'faq' | 'feedback' | 'intro' | null>(null);
   const [step, setStep] = useState<Step>('form');
   const router = useRouter();
   const { t } = useLanguage();
@@ -148,12 +149,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div style={{
-        display: 'flex',
-        gap: '40px',
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-      }}>
+      <div className="action-grid">
         <LiquidButton 
           icon={MessageCircleQuestion} 
           label={t.btnFAQ} 
@@ -173,6 +169,13 @@ export default function Home() {
           label={t.btnMassTimes} 
           variant="beige"
           onClick={() => router.push('/gio-le')}
+        />
+        
+        <LiquidButton 
+          icon={Info} 
+          label={t.btnIntroDiocese} 
+          variant="red"
+          onClick={() => setActiveModal('intro')}
         />
       </div>
 
@@ -209,6 +212,13 @@ export default function Home() {
         )}
       </Modal>
 
+      <Modal 
+        isOpen={activeModal === 'intro'} 
+        onClose={handleClose} 
+        title={t.btnIntroDiocese}
+      >
+        <IntroModalContent />
+      </Modal>
     </main>
   );
 }

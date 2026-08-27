@@ -20,13 +20,14 @@ export default function LiquidButton({ icon: Icon, label, variant = 'red', class
         alignItems: 'center',
         justifyContent: 'center',
         gap: '12px',
-        padding: '24px',
-        width: 'clamp(150px, 42vw, 200px)',
-        height: 'clamp(150px, 42vw, 200px)',
+        padding: '16px',
+        width: '100%',
+        aspectRatio: '1 / 1',
         color: accentColor,
-        fontSize: 'clamp(16px, 4vw, 20px)',
+        fontSize: 'clamp(14px, 3.5vw, 18px)',
         fontWeight: 'bold',
         textTransform: 'uppercase',
+        textAlign: 'center',
         letterSpacing: '1px',
       }}
       {...props}

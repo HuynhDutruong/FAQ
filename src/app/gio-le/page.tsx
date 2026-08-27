@@ -4,7 +4,8 @@ import { Search, MapPin, Clock, Calendar, ArrowLeft, Church, Loader2 } from 'luc
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { getDioceses, getByDiocese, removeAccents, MassTime } from '@/lib/massTimes';
+import { getFacets, getByDiocese, removeAccents, MassTime, Bucket } from '@/lib/massTimes';
+import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
 
 const fieldStyle: React.CSSProperties = {
   width: '100%',
@@ -28,6 +29,10 @@ const labelStyle: React.CSSProperties = {
   opacity: 0.65
 };
 
+const UNKNOWN_DIOCESE = 'Chưa rõ giáo phận';
+
+const DAY_ORDER = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chúa Nhật'];
+
 function TimeChips({ times, color, bg }: { times: string[]; color: string; bg: string }) {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
@@ -43,7 +48,7 @@ function TimeChips({ times, color, bg }: { times: string[]; color: string; bg: s
 
 export default function MassTimesPage() {
   const { t } = useLanguage();
-  const [dioceses, setDioceses] = useState<{ name: string; count: number }[]>([]);
+  const [dioceseBuckets, setDioceseBuckets] = useState<Bucket[]>([]);
   const [selectedDiocese, setSelectedDiocese] = useState('');
   const [selectedDeanery, setSelectedDeanery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -51,15 +56,25 @@ export default function MassTimesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => { getDioceses().then(setDioceses).catch(e => setError(e.message)); }, []);
+  useEffect(() => { getFacets().then(f => setDioceseBuckets(f.dioceses)).catch(e => setError(e.message)); }, []);
 
-  // Chỉ tải nhà thờ khi đã chọn giáo phận (548+ document, không tải hết cùng lúc)
+  // Xếp theo đúng thứ tự 27 giáo phận chính thức; nhóm chưa gắn nhãn xuống cuối
+  const dioceses = useMemo(() => {
+    const counts = new Map(dioceseBuckets.map(b => [b.name, b.count]));
+    const known = ALL_DIOCESES.filter(d => counts.has(d))
+      .map(d => ({ value: d, label: dioceseLabel(d), count: counts.get(d)! }));
+    const rest = dioceseBuckets.filter(b => !ALL_DIOCESES.includes(b.name))
+      .map(b => ({ value: b.name, label: b.name, count: b.count }));
+    return [...known, ...rest];
+  }, [dioceseBuckets]);
+
+  // Chỉ tải nhà thờ của giáo phận đã chọn (3600+ document, không tải hết cùng lúc)
   useEffect(() => {
     if (!selectedDiocese) { setRows([]); return; }
     setLoading(true);
     setError(null);
     setSelectedDeanery('');
-    getByDiocese(selectedDiocese)
+    getByDiocese(selectedDiocese === UNKNOWN_DIOCESE ? '' : selectedDiocese)
       .then(setRows)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
@@ -117,7 +132,9 @@ export default function MassTimesPage() {
             <select id="diocese" value={selectedDiocese}
               onChange={e => setSelectedDiocese(e.target.value)} style={fieldStyle}>
               <option value="">{t.allDioceses}</option>
-              {dioceses.map(d => <option key={d.name} value={d.name}>{d.name} ({d.count})</option>)}
+              {dioceses.map(d => (
+                <option key={d.value} value={d.value}>{d.label} ({d.count})</option>
+              ))}
             </select>
           </div>
 
@@ -127,7 +144,7 @@ export default function MassTimesPage() {
               disabled={!deaneries.length}
               style={{ ...fieldStyle, opacity: deaneries.length ? 1 : 0.5, cursor: deaneries.length ? 'pointer' : 'not-allowed' }}>
               <option value="">{t.allDeaneries}</option>
-              {deaneries.map(d => <option key={d} value={d}>{d}</option>)}
+              {deaneries.map(d => <option key={d} value={d}>Hạt {d}</option>)}
             </select>
           </div>
 
@@ -174,7 +191,7 @@ export default function MassTimesPage() {
                   fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase',
                   letterSpacing: '0.5px', color: 'var(--color-yellow)', marginBottom: '4px'
                 }}>
-                  {[item.diocese, item.deanery].filter(Boolean).join(' · ')}
+                  {[item.diocese && dioceseLabel(item.diocese), item.deanery && `Hạt ${item.deanery}`, item.province].filter(Boolean).join(' · ')}
                 </div>
 
                 <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', lineHeight: 1.3 }}>
@@ -200,12 +217,44 @@ export default function MassTimesPage() {
                   display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px',
                   marginTop: '16px', paddingTop: '16px', borderTop: '1px solid rgba(44,44,44,0.08)'
                 }}>
+                  {/* Có giờ lễ chi tiết theo từng thứ thì hiện bảng đó — chính xác hơn
+                      cặp "ngày thường / Chúa Nhật" vốn là gộp chung. */}
+                  {item.byDay ? (
+                    <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                      {DAY_ORDER.filter(d => item.byDay?.[d]?.length).map(d => (
+                        <div key={d} style={{
+                          display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap'
+                        }}>
+                          <span style={{
+                            ...labelStyle, minWidth: '92px', flexShrink: 0,
+                            color: d === 'Chúa Nhật' ? 'var(--color-red)' : 'var(--color-dark)',
+                            opacity: d === 'Chúa Nhật' ? 1 : 0.65
+                          }}>
+                            {t.dayNames[d] ?? d}
+                          </span>
+                          <TimeChips
+                            times={item.byDay![d]}
+                            color={d === 'Chúa Nhật' ? 'var(--color-red)' : 'var(--color-dark)'}
+                            bg={d === 'Chúa Nhật' ? 'rgba(211,47,47,0.1)' : 'rgba(251,192,45,0.25)'}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : <>
                   {item.weekdayMass?.length > 0 && (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       <span style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <Clock size={14} /> {t.colWeekday}
                       </span>
                       <TimeChips times={item.weekdayMass} color="var(--color-dark)" bg="rgba(251,192,45,0.25)" />
+                    </div>
+                  )}
+                  {(item.saturdayMass?.length ?? 0) > 0 && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      <span style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Clock size={14} /> {t.dayNames['Thứ Bảy'] ?? 'Thứ Bảy'}
+                      </span>
+                      <TimeChips times={item.saturdayMass!} color="var(--color-dark)" bg="rgba(251,192,45,0.25)" />
                     </div>
                   )}
                   {item.sundayMass?.length > 0 && (
@@ -216,6 +265,14 @@ export default function MassTimesPage() {
                       <TimeChips times={item.sundayMass} color="var(--color-red)" bg="rgba(211,47,47,0.1)" />
                     </div>
                   )}
+                  {/* CSDL của HĐGM có ~1000 nhà thờ chưa khai giờ lễ — vẫn liệt kê
+                      để danh bạ đủ giáo xứ toàn quốc, nhưng nói rõ là chưa có. */}
+                  {!item.weekdayMass?.length && !item.saturdayMass?.length && !item.sundayMass?.length && (
+                    <div style={{ gridColumn: '1 / -1', fontSize: '0.9rem', color: 'var(--color-dark)', opacity: 0.5 }}>
+                      {t.noMassTimes}
+                    </div>
+                  )}
+                  </>}
                 </div>
               </article>
             ))}

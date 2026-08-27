@@ -22,7 +22,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
   if (!isOpen) return null;
 
   return (
-    <div style={{
+    <div className="modal-wrapper" style={{
       position: 'fixed',
       top: 0, left: 0, right: 0, bottom: 0,
       display: 'flex',
@@ -33,27 +33,12 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
     }}>
       {/* Overlay */}
       <div 
-        style={{
-          position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.4)',
-          backdropFilter: 'blur(4px)',
-          WebkitBackdropFilter: 'blur(4px)',
-        }}
+        className="modal-overlay"
         onClick={onClose}
       />
       
       {/* Modal Content */}
-      <div className="liquid-glass" style={{
-        position: 'relative',
-        width: '100%',
-        maxWidth: '500px',
-        maxHeight: '90vh',
-        overflowY: 'auto',
-        padding: '32px',
-        backgroundColor: 'rgba(255, 255, 255, 0.75)', /* Opaque hơn button 1 chút để dễ đọc chữ */
-        animation: 'slideUp 0.3s ease-out',
-      }}>
+      <div className="liquid-glass modal-content-container">
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -82,13 +67,6 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
         
         {children}
       </div>
-
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}} />
     </div>
   );
 }

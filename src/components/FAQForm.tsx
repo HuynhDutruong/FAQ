@@ -96,7 +96,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
             style={inputStyle} 
             value={formData.fullName}
             onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-            placeholder="VD: Nguyễn Văn A"
+            placeholder={t.formPlaceholderName}
           />
         </div>
       )}
@@ -108,7 +108,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
           style={inputStyle} 
           value={formData.email}
           onChange={(e) => setFormData({...formData, email: e.target.value})}
-          placeholder="VD: email@example.com"
+          placeholder={t.formPlaceholderEmail}
         />
       </div>
 
@@ -119,7 +119,7 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
           style={inputStyle} 
           value={formData.phone}
           onChange={(e) => setFormData({...formData, phone: e.target.value})}
-          placeholder="VD: 0901234567"
+          placeholder={t.formPlaceholderPhone}
         />
       </div>
 
