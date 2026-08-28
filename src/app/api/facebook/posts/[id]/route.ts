@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { getFacebookCredentials } from '@/lib/facebookHelper';
 
 interface FBComment {
   id: string;
@@ -9,6 +8,8 @@ interface FBComment {
   like_count?: number;
   comments?: { data?: FBComment[] };
 }
+
+export const dynamic = 'force-dynamic';
 
 const POST_FIELDS =
   'id,message,story,created_time,full_picture,permalink_url,attachments{media_type,media,subattachments},shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
@@ -20,21 +21,25 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   try {
     const { id } = await params;
 
-    let pageToken: string;
-    try {
-      ({ pageToken } = await getFacebookCredentials());
-    } catch {
-      return NextResponse.json({ error: 'Chưa kết nối Fanpage.' }, { status: 503 });
+    let pageToken = (process.env.FACEBOOK_PAGE_ACCESS_TOKEN || process.env.FACEBOOK_PAGE_TOKEN || process.env.FACEBOOK_ACCESS_TOKEN || '').trim();
+    if (!pageToken) {
+      try {
+        const { getFacebookCredentials } = await import('@/lib/facebookHelper');
+        const creds = await getFacebookCredentials();
+        pageToken = creds.pageToken;
+      } catch {
+        return NextResponse.json({ error: 'Chưa kết nối Fanpage.' }, { status: 503 });
+      }
     }
 
     const [postRes, commentRes] = await Promise.all([
       fetch(
         `https://graph.facebook.com/v20.0/${id}?fields=${encodeURIComponent(POST_FIELDS)}&access_token=${pageToken}`,
-        { next: { revalidate: 300 } }
+        { cache: 'no-store' }
       ),
       fetch(
         `https://graph.facebook.com/v20.0/${id}/comments?fields=${encodeURIComponent(COMMENT_FIELDS)}&order=reverse_chronological&limit=50&access_token=${pageToken}`,
-        { next: { revalidate: 120 } }
+        { cache: 'no-store' }
       )
     ]);
 
