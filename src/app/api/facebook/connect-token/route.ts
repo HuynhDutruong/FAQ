@@ -7,6 +7,8 @@ import {
 } from '@/lib/facebookHelper';
 import { withAdmin } from '@/lib/serverAuth';
 
+export const dynamic = 'force-dynamic';
+
 // 1. Lưu Access Token do Admin dán trực tiếp (không cần đăng nhập qua App Facebook)
 export const POST = withAdmin(async (request: Request) => {
   const body = await request.json();

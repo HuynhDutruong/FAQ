@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getFacebookCredentials, listFacebookPages } from '@/lib/facebookHelper';
 import { withAdmin } from '@/lib/serverAuth';
 
+export const dynamic = 'force-dynamic';
+
 export const GET = withAdmin(async () => {
   let creds;
   try {

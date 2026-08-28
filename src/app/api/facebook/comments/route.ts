@@ -11,6 +11,8 @@ interface FBCommentRaw {
   comments?: { data?: FBCommentRaw[] };
 }
 
+export const dynamic = 'force-dynamic';
+
 // 1. Lấy danh sách bình luận của 1 bài viết
 export const GET = withAdmin(async (request: Request) => {
   const { pageToken } = await getFacebookCredentials();

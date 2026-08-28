@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getFacebookCredentials } from '@/lib/facebookHelper';
 import { withAdmin } from '@/lib/serverAuth';
 
+export const dynamic = 'force-dynamic';
+
 export const POST = withAdmin(async (request: Request) => {
   const body = await request.json();
   const { message, link } = body;
