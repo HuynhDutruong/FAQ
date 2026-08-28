@@ -1,19 +1,19 @@
 :root {
-  --color-beige: #F8F5E9; /* Warm, modern beige */
+  --color-beige: #FDFBF7; /* Warm, modern pure beige */
   --color-red: #D32F2F; /* Deep Catholic Red */
   --color-red-light: #EF5350;
-  --color-yellow: #FBC02D; /* Vatican Yellow */
-  --color-yellow-light: #FFEE58;
-  --color-dark: #2C2C2C;
+  --color-yellow: #D97706; /* Rich Amber Vatican Gold */
+  --color-yellow-light: #FDE68A;
+  --color-dark: #1F2937;
   --color-white: #FFFFFF;
   
-  /* Liquid Glass iOS 17 Properties */
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.7);
-  --glass-border-bottom: rgba(255, 255, 255, 0.2);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-  --glass-shadow-hover: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
-  --glass-blur: blur(20px);
+  /* Liquid Glass iOS 18 Properties */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-border-bottom: rgba(255, 255, 255, 0.35);
+  --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.4);
+  --glass-shadow-hover: 0 20px 40px -10px rgba(211, 47, 47, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9);
+  --glass-blur: blur(24px);
   --glass-radius: 24px;
   
   --background: var(--color-beige);
@@ -51,11 +51,14 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  /* Premium Animated Liquid Gradient */
-  background: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><g font-family="sans-serif" font-weight="bold"><text x="20" y="40" font-size="30" transform="rotate(-15 20 40)" fill="rgba(211,47,47,0.06)">?</text><text x="120" y="60" font-size="40" transform="rotate(20 120 60)" fill="rgba(211,47,47,0.04)">?</text><text x="50" y="150" font-size="35" transform="rotate(10 50 150)" fill="rgba(211,47,47,0.06)">?</text><text x="160" y="180" font-size="25" transform="rotate(-25 160 180)" fill="rgba(211,47,47,0.04)">?</text><text x="80" y="90" font-size="50" transform="rotate(-10 80 90)" fill="rgba(251,192,45,0.06)">?</text><text x="180" y="110" font-size="30" transform="rotate(15 180 110)" fill="rgba(251,192,45,0.04)">?</text><text x="10" y="110" font-size="20" transform="rotate(-5 10 110)" fill="rgba(251,192,45,0.06)">?</text><text x="140" y="20" font-size="28" transform="rotate(30 140 20)" fill="rgba(251,192,45,0.04)">?</text></g></svg>'), linear-gradient(-45deg, #FFFFFF, #FFF8E1, #FFEBEE, #FFFFFF);
-  background-size: 200px 200px, 400% 400%;
-  background-attachment: fixed, scroll;
-  animation: liquidGradient 15s ease infinite;
+  /* Enhanced Living Liquid Gradient Background */
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(254, 226, 226, 0.6) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(254, 243, 199, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(254, 226, 226, 0.5) 0%, transparent 55%),
+    linear-gradient(135deg, #FFFDF9 0%, #FFF5F5 50%, #FFFBEB 100%);
+  background-size: 150% 150%;
+  animation: liquidMeshGlow 12s ease-in-out infinite alternate;
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -88,58 +91,118 @@ button {
   border-bottom: 1px solid var(--glass-border-bottom);
   border-radius: var(--glass-radius);
   box-shadow: var(--glass-shadow);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .liquid-glass:hover {
   box-shadow: var(--glass-shadow-hover);
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-4px) scale(1.01);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.liquid-glass:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Shimmer Light Reflection Sweep on Glass */
+.liquid-glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.75s ease-in-out;
+  pointer-events: none;
+}
+
+.liquid-glass:hover::after {
+  left: 140%;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-beige: #1A1A1A; /* Dark theme base */
-    --color-red: #E53935; /* Keep red vibrant but slightly softer */
-    --color-red-light: #EF5350;
-    --color-yellow: #FBC02D;
-    --color-yellow-light: #FFF59D;
-    --color-dark: #F5F5F5; /* Text becomes light */
-    --color-white: #121212;
+    --color-beige: #121212;
+    --color-red: #EF4444;
+    --color-red-light: #F87171;
+    --color-yellow: #F59E0B;
+    --color-yellow-light: #FDE68A;
+    --color-dark: #F9FAFB;
+    --color-white: #18181B;
     
-    /* Dark Glass Properties */
-    --glass-bg: rgba(0, 0, 0, 0.45);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-border-bottom: rgba(0, 0, 0, 0.3);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-    --glass-shadow-hover: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+    --glass-bg: rgba(24, 24, 27, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-bottom: rgba(0, 0, 0, 0.4);
+    --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+    --glass-shadow-hover: 0 20px 40px -10px rgba(239, 68, 68, 0.25);
   }
 
   body {
-    background: url('data:image/svg+xml;utf8,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"><g font-family="sans-serif" font-weight="bold"><text x="20" y="40" font-size="30" transform="rotate(-15 20 40)" fill="rgba(255,255,255,0.02)">?</text><text x="120" y="60" font-size="40" transform="rotate(20 120 60)" fill="rgba(255,255,255,0.015)">?</text><text x="50" y="150" font-size="35" transform="rotate(10 50 150)" fill="rgba(255,255,255,0.02)">?</text><text x="160" y="180" font-size="25" transform="rotate(-25 160 180)" fill="rgba(255,255,255,0.015)">?</text><text x="80" y="90" font-size="50" transform="rotate(-10 80 90)" fill="rgba(251,192,45,0.02)">?</text><text x="180" y="110" font-size="30" transform="rotate(15 180 110)" fill="rgba(251,192,45,0.015)">?</text><text x="10" y="110" font-size="20" transform="rotate(-5 10 110)" fill="rgba(251,192,45,0.02)">?</text><text x="140" y="20" font-size="28" transform="rotate(30 140 20)" fill="rgba(251,192,45,0.015)">?</text></g></svg>'), linear-gradient(-45deg, #121212, #2D1414, #1A0A0A, #121212);
-    background-size: 200px 200px, 400% 400%;
-    background-attachment: fixed, scroll;
-    animation: liquidGradient 15s ease infinite;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(153, 27, 27, 0.25) 0%, transparent 45%),
+      radial-gradient(circle at 80% 30%, rgba(180, 83, 9, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 50% 80%, rgba(153, 27, 27, 0.2) 0%, transparent 55%),
+      linear-gradient(135deg, #09090B 0%, #18181B 100%);
+    background-size: 150% 150%;
+    animation: liquidMeshGlow 12s ease-in-out infinite alternate;
   }
 
   .liquid-glass:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(39, 39, 42, 0.85);
   }
 }
 
+/* Animations */
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { animation: spin 1s linear infinite; }
 
-@keyframes liquidGradient {
+@keyframes liquidMeshGlow {
   0% {
-    background-position: 0% 0%, 0% 50%;
+    background-position: 0% 0%;
   }
   50% {
-    background-position: 0% 0%, 100% 50%;
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 0%, 0% 50%;
+    background-position: 50% 100%;
   }
+}
+
+@keyframes floatLogo {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 8px 16px rgba(211, 47, 47, 0.15));
+  }
+  50% {
+    transform: translateY(-8px) scale(1.03);
+    filter: drop-shadow(0 16px 28px rgba(211, 47, 47, 0.25));
+  }
+}
+
+.logo-floating {
+  animation: floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes pulsePill {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.1);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(211, 47, 47, 0.25);
+  }
+}
+
+.pill-glow {
+  animation: pulsePill 3s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
@@ -153,21 +216,35 @@ button {
   }
 }
 
-/* MOBILE UI REMAKE: Responsive Layouts and Modal Bottom Sheet */
+@keyframes cardGlide {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.card-appear {
+  animation: cardGlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Grid for Landing Actions */
 .action-grid {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  max-width: 1000px;
+  max-width: 960px;
 }
 
 @media (max-width: 768px) {
   .action-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 0 8px;
+    gap: 14px;
+    padding: 0 4px;
   }
 }
 
@@ -175,31 +252,32 @@ button {
 .modal-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .modal-content-container {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
   max-height: 90vh;
   overflow-y: auto;
   padding: 32px;
-  background-color: rgba(255, 255, 255, 0.75);
-  animation: slideUpCenter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: rgba(255, 255, 255, 0.92);
+  animation: slideUpCenter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
   .modal-content-container {
-    background-color: rgba(30, 30, 30, 0.75);
+    background-color: rgba(30, 30, 30, 0.92);
   }
 }
 
 @keyframes slideUpCenter {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  from { opacity: 0; transform: translateY(24px) scale(0.94); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -217,21 +295,14 @@ button {
     animation: slideUpBottom 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
-  /* Add drag indicator */
   .modal-content-container::before {
     content: '';
     display: block;
-    width: 40px;
+    width: 44px;
     height: 4px;
     background: rgba(0,0,0,0.15);
     border-radius: 4px;
-    margin: -12px auto 20px auto;
-  }
-}
-
-@media (max-width: 768px) and (prefers-color-scheme: dark) {
-  .modal-content-container::before {
-    background: rgba(255,255,255,0.2);
+    margin: -10px auto 18px auto;
   }
 }
 
@@ -258,11 +329,12 @@ button {
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .giole-btn-contribute:hover {
-  background-color: rgba(211, 47, 47, 0.18);
+  background-color: rgba(211, 47, 47, 0.2);
+  transform: scale(1.04);
 }
 
 @media (max-width: 640px) {

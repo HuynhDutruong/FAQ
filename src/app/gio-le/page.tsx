@@ -614,7 +614,7 @@ ${window.location.origin}/gio-le`;
                 : `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(item.address || item.parish)}`;
 
               return (
-                <article key={item.id} className="liquid-glass" style={{
+                <article key={item.id} className="liquid-glass card-appear" style={{
                   padding: '16px', position: 'relative', borderRadius: '18px'
                 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>

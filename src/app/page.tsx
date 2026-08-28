@@ -106,13 +106,16 @@ export default function Home() {
         padding: '0 16px'
       }}>
         {/* Logo */}
-        <div style={{
-          position: 'relative',
-          width: '120px',
-          height: '120px',
-          marginBottom: '24px',
-          mixBlendMode: 'multiply' /* Khử nền trắng của ảnh logo */
-        }}>
+        <div 
+          className="logo-floating"
+          style={{
+            position: 'relative',
+            width: '120px',
+            height: '120px',
+            marginBottom: '24px',
+            mixBlendMode: 'multiply' /* Khử nền trắng của ảnh logo */
+          }}
+        >
           <Image 
             src="/logo.jpg" 
             alt="Logo Xứ Đoàn" 
@@ -145,25 +148,25 @@ export default function Home() {
 
         <button
           onClick={() => router.push('/gio-le')}
-          className="liquid-glass"
+          className="liquid-glass pill-glow"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            padding: '7px 16px',
+            padding: '8px 18px',
             borderRadius: '999px',
             marginBottom: '20px',
             fontSize: '0.85rem',
             fontWeight: 700,
             color: 'var(--color-red)',
-            border: '1px solid rgba(211, 47, 47, 0.25)',
-            boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)',
-            cursor: 'pointer'
+            border: '1px solid rgba(211, 47, 47, 0.3)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
           }}
         >
           <Clock size={15} />
           <span>Tra cứu 3.300+ Nhà Thờ & Giờ Lễ Toàn Quốc</span>
-          <span style={{ fontSize: '0.72rem', backgroundColor: 'var(--color-red)', color: 'white', padding: '1px 7px', borderRadius: '999px', fontWeight: 800 }}>MỚI</span>
+          <span style={{ fontSize: '0.72rem', backgroundColor: 'var(--color-red)', color: 'white', padding: '2px 8px', borderRadius: '999px', fontWeight: 800 }}>MỚI</span>
         </button>
 
         <p style={{ 
