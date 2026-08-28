@@ -270,6 +270,108 @@ function applyCatholicGlossary(translatedText: string, targetLang: Language): st
 }
 
 /**
+ * Dịch hàng loạt (Batch translation) giúp dịch cùng lúc nhiều bài viết chỉ với 1 lượt gọi API duy nhất!
+ * Kiểm tra cache siêu tốc trong RAM và LocalStorage trước khi gửi request.
+ */
+export async function translateClientBatch(texts: string[], targetLang: Language): Promise<string[]> {
+  if (!texts || texts.length === 0) return [];
+  if (targetLang === 'vi') return texts;
+
+  const results: (string | null)[] = new Array(texts.length).fill(null);
+  const uncachedIndices: number[] = [];
+  const uncachedTexts: string[] = [];
+
+  // 1. Kiểm tra cache RAM, Thuật ngữ Công Giáo, và LocalStorage
+  texts.forEach((txt, idx) => {
+    if (!txt || !txt.trim()) {
+      results[idx] = txt;
+      return;
+    }
+
+    const trimmed = txt.trim();
+    const cacheKey = `tr_${targetLang}_${hashString(trimmed)}`;
+
+    // Memory cache
+    if (memoryCache[cacheKey]) {
+      results[idx] = memoryCache[cacheKey];
+      return;
+    }
+
+    // Canonical Gospel
+    const canonical = findCanonicalGospel(trimmed, targetLang);
+    if (canonical) {
+      memoryCache[cacheKey] = canonical;
+      results[idx] = canonical;
+      return;
+    }
+
+    // Exact Catholic Term
+    const lowerTrimmed = trimmed.toLowerCase();
+    if (CATHOLIC_TERMS[lowerTrimmed] && CATHOLIC_TERMS[lowerTrimmed][targetLang]) {
+      const term = CATHOLIC_TERMS[lowerTrimmed][targetLang];
+      memoryCache[cacheKey] = term;
+      results[idx] = term;
+      return;
+    }
+
+    // LocalStorage
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem(cacheKey);
+        if (stored) {
+          memoryCache[cacheKey] = stored;
+          results[idx] = stored;
+          return;
+        }
+      } catch {}
+    }
+
+    uncachedIndices.push(idx);
+    uncachedTexts.push(trimmed);
+  });
+
+  // Nếu tất cả đã có trong cache thì trả về ngay 0ms!
+  if (uncachedTexts.length === 0) {
+    return results as string[];
+  }
+
+  // 2. Gửi các chuỗi chưa có trong cache lên máy chủ API dịch lô
+  try {
+    const res = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        texts: uncachedTexts,
+        targetLang
+      })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.translations) && data.translations.length === uncachedTexts.length) {
+        data.translations.forEach((tr: string, i: number) => {
+          const enriched = applyCatholicGlossary(tr, targetLang);
+          const orig = uncachedTexts[i];
+          const cacheKey = `tr_${targetLang}_${hashString(orig)}`;
+          memoryCache[cacheKey] = enriched;
+          if (typeof window !== 'undefined') {
+            try { localStorage.setItem(cacheKey, enriched); } catch {}
+          }
+          results[uncachedIndices[i]] = enriched;
+        });
+      }
+    }
+  } catch (err) {
+    console.warn('Batch translation error, fallback to single translation:', err);
+  }
+
+  // Điền nốt nếu còn sót bằng bản dịch đơn lẻ hoặc gốc
+  return Promise.all(
+    results.map((r, i) => (r !== null ? r : translateClientText(texts[i], targetLang)))
+  );
+}
+
+/**
  * Translates a given Vietnamese text into the target language completely on the client-side.
  * Uses persistent localStorage caching + memory caching + Catholic Theological Glossary.
  */
@@ -316,26 +418,29 @@ export async function translateClientText(text: string, targetLang: Language): P
     let tl = targetLang as string;
     if (tl === 'zh') tl = 'zh-CN';
 
-    // Chunk text if very long (> 1500 chars) to prevent URL length limits
-    if (trimmed.length > 1500) {
-      const paragraphs = trimmed.split('\n\n');
-      const translatedParas = await Promise.all(
-        paragraphs.map(p => translateClientText(p, targetLang))
-      );
-      const fullResult = applyCatholicGlossary(translatedParas.join('\n\n'), targetLang);
-      memoryCache[cacheKey] = fullResult;
-      if (typeof window !== 'undefined') {
-        try { localStorage.setItem(cacheKey, fullResult); } catch {}
+    // Thử qua endpoint máy chủ trước (nhanh & có cache chung)
+    const serverRes = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: trimmed, targetLang: tl })
+    });
+
+    if (serverRes.ok) {
+      const serverData = await serverRes.json();
+      if (serverData.translation) {
+        const enriched = applyCatholicGlossary(serverData.translation, targetLang);
+        memoryCache[cacheKey] = enriched;
+        if (typeof window !== 'undefined') {
+          try { localStorage.setItem(cacheKey, enriched); } catch {}
+        }
+        return enriched;
       }
-      return fullResult;
     }
 
+    // Dự phòng gọi trực tiếp Google Translate GTX
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=vi&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(trimmed)}`;
-
     const response = await fetch(url);
-    if (!response.ok) {
-      return trimmed;
-    }
+    if (!response.ok) return trimmed;
 
     const data = await response.json();
     if (Array.isArray(data) && Array.isArray(data[0])) {

@@ -123,6 +123,9 @@ export async function GET(request: Request) {
     const data = await res.json();
     const main: CalApiCelebration | undefined = data.celebrations?.[0];
     const color = COLORS[main?.colour ?? ''] || 'xanh lục';
+    const headers = {
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+    };
 
     return NextResponse.json({
       source: 'calapi',
@@ -134,7 +137,7 @@ export async function GET(request: Request) {
       celebration: main?.title ? toVietnamese(main.title) : null,
       rank: RANKS[(main?.rank || '').toLowerCase()] || main?.rank || null,
       cycle: getLiturgicalDay(today).cycle
-    });
+    }, { headers });
   } catch {
     // Dự phòng: tự tính tại chỗ, vẫn đúng mùa và màu áo lễ.
     const d = getLiturgicalDay(today);
@@ -148,6 +151,10 @@ export async function GET(request: Request) {
       celebration: d.feast,
       rank: d.feast ? 'Lễ trọng' : null,
       cycle: d.cycle
+    }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+      }
     });
   }
 }

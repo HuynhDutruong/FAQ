@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { translateClientText } from '@/lib/clientTranslator';
+import { translateClientText, translateClientBatch } from '@/lib/clientTranslator';
 import { useFacebookPosts } from '@/lib/useFacebookPosts';
 import type { FeedPost, PostKind } from '@/lib/postIntel';
 import { PostThumb, MediaChips, LinkButtons } from './PostMedia';
@@ -83,23 +83,63 @@ function pageNumbers(current: number, total: number): (number | null)[] {
   return out;
 }
 
-export default function FacebookFeed({ category = 'news' }: { category?: PostKind }) {
+export default function FacebookFeed({
+  category = 'all',
+  onCategoryChange
+}: {
+  category?: 'all' | 'notice' | 'news';
+  onCategoryChange?: (cat: 'all' | 'notice' | 'news') => void;
+}) {
   const { t, lang } = useLanguage();
   const { posts: allPosts, loading } = useFacebookPosts();
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterTab, setFilterTab] = useState<'all' | 'notice' | 'news'>(category);
   const [slideIndex, setSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [translatedMap, setTranslatedMap] = useState<Record<string, { title: string; excerpt: string }>>({});
 
-  const isNotice = category === 'notice';
-  const perPage = isNotice ? NOTICES_PER_PAGE : POSTS_PER_PAGE;
-  const feedId = isNotice ? 'facebook-notice-feed' : 'facebook-news-feed';
+  useEffect(() => {
+    setFilterTab(category);
+    setCurrentPage(1);
+  }, [category]);
 
-  // Bài đã được máy chủ nhận diện Thông báo / Bài viết, ở đây chỉ lọc theo khu vực
-  const posts = useMemo(
-    () => allPosts.filter(p => (p.kind === 'notice') === isNotice),
-    [allPosts, isNotice]
-  );
+  const handleTabChange = (nextTab: 'all' | 'notice' | 'news') => {
+    setFilterTab(nextTab);
+    setCurrentPage(1);
+    onCategoryChange?.(nextTab);
+  };
+
+  const isNoticePost = (p: FBPost) => {
+    if (p.kind === 'notice') return true;
+    const text = (p.message || '').toLowerCase();
+    const firstLine = text.split('\n')[0] || '';
+    return (
+      firstLine.includes('thông báo') ||
+      firstLine.includes('thong bao') ||
+      firstLine.includes('thư mời') ||
+      firstLine.includes('thu moi') ||
+      firstLine.startsWith('tb:') ||
+      firstLine.startsWith('[tb]') ||
+      text.includes('#thongbao')
+    );
+  };
+
+  const noticeCount = useMemo(() => allPosts.filter(isNoticePost).length, [allPosts]);
+  const newsCount = useMemo(() => allPosts.filter(p => !isNoticePost(p)).length, [allPosts]);
+
+  const isNoticeOnly = filterTab === 'notice';
+  const perPage = isNoticeOnly ? NOTICES_PER_PAGE : POSTS_PER_PAGE;
+  const feedId = isNoticeOnly ? 'facebook-notice-feed' : 'facebook-news-feed';
+
+  const posts = useMemo(() => {
+    if (filterTab === 'notice') {
+      return allPosts.filter(isNoticePost);
+    }
+    if (filterTab === 'news') {
+      return allPosts.filter(p => !isNoticePost(p));
+    }
+    return allPosts;
+  }, [allPosts, filterTab]);
 
   const totalPages = Math.max(1, Math.ceil(posts.length / perPage));
 
@@ -130,22 +170,28 @@ export default function FacebookFeed({ category = 'news' }: { category?: PostKin
 
     let isCancelled = false;
 
-    currentPosts.forEach(post => {
+    const items = currentPosts.map(post => {
       const orig = splitPost(post);
-      const toTranslate = orig.title + (orig.excerpt ? '\n\n' + orig.excerpt : '');
+      const combined = orig.title + (orig.excerpt ? '\n\n' + orig.excerpt : '');
+      return { postId: post.id, orig, combined };
+    });
 
-      translateClientText(toTranslate, lang).then(translated => {
-        if (!isCancelled) {
-          const parts = translated.split('\n\n');
-          setTranslatedMap(prev => ({
-            ...prev,
-            [`${post.id}_${lang}`]: {
-              title: parts[0] || orig.title,
-              excerpt: parts[1] || (orig.excerpt ? parts[0] : '')
-            }
-          }));
-        }
+    const toTranslate = items.map(i => i.combined);
+
+    translateClientBatch(toTranslate, lang).then(translatedArray => {
+      if (isCancelled) return;
+
+      const newMap: Record<string, { title: string; excerpt: string }> = {};
+      items.forEach((item, index) => {
+        const translated = translatedArray[index] || item.combined;
+        const parts = translated.split('\n\n');
+        newMap[`${item.postId}_${lang}`] = {
+          title: parts[0] || item.orig.title,
+          excerpt: parts[1] || (item.orig.excerpt ? parts[0] : '')
+        };
       });
+
+      setTranslatedMap(prev => ({ ...prev, ...newMap }));
     });
 
     return () => {
@@ -174,7 +220,7 @@ export default function FacebookFeed({ category = 'news' }: { category?: PostKin
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {/* Hero Card Skeleton */}
-        {!isNotice && <div style={{
+        {!isNoticeOnly && <div style={{
           borderRadius: '12px',
           overflow: 'hidden',
           backgroundColor: 'var(--color-card-bg)',
@@ -194,7 +240,7 @@ export default function FacebookFeed({ category = 'news' }: { category?: PostKin
         </div>}
 
         {/* 2-Column Grid Skeletons */}
-        {!isNotice && <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+        {!isNoticeOnly && <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
           {[1, 2].map(i => (
             <div key={i} style={{
               borderRadius: '10px',
@@ -237,31 +283,140 @@ export default function FacebookFeed({ category = 'news' }: { category?: PostKin
     );
   }
 
+  const showHero = !isNoticeOnly && currentPage === 1;
+  const gridCards = showHero ? currentPosts.slice(1, 3) : [];
+  const listRows = showHero ? currentPosts.slice(3) : currentPosts;
+
+  const renderTabs = () => (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      overflowX: 'auto',
+      paddingBottom: '4px',
+      scrollbarWidth: 'none'
+    }}>
+      <button
+        type="button"
+        onClick={() => handleTabChange('all')}
+        style={{
+          padding: '7px 15px',
+          borderRadius: '20px',
+          fontSize: '0.84rem',
+          fontWeight: 700,
+          cursor: 'pointer',
+          border: `1px solid ${filterTab === 'all' ? 'var(--color-red)' : 'var(--color-border-subtle)'}`,
+          backgroundColor: filterTab === 'all' ? 'var(--color-red)' : 'var(--color-card-bg)',
+          color: filterTab === 'all' ? '#FFFFFF' : 'var(--color-dark)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          boxShadow: filterTab === 'all' ? '0 2px 6px rgba(211,47,47,0.25)' : '0 1px 2px rgba(0,0,0,0.03)',
+          transition: 'all 0.15s ease'
+        }}
+      >
+        <span>Tất Cả Bài Viết</span>
+        <span style={{
+          fontSize: '0.72rem',
+          padding: '1px 6px',
+          borderRadius: '10px',
+          backgroundColor: filterTab === 'all' ? 'rgba(255,255,255,0.25)' : 'var(--color-btn-subtle-bg)',
+          color: 'inherit'
+        }}>
+          {allPosts.length}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => handleTabChange('notice')}
+        style={{
+          padding: '7px 15px',
+          borderRadius: '20px',
+          fontSize: '0.84rem',
+          fontWeight: 700,
+          cursor: 'pointer',
+          border: `1px solid ${filterTab === 'notice' ? '#DC2626' : 'rgba(220, 38, 38, 0.35)'}`,
+          backgroundColor: filterTab === 'notice' ? '#DC2626' : 'rgba(220, 38, 38, 0.06)',
+          color: filterTab === 'notice' ? '#FFFFFF' : '#DC2626',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          boxShadow: filterTab === 'notice' ? '0 2px 6px rgba(220,38,38,0.25)' : 'none',
+          transition: 'all 0.15s ease'
+        }}
+      >
+        <Megaphone size={14} />
+        <span>Thông Báo</span>
+        <span style={{
+          fontSize: '0.72rem',
+          padding: '1px 6px',
+          borderRadius: '10px',
+          backgroundColor: filterTab === 'notice' ? 'rgba(255,255,255,0.25)' : 'rgba(220, 38, 38, 0.15)',
+          color: 'inherit'
+        }}>
+          {noticeCount}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => handleTabChange('news')}
+        style={{
+          padding: '7px 15px',
+          borderRadius: '20px',
+          fontSize: '0.84rem',
+          fontWeight: 700,
+          cursor: 'pointer',
+          border: `1px solid ${filterTab === 'news' ? 'var(--color-red)' : 'var(--color-border-subtle)'}`,
+          backgroundColor: filterTab === 'news' ? 'var(--color-red)' : 'var(--color-card-bg)',
+          color: filterTab === 'news' ? '#FFFFFF' : 'var(--color-dark)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          boxShadow: filterTab === 'news' ? '0 2px 6px rgba(211,47,47,0.25)' : '0 1px 2px rgba(0,0,0,0.03)',
+          transition: 'all 0.15s ease'
+        }}
+      >
+        <span>Sinh Hoạt & Tin Tức</span>
+        <span style={{
+          fontSize: '0.72rem',
+          padding: '1px 6px',
+          borderRadius: '10px',
+          backgroundColor: filterTab === 'news' ? 'rgba(255,255,255,0.25)' : 'var(--color-btn-subtle-bg)',
+          color: 'inherit'
+        }}>
+          {newsCount}
+        </span>
+      </button>
+    </div>
+  );
+
   if (posts.length === 0) {
     return (
-      <div style={{
-        textAlign: 'center',
-        padding: '40px 20px',
-        backgroundColor: 'var(--color-card-bg)',
-        borderRadius: '12px',
-        border: '1px solid var(--color-border-subtle)'
-      }}>
-        {isNotice
-          ? <Megaphone size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />
-          : <BookOpen size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />}
-        <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-dark)' }}>
-          {isNotice ? (t.noticeEmpty || 'Chưa có thông báo mới') : (t.newsEmpty || 'Chưa có bài viết mới')}
+      <div id={feedId} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {renderTabs()}
+        <div style={{
+          textAlign: 'center',
+          padding: '40px 20px',
+          backgroundColor: 'var(--color-card-bg)',
+          borderRadius: '12px',
+          border: '1px solid var(--color-border-subtle)'
+        }}>
+          {isNoticeOnly
+            ? <Megaphone size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />
+            : <BookOpen size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />}
+          <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-dark)' }}>
+            {isNoticeOnly ? (t.noticeEmpty || 'Chưa có thông báo mới') : (t.newsEmpty || 'Chưa có bài viết mới')}
+          </div>
         </div>
       </div>
     );
   }
 
-  const showHero = !isNotice && currentPage === 1;
-  const gridCards = showHero ? currentPosts.slice(1, 3) : [];
-  const listRows = showHero ? currentPosts.slice(3) : currentPosts;
-
   return (
-    <div id={feedId} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div id={feedId} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+      {renderTabs()}
       
       {/* 1. GPU-ACCELERATED HERO SLIDER (60FPS - KHÔNG GIẬT LAG) */}
       {featuredPosts.length > 0 && showHero && (
@@ -528,6 +683,24 @@ export default function FacebookFeed({ category = 'news' }: { category?: PostKin
                 <PostThumb post={post} height="160px" imgClassName="news-card-img" />
                 <div style={{ padding: '14px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
+                    {isNoticePost(post) && (
+                      <span style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                        color: 'var(--color-red)',
+                        fontSize: '0.7rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        marginBottom: '6px'
+                      }}>
+                        <Megaphone size={11} />
+                        <span>Thông Báo</span>
+                      </span>
+                    )}
                     <h4 style={{
                       margin: '0 0 6px',
                       fontSize: '0.96rem',
@@ -602,20 +775,40 @@ export default function FacebookFeed({ category = 'news' }: { category?: PostKin
 
               {/* Text Info */}
               <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <h4 style={{
-                  margin: 0,
-                  fontSize: '0.94rem',
-                  fontWeight: 700,
-                  color: 'var(--color-dark)',
-                  lineHeight: 1.4,
-                  display: '-webkit-box',
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden',
-                  transition: 'color 0.15s ease'
-                }} className="news-row-title">
-                  {title}
-                </h4>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+                  {isNoticePost(post) && (
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '3px',
+                      padding: '1px 6px',
+                      borderRadius: '4px',
+                      backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                      color: 'var(--color-red)',
+                      fontSize: '0.68rem',
+                      fontWeight: 800,
+                      textTransform: 'uppercase',
+                      flexShrink: 0
+                    }}>
+                      <Megaphone size={10} />
+                      <span>Thông Báo</span>
+                    </span>
+                  )}
+                  <h4 style={{
+                    margin: 0,
+                    fontSize: '0.94rem',
+                    fontWeight: 700,
+                    color: 'var(--color-dark)',
+                    lineHeight: 1.4,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    transition: 'color 0.15s ease'
+                  }} className="news-row-title">
+                    {title}
+                  </h4>
+                </div>
 
                 {excerpt && (
                   <p style={{

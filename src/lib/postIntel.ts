@@ -32,11 +32,11 @@ const bare = (s: string) =>
 
 /** Cụm từ chỉ đích danh một bản thông báo — cố ý hẹp để không nuốt bài chia sẻ. */
 const STRONG = [
-  'thong bao', 'thong cao', 'thu moi', 'kinh moi', 'kinh bao', 'kinh gui',
-  'v/v', 'trieu tap', 'tuyen sinh', 'chieu sinh', 'ghi danh',
+  'thong bao', 'thong cao', 'thong tri', 'thu moi', 'kinh moi', 'kinh bao', 'kinh gui',
+  'v/v', 'trieu tap', 'tuyen sinh', 'chieu sinh', 'ghi danh', 'tb:', 'tb/', '[tb]',
   'dang ky', 'khai giang', 'be giang', 'lich sinh hoat', 'lich hoc',
   'phan cong', 'tam ngung', 'tam nghi', 'tam hoan', 'doi lich', 'thay doi gio',
-  'hop mat', 'gay quy', 'quyen gop'
+  'hop mat', 'gay quy', 'quyen gop', 'tin bao'
 ];
 
 /** Chỉ tính khi nằm ở tiêu đề: giữa thân bài đây là chữ thường ngày. */

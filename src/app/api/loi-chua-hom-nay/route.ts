@@ -27,8 +27,12 @@ export async function GET(request: NextRequest) {
     const year = String(targetDate.getFullYear());
     const cacheKey = `${year}-${month}-${day}`;
 
+    const headers = {
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400'
+    };
+
     if (cache.has(cacheKey)) {
-      return NextResponse.json(cache.get(cacheKey));
+      return NextResponse.json(cache.get(cacheKey), { headers });
     }
 
     // 1. Get base liturgical day details (calculated algorithmically & from liturgical data)
@@ -118,7 +122,7 @@ export async function GET(request: NextRequest) {
     };
 
     cache.set(cacheKey, payload);
-    return NextResponse.json(payload);
+    return NextResponse.json(payload, { headers });
   } catch (error) {
     console.error('Error in /api/loi-chua-hom-nay:', error);
     return NextResponse.json(

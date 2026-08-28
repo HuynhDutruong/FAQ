@@ -18,8 +18,8 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 /** Toàn bộ lịch sử bài viết khá nặng nên giữ lại trong bộ nhớ giữa các lượt gọi. */
-const CACHE_TTL = 5 * 60 * 1000;
-const BUDGET_MS = 18000;
+const CACHE_TTL = 10 * 60 * 1000; // 10 phút bộ nhớ đệm
+const BUDGET_MS = 3500; // Tối đa 3.5 giây để không làm chậm người dùng
 let cache: { at: number; posts: FeedPost[] } | null = null;
 
 async function resolveFacebookCredentials(): Promise<{ pageId: string; pageToken: string }> {
@@ -67,8 +67,12 @@ export async function GET() {
       return NextResponse.json({ success: true, posts: [] });
     }
 
+    const headers = {
+      'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=86400'
+    };
+
     if (cache && Date.now() - cache.at < CACHE_TTL) {
-      return NextResponse.json({ success: true, posts: cache.posts, cached: true });
+      return NextResponse.json({ success: true, posts: cache.posts, cached: true }, { headers });
     }
 
     const fields =
@@ -76,19 +80,19 @@ export async function GET() {
       'attachments{media_type,title,url,unshimmed_url,target,media,subattachments},' +
       'shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
 
-    // Lấy toàn bộ bài từ trước tới nay, chỉ dừng khi hết trang hoặc chạm ngân sách thời gian
-    const MAX_PAGES = 40;
+    // Lấy bài viết nhanh với limit=60 ở trang đầu, dừng khi chạm 3.5s
+    const MAX_PAGES = 5;
     const startedAt = Date.now();
     let url =
       `https://graph.facebook.com/v20.0/${pageId}/published_posts` +
-      `?fields=${encodeURIComponent(fields)}&limit=50&access_token=${pageToken}`;
+      `?fields=${encodeURIComponent(fields)}&limit=60&access_token=${pageToken}`;
 
     const rawPosts: FBPostRaw[] = [];
     for (let i = 0; i < MAX_PAGES; i++) {
       if (Date.now() - startedAt > BUDGET_MS) break;
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000);
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
 
         const response = await fetch(url, {
           cache: 'no-store',
@@ -105,8 +109,8 @@ export async function GET() {
         if (data.error) {
           console.error('FB Get Posts Error:', data.error);
           if (rawPosts.length > 0) break;
-          if (cache) return NextResponse.json({ success: true, posts: cache.posts, cached: true });
-          return NextResponse.json({ success: true, posts: [], error: data.error.message });
+          if (cache) return NextResponse.json({ success: true, posts: cache.posts, cached: true }, { headers });
+          return NextResponse.json({ success: true, posts: [], error: data.error.message }, { headers });
         }
 
         rawPosts.push(...(data.data || []));
@@ -119,7 +123,7 @@ export async function GET() {
     }
 
     if (rawPosts.length === 0 && cache) {
-      return NextResponse.json({ success: true, posts: cache.posts, cached: true });
+      return NextResponse.json({ success: true, posts: cache.posts, cached: true }, { headers });
     }
 
     const posts: FeedPost[] = rawPosts.map((p) => {
@@ -138,11 +142,16 @@ export async function GET() {
       };
     });
 
-    cache = { at: Date.now(), posts };
+    if (posts.length > 0) {
+      cache = { at: Date.now(), posts };
+    }
 
-    return NextResponse.json({ success: true, posts });
+    return NextResponse.json({ success: true, posts }, { headers });
   } catch (err: any) {
     console.error('Fatal error in /api/facebook/posts:', err);
+    if (cache) {
+      return NextResponse.json({ success: true, posts: cache.posts, cached: true });
+    }
     return NextResponse.json({ success: true, posts: [], error: err?.message || 'Server error' });
   }
 }
