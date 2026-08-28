@@ -199,6 +199,12 @@ export const GOSPEL_VERSES: GospelVerse[] = [
   }
 ];
 
+export function getDailyGospelVerseIndex(): number {
+  const now = new Date();
+  const dayHash = now.getUTCFullYear() * 1000 + (now.getUTCMonth() + 1) * 32 + now.getUTCDate();
+  return dayHash % GOSPEL_VERSES.length;
+}
+
 export function getRandomGospelVerseIndex(): number {
-  return Math.floor(Math.random() * GOSPEL_VERSES.length);
+  return getDailyGospelVerseIndex();
 }

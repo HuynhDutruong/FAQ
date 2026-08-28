@@ -21,14 +21,14 @@ import { db } from '@/lib/firebase';
 import IntroModalContent from '@/components/IntroModalContent';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import confetti from 'canvas-confetti';
-import { GOSPEL_VERSES, getRandomGospelVerseIndex } from '@/lib/gospelVerses';
+import { GOSPEL_VERSES, getDailyGospelVerseIndex } from '@/lib/gospelVerses';
 
 type Step = 'form' | 'rating' | 'success';
 
 export default function Home() {
   const [activeModal, setActiveModal] = useState<'faq' | 'feedback' | 'intro' | null>(null);
   const [step, setStep] = useState<Step>('form');
-  const [verseIndex] = useState(() => getRandomGospelVerseIndex());
+  const [verseIndex] = useState(() => getDailyGospelVerseIndex());
   const router = useRouter();
   const { t, lang } = useLanguage();
 
@@ -97,44 +97,18 @@ export default function Home() {
       background: 'var(--bg-gradient)',
       boxSizing: 'border-box'
     }}>
-      {/* Top Header Bar */}
-      <header style={{
+      {/* Top Floating Language Switcher */}
+      <div style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         width: '100%',
         maxWidth: '1060px',
-        margin: '0 auto 24px',
-        padding: '0 4px'
+        margin: '0 auto 16px',
+        zIndex: 50
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{
-            position: 'relative',
-            width: '36px',
-            height: '36px',
-            borderRadius: '50%',
-            backgroundColor: '#FFFFFF',
-            boxShadow: '0 2px 8px rgba(255, 69, 58, 0.25), 0 0 0 2px rgba(251, 192, 45, 0.6)',
-            padding: '2px',
-            overflow: 'hidden',
-            flexShrink: 0
-          }}>
-            <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
-              <Image src="/logo.jpg" alt="Logo Xứ Đoàn" fill sizes="36px" style={{ objectFit: 'contain' }} priority />
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 900, color: 'var(--color-red)', letterSpacing: '0.3px', lineHeight: 1.2 }}>
-              XỨ ĐOÀN CÁC THÁNH TỬ ĐẠO VIỆT NAM
-            </span>
-            <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--color-yellow)' }}>
-              Giáo Xứ Chánh Tòa Mỹ Tho
-            </span>
-          </div>
-        </div>
-
         <LanguageSwitcher />
-      </header>
+      </div>
 
       {/* Hero Section */}
       <div style={{
@@ -190,15 +164,18 @@ export default function Home() {
           {t.subtitle}
         </h2>
 
-        <p style={{
-          margin: 0,
-          color: 'var(--color-dark)',
-          fontSize: 'clamp(0.88rem, 2vw, 1.02rem)',
-          maxWidth: '680px',
-          lineHeight: 1.6,
-          fontStyle: 'italic',
-          opacity: 0.9
-        }}>
+        <p
+          suppressHydrationWarning
+          style={{
+            margin: 0,
+            color: 'var(--color-dark)',
+            fontSize: 'clamp(0.88rem, 2vw, 1.02rem)',
+            maxWidth: '680px',
+            lineHeight: 1.6,
+            fontStyle: 'italic',
+            opacity: 0.9
+          }}
+        >
           &ldquo;{verseText}&rdquo;
         </p>
       </div>
