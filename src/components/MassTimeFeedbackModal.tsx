@@ -100,7 +100,7 @@ function FeedbackFormContent({
         province: province.trim(),
         address: address.trim(),
         weekdayMass,
-        saturdayMass: saturdayMass.length > 0 ? saturdayMass : undefined,
+        saturdayMass: saturdayMass || [],
         sundayMass,
         note: note.trim(),
         contactName: contactName.trim(),

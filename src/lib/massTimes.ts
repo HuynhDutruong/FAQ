@@ -94,11 +94,28 @@ export const deleteMass = (id: string) => deleteDoc(doc(massCol, id));
 export async function submitMassTimeFeedback(
   data: Omit<MassTimeFeedback, 'id' | 'status' | 'createdAt' | 'reviewedAt' | 'reviewedBy'>
 ) {
-  return addDoc(massFeedbackCol, {
-    ...data,
+  const payload: Record<string, unknown> = {
+    type: data.type || 'suggest_new',
+    parish: (data.parish || '').trim(),
+    diocese: (data.diocese || '').trim(),
+    deanery: (data.deanery || '').trim(),
+    province: (data.province || '').trim(),
+    address: (data.address || '').trim(),
+    weekdayMass: Array.isArray(data.weekdayMass) ? data.weekdayMass : [],
+    saturdayMass: Array.isArray(data.saturdayMass) ? data.saturdayMass : [],
+    sundayMass: Array.isArray(data.sundayMass) ? data.sundayMass : [],
+    note: (data.note || '').trim(),
+    contactName: (data.contactName || '').trim(),
+    contactPhone: (data.contactPhone || '').trim(),
     status: 'pending',
     createdAt: serverTimestamp()
-  });
+  };
+
+  if (data.targetMassTimeId) {
+    payload.targetMassTimeId = data.targetMassTimeId;
+  }
+
+  return addDoc(massFeedbackCol, payload);
 }
 
 /** Admin duyệt và áp dụng ngay lập tức vào cơ sở dữ liệu massTimes. */
