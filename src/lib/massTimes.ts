@@ -1,6 +1,6 @@
 import { db } from './firebase';
 import {
-  collection, doc, getDocs, query, where, addDoc, updateDoc, deleteDoc, getDoc, setDoc
+  collection, doc, getDocs, query, where, addDoc, updateDoc, deleteDoc, getDoc, setDoc, serverTimestamp, Timestamp
 } from 'firebase/firestore';
 
 export interface MassTime {
@@ -24,7 +24,30 @@ export interface MassTime {
   source?: string;
 }
 
+export interface MassTimeFeedback {
+  id: string;
+  type: 'suggest_new' | 'suggest_edit';
+  targetMassTimeId?: string;
+  parish: string;
+  diocese: string;
+  deanery?: string;
+  province: string;
+  address: string;
+  weekdayMass: string[];
+  saturdayMass?: string[];
+  sundayMass: string[];
+  note?: string;
+  contactName?: string;
+  contactPhone?: string;
+  status: 'pending' | 'approved' | 'rejected';
+  rejectReason?: string;
+  createdAt?: Timestamp;
+  reviewedAt?: Timestamp;
+  reviewedBy?: string;
+}
+
 export const massCol = collection(db, 'massTimes');
+export const massFeedbackCol = collection(db, 'massTimeFeedback');
 const metaRef = doc(db, 'massTimesMeta', 'dioceses');
 
 export interface Bucket { name: string; count: number }
@@ -66,6 +89,79 @@ export async function getByDiocese(diocese: string): Promise<MassTime[]> {
 export const createMass = (data: Omit<MassTime, 'id'>) => addDoc(massCol, data);
 export const updateMass = (id: string, data: Partial<MassTime>) => updateDoc(doc(massCol, id), data);
 export const deleteMass = (id: string) => deleteDoc(doc(massCol, id));
+
+/** Gửi yêu cầu phản hồi / đóng góp từ người dùng công khai. */
+export async function submitMassTimeFeedback(
+  data: Omit<MassTimeFeedback, 'id' | 'status' | 'createdAt' | 'reviewedAt' | 'reviewedBy'>
+) {
+  return addDoc(massFeedbackCol, {
+    ...data,
+    status: 'pending',
+    createdAt: serverTimestamp()
+  });
+}
+
+/** Admin duyệt và áp dụng ngay lập tức vào cơ sở dữ liệu massTimes. */
+export async function approveMassTimeFeedback(
+  feedbackId: string,
+  data: Omit<MassTimeFeedback, 'id'>,
+  reviewerName = 'Admin'
+) {
+  const massPayload = {
+    parish: data.parish.trim(),
+    diocese: data.diocese.trim(),
+    deanery: (data.deanery || '').trim(),
+    province: data.province.trim(),
+    address: data.address.trim(),
+    weekdayMass: data.weekdayMass || [],
+    saturdayMass: data.saturdayMass && data.saturdayMass.length > 0 ? data.saturdayMass : [],
+    sundayMass: data.sundayMass || [],
+    byDay: null, // Xoá byDay để áp dụng giờ vừa được duyệt
+    source: 'Đóng góp cộng đồng (Đã duyệt)'
+  };
+
+  if (data.type === 'suggest_edit' && data.targetMassTimeId) {
+    await updateDoc(doc(massCol, data.targetMassTimeId), massPayload);
+  } else {
+    await addDoc(massCol, massPayload);
+  }
+
+  // Đánh dấu yêu cầu là đã duyệt
+  await updateDoc(doc(massFeedbackCol, feedbackId), {
+    status: 'approved',
+    parish: massPayload.parish,
+    diocese: massPayload.diocese,
+    deanery: massPayload.deanery,
+    province: massPayload.province,
+    address: massPayload.address,
+    weekdayMass: massPayload.weekdayMass,
+    saturdayMass: massPayload.saturdayMass,
+    sundayMass: massPayload.sundayMass,
+    reviewedAt: serverTimestamp(),
+    reviewedBy: reviewerName
+  });
+
+  // Cập nhật lại thống kê số lượng nhà thờ
+  await refreshFacets();
+}
+
+/** Admin từ chối yêu cầu đóng góp. */
+export async function rejectMassTimeFeedback(
+  feedbackId: string,
+  rejectReason = '',
+  reviewerName = 'Admin'
+) {
+  await updateDoc(doc(massFeedbackCol, feedbackId), {
+    status: 'rejected',
+    rejectReason,
+    reviewedAt: serverTimestamp(),
+    reviewedBy: reviewerName
+  });
+}
+
+/** Admin xoá vĩnh viễn yêu cầu đóng góp. */
+export const deleteMassTimeFeedback = (feedbackId: string) =>
+  deleteDoc(doc(massFeedbackCol, feedbackId));
 
 /** Đếm lại số nhà thờ theo tỉnh/thành và theo giáo phận, ghi vào document meta. */
 export async function refreshFacets() {

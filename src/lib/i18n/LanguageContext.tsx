@@ -77,7 +77,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     window.history.pushState(null, '', newPathname + newSearch);
   };
 
-  const t = translations[lang];
+  const t = { ...translations.vi, ...translations.en, ...translations[lang] } as typeof translations.vi;
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>

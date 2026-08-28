@@ -4,8 +4,9 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
 import { LogOut, Trash2, CheckCircle, Clock } from 'lucide-react';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, Timestamp, where } from 'firebase/firestore';
 import MassTimeAdmin from '@/components/MassTimeAdmin';
+import MassTimeFeedbackAdmin from '@/components/MassTimeFeedbackAdmin';
 
 interface Submission {
   id: string;
@@ -19,7 +20,7 @@ interface Submission {
   createdAt: Timestamp;
 }
 
-type TabType = 'faq' | 'feedback' | 'giole' | 'history' | 'facebook';
+type TabType = 'faq' | 'feedback' | 'duyet_giole' | 'giole' | 'history' | 'facebook';
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
@@ -27,8 +28,9 @@ export default function AdminDashboard() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<TabType>('facebook');
+  const [activeTab, setActiveTab] = useState<TabType>('duyet_giole');
   const [fbLoading, setFbLoading] = useState(false);
+  const [pendingFeedbackCount, setPendingFeedbackCount] = useState(0);
 
   const handleFacebookLogin = () => {
     setFbLoading(true);
@@ -49,7 +51,7 @@ export default function AdminDashboard() {
     if (user && role) {
       // Fetch submissions
       const q = query(collection(db, 'submissions'), orderBy('createdAt', 'desc'));
-      const unsubscribe = onSnapshot(q, (snapshot) => {
+      const unsubscribeSubmissions = onSnapshot(q, (snapshot) => {
         const data = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Submission));
         setSubmissions(data);
         setDataLoading(false);
@@ -59,7 +61,18 @@ export default function AdminDashboard() {
         setDataLoading(false);
       });
 
-      return () => unsubscribe();
+      // Listen to pending mass time feedbacks count
+      const qFeedback = query(collection(db, 'massTimeFeedback'), where('status', '==', 'pending'));
+      const unsubscribeFeedback = onSnapshot(qFeedback, (snapshot) => {
+        setPendingFeedbackCount(snapshot.size);
+      }, (err) => {
+        console.error("Error counting pending feedback:", err);
+      });
+
+      return () => {
+        unsubscribeSubmissions();
+        unsubscribeFeedback();
+      };
     }
   }, [user, role, loading, router]);
 
@@ -111,26 +124,57 @@ export default function AdminDashboard() {
           gap: '8px',
           marginBottom: '24px',
           borderBottom: '1px solid #E5E7EB',
-          paddingBottom: '2px'
+          paddingBottom: '2px',
+          overflowX: 'auto'
         }}>
-          {(['faq', 'feedback', 'giole', 'history', 'facebook'] as TabType[]).map((tab) => (
+          {(['duyet_giole', 'giole', 'faq', 'feedback', 'history', 'facebook'] as TabType[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               style={{
-                padding: '12px 24px',
+                padding: '12px 20px',
                 backgroundColor: 'transparent',
                 border: 'none',
                 borderBottom: activeTab === tab ? '3px solid #EF4444' : '3px solid transparent',
                 color: activeTab === tab ? '#EF4444' : '#6B7280',
                 fontWeight: activeTab === tab ? 'bold' : '500',
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                whiteSpace: 'nowrap',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px'
               }}
             >
-              {tab === 'faq' ? 'Vấn đáp' : tab === 'feedback' ? 'Phản hồi' : tab === 'giole' ? 'Giờ lễ' : tab === 'history' ? 'Lịch sử' : 'Facebook'}
+              <span>
+                {tab === 'duyet_giole'
+                  ? 'Duyệt Giờ Lễ'
+                  : tab === 'giole'
+                  ? 'QL Giờ Lễ'
+                  : tab === 'faq'
+                  ? 'Vấn đáp'
+                  : tab === 'feedback'
+                  ? 'Phản hồi'
+                  : tab === 'history'
+                  ? 'Lịch sử'
+                  : 'Facebook'}
+              </span>
+              {tab === 'duyet_giole' && pendingFeedbackCount > 0 && (
+                <span
+                  style={{
+                    backgroundColor: '#EF4444',
+                    color: 'white',
+                    padding: '2px 7px',
+                    borderRadius: '999px',
+                    fontSize: '0.75rem',
+                    fontWeight: 700
+                  }}
+                >
+                  {pendingFeedbackCount}
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -142,6 +186,8 @@ export default function AdminDashboard() {
               Nếu thấy lỗi &quot;Missing or insufficient permissions&quot;, có nghĩa là Firestore Security Rules đang khoá quyền đọc. Vui lòng cập nhật luật thành <code>allow read, write: if true;</code> trên Firebase Console.
             </p>
           </div>
+        ) : activeTab === 'duyet_giole' ? (
+          <MassTimeFeedbackAdmin />
         ) : activeTab === 'giole' ? (
           <MassTimeAdmin />
         ) : dataLoading ? (

@@ -1,32 +1,34 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
-import { Search, MapPin, Clock, Calendar, ArrowLeft, Church, Loader2 } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowLeft, Clock, MapPin, Calendar, Search, Loader2, Church, Edit3, PlusCircle } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { getFacets, getByDiocese, removeAccents, MassTime, Bucket } from '@/lib/massTimes';
+import { MassTime, Bucket, getFacets, getByDiocese, removeAccents } from '@/lib/massTimes';
 import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
+import MassTimeFeedbackModal from '@/components/MassTimeFeedbackModal';
 
 const fieldStyle: React.CSSProperties = {
   width: '100%',
   padding: '12px 16px',
-  borderRadius: '14px',
-  border: '1px solid rgba(255,255,255,0.7)',
-  background: 'rgba(255,255,255,0.6)',
-  outline: 'none',
+  borderRadius: '12px',
+  border: '1px solid rgba(0, 0, 0, 0.1)',
+  backgroundColor: 'rgba(255, 255, 255, 0.7)',
   fontSize: '1rem',
-  fontFamily: 'inherit',
   color: 'var(--color-dark)',
-  boxSizing: 'border-box'
+  outline: 'none',
+  boxSizing: 'border-box',
+  fontFamily: 'inherit'
 };
 
 const labelStyle: React.CSSProperties = {
-  fontSize: '0.8rem',
+  display: 'block',
+  marginBottom: '6px',
   fontWeight: 700,
-  letterSpacing: '0.5px',
-  textTransform: 'uppercase',
+  fontSize: '0.85rem',
   color: 'var(--color-dark)',
-  opacity: 0.65
+  textTransform: 'uppercase',
+  letterSpacing: '0.5px'
 };
 
 const UNKNOWN_DIOCESE = 'Chưa rõ giáo phận';
@@ -55,6 +57,10 @@ export default function MassTimesPage() {
   const [rows, setRows] = useState<MassTime[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Feedback modal state
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [feedbackTarget, setFeedbackTarget] = useState<MassTime | null>(null);
 
   useEffect(() => {
     let ignore = false;
@@ -110,31 +116,66 @@ export default function MassTimesPage() {
     });
   }, [rows, selectedDeanery, searchTerm]);
 
+  const handleOpenAdd = () => {
+    setFeedbackTarget(null);
+    setFeedbackOpen(true);
+  };
+
+  const handleOpenEdit = (item: MassTime) => {
+    setFeedbackTarget(item);
+    setFeedbackOpen(true);
+  };
+
   return (
     <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
       <header className="liquid-glass" style={{
         position: 'sticky', top: 0, zIndex: 50,
         borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderTop: 'none',
-        padding: '12px 20px', display: 'flex', alignItems: 'center', gap: '12px'
+        padding: '12px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px'
       }}>
-        <Link href="/" aria-label={t.backToHome} style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          width: '40px', height: '40px', borderRadius: '50%',
-          background: 'rgba(0,0,0,0.05)', color: 'var(--color-dark)', flexShrink: 0
-        }}>
-          <ArrowLeft size={20} />
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <Link href="/" aria-label={t.backToHome} style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            width: '40px', height: '40px', borderRadius: '50%',
+            background: 'rgba(0,0,0,0.05)', color: 'var(--color-dark)', flexShrink: 0
+          }}>
+            <ArrowLeft size={20} />
+          </Link>
 
-        <div style={{ position: 'relative', width: '36px', height: '36px', mixBlendMode: 'multiply', flexShrink: 0 }}>
-          <Image src="/logo.jpg" alt="Logo" fill sizes="36px" style={{ objectFit: 'contain' }} />
+          <div style={{ position: 'relative', width: '36px', height: '36px', mixBlendMode: 'multiply', flexShrink: 0 }}>
+            <Image src="/logo.jpg" alt="Logo" fill sizes="36px" style={{ objectFit: 'contain' }} />
+          </div>
+
+          <h1 style={{
+            fontSize: 'clamp(1rem, 4vw, 1.4rem)', fontWeight: 900, textTransform: 'uppercase',
+            letterSpacing: '0.5px', color: 'var(--color-red)', lineHeight: 1.2
+          }}>
+            {t.massTimesTitle}
+          </h1>
         </div>
 
-        <h1 style={{
-          fontSize: 'clamp(1rem, 4vw, 1.4rem)', fontWeight: 900, textTransform: 'uppercase',
-          letterSpacing: '0.5px', color: 'var(--color-red)', lineHeight: 1.2
-        }}>
-          {t.massTimesTitle}
-        </h1>
+        {/* Nút Đóng góp giáo xứ mới */}
+        <button
+          onClick={handleOpenAdd}
+          style={{
+            padding: '8px 14px',
+            backgroundColor: 'rgba(211, 47, 47, 0.1)',
+            color: 'var(--color-red)',
+            border: '1px solid rgba(211, 47, 47, 0.25)',
+            borderRadius: '999px',
+            fontWeight: 700,
+            fontSize: '0.85rem',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            flexShrink: 0,
+            transition: 'all 0.2s'
+          }}
+        >
+          <PlusCircle size={16} />
+          <span style={{ display: 'inline' }}>{t.btnContributeParish}</span>
+        </button>
       </header>
 
       <div style={{ width: '100%', maxWidth: '1000px', margin: '0 auto', padding: '24px 20px 48px' }}>
@@ -187,6 +228,26 @@ export default function MassTimesPage() {
           <div className="liquid-glass" style={{ padding: '48px 24px', textAlign: 'center' }}>
             <Church size={44} style={{ color: 'var(--color-yellow)', margin: '0 auto 12px' }} />
             <p style={{ color: 'var(--color-dark)', opacity: 0.7 }}>{t.selectDiocesePrompt}</p>
+            <div style={{ marginTop: '20px' }}>
+              <button
+                onClick={handleOpenAdd}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: 'rgba(211, 47, 47, 0.1)',
+                  color: 'var(--color-red)',
+                  border: '1px solid rgba(211, 47, 47, 0.25)',
+                  borderRadius: '12px',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                <PlusCircle size={16} /> {t.btnContributeParish}
+              </button>
+            </div>
           </div>
         )}
 
@@ -202,17 +263,45 @@ export default function MassTimesPage() {
         {!loading && selectedDiocese && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {filtered.map(item => (
-              <article key={item.id} className="liquid-glass" style={{ padding: '20px' }}>
-                <div style={{
-                  fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase',
-                  letterSpacing: '0.5px', color: 'var(--color-yellow)', marginBottom: '4px'
-                }}>
-                  {[item.diocese && dioceseLabel(item.diocese), item.deanery && `Hạt ${item.deanery}`, item.province].filter(Boolean).join(' · ')}
-                </div>
+              <article key={item.id} className="liquid-glass" style={{ padding: '20px', position: 'relative' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px' }}>
+                  <div>
+                    <div style={{
+                      fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase',
+                      letterSpacing: '0.5px', color: 'var(--color-yellow)', marginBottom: '4px'
+                    }}>
+                      {[item.diocese && dioceseLabel(item.diocese), item.deanery && `Hạt ${item.deanery}`, item.province].filter(Boolean).join(' · ')}
+                    </div>
 
-                <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', lineHeight: 1.3 }}>
-                  {item.parish}
-                </h2>
+                    <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', lineHeight: 1.3 }}>
+                      {item.parish}
+                    </h2>
+                  </div>
+
+                  {/* Nút Báo sai / Cập nhật giờ lễ */}
+                  <button
+                    onClick={() => handleOpenEdit(item)}
+                    style={{
+                      padding: '5px 10px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                      color: '#4B5563',
+                      border: '1px solid rgba(0, 0, 0, 0.08)',
+                      borderRadius: '8px',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      flexShrink: 0,
+                      transition: 'all 0.2s'
+                    }}
+                    title="Báo sai hoặc cập nhật giờ lễ cho giáo xứ này"
+                  >
+                    <Edit3 size={13} />
+                    <span>{t.btnReportError}</span>
+                  </button>
+                </div>
 
                 {item.address && (
                   <div style={{
@@ -295,14 +384,40 @@ export default function MassTimesPage() {
 
             {filtered.length === 0 && (
               <div className="liquid-glass" style={{
-                padding: '48px 24px', textAlign: 'center', color: 'var(--color-dark)', opacity: 0.6
+                padding: '48px 24px', textAlign: 'center', color: 'var(--color-dark)', opacity: 0.8
               }}>
-                {t.noResults}
+                <p style={{ marginBottom: '14px' }}>{t.noResults}</p>
+                <button
+                  onClick={handleOpenAdd}
+                  style={{
+                    padding: '10px 20px',
+                    backgroundColor: 'var(--color-red)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontWeight: 700,
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  <PlusCircle size={16} /> {t.btnContributeParish}
+                </button>
               </div>
             )}
           </div>
         )}
       </div>
+
+      {/* Modal Đóng góp & Báo sai */}
+      <MassTimeFeedbackModal
+        isOpen={feedbackOpen}
+        onClose={() => setFeedbackOpen(false)}
+        targetParish={feedbackTarget}
+        defaultDiocese={selectedDiocese}
+      />
     </main>
   );
 }
