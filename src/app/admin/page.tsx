@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, onSnapshot, Timestamp, where } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, Timestamp, where, doc, deleteDoc } from 'firebase/firestore';
 import MassTimeAdmin from '@/components/MassTimeAdmin';
 import MassTimeFeedbackAdmin from '@/components/MassTimeFeedbackAdmin';
 import AdminUsersManagement from '@/components/AdminUsersManagement';
@@ -100,6 +100,17 @@ export default function AdminDashboard() {
       };
     }
   }, [user, role, loading, router]);
+
+  const handleDeleteSubmission = async (id: string) => {
+    if (!confirm('Bạn có chắc chắn muốn xoá vĩnh viễn mục này? Thao tác này không thể hoàn tác.')) return;
+    try {
+      await deleteDoc(doc(db, 'submissions', id));
+    } catch (err: unknown) {
+      console.error('Error deleting submission:', err);
+      const msg = err instanceof Error ? err.message : 'Lỗi khi xoá';
+      alert('Không thể xoá: ' + msg);
+    }
+  };
 
   if (loading || !user || !role) {
     return (
@@ -539,19 +550,22 @@ export default function AdminDashboard() {
                     </div>
                     <div style={{ display: 'flex', gap: '8px' }}>
                       {sub.status !== 'deleted' && (
-                        <button style={{
-                          padding: '6px 12px',
-                          backgroundColor: '#FEE2E2',
-                          color: '#B91C1C',
-                          border: 'none',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '0.82rem',
-                          fontWeight: 700,
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}>
+                        <button
+                          onClick={() => handleDeleteSubmission(sub.id)}
+                          style={{
+                            padding: '6px 12px',
+                            backgroundColor: '#FEE2E2',
+                            color: '#B91C1C',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            fontSize: '0.82rem',
+                            fontWeight: 700,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}
+                        >
                           <Trash2 size={14} /> Xoá
                         </button>
                       )}
