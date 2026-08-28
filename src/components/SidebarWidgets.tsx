@@ -13,7 +13,10 @@ import {
 } from 'lucide-react';
 import { ALL_DIOCESES, DIOCESE_WEBSITES } from '@/lib/dioceses';
 import { getScrapedLiturgicalDay, LiturgicalDayDetail } from '@/lib/liturgicalData';
+import type { ReadingSection } from '@/lib/dailyReadings';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import VideoWidget from './VideoWidget';
+import RatingWidget from './RatingWidget';
 
 interface DailyGospelData {
   date: string;
@@ -25,7 +28,7 @@ interface DailyGospelData {
   gospelRef: string;
   gospelQuote: string;
   gospelExcerpt: string;
-  sourceUrl: string;
+  sections?: ReadingSection[];
 }
 
 const ALL_WEBSITES = [
@@ -85,6 +88,8 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
   const [gospelData, setGospelData] = useState<DailyGospelData | null>(null);
   const [loadingGospel, setLoadingGospel] = useState(false);
   const [showGospelModal, setShowGospelModal] = useState(false);
+  /** Mục Lời Chúa được bấm, để mở hộp thoại đúng chỗ đó. */
+  const [focusSection, setFocusSection] = useState<number | null>(null);
 
   // Month & Year state for calendar navigation
   const [viewYear, setViewYear] = useState(() => currentDate.getFullYear());
@@ -198,6 +203,11 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
       d.getFullYear() === selectedDate.getFullYear();
   };
 
+  useEffect(() => {
+    if (!showGospelModal || focusSection === null) return;
+    document.getElementById(`lc-sec-${focusSection}`)?.scrollIntoView({ block: 'start' });
+  }, [showGospelModal, focusSection]);
+
   const rankBadgeStyle = (rank: string) => {
     const r = (rank || '').toLowerCase();
     if (r.includes('trọng')) {
@@ -213,6 +223,18 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
   };
 
   const badge = rankBadgeStyle(gospelData?.rank || '');
+
+  const sections = gospelData?.sections || [];
+  // Thẻ tóm tắt chỉ liệt kê bộ lễ đầu tiên; các bộ còn lại xem trong hộp thoại
+  const sectionRows = sections
+    .map((section, index) => ({ section, index }))
+    .filter(({ section }) => section.group === 0 && section.kind !== 'alleluia');
+  const otherMasses = [...new Set(sections.filter(sec => sec.group > 0).map(sec => sec.mass || 'Bộ lễ khác'))];
+
+  const openReading = (index: number | null) => {
+    setFocusSection(index);
+    setShowGospelModal(true);
+  };
 
   return (
     <aside style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -263,10 +285,39 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
               )}
             </p>
 
+            {/* Các bài đọc trong ngày — bấm vào mục nào mở toàn văn mục đó */}
+            {sectionRows.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', margin: '0 0 12px' }}>
+                {sectionRows.map(({ section, index }) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => openReading(index)}
+                    className="reading-row"
+                  >
+                    <span className="reading-row-label">{section.label}</span>
+                    <span style={{ flex: 1, minWidth: 0 }}>
+                      <span className="reading-row-ref">{section.ref || '—'}</span>
+                      {section.response && (
+                        <span className="reading-row-sub">Đáp: {section.response}</span>
+                      )}
+                    </span>
+                    <ChevronRight size={14} style={{ flexShrink: 0, color: 'var(--color-subtle)' }} />
+                  </button>
+                ))}
+
+                {otherMasses.length > 0 && (
+                  <button type="button" onClick={() => openReading(null)} className="reading-row reading-row-more">
+                    + {otherMasses.length} bộ lễ khác trong ngày: {otherMasses.join(' · ')}
+                  </button>
+                )}
+              </div>
+            )}
+
             {/* Nút Xem Chi Tiết Tin Mừng */}
-            {gospelData.gospelExcerpt && (
+            {(gospelData.gospelExcerpt || sectionRows.length > 0) && (
               <button
-                onClick={() => setShowGospelModal(true)}
+                onClick={() => openReading(null)}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -282,7 +333,7 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
                 }}
               >
                 <BookOpen size={14} />
-                <span>{t.gospelReadFull || 'Đọc bài Tin Mừng & Suy Niệm'}</span>
+                <span>{t.gospelReadAll || 'Đọc toàn bộ Lời Chúa hôm nay'}</span>
               </button>
             )}
           </div>
@@ -296,7 +347,12 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
       </section>
 
       {/* ========================================================= */}
-      {/* 2. LỊCH PHỤNG VỤ CHI TIẾT (TÍNH TOÁN VĨNH VIỄN KHÔNG RESET) */}
+      {/* 2. VIDEO XỨ ĐOÀN TỰ ĐĂNG (tự ẩn khi Fanpage chưa có video)  */}
+      {/* ========================================================= */}
+      <VideoWidget />
+
+      {/* ========================================================= */}
+      {/* 3. LỊCH PHỤNG VỤ CHI TIẾT (TÍNH TOÁN VĨNH VIỄN KHÔNG RESET) */}
       {/* ========================================================= */}
       <section style={{
         backgroundColor: 'var(--color-card-bg)',
@@ -612,6 +668,11 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
       </section>
 
       {/* ========================================================= */}
+      {/* LƯỢT TRUY CẬP & ĐÁNH GIÁ CỦA NGƯỜI DÙNG                   */}
+      {/* ========================================================= */}
+      <RatingWidget />
+
+      {/* ========================================================= */}
       {/* MODAL / POPUP XEM TOÀN VĂN TIN MỪNG & SUY NIỆM HÔM NAY */}
       {/* ========================================================= */}
       {showGospelModal && gospelData && (
@@ -685,19 +746,28 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
               <div><strong>Áo Lễ:</strong> Màu {gospelData.color}</div>
             </div>
 
-            {/* Full Gospel Text */}
-            <div style={{
-              fontSize: '0.94rem',
-              lineHeight: 1.75,
-              color: 'var(--color-dark)',
-              textAlign: 'justify'
-            }}>
-              <h4 style={{ margin: '0 0 10px', color: 'var(--color-red)', fontSize: '1rem', fontWeight: 800 }}>
-                Tin Mừng: {gospelData.gospelRef}
-              </h4>
-              <p style={{ whiteSpace: 'pre-line', margin: 0 }}>
-                {gospelData.gospelExcerpt}
-              </p>
+            {/* Toàn văn Lời Chúa: Bài Đọc I, Đáp Ca, Bài Đọc II, Alleluia, Tin Mừng */}
+            <div className="reading-full">
+              {sections.length > 0 ? sections.map((sec, i) => (
+                <div key={i} id={`lc-sec-${i}`} style={{ scrollMarginTop: '8px' }}>
+                  {sec.mass && (i === 0 || sections[i - 1].mass !== sec.mass) && (
+                    <h3 className="reading-mass">{sec.mass}</h3>
+                  )}
+
+                  <h4 className="reading-head">
+                    {sec.label}{sec.ref ? `: ${sec.ref}` : ''}
+                  </h4>
+
+                  {sec.summary && <p className="reading-summary">“{sec.summary}”</p>}
+                  {sec.response && <p className="reading-response">Đáp: {sec.response}</p>}
+                  {sec.paragraphs.map((para, j) => <p key={j}>{para}</p>)}
+                </div>
+              )) : (
+                <div>
+                  <h4 className="reading-head">Tin Mừng: {gospelData.gospelRef}</h4>
+                  <p style={{ whiteSpace: 'pre-line' }}>{gospelData.gospelExcerpt}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

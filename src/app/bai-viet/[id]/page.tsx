@@ -3,12 +3,14 @@ import { useEffect, useState, use, useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Heart, Loader2, MessageCircle, Repeat2, User, X } from 'lucide-react';
 import { ArticleSkeleton } from '@/components/Skeleton';
+import { playerSrc, LinkButtons } from '@/components/PostMedia';
+import { cleanUrl, type PostMediaInfo } from '@/lib/postIntel';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { useClientTranslation } from '@/lib/clientTranslator';
 
 interface Reply { id: string; message: string; created_time: string; author: string }
 interface Comment { id: string; message: string; created_time: string; author: string; likeCount: number; replies: Reply[] }
-interface PostDetail {
+interface PostDetail extends PostMediaInfo {
   id: string;
   message: string;
   created_time: string;
@@ -77,14 +79,15 @@ function parseBody(message: string): Block[] {
   return blocks;
 }
 
-/**
- * Người đọc ở lại trong website: URL trong nội dung hiển thị như chữ thường,
- * không thành liên kết dẫn ra trang ngoài.
- */
+/** URL trong nội dung mở được ngay, tab mới để người đọc không mất bài đang xem. */
 function linkify(text: string) {
   return text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
     /^https?:\/\//.test(part)
-      ? <span key={i} className="article-url">{part}</span>
+      ? (
+        <a key={i} href={cleanUrl(part)} target="_blank" rel="noopener noreferrer" className="article-url">
+          {part}
+        </a>
+      )
       : part
   );
 }
@@ -178,6 +181,7 @@ export default function BaiVietPage({ params }: { params: Promise<{ id: string }
 
   const title = activeMessage.split('\n')[0] || '(Không có tiêu đề)';
   const [cover, ...gallery] = post.images;
+  const player = playerSrc(post);
 
   return (
     <main style={{ flex: 1, padding: '20px 16px 64px' }}>
@@ -201,11 +205,26 @@ export default function BaiVietPage({ params }: { params: Promise<{ id: string }
           )}
         </div>
 
-        {cover && (
+        {player ? (
+          <figure className="article-cover article-player">
+            {player.type === 'video' ? (
+              <video src={player.src} controls playsInline poster={cover || undefined} />
+            ) : (
+              <iframe
+                src={player.src.replace('&autoplay=1', '').replace('?autoplay=1&', '?')}
+                title="Trình phát video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            )}
+          </figure>
+        ) : cover && (
           <figure className="article-cover">
             <img src={cover} alt="" onClick={() => setLightbox(cover)} />
           </figure>
         )}
+
+        {post.links?.length > 0 && <LinkButtons links={post.links} />}
 
         <div className="article-body">
           {blocks.map((b, i) => {

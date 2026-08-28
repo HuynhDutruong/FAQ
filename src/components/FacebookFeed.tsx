@@ -3,7 +3,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import {
-  Loader2,
   Calendar,
   Heart,
   MessageCircle,
@@ -11,25 +10,17 @@ import {
   ChevronLeft,
   ChevronRight,
   Flame,
-  Clock,
-  Sparkles,
+  Megaphone,
   BookOpen
 } from 'lucide-react';
 
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { translateClientText } from '@/lib/clientTranslator';
+import { useFacebookPosts } from '@/lib/useFacebookPosts';
+import type { FeedPost, PostKind } from '@/lib/postIntel';
+import { PostThumb, MediaChips, LinkButtons } from './PostMedia';
 
-interface FBPost {
-  id: string;
-  message?: string;
-  story?: string;
-  created_time: string;
-  full_picture?: string | null;
-  permalink_url: string;
-  likesCount: number;
-  commentsCount: number;
-  sharesCount: number;
-}
+type FBPost = FeedPost;
 
 const formatDate = (dateStr: string) => {
   try {
@@ -41,7 +32,7 @@ const formatDate = (dateStr: string) => {
 };
 
 function splitPost(post: FBPost) {
-  const text = (post.message || post.story || '').trim();
+  const text = (post.message || '').trim();
   if (!text) return { title: 'Thông báo / Sinh hoạt Xứ Đoàn', excerpt: '' };
   
   const nl = text.indexOf('\n');
@@ -65,6 +56,7 @@ function splitPost(post: FBPost) {
 const href = (post: FBPost) => `/bai-viet/${encodeURIComponent(post.id)}`;
 
 const POSTS_PER_PAGE = 7;
+const NOTICES_PER_PAGE = 6;
 
 /**
  * Rút gọn dãy số trang: luôn giữ trang đầu, trang cuối và 2 trang quanh trang hiện tại.
@@ -91,63 +83,30 @@ function pageNumbers(current: number, total: number): (number | null)[] {
   return out;
 }
 
-export default function FacebookFeed() {
+export default function FacebookFeed({ category = 'news' }: { category?: PostKind }) {
   const { t, lang } = useLanguage();
-  const [posts, setPosts] = useState<FBPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { posts: allPosts, loading } = useFacebookPosts();
   const [currentPage, setCurrentPage] = useState(1);
   const [slideIndex, setSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [translatedMap, setTranslatedMap] = useState<Record<string, { title: string; excerpt: string }>>({});
 
-  useEffect(() => {
-    // 1. Tải trước từ cache cục bộ (nếu có) để giao diện tức thì
-    try {
-      const cached = localStorage.getItem('fb_feed_cache');
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed.posts) && parsed.posts.length > 0) {
-          setPosts(parsed.posts);
-          setLoading(false);
-        }
-      }
-    } catch {
-      // Bỏ qua lỗi parse cache
-    }
+  const isNotice = category === 'notice';
+  const perPage = isNotice ? NOTICES_PER_PAGE : POSTS_PER_PAGE;
+  const feedId = isNotice ? 'facebook-notice-feed' : 'facebook-news-feed';
 
-    // 2. Gọi API máy chủ an toàn
-    fetch('/api/facebook/posts')
-      .then(async res => {
-        if (!res.ok) {
-          console.warn(`Fetch FB posts returned status: ${res.status}`);
-          return { success: true, posts: [] };
-        }
-        try {
-          return await res.json();
-        } catch {
-          return { success: true, posts: [] };
-        }
-      })
-      .then(data => {
-        if (data && Array.isArray(data.posts) && data.posts.length > 0) {
-          setPosts(data.posts);
-          try {
-            localStorage.setItem('fb_feed_cache', JSON.stringify({ posts: data.posts, savedAt: Date.now() }));
-          } catch {
-            // Quota
-          }
-        }
-      })
-      .catch(err => console.error('Error fetching Facebook posts:', err))
-      .finally(() => setLoading(false));
-  }, []);
+  // Bài đã được máy chủ nhận diện Thông báo / Bài viết, ở đây chỉ lọc theo khu vực
+  const posts = useMemo(
+    () => allPosts.filter(p => (p.kind === 'notice') === isNotice),
+    [allPosts, isNotice]
+  );
 
-  const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+  const totalPages = Math.max(1, Math.ceil(posts.length / perPage));
 
   const currentPosts = useMemo(() => {
-    const start = (currentPage - 1) * POSTS_PER_PAGE;
-    return posts.slice(start, start + POSTS_PER_PAGE);
-  }, [posts, currentPage]);
+    const start = (currentPage - 1) * perPage;
+    return posts.slice(start, start + perPage);
+  }, [posts, currentPage, perPage]);
 
   // Top 5 latest posts for the auto-sliding Hero Carousel
   const featuredPosts = useMemo(() => {
@@ -204,7 +163,7 @@ export default function FacebookFeed() {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      const feedEl = document.getElementById('facebook-news-feed');
+      const feedEl = document.getElementById(feedId);
       if (feedEl) {
         feedEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -215,7 +174,7 @@ export default function FacebookFeed() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {/* Hero Card Skeleton */}
-        <div style={{
+        {!isNotice && <div style={{
           borderRadius: '12px',
           overflow: 'hidden',
           backgroundColor: 'var(--color-card-bg)',
@@ -232,10 +191,10 @@ export default function FacebookFeed() {
               <div className="skeleton" style={{ width: '80px', height: '14px' }} />
             </div>
           </div>
-        </div>
+        </div>}
 
         {/* 2-Column Grid Skeletons */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+        {!isNotice && <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
           {[1, 2].map(i => (
             <div key={i} style={{
               borderRadius: '10px',
@@ -251,7 +210,7 @@ export default function FacebookFeed() {
               </div>
             </div>
           ))}
-        </div>
+        </div>}
 
         {/* Row List Skeletons */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -287,24 +246,25 @@ export default function FacebookFeed() {
         borderRadius: '12px',
         border: '1px solid var(--color-border-subtle)'
       }}>
-        <BookOpen size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />
+        {isNotice
+          ? <Megaphone size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />
+          : <BookOpen size={40} style={{ margin: '0 auto 12px', color: 'var(--color-subtle)', opacity: 0.6 }} />}
         <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--color-dark)' }}>
-          {t.newsEmpty || 'Chưa có bài viết mới'}
+          {isNotice ? (t.noticeEmpty || 'Chưa có thông báo mới') : (t.newsEmpty || 'Chưa có bài viết mới')}
         </div>
       </div>
     );
   }
 
-  const isFirstPage = currentPage === 1;
-  const lead = isFirstPage ? (featuredPosts[slideIndex] || featuredPosts[0]) : null;
-  const gridCards = isFirstPage ? currentPosts.slice(1, 3) : [];
-  const listRows = isFirstPage ? currentPosts.slice(3) : currentPosts;
+  const showHero = !isNotice && currentPage === 1;
+  const gridCards = showHero ? currentPosts.slice(1, 3) : [];
+  const listRows = showHero ? currentPosts.slice(3) : currentPosts;
 
   return (
-    <div id="facebook-news-feed" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div id={feedId} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
       {/* 1. GPU-ACCELERATED HERO SLIDER (60FPS - KHÔNG GIẬT LAG) */}
-      {featuredPosts.length > 0 && isFirstPage && (
+      {featuredPosts.length > 0 && showHero && (
         <div
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -349,26 +309,8 @@ export default function FacebookFeed() {
                         color: 'inherit'
                       }}
                     >
-                      {/* Image Frame */}
-                      <div style={{
-                        position: 'relative',
-                        width: '100%',
-                        height: 'clamp(200px, 36vw, 320px)',
-                        backgroundColor: '#1E293B',
-                        overflow: 'hidden'
-                      }}>
-                        <img
-                          src={post.full_picture || '/logo.jpg'}
-                          alt=""
-                          loading="eager"
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            display: 'block'
-                          }}
-                        />
-                      </div>
+                      {/* Khung ảnh — có video thì phát ngay tại đây */}
+                      <PostThumb post={post} height="clamp(200px, 36vw, 320px)" eager />
 
                       {/* Content Info */}
                       <div style={{ padding: '16px 18px' }}>
@@ -425,11 +367,16 @@ export default function FacebookFeed() {
                             </span>
                           </div>
 
-                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-nav-active-text)' }}>
-                            <span>{t.newsReadMore || 'Đọc bài'}</span>
-                            <ArrowRight size={13} />
+                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                            <MediaChips post={post} />
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-nav-active-text)' }}>
+                              {t.newsReadMore || 'Đọc bài'}
+                              <ArrowRight size={13} />
+                            </span>
                           </div>
                         </div>
+
+                        <LinkButtons links={post.links} compact />
                       </div>
                     </Link>
                   </div>
@@ -578,20 +525,7 @@ export default function FacebookFeed() {
                 }}
                 className="news-card-hover"
               >
-                <div style={{ position: 'relative', width: '100%', height: '160px', overflow: 'hidden', backgroundColor: 'var(--color-btn-subtle-bg)' }}>
-                  <img
-                    src={post.full_picture || '/logo.jpg'}
-                    alt=""
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block',
-                      transition: 'transform 0.3s ease'
-                    }}
-                    className="news-card-img"
-                  />
-                </div>
+                <PostThumb post={post} height="160px" imgClassName="news-card-img" />
                 <div style={{ padding: '14px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <h4 style={{
@@ -622,6 +556,8 @@ export default function FacebookFeed() {
                       </p>
                     )}
                   </div>
+
+                  <MediaChips post={post} />
 
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--color-subtle)', marginTop: '12px', paddingTop: '8px', borderTop: '1px solid var(--color-border-subtle)' }}>
                     <span>{formatDate(post.created_time)}</span>
@@ -660,30 +596,8 @@ export default function FacebookFeed() {
               className="news-row-card"
             >
               {/* Thumbnail Container */}
-              <div
-                style={{
-                  flexShrink: 0,
-                  width: '120px',
-                  height: '84px',
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  backgroundColor: 'var(--color-btn-subtle-bg)'
-                }}
-                className="news-row-thumb-box"
-              >
-                <img
-                  src={post.full_picture || '/logo.jpg'}
-                  alt=""
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block',
-                    transition: 'transform 0.3s ease'
-                  }}
-                  className="news-row-img"
-                />
+              <div style={{ flexShrink: 0, width: '120px' }} className="news-row-thumb-box">
+                <PostThumb post={post} height="84px" radius="8px" imgClassName="news-row-img" />
               </div>
 
               {/* Text Info */}
@@ -724,7 +638,10 @@ export default function FacebookFeed() {
                   <span style={{ color: '#E11D48', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Heart size={13} strokeWidth={2.2} /> {post.likesCount}</span>
                   <span>•</span>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><MessageCircle size={13} strokeWidth={2.2} /> {post.commentsCount}</span>
+                  <MediaChips post={post} />
                 </div>
+
+                <LinkButtons links={post.links} compact />
               </div>
             </Link>
           );

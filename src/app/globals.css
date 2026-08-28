@@ -789,8 +789,34 @@ button {
 
 /* URL trong nội dung bài: hiện chữ nhưng không dẫn ra ngoài */
 .article-url {
-  color: var(--color-subtle);
+  color: var(--color-nav-active-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   word-break: break-word;
+}
+
+.article-url:hover { color: var(--color-red); }
+
+/* Trình phát video ngay trong bài, tỉ lệ 16:9 */
+.article-player video,
+.article-player iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 6px;
+  display: block;
+  background-color: #000;
+}
+
+.post-play-btn:hover {
+  background-color: rgba(183, 28, 28, 0.9) !important;
+  transform: scale(1.08);
+}
+
+.post-link-btn:hover {
+  border-color: var(--color-nav-active-text) !important;
+  background-color: var(--color-btn-subtle-bg) !important;
 }
 
 /* Thư viện ảnh */
@@ -1617,3 +1643,167 @@ img, picture, .news-thumb img, .article-cover img, .hdgm-post-card img {
   transform: translateZ(0);
 }
 
+
+
+/* ===== Lời Chúa hôm nay: danh sách bài đọc trong thẻ ===== */
+.reading-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  background-color: var(--color-btn-subtle-bg);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.reading-row:hover {
+  border-color: var(--color-red);
+  background-color: var(--color-card-bg);
+}
+
+.reading-row-label {
+  flex-shrink: 0;
+  width: 78px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-red);
+  padding-top: 1px;
+}
+
+.reading-row-ref {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-dark);
+  word-break: break-word;
+}
+
+.reading-row-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.74rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-subtle);
+}
+
+.reading-row-more {
+  justify-content: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--color-subtle);
+}
+
+/* ===== Toàn văn Lời Chúa trong hộp thoại ===== */
+.reading-full {
+  font-size: 0.94rem;
+  line-height: 1.75;
+  color: var(--color-dark);
+  text-align: justify;
+}
+
+.reading-full p { margin: 0 0 0.9em; }
+
+.reading-mass {
+  margin: 26px 0 12px;
+  padding-top: 14px;
+  border-top: 2px solid var(--color-border-subtle);
+  font-size: 0.98rem;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-dark);
+}
+
+.reading-head {
+  margin: 20px 0 8px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-red);
+  text-align: left;
+}
+
+.reading-full > div:first-child .reading-head { margin-top: 0; }
+
+.reading-summary {
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.reading-response {
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+
+
+/* ===== Ô lượt truy cập & đánh giá ở cột bên ===== */
+.stat-tile {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-btn-subtle-bg);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-dark);
+}
+
+.stat-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-subtle);
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  line-height: 0;
+  transition: transform 0.12s ease;
+}
+
+.star-btn:hover { transform: scale(1.15); }
+.star-btn:active { transform: scale(0.92); }
+
+/* ===== Thẻ số liệu trong trang Quản trị ===== */
+.admin-stat-card {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-card-bg);
+  text-align: center;
+}
+
+.admin-stat-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-dark);
+}
+
+.admin-stat-label {
+  margin-top: 2px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-subtle);
+}

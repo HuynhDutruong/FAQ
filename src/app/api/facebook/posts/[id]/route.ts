@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { extractPostMedia } from '@/lib/postIntel';
 
 interface FBComment {
   id: string;
@@ -12,7 +13,9 @@ interface FBComment {
 export const dynamic = 'force-dynamic';
 
 const POST_FIELDS =
-  'id,message,story,created_time,full_picture,permalink_url,attachments{media_type,media,subattachments},shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
+  'id,message,story,created_time,full_picture,permalink_url,' +
+  'attachments{media_type,title,url,unshimmed_url,target,media,subattachments},' +
+  'shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
 
 const COMMENT_FIELDS = 'id,message,created_time,from,like_count,comments{id,message,created_time,from}';
 
@@ -72,17 +75,21 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
         ? [post.full_picture]
         : [];
 
+    const message = post.message || post.story || '';
+    const permalink = post.permalink_url || `https://facebook.com/${post.id}`;
+
     return NextResponse.json({
       success: true,
       post: {
         id: post.id,
-        message: post.message || post.story || '',
+        message,
         created_time: post.created_time,
         images,
-        permalink_url: post.permalink_url || `https://facebook.com/${post.id}`,
+        permalink_url: permalink,
         likesCount: post.reactions?.summary?.total_count || 0,
         commentsCount: post.comments?.summary?.total_count || 0,
-        sharesCount: post.shares?.count || 0
+        sharesCount: post.shares?.count || 0,
+        ...extractPostMedia(message, permalink, post.attachments?.data || [])
       },
       comments: rawComments.map(c => ({
         id: c.id,

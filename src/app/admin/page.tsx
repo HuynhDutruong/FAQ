@@ -24,6 +24,7 @@ import { collection, query, orderBy, onSnapshot, Timestamp, where, doc, deleteDo
 import UnifiedMassManagement from '@/components/UnifiedMassManagement';
 import AdminUsersManagement from '@/components/AdminUsersManagement';
 import FacebookAdmin from '@/components/FacebookAdmin';
+import RatingsAdmin from '@/components/RatingsAdmin';
 
 interface Submission {
   id: string;
@@ -37,7 +38,7 @@ interface Submission {
   createdAt: Timestamp;
 }
 
-type TabType = 'giole' | 'quanly_admin' | 'faq' | 'feedback' | 'history' | 'facebook';
+type TabType = 'giole' | 'quanly_admin' | 'faq' | 'feedback' | 'danhgia' | 'history' | 'facebook';
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
@@ -130,6 +131,7 @@ export default function AdminDashboard() {
     { key: 'facebook' as TabType, label: 'Fanpage Facebook', icon: Share2 },
     { key: 'faq' as TabType, label: 'Hộp Thư Vấn Đáp', icon: HelpCircle },
     { key: 'feedback' as TabType, label: 'Ý Kiến Phản Hồi', icon: MessageSquare },
+    { key: 'danhgia' as TabType, label: 'Đánh Giá & Lượt Truy Cập', icon: Star },
     { key: 'history' as TabType, label: 'Lịch Sử Thao Tác', icon: Clock }
   ];
 
@@ -482,6 +484,8 @@ export default function AdminDashboard() {
             <AdminUsersManagement />
           ) : activeTab === 'facebook' ? (
             <FacebookAdmin />
+          ) : activeTab === 'danhgia' ? (
+            <RatingsAdmin />
           ) : dataLoading ? (
             <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280' }}>
               Đang tải dữ liệu từ Firestore...

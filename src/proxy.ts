@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 const locales = ['vi', 'en', 'zh', 'fr', 'es', 'ja', 'ko', 'ru', 'de', 'pt', 'it', 'ar', 'hi'];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   // Bỏ qua các file tĩnh, api, hình ảnh

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { extractPostMedia, type FeedPost } from '@/lib/postIntel';
 
 interface FBPostRaw {
   id: string;
@@ -10,9 +11,16 @@ interface FBPostRaw {
   shares?: { count?: number };
   reactions?: { summary?: { total_count?: number } };
   comments?: { summary?: { total_count?: number } };
+  attachments?: { data?: any[] };
 }
 
 export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
+
+/** Toàn bộ lịch sử bài viết khá nặng nên giữ lại trong bộ nhớ giữa các lượt gọi. */
+const CACHE_TTL = 5 * 60 * 1000;
+const BUDGET_MS = 18000;
+let cache: { at: number; posts: FeedPost[] } | null = null;
 
 async function resolveFacebookCredentials(): Promise<{ pageId: string; pageToken: string }> {
   // 1. Trực tiếp từ biến môi trường
@@ -59,19 +67,28 @@ export async function GET() {
       return NextResponse.json({ success: true, posts: [] });
     }
 
-    const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
+    if (cache && Date.now() - cache.at < CACHE_TTL) {
+      return NextResponse.json({ success: true, posts: cache.posts, cached: true });
+    }
 
-    // Lấy tối đa 2 trang (~50 bài mới nhất) để phản hồi siêu tốc dưới 500ms, không bao giờ bị timeout Vercel
-    const MAX_PAGES = 2;
+    const fields =
+      'id,message,story,created_time,full_picture,permalink_url,' +
+      'attachments{media_type,title,url,unshimmed_url,target,media,subattachments},' +
+      'shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
+
+    // Lấy toàn bộ bài từ trước tới nay, chỉ dừng khi hết trang hoặc chạm ngân sách thời gian
+    const MAX_PAGES = 40;
+    const startedAt = Date.now();
     let url =
       `https://graph.facebook.com/v20.0/${pageId}/published_posts` +
-      `?fields=${encodeURIComponent(fields)}&limit=25&access_token=${pageToken}`;
+      `?fields=${encodeURIComponent(fields)}&limit=50&access_token=${pageToken}`;
 
     const rawPosts: FBPostRaw[] = [];
     for (let i = 0; i < MAX_PAGES; i++) {
+      if (Date.now() - startedAt > BUDGET_MS) break;
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 6000);
+        const timeoutId = setTimeout(() => controller.abort(), 8000);
 
         const response = await fetch(url, {
           cache: 'no-store',
@@ -88,6 +105,7 @@ export async function GET() {
         if (data.error) {
           console.error('FB Get Posts Error:', data.error);
           if (rawPosts.length > 0) break;
+          if (cache) return NextResponse.json({ success: true, posts: cache.posts, cached: true });
           return NextResponse.json({ success: true, posts: [], error: data.error.message });
         }
 
@@ -100,16 +118,27 @@ export async function GET() {
       }
     }
 
-    const posts = rawPosts.map((p) => ({
-      id: p.id,
-      message: p.message || p.story || '(Không có văn bản)',
-      created_time: p.created_time,
-      full_picture: p.full_picture || null,
-      permalink_url: p.permalink_url || `https://facebook.com/${p.id}`,
-      likesCount: p.reactions?.summary?.total_count || 0,
-      commentsCount: p.comments?.summary?.total_count || 0,
-      sharesCount: p.shares?.count || 0
-    }));
+    if (rawPosts.length === 0 && cache) {
+      return NextResponse.json({ success: true, posts: cache.posts, cached: true });
+    }
+
+    const posts: FeedPost[] = rawPosts.map((p) => {
+      const message = p.message || p.story || '(Không có văn bản)';
+      const permalink = p.permalink_url || `https://facebook.com/${p.id}`;
+      return {
+        id: p.id,
+        message,
+        created_time: p.created_time,
+        full_picture: p.full_picture || null,
+        permalink_url: permalink,
+        likesCount: p.reactions?.summary?.total_count || 0,
+        commentsCount: p.comments?.summary?.total_count || 0,
+        sharesCount: p.shares?.count || 0,
+        ...extractPostMedia(message, permalink, p.attachments?.data || [])
+      };
+    });
+
+    cache = { at: Date.now(), posts };
 
     return NextResponse.json({ success: true, posts });
   } catch (err: any) {
@@ -144,6 +173,7 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: result.error.message }, { status: 400 });
     }
 
+    cache = null;
     return NextResponse.json({ success: true, postId });
   })(request);
 }
@@ -170,6 +200,7 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: result.error.message }, { status: 400 });
     }
 
+    cache = null;
     return NextResponse.json({ success: true, postId });
   })(request);
 }

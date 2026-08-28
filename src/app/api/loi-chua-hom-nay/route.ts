@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getScrapedLiturgicalDay } from '@/lib/liturgicalData';
 import { getLiturgicalDay } from '@/lib/liturgicalCalendar';
+import { parseReadings, type ReadingSection } from '@/lib/dailyReadings';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // Cache 1 hour
@@ -42,6 +43,8 @@ export async function GET(request: NextRequest) {
     let gospelQuote = '';
     let gospelRef = '';
     let gospelExcerpt = '';
+    let sections: ReadingSection[] = [];
+    // Nguồn tra cứu nội bộ — không trả về cho trình duyệt, không hiển thị cho người đọc
     const sourceUrl = `https://loichuahomnay.vn/suy-niem-loi-chua-ngay-${day}-${month}-${year}`;
 
     // 2. Attempt live fetch from loichuahomnay.vn to get real-time Gospel verse & meditation
@@ -69,26 +72,20 @@ export async function GET(request: NextRequest) {
           if (rawRead) readings = rawRead;
         }
 
-        // Extract Gospel paragraphs
-        const paras = html.match(/<p.*?>([\s\S]*?)<\/p>/gi) || [];
-        for (let i = 0; i < paras.length; i++) {
-          const cleanP = paras[i].replace(/<.*?>/g, '').trim();
-          if (/Phúc Âm:\s*([A-Za-z0-9,\s\-–]+)/i.test(cleanP)) {
-            gospelRef = cleanP.replace(/^Phúc Âm:\s*/i, '').trim();
-            // Next paragraphs usually contain the Gospel passage
-            const nextPassages: string[] = [];
-            for (let j = i + 1; j < Math.min(i + 5, paras.length); j++) {
-              const text = paras[j].replace(/<.*?>/g, '').trim();
-              if (text && !text.includes('Ðó là lời Chúa') && !text.includes('Bài Đọc')) {
-                nextPassages.push(text);
-              }
-            }
-            if (nextPassages.length > 0) {
-              gospelExcerpt = nextPassages.join(' ');
-              gospelQuote = nextPassages[0];
-            }
-            break;
-          }
+        // Toàn văn Lời Chúa: Bài Đọc I, Đáp Ca, Bài Đọc II, Alleluia, Tin Mừng
+        sections = parseReadings(html);
+
+        const gospel = sections.find(sec => sec.kind === 'gospel');
+        if (gospel) {
+          gospelRef = gospel.ref;
+          gospelQuote = gospel.summary || gospel.paragraphs[1] || gospel.paragraphs[0] || '';
+          gospelExcerpt = gospel.paragraphs.join('\n\n');
+        }
+
+        // Danh sách trích dẫn của bộ lễ đầu tiên, gọn hơn chuỗi lấy từ khối dsbd
+        const firstGroup = sections.filter(sec => sec.group === 0 && sec.kind !== 'alleluia');
+        if (firstGroup.length) {
+          readings = firstGroup.map(sec => sec.ref).filter(Boolean).join('; ');
         }
       }
     } catch (err) {
@@ -117,7 +114,7 @@ export async function GET(request: NextRequest) {
       gospelRef: gospelRef || readings.split(';').pop()?.trim() || '',
       gospelQuote: gospelQuote.length > 250 ? gospelQuote.slice(0, 240) + '...' : gospelQuote,
       gospelExcerpt,
-      sourceUrl
+      sections
     };
 
     cache.set(cacheKey, payload);
@@ -133,8 +130,7 @@ export async function GET(request: NextRequest) {
         colorHex: '#10B981',
         gospelQuote: '“Lời Chúa là ngọn đèn soi cho con bước, là ánh sáng chỉ đường con đi.” (Tv 119, 105)',
         gospelRef: 'Tv 119, 105',
-        readings: '',
-        sourceUrl: 'https://loichuahomnay.vn'
+        readings: ''
       },
       { status: 200 }
     );
