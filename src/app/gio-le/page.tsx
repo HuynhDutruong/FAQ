@@ -31,8 +31,6 @@ const labelStyle: React.CSSProperties = {
   letterSpacing: '0.5px'
 };
 
-const UNKNOWN_DIOCESE = 'Chưa rõ giáo phận';
-
 const DAY_ORDER = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chúa Nhật'];
 
 function TimeChips({ times, color, bg }: { times: string[]; color: string; bg: string }) {
@@ -76,14 +74,12 @@ export default function MassTimesPage() {
     };
   }, []);
 
-  // Xếp theo đúng thứ tự 27 giáo phận chính thức; nhóm chưa gắn nhãn xuống cuối
+  // Xếp theo đúng thứ tự 27 giáo phận chính thức, loại bỏ hoàn toàn các mục chưa rõ
   const dioceses = useMemo(() => {
     const counts = new Map(dioceseBuckets.map(b => [b.name, b.count]));
-    const known = ALL_DIOCESES.filter(d => counts.has(d))
-      .map(d => ({ value: d, label: dioceseLabel(d), count: counts.get(d)! }));
-    const rest = dioceseBuckets.filter(b => !ALL_DIOCESES.includes(b.name))
-      .map(b => ({ value: b.name, label: b.name, count: b.count }));
-    return [...known, ...rest];
+    return ALL_DIOCESES
+      .map(d => ({ value: d, label: dioceseLabel(d), count: counts.get(d) ?? 0 }))
+      .filter(d => d.count > 0);
   }, [dioceseBuckets]);
 
   const handleSelectDiocese = (val: string) => {
@@ -96,7 +92,7 @@ export default function MassTimesPage() {
     }
     setLoading(true);
     setError(null);
-    getByDiocese(val === UNKNOWN_DIOCESE ? '' : val)
+    getByDiocese(val)
       .then(setRows)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
