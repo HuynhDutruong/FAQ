@@ -4,7 +4,7 @@ export const translations = {
   vi: {
     title: 'XỨ ĐOÀN CÁC THÁNH TỬ ĐẠO VIỆT NAM',
     subtitle: 'Giáo Xứ Chánh Toà - Giáo Phận Mỹ Tho',
-    description: 'Lắng nghe, thấu hiểu và đồng hành cùng bạn. Vui lòng chọn một trong hai lựa chọn bên dưới để bắt đầu.',
+    description: '“Anh em cứ xin thì sẽ được, cứ tìm thì sẽ thấy, cứ gõ cửa thì sẽ mở cho.” (Mt 7, 7)',
     btnFAQ: 'Vấn Đáp',
     btnFeedback: 'Phản Hồi',
     btnMassTimes: 'Giờ Lễ',
@@ -87,7 +87,7 @@ export const translations = {
   en: {
     title: 'VIETNAMESE MARTYRS YOUTH CHAPTER',
     subtitle: 'Cathedral Parish - Diocese of My Tho',
-    description: 'Listening, understanding, and accompanying you. Please choose one of the options below to get started.',
+    description: '“Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.” (Matthew 7:7)',
     btnFAQ: 'Q&A',
     btnFeedback: 'Feedback',
     btnMassTimes: 'Mass Times',
@@ -170,7 +170,7 @@ export const translations = {
   zh: {
     title: '越南殉道圣人青年团',
     subtitle: '主教座堂堂区 - 美湫教区',
-    description: '倾听、理解并与您同行。请选择以下选项之一以开始。',
+    description: '“你们祈求，就给你们；寻找，就寻见；叩门，就给你们开门。”（玛 7:7）',
     btnFAQ: '问答',
     btnFeedback: '反馈',
     btnMassTimes: '弥撒时间',
@@ -247,7 +247,7 @@ export const translations = {
   fr: {
     title: 'GROUPE DE JEUNES MARTYRS VIETNAMIENS',
     subtitle: 'Paroisse Cathédrale - Diocèse de My Tho',
-    description: 'À l\'écoute, pour vous comprendre et vous accompagner. Veuillez choisir une option ci-dessous pour commencer.',
+    description: '« Demandez, et l\'on vous donnera ; cherchez, et vous trouverez ; frappez, et l\'on vous ouvrira. » (Mt 7, 7)',
     btnFAQ: 'Questions/Réponses',
     btnFeedback: 'Commentaires',
     btnMassTimes: 'Horaires des Messes',
@@ -324,7 +324,7 @@ export const translations = {
   es: {
     title: 'GRUPO DE JÓVENES MÁRTIRES VIETNAMITAS',
     subtitle: 'Parroquia Catedral - Diócesis de My Tho',
-    description: 'Escuchando, entendiendo y acompañándote. Por favor, elige una de las opciones a continuación para comenzar.',
+    description: '«Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá.» (Mt 7, 7)',
     btnFAQ: 'Preguntas',
     btnFeedback: 'Comentarios',
     btnMassTimes: 'Horarios de Misas',
@@ -401,7 +401,7 @@ export const translations = {
   ja: {
     title: 'ベトナム殉教者青年団',
     subtitle: '大聖堂小教区 - ミトー教区',
-    description: 'あなたに寄り添い、理解し、共に歩みます。開始するには以下のオプションから一つお選びください。',
+    description: '「求めなさい。そうすれば、与えられる。探しなさい。そうすれば、見つかる。門をたたきなさい。そうすれば、開かれる。」（マタイ 7:7）',
     btnFAQ: 'Q&A',
     btnFeedback: 'フィードバック',
     btnMassTimes: 'ミサの時間',
@@ -478,7 +478,7 @@ export const translations = {
   ko: {
     title: '베트남 순교자 청년회',
     subtitle: '대성당 본당 - 미토 교구',
-    description: '당신의 이야기에 귀 기울이고 동행합니다. 시작하려면 아래 옵션 중 하나를 선택하세요.',
+    description: '“청하여라, 너희에게 주실 것이다. 찾아라, 너희가 얻을 것이다. 문을 두드려라, 너희에게 열릴 것이다.” (마태 7,7)',
     btnFAQ: 'Q&A',
     btnFeedback: '피드백',
     btnMassTimes: '미사 시간',
@@ -555,7 +555,7 @@ export const translations = {
   ru: {
     title: 'МОЛОДЕЖНАЯ ОРГАНИЗАЦИЯ ВЬЕТНАМСКИХ МУЧЕНИКОВ',
     subtitle: 'Кафедральный приход - Епархия Митхо',
-    description: 'Слушаем, понимаем и сопровождаем вас. Пожалуйста, выберите одну из опций ниже, чтобы начать.',
+    description: '«Просите, и дано будет вам; ищите, и найдете; стучите, и отворят вам.» (Мф 7:7)',
     btnFAQ: 'Вопросы и ответы',
     btnFeedback: 'Отзывы',
     btnMassTimes: 'Время Месс',
@@ -632,7 +632,7 @@ export const translations = {
   de: {
     title: 'JUGENDGRUPPE DER VIETNAMESISCHEN MÄRTYRER',
     subtitle: 'Kathedralpfarrei - Diözese My Tho',
-    description: 'Wir hören zu, verstehen und begleiten dich. Bitte wähle eine der folgenden Optionen, um zu beginnen.',
+    description: '„Bittet, so wird euch gegeben; suchet, so werdet ihr finden; klopfet an, so wird euch aufgetan.“ (Mt 7,7)',
     btnFAQ: 'Fragen & Antworten',
     btnFeedback: 'Feedback',
     btnMassTimes: 'Messezeiten',
@@ -709,7 +709,7 @@ export const translations = {
   pt: {
     title: 'GRUPO DE JOVENS MÁRTIRES VIETNAMITAS',
     subtitle: 'Paróquia Catedral - Diocese de My Tho',
-    description: 'Ouvindo, compreendendo e acompanhando você. Por favor, escolha uma das opções abaixo para começar.',
+    description: '“Pedi e vos será dado; buscai e achareis; batei e abrir-se-vos-á.” (Mt 7, 7)',
     btnFAQ: 'Perguntas',
     btnFeedback: 'Comentários',
     btnMassTimes: 'Horários das Missas',
@@ -786,7 +786,7 @@ export const translations = {
   it: {
     title: 'GRUPPO GIOVANILE MARTIRI VIETNAMITI',
     subtitle: 'Parrocchia Cattedrale - Diocesi di My Tho',
-    description: 'Ascoltarti, comprenderti e accompagnarti. Scegli un\'opzione qui sotto per iniziare.',
+    description: '«Chiedete e vi sarà dato, cercate e troverete, bussate e vi sarà aperto.» (Mt 7, 7)',
     btnFAQ: 'Domande e Risposte',
     btnFeedback: 'Feedback',
     btnMassTimes: 'Orari Messe',
@@ -863,7 +863,7 @@ export const translations = {
   ar: {
     title: 'فرقة شباب الشهداء الفيتناميين',
     subtitle: 'رعية الكاتدرائية - أبرشية ماي ثو',
-    description: 'نستمع، نفهم، ونرافقك. يرجى اختيار أحد الخيارات أدناه للبدء.',
+    description: '«اسْأَلُوا تُعْطَوْا، اُطْلُبُوا تَجِدُوا، اِقْرَعُوا يُفْتَحْ لَكُمْ.» (متى ٧: ٧)',
     btnFAQ: 'سؤال وجواب',
     btnFeedback: 'ملاحظات',
     btnMassTimes: 'أوقات القداس',
@@ -940,7 +940,7 @@ export const translations = {
   hi: {
     title: 'वियतनामी शहीद युवा समूह',
     subtitle: 'कैथेड्रल पैरिश - माई थो डायोसीज़',
-    description: 'सुनना, समझना, और आपके साथ चलना। कृपया आरंभ करने के लिए नीचे दिए गए विकल्पों में से एक चुनें।',
+    description: '“मांगो, तो तुम्हें दिया जाएगा; ढूंढो, तो तुम पाओगे; खटखटाओ, तो तुम्हारे लिए खोला जाएगा।” (मत्ती 7:7)',
     btnFAQ: 'प्रश्नोत्तर',
     btnFeedback: 'प्रतिक्रिया',
     btnMassTimes: 'मिस्सा का समय',
