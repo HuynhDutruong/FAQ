@@ -28,7 +28,7 @@ export async function GET(request: Request) {
   const redirectUri = `${url.origin}/api/facebook/callback`;
 
   try {
-    // 1. Đổi Code lấy User Access Token
+    // 1. Đổi Code lấy Short-Lived User Access Token
     const tokenResponse = await fetch(
       `https://graph.facebook.com/v20.0/oauth/access_token?client_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}&client_secret=${appSecret}&code=${code}`
     );
@@ -39,9 +39,22 @@ export async function GET(request: Request) {
       return NextResponse.redirect(new URL('/admin?tab=facebook&error=token_exchange_failed', request.url));
     }
 
-    const userAccessToken = tokenData.access_token;
+    let userAccessToken = tokenData.access_token;
 
-    // 2. Dùng User Token để lấy danh sách Fanpage và Page Access Token
+    // 2. Nâng cấp sang Long-Lived User Token (Hạn 60 ngày) để lấy Permanent Page Token (Dùng vĩnh viễn)
+    try {
+      const longLivedRes = await fetch(
+        `https://graph.facebook.com/v20.0/oauth/access_token?grant_type=fb_exchange_token&client_id=${appId}&client_secret=${appSecret}&fb_exchange_token=${userAccessToken}`
+      );
+      const longLivedData = await longLivedRes.json();
+      if (!longLivedData.error && longLivedData.access_token) {
+        userAccessToken = longLivedData.access_token;
+      }
+    } catch (e) {
+      console.warn('Cannot exchange long-lived token, using short-lived token:', e);
+    }
+
+    // 3. Dùng Token để lấy danh sách Fanpage và Permanent Page Access Token
     const pagesResponse = await fetch(`https://graph.facebook.com/v20.0/me/accounts?access_token=${userAccessToken}`);
     const pagesData = await pagesResponse.json();
 
@@ -53,17 +66,23 @@ export async function GET(request: Request) {
     const pages: FacebookPageItem[] = pagesData.data || [];
 
     if (pages.length === 0) {
-      // Lưu lại User Token để người dùng có thể chọn manual nếu muốn
+      // Khi không tìm thấy page, thử kiểm tra thông tin user
+      const meRes = await fetch(`https://graph.facebook.com/v20.0/me?access_token=${userAccessToken}`);
+      const meData = await meRes.json();
+
       await setDoc(doc(db, 'settings', 'facebook'), {
         userToken: userAccessToken,
+        userName: meData.name || '',
+        userId: meData.id || '',
         lastAttempt: new Date().toISOString()
       }, { merge: true });
+
       return NextResponse.redirect(new URL('/admin?tab=facebook&error=no_pages_found', request.url));
     }
 
     const firstPage = pages[0];
 
-    // 3. Lưu thông tin Fanpage và Token vào Firestore
+    // 4. Lưu cấu hình Fanpage TOÀN HỆ THỐNG vào Firestore (Cho tất cả Admin dùng chung vĩnh viễn)
     await setDoc(doc(db, 'settings', 'facebook'), {
       connected: true,
       connectedAt: new Date().toISOString(),

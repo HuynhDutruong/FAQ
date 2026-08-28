@@ -136,9 +136,10 @@ export default function FacebookAdmin() {
     const appId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
     const origin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000';
     const redirectUri = encodeURIComponent(`${origin}/api/facebook/callback`);
-    const scope = 'public_profile,pages_show_list,pages_read_engagement';
+    const scope = 'public_profile,pages_show_list,pages_read_engagement,pages_manage_posts';
 
-    window.location.href = `https://www.facebook.com/v20.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUri}&scope=${scope}`;
+    // auth_type=rerequest bắt buộc Facebook hiển thị lại màn hình chọn Fanpage
+    window.location.href = `https://www.facebook.com/v20.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUri}&scope=${scope}&auth_type=rerequest`;
   };
 
   // Cấu hình thủ công Page Token
