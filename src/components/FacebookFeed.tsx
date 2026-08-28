@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, MessageCircle, Heart, Share2, Loader2 } from 'lucide-react';
-import Image from 'next/image';
+import { ExternalLink, Loader2 } from 'lucide-react';
+import { designSystem } from '@/lib/designSystem';
 
 interface FBPost {
   id: string;
@@ -19,6 +19,7 @@ export default function FacebookFeed() {
   const [posts, setPosts] = useState<FBPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,77 +34,52 @@ export default function FacebookFeed() {
       }
     };
     fetchPosts();
+
+    const isDarkMode = typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches || false;
+    setIsDark(isDarkMode);
   }, []);
 
-  const formatDate = (dateStr: string) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('vi-VN', { year: 'numeric', month: 'short', day: 'numeric' });
-  };
+  const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('vi-VN', { year: 'numeric', month: 'short', day: 'numeric' });
 
-  if (loading) {
-    return (
-      <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--color-subtle)' }}>
-        <Loader2 size={32} className="spin" style={{ margin: '0 auto' }} />
-        <p style={{ marginTop: '12px' }}>Đang tải bài viết...</p>
-      </div>
-    );
-  }
+  if (loading) return <div style={{ textAlign: 'center', padding: designSystem.spacing['2xl'], color: isDark ? designSystem.colors.darkTextSecondary : designSystem.colors.textSecondary }}><Loader2 size={32} className="spin" style={{ margin: '0 auto' }} /><p style={{ marginTop: designSystem.spacing.md }}>Đang tải...</p></div>;
 
-  if (posts.length === 0) {
-    return (
-      <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--color-subtle)' }}>
-        <p>Chưa có bài viết nào</p>
-      </div>
-    );
-  }
+  if (posts.length === 0) return <div style={{ textAlign: 'center', padding: designSystem.spacing['2xl'], color: isDark ? designSystem.colors.darkTextSecondary : designSystem.colors.textSecondary }}>Chưa có bài viết</div>;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: designSystem.spacing.lg }}>
       {posts.map(post => (
-        <div
-          key={post.id}
-          className="liquid-glass"
-          style={{
-            borderRadius: '16px',
-            overflow: 'hidden',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            backgroundColor: 'rgba(255, 255, 255, 0.4)'
-          }}
-        >
-          {/* Post Header */}
-          <div style={{ padding: '14px 16px', borderBottom: '1px solid rgba(0, 0, 0, 0.05)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+        <div key={post.id} style={{
+          borderRadius: designSystem.radius.lg,
+          overflow: 'hidden',
+          backgroundColor: isDark ? designSystem.colors.darkBgSecondary : designSystem.colors.bg,
+          border: `1px solid ${isDark ? designSystem.colors.darkBorder : designSystem.colors.border}`,
+          boxShadow: isDark ? designSystem.shadows.md : designSystem.shadows.sm
+        }}>
+          <div style={{ padding: designSystem.spacing.lg, borderBottom: `1px solid ${isDark ? designSystem.colors.darkBorder : designSystem.colors.border}` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: designSystem.spacing.md }}>
               <div>
-                <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: 700, color: 'var(--color-dark)' }}>
-                  Xứ Đoàn Các Thánh Tử Đạo Việt Nam
-                </p>
-                <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-subtle)' }}>
-                  {formatDate(post.created_time)}
-                </p>
+                <p style={{ margin: 0, fontSize: designSystem.fonts.sizes.lg, fontWeight: 700, color: isDark ? designSystem.colors.darkText : designSystem.colors.text }}>Xứ Đoàn Các Thánh Tử Đạo Việt Nam</p>
+                <p style={{ margin: `${designSystem.spacing.sm} 0 0`, fontSize: designSystem.fonts.sizes.sm, color: isDark ? designSystem.colors.darkTextSecondary : designSystem.colors.textSecondary }}>{formatDate(post.created_time)}</p>
               </div>
               <a href={post.permalink_url} target="_blank" rel="noopener noreferrer" style={{
-                width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'rgba(24, 119, 242, 0.1)',
-                color: '#1877F2', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'
+                width: '40px', height: '40px', borderRadius: '50%',
+                backgroundColor: isDark ? designSystem.colors.darkBg : '#F0F9FF',
+                color: designSystem.colors.accent,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'
               }}>
-                <ExternalLink size={16} />
+                <ExternalLink size={18} />
               </a>
             </div>
           </div>
 
-          {/* Post Content */}
-          <div style={{ padding: '14px 16px' }}>
-            {post.full_picture && (
-              <div style={{ marginBottom: '12px', borderRadius: '10px', overflow: 'hidden', maxHeight: '400px', backgroundColor: '#F3F4F6' }}>
-                <img
-                  src={post.full_picture}
-                  alt="Post"
-                  style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '400px', objectFit: 'cover' }}
-                />
-              </div>
-            )}
+          <div style={{ padding: designSystem.spacing.lg }}>
+            {post.full_picture && <div style={{ marginBottom: designSystem.spacing.lg, borderRadius: designSystem.radius.md, overflow: 'hidden', maxHeight: '300px', backgroundColor: designSystem.colors.bgSecondary }}>
+              <img src={post.full_picture} alt="Post" style={{ width: '100%', height: 'auto', maxHeight: '300px', objectFit: 'cover' }} />
+            </div>}
 
             <p style={{
-              margin: 0, fontSize: '0.95rem', color: 'var(--color-dark)', lineHeight: 1.6,
+              margin: 0, fontSize: designSystem.fonts.sizes.base, color: isDark ? designSystem.colors.darkText : designSystem.colors.text,
+              lineHeight: 1.6,
               maxHeight: expandedId === post.id ? 'none' : '120px',
               overflow: 'hidden',
               display: '-webkit-box',
@@ -113,54 +89,31 @@ export default function FacebookFeed() {
               {post.message || post.story || '(Không có nội dung)'}
             </p>
 
-            {(post.message?.length || 0) > 300 && (
-              <button
-                onClick={() => setExpandedId(expandedId === post.id ? null : post.id)}
-                style={{
-                  marginTop: '8px',
-                  padding: 0,
-                  border: 'none',
-                  background: 'none',
-                  color: '#1877F2',
-                  fontSize: '0.9rem',
-                  fontWeight: 700,
-                  cursor: 'pointer'
-                }}
-              >
-                {expandedId === post.id ? 'Ẩn bớt' : 'Xem thêm'}
-              </button>
-            )}
+            {(post.message?.length || 0) > 300 && <button onClick={() => setExpandedId(expandedId === post.id ? null : post.id)} style={{
+              marginTop: designSystem.spacing.md, padding: 0, border: 'none', background: 'none',
+              color: designSystem.colors.primary, fontSize: designSystem.fonts.sizes.sm, fontWeight: 700, cursor: 'pointer'
+            }}>
+              {expandedId === post.id ? 'Ẩn bớt' : 'Xem thêm'}
+            </button>}
           </div>
 
-          {/* Stats */}
           <div style={{
-            padding: '10px 16px',
-            borderTop: '1px solid rgba(0, 0, 0, 0.05)',
+            padding: `${designSystem.spacing.md} ${designSystem.spacing.lg}`,
+            borderTop: `1px solid ${isDark ? designSystem.colors.darkBorder : designSystem.colors.border}`,
             display: 'flex', justifyContent: 'space-around',
-            fontSize: '0.8rem', color: 'var(--color-subtle)', fontWeight: 600
+            fontSize: designSystem.fonts.sizes.sm, color: isDark ? designSystem.colors.darkTextTertiary : designSystem.colors.textTertiary
           }}>
             <span>❤️ {post.likesCount}</span>
             <span>💬 {post.commentsCount}</span>
             <span>↗️ {post.sharesCount}</span>
           </div>
 
-          {/* Actions */}
-          <div style={{
-            padding: '10px 8px',
-            display: 'flex', gap: '4px',
-            borderTop: '1px solid rgba(0, 0, 0, 0.05)'
-          }}>
+          <div style={{ padding: designSystem.spacing.lg, borderTop: `1px solid ${isDark ? designSystem.colors.darkBorder : designSystem.colors.border}` }}>
             <a href={post.permalink_url} target="_blank" rel="noopener noreferrer" style={{
-              flex: 1,
-              padding: '8px',
-              textAlign: 'center',
-              borderRadius: '8px',
-              background: 'rgba(24, 119, 242, 0.08)',
-              color: '#1877F2',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              textDecoration: 'none',
-              cursor: 'pointer'
+              display: 'block', padding: designSystem.spacing.md, textAlign: 'center',
+              borderRadius: designSystem.radius.md, background: isDark ? 'rgba(37, 99, 235, 0.1)' : 'rgba(37, 99, 235, 0.08)',
+              color: designSystem.colors.accent, fontSize: designSystem.fonts.sizes.sm, fontWeight: 700,
+              textDecoration: 'none', cursor: 'pointer'
             }}>
               Xem trên Facebook
             </a>
