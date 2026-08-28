@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, type Auth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyADDC3-1BYxJX5hs-ofxUmM9lHiXbmk3zo",
@@ -15,8 +15,26 @@ const firebaseConfig = {
 
 // Initialize Firebase (Prevent multiple initializations in dev mode)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-
 const db = getFirestore(app);
-const auth = getAuth(app);
 
-export { app, db, auth };
+let _authInstance: Auth | null = null;
+export function getFirebaseAuth(): Auth {
+  if (!_authInstance) {
+    _authInstance = getAuth(app);
+  }
+  return _authInstance;
+}
+
+// Lazy auth proxy — chỉ khởi tạo gapi / iframe khi trang admin thực sự dùng đến auth
+export const auth = new Proxy({} as Auth, {
+  get(_target, prop) {
+    const instance = getFirebaseAuth();
+    const val = (instance as any)[prop];
+    if (typeof val === 'function') {
+      return val.bind(instance);
+    }
+    return val;
+  }
+});
+
+export { app, db };
