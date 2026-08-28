@@ -1,9 +1,10 @@
 'use client';
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Navigation, Search, Loader2, MapPin, Clock, Check } from 'lucide-react';
+import { ArrowLeft, Navigation, Search, Loader2, MapPin, Clock, Check, Edit3, PlusCircle, ExternalLink } from 'lucide-react';
 import { MassTime, Bucket, getFacets, getByDiocese, removeAccents } from '@/lib/massTimes';
 import { ALL_DIOCESES, dioceseLabel, getNearestDiocese, calculateDistance } from '@/lib/dioceses';
+import MassTimeFeedbackModal from '@/components/MassTimeFeedbackModal';
 
 const DAY_ORDER = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chúa Nhật'];
 
@@ -17,6 +18,10 @@ export default function GioLePage() {
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [locating, setLocating] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
+
+  // Modal đóng góp / yêu cầu chỉnh sửa giờ lễ
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [selectedParishForEdit, setSelectedParishForEdit] = useState<MassTime | null>(null);
 
   const loadDiocese = useCallback((diocese: string) => {
     setSelectedDiocese(diocese);
@@ -97,6 +102,16 @@ export default function GioLePage() {
     return list;
   }, [rows, selectedDeanery, searchTerm, userLocation]);
 
+  const handleOpenEdit = (church: MassTime) => {
+    setSelectedParishForEdit(church);
+    setFeedbackOpen(true);
+  };
+
+  const handleOpenAddNew = () => {
+    setSelectedParishForEdit(null);
+    setFeedbackOpen(true);
+  };
+
   return (
     <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-gradient)' }}>
       {toast && (
@@ -116,10 +131,22 @@ export default function GioLePage() {
         <Link href="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--color-btn-subtle-bg)', color: 'var(--color-dark)' }}>
           <ArrowLeft size={20} />
         </Link>
-        <h1 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0, flex: 1, textTransform: 'uppercase', letterSpacing: '0.02em' }}>
+        <h1 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0, flex: 1, textTransform: 'uppercase', letterSpacing: '0.02em', textAlign: 'center' }}>
           Tra Cứu Giờ Lễ
         </h1>
-        <div style={{ width: '40px' }} />
+        <button
+          onClick={handleOpenAddNew}
+          title="Đóng góp hoặc thêm giờ lễ mới"
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '6px',
+            padding: '7px 12px', borderRadius: '8px', border: '1px solid var(--color-border-subtle)',
+            backgroundColor: 'var(--color-card-bg)', color: 'var(--color-red)',
+            fontWeight: 700, fontSize: '0.82rem', cursor: 'pointer'
+          }}
+        >
+          <PlusCircle size={15} />
+          <span className="hidden-mobile">Đóng góp</span>
+        </button>
       </header>
 
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px', maxWidth: '1060px', margin: '0 auto', width: '100%', gap: '16px' }}>
@@ -223,6 +250,16 @@ export default function GioLePage() {
             <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--color-subtle)' }}>
               <MapPin size={40} style={{ margin: '0 auto 12px', opacity: 0.5 }} />
               <p>Không tìm thấy nhà thờ nào.</p>
+              <button
+                onClick={handleOpenAddNew}
+                style={{
+                  marginTop: '12px', padding: '8px 16px', borderRadius: '8px',
+                  backgroundColor: 'var(--color-red)', color: '#fff', border: 'none',
+                  fontWeight: 600, fontSize: '0.88rem', cursor: 'pointer'
+                }}
+              >
+                + Gửi bổ sung nhà thờ này
+              </button>
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -230,30 +267,51 @@ export default function GioLePage() {
                 const distanceVal = (item as MassTime & { _distance?: number })._distance;
                 return (
                   <div key={item.id} className="liquid-glass" style={{
-                    padding: '14px', borderRadius: '12px',
-                    border: '1px solid var(--color-border-subtle)', backgroundColor: 'var(--color-card-bg)'
+                    padding: '16px', borderRadius: '12px',
+                    border: '1px solid var(--color-border-subtle)', backgroundColor: 'var(--color-card-bg)',
+                    display: 'flex', flexDirection: 'column', gap: '10px'
                   }}>
-                    <div style={{ marginBottom: '8px' }}>
-                      <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-                        {item.parish}
-                      </h3>
-                      <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
-                        <MapPin size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '4px' }} />{item.address}
-                      </p>
-                      {typeof distanceVal === 'number' && distanceVal !== Infinity && (
-                        <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-red)', fontWeight: 700 }}>
-                          ~{Math.round(distanceVal * 10) / 10} km
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                      <div>
+                        <Link href={`/gio-le/${item.id}`} style={{ textDecoration: 'none' }}>
+                          <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                            {item.parish}
+                            <ExternalLink size={14} style={{ opacity: 0.5 }} />
+                          </h3>
+                        </Link>
+                        <p style={{ margin: '3px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
+                          <MapPin size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '4px' }} />{item.address}
                         </p>
-                      )}
+                        {typeof distanceVal === 'number' && distanceVal !== Infinity && (
+                          <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-red)', fontWeight: 700 }}>
+                            ~{Math.round(distanceVal * 10) / 10} km
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Nút yêu cầu chỉnh sửa */}
+                      <button
+                        onClick={() => handleOpenEdit(item)}
+                        title="Yêu cầu chỉnh sửa / Báo sai giờ lễ"
+                        style={{
+                          display: 'inline-flex', alignItems: 'center', gap: '5px',
+                          padding: '6px 10px', borderRadius: '8px', border: '1px solid var(--color-border-subtle)',
+                          backgroundColor: 'var(--color-btn-subtle-bg)', color: 'var(--color-muted)',
+                          fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap'
+                        }}
+                      >
+                        <Edit3 size={13} />
+                        <span>Sửa giờ lễ</span>
+                      </button>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem', color: 'var(--color-dark)' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.82rem', color: 'var(--color-dark)', paddingTop: '6px', borderTop: '1px dashed var(--color-border-subtle)' }}>
                       {DAY_ORDER.map(day => {
                         const dayTimes = day === 'Chúa Nhật' ? item.sundayMass : day === 'Thứ Bảy' ? item.saturdayMass : item.weekdayMass;
                         return (
                           <div key={day} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <span style={{ fontWeight: 700, minWidth: '65px' }}>{day}:</span>
-                            <span style={{ color: dayTimes?.length ? 'var(--color-red)' : 'var(--color-subtle)' }}>
+                            <span style={{ fontWeight: 700, minWidth: '70px' }}>{day}:</span>
+                            <span style={{ color: dayTimes?.length ? 'var(--color-red)' : 'var(--color-subtle)', fontWeight: dayTimes?.length ? 600 : 400 }}>
                               {dayTimes?.join(', ') || '—'}
                             </span>
                           </div>
@@ -272,6 +330,19 @@ export default function GioLePage() {
           </div>
         )}
       </div>
+
+      {/* Modal yêu cầu chỉnh sửa giờ lễ */}
+      {feedbackOpen && (
+        <MassTimeFeedbackModal
+          isOpen={feedbackOpen}
+          onClose={() => {
+            setFeedbackOpen(false);
+            setSelectedParishForEdit(null);
+          }}
+          targetParish={selectedParishForEdit}
+          defaultDiocese={selectedDiocese}
+        />
+      )}
     </main>
   );
 }

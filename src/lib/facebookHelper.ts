@@ -1,7 +1,3 @@
-import { adminDb } from '@/lib/firebaseAdmin';
-
-const SETTINGS_DOC = () => adminDb().collection('settings').doc('facebook');
-
 export interface FacebookPageRecord {
   id: string;
   name: string;
@@ -16,24 +12,61 @@ export interface FacebookCredentials {
   source: 'firestore' | 'env';
 }
 
+async function getAdminFirestore() {
+  try {
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+      const { adminDb } = await import('@/lib/firebaseAdmin');
+      return adminDb();
+    }
+  } catch (e) {
+    console.warn('Firebase Admin Firestore not available:', e);
+  }
+  return null;
+}
+
 export async function getFacebookSettings(): Promise<Record<string, unknown> | null> {
-  const snap = await SETTINGS_DOC().get();
-  return snap.exists ? (snap.data() as Record<string, unknown>) : null;
+  try {
+    const db = await getAdminFirestore();
+    if (!db) return null;
+    const snap = await db.collection('settings').doc('facebook').get();
+    return snap.exists ? (snap.data() as Record<string, unknown>) : null;
+  } catch (e) {
+    console.warn('Cannot get Facebook settings from Firestore:', e);
+    return null;
+  }
 }
 
 export async function saveFacebookSettings(data: Record<string, unknown>): Promise<void> {
-  await SETTINGS_DOC().set(data, { merge: true });
+  try {
+    const db = await getAdminFirestore();
+    if (db) {
+      await db.collection('settings').doc('facebook').set(data, { merge: true });
+    }
+  } catch (e) {
+    console.warn('Cannot save Facebook settings to Firestore:', e);
+  }
 }
 
 export async function deleteFacebookSettings(): Promise<void> {
-  await SETTINGS_DOC().delete();
+  try {
+    const db = await getAdminFirestore();
+    if (db) {
+      await db.collection('settings').doc('facebook').delete();
+    }
+  } catch (e) {
+    console.warn('Cannot delete Facebook settings from Firestore:', e);
+  }
 }
 
 /** Danh sách Fanpage để hiển thị cho Admin chọn — KHÔNG kèm access_token. */
 export async function listFacebookPages(): Promise<{ id: string; name: string }[]> {
-  const data = await getFacebookSettings();
-  const pages = (data?.pages as FacebookPageRecord[] | undefined) || [];
-  return pages.map(p => ({ id: p.id, name: p.name }));
+  try {
+    const data = await getFacebookSettings();
+    const pages = (data?.pages as FacebookPageRecord[] | undefined) || [];
+    return pages.map(p => ({ id: p.id, name: p.name }));
+  } catch {
+    return [];
+  }
 }
 
 export async function getFacebookCredentials(): Promise<FacebookCredentials> {

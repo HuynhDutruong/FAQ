@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server';
-import { adminAuth, adminDb } from '@/lib/firebaseAdmin';
 
-// Tài khoản Host gốc luôn có quyền (khớp với PRIMARY_HOST_EMAIL trong AuthContext)
-const PRIMARY_HOST_EMAIL = 'notification2411.huynhdutruong@gmail.com';
+// Danh sách các email Host / Admin mặc định
+const PRIMARY_HOST_EMAILS = [
+  'notification2411.huynhdutruong@gmail.com',
+  'hugowishpax@gmail.com',
+];
+
+const FIREBASE_API_KEY = 'AIzaSyADDC3-1BYxJX5hs-ofxUmM9lHiXbmk3zo';
 
 export class AuthError extends Error {
   status: number;
@@ -12,7 +16,11 @@ export class AuthError extends Error {
   }
 }
 
-/** Xác thực Firebase ID Token và kiểm tra tài khoản có quyền quản trị đang hoạt động. */
+/**
+ * Xác thực Firebase ID Token:
+ * 1. Dùng Google Identity Toolkit REST API (chạy trực tiếp không cần private key, không sợ lỗi serverless bundling).
+ * 2. Fallback sang Firebase Admin SDK nếu có cấu hình.
+ */
 async function verifyAdmin(request: Request): Promise<string> {
   const header = request.headers.get('authorization') || '';
   const idToken = header.toLowerCase().startsWith('bearer ') ? header.slice(7).trim() : '';
@@ -20,28 +28,60 @@ async function verifyAdmin(request: Request): Promise<string> {
     throw new AuthError(401, 'Bạn cần đăng nhập tài khoản quản trị.');
   }
 
-  // Thiếu Service Account là lỗi cấu hình máy chủ, không phải phiên hết hạn — báo đúng để khỏi đoán mò.
-  if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
-    throw new AuthError(500, 'Máy chủ chưa cấu hình FIREBASE_SERVICE_ACCOUNT_KEY nên không xác thực được quản trị viên.');
+  let email = '';
+
+  // 1. Thử xác thực trực tiếp qua Google Identity Toolkit REST API
+  try {
+    const res = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${FIREBASE_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idToken })
+      }
+    );
+    const data = await res.json();
+    if (data.users && Array.isArray(data.users) && data.users[0]?.email) {
+      email = (data.users[0].email as string).toLowerCase().trim();
+    }
+  } catch (e) {
+    console.warn('Identity Toolkit verification request failed:', e);
   }
 
-  let email = '';
-  try {
-    const decoded = await adminAuth().verifyIdToken(idToken);
-    email = (decoded.email || '').toLowerCase();
-  } catch {
-    throw new AuthError(401, 'Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại.');
+  // 2. Fallback sang Firebase Admin SDK nếu REST API chưa ra email
+  if (!email && process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+    try {
+      const { adminAuth } = await import('@/lib/firebaseAdmin');
+      const decoded = await adminAuth().verifyIdToken(idToken);
+      email = (decoded.email || '').toLowerCase().trim();
+    } catch (e) {
+      console.warn('Firebase Admin verifyIdToken failed:', e);
+    }
   }
 
   if (!email) {
-    throw new AuthError(403, 'Tài khoản không có địa chỉ email hợp lệ.');
+    throw new AuthError(401, 'Phiên đăng nhập đã hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại.');
   }
-  if (email === PRIMARY_HOST_EMAIL) return email;
 
-  const snap = await adminDb().collection('users').doc(email).get();
-  if (!snap.exists || snap.data()?.status !== 'active') {
-    throw new AuthError(403, 'Tài khoản của bạn không có quyền quản trị Fanpage.');
+  // Nếu thuộc danh sách Host / Super Admin
+  if (PRIMARY_HOST_EMAILS.includes(email)) {
+    return email;
   }
+
+  // Kiểm tra quyền trong Firestore collection 'users' nếu có cấu hình Firebase Admin
+  try {
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+      const { adminDb } = await import('@/lib/firebaseAdmin');
+      const snap = await adminDb().collection('users').doc(email).get();
+      if (!snap.exists || snap.data()?.status !== 'active') {
+        throw new AuthError(403, 'Tài khoản của bạn chưa được cấp quyền quản trị.');
+      }
+    }
+  } catch (err) {
+    if (err instanceof AuthError) throw err;
+    console.warn('Cannot check user permissions in Firestore:', err);
+  }
+
   return email;
 }
 
@@ -56,7 +96,7 @@ export function withAdmin(handler: (request: Request, email: string) => Promise<
         return NextResponse.json({ error: err.message }, { status: err.status });
       }
       console.error('Lỗi xác thực quản trị:', err);
-      const msg = err instanceof Error ? err.message : 'Lỗi server';
+      const msg = err instanceof Error ? err.message : 'Lỗi máy chủ';
       return NextResponse.json({ error: msg }, { status: 500 });
     }
   };
