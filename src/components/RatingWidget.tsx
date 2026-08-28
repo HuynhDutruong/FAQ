@@ -12,6 +12,8 @@ interface Stats {
   stars: Record<string, number>;
   /** Facebook không có API ghi đánh giá, chỉ mời người dùng tự đăng lên Fanpage. */
   fbReviewUrl?: string | null;
+  /** Máy chủ chưa có khoá Firebase Admin — ẩn hẳn thay vì hiện số 0. */
+  unavailable?: boolean;
 }
 
 const VISIT_KEY = 'site_visit_counted';
@@ -64,6 +66,8 @@ export default function RatingWidget() {
   }, []);
 
   const needComment = picked > 0 && picked < 3;
+
+  if (stats?.unavailable) return null;
 
   const submit = async () => {
     if (!picked || sending) return;
