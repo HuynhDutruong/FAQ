@@ -18,16 +18,6 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '**.giaophanmytho.net' },
       { protocol: 'https', hostname: '**.hdgmvietnam.com' },
       { protocol: 'https', hostname: '**.vaticannews.va' }
-    ],
-    localPatterns: [
-      {
-        pathname: '/api/church-image',
-        search: '?*'
-      },
-      {
-        pathname: '/images/**',
-        search: ''
-      }
     ]
   }
 };
