@@ -239,3 +239,45 @@ button {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+/* Gio Le Mobile Optimizations */
+.giole-header {
+  padding: 12px 20px;
+}
+
+.giole-btn-contribute {
+  padding: 8px 14px;
+  background-color: rgba(211, 47, 47, 0.1);
+  color: var(--color-red);
+  border: 1px solid rgba(211, 47, 47, 0.25);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.giole-btn-contribute:hover {
+  background-color: rgba(211, 47, 47, 0.18);
+}
+
+@media (max-width: 640px) {
+  .giole-header {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+  .giole-btn-text {
+    display: none !important;
+  }
+  .giole-btn-contribute {
+    padding: 8px !important;
+    border-radius: 50% !important;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+  }
+}
