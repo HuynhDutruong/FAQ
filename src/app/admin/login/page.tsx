@@ -162,20 +162,20 @@ export default function LoginPage() {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-red)', fontWeight: 800, marginBottom: '8px' }}>
               <ShieldAlert size={20} />
-              <span>Chưa được cấp quyền truy cập</span>
+              <span>Chưa có trong danh sách</span>
             </div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--color-dark)', lineHeight: 1.4, marginBottom: '14px' }}>
-              Tài khoản <strong>{user.email}</strong> chưa có trong danh sách quản trị viên. Bạn có thể gửi yêu cầu để Admin duyệt trực tiếp:
+            <p style={{ fontSize: '0.88rem', color: 'var(--color-dark)', lineHeight: 1.5, marginBottom: '14px', fontWeight: 600 }}>
+              Danh sách admin chưa có bạn (<strong>{user.email}</strong>), bạn muốn xét duyệt thì nhấn xét duyệt nha.
             </p>
 
             <input
               type="text"
-              placeholder="Ghi chú (Tên / Chức vụ trong Xứ Đoàn)..."
+              placeholder="Ghi chú (Tên / Chức vụ trong Xứ Đoàn - không bắt buộc)..."
               value={requestNote}
               onChange={(e) => setRequestNote(e.target.value)}
               style={{
                 width: '100%',
-                padding: '9px 12px',
+                padding: '10px 12px',
                 borderRadius: '10px',
                 border: '1px solid var(--color-input-border)',
                 backgroundColor: 'var(--color-input-bg)',
@@ -193,22 +193,23 @@ export default function LoginPage() {
                 disabled={submitting}
                 style={{
                   flex: 1,
-                  padding: '10px 14px',
+                  padding: '11px 14px',
                   backgroundColor: 'var(--color-red)',
                   color: 'white',
                   borderRadius: '10px',
                   border: 'none',
-                  fontSize: '0.85rem',
+                  fontSize: '0.9rem',
                   fontWeight: 700,
                   cursor: submitting ? 'wait' : 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '6px'
+                  gap: '6px',
+                  boxShadow: '0 4px 12px rgba(255, 69, 58, 0.3)'
                 }}
               >
-                {submitting ? <Loader2 size={15} className="spin" /> : <Send size={15} />}
-                Gửi yêu cầu cấp quyền
+                {submitting ? <Loader2 size={16} className="spin" /> : <Send size={16} />}
+                Nhấn xét duyệt
               </button>
 
               <button
