@@ -49,12 +49,52 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (mounted) {
       document.documentElement.lang = lang;
       document.documentElement.setAttribute('data-lang', lang);
+
+      const googleLang = lang === 'zh' ? 'zh-CN' : lang;
+      if (lang === 'vi') {
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+      } else {
+        const val = `/vi/${googleLang}`;
+        document.cookie = `googtrans=${val}; path=/;`;
+        document.cookie = `googtrans=${val}; path=/; domain=.${window.location.hostname};`;
+        document.cookie = `googtrans=${val}; path=/; domain=${window.location.hostname};`;
+      }
+
+      try {
+        const selectEl = document.querySelector('.goog-te-combo') as HTMLSelectElement;
+        if (selectEl && selectEl.value !== googleLang) {
+          selectEl.value = googleLang;
+          selectEl.dispatchEvent(new Event('change'));
+        }
+      } catch {}
     }
   }, [lang, mounted]);
 
   const setLang = (newLang: Language) => {
     setLangOverride(newLang);
     localStorage.setItem('app_lang', newLang);
+
+    const googleLang = newLang === 'zh' ? 'zh-CN' : newLang;
+    if (newLang === 'vi') {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+      document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+    } else {
+      const val = `/vi/${googleLang}`;
+      document.cookie = `googtrans=${val}; path=/;`;
+      document.cookie = `googtrans=${val}; path=/; domain=.${window.location.hostname};`;
+      document.cookie = `googtrans=${val}; path=/; domain=${window.location.hostname};`;
+    }
+
+    try {
+      const selectEl = document.querySelector('.goog-te-combo') as HTMLSelectElement;
+      if (selectEl) {
+        selectEl.value = googleLang;
+        selectEl.dispatchEvent(new Event('change'));
+      }
+    } catch {}
     
     // Cập nhật URL trình duyệt (chèn locale vào path)
     const pathname = window.location.pathname;
@@ -62,14 +102,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     
     let newPathname = pathname;
     if (pathLangMatch) {
-      // Thay thế locale cũ bằng locale mới
       newPathname = pathname.replace(/^\/[a-z]{2}/, `/${newLang}`);
     } else {
-      // Thêm locale mới vào đầu chuỗi
       newPathname = `/${newLang}${pathname === '/' ? '' : pathname}`;
     }
     
-    // Xoá tham số ?lang dư thừa nếu có trên URL bar (để trông sạch hơn)
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete('lang');
     const newSearch = urlParams.toString() ? `?${urlParams.toString()}` : '';

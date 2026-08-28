@@ -22,6 +22,7 @@ import { PRAYERS } from '@/lib/prayersData';
 import { FAITH_FAQS } from '@/lib/faithFAQs';
 import { ECCLESIASTICAL_PROVINCES, ALL_DIOCESES } from '@/lib/dioceses';
 import { removeAccents } from '@/lib/massTimes';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export type SearchCategory = 'all' | 'prayers' | 'faq' | 'mass' | 'intro' | 'articles' | 'links';
 
@@ -234,6 +235,7 @@ const POPULAR_SEARCH_KEYWORDS = [
 
 export default function OmniSearch() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<SearchCategory>('all');
@@ -555,13 +557,13 @@ export default function OmniSearch() {
   };
 
   const CATEGORY_TABS: { id: SearchCategory; label: string; icon: React.ReactNode }[] = [
-    { id: 'all', label: 'Tất Cả', icon: <Sparkles size={14} /> },
-    { id: 'prayers', label: 'Kinh Nguyện (216)', icon: <BookOpen size={14} /> },
-    { id: 'faq', label: 'Vấn Đáp Giáo Lý', icon: <HelpCircle size={14} /> },
-    { id: 'mass', label: 'Giờ Lễ & Giáo Phận', icon: <Clock size={14} /> },
-    { id: 'intro', label: 'Giới Thiệu & Lịch Sử', icon: <Landmark size={14} /> },
-    { id: 'articles', label: 'Bảng Tin Xứ Đoàn', icon: <FileText size={14} /> },
-    { id: 'links', label: 'Liên Kết & Tiện Ích', icon: <LinkIcon size={14} /> }
+    { id: 'all', label: t.tabAllPosts || 'Tất Cả', icon: <Sparkles size={14} /> },
+    { id: 'prayers', label: `${t.tabPrayers || 'Kinh Nguyện'} (216)`, icon: <BookOpen size={14} /> },
+    { id: 'faq', label: t.tabFAQ || 'Vấn Đáp Giáo Lý', icon: <HelpCircle size={14} /> },
+    { id: 'mass', label: t.tabMass || 'Giờ Lễ & Giáo Phận', icon: <Clock size={14} /> },
+    { id: 'intro', label: t.tabIntro || 'Giới Thiệu & Lịch Sử', icon: <Landmark size={14} /> },
+    { id: 'articles', label: t.tabArticles || 'Bảng Tin Xứ Đoàn', icon: <FileText size={14} /> },
+    { id: 'links', label: t.tabLinks || 'Liên Kết & Tiện Ích', icon: <LinkIcon size={14} /> }
   ];
 
   return (
@@ -608,7 +610,7 @@ export default function OmniSearch() {
         
         {/* Desktop Text */}
         <span className="desktop-search-label" style={{ opacity: 0.95 }}>
-          Tìm kiếm kinh, giáo lý, giờ lễ...
+          {t.searchPlaceholder?.replace(' ⌘K', '') || 'Tìm kiếm kinh, giáo lý, giờ lễ...'}
         </span>
 
         {/* Keyboard shortcut indicator */}
@@ -692,7 +694,7 @@ export default function OmniSearch() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Tìm kinh, vấn đáp giáo lý, giờ lễ 27 giáo phận, Vatican, TNTT..."
+                placeholder={t.omniInputPlaceholder || "Tìm kinh, vấn đáp giáo lý, giờ lễ 27 giáo phận, Vatican, TNTT..."}
                 style={{
                   flex: 1,
                   background: 'none',

@@ -3,6 +3,7 @@
 import { useState, type CSSProperties } from 'react';
 import { Play, MonitorPlay, Video, ExternalLink, Radio } from 'lucide-react';
 import type { PostMediaInfo } from '@/lib/postIntel';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 type MediaPost = PostMediaInfo & { full_picture?: string | null };
 
@@ -136,6 +137,7 @@ const CHIP: CSSProperties = {
 
 /** Nhãn nhanh cho biết bài có video, YouTube hay liên kết trực tuyến. */
 export function MediaChips({ post }: { post: MediaPost }) {
+  const { t } = useLanguage();
   const chips: React.ReactNode[] = [];
 
   if (post.youtube.length)
@@ -154,7 +156,7 @@ export function MediaChips({ post }: { post: MediaPost }) {
   if (post.links.length)
     chips.push(
       <span key="link" style={{ ...CHIP, backgroundColor: 'rgba(15,118,110,0.12)', color: '#0F766E' }}>
-        <Radio size={12} /> Trực tuyến
+        <Radio size={12} /> {t.liveStream || 'Trực tuyến'}
       </span>
     );
 
@@ -167,6 +169,7 @@ export function MediaChips({ post }: { post: MediaPost }) {
  * bên trong Link của thẻ bài mà vẫn hợp lệ.
  */
 export function LinkButtons({ links, compact }: { links: MediaPost['links']; compact?: boolean }) {
+  const { t } = useLanguage();
   if (!links.length) return null;
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: compact ? '6px' : '12px' }}>
@@ -192,7 +195,7 @@ export function LinkButtons({ links, compact }: { links: MediaPost['links']; com
           className="post-link-btn"
         >
           <ExternalLink size={compact ? 12 : 14} />
-          {l.label}
+          {l.label?.includes('Trang tin') ? (t.catholicNews || l.label) : l.label}
         </button>
       ))}
     </div>

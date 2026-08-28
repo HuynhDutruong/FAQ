@@ -315,7 +315,7 @@ export default function FacebookFeed({
           transition: 'all 0.15s ease'
         }}
       >
-        <span>Tất Cả Bài Viết</span>
+        <span>{t.tabAllPosts || 'Tất Cả Bài Viết'}</span>
         <span style={{
           fontSize: '0.72rem',
           padding: '1px 6px',
@@ -347,7 +347,7 @@ export default function FacebookFeed({
         }}
       >
         <Megaphone size={14} />
-        <span>Thông Báo</span>
+        <span>{t.tabNotices || 'Thông Báo'}</span>
         <span style={{
           fontSize: '0.72rem',
           padding: '1px 6px',
@@ -378,7 +378,7 @@ export default function FacebookFeed({
           transition: 'all 0.15s ease'
         }}
       >
-        <span>Sinh Hoạt & Tin Tức</span>
+        <span>{t.tabActivities || 'Sinh Hoạt & Tin Tức'}</span>
         <span style={{
           fontSize: '0.72rem',
           padding: '1px 6px',

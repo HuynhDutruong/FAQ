@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { Film, Play } from 'lucide-react';
 import { useFacebookPosts } from '@/lib/useFacebookPosts';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { translateClientBatch } from '@/lib/clientTranslator';
 import { PostThumb, thumbOf } from './PostMedia';
 
 const MAX_VIDEOS = 6;
@@ -23,10 +24,33 @@ const formatDate = (s: string) =>
  */
 export default function VideoWidget() {
   const { posts, loading } = useFacebookPosts();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [translatedTitles, setTranslatedTitles] = useState<Record<string, string>>({});
 
   const videos = useMemo(() => posts.filter(p => p.video).slice(0, MAX_VIDEOS), [posts]);
+
+  useEffect(() => {
+    if (lang === 'vi' || videos.length === 0) return;
+    let isCancelled = false;
+    const titles = videos.map(v => shortTitle(v.message));
+    translateClientBatch(titles, lang).then(res => {
+      if (isCancelled) return;
+      const map: Record<string, string> = {};
+      videos.forEach((v, i) => {
+        if (res[i]) map[`${v.id}_${lang}`] = res[i];
+      });
+      setTranslatedTitles(prev => ({ ...prev, ...map }));
+    });
+    return () => { isCancelled = true; };
+  }, [videos, lang]);
+
+  const getVideoTitle = (v: (typeof videos)[0]) => {
+    if (lang !== 'vi' && translatedTitles[`${v.id}_${lang}`]) {
+      return translatedTitles[`${v.id}_${lang}`];
+    }
+    return shortTitle(v.message);
+  };
 
   if (loading || videos.length === 0) return null;
 
@@ -58,7 +82,7 @@ export default function VideoWidget() {
           textTransform: 'uppercase',
           letterSpacing: '0.04em'
         }}>
-          {t.videoTitle || 'Video Xứ Đoàn'}
+          {t.chapterVideos || t.videoTitle || 'Video Xứ Đoàn'}
         </h2>
       </div>
 
@@ -76,7 +100,7 @@ export default function VideoWidget() {
           lineHeight: 1.45,
           color: 'var(--color-dark)'
         }} className="news-row-title">
-          {shortTitle(active.message)}
+          {getVideoTitle(active)}
         </h3>
       </Link>
       <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)' }}>{formatDate(active.created_time)}</div>
@@ -136,7 +160,7 @@ export default function VideoWidget() {
                   lineHeight: 1.4,
                   color: 'var(--color-dark)'
                 }}>
-                  {shortTitle(v.message)}
+                  {getVideoTitle(v)}
                 </span>
                 <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
                   {formatDate(v.created_time)}

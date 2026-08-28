@@ -15,6 +15,7 @@ import { ALL_DIOCESES, DIOCESE_WEBSITES } from '@/lib/dioceses';
 import { getScrapedLiturgicalDay, LiturgicalDayDetail } from '@/lib/liturgicalData';
 import type { ReadingSection } from '@/lib/dailyReadings';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useClientTranslation } from '@/lib/clientTranslator';
 import VideoWidget from './VideoWidget';
 import RatingWidget from './RatingWidget';
 
@@ -224,6 +225,20 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
 
   const badge = rankBadgeStyle(gospelData?.rank || '');
 
+  const { translatedText: translatedQuote } = useClientTranslation(gospelData?.gospelQuote || '', lang);
+  const { translatedText: translatedFeast } = useClientTranslation(gospelData?.feast || '', lang);
+  const activeQuote = (lang !== 'vi' && translatedQuote) ? translatedQuote : (gospelData?.gospelQuote || '');
+  const activeFeast = (lang !== 'vi' && translatedFeast) ? translatedFeast : (gospelData?.feast || '');
+
+  const getSectionLabel = (orig: string) => {
+    const norm = (orig || '').toUpperCase().trim();
+    if (norm.includes('BÀI ĐỌC I') || norm.includes('BÀI ĐỌC 1') || norm.includes('1ST READING') || norm.includes('FIRST READING')) return t.reading1 || 'BÀI ĐỌC I';
+    if (norm.includes('ĐÁP CA') || norm.includes('PSALM') || norm.includes('RESPONSORIAL')) return t.psalm || 'ĐÁP CA';
+    if (norm.includes('BÀI ĐỌC II') || norm.includes('BÀI ĐỌC 2') || norm.includes('2ND READING') || norm.includes('SECOND READING')) return t.reading2 || 'BÀI ĐỌC II';
+    if (norm.includes('TIN MỪNG') || norm.includes('GOSPEL')) return t.gospel || 'TIN MỪNG';
+    return orig;
+  };
+
   const sections = gospelData?.sections || [];
   // Thẻ tóm tắt chỉ liệt kê bộ lễ đầu tiên; các bộ còn lại xem trong hộp thoại
   const sectionRows = sections
@@ -277,8 +292,8 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
               fontStyle: 'italic',
               color: 'var(--color-dark)'
             }}>
-              {gospelData.gospelQuote.startsWith('“') ? gospelData.gospelQuote : `“${gospelData.gospelQuote}”`}
-              {gospelData.gospelRef && !gospelData.gospelQuote.includes(gospelData.gospelRef) && (
+              {activeQuote.startsWith('“') ? activeQuote : `“${activeQuote}”`}
+              {gospelData.gospelRef && !activeQuote.includes(gospelData.gospelRef) && (
                 <span style={{ fontStyle: 'normal', fontWeight: 700, color: 'var(--color-red)', marginLeft: '6px' }}>
                   ({gospelData.gospelRef})
                 </span>
@@ -295,7 +310,7 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
                     onClick={() => openReading(index)}
                     className="reading-row"
                   >
-                    <span className="reading-row-label">{section.label}</span>
+                    <span className="reading-row-label">{getSectionLabel(section.label)}</span>
                     <span style={{ flex: 1, minWidth: 0 }}>
                       <span className="reading-row-ref">{section.ref || '—'}</span>
                       {section.response && (
@@ -333,7 +348,7 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
                 }}
               >
                 <BookOpen size={14} />
-                <span>{t.gospelReadAll || 'Đọc toàn bộ Lời Chúa hôm nay'}</span>
+                <span>{t.readFullScripture || t.gospelReadAll || 'Đọc toàn bộ Lời Chúa hôm nay'}</span>
               </button>
             )}
           </div>
@@ -543,7 +558,7 @@ export default function SidebarWidgets({ verseText }: { verseText?: string }) {
             color: 'var(--color-red)',
             lineHeight: 1.45
           }}>
-            {gospelData?.feast || 'Đang tra cứu lịch...'}
+            {activeFeast || 'Đang tra cứu lịch...'}
           </div>
 
           {/* Màu Áo Lễ Linh Mục */}
