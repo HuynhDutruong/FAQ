@@ -5,7 +5,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { auth } from '@/lib/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { LogIn, ShieldAlert, Clock, Send, LogOut, Loader2 } from 'lucide-react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 
 export default function LoginPage() {
   const { user, role, userStatus, loading, requestAccess, signOut } = useAuth();
@@ -90,7 +90,7 @@ export default function LoginPage() {
           overflow: 'hidden'
         }}>
           <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
-            <Image src="/logo.jpg" alt="Logo Xứ Đoàn" fill sizes="64px" style={{ objectFit: 'contain' }} priority />
+            <NextImage src="/logo.jpg" alt="Logo Xứ Đoàn" fill sizes="64px" style={{ objectFit: 'contain' }} priority />
           </div>
         </div>
 
