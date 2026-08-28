@@ -92,3 +92,38 @@ export function getNearestDiocese(userLat: number, userLng: number): { diocese: 
   }
   return { diocese: nearest, distanceKm: minDistance };
 }
+
+/**
+ * Trang web chính thức của 27 giáo phận. Đã kiểm tra bằng HTTP thực tế;
+ * bốn trang Hà Nội / Huế / Đà Nẵng / Long Xuyên trả 403-406 do chặn bot,
+ * nhưng mở bình thường trên trình duyệt.
+ */
+export const DIOCESE_WEBSITES: Record<string, string> = {
+  'Hà Nội': 'https://tonggiaophanhanoi.org',
+  'Bắc Ninh': 'https://giaophanbacninh.org',
+  'Bùi Chu': 'https://gpbuichu.org',
+  'Hà Tĩnh': 'https://giaophanhatinh.com',
+  'Hải Phòng': 'https://gphaiphong.org',
+  'Hưng Hóa': 'https://giaophanhunghoa.org',
+  'Lạng Sơn - Cao Bằng': 'https://giaophanlangson.net',
+  'Phát Diệm': 'https://phatdiem.org',
+  'Thái Bình': 'https://giaophanthaibinh.net',
+  'Thanh Hóa': 'https://giaophanthanhhoa.net',
+  'Vinh': 'https://giaophanvinh.org',
+  'Huế': 'https://tonggiaophanhue.org',
+  'Ban Mê Thuột': 'https://gpbanmethuot.net',
+  'Đà Nẵng': 'https://giaophandanang.org',
+  'Kon Tum': 'https://giaophankontum.com',
+  'Nha Trang': 'https://giaophannhatrang.org',
+  'Quy Nhơn': 'https://gpquinhon.org',
+  'Sài Gòn': 'https://tgpsaigon.net',
+  'Bà Rịa': 'https://giaophanbaria.org',
+  'Cần Thơ': 'https://giaophancantho.org',
+  'Đà Lạt': 'https://giaophandalat.net',
+  'Long Xuyên': 'https://giaophanlongxuyen.org',
+  'Mỹ Tho': 'https://giaophanmytho.net',
+  'Phan Thiết': 'https://gpphanthiet.com',
+  'Phú Cường': 'https://giaophanphucuong.org',
+  'Vĩnh Long': 'https://giaophanvinhlong.net',
+  'Xuân Lộc': 'https://giaophanxuanloc.net'
+};

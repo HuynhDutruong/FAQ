@@ -13,15 +13,17 @@ import {
 } from 'firebase/firestore';
 import { useAuth, AdminUserDoc } from '@/lib/AuthContext';
 import {
-  UserPlus,
   CheckCircle,
-  XCircle,
   Clock,
-  Mail,
-  User as UserIcon,
   Crown,
   Loader2,
-  Trash2
+  Mail,
+  MessageSquare,
+  Star,
+  Trash2,
+  User as UserIcon,
+  UserPlus,
+  XCircle
 } from 'lucide-react';
 
 const PRIMARY_HOST_EMAIL = 'notification2411.huynhdutruong@gmail.com';
@@ -122,7 +124,7 @@ export default function AdminUsersManagement() {
 
     try {
       await deleteDoc(doc(db, 'users', targetEmail.toLowerCase()));
-      showSuccess(`🗑️ Đã thu hồi quyền của ${targetEmail}.`);
+      showSuccess(`Đã thu hồi quyền của ${targetEmail}.`);
     } catch (err: unknown) {
       console.error(err);
       const msg = err instanceof Error ? err.message : 'Lỗi không xác định';
@@ -348,7 +350,7 @@ export default function AdminUsersManagement() {
 
                   {u.requestNote && (
                     <div style={{ marginTop: '6px', fontSize: '0.82rem', color: '#92400E', fontStyle: 'italic' }}>
-                      💬 Ghi chú: &quot;{u.requestNote}&quot;
+                      <MessageSquare size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '4px' }} />Ghi chú: &quot;{u.requestNote}&quot;
                     </div>
                   )}
                 </div>
@@ -465,7 +467,7 @@ export default function AdminUsersManagement() {
                     backgroundColor: '#FEF3C7', color: '#B45309', padding: '2px 8px', borderRadius: '999px',
                     fontSize: '0.72rem', fontWeight: 800, border: '1px solid #FCD34D'
                   }}>
-                    👑 HOST SÁNG LẬP
+                    <Crown size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '4px' }} />HOST SÁNG LẬP
                   </span>
                 </div>
                 <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>
@@ -513,7 +515,7 @@ export default function AdminUsersManagement() {
                       border: u.role === 'host' ? '1px solid #C7D2FE' : '1px solid #E5E7EB',
                       textTransform: 'uppercase'
                     }}>
-                      {u.role === 'host' ? '⭐ HOST' : 'ADMIN'}
+                      {u.role === 'host' ? <><Star size={11} strokeWidth={2.5} style={{ verticalAlign: '-1px', marginRight: '3px' }} />HOST</> : 'ADMIN'}
                     </span>
                   </div>
                   <div style={{ fontSize: '0.78rem', color: '#6B7280' }}>

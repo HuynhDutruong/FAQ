@@ -27,7 +27,7 @@ const labelStyle = {
   color: 'var(--color-dark)'
 };
 
-export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
+export default function FAQForm({ onSuccess, onCancel }: { onSuccess: () => void; onCancel?: () => void }) {
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
@@ -154,6 +154,18 @@ export default function FAQForm({ onSuccess }: { onSuccess: () => void }) {
       >
         {t.formSubmitFAQ}
       </button>
+      {onCancel && (
+        <button
+          type="button"
+          onClick={onCancel}
+          style={{
+            width: '100%', marginTop: '10px', padding: '10px',
+            fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-subtle)'
+          }}
+        >
+          Huỷ
+        </button>
+      )}
     </form>
   );
 }

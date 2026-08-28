@@ -11,15 +11,17 @@ import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import {
-  CheckCircle,
-  XCircle,
-  Trash2,
-  MapPin,
   AlertCircle,
-  PlusCircle,
+  CheckCircle,
   Edit3,
   Loader2,
-  MessageSquare
+  MapPin,
+  MessageSquare,
+  Phone,
+  PlusCircle,
+  Trash2,
+  User,
+  XCircle
 } from 'lucide-react';
 import { useAuth } from '@/lib/AuthContext';
 
@@ -548,8 +550,8 @@ export default function MassTimeFeedbackAdmin() {
                         )}
                         {(item.contactName || item.contactPhone) && (
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.8rem', opacity: 0.9 }}>
-                            {item.contactName && <span>👤 {item.contactName}</span>}
-                            {item.contactPhone && <span>📞 {item.contactPhone}</span>}
+                            {item.contactName && <span><User size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '4px' }} />{item.contactName}</span>}
+                            {item.contactPhone && <span><Phone size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '4px' }} />{item.contactPhone}</span>}
                           </div>
                         )}
                       </div>

@@ -45,7 +45,7 @@ export default function GioLePage() {
         setUserLocation({ lat: uLat, lng: uLng });
         const nearest = getNearestDiocese(uLat, uLng);
         loadDiocese(nearest.diocese);
-        setToast(`📍 Đã định vị! Gần ${dioceseLabel(nearest.diocese)} (~${nearest.distanceKm} km)`);
+        setToast(`Đã định vị! Gần ${dioceseLabel(nearest.diocese)} (~${nearest.distanceKm} km)`);
         setLocating(false);
       },
       () => {
@@ -110,20 +110,19 @@ export default function GioLePage() {
       )}
 
       <header style={{
-        position: 'sticky', top: 0, zIndex: 100,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(0, 0, 0, 0.08)'
+        borderBottom: '1px solid var(--color-border-subtle)', maxWidth: '1060px', margin: '0 auto', width: '100%'
       }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--color-btn-subtle-bg)', color: 'var(--color-dark)' }}>
           <ArrowLeft size={20} />
         </Link>
-        <h1 style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', margin: 0, flex: 1, textAlign: 'center' }}>
+        <h1 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0, flex: 1, textTransform: 'uppercase', letterSpacing: '0.02em' }}>
           Tra Cứu Giờ Lễ
         </h1>
         <div style={{ width: '40px' }} />
       </header>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px', maxWidth: '900px', margin: '0 auto', width: '100%', gap: '16px' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px', maxWidth: '1060px', margin: '0 auto', width: '100%', gap: '16px' }}>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div>
@@ -198,9 +197,26 @@ export default function GioLePage() {
 
         {/* Results */}
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--color-subtle)' }}>
-            <Loader2 size={36} className="animate-spin" style={{ margin: '0 auto 12px' }} />
-            <p>Đang tải danh sách giờ lễ...</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} style={{
+                padding: '16px',
+                borderRadius: '12px',
+                border: '1px solid var(--color-border-subtle)',
+                backgroundColor: 'var(--color-card-bg)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px'
+              }}>
+                <div className="skeleton" style={{ width: '45%', height: '20px' }} />
+                <div className="skeleton" style={{ width: '70%', height: '14px' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '4px' }}>
+                  <div className="skeleton" style={{ width: '90%', height: '12px' }} />
+                  <div className="skeleton" style={{ width: '85%', height: '12px' }} />
+                  <div className="skeleton" style={{ width: '75%', height: '12px' }} />
+                </div>
+              </div>
+            ))}
           </div>
         ) : selectedDiocese ? (
           filtered.length === 0 ? (
@@ -215,14 +231,14 @@ export default function GioLePage() {
                 return (
                   <div key={item.id} className="liquid-glass" style={{
                     padding: '14px', borderRadius: '12px',
-                    border: '1px solid rgba(211, 47, 47, 0.1)', backgroundColor: 'rgba(255, 255, 255, 0.4)'
+                    border: '1px solid var(--color-border-subtle)', backgroundColor: 'var(--color-card-bg)'
                   }}>
                     <div style={{ marginBottom: '8px' }}>
                       <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                         {item.parish}
                       </h3>
                       <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
-                        📍 {item.address}
+                        <MapPin size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '4px' }} />{item.address}
                       </p>
                       {typeof distanceVal === 'number' && distanceVal !== Infinity && (
                         <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-red)', fontWeight: 700 }}>

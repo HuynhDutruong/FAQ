@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, CheckCircle2 } from 'lucide-react';
 import Modal from './Modal';
 import FeedbackForm from './FeedbackForm';
 
@@ -65,14 +65,14 @@ export default function ChatBubble() {
         {step === 'form' && (
           <>
             <div style={{ marginBottom: '16px', fontSize: '0.95rem', color: 'var(--color-subtle)', lineHeight: 1.6 }}>
-              Chia sẻ ý kiến của bạn giúp chúng tôi cải thiện website. Mọi góp ý đều quý báu! 💝
+              Chia sẻ ý kiến của bạn giúp chúng tôi cải thiện website. Mọi góp ý đều quý báu.
             </div>
             <FeedbackForm onSuccess={handleSuccess} />
           </>
         )}
         {step === 'success' && (
           <div style={{ textAlign: 'center', padding: '32px 0' }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>🙏</div>
+            <CheckCircle2 size={48} strokeWidth={1.6} style={{ margin: '0 auto 16px', display: 'block', color: '#10B981' }} />
             <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-dark)' }}>Cảm Ơn!</h2>
             <p style={{ margin: '8px 0 0', fontSize: '0.95rem', color: 'var(--color-subtle)' }}>
               Ý kiến của bạn đã được ghi nhận.

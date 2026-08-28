@@ -1,24 +1,28 @@
 'use client';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import {
-  Church,
-  CheckSquare,
-  MapPin,
-  Search,
-  Plus,
-  Pencil,
-  Trash2,
-  CheckCircle,
-  XCircle,
   AlertCircle,
-  Edit3,
-  Loader2,
-  RefreshCw,
   BarChart3,
-  Inbox,
   Check,
+  CheckCircle,
+  CheckSquare,
+  Church,
+  Clock,
+  Edit3,
+  ExternalLink,
+  Inbox,
+  Loader2,
+  MapPin,
+  Pencil,
+  Phone,
+  Plus,
+  RefreshCw,
+  Search,
+  StickyNote,
+  Trash2,
+  User,
   X,
-  ExternalLink
+  XCircle
 } from 'lucide-react';
 import {
   MassTime,
@@ -239,7 +243,7 @@ export default function UnifiedMassManagement() {
       );
 
       setEditingFeedbackId(null);
-      showToast(`✅ Đã duyệt và cập nhật thành công cho "${item.parish}"!`, 'success');
+      showToast(`Đã duyệt và cập nhật thành công cho "${item.parish}"!`, 'success');
       loadFacets();
       if (selectedDiocese) loadChurchesByDiocese(selectedDiocese);
     } catch (err: unknown) {
@@ -327,10 +331,10 @@ export default function UnifiedMassManagement() {
 
       if (churchDraft.id) {
         await updateMass(churchDraft.id, payload);
-        showToast(`✅ Đã cập nhật "${payload.parish}"!`, 'success');
+        showToast(`Đã cập nhật "${payload.parish}"!`, 'success');
       } else {
         await createMass(payload);
-        showToast(`✅ Đã thêm mới "${payload.parish}"!`, 'success');
+        showToast(`Đã thêm mới "${payload.parish}"!`, 'success');
       }
 
       await refreshFacets();
@@ -371,7 +375,7 @@ export default function UnifiedMassManagement() {
     try {
       await refreshFacets();
       loadFacets();
-      showToast('✅ Đã tính toán và đồng bộ lại thống kê số lượng nhà thờ!', 'success');
+      showToast('Đã tính toán và đồng bộ lại thống kê số lượng nhà thờ!', 'success');
     } catch (err: unknown) {
       showToast(err instanceof Error ? err.message : 'Lỗi tính toán', 'error');
     } finally {
@@ -720,7 +724,9 @@ export default function UnifiedMassManagement() {
                             color: req.type === 'suggest_new' ? '#059669' : '#2563EB'
                           }}
                         >
-                          {req.type === 'suggest_new' ? '+ Đóng Góp Mới' : '✏️ Báo Sai / Cập Nhật'}
+                          {req.type === 'suggest_new'
+                            ? <><Plus size={12} strokeWidth={3} style={{ verticalAlign: '-2px', marginRight: '3px' }} />Đóng Góp Mới</>
+                            : <><Pencil size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '3px' }} />Báo Sai / Cập Nhật</>}
                         </span>
 
                         <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 900, color: 'var(--color-dark)' }}>
@@ -760,7 +766,11 @@ export default function UnifiedMassManagement() {
                                 : '#D97706'
                           }}
                         >
-                          {req.status === 'approved' ? '✓ Đã Duyệt' : req.status === 'rejected' ? '✕ Đã Từ Chối' : '⏳ Chờ Duyệt'}
+                          {req.status === 'approved'
+                            ? <><Check size={12} strokeWidth={3} style={{ verticalAlign: '-2px', marginRight: '3px' }} />Đã Duyệt</>
+                            : req.status === 'rejected'
+                              ? <><X size={12} strokeWidth={3} style={{ verticalAlign: '-2px', marginRight: '3px' }} />Đã Từ Chối</>
+                              : <><Clock size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '3px' }} />Chờ Duyệt</>}
                         </span>
 
                         <span style={{ fontSize: '0.78rem', color: 'var(--color-subtle)' }}>
@@ -855,7 +865,7 @@ export default function UnifiedMassManagement() {
                         }}
                       >
                         <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem' }}>
-                          ✏️ Chỉnh sửa giờ lễ trước khi duyệt:
+                          <Pencil size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />Chỉnh sửa giờ lễ trước khi duyệt:
                         </div>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px' }}>
                           <div>
@@ -895,9 +905,9 @@ export default function UnifiedMassManagement() {
                     {/* Note & Sender details */}
                     {(req.note || req.contactName || req.contactPhone) && (
                       <div style={{ fontSize: '0.84rem', color: 'var(--color-subtle)', display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center' }}>
-                        {req.note && <div>📝 <strong>Ghi chú:</strong> {req.note}</div>}
-                        {req.contactName && <div>👤 <strong>Người gửi:</strong> {req.contactName}</div>}
-                        {req.contactPhone && <div>📞 <strong>SĐT:</strong> {req.contactPhone}</div>}
+                        {req.note && <div><StickyNote size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} /><strong>Ghi chú:</strong> {req.note}</div>}
+                        {req.contactName && <div><User size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} /><strong>Người gửi:</strong> {req.contactName}</div>}
+                        {req.contactPhone && <div><Phone size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} /><strong>SĐT:</strong> {req.contactPhone}</div>}
                       </div>
                     )}
 
@@ -1362,7 +1372,7 @@ export default function UnifiedMassManagement() {
           >
             <div>
               <h3 style={{ margin: 0, color: 'var(--color-dark)', fontSize: '1.05rem', fontWeight: 800 }}>
-                🔄 Tính Lại Thống Kê Số Lượng (Re-tally Facets)
+                <RefreshCw size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />Tính Lại Thống Kê Số Lượng (Re-tally Facets)
               </h3>
               <p style={{ margin: '4px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
                 Quét lại toàn bộ 3.300+ document trên Firestore để cập nhật chính xác số lượng nhà thờ theo từng Giáo phận và Tỉnh/Thành.
@@ -1395,7 +1405,7 @@ export default function UnifiedMassManagement() {
           {/* Dioceses Grid */}
           <div className="liquid-glass" style={{ padding: '22px', borderRadius: '20px' }}>
             <h3 style={{ margin: '0 0 16px', color: 'var(--color-dark)', fontSize: '1.05rem', fontWeight: 800 }}>
-              ⛪ Phân Bố Nhà Thờ Theo 27 Giáo Phận
+              <Church size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />Phân Bố Nhà Thờ Theo 27 Giáo Phận
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
               {dioceses.map((d) => (
@@ -1557,7 +1567,7 @@ export default function UnifiedMassManagement() {
               {/* Mass Times Inputs */}
               <div style={{ padding: '14px', backgroundColor: '#F9FAFB', borderRadius: '14px', border: '1px solid #E5E7EB', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div style={{ fontWeight: 800, fontSize: '0.85rem', color: '#111827', textTransform: 'uppercase' }}>
-                  ⏰ Lịch Giờ Thánh Lễ (Cách nhau bằng dấu phẩy)
+                  <Clock size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />Lịch Giờ Thánh Lễ (Cách nhau bằng dấu phẩy)
                 </div>
 
                 <div>

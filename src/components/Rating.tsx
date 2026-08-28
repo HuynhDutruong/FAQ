@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-export default function Rating({ onSubmit }: { onSubmit: (rating: number) => void }) {
+export default function Rating({ onSubmit, onSkip }: { onSubmit: (rating: number) => void; onSkip?: () => void }) {
   const [hover, setHover] = useState(0);
   const [rating, setRating] = useState(0);
   const { t } = useLanguage();
@@ -47,6 +47,17 @@ export default function Rating({ onSubmit }: { onSubmit: (rating: number) => voi
       >
         {t.ratingSubmitText}
       </button>
+      {onSkip && (
+        <button
+          onClick={onSkip}
+          style={{
+            display: 'block', margin: '12px auto 0', padding: '6px 12px',
+            fontSize: '0.85rem', color: 'var(--color-subtle)', fontWeight: 600
+          }}
+        >
+          Bỏ qua
+        </button>
+      )}
     </div>
   );
 }

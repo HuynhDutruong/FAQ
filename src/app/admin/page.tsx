@@ -3,17 +3,20 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
 import {
-  LogOut,
-  Trash2,
-  Clock,
+  ChevronRight,
   Church,
-  Users,
-  Share2,
-  HelpCircle,
-  MessageSquare,
+  Clock,
   Crown,
+  HelpCircle,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Phone,
+  Share2,
+  Star,
+  Trash2,
   User as UserIcon,
-  ChevronRight
+  Users
 } from 'lucide-react';
 import Image from 'next/image';
 import { db } from '@/lib/firebase';
@@ -307,7 +310,9 @@ export default function AdminDashboard() {
                 {user.displayName || user.email}
               </div>
               <div style={{ fontSize: '0.72rem', color: 'var(--color-subtle)', textTransform: 'uppercase', fontWeight: 700 }}>
-                {role === 'host' ? '👑 Host Sáng Lập' : '⭐ Admin'}
+                {role === 'host'
+                  ? <><Crown size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '4px' }} />Host Sáng Lập</>
+                  : <><Star size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '4px' }} />Admin</>}
               </div>
             </div>
           </div>
@@ -540,8 +545,8 @@ export default function AdminDashboard() {
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
-                      {sub.type === 'faq' && sub.phone && <div>📞 {sub.phone}</div>}
-                      {sub.type === 'faq' && sub.email && <div>✉️ {sub.email}</div>}
+                      {sub.type === 'faq' && sub.phone && <div><Phone size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />{sub.phone}</div>}
+                      {sub.type === 'faq' && sub.email && <div><Mail size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />{sub.email}</div>}
                     </div>
                     <div style={{ display: 'flex', gap: '8px' }}>
                       {sub.status !== 'deleted' && (

@@ -4,15 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowLeft,
-  Clock,
-  MapPin,
   Calendar,
-  Share2,
-  Navigation,
-  Edit3,
   Check,
-  Search,
+  Clock,
+  Edit3,
   Home,
+  MapPin,
+  Navigation,
+  Search,
+  Share2,
   Sparkles
 } from 'lucide-react';
 import { MassTime } from '@/lib/massTimes';
@@ -57,7 +57,7 @@ ${shareUrl}`;
 
     try {
       await navigator.clipboard.writeText(shareUrl);
-      showToast('📋 Đã sao chép liên kết thẻ giờ lễ vào bộ nhớ tạm!');
+      showToast('Đã sao chép liên kết thẻ giờ lễ vào bộ nhớ tạm!');
     } catch {
       showToast('Không thể sao chép liên kết tự động.');
     }
@@ -388,7 +388,7 @@ ${shareUrl}`;
                 </span>
               </div>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#059669', backgroundColor: '#ECFDF5', padding: '3px 8px', borderRadius: '6px' }}>
-                ✓ Đang Áp Dụng
+                <Check size={12} strokeWidth={3} style={{ verticalAlign: '-2px', marginRight: '3px' }} />Đang Áp Dụng
               </span>
             </div>
 

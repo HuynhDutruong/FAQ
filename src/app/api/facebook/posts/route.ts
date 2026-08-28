@@ -10,39 +10,58 @@ interface FBPostRaw {
   full_picture?: string;
   permalink_url?: string;
   shares?: { count?: number };
-  likes?: { summary?: { total_count?: number } };
+  reactions?: { summary?: { total_count?: number } };
   comments?: { summary?: { total_count?: number } };
 }
 
-// 1. Lấy danh sách bài viết trên Fanpage kèm thống kê
-export const GET = withAdmin(async () => {
-  const { pageId, pageToken } = await getFacebookCredentials();
-
-  const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0).as(likes),comments.summary(total_count).limit(0).as(comments)';
-  const response = await fetch(
-    `https://graph.facebook.com/v20.0/${pageId}/published_posts?fields=${encodeURIComponent(fields)}&limit=20&access_token=${pageToken}`
-  );
-  const data = await response.json();
-
-  if (data.error) {
-    console.error('FB Get Posts Error:', data.error);
-    return NextResponse.json({ error: data.error.message }, { status: 400 });
+// 1. Lấy danh sách bài viết trên Fanpage kèm thống kê (public - hiển thị trên trang chủ)
+export async function GET() {
+  let pageId: string, pageToken: string;
+  try {
+    ({ pageId, pageToken } = await getFacebookCredentials());
+  } catch {
+    return NextResponse.json({ success: true, posts: [] });
   }
 
-  const rawPosts: FBPostRaw[] = data.data || [];
+  const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
+
+  // Lấy hết bài trên Fanpage bằng cách đi theo con trỏ paging.next của Graph API.
+  // ponytail: chặn ở 30 trang (~3.000 bài) để một Fanpage rất cũ không làm treo request.
+  const MAX_PAGES = 30;
+  let url =
+    `https://graph.facebook.com/v20.0/${pageId}/published_posts` +
+    `?fields=${encodeURIComponent(fields)}&limit=100&access_token=${pageToken}`;
+
+  const rawPosts: FBPostRaw[] = [];
+  for (let i = 0; i < MAX_PAGES; i++) {
+    const response = await fetch(url, { next: { revalidate: 300 } });
+    const data = await response.json();
+
+    if (data.error) {
+      console.error('FB Get Posts Error:', data.error);
+      // Đã lấy được một phần thì trả phần đó còn hơn trả lỗi trắng trang.
+      if (rawPosts.length > 0) break;
+      return NextResponse.json({ error: data.error.message }, { status: 400 });
+    }
+
+    rawPosts.push(...(data.data || []));
+    if (!data.paging?.next) break;
+    url = data.paging.next;
+  }
+
   const posts = rawPosts.map((p) => ({
     id: p.id,
     message: p.message || p.story || '(Không có văn bản)',
     created_time: p.created_time,
     full_picture: p.full_picture || null,
     permalink_url: p.permalink_url || `https://facebook.com/${p.id}`,
-    likesCount: p.likes?.summary?.total_count || 0,
+    likesCount: p.reactions?.summary?.total_count || 0,
     commentsCount: p.comments?.summary?.total_count || 0,
     sharesCount: p.shares?.count || 0
   }));
 
   return NextResponse.json({ success: true, posts });
-});
+}
 
 // 2. Chỉnh sửa nội dung bài viết
 export const PATCH = withAdmin(async (request: Request) => {

@@ -20,6 +20,11 @@ async function verifyAdmin(request: Request): Promise<string> {
     throw new AuthError(401, 'Bạn cần đăng nhập tài khoản quản trị.');
   }
 
+  // Thiếu Service Account là lỗi cấu hình máy chủ, không phải phiên hết hạn — báo đúng để khỏi đoán mò.
+  if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+    throw new AuthError(500, 'Máy chủ chưa cấu hình FIREBASE_SERVICE_ACCOUNT_KEY nên không xác thực được quản trị viên.');
+  }
+
   let email = '';
   try {
     const decoded = await adminAuth().verifyIdToken(idToken);

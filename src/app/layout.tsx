@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import Footer from '@/components/Footer';
 import ChatBubble from '@/components/ChatBubble';
+import SiteHeader from '@/components/SiteHeader';
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -102,8 +103,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <LanguageProvider>
+          <SiteHeader />
           {children}
           <Footer />
+          <ChatBubble />
         </LanguageProvider>
       </body>
     </html>

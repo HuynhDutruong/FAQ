@@ -13,12 +13,15 @@ import {
   Edit3,
   MessageSquare,
   ThumbsUp,
+  Heart,
+  Globe,
   X,
   Sparkles,
   Key,
   HelpCircle
 } from 'lucide-react';
 import Image from 'next/image';
+import { FbPostSkeleton } from '@/components/Skeleton';
 
 interface FacebookPage {
   id: string;
@@ -63,6 +66,8 @@ export default function FacebookAdmin() {
   const [postsLoading, setPostsLoading] = useState(false);
 
   // Form soạn bài đăng mới
+  const [composerOpen, setComposerOpen] = useState(false);
+  const [menuPostId, setMenuPostId] = useState<string | null>(null);
   const [postMessage, setPostMessage] = useState('');
   const [postLink, setPostLink] = useState('');
   const [posting, setPosting] = useState(false);
@@ -86,6 +91,14 @@ export default function FacebookAdmin() {
   const [commentsLoading, setCommentsLoading] = useState(false);
   const [replyText, setReplyText] = useState('');
   const [sendingReply, setSendingReply] = useState(false);
+
+  // Đóng menu ⋯ khi bấm ra ngoài, giống hành vi của Facebook
+  useEffect(() => {
+    if (!menuPostId) return;
+    const close = () => setMenuPostId(null);
+    window.addEventListener('click', close);
+    return () => window.removeEventListener('click', close);
+  }, [menuPostId]);
 
   const showToast = (text: string, success = true) => {
     setToastMsg({ text, success });
@@ -268,7 +281,7 @@ export default function FacebookAdmin() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Không thể xoá bài viết');
 
-      showToast('🗑️ Đã xoá bài viết thành công khỏi Fanpage.');
+      showToast('Đã xoá bài viết khỏi Fanpage.');
       setPosts(prev => prev.filter(p => p.id !== postId));
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Lỗi khi xoá';
@@ -354,764 +367,344 @@ export default function FacebookAdmin() {
 
   if (loading) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center', color: '#6B7280', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-        <Loader2 className="spin" size={20} /> Đang kiểm tra trạng thái Fanpage...
+      <div className="fb">
+        <div className="fb-card">
+          <div className="fb-status">
+            <div className="skeleton skel-circle" style={{ width: '40px', height: '40px' }} />
+            <div style={{ flex: 1 }}>
+              <div className="skeleton skel-line" style={{ width: '220px' }} />
+              <div className="skeleton skel-line" style={{ width: '120px', height: '10px' }} />
+            </div>
+          </div>
+        </div>
+        <FbPostSkeleton />
+        <FbPostSkeleton />
       </div>
     );
   }
 
   const isConnected = fbSettings?.connected && fbSettings.selectedPageId;
   const expiringSoon = !!tokenExpiry?.expiringSoon;
+  const pageName = fbSettings?.selectedPageName || 'Fanpage';
+  const initial = pageName.trim().charAt(0).toUpperCase();
+
+  const timeAgo = (iso: string) => {
+    const diff = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (diff < 60) return 'Vừa xong';
+    if (diff < 3600) return `${Math.floor(diff / 60)} phút`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} giờ`;
+    if (diff < 604800) return `${Math.floor(diff / 86400)} ngày`;
+    return new Date(iso).toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  };
+
+  const Avatar = ({ name, small }: { name: string; small?: boolean }) => (
+    <div
+      className={small ? 'fb-avatar fb-avatar-sm' : 'fb-avatar'}
+      style={{ display: 'grid', placeItems: 'center', fontWeight: 700, color: 'var(--fb-text-2)' }}
+      aria-hidden
+    >
+      {name.trim().charAt(0).toUpperCase() || '?'}
+    </div>
+  );
+
+  const PageAvatar = ({ small }: { small?: boolean }) => (
+    <div className={small ? 'fb-avatar fb-avatar-sm' : 'fb-avatar'} style={{ position: 'relative', overflow: 'hidden' }}>
+      <Image src="/logo.jpg" alt={pageName} fill sizes="40px" style={{ objectFit: 'cover' }} />
+    </div>
+  );
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      
-      {/* Toast Alert */}
+    <div className="fb">
       {toastMsg && (
-        <div style={{
-          padding: '12px 18px',
-          backgroundColor: toastMsg.success ? '#ECFDF5' : '#FEE2E2',
-          border: `1px solid ${toastMsg.success ? '#10B981' : '#EF4444'}`,
-          borderRadius: '12px',
-          color: toastMsg.success ? '#065F46' : '#B91C1C',
-          fontWeight: 700,
-          fontSize: '0.9rem',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-        }}>
+        <div className={`fb-toast ${toastMsg.success ? 'fb-toast-ok' : 'fb-toast-err'}`}>
           {toastMsg.text}
         </div>
       )}
 
-      {/* 1. Header Quản lý & Trạng thái kết nối */}
-      <div style={{
-        backgroundColor: 'white',
-        borderRadius: '16px',
-        padding: '24px',
-        border: '1px solid #E5E7EB',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.03)'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{
-                width: '32px', height: '32px', borderRadius: '8px',
-                backgroundColor: '#1877F2', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900
-              }}>
-                f
-              </div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#111827', margin: 0 }}>
-                Quản lý & Tương tác Fanpage Facebook
-              </h3>
-            </div>
-            <p style={{ fontSize: '0.85rem', color: '#6B7280', margin: '4px 0 0 40px' }}>
-              Soạn bài, thống kê lượt tương tác, sửa/xoá bài và trả lời bình luận trực tiếp ngay trên hệ thống.
-            </p>
-          </div>
-
-          {isConnected && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <button
-                onClick={fetchPosts}
-                disabled={postsLoading}
-                style={{
-                  padding: '7px 12px',
-                  backgroundColor: '#F3F4F6',
-                  color: '#374151',
-                  borderRadius: '8px',
-                  border: '1px solid #D1D5DB',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '5px'
-                }}
-                title="Tải lại danh sách bài viết"
-              >
-                <RefreshCw size={13} className={postsLoading ? 'spin' : ''} /> Làm mới bài viết
-              </button>
-
-              <button
-                onClick={handleDisconnect}
-                style={{
-                  padding: '7px 12px',
-                  backgroundColor: '#FEE2E2',
-                  color: '#DC2626',
-                  borderRadius: '8px',
-                  border: '1px solid #FCA5A5',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '5px'
-                }}
-              >
-                <Trash2 size={13} /> Huỷ kết nối
-              </button>
-            </div>
+      {/* Thanh trang: giống hàng thông tin Trang của Facebook */}
+      <div className="fb-card">
+        <div className="fb-status">
+          {isConnected ? <PageAvatar /> : (
+            <div className="fb-avatar" style={{ display: 'grid', placeItems: 'center', background: 'var(--fb-blue)', color: '#fff', fontWeight: 900 }}>f</div>
           )}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="fb-name">{isConnected ? pageName : 'Chưa kết nối Fanpage'}</div>
+            <div className="fb-sub" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginTop: '3px' }}>
+              {isConnected ? (
+                <>
+                  <span className="fb-chip fb-chip-ok">● Đang kết nối</span>
+                  {tokenExpiry?.neverExpires && <span className="fb-chip">Token vĩnh viễn</span>}
+                  {expiringSoon && <span className="fb-chip fb-chip-warn">Token sắp hết hạn</span>}
+                </>
+              ) : (
+                <span>{statusMsg || 'Dán Access Token để bắt đầu quản lý.'}</span>
+              )}
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            {isConnected && (
+              <button className="fb-btn" onClick={() => { checkStatus(); fetchPosts(); }} title="Tải lại">
+                <RefreshCw size={16} /> Tải lại
+              </button>
+            )}
+            <button className="fb-btn" onClick={() => setShowManualForm(v => !v)}>
+              <Key size={16} /> {isConnected ? 'Đổi token' : 'Kết nối'}
+            </button>
+          </div>
         </div>
 
-        <div style={{ marginTop: '18px' }}>
-          {isConnected ? (
-            <div style={{
-              padding: '16px 20px',
-              backgroundColor: '#ECFDF5',
-              border: '1px solid #A7F3D0',
-              borderRadius: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '12px'
-            }}>
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '1.05rem', fontWeight: 800, color: '#065F46' }}>
-                    {fbSettings.selectedPageName}
-                  </span>
-                  <span style={{
-                    backgroundColor: '#10B981', color: 'white', padding: '2px 8px', borderRadius: '999px',
-                    fontSize: '0.7rem', fontWeight: 800
-                  }}>
-                    ĐÃ KẾT NỐI
-                  </span>
-                </div>
-                <div style={{ fontSize: '0.8rem', color: '#047857', marginTop: '2px' }}>
-                  Page ID: <code>{fbSettings.selectedPageId}</code>
-                  {tokenExpiry && (
-                    <span style={{ marginLeft: '10px', color: expiringSoon ? '#B45309' : undefined, fontWeight: expiringSoon ? 700 : undefined }}>
-                      {tokenExpiry.neverExpires || tokenExpiry.expiresAt === null
-                        ? '• Token vĩnh viễn'
-                        : `• Token hết hạn: ${new Date(tokenExpiry.expiresAt * 1000).toLocaleString('vi-VN')}`}
-                      {expiringSoon && ' — hãy dán Token mới trước ngày này!'}
-                    </span>
-                  )}
-                </div>
-              </div>
+        {isConnected && fbSettings.pages && fbSettings.pages.length > 1 && (
+          <div style={{ padding: '0 16px 12px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            {fbSettings.pages.map(pg => (
+              <button
+                key={pg.id}
+                className="fb-btn"
+                style={pg.id === fbSettings.selectedPageId ? { background: 'var(--fb-blue)', color: '#fff' } : undefined}
+                onClick={() => handleSwitchPage(pg)}
+              >
+                {pg.name}
+              </button>
+            ))}
+          </div>
+        )}
 
-              {fbSettings.pages && fbSettings.pages.length > 1 && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '0.8rem', color: '#065F46', fontWeight: 600 }}>Chuyển Trang:</span>
-                  <select
-                    value={fbSettings.selectedPageId}
-                    onChange={(e) => {
-                      const p = fbSettings.pages?.find(x => x.id === e.target.value);
-                      if (p) handleSwitchPage(p);
-                    }}
-                    style={{
-                      padding: '6px 10px',
-                      borderRadius: '8px',
-                      border: '1px solid #6EE7B7',
-                      fontSize: '0.82rem',
-                      backgroundColor: 'white',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    {fbSettings.pages.map(p => (
-                      <option key={p.id} value={p.id}>{p.name}</option>
-                    ))}
-                  </select>
-                </div>
+        {showManualForm && (
+          <form onSubmit={handleSaveManualToken} style={{ padding: '0 16px 16px', display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid var(--fb-divider)', paddingTop: '14px' }}>
+            <div className="fb-sub" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <HelpCircle size={14} /> Dán Page Access Token hoặc User Access Token (EAA…). Hệ thống tự đổi sang token dài hạn.
+            </div>
+            <textarea
+              className="fb-composer-input"
+              style={{ borderRadius: '8px', minHeight: '80px' }}
+              value={manualPageToken}
+              onChange={e => setManualPageToken(e.target.value)}
+              placeholder="Access Token…"
+            />
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              <input className="fb-reply-input" value={manualPageId} onChange={e => setManualPageId(e.target.value)} placeholder="Page ID (tuỳ chọn)" />
+              <input className="fb-reply-input" value={manualPageName} onChange={e => setManualPageName(e.target.value)} placeholder="Tên Fanpage (tuỳ chọn)" />
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button type="submit" className="fb-btn fb-btn-primary" disabled={savingManual}>
+                {savingManual ? <Loader2 size={16} className="spin" /> : <Sparkles size={16} />} Kết nối
+              </button>
+              {isConnected && (
+                <button type="button" className="fb-btn fb-btn-danger" onClick={handleDisconnect}>
+                  <X size={16} /> Huỷ kết nối
+                </button>
               )}
             </div>
-          ) : (
-            <div style={{
-              padding: '24px',
-              backgroundColor: '#F9FAFB',
-              border: '1px solid #E5E7EB',
-              borderRadius: '12px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '20px'
-            }}>
-              {statusMsg && (
-                <div style={{
-                  padding: '10px 14px', backgroundColor: '#FEF3C7', border: '1px solid #FCD34D',
-                  borderRadius: '10px', color: '#92400E', fontSize: '0.85rem', fontWeight: 600
-                }}>
-                  {statusMsg}
-                </div>
-              )}
+          </form>
+        )}
+      </div>
 
-              {/* Kết nối trực tiếp bằng Access Token, không cần cài App Facebook */}
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#1F2937', fontWeight: 700, fontSize: '0.92rem' }}>
-                    <Key size={16} color="#D97706" />
-                    <span>Kết nối Fanpage bằng Access Token (dán trực tiếp, không cần App)</span>
+      {!isConnected ? (
+        <div className="fb-card fb-empty">
+          Kết nối Fanpage để soạn bài, xem tương tác và trả lời bình luận ngay tại đây.
+        </div>
+      ) : (
+        <>
+          {/* Ô soạn bài giống khung "Bạn đang nghĩ gì?" */}
+          <div className={`fb-card fb-composer ${composerOpen ? 'fb-composer-open' : ''}`}>
+            <form onSubmit={handlePublishPost}>
+              <div className="fb-composer-row" style={{ alignItems: composerOpen ? 'flex-start' : 'center' }}>
+                <PageAvatar />
+                <textarea
+                  className="fb-composer-input"
+                  value={postMessage}
+                  onFocus={() => setComposerOpen(true)}
+                  onChange={e => setPostMessage(e.target.value)}
+                  placeholder={`${pageName} ơi, bạn muốn thông báo điều gì?`}
+                  rows={composerOpen ? 4 : 1}
+                />
+              </div>
+
+              {composerOpen && (
+                <>
+                  <input
+                    className="fb-reply-input"
+                    style={{ marginTop: '10px', width: '100%' }}
+                    value={postLink}
+                    onChange={e => setPostLink(e.target.value)}
+                    placeholder="Đính kèm đường dẫn (tuỳ chọn)"
+                  />
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+                    <button type="submit" className="fb-btn fb-btn-primary fb-btn-block" disabled={posting || !postMessage.trim()}>
+                      {posting ? <Loader2 size={16} className="spin" /> : <Send size={16} />} Đăng lên Fanpage
+                    </button>
+                    <button
+                      type="button"
+                      className="fb-btn"
+                      onClick={() => { setComposerOpen(false); setPostMessage(''); setPostLink(''); }}
+                    >
+                      Huỷ
+                    </button>
+                  </div>
+                </>
+              )}
+            </form>
+          </div>
+
+          {postsLoading && posts.length === 0 && (
+            <>
+              <FbPostSkeleton />
+              <FbPostSkeleton />
+              <FbPostSkeleton />
+            </>
+          )}
+
+          {!postsLoading && posts.length === 0 && (
+            <div className="fb-card fb-empty">Fanpage chưa có bài viết nào.</div>
+          )}
+
+          {posts.map(post => {
+            const open = activeCommentPost?.id === post.id;
+            const editing = editingPost?.id === post.id;
+            const reactions = post.likesCount;
+
+            return (
+              <div key={post.id} className="fb-card" style={{ position: 'relative' }}>
+                <div className="fb-post-head">
+                  <PageAvatar />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div className="fb-name">{pageName}</div>
+                    <div className="fb-sub" title={new Date(post.created_time).toLocaleString('vi-VN')}>
+                      {timeAgo(post.created_time)} · <Globe size={12} style={{ verticalAlign: '-1px' }} />
+                    </div>
                   </div>
                   <button
-                    onClick={() => setShowManualForm(!showManualForm)}
-                    style={{
-                      fontSize: '0.82rem', color: '#2563EB', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer'
-                    }}
+                    className="fb-action"
+                    style={{ flex: 'none', width: '36px', height: '36px', borderRadius: '50%', fontSize: '18px' }}
+                    onClick={e => { e.stopPropagation(); setMenuPostId(menuPostId === post.id ? null : post.id); }}
+                    aria-label="Tuỳ chọn bài viết"
                   >
-                    {showManualForm ? 'Ẩn form nhập' : 'Hiển thị form nhập'}
+                    ⋯
                   </button>
                 </div>
 
-                {showManualForm && (
-                  <form onSubmit={handleSaveManualToken} style={{
-                    display: 'flex', flexDirection: 'column', gap: '12px',
-                    backgroundColor: 'white', padding: '16px', borderRadius: '12px', border: '1px solid #E5E7EB'
-                  }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
-                        Facebook Page ID (bỏ trống để hệ thống tự nhận):
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="VD: 1029384756..."
-                        value={manualPageId}
-                        onChange={(e) => setManualPageId(e.target.value)}
-                        style={{
-                          width: '100%', padding: '9px 12px', borderRadius: '8px',
-                          border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none', boxSizing: 'border-box'
-                        }}
-                      />
-                    </div>
+                {menuPostId === post.id && (
+                  <div className="fb-menu">
+                    <button onClick={() => { setEditingPost(post); setEditMessage(post.message); setMenuPostId(null); }}>
+                      <Edit3 size={17} /> Chỉnh sửa bài viết
+                    </button>
+                    <button onClick={() => { window.open(post.permalink_url, '_blank'); setMenuPostId(null); }}>
+                      <ExternalLink size={17} /> Mở trên Facebook
+                    </button>
+                    <button onClick={() => { handleDeletePost(post.id); setMenuPostId(null); }} style={{ color: 'var(--fb-red)' }}>
+                      <Trash2 size={17} /> Xoá bài viết
+                    </button>
+                  </div>
+                )}
 
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
-                        Page Access Token (*):
-                      </label>
-                      <input
-                        type="password"
-                        required
-                        placeholder="Dán Page Access Token hoặc User Access Token (EAA...)..."
-                        value={manualPageToken}
-                        onChange={(e) => setManualPageToken(e.target.value)}
-                        style={{
-                          width: '100%', padding: '9px 12px', borderRadius: '8px',
-                          border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none', boxSizing: 'border-box'
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
-                        Tên Fanpage (Tuỳ chọn):
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="VD: Xứ Đoàn Các Thánh Tử Đạo Việt Nam..."
-                        value={manualPageName}
-                        onChange={(e) => setManualPageName(e.target.value)}
-                        style={{
-                          width: '100%', padding: '9px 12px', borderRadius: '8px',
-                          border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none', boxSizing: 'border-box'
-                        }}
-                      />
-                    </div>
-
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '6px' }}>
-                      <a
-                        href="https://developers.facebook.com/tools/explorer/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ fontSize: '0.78rem', color: '#2563EB', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
-                      >
-                        <HelpCircle size={13} /> Lấy Page Token từ Graph API Explorer
-                      </a>
-
-                      <button
-                        type="submit"
-                        disabled={savingManual}
-                        style={{
-                          padding: '9px 18px', backgroundColor: '#059669', color: 'white',
-                          borderRadius: '8px', border: 'none', fontWeight: 700, fontSize: '0.88rem',
-                          cursor: savingManual ? 'wait' : 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px'
-                        }}
-                      >
-                        {savingManual ? <Loader2 size={15} className="spin" /> : <Key size={15} />}
-                        Lưu & Kết nối Fanpage ngay
+                {editing ? (
+                  <form onSubmit={handleSaveEdit} style={{ padding: '8px 16px 14px' }}>
+                    <textarea
+                      className="fb-composer-input"
+                      style={{ borderRadius: '8px', minHeight: '140px', width: '100%' }}
+                      value={editMessage}
+                      onChange={e => setEditMessage(e.target.value)}
+                    />
+                    <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                      <button type="submit" className="fb-btn fb-btn-primary" disabled={savingEdit}>
+                        {savingEdit ? <Loader2 size={16} className="spin" /> : null} Lưu
                       </button>
+                      <button type="button" className="fb-btn" onClick={() => setEditingPost(null)}>Huỷ</button>
                     </div>
                   </form>
+                ) : (
+                  <div className="fb-post-text">{post.message}</div>
+                )}
+
+                {post.full_picture && !editing && (
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '1.91 / 1' }}>
+                    <Image src={post.full_picture} alt="" fill sizes="680px" style={{ objectFit: 'cover' }} className="fb-post-img" />
+                  </div>
+                )}
+
+                <div className="fb-stats">
+                  <span className="fb-reactions">
+                    <span className="fb-reaction-icon" style={{ background: 'var(--fb-blue)' }}>
+                      <ThumbsUp size={10} strokeWidth={3} fill="currentColor" />
+                    </span>
+                    <span className="fb-reaction-icon" style={{ background: '#F3425F', marginLeft: '-8px' }}>
+                      <Heart size={10} strokeWidth={3} fill="currentColor" />
+                    </span>
+                    <span style={{ marginLeft: '4px' }}>{reactions}</span>
+                  </span>
+                  <span>
+                    {post.commentsCount} bình luận · {post.sharesCount} lượt chia sẻ
+                  </span>
+                </div>
+
+                <div className="fb-actions">
+                  <button className="fb-action" onClick={() => (open ? setActiveCommentPost(null) : loadComments(post))}>
+                    <MessageSquare size={18} /> Bình luận
+                  </button>
+                  <button className="fb-action" onClick={() => { setEditingPost(post); setEditMessage(post.message); }}>
+                    <Edit3 size={18} /> Sửa
+                  </button>
+                  <button className="fb-action fb-action-danger" onClick={() => handleDeletePost(post.id)}>
+                    <Trash2 size={18} /> Xoá
+                  </button>
+                </div>
+
+                {open && (
+                  <div className="fb-comments">
+                    {commentsLoading ? (
+                      <div className="fb-sub" style={{ padding: '10px 0', display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <Loader2 size={15} className="spin" /> Đang tải bình luận…
+                      </div>
+                    ) : comments.length === 0 ? (
+                      <div className="fb-sub" style={{ padding: '10px 0' }}>Chưa có bình luận nào.</div>
+                    ) : comments.map(c => (
+                      <div key={c.id}>
+                        <div className="fb-comment">
+                          <Avatar name={c.from?.name || '?'} small />
+                          <div style={{ minWidth: 0 }}>
+                            <div className="fb-bubble">
+                              <div className="fb-name">{c.from?.name || 'Người dùng Facebook'}</div>
+                              <p>{c.message}</p>
+                            </div>
+                            <div className="fb-comment-meta">
+                              <span>{timeAgo(c.created_time)}</span>
+                              {!!c.like_count && <span><ThumbsUp size={11} style={{ verticalAlign: '-1px' }} /> {c.like_count}</span>}
+                            </div>
+                          </div>
+                        </div>
+                        {c.comments?.data?.map(r => (
+                          <div key={r.id} className="fb-comment fb-reply-list">
+                            <Avatar name={r.from?.name || '?'} small />
+                            <div style={{ minWidth: 0 }}>
+                              <div className="fb-bubble">
+                                <div className="fb-name">{r.from?.name || 'Người dùng Facebook'}</div>
+                                <p>{r.message}</p>
+                              </div>
+                              <div className="fb-comment-meta"><span>{timeAgo(r.created_time)}</span></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+
+                    <form onSubmit={handleSendReply} className="fb-reply-form">
+                      <PageAvatar small />
+                      <input
+                        className="fb-reply-input"
+                        value={replyText}
+                        onChange={e => setReplyText(e.target.value)}
+                        placeholder="Viết bình luận dưới danh nghĩa Fanpage…"
+                      />
+                      <button type="submit" className="fb-btn fb-btn-primary" disabled={sendingReply || !replyText.trim()}>
+                        {sendingReply ? <Loader2 size={16} className="spin" /> : <Send size={16} />}
+                      </button>
+                    </form>
+                  </div>
                 )}
               </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* 2. Soạn thảo & Đăng bài mới */}
-      {isConnected && (
-        <div style={{
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          padding: '24px',
-          border: '1px solid #E5E7EB',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.03)'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-            <Send size={18} color="var(--color-red)" />
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#111827', margin: 0 }}>
-              Soạn bài viết mới lên Fanpage
-            </h3>
-          </div>
-
-          <form onSubmit={handlePublishPost} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <div>
-              <textarea
-                required
-                rows={4}
-                placeholder="Nhập nội dung thông báo, câu Lời Chúa, giải đáp thắc mắc để đăng lên Fanpage..."
-                value={postMessage}
-                onChange={(e) => setPostMessage(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '12px 14px',
-                  borderRadius: '10px',
-                  border: '1px solid #D1D5DB',
-                  fontSize: '0.92rem',
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                  fontFamily: 'inherit',
-                  resize: 'vertical'
-                }}
-              />
-            </div>
-
-            <div>
-              <input
-                type="url"
-                placeholder="Đường dẫn đính kèm (vd: https://chanhtoa.tnttgiaophanmytho.online/gio-le)..."
-                value={postLink}
-                onChange={(e) => setPostLink(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '10px 14px',
-                  borderRadius: '10px',
-                  border: '1px solid #D1D5DB',
-                  fontSize: '0.9rem',
-                  outline: 'none',
-                  boxSizing: 'border-box'
-                }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setPostMessage('🔔 THÔNG BÁO GIỜ LỄ GIÁO XỨ CHÁNH TOÀ MỸ THO:\n⏰ Chúa Nhật: 05g15, 07g30, 16g30, 18g30\n⏰ Ngày thường: 05g15, 17g45\n\nTra cứu thêm 3.300+ nhà thờ toàn quốc tại:');
-                    setPostLink(window.location.origin + '/gio-le');
-                  }}
-                  style={{
-                    padding: '6px 12px',
-                    backgroundColor: '#F3F4F6',
-                    color: '#374151',
-                    borderRadius: '8px',
-                    border: '1px solid #D1D5DB',
-                    fontSize: '0.78rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  📋 Mẫu: Giờ Lễ
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setPostMessage('🕊️ LỜI CHÚA HÔM NAY:\n"Với Đấng ban sức mạnh cho tôi, tôi chịu được hết mọi sự." (Pl 4, 13)\n\nChúc cộng đoàn một ngày mới tràn đầy hồng ân Chúa!');
-                  }}
-                  style={{
-                    padding: '6px 12px',
-                    backgroundColor: '#F3F4F6',
-                    color: '#374151',
-                    borderRadius: '8px',
-                    border: '1px solid #D1D5DB',
-                    fontSize: '0.78rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  <Sparkles size={12} style={{ display: 'inline', marginRight: '4px' }} /> Mẫu: Lời Chúa
-                </button>
-              </div>
-
-              <button
-                type="submit"
-                disabled={posting}
-                style={{
-                  padding: '10px 22px',
-                  backgroundColor: '#1877F2',
-                  color: 'white',
-                  borderRadius: '10px',
-                  border: 'none',
-                  fontWeight: 700,
-                  fontSize: '0.9rem',
-                  cursor: posting ? 'wait' : 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)'
-                }}
-              >
-                {posting ? <Loader2 size={15} className="spin" /> : <Send size={15} />}
-                Đăng bài lên Fanpage
-              </button>
-            </div>
-          </form>
-        </div>
+            );
+          })}
+        </>
       )}
-
-      {/* 3. Danh sách Bài viết & Thống kê Tương tác Trực tiếp */}
-      {isConnected && (
-        <div style={{
-          backgroundColor: 'white',
-          borderRadius: '16px',
-          padding: '24px',
-          border: '1px solid #E5E7EB',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.03)'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#111827', margin: 0 }}>
-              Danh sách bài viết & Thống kê trên Fanpage ({posts.length})
-            </h3>
-            <span style={{ fontSize: '0.8rem', color: '#6B7280' }}>
-              Tự động cập nhật lượt Thích & Bình luận
-            </span>
-          </div>
-
-          {postsLoading ? (
-            <div style={{ padding: '36px', textAlign: 'center', color: '#6B7280', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-              <Loader2 className="spin" size={18} /> Đang tải dữ liệu bài viết từ Fanpage...
-            </div>
-          ) : posts.length === 0 ? (
-            <div style={{ padding: '30px', textAlign: 'center', color: '#6B7280', fontSize: '0.9rem' }}>
-              Chưa có bài viết nào trên Fanpage hoặc quyền truy cập bài viết đang được đồng bộ.
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {posts.map(post => (
-                <div key={post.id} style={{
-                  border: '1px solid #E5E7EB',
-                  borderRadius: '12px',
-                  padding: '16px 18px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '12px',
-                  backgroundColor: '#FAFAFA'
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                    <div style={{ flex: 1 }}>
-                      <p style={{
-                        margin: 0,
-                        color: '#1F2937',
-                        fontSize: '0.92rem',
-                        lineHeight: 1.5,
-                        whiteSpace: 'pre-wrap',
-                        fontWeight: 500
-                      }}>
-                        {post.message}
-                      </p>
-                      <div style={{ fontSize: '0.78rem', color: '#6B7280', marginTop: '6px' }}>
-                        🕒 {new Date(post.created_time).toLocaleString('vi-VN')}
-                      </div>
-                    </div>
-
-                    {post.full_picture && (
-                      <div style={{
-                        position: 'relative',
-                        width: '80px',
-                        height: '80px',
-                        borderRadius: '8px',
-                        overflow: 'hidden',
-                        flexShrink: 0
-                      }}>
-                        <Image
-                          src={post.full_picture}
-                          alt="Thumbnail bài viết"
-                          fill
-                          sizes="80px"
-                          style={{ objectFit: 'cover' }}
-                        />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Thống kê & Phím chức năng */}
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    borderTop: '1px solid #E5E7EB',
-                    paddingTop: '12px',
-                    flexWrap: 'wrap',
-                    gap: '10px'
-                  }}>
-                    {/* Thống kê */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#2563EB', fontSize: '0.85rem', fontWeight: 700 }}>
-                        <ThumbsUp size={15} />
-                        <span>{post.likesCount} Thích</span>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#059669', fontSize: '0.85rem', fontWeight: 700 }}>
-                        <MessageSquare size={15} />
-                        <span>{post.commentsCount} Bình luận</span>
-                      </div>
-                      {post.sharesCount > 0 && (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#7C3AED', fontSize: '0.85rem', fontWeight: 700 }}>
-                          <Share2 size={15} />
-                          <span>{post.sharesCount} Chia sẻ</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Phím hành động */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <button
-                        onClick={() => loadComments(post)}
-                        style={{
-                          padding: '6px 12px',
-                          backgroundColor: '#EEF2FF',
-                          color: '#4F46E5',
-                          borderRadius: '6px',
-                          border: '1px solid #C7D2FE',
-                          fontSize: '0.8rem',
-                          fontWeight: 700,
-                          cursor: 'pointer',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}
-                      >
-                        <MessageSquare size={13} /> Trả lời bình luận
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          setEditingPost(post);
-                          setEditMessage(post.message);
-                        }}
-                        style={{
-                          padding: '6px 10px',
-                          backgroundColor: '#F3F4F6',
-                          color: '#374151',
-                          borderRadius: '6px',
-                          border: '1px solid #D1D5DB',
-                          fontSize: '0.8rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}
-                        title="Sửa nội dung bài viết"
-                      >
-                        <Edit3 size={13} /> Sửa
-                      </button>
-
-                      <button
-                        onClick={() => handleDeletePost(post.id)}
-                        style={{
-                          padding: '6px 10px',
-                          backgroundColor: '#FEE2E2',
-                          color: '#DC2626',
-                          borderRadius: '6px',
-                          border: '1px solid #FCA5A5',
-                          fontSize: '0.8rem',
-                          fontWeight: 600,
-                          cursor: 'pointer',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px'
-                        }}
-                        title="Xoá bài viết này trên Fanpage"
-                      >
-                        <Trash2 size={13} /> Xoá
-                      </button>
-
-                      <a
-                        href={post.permalink_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          padding: '6px 10px',
-                          backgroundColor: '#F3F4F6',
-                          color: '#4B5563',
-                          borderRadius: '6px',
-                          border: '1px solid #D1D5DB',
-                          fontSize: '0.8rem',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          textDecoration: 'none'
-                        }}
-                        title="Mở bài viết trên Facebook"
-                      >
-                        <ExternalLink size={13} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* MODAL 1: Chỉnh sửa bài viết */}
-      {editingPost && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', zIndex: 1000,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px'
-        }}>
-          <div style={{
-            backgroundColor: 'white', borderRadius: '16px', width: '100%', maxWidth: '520px',
-            padding: '24px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: 0, color: '#111827' }}>
-                ✏️ Chỉnh sửa bài viết Fanpage
-              </h3>
-              <button onClick={() => setEditingPost(null)} style={{ color: '#9CA3AF', cursor: 'pointer' }}>
-                <X size={20} />
-              </button>
-            </div>
-
-            <form onSubmit={handleSaveEdit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <textarea
-                rows={5}
-                required
-                value={editMessage}
-                onChange={(e) => setEditMessage(e.target.value)}
-                style={{
-                  width: '100%', padding: '12px', borderRadius: '10px',
-                  border: '1px solid #D1D5DB', fontSize: '0.92rem', outline: 'none', boxSizing: 'border-box',
-                  fontFamily: 'inherit'
-                }}
-              />
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
-                <button
-                  type="button"
-                  onClick={() => setEditingPost(null)}
-                  style={{
-                    padding: '8px 16px', backgroundColor: '#F3F4F6', color: '#374151',
-                    borderRadius: '8px', border: '1px solid #D1D5DB', fontWeight: 600, cursor: 'pointer'
-                  }}
-                >
-                  Huỷ
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={savingEdit}
-                  style={{
-                    padding: '8px 20px', backgroundColor: '#1877F2', color: 'white',
-                    borderRadius: '8px', border: 'none', fontWeight: 700, cursor: savingEdit ? 'wait' : 'pointer'
-                  }}
-                >
-                  {savingEdit ? 'Đang lưu...' : 'Lưu thay đổi'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* MODAL 2: Xem & Trả lời Bình luận */}
-      {activeCommentPost && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', zIndex: 1000,
-          display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px'
-        }}>
-          <div style={{
-            backgroundColor: 'white', borderRadius: '16px', width: '100%', maxWidth: '580px',
-            maxHeight: '85vh', display: 'flex', flexDirection: 'column',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.2)', overflow: 'hidden'
-          }}>
-            <div style={{
-              padding: '16px 20px', borderBottom: '1px solid #E5E7EB',
-              display: 'flex', justifyContent: 'space-between', alignItems: 'center'
-            }}>
-              <div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: 0, color: '#111827' }}>
-                  💬 Bình luận trên bài viết
-                </h3>
-                <div style={{ fontSize: '0.78rem', color: '#6B7280', marginTop: '2px', maxWidth: '440px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {activeCommentPost.message}
-                </div>
-              </div>
-              <button onClick={() => setActiveCommentPost(null)} style={{ color: '#9CA3AF', cursor: 'pointer' }}>
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Comment list */}
-            <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {commentsLoading ? (
-                <div style={{ padding: '30px', textAlign: 'center', color: '#6B7280', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
-                  <Loader2 className="spin" size={16} /> Đang tải bình luận...
-                </div>
-              ) : comments.length === 0 ? (
-                <div style={{ padding: '30px', textAlign: 'center', color: '#6B7280', fontSize: '0.88rem' }}>
-                  Chưa có bình luận nào trên bài viết này. Hãy là người đầu tiên trả lời!
-                </div>
-              ) : (
-                comments.map(c => (
-                  <div key={c.id} style={{
-                    padding: '10px 14px', backgroundColor: '#F3F4F6', borderRadius: '12px',
-                    display: 'flex', flexDirection: 'column', gap: '4px'
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontWeight: 800, color: '#111827', fontSize: '0.85rem' }}>
-                        {c.from?.name || 'Người dùng Facebook'}
-                      </span>
-                      <span style={{ fontSize: '0.72rem', color: '#9CA3AF' }}>
-                        {new Date(c.created_time).toLocaleString('vi-VN')}
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '0.88rem', color: '#374151', whiteSpace: 'pre-wrap' }}>
-                      {c.message}
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-
-            {/* Reply Input Box */}
-            <form onSubmit={handleSendReply} style={{
-              padding: '14px 20px', borderTop: '1px solid #E5E7EB', backgroundColor: '#FAFAFA',
-              display: 'flex', gap: '8px', alignItems: 'center'
-            }}>
-              <input
-                type="text"
-                required
-                placeholder="Nhập câu trả lời dưới danh nghĩa Fanpage..."
-                value={replyText}
-                onChange={(e) => setReplyText(e.target.value)}
-                style={{
-                  flex: 1, padding: '10px 14px', borderRadius: '10px',
-                  border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none'
-                }}
-              />
-              <button
-                type="submit"
-                disabled={sendingReply}
-                style={{
-                  padding: '10px 16px', backgroundColor: '#1877F2', color: 'white',
-                  borderRadius: '10px', border: 'none', fontWeight: 700, fontSize: '0.85rem',
-                  cursor: sendingReply ? 'wait' : 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px'
-                }}
-              >
-                {sendingReply ? <Loader2 size={14} className="spin" /> : <Send size={14} />}
-                Gửi
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Star, MessageCircle } from 'lucide-react';
+import { Star, MessageCircle, MapPin } from 'lucide-react';
 import { useLanguage } from '../lib/i18n/LanguageContext';
 
 export default function IntroModalContent() {
@@ -126,7 +126,7 @@ export default function IntroModalContent() {
               boxShadow: '0 2px 8px rgba(211, 47, 47, 0.3)'
             }}
           >
-            📍 Mở Chỉ Đường Google Maps
+            <MapPin size={16} strokeWidth={2} /> Mở Chỉ Đường Google Maps
           </a>
         </div>
         <div style={{ width: '100%', height: '320px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.18)', border: '1px solid rgba(211,47,47,0.2)' }}>

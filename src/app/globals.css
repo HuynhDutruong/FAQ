@@ -1,14 +1,14 @@
 :root {
-  --color-beige: #FDFBF7;
+  --color-beige: #F2F3F5;
   --color-red: #D32F2F;
   --color-red-light: #EF5350;
   --color-yellow: #D97706;
   --color-yellow-light: #FDE68A;
-  --color-dark: #1F2937;
+  --color-dark: #16181D;
   --color-muted: #4B5563;
   --color-subtle: #6B7280;
-  --color-card-bg: rgba(255, 255, 255, 0.75);
-  --color-input-bg: rgba(255, 255, 255, 0.88);
+  --color-card-bg: #FFFFFF;
+  --color-input-bg: #FFFFFF;
   --color-input-border: rgba(0, 0, 0, 0.12);
   --color-input-text: #1F2937;
   --color-chip-sunday-bg: rgba(211, 47, 47, 0.1);
@@ -18,16 +18,24 @@
   --color-border-subtle: rgba(0, 0, 0, 0.08);
   --color-btn-subtle-bg: rgba(0, 0, 0, 0.05);
   --color-btn-subtle-text: #374151;
-  --color-modal-bg: rgba(255, 255, 255, 0.94);
+  --color-modal-bg: #FFFFFF;
   
-  /* Liquid Glass iOS 18 Properties */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.85);
-  --glass-border-bottom: rgba(255, 255, 255, 0.35);
-  --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.4);
-  --glass-shadow-hover: 0 20px 40px -10px rgba(211, 47, 47, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9);
-  --glass-blur: blur(24px);
-  --glass-radius: 24px;
+  /* Liquid Glass Tab-bar theme tokens */
+  --color-nav-glass: rgba(255, 255, 255, 0.88);
+  --color-nav-border: rgba(226, 232, 240, 0.85);
+  --color-nav-text: #374151;
+  --color-nav-active-text: #B71C1C;
+  --color-nav-active-bg: rgba(183, 28, 28, 0.06);
+  --color-nav-active-bar: #B71C1C;
+  
+  /* Flat card surface (hdgmvietnam style) */
+  --glass-bg: #FFFFFF;
+  --glass-border: #E3E5E9;
+  --glass-border-bottom: #E3E5E9;
+  --glass-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --glass-shadow-hover: 0 4px 12px rgba(16, 24, 40, 0.1);
+  --glass-blur: none;
+  --glass-radius: 8px;
   
   --background: var(--color-beige);
   --foreground: var(--color-dark);
@@ -64,14 +72,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  /* Light Mode Apple Ambient Glow */
-  background: 
-    radial-gradient(circle at 15% 15%, rgba(254, 226, 226, 0.65) 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(254, 243, 199, 0.65) 0%, transparent 50%),
-    radial-gradient(circle at 50% 85%, rgba(254, 226, 226, 0.55) 0%, transparent 55%),
-    linear-gradient(135deg, #FFFDF9 0%, #FFF5F5 50%, #FFFBEB 100%);
-  background-size: 150% 150%;
-  animation: liquidMeshGlow 12s ease-in-out infinite alternate;
+  background: var(--color-beige);
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -98,25 +99,16 @@ button {
 /* Base Liquid Glass Utility Class */
 .liquid-glass {
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-bottom: 1px solid var(--glass-border-bottom);
   border-radius: var(--glass-radius);
   box-shadow: var(--glass-shadow);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .liquid-glass:hover {
   box-shadow: var(--glass-shadow-hover);
-  transform: translateY(-3px) scale(1.005);
-  background: rgba(255, 255, 255, 0.88);
-}
-
-.liquid-glass:active {
-  transform: translateY(-1px) scale(0.99);
+  border-color: var(--color-red);
 }
 
 /* iOS 27 Ultra Liquid Glass Material */
@@ -130,37 +122,14 @@ button {
   position: relative;
 }
 
-/* Shimmer Light Reflection Sweep on Glass */
-.liquid-glass::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 80%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.35) 50%,
-    transparent 100%
-  );
-  transform: skewX(-25deg);
-  transition: left 0.75s ease-in-out;
-  pointer-events: none;
-}
-
-.liquid-glass:hover::after {
-  left: 140%;
-}
-
 /* ==========================================================================
    AUTHENTIC APPLE iOS 18 DARK MODE DESIGN SYSTEM
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Apple System Backgrounds */
-    --color-beige: #000000;
-    --background: #000000;
+    --color-beige: #121316;
+    --background: #121316;
     
     /* Apple System Accents */
     --color-red: #FF453A; /* Apple System Red Dark */
@@ -174,8 +143,8 @@ button {
     --color-subtle: #8E8E93; /* Apple System Gray (Tertiary Label) */
     
     /* Apple Surfaces & Materials */
-    --color-card-bg: rgba(28, 28, 30, 0.85); /* Apple Secondary System Background */
-    --color-input-bg: rgba(44, 44, 46, 0.9); /* Apple Tertiary System Background */
+    --color-card-bg: #1B1D22;
+    --color-input-bg: #23262C;
     --color-input-border: rgba(255, 255, 255, 0.12);
     --color-input-text: #FFFFFF;
     
@@ -189,38 +158,26 @@ button {
     --color-border-subtle: rgba(255, 255, 255, 0.1);
     --color-btn-subtle-bg: rgba(120, 120, 128, 0.2);
     --color-btn-subtle-text: #FFFFFF;
-    --color-modal-bg: rgba(28, 28, 30, 0.96); /* Apple Sheet Surface */
+    --color-modal-bg: #1B1D22;
     
-    /* Apple Frosted Glass Ultra-Thin Material */
-    --glass-bg: rgba(28, 28, 30, 0.78);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-border-bottom: rgba(255, 255, 255, 0.06);
-    --glass-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
-    --glass-shadow-hover: 0 16px 40px 0 rgba(255, 69, 58, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.2);
-    --glass-blur: blur(30px) saturate(190%);
+    /* Liquid Glass Tab-bar dark theme tokens */
+    --color-nav-glass: rgba(27, 29, 34, 0.88);
+    --color-nav-border: rgba(255, 255, 255, 0.1);
+    --color-nav-text: rgba(255, 255, 255, 0.75);
+    --color-nav-active-text: #FF453A;
+    --color-nav-active-bg: rgba(255, 69, 58, 0.15);
+    --color-nav-active-bar: #FF453A;
+    
+    --glass-bg: #1B1D22;
+    --glass-border: #2C2F36;
+    --glass-border-bottom: #2C2F36;
+    --glass-shadow: none;
+    --glass-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --glass-blur: none;
   }
 
   body {
-    background: 
-      radial-gradient(circle at 50% 0%, rgba(255, 69, 58, 0.12) 0%, transparent 45%),
-      radial-gradient(circle at 10% 30%, rgba(255, 159, 10, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 90% 60%, rgba(10, 132, 255, 0.08) 0%, transparent 45%),
-      #000000;
-    background-size: 100% 100%;
-    animation: none;
-  }
-
-  .liquid-glass:hover {
-    background: rgba(44, 44, 46, 0.88);
-  }
-
-  .liquid-glass::after {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.15) 50%,
-      transparent 100%
-    );
+    background: var(--color-beige);
   }
 }
 
@@ -249,9 +206,7 @@ button {
   }
 }
 
-.logo-floating {
-  animation: floatLogo 4s ease-in-out infinite;
-}
+.logo-floating { animation: none; }
 
 .apple-tile {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -505,4 +460,1148 @@ button {
     height: 36px;
     justify-content: center;
   }
+}
+
+
+/* ==========================================================================
+   HDGM-STYLE NEWS LAYOUT
+   ========================================================================== */
+.hdgm-section-title {
+  border-left: 4px solid var(--color-red);
+  padding-left: 12px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-dark);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.hdgm-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.news-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--color-border-subtle);
+  align-items: start;
+}
+
+.news-row:last-child { border-bottom: none; }
+
+.news-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--color-btn-subtle-bg);
+  display: block;
+}
+
+.news-row .news-thumb { aspect-ratio: auto; height: 65px; }
+
+.news-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--color-dark);
+  transition: color 0.15s ease;
+}
+
+.news-row:hover .news-title { color: var(--color-red); }
+
+.line-clamp-2, .line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 { -webkit-line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; }
+
+@media (max-width: 600px) {
+  .news-row { gap: 10px; }
+  .news-row .news-thumb { height: 65px; }
+}
+
+/* Lưới 8/4 giống trang chủ hdgmvietnam */
+.home-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* Ô của grid mặc định min-width:auto nên không co xuống dưới min-content của
+   nội dung bên trong — chuỗi flex lồng nhau trong feed đẩy cột rộng 1073px
+   và tràn khỏi khung. min-width:0 cho phép cột co đúng tỉ lệ 2fr/1fr. */
+.home-grid > * { min-width: 0; }
+
+@media (max-width: 900px) {
+  .home-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
+.news-excerpt {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-subtle);
+}
+
+.news-meta {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: var(--color-subtle);
+}
+
+.news-lead-hover:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  transform: translateY(-2px);
+}
+
+.news-lead-hover:hover .news-lead-img {
+  transform: scale(1.04);
+}
+
+.news-lead-hover:hover .news-lead-title {
+  color: var(--color-red) !important;
+}
+
+.news-card-hover:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.news-card-hover:hover .news-card-img {
+  transform: scale(1.05);
+}
+
+.news-card-hover:hover .news-card-title {
+  color: var(--color-red) !important;
+}
+
+.news-row-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(183, 28, 28, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+.news-row-card:hover .news-row-img {
+  transform: scale(1.06);
+}
+
+.news-row-card:hover .news-row-title {
+  color: var(--color-red) !important;
+}
+
+@media (max-width: 600px) {
+  .news-row-card {
+    gap: 10px !important;
+    padding: 10px !important;
+  }
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.quick-link:hover { color: var(--color-red); }
+
+.news-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.news-pager button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 4px;
+  background: var(--color-card-bg);
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.news-pager button:hover:not(:disabled) {
+  border-color: var(--color-red);
+  color: var(--color-red);
+}
+
+.news-pager button.is-active {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  color: #fff;
+}
+
+.news-pager button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   TRANG ĐỌC BÀI VIẾT
+   ========================================================================== */
+.article {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-subtle);
+}
+
+.article-back:hover { color: var(--color-red); }
+
+.article-title {
+  margin: 0;
+  font-size: clamp(1.45rem, 3.6vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--color-dark);
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 14px 0 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: 0.8rem;
+  color: var(--color-subtle);
+}
+
+.article-meta > span + span::before {
+  content: '·';
+  margin-right: 14px;
+  color: var(--color-border-subtle);
+}
+
+.article-cover {
+  margin: 0 0 26px;
+}
+
+.article-cover img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  cursor: zoom-in;
+}
+
+/* Thân bài: cỡ chữ và giãn dòng ưu tiên đọc dài */
+.article-body {
+  font-size: 1.06rem;
+  line-height: 1.85;
+  color: var(--color-dark);
+}
+
+.article-body p {
+  margin: 0 0 1.15em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.article-body .article-lead {
+  font-size: 1.14rem;
+  line-height: 1.75;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.article-body h2 {
+  margin: 1.7em 0 0.7em;
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-transform: none;
+  color: var(--color-dark);
+  border-left: 3px solid var(--color-red);
+  padding-left: 12px;
+}
+
+.article-body ul {
+  margin: 0 0 1.15em;
+  padding-left: 1.2em;
+}
+
+.article-body li {
+  margin-bottom: 0.5em;
+  list-style: disc;
+}
+
+.article-body .article-byline {
+  margin: 1.6em 0 0;
+  padding-top: 14px;
+  border-top: 1px dashed var(--color-border-subtle);
+  font-size: 0.88rem;
+  font-style: italic;
+  text-align: left;
+  color: var(--color-subtle);
+}
+
+.article-link {
+  color: var(--color-red);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.article-link:hover { text-decoration: underline; }
+
+/* URL trong nội dung bài: hiện chữ nhưng không dẫn ra ngoài */
+.article-url {
+  color: var(--color-subtle);
+  word-break: break-word;
+}
+
+/* Thư viện ảnh */
+.article-gallery { margin-top: 32px; }
+
+.article-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.article-gallery-grid button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  line-height: 0;
+}
+
+.article-gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  transition: opacity 0.15s ease;
+}
+
+.article-gallery-grid button:hover img { opacity: 0.85; }
+
+.article-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.85rem;
+  color: var(--color-subtle);
+}
+
+.article-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.article-actions a:hover { border-color: var(--color-red); color: var(--color-red); }
+
+/* ==========================================================================
+   BÌNH LUẬN BÀI VIẾT
+   Facebook không trả tên người bình luận qua API (chính sách riêng tư),
+   nên thiết kế phải đẹp cả khi mọi bình luận đều khuyết danh.
+   ========================================================================== */
+.article-comments {
+  margin-top: 40px;
+  padding-top: 4px;
+}
+
+.comment-note {
+  margin: -6px 0 16px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--color-subtle);
+}
+
+.comment-card {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  column-gap: 10px;
+  row-gap: 4px;
+  align-items: start;
+}
+
+.comment-avatar {
+  grid-row: 1 / 3;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.comment-bubble {
+  background: var(--color-btn-subtle-bg);
+  border-radius: 4px 16px 16px 16px;
+  padding: 10px 14px;
+  min-width: 0;
+}
+
+.comment-author {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+  margin-bottom: 3px;
+}
+
+.comment-msg {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-dark);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.comment-time {
+  grid-column: 2;
+  font-size: 0.72rem;
+  color: var(--color-subtle);
+  padding-left: 14px;
+}
+
+.comment-replies {
+  grid-column: 2;
+  margin-top: 10px;
+  padding-left: 16px;
+  border-left: 2px solid var(--color-border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-replies .comment-card { grid-template-columns: 28px 1fr; }
+.comment-replies .comment-avatar { width: 28px; height: 28px; grid-row: 1 / 3; }
+.comment-replies .comment-msg { font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .comment-card { grid-template-columns: 30px 1fr; column-gap: 8px; }
+  .comment-avatar { width: 30px; height: 30px; }
+  .comment-bubble { padding: 9px 12px; }
+}
+
+/* Xem ảnh phóng to */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.9);
+  cursor: zoom-out;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  cursor: default;
+}
+
+.lightbox button {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox button:hover { background: rgba(255, 255, 255, 0.28); }
+
+@media (max-width: 600px) {
+  .article-body { font-size: 1rem; line-height: 1.8; }
+  .article-body p { text-align: left; }
+}
+
+/* Footer Responsive Grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1.05fr 1.15fr 0.95fr;
+  gap: 32px;
+  width: 100%;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   TINH CHỈNH & REMAKE TOÀN DIỆN PHIÊN BẢN MOBILE (SMARTPHONE FIRST)
+   ========================================================================== */
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Header mobile gọn gàng, tinh tế và sang trọng */
+  .site-header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .site-brand {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+
+  .site-brand-logo {
+    width: 34px !important;
+    height: 34px !important;
+    border: 1.5px solid rgba(253, 230, 138, 0.6) !important;
+  }
+
+  /* Nav Tabs cuộn ngang mượt mà phong cách native app */
+  .site-nav {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid var(--color-border-subtle) !important;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav > div {
+    padding: 0 10px !important;
+    gap: 4px !important;
+  }
+
+  .site-nav a {
+    padding: 10px 12px !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em !important;
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* Container & Grid layout */
+  main {
+    padding: 12px 12px 48px !important;
+  }
+
+  .home-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+
+  .home-grid > aside {
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  /* Tiêu đề Section chuẩn báo chí Công Giáo */
+  .hdgm-section-head {
+    margin-bottom: 12px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .hdgm-section-title {
+    font-size: 1.1rem !important;
+  }
+
+  /* Tin tức: Lead Hero card trên mobile */
+  .news-lead-hover {
+    border-radius: 10px !important;
+  }
+
+  .news-lead-hover img {
+    height: 190px !important;
+  }
+
+  /* Tin tức: Dòng tin tức rút gọn trên mobile */
+  .news-row-card {
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+
+  .news-row-thumb-box {
+    width: 88px !important;
+    height: 72px !important;
+    border-radius: 6px !important;
+  }
+
+  .news-row-title {
+    font-size: 0.86rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .news-item-row {
+    padding: 10px !important;
+    gap: 12px !important;
+    border-radius: 8px !important;
+  }
+
+  .news-item-thumb {
+    width: 84px !important;
+    height: 84px !important;
+    border-radius: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .news-item-title {
+    font-size: 0.88rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .news-item-excerpt {
+    display: none !important; /* Ẩn trích đoạn dài trên mobile để tiết kiệm diện tích */
+  }
+
+  .news-item-meta {
+    font-size: 0.72rem !important;
+    margin-top: 4px !important;
+  }
+
+  /* Phân trang: Phím bấm ngón tay chuẩn công thái học */
+  .pager-btn {
+    min-height: 38px !important;
+    min-width: 38px !important;
+    font-size: 0.82rem !important;
+    border-radius: 8px !important;
+  }
+
+  /* Lịch phụng vụ Widget trên Mobile */
+  .calendar-day-btn {
+    min-height: 34px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Article Detail Mobile */
+  .article-title {
+    font-size: 1.35rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .article-body {
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+  }
+
+  .article-gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Modal Lightbox trên Mobile */
+  .lightbox-img-box {
+    max-height: 70vh !important;
+  }
+}
+
+/* Vùng chạm tối ưu trên mọi màn hình cảm ứng */
+@media (pointer: coarse) {
+  button, a {
+    min-height: 36px;
+  }
+}
+
+/* ==========================================================================
+   ADMIN FANPAGE — GIAO DIỆN MÔ PHỎNG FACEBOOK
+   Token màu lấy theo bộ của Facebook để admin thao tác quen tay.
+   ========================================================================== */
+.fb {
+  --fb-blue: #1877F2;
+  --fb-blue-hover: #166FE5;
+  --fb-bg: #F0F2F5;
+  --fb-card: #FFFFFF;
+  --fb-text: #050505;
+  --fb-text-2: #65676B;
+  --fb-divider: #CED0D4;
+  --fb-hover: #F2F2F2;
+  --fb-chip: #E4E6EB;
+  --fb-green: #31A24C;
+  --fb-red: #E41E3F;
+
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 15px;
+  color: var(--fb-text);
+}
+
+:root:not([data-theme="light"]) .fb {
+  --fb-bg: #18191A;
+  --fb-card: #242526;
+  --fb-text: #E4E6EB;
+  --fb-text-2: #B0B3B8;
+  --fb-divider: #3E4042;
+  --fb-hover: #3A3B3C;
+  --fb-chip: #3A3B3C;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .fb {
+    --fb-bg: #F0F2F5;
+    --fb-card: #FFFFFF;
+    --fb-text: #050505;
+    --fb-text-2: #65676B;
+    --fb-divider: #CED0D4;
+    --fb-hover: #F2F2F2;
+    --fb-chip: #E4E6EB;
+  }
+}
+
+:root[data-theme="dark"] .fb {
+  --fb-bg: #18191A;
+  --fb-card: #242526;
+  --fb-text: #E4E6EB;
+  --fb-text-2: #B0B3B8;
+  --fb-divider: #3E4042;
+  --fb-hover: #3A3B3C;
+  --fb-chip: #3A3B3C;
+}
+
+.fb-card {
+  background: var(--fb-card);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.fb-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--fb-chip);
+}
+
+.fb-avatar-sm { width: 32px; height: 32px; }
+
+.fb-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--fb-text);
+  line-height: 1.3;
+}
+
+.fb-sub {
+  font-size: 13px;
+  color: var(--fb-text-2);
+  line-height: 1.3;
+}
+
+/* Ô soạn bài */
+.fb-composer { padding: 12px 16px; }
+
+.fb-composer-row { display: flex; gap: 8px; align-items: center; }
+
+.fb-composer-input {
+  flex: 1;
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  border: none;
+  background: var(--fb-chip);
+  color: var(--fb-text);
+  font-size: 15px;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+}
+
+.fb-composer-input::placeholder { color: var(--fb-text-2); }
+
+.fb-composer-open .fb-composer-input {
+  border-radius: 8px;
+  min-height: 110px;
+  line-height: 1.45;
+}
+
+.fb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: var(--fb-chip);
+  color: var(--fb-text);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: filter 0.12s ease;
+}
+
+.fb-btn:hover:not(:disabled) { filter: brightness(0.94); }
+.fb-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.fb-btn-primary { background: var(--fb-blue); color: #fff; }
+.fb-btn-primary:hover:not(:disabled) { background: var(--fb-blue-hover); filter: none; }
+.fb-btn-danger { color: var(--fb-red); }
+.fb-btn-block { width: 100%; }
+
+/* Bài viết */
+.fb-post-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px 0;
+}
+
+.fb-post-text {
+  padding: 4px 16px 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--fb-text);
+}
+
+.fb-post-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: var(--fb-chip);
+}
+
+.fb-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--fb-text-2);
+}
+
+.fb-reactions { display: inline-flex; align-items: center; gap: 5px; }
+
+.fb-reaction-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  color: #fff;
+  border: 2px solid var(--fb-card);
+}
+
+.fb-actions {
+  display: flex;
+  border-top: 1px solid var(--fb-divider);
+  margin: 0 12px;
+  padding: 4px 0;
+}
+
+.fb-action {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--fb-text-2);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.fb-action:hover { background: var(--fb-hover); }
+.fb-action-danger:hover { color: var(--fb-red); }
+
+/* Bình luận */
+.fb-comments {
+  padding: 8px 16px 14px;
+  border-top: 1px solid var(--fb-divider);
+}
+
+.fb-comment { display: flex; gap: 8px; margin-bottom: 10px; }
+
+.fb-bubble {
+  background: var(--fb-chip);
+  border-radius: 18px;
+  padding: 8px 12px;
+  max-width: 100%;
+}
+
+.fb-bubble .fb-name { font-size: 13px; }
+
+.fb-bubble p {
+  margin: 2px 0 0;
+  font-size: 15px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.fb-comment-meta {
+  display: flex;
+  gap: 12px;
+  padding: 4px 0 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fb-text-2);
+}
+
+.fb-reply-list { margin-left: 40px; }
+
+.fb-reply-form { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+
+.fb-reply-input {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: 18px;
+  border: none;
+  background: var(--fb-chip);
+  color: var(--fb-text);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+}
+
+/* Thanh trạng thái kết nối */
+.fb-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  flex-wrap: wrap;
+}
+
+.fb-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--fb-chip);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fb-text-2);
+}
+
+.fb-chip-ok { background: rgba(49, 162, 76, 0.15); color: var(--fb-green); }
+.fb-chip-warn { background: rgba(228, 30, 63, 0.14); color: var(--fb-red); }
+
+.fb-toast {
+  position: sticky;
+  top: 8px;
+  z-index: 20;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.fb-toast-ok { background: var(--fb-green); color: #fff; }
+.fb-toast-err { background: var(--fb-red); color: #fff; }
+
+/* ==========================================================================
+   LIQUID GLASS TAB-BAR (FIXED/STICKY NAVIGATION)
+   ========================================================================== */
+.site-nav-liquidglass {
+  background-color: rgba(255, 255, 255, 0.84) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme='dark'] .site-nav-liquidglass {
+  background-color: rgba(15, 23, 42, 0.86) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.fb-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--fb-text-2);
+  font-size: 15px;
+}
+
+.fb-menu {
+  position: absolute;
+  right: 8px;
+  top: 40px;
+  min-width: 180px;
+  background: var(--fb-card);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  padding: 6px;
+  z-index: 10;
+}
+
+.fb-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--fb-text);
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fb-menu button:hover { background: var(--fb-hover); }
+
+@media (max-width: 600px) {
+  .fb-post-head, .fb-post-text, .fb-stats, .fb-composer, .fb-comments { padding-left: 12px; padding-right: 12px; }
+  .fb-action { font-size: 13px; }
+}
+
+/* ==========================================================================
+   SKELETON SHIMMER ANIMATION (PREMIUM SMOOTH LOADING)
+   ========================================================================== */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-btn-subtle-bg, #f3f4f6) 0%,
+    rgba(229, 231, 235, 0.8) 50%,
+    var(--color-btn-subtle-bg, #f3f4f6) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  border-radius: 6px;
+  display: block;
+}
+
+/* App không đặt data-theme ở đâu cả, dark mode chạy bằng prefers-color-scheme,
+   nên chỉ dùng [data-theme] thì khối này không bao giờ khớp. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+:root[data-theme='dark'] .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
+/* Lớp bố cục dùng kèm .skeleton */
+.skel-line { height: 12px; margin-bottom: 8px; }
+.skel-line:last-child { margin-bottom: 0; }
+.skel-title { height: 18px; margin-bottom: 10px; }
+.skel-circle { border-radius: 50%; }
+
+.skel-news-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15px;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--color-border-subtle);
+}
+
+.skel-news-thumb { height: 65px; }
+
+/* Skeleton trong khu vực admin lấy nền theo bảng màu Facebook */
+.fb .skeleton {
+  background: var(--fb-chip);
+  animation: none;
 }

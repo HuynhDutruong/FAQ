@@ -2,7 +2,7 @@
 import React from 'react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { Language } from '@/lib/i18n/translations';
-import { Globe } from 'lucide-react';
+import { Globe, ChevronDown } from 'lucide-react';
 
 const languages: { code: Language; label: string }[] = [
   { code: 'vi', label: 'Tiếng Việt' },
@@ -22,48 +22,68 @@ const languages: { code: Language; label: string }[] = [
 
 export default function LanguageSwitcher() {
   const { lang, setLang } = useLanguage();
+  const currentLang = languages.find(l => l.code === lang) || languages[0];
 
   return (
     <div style={{
-      position: 'absolute',
-      top: '18px',
-      right: '18px',
-      zIndex: 100,
-      display: 'flex',
-      alignItems: 'center',
-      gap: '6px',
-      padding: '7px 12px',
-      borderRadius: '999px',
-      color: 'var(--color-dark)'
-    }} className="liquid-glass">
-      <Globe size={16} />
-      <select 
-        value={lang} 
-        onChange={(e) => setLang(e.target.value as Language)}
+      position: 'relative',
+      display: 'inline-flex',
+      alignItems: 'center'
+    }}>
+      <div
         style={{
-          background: 'transparent',
-          border: 'none',
-          color: 'var(--color-dark)',
-          fontSize: '13px',
-          fontWeight: 700,
-          outline: 'none',
-          cursor: 'pointer',
-          fontFamily: 'inherit'
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '5px',
+          padding: '5px 9px',
+          borderRadius: '999px',
+          backgroundColor: 'rgba(255, 255, 255, 0.16)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          color: '#FFFFFF',
+          fontSize: '0.78rem',
+          fontWeight: 800,
+          letterSpacing: '0.04em',
+          cursor: 'pointer'
         }}
       >
-        {languages.map(item => (
-          <option
-            key={item.code}
-            value={item.code}
-            style={{
-              backgroundColor: 'var(--color-modal-bg)',
-              color: 'var(--color-dark)'
-            }}
-          >
-            {item.label}
-          </option>
-        ))}
-      </select>
+        <Globe size={14} style={{ opacity: 0.9 }} />
+        <span style={{ textTransform: 'uppercase', lineHeight: 1 }}>
+          {currentLang.code}
+        </span>
+        <ChevronDown size={12} style={{ opacity: 0.7 }} />
+
+        {/* Native invisible select covering the whole pill */}
+        <select
+          value={lang}
+          onChange={(e) => setLang(e.target.value as Language)}
+          aria-label="Chọn ngôn ngữ"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            opacity: 0,
+            cursor: 'pointer',
+            fontSize: '16px'
+          }}
+        >
+          {languages.map(item => (
+            <option
+              key={item.code}
+              value={item.code}
+              style={{
+                backgroundColor: '#1E293B',
+                color: '#FFFFFF',
+                fontSize: '14px'
+              }}
+            >
+              {item.code.toUpperCase()} — {item.label}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
