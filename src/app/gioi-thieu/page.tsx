@@ -600,10 +600,10 @@ export default function GioiThieuPage() {
                 borderRadius: '10px',
                 overflow: 'hidden',
                 border: '1px solid var(--color-border-subtle)',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: 'var(--color-card-bg)',
                 boxShadow: '0 4px 14px rgba(0,0,0,0.08)'
               }}>
-                <div style={{ position: 'relative', width: '100%', height: '280px', backgroundColor: '#FFFFFF', padding: '16px' }}>
+                <div style={{ position: 'relative', width: '100%', height: '280px', backgroundColor: 'var(--color-card-bg)', padding: '16px' }}>
                   <Image
                     src="/images/hdgmvn_banner.jpg"
                     alt="Hội Đồng Giám Mục Việt Nam"

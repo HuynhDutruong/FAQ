@@ -21,15 +21,15 @@ import { removeAccents } from '@/lib/massTimes';
 
 const FAVORITES_STORAGE_KEY = 'catholic_favorite_prayers_v1';
 
-// Convert markdown bold/italics to HTML
+// Convert markdown bold/italics to HTML with dynamic theme color
 function formatInlineMarkdown(text: string): string {
   let res = text;
   // bold: **text**
-  res = res.replace(/\*\*(.*?)\*\*/g, '<strong style="color: #111827; font-weight: 700;">$1</strong>');
+  res = res.replace(/\*\*(.*?)\*\*/g, '<strong style="color: var(--color-dark); font-weight: 700;">$1</strong>');
   // italics: *text*
   res = res.replace(/\*(.*?)\*/g, '<em style="opacity: 0.9;">$1</em>');
   // Liturgical cues (Đ., Thưa., X:, Đ:)
-  res = res.replace(/^((?:Đ\.|Thưa\.|X:|Đ:))\s*/, '<strong style="color: #B71C1C; font-weight: 800;">$1 </strong>');
+  res = res.replace(/^((?:Đ\.|Thưa\.|X:|Đ:))\s*/, '<strong style="color: var(--color-red); font-weight: 800;">$1 </strong>');
   return res;
 }
 
@@ -38,7 +38,7 @@ function PrayerStanzaViewer({ content, fontSize = 17 }: { content: string; fontS
   const stanzas = content.split(/\n\s*\n/);
 
   return (
-    <div style={{ fontSize: `${fontSize}px`, lineHeight: 1.85, color: '#1F2937', letterSpacing: '0.01em' }}>
+    <div style={{ fontSize: `${fontSize}px`, lineHeight: 1.85, color: 'var(--color-dark)', letterSpacing: '0.01em' }}>
       {stanzas.map((stanza, sIdx) => {
         const lines = stanza.split('\n').map(l => l.trim()).filter(Boolean);
         if (lines.length === 0) return null;
@@ -50,10 +50,10 @@ function PrayerStanzaViewer({ content, fontSize = 17 }: { content: string; fontS
               <h4 style={{
                 fontSize: `${fontSize * 1.12}px`,
                 fontWeight: 800,
-                color: '#B71C1C',
+                color: 'var(--color-red)',
                 margin: 0,
                 paddingBottom: '6px',
-                borderBottom: '1px dashed #E5E7EB'
+                borderBottom: '1px dashed var(--color-border-subtle)'
               }}>
                 {lines[0].replace(/^###\s*/, '')}
               </h4>
@@ -72,7 +72,7 @@ function PrayerStanzaViewer({ content, fontSize = 17 }: { content: string; fontS
                 const cleanText = l.replace(/^[•\-]\s*/, '');
                 return (
                   <div key={lIdx} style={{ display: 'flex', gap: '8px', paddingLeft: '4px' }}>
-                    <span style={{ color: '#B71C1C', fontWeight: 800 }}>•</span>
+                    <span style={{ color: 'var(--color-red)', fontWeight: 800 }}>•</span>
                     <span dangerouslySetInnerHTML={{ __html: formatInlineMarkdown(cleanText) }} />
                   </div>
                 );
@@ -161,24 +161,25 @@ export default function KinhNguyenPage() {
     if (e) e.stopPropagation();
     const shareData = {
       title: prayer.title,
-      text: `${prayer.title}\n\n${prayer.content.slice(0, 300)}...`,
-      url: typeof window !== 'undefined' ? window.location.href : ''
+      text: `${prayer.title}\n\n${prayer.content.slice(0, 200)}...`,
+      url: window.location.href
     };
     if (navigator.share) {
       try {
         await navigator.share(shareData);
       } catch {
-        // noop
+        // user cancelled
       }
     } else {
       handleCopyPrayer(prayer);
     }
   };
 
-  // Filter prayers with multi-word search
+  // Filter prayers
   const filteredPrayers = useMemo(() => {
     let list = PRAYERS;
 
+    // Filter by category
     if (selectedCategory === 'favorites') {
       list = list.filter(p => favorites.includes(p.id));
     } else if (selectedCategory === 'popular') {
@@ -187,65 +188,60 @@ export default function KinhNguyenPage() {
       list = list.filter(p => p.category === selectedCategory);
     }
 
+    // Filter by search query
     if (searchQuery.trim()) {
       const q = removeAccents(searchQuery.trim());
-      const words = q.split(/\s+/).filter(Boolean);
       list = list.filter(p => {
-        const titleNorm = removeAccents(p.title);
-        const contentNorm = removeAccents(p.content);
-        return words.every(w => titleNorm.includes(w) || contentNorm.includes(w));
+        const titleMatch = removeAccents(p.title).includes(q);
+        const contentMatch = removeAccents(p.content).includes(q);
+        return titleMatch || contentMatch;
       });
     }
 
     return list;
   }, [selectedCategory, searchQuery, favorites]);
 
-  // Counts map for category badges
+  // Counts by category
   const categoryCounts = useMemo(() => {
-    const map: Record<string, number> = {
+    const counts: Record<string, number> = {
       all: PRAYERS.length,
-      popular: PRAYERS.filter(p => p.isPopular).length,
-      favorites: favorites.length
+      popular: PRAYERS.filter(p => p.isPopular).length
     };
-    for (const cat of PRAYER_CATEGORIES) {
-      if (cat.id !== 'all' && cat.id !== 'popular') {
-        map[cat.id] = PRAYERS.filter(p => p.category === cat.id).length;
+    PRAYER_CATEGORIES.forEach(c => {
+      if (c.id !== 'all' && c.id !== 'popular') {
+        counts[c.id] = PRAYERS.filter(p => p.category === c.id).length;
       }
-    }
-    return map;
-  }, [favorites]);
+    });
+    return counts;
+  }, []);
 
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-gradient)' }}>
+    <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--color-beige)' }}>
       {/* Toast Notification */}
       {toastMessage && (
-        <div
-          style={{
-            position: 'fixed',
-            bottom: '24px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'rgba(22, 24, 29, 0.95)',
-            color: '#FFFFFF',
-            padding: '10px 20px',
-            borderRadius: '30px',
-            fontSize: '0.9rem',
-            fontWeight: 600,
-            zIndex: 9999,
-            boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            backdropFilter: 'blur(8px)',
-            animation: 'fadeIn 0.2s ease-in-out'
-          }}
-        >
-          <Check size={16} color="#4ADE80" />
-          {toastMessage}
+        <div style={{
+          position: 'fixed',
+          bottom: '24px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          backgroundColor: 'var(--color-dark)',
+          color: 'var(--color-card-bg)',
+          padding: '10px 20px',
+          borderRadius: '24px',
+          fontSize: '0.88rem',
+          fontWeight: 700,
+          boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}>
+          <Check size={16} color="var(--color-red)" />
+          <span>{toastMessage}</span>
         </div>
       )}
 
-      {/* Hero Header with Antique Jesus Painting Background */}
+      {/* Classical Solemn Hero Header */}
       <div style={{
         position: 'relative',
         backgroundImage: 'linear-gradient(180deg, rgba(15, 8, 8, 0.72) 0%, rgba(45, 15, 15, 0.60) 50%, rgba(15, 8, 8, 0.85) 100%), url("/images/jesus_antique_banner.jpg")',
@@ -315,7 +311,7 @@ export default function KinhNguyenPage() {
                 gap: '8px',
                 padding: '8px 16px',
                 borderRadius: '20px',
-                background: selectedCategory === 'favorites' ? '#B71C1C' : 'rgba(0, 0, 0, 0.55)',
+                background: selectedCategory === 'favorites' ? 'var(--color-red)' : 'rgba(0, 0, 0, 0.55)',
                 color: '#FFFFFF',
                 fontWeight: 700,
                 fontSize: '0.85rem',
@@ -331,7 +327,7 @@ export default function KinhNguyenPage() {
             </button>
           </div>
 
-          {/* Search Box - Fast & Accurate */}
+          {/* Liquid Glass Search Box - Không chói mắt */}
           <div style={{ position: 'relative', marginTop: '20px' }}>
             <Search
               size={18}
@@ -340,7 +336,8 @@ export default function KinhNguyenPage() {
                 left: '16px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: '#9CA3AF'
+                color: '#FDE68A',
+                zIndex: 2
               }}
             />
             <input
@@ -351,14 +348,15 @@ export default function KinhNguyenPage() {
               style={{
                 width: '100%',
                 padding: '14px 44px 14px 46px',
-                borderRadius: '10px',
-                border: '1px solid rgba(253, 230, 138, 0.3)',
+                borderRadius: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.28)',
                 fontSize: '0.98rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.96)',
-                color: '#111827',
+                backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                color: '#FFFFFF',
                 outline: 'none',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
-                backdropFilter: 'blur(10px)'
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3)',
+                backdropFilter: 'blur(16px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(16px) saturate(180%)'
               }}
             />
             {searchQuery && (
@@ -370,7 +368,9 @@ export default function KinhNguyenPage() {
                   top: '50%',
                   transform: 'translateY(-50%)',
                   padding: '4px',
-                  color: '#6B7280'
+                  color: '#FDE68A',
+                  cursor: 'pointer',
+                  zIndex: 2
                 }}
                 title="Xóa tìm kiếm"
               >
@@ -383,13 +383,13 @@ export default function KinhNguyenPage() {
 
       <div style={{ flex: 1, padding: '20px 16px 40px', maxWidth: '1060px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-        {/* Solemn Categories Navigation Bar (no emojis) */}
+        {/* Solemn Categories Navigation Bar (Liquid Glass Pill tabs) */}
         <div style={{
           display: 'flex',
           gap: '8px',
           overflowX: 'auto',
           paddingBottom: '6px',
-          scrollbarWidth: 'thin'
+          scrollbarWidth: 'none'
         }}>
           {/* Favorite tab */}
           <button
@@ -404,10 +404,11 @@ export default function KinhNguyenPage() {
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              backgroundColor: selectedCategory === 'favorites' ? '#B71C1C' : '#FFFFFF',
-              color: selectedCategory === 'favorites' ? '#FFFFFF' : '#1F2937',
-              border: `1px solid ${selectedCategory === 'favorites' ? '#B71C1C' : 'rgba(0, 0, 0, 0.08)'}`,
-              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+              backgroundColor: selectedCategory === 'favorites' ? 'var(--color-red)' : 'var(--color-card-bg)',
+              color: selectedCategory === 'favorites' ? '#FFFFFF' : 'var(--color-dark)',
+              border: `1px solid ${selectedCategory === 'favorites' ? 'var(--color-red)' : 'var(--color-border-subtle)'}`,
+              boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+              transition: 'all 0.15s ease'
             }}
           >
             <span>Kinh Đã Lưu</span>
@@ -415,7 +416,7 @@ export default function KinhNguyenPage() {
               fontSize: '0.75rem',
               padding: '1px 6px',
               borderRadius: '10px',
-              backgroundColor: selectedCategory === 'favorites' ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)',
+              backgroundColor: selectedCategory === 'favorites' ? 'rgba(255,255,255,0.25)' : 'var(--color-btn-subtle-bg)',
               color: 'inherit'
             }}>
               {favorites.length}
@@ -440,10 +441,11 @@ export default function KinhNguyenPage() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '6px',
-                  backgroundColor: active ? '#B71C1C' : '#FFFFFF',
-                  color: active ? '#FFFFFF' : '#1F2937',
-                  border: `1px solid ${active ? '#B71C1C' : 'rgba(0, 0, 0, 0.08)'}`,
-                  boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                  backgroundColor: active ? 'var(--color-red)' : 'var(--color-card-bg)',
+                  color: active ? '#FFFFFF' : 'var(--color-dark)',
+                  border: `1px solid ${active ? 'var(--color-red)' : 'var(--color-border-subtle)'}`,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+                  transition: 'all 0.15s ease'
                 }}
               >
                 <span>{cat.label}</span>
@@ -451,7 +453,7 @@ export default function KinhNguyenPage() {
                   fontSize: '0.75rem',
                   padding: '1px 6px',
                   borderRadius: '10px',
-                  backgroundColor: active ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.06)',
+                  backgroundColor: active ? 'rgba(255,255,255,0.25)' : 'var(--color-btn-subtle-bg)',
                   color: 'inherit'
                 }}>
                   {count}
@@ -463,7 +465,7 @@ export default function KinhNguyenPage() {
 
         {/* Results summary & Font Controls */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
-          <div style={{ fontSize: '0.9rem', color: '#4B5563', fontWeight: 600 }}>
+          <div style={{ fontSize: '0.9rem', color: 'var(--color-muted)', fontWeight: 600 }}>
             {searchQuery ? (
               <span>Tìm thấy <strong>{filteredPrayers.length}</strong> kết quả cho &ldquo;{searchQuery}&rdquo;</span>
             ) : (
@@ -473,21 +475,21 @@ export default function KinhNguyenPage() {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {/* Global font size adjuster */}
-            <div style={{ display: 'flex', alignItems: 'center', background: '#FFFFFF', border: '1px solid rgba(0, 0, 0, 0.08)', borderRadius: '6px', padding: '2px 4px' }}>
-              <span style={{ fontSize: '0.75rem', color: '#6B7280', padding: '0 4px', fontWeight: 600 }}>Cỡ chữ:</span>
+            <div style={{ display: 'flex', alignItems: 'center', background: 'var(--color-card-bg)', border: '1px solid var(--color-border-subtle)', borderRadius: '6px', padding: '2px 4px' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', padding: '0 4px', fontWeight: 600 }}>Cỡ chữ:</span>
               <button
                 onClick={() => setFontSize(prev => Math.max(14, prev - 1))}
-                style={{ padding: '2px 6px', fontSize: '0.8rem', fontWeight: 800, color: '#111827' }}
+                style={{ padding: '2px 6px', fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-dark)' }}
                 title="Giảm cỡ chữ"
               >
                 A-
               </button>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0 2px', minWidth: '22px', textAlign: 'center' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0 2px', minWidth: '22px', textAlign: 'center', color: 'var(--color-dark)' }}>
                 {fontSize}
               </span>
               <button
                 onClick={() => setFontSize(prev => Math.min(26, prev + 1))}
-                style={{ padding: '2px 6px', fontSize: '0.85rem', fontWeight: 800, color: '#111827' }}
+                style={{ padding: '2px 6px', fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-dark)' }}
                 title="Tăng cỡ chữ"
               >
                 A+
@@ -504,7 +506,7 @@ export default function KinhNguyenPage() {
               }}
               style={{
                 fontSize: '0.8rem',
-                color: '#4B5563',
+                color: 'var(--color-muted)',
                 fontWeight: 600,
                 textDecoration: 'underline',
                 padding: '4px 6px'
@@ -521,15 +523,15 @@ export default function KinhNguyenPage() {
             style={{
               padding: '48px 20px',
               textAlign: 'center',
-              backgroundColor: '#FFFFFF',
+              backgroundColor: 'var(--color-card-bg)',
               borderRadius: '12px',
-              border: '1px solid rgba(0, 0, 0, 0.08)'
+              border: '1px solid var(--color-border-subtle)'
             }}
           >
-            <h3 style={{ fontSize: '1.1rem', color: '#111827', marginBottom: '6px' }}>
+            <h3 style={{ fontSize: '1.1rem', color: 'var(--color-dark)', marginBottom: '6px' }}>
               {selectedCategory === 'favorites' ? 'Chưa có kinh nào được lưu' : 'Không tìm thấy kinh nguyện phù hợp'}
             </h3>
-            <p style={{ fontSize: '0.9rem', color: '#6B7280', maxWidth: '420px', margin: '0 auto' }}>
+            <p style={{ fontSize: '0.9rem', color: 'var(--color-subtle)', maxWidth: '420px', margin: '0 auto' }}>
               {selectedCategory === 'favorites'
                 ? 'Hãy bấm vào nút Lưu kinh ở mỗi bản kinh để lưu lại kinh bạn thường đọc.'
                 : 'Vui lòng thử tìm kiếm bằng từ khoá khác hoặc chọn lại danh mục kinh.'}
@@ -547,15 +549,15 @@ export default function KinhNguyenPage() {
                   key={prayer.id}
                   id={prayer.id}
                   style={{
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: 'var(--color-card-bg)',
                     borderRadius: '12px',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
+                    border: '1px solid var(--color-border-subtle)',
                     boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
                     overflow: 'hidden',
                     transition: 'box-shadow 0.2s ease, border-color 0.2s ease'
                   }}
                 >
-                  {/* Clickable Header matching user screenshot */}
+                  {/* Clickable Header */}
                   <div
                     onClick={() => setExpandedId(isExpanded ? null : prayer.id)}
                     style={{
@@ -564,14 +566,14 @@ export default function KinhNguyenPage() {
                       userSelect: 'none'
                     }}
                   >
-                    {/* Eyebrow Label: Solemn text */}
+                    {/* Eyebrow Label */}
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
                       gap: '8px',
                       fontSize: '0.75rem',
                       fontWeight: 700,
-                      color: '#B45309',
+                      color: 'var(--color-yellow)',
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
                       marginBottom: '6px'
@@ -579,8 +581,8 @@ export default function KinhNguyenPage() {
                       <span>{catMeta?.label ? `KINH NGUYỆN • ${catMeta.label}` : 'KINH NGUYỆN CÔNG GIÁO'}</span>
                       {prayer.isPopular && (
                         <span style={{
-                          color: '#B71C1C',
-                          background: 'rgba(183, 28, 28, 0.08)',
+                          color: 'var(--color-red)',
+                          background: 'var(--color-chip-sunday-bg)',
                           padding: '1px 6px',
                           borderRadius: '4px',
                           fontSize: '0.65rem'
@@ -596,7 +598,7 @@ export default function KinhNguyenPage() {
                         margin: 0,
                         fontSize: 'clamp(1.05rem, 2.2vw, 1.25rem)',
                         fontWeight: 700,
-                        color: '#111827',
+                        color: 'var(--color-dark)',
                         lineHeight: 1.35,
                         letterSpacing: '-0.01em'
                       }}>
@@ -610,7 +612,7 @@ export default function KinhNguyenPage() {
                           style={{
                             padding: '8px',
                             borderRadius: '50%',
-                            color: isFav ? '#B71C1C' : '#9CA3AF',
+                            color: isFav ? 'var(--color-red)' : 'var(--color-subtle)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -630,7 +632,7 @@ export default function KinhNguyenPage() {
                           style={{
                             padding: '8px',
                             borderRadius: '50%',
-                            color: '#9CA3AF',
+                            color: 'var(--color-subtle)',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center'
@@ -639,16 +641,16 @@ export default function KinhNguyenPage() {
                           <Maximize2 size={18} />
                         </button>
 
-                        <div style={{ color: isExpanded ? '#B71C1C' : '#9CA3AF', padding: '4px', display: 'flex', alignItems: 'center' }}>
+                        <div style={{ color: isExpanded ? 'var(--color-red)' : 'var(--color-subtle)', padding: '4px', display: 'flex', alignItems: 'center' }}>
                           {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                         </div>
                       </div>
                     </div>
 
-                    {/* Subtle Horizontal Divider below title (matching user image) */}
+                    {/* Subtle Horizontal Divider below title */}
                     <div style={{
                       height: '1px',
-                      backgroundColor: '#F3F4F6',
+                      backgroundColor: 'var(--color-border-subtle)',
                       marginTop: '16px',
                       width: '100%'
                     }} />
@@ -668,7 +670,7 @@ export default function KinhNguyenPage() {
                         justifyContent: 'space-between',
                         marginTop: '20px',
                         paddingTop: '16px',
-                        borderTop: '1px solid #F3F4F6',
+                        borderTop: '1px solid var(--color-border-subtle)',
                         flexWrap: 'wrap',
                         gap: '10px'
                       }}>
@@ -683,7 +685,7 @@ export default function KinhNguyenPage() {
                             gap: '6px',
                             padding: '8px 16px',
                             borderRadius: '6px',
-                            backgroundColor: '#B71C1C',
+                            backgroundColor: 'var(--color-red)',
                             color: '#FFFFFF',
                             fontSize: '0.85rem',
                             fontWeight: 700,
@@ -703,8 +705,9 @@ export default function KinhNguyenPage() {
                               gap: '6px',
                               padding: '8px 12px',
                               borderRadius: '6px',
-                              backgroundColor: '#F3F4F6',
-                              color: '#374151',
+                              backgroundColor: 'var(--color-btn-subtle-bg)',
+                              color: 'var(--color-dark)',
+                              border: '1px solid var(--color-border-subtle)',
                               fontSize: '0.85rem',
                               fontWeight: 600,
                               cursor: 'pointer'
@@ -722,8 +725,9 @@ export default function KinhNguyenPage() {
                               gap: '6px',
                               padding: '8px 12px',
                               borderRadius: '6px',
-                              backgroundColor: '#F3F4F6',
-                              color: '#374151',
+                              backgroundColor: 'var(--color-btn-subtle-bg)',
+                              color: 'var(--color-dark)',
+                              border: '1px solid var(--color-border-subtle)',
                               fontSize: '0.85rem',
                               fontWeight: 600,
                               cursor: 'pointer'
@@ -750,7 +754,8 @@ export default function KinhNguyenPage() {
             position: 'fixed',
             inset: 0,
             backgroundColor: 'rgba(0, 0, 0, 0.85)',
-            backdropFilter: 'blur(8px)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
             zIndex: 9990,
             display: 'flex',
             alignItems: 'center',
@@ -761,15 +766,16 @@ export default function KinhNguyenPage() {
         >
           <div
             style={{
-              backgroundColor: '#FFFFFF',
-              color: '#1F2937',
+              backgroundColor: 'var(--color-card-bg)',
+              color: 'var(--color-dark)',
               width: '100%',
               maxWidth: '820px',
               maxHeight: '92vh',
-              borderRadius: '12px',
+              borderRadius: '16px',
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+              boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)',
+              border: '1px solid var(--color-border-subtle)',
               overflow: 'hidden'
             }}
             onClick={e => e.stopPropagation()}
@@ -777,11 +783,11 @@ export default function KinhNguyenPage() {
             {/* Modal Header */}
             <div style={{
               padding: '18px 24px',
-              borderBottom: '1px solid #E5E7EB',
+              borderBottom: '1px solid var(--color-border-subtle)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              background: '#FAFAFA'
+              background: 'var(--color-btn-subtle-bg)'
             }}>
               <div>
                 <div style={{
@@ -790,14 +796,14 @@ export default function KinhNguyenPage() {
                   gap: '6px',
                   fontSize: '0.75rem',
                   fontWeight: 700,
-                  color: '#B45309',
+                  color: 'var(--color-yellow)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   marginBottom: '4px'
                 }}>
                   <span>KINH NGUYỆN CÔNG GIÁO</span>
                 </div>
-                <h3 style={{ margin: 0, fontSize: '1.18rem', fontWeight: 700, color: '#111827' }}>
+                <h3 style={{ margin: 0, fontSize: '1.18rem', fontWeight: 700, color: 'var(--color-dark)' }}>
                   {focusPrayer.title}
                 </h3>
               </div>
@@ -805,20 +811,20 @@ export default function KinhNguyenPage() {
               {/* Controls */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 {/* Font size buttons */}
-                <div style={{ display: 'flex', alignItems: 'center', background: '#E5E7EB', borderRadius: '6px', padding: '2px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', background: 'var(--color-card-bg)', border: '1px solid var(--color-border-subtle)', borderRadius: '6px', padding: '2px' }}>
                   <button
                     onClick={() => setFontSize(prev => Math.max(14, prev - 2))}
-                    style={{ padding: '6px 10px', fontSize: '0.85rem', fontWeight: 800, color: '#1F2937' }}
+                    style={{ padding: '6px 10px', fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-dark)' }}
                     title="Giảm cỡ chữ"
                   >
                     A-
                   </button>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0 4px', color: '#4B5563' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '0 4px', color: 'var(--color-muted)' }}>
                     {fontSize}px
                   </span>
                   <button
                     onClick={() => setFontSize(prev => Math.min(30, prev + 2))}
-                    style={{ padding: '6px 10px', fontSize: '0.95rem', fontWeight: 800, color: '#111827' }}
+                    style={{ padding: '6px 10px', fontSize: '0.95rem', fontWeight: 800, color: 'var(--color-dark)' }}
                     title="Tăng cỡ chữ"
                   >
                     A+
@@ -830,11 +836,13 @@ export default function KinhNguyenPage() {
                   style={{
                     padding: '8px',
                     borderRadius: '50%',
-                    background: '#E5E7EB',
-                    color: '#374151',
+                    background: 'var(--color-card-bg)',
+                    border: '1px solid var(--color-border-subtle)',
+                    color: 'var(--color-dark)',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    cursor: 'pointer'
                   }}
                   title="Đóng"
                 >
@@ -855,8 +863,8 @@ export default function KinhNguyenPage() {
             {/* Modal Footer - Rosary Bead Counter & Quick Actions */}
             <div style={{
               padding: '14px 24px',
-              borderTop: '1px solid #E5E7EB',
-              background: '#FAFAFA',
+              borderTop: '1px solid var(--color-border-subtle)',
+              background: 'var(--color-btn-subtle-bg)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -865,7 +873,7 @@ export default function KinhNguyenPage() {
             }}>
               {/* Bead / Prayer Counter */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#4B5563' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-muted)' }}>
                   Đếm chuỗi hạt / Lần đọc:
                 </span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -874,11 +882,12 @@ export default function KinhNguyenPage() {
                     style={{
                       padding: '6px 16px',
                       borderRadius: '20px',
-                      backgroundColor: '#B71C1C',
+                      backgroundColor: 'var(--color-red)',
                       color: '#FFFFFF',
                       fontSize: '0.9rem',
                       fontWeight: 800,
-                      boxShadow: '0 2px 6px rgba(183, 28, 28, 0.3)'
+                      boxShadow: '0 2px 6px rgba(211, 47, 47, 0.3)',
+                      cursor: 'pointer'
                     }}
                   >
                     +1 Lần ({beadCount})
@@ -890,8 +899,10 @@ export default function KinhNguyenPage() {
                       style={{
                         padding: '6px 8px',
                         borderRadius: '50%',
-                        backgroundColor: '#E5E7EB',
-                        color: '#6B7280'
+                        backgroundColor: 'var(--color-card-bg)',
+                        border: '1px solid var(--color-border-subtle)',
+                        color: 'var(--color-subtle)',
+                        cursor: 'pointer'
                       }}
                     >
                       <RotateCcw size={15} />
@@ -910,10 +921,12 @@ export default function KinhNguyenPage() {
                     gap: '6px',
                     padding: '8px 14px',
                     borderRadius: '6px',
-                    backgroundColor: '#F3F4F6',
-                    color: favorites.includes(focusPrayer.id) ? '#B71C1C' : '#374151',
+                    backgroundColor: 'var(--color-card-bg)',
+                    border: '1px solid var(--color-border-subtle)',
+                    color: favorites.includes(focusPrayer.id) ? 'var(--color-red)' : 'var(--color-dark)',
                     fontSize: '0.85rem',
-                    fontWeight: 700
+                    fontWeight: 700,
+                    cursor: 'pointer'
                   }}
                 >
                   {favorites.includes(focusPrayer.id) ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
@@ -928,10 +941,12 @@ export default function KinhNguyenPage() {
                     gap: '6px',
                     padding: '8px 14px',
                     borderRadius: '6px',
-                    backgroundColor: '#F3F4F6',
-                    color: '#374151',
+                    backgroundColor: 'var(--color-card-bg)',
+                    border: '1px solid var(--color-border-subtle)',
+                    color: 'var(--color-dark)',
                     fontSize: '0.85rem',
-                    fontWeight: 700
+                    fontWeight: 700,
+                    cursor: 'pointer'
                   }}
                 >
                   <Copy size={16} />
