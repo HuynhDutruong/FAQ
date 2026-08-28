@@ -110,20 +110,29 @@ export default function Home() {
           className="logo-floating"
           style={{
             position: 'relative',
-            width: '120px',
-            height: '120px',
-            marginBottom: '24px',
-            mixBlendMode: 'multiply' /* Khử nền trắng của ảnh logo */
+            width: '112px',
+            height: '112px',
+            marginBottom: '22px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(255, 255, 255, 0.96)',
+            boxShadow: '0 10px 30px rgba(255, 69, 58, 0.25), 0 0 0 3px rgba(251, 192, 45, 0.55)',
+            padding: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box'
           }}
         >
-          <Image 
-            src="/logo.jpg" 
-            alt="Logo Xứ Đoàn" 
-            fill
-            sizes="120px"
-            style={{ objectFit: 'contain' }}
-            priority
-          />
+          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            <Image 
+              src="/logo.jpg" 
+              alt="Logo Xứ Đoàn" 
+              fill
+              sizes="112px"
+              style={{ objectFit: 'contain', borderRadius: '50%' }}
+              priority
+            />
+          </div>
         </div>
 
         <h1 style={{ 
@@ -159,7 +168,7 @@ export default function Home() {
             fontSize: '0.85rem',
             fontWeight: 700,
             color: 'var(--color-red)',
-            border: '1px solid rgba(211, 47, 47, 0.3)',
+            border: '1px solid rgba(255, 69, 58, 0.3)',
             cursor: 'pointer',
             transition: 'all 0.3s ease'
           }}
@@ -201,14 +210,14 @@ export default function Home() {
         <LiquidButton 
           icon={Clock} 
           label={t.btnMassTimes} 
-          variant="beige"
+          variant="blue"
           onClick={() => router.push('/gio-le')}
         />
         
         <LiquidButton 
           icon={Info} 
           label={t.btnIntroDiocese} 
-          variant="red"
+          variant="green"
           onClick={() => setActiveModal('intro')}
         />
       </div>

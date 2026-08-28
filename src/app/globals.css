@@ -232,16 +232,26 @@ button {
 @keyframes floatLogo {
   0%, 100% {
     transform: translateY(0) scale(1);
-    filter: drop-shadow(0 8px 16px rgba(211, 47, 47, 0.15));
   }
   50% {
-    transform: translateY(-8px) scale(1.03);
-    filter: drop-shadow(0 16px 28px rgba(211, 47, 47, 0.25));
+    transform: translateY(-6px) scale(1.02);
   }
 }
 
 .logo-floating {
   animation: floatLogo 4s ease-in-out infinite;
+}
+
+.apple-tile {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apple-tile:hover .icon-container {
+  transform: scale(1.1) translateY(-2px);
+}
+
+.apple-tile:active {
+  transform: scale(0.96) !important;
 }
 
 @keyframes pulsePill {
