@@ -37,7 +37,49 @@ export async function listFacebookPages(): Promise<{ id: string; name: string }[
 }
 
 export async function getFacebookCredentials(): Promise<FacebookCredentials> {
-  // 1. Cấu hình đã lưu trong Firestore (chỉ server đọc được qua Admin SDK)
+  // 1. Ưu tiên: Token và Page ID đặt trực tiếp trong biến môi trường (nhanh, độc lập, không phụ thuộc Firestore)
+  const envToken =
+    process.env.FACEBOOK_PAGE_ACCESS_TOKEN ||
+    process.env.FACEBOOK_PAGE_TOKEN ||
+    process.env.FACEBOOK_ACCESS_TOKEN;
+
+  const envPageId = process.env.FACEBOOK_PAGE_ID;
+
+  if (envToken && envToken.trim()) {
+    let resolvedPageId = envPageId ? envPageId.trim() : '';
+    let resolvedName = process.env.FACEBOOK_PAGE_NAME || 'Fanpage Xứ Đoàn';
+
+    if (resolvedPageId) {
+      return {
+        pageId: resolvedPageId,
+        pageToken: envToken.trim(),
+        pageName: resolvedName,
+        source: 'env'
+      };
+    }
+
+    // Chưa có Page ID thì gọi Graph API /me để tự lấy
+    try {
+      const meRes = await fetch(
+        `https://graph.facebook.com/v20.0/me?fields=id,name&access_token=${envToken.trim()}`
+      );
+      const meData = await meRes.json();
+      if (!meData.error && meData.id) {
+        resolvedPageId = meData.id;
+        resolvedName = meData.name || resolvedName;
+        return {
+          pageId: resolvedPageId,
+          pageToken: envToken.trim(),
+          pageName: resolvedName,
+          source: 'env'
+        };
+      }
+    } catch (err) {
+      console.warn('Error verifying env token:', err);
+    }
+  }
+
+  // 2. Dự phòng: Cấu hình đã lưu trong Firestore qua trang Quản trị Admin
   try {
     const data = await getFacebookSettings();
     if (data?.selectedPageId && data?.selectedPageToken) {
@@ -52,43 +94,5 @@ export async function getFacebookCredentials(): Promise<FacebookCredentials> {
     console.warn('Cannot read firestore facebook doc:', e);
   }
 
-  // 2. Dự phòng: Token đặt sẵn trong biến môi trường
-  const envToken =
-    process.env.FACEBOOK_PAGE_ACCESS_TOKEN ||
-    process.env.FACEBOOK_PAGE_TOKEN ||
-    process.env.FACEBOOK_ACCESS_TOKEN;
-
-  const envPageId = process.env.FACEBOOK_PAGE_ID;
-
-  if (envToken) {
-    let resolvedPageId = envPageId ? envPageId.trim() : '';
-    let resolvedName = process.env.FACEBOOK_PAGE_NAME || 'Fanpage Xứ Đoàn';
-
-    // Chưa có Page ID thì gọi Graph API /me để tự lấy
-    if (!resolvedPageId) {
-      try {
-        const meRes = await fetch(
-          `https://graph.facebook.com/v20.0/me?fields=id,name&access_token=${envToken.trim()}`
-        );
-        const meData = await meRes.json();
-        if (!meData.error && meData.id) {
-          resolvedPageId = meData.id;
-          resolvedName = meData.name || resolvedName;
-        }
-      } catch (err) {
-        console.warn('Error verifying env token:', err);
-      }
-    }
-
-    if (resolvedPageId) {
-      return {
-        pageId: resolvedPageId,
-        pageToken: envToken.trim(),
-        pageName: resolvedName,
-        source: 'env'
-      };
-    }
-  }
-
-  throw new Error('Chưa cấu hình Fanpage Facebook. Vui lòng dán Access Token trong trang Quản trị.');
+  throw new Error('Chưa cấu hình Fanpage Facebook. Vui lòng kiểm tra biến môi trường hoặc cấu hình trong trang Quản trị.');
 }
