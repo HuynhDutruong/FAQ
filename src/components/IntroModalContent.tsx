@@ -106,16 +106,38 @@ export default function IntroModalContent() {
         <h3 style={{ color: 'var(--color-red)', marginBottom: '16px', fontSize: '1.3rem', fontWeight: 'bold', borderBottom: '2px solid rgba(211,47,47,0.2)', paddingBottom: '8px', textTransform: 'uppercase' }}>
           {t.mapTitle}
         </h3>
-        <p style={{ marginBottom: '12px' }}><strong>Địa chỉ:</strong> 32 Hùng Vương, Phường 7, TP. Mỹ Tho, tỉnh Tiền Giang</p>
-        <div style={{ width: '100%', height: '280px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.15)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
+          <p style={{ margin: 0 }}><strong>Địa chỉ:</strong> 32 Hùng Vương, Phường Mỹ Tho, Tỉnh Tiền Giang</p>
+          <a 
+            href="https://www.google.com/maps/place/Nh%C3%A0+th%E1%BB%9D+ch%C3%A1nh+t%C3%B2a+%C4%90%C6%B0%CC%81c+M%E1%BA%B9+V%C3%B4+Nhi%E1%BB%85m+Nguy%C3%AAn+T%E1%BB%99i-+Gia%CC%81o+ph%C3%A2%CC%A3n+M%E1%BB%B9+Tho/@10.3614549,106.3623779,17z"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 14px',
+              background: 'linear-gradient(135deg, #d32f2f, #b71c1c)',
+              color: '#ffffff',
+              borderRadius: '20px',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              boxShadow: '0 2px 8px rgba(211, 47, 47, 0.3)'
+            }}
+          >
+            📍 Mở Chỉ Đường Google Maps
+          </a>
+        </div>
+        <div style={{ width: '100%', height: '320px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.18)', border: '1px solid rgba(211,47,47,0.2)' }}>
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3926.3150242273614!2d106.35728341533256!3d10.356828592607063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310aa588523b185b%3A0xe54ec99c64ef3cc4!2zTmjDoCB0aOG7nSBDaDkuaCB0w7JhIE3hu7kgVGhv!5e0!3m2!1svi!2s!4v1698765432100!5m2!1svi!2s" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.755118502476!2d106.3623778754807!3d10.36145486670997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310aafe61b74b32d%3A0xfe316f3333368f55!2zTmjDoCB0aOG7nSBjaMOhbmggdMOyYSDEkMawzIFjIE3hurkgVsO0IE5oaeG7hW0gTmd1ecOqbiBU4buZaS0gR2lhzIFvIHBow6LMo24gTeG7uSBUaG8!5e0!3m2!1svi!2s!4v1787901565429!5m2!1svi!2s" 
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 
             allowFullScreen={true} 
             loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
+            referrerPolicy="strict-origin-when-cross-origin"
           />
         </div>
       </div>
