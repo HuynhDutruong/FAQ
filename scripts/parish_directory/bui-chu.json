@@ -1,0 +1,1625 @@
+{
+  "diocese": "Bùi Chu",
+  "sources": [
+    "https://gpbuichu.org/giao-phan/Giao-hat.html",
+    "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html",
+    "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html",
+    "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html",
+    "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html",
+    "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html",
+    "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html",
+    "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html",
+    "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html",
+    "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html",
+    "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html",
+    "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html",
+    "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html",
+    "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+  ],
+  "deaneryCount": 13,
+  "note": "Lấy trực tiếp từ 13 trang giáo hạt trên gpbuichu.org (trang chính thức của giáo phận), mỗi trang có bảng Giáo xứ/Địa chỉ/Linh mục phụ trách/Tín hữu. Địa chỉ chỉ ở mức xã/huyện/tỉnh do nguồn công bố như vậy, không có địa chỉ đường phố cụ thể. Trang chính thức KHÔNG công bố giờ lễ từng giáo xứ nên các trường giờ lễ để rỗng. Đã loại 'Cô nhi viện Thánh An' (không phải giáo xứ) khỏi danh sách hạt Bùi Chu.",
+  "parishes": [
+    {
+      "parish": "Bùi Chu",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Ngọc, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Cát Xuyên",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Thành, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Hạc Châu",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Châu, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Kiên Lao",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Tiến, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Liên Thuỷ",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Ngọc, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Lục Thuỷ",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Hồng, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Ngọc Tiên",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Hồng, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Thuỷ Nhai",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Thuỷ, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Trung Linh",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Ngọc, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Xuân Dương",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Hoà, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Liên Thượng",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Ngọc, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Thánh Danh",
+      "deanery": "Bùi Chu",
+      "address": "Xuân Kiên, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bui-Chu.html"
+    },
+    {
+      "parish": "Bách Tính",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Hồng, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Báo Đáp",
+      "deanery": "Bảo Đáp",
+      "address": "Hồng Quang, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Cổ Ra",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Cường, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Dương A",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Thắng, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Khoái Đồng",
+      "deanery": "Bảo Đáp",
+      "address": "127 Phố Lê Hồng Phong, TP. NĐ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Lã Điền",
+      "deanery": "Bảo Đáp",
+      "address": "Điền Xá, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Nam Dương",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Dương, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Phong Lộc",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Phong, Tp. NĐ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Trực Chính",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Cường, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Hưng Nhượng",
+      "deanery": "Bảo Đáp",
+      "address": "Nam Lợi, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Hồng Quang",
+      "deanery": "Bảo Đáp",
+      "address": "Hồng Quang, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Bao-Dap.html"
+    },
+    {
+      "parish": "Đại Đồng",
+      "deanery": "Đại Đồng",
+      "address": "Giao Lạc, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Định Hải",
+      "deanery": "Đại Đồng",
+      "address": "Hồng Thuận, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Hà Cát",
+      "deanery": "Đại Đồng",
+      "address": "Hồng Thuận, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Hoành Đông",
+      "deanery": "Đại Đồng",
+      "address": "Giao Thiện, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Phú Ninh",
+      "deanery": "Đại Đồng",
+      "address": "Giao Xuân, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Phú Thọ",
+      "deanery": "Đại Đồng",
+      "address": "Giao Thiện, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Thiện Giáo",
+      "deanery": "Đại Đồng",
+      "address": "Giao Hương, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Thuận Thành",
+      "deanery": "Đại Đồng",
+      "address": "Hồng Thuận, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Lạc Nam",
+      "deanery": "Đại Đồng",
+      "address": "Giao Lạc, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Minh Đường",
+      "deanery": "Đại Đồng",
+      "address": "Giao Thanh, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Phú Hương",
+      "deanery": "Đại Đồng",
+      "address": "Giao Thiện, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Thanh Thuỷ",
+      "deanery": "Đại Đồng",
+      "address": "Giao An, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Ấp Lũ",
+      "deanery": "Đại Đồng",
+      "address": "Giao An, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Dai-Dong.html"
+    },
+    {
+      "parish": "Phương Chính",
+      "deanery": "Kiên Chính",
+      "address": "Hải Triều, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Kiên Chính",
+      "deanery": "Kiên Chính",
+      "address": "Hải Chính, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Hòa Định",
+      "deanery": "Kiên Chính",
+      "address": "Hải Lý, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Liên Phú",
+      "deanery": "Kiên Chính",
+      "address": "Hải Tây, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Xương Điền",
+      "deanery": "Kiên Chính",
+      "address": "Hải Lý, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Tân An",
+      "deanery": "Kiên Chính",
+      "address": "Hải Lý, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Văn Lý",
+      "deanery": "Kiên Chính",
+      "address": "Hải Lý, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Xuân Đài",
+      "deanery": "Kiên Chính",
+      "address": "Hải Hòa, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Long Châu",
+      "deanery": "Kiên Chính",
+      "address": "Hải Hòa, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Tang Điền",
+      "deanery": "Kiên Chính",
+      "address": "Hải Chính, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Thịnh Long",
+      "deanery": "Kiên Chính",
+      "address": "Hải Thịnh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Xuân Hà",
+      "deanery": "Kiên Chính",
+      "address": "Hải Đông, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Quế Phương",
+      "deanery": "Kiên Chính",
+      "address": "Hải Tây, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Tây Cát",
+      "deanery": "Kiên Chính",
+      "address": "Hải Đông, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Hải Điền",
+      "deanery": "Kiên Chính",
+      "address": "Hải Đông, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Trung Phương",
+      "deanery": "Kiên Chính",
+      "address": "Hải Quang, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Phú Hóa",
+      "deanery": "Kiên Chính",
+      "address": "Hải Thịnh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Trung Châu",
+      "deanery": "Kiên Chính",
+      "address": "Hải Thịnh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Kien-Chinh.html"
+    },
+    {
+      "parish": "Bình Hải",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Phú, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Đài Môn",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Phú, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Đồng Liêu",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Lạc, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Đồng Nghĩa",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Hồng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Đồng Quỹ",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Hồng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Giáp Nghĩa",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Hồng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Giáp Phú",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Hồng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Lạc Đạo",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Lạc, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Liêu Ngạn",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Sơn, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Quần Lạc",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Phong, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Âm Sa",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Phú, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Đồng Nhân",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Lạc, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Đồng Tâm",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Lạc, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Giang Liêu",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Sơn, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Lạc Hồng",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Phong, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Nam Phú",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Hồng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Tân Bơn",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Sơn, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Thuần Hậu",
+      "deanery": "Lạc Đạo",
+      "address": "Nghĩa Phú, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lac-Dao.html"
+    },
+    {
+      "parish": "Chương Nghĩa",
+      "deanery": "Liễu Đề",
+      "address": "Hoàng Nam, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Cốc Thành",
+      "deanery": "Liễu Đề",
+      "address": "Nghĩa Đồng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Đại Đê",
+      "deanery": "Liễu Đề",
+      "address": "Nghĩa Sơn, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Liễu Đề",
+      "deanery": "Liễu Đề",
+      "address": "Tt. Liễu Đề, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Lý Nghĩa",
+      "deanery": "Liễu Đề",
+      "address": "Nghĩa Châu, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Nam Trực",
+      "deanery": "Liễu Đề",
+      "address": "Nam Tiến, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Ngoại Đông",
+      "deanery": "Liễu Đề",
+      "address": "Nam Thái, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Quần Liêu",
+      "deanery": "Liễu Đề",
+      "address": "Nghĩa Sơn, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Quỹ Đê",
+      "deanery": "Liễu Đề",
+      "address": "Trực Mỹ, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Quỹ Ngoại",
+      "deanery": "Liễu Đề",
+      "address": "Trực Mỹ, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Thạch Bi",
+      "deanery": "Liễu Đề",
+      "address": "Nam Thái, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "Hà Dương",
+      "deanery": "Liễu Đề",
+      "address": "Nghĩa Châu, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Lieu-De.html"
+    },
+    {
+      "parish": "An Đạo",
+      "deanery": "Ninh Cường",
+      "address": "Hải An, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "An Nghĩa",
+      "deanery": "Ninh Cường",
+      "address": "Hải An, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Đông Bình",
+      "deanery": "Ninh Cường",
+      "address": "Trực Phú, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Lác Môn",
+      "deanery": "Ninh Cường",
+      "address": "Trực Hùng, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Ninh Cường",
+      "deanery": "Ninh Cường",
+      "address": "Trực Phú, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tân Lý",
+      "deanery": "Ninh Cường",
+      "address": "Trực Hùng, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tân Phường",
+      "deanery": "Ninh Cường",
+      "address": "Trực Hùng, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tây Đường",
+      "deanery": "Ninh Cường",
+      "address": "Trực Phú, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tích Tín",
+      "deanery": "Ninh Cường",
+      "address": "Trực Đại, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tân Châu",
+      "deanery": "Ninh Cường",
+      "address": "Trực Hùng, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tân Cường",
+      "deanery": "Ninh Cường",
+      "address": "Trực Cường, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "Tân Lập",
+      "deanery": "Ninh Cường",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Ninh-Cuong.html"
+    },
+    {
+      "parish": "An Phú",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Đài, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Cát Phú",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Phú, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Kính Danh",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Trung, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Lạc Thành",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Phú, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Phú Nhai",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Phương, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Quần Cống",
+      "deanery": "Phú Nhai",
+      "address": "Thọ Nghiệp, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Thánh Thể",
+      "deanery": "Phú Nhai",
+      "address": "Thọ Nghiệp, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Vạn Lộc",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Phong, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Nam Điền",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Vinh, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Phù Sa",
+      "deanery": "Phú Nhai",
+      "address": "Xuân Phú, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Thánh Mẫu",
+      "deanery": "Phú Nhai",
+      "address": "Thọ Nghiệp, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Phu-Nhai.html"
+    },
+    {
+      "parish": "Giáp Nam",
+      "deanery": "Quần Phương",
+      "address": "Hải Phương, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Hai Giáp",
+      "deanery": "Quần Phương",
+      "address": "Hải Anh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Hải Nhuận",
+      "deanery": "Quần Phương",
+      "address": "Hải Lộc, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Hưng Nghĩa",
+      "deanery": "Quần Phương",
+      "address": "Hải Hưng, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Phạm Pháo",
+      "deanery": "Quần Phương",
+      "address": "Hải Minh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Phạm Rị",
+      "deanery": "Quần Phương",
+      "address": "Hải Trung, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Phú Hải",
+      "deanery": "Quần Phương",
+      "address": "Hải Phúc, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Quần Phương",
+      "deanery": "Quần Phương",
+      "address": "Hải Phúc, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Tân Bồi",
+      "deanery": "Quần Phương",
+      "address": "Hải Minh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Triệu Thông",
+      "deanery": "Quần Phương",
+      "address": "Hải Bắc, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Trung Thành",
+      "deanery": "Quần Phương",
+      "address": "Hải Vân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Xuân Dục",
+      "deanery": "Quần Phương",
+      "address": "Xuân Ninh, Xuân Trường, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Cồn Vẽ",
+      "deanery": "Quần Phương",
+      "address": "Hải Minh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Kim Thành",
+      "deanery": "Quần Phương",
+      "address": "Hải Vân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Nam Đường",
+      "deanery": "Quần Phương",
+      "address": "Hải Đường, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Nam Hoà",
+      "deanery": "Quần Phương",
+      "address": "Hải Minh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Trại Đáy",
+      "deanery": "Quần Phương",
+      "address": "Hải Minh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Tùng Nhì",
+      "deanery": "Quần Phương",
+      "address": "Trực Thắng, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quan-Phuong.html"
+    },
+    {
+      "parish": "Ân Phú",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Hùng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Chỉ Thiện",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Thành, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Giáo Lạc",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Tân, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Nghĩa Dục",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Hải, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Ninh Hải",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Thắng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Phú Giáo",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Hải, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Phúc Điền",
+      "deanery": "Quỹ Nhất",
+      "address": "Nam Điền, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Phương Lạc",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Bình, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Quần Vinh",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Thắng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Quỹ Nhất",
+      "deanery": "Quỹ Nhất",
+      "address": "Tt. Quỹ Nhất, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Văn Giáo",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Hùng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Vinh Phú",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Lợi, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Lạc Thiện",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Thành, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Ngọc Lâm",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Hải, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Rạng Đông",
+      "deanery": "Quỹ Nhất",
+      "address": "Tt. Rạng Đông, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Tây Thành",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Thành, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Thượng Trại",
+      "deanery": "Quỹ Nhất",
+      "address": "Nghĩa Hùng, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Phúc Đông",
+      "deanery": "Quỹ Nhất",
+      "address": "Tt. Rạng Đông, Nghĩa Hưng, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Quy-Nhat.html"
+    },
+    {
+      "parish": "Du Hiếu",
+      "deanery": "Thức Hóa",
+      "address": "Giao Thịnh, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Hoành Nhị",
+      "deanery": "Thức Hóa",
+      "address": "Giao Hải, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Ngưỡng Nhân",
+      "deanery": "Thức Hóa",
+      "address": "Giao Nhân, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Phong Lâm",
+      "deanery": "Thức Hóa",
+      "address": "Giao Phong, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Quất Lâm",
+      "deanery": "Thức Hóa",
+      "address": "Giao Lâm, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Sa Châu",
+      "deanery": "Thức Hóa",
+      "address": "Giao Châu, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Thức Hoá",
+      "deanery": "Thức Hóa",
+      "address": "Giao Thịnh, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Diêm Điền",
+      "deanery": "Thức Hóa",
+      "address": "Bình Hòa, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Duyên Thọ",
+      "deanery": "Thức Hóa",
+      "address": "Giao Nhân, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "Mộc Đức",
+      "deanery": "Thức Hóa",
+      "address": "Giao Thịnh, Giao Thuỷ, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Thuc-Hoa.html"
+    },
+    {
+      "parish": "An Bài",
+      "deanery": "Tứ Trùng",
+      "address": "Thị trấn Cồn, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "An Cư",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Tân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Giáp Năm",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Ninh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Lục Phương",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Cường, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Nam Phương",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Sơn, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Ninh Mỹ",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Giang, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Ninh Sa",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Giang, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Phúc Hải",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Phong, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Trùng Phương",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Đường, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Tư Khẩn",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Châu, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Tứ Trùng",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Tân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Xuân Hoá",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Xuân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Xuân Thuỷ",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Xuân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Phú Văn",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Ninh, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Trung Hoà",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Phú, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Xuân Chính",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Xuân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Xuân Hoà",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Hoà, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "Xuân Phong",
+      "deanery": "Tứ Trùng",
+      "address": "Hải Xuân, Hải Hậu, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tu-Trung.html"
+    },
+    {
+      "parish": "An Lãng",
+      "deanery": "Tương Nam",
+      "address": "Trực Chính, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    },
+    {
+      "parish": "Tương Nam",
+      "deanery": "Tương Nam",
+      "address": "Nam Thanh, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    },
+    {
+      "parish": "Nam Hưng",
+      "deanery": "Tương Nam",
+      "address": "Nam Lợi, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    },
+    {
+      "parish": "Nam Lạng",
+      "deanery": "Tương Nam",
+      "address": "Trực Tuấn, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    },
+    {
+      "parish": "Phú An",
+      "deanery": "Tương Nam",
+      "address": "Cát Thành, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    },
+    {
+      "parish": "Trang Hậu",
+      "deanery": "Tương Nam",
+      "address": "Nam Hải, Nam Trực, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    },
+    {
+      "parish": "Trung Lao",
+      "deanery": "Tương Nam",
+      "address": "Trung Đông, Trực Ninh, Nam Định",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpbuichu.org/giao-phan/Hat-Tuong-Nam.html"
+    }
+  ]
+}

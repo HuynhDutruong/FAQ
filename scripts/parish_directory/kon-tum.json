@@ -1,0 +1,1544 @@
+{
+  "diocese": "Kon Tum",
+  "sources": [
+    "https://giaophankontum.com/",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-kontum/giao-hat-kontum",
+    "https://giaophankontum.com/chuyen-muc/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay"
+  ],
+  "deaneryCount": 12,
+  "note": "Lấy từ trang chính thức giaophankontum.com (danh mục giáo xứ theo từng giáo hạt, mỗi giáo xứ có trang riêng). Giờ lễ nhiều giáo xứ để trống trên nguồn gốc (chưa cập nhật).",
+  "parishes": [
+    {
+      "parish": "Kbang – Sơn Lang",
+      "deanery": "An Khê",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe/giao-ho-kbang-son-lang"
+    },
+    {
+      "parish": "Tam An",
+      "deanery": "An Khê",
+      "address": "Đăk Pơ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe/giao-xu-ho-tam-an"
+    },
+    {
+      "parish": "Chợ Đồn",
+      "deanery": "An Khê",
+      "address": "819 Quang Trung, An Khê, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe/giao-xu-cho-don"
+    },
+    {
+      "parish": "Đồng Sơn",
+      "deanery": "An Khê",
+      "address": "An Bình, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe/giao-xu-dong-son"
+    },
+    {
+      "parish": "An Sơn",
+      "deanery": "An Khê",
+      "address": "An Bình, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe/giao-xu-an-son"
+    },
+    {
+      "parish": "An Khê",
+      "deanery": "An Khê",
+      "address": "198 Quang Trung, An Khê Tỉnh/Tp: Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-an-khe/giao-xu-an-khe"
+    },
+    {
+      "parish": "Ia Rsai",
+      "deanery": "Ayunpa",
+      "address": "Ia Ia R’sai, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-ia-rsai"
+    },
+    {
+      "parish": "Ama Drung",
+      "deanery": "Ayunpa",
+      "address": "Ia Pa, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-ho-ama-drung"
+    },
+    {
+      "parish": "Phú Tâm",
+      "deanery": "Ayunpa",
+      "address": "2, Pờ Tó, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-phu-tam"
+    },
+    {
+      "parish": "Bon Ơi Nu",
+      "deanery": "Ayunpa",
+      "address": "Uar, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-bon-oi-nu"
+    },
+    {
+      "parish": "Chrôh Ale",
+      "deanery": "Ayunpa",
+      "address": "Làng: Bôn Ama Rơng, Ia Hiao, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-chroh-ale"
+    },
+    {
+      "parish": "Plei Athai",
+      "deanery": "Ayunpa",
+      "address": "Phú Thiện, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-plei-athai"
+    },
+    {
+      "parish": "Bon Ma Djơng",
+      "deanery": "Ayunpa",
+      "address": "40 Nguyễn Thái Học Thành phố, Ayun Pa, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-bon-ama-djong"
+    },
+    {
+      "parish": "Phú Thiện",
+      "deanery": "Ayunpa",
+      "address": "117 Trường Chinh, Phú Thiện, Gia Lai",
+      "weekdayMass": [
+        "05:00",
+        "17:00",
+        "18:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "09:30",
+        "16:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-phu-thien"
+    },
+    {
+      "parish": "Phú Bổn",
+      "deanery": "Ayunpa",
+      "address": "186 Trần Hưng Đạo Thành phố: Thị xã Ayunpa, Ayun Pa, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-phu-bon"
+    },
+    {
+      "parish": "Phú Túc",
+      "deanery": "Ayunpa",
+      "address": "Phú Túc, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-ayunpa/giao-xu-phu-tuc"
+    },
+    {
+      "parish": "Hà Bầu",
+      "deanery": "Chư Păh",
+      "address": "Biển Hồ Làng: Bông, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-ho-ha-bau"
+    },
+    {
+      "parish": "Ea Luh",
+      "deanery": "Chư Păh",
+      "address": "Biển Hồ Làng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-ho-ea-luh"
+    },
+    {
+      "parish": "Giuse Sê San",
+      "deanery": "Chư Păh",
+      "address": "Ia O Làng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-ho-giuse-se-san"
+    },
+    {
+      "parish": "Mẫu Tâm",
+      "deanery": "Chư Păh",
+      "address": "Ia Khươl, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-mau-tam"
+    },
+    {
+      "parish": "Kon Mah",
+      "deanery": "Chư Păh",
+      "address": "Ia Khươl, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-kon-mah"
+    },
+    {
+      "parish": "Mrông Yố – Ya Ly",
+      "deanery": "Chư Păh",
+      "address": "Ia Phí, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-yali"
+    },
+    {
+      "parish": "Plei Tơwer",
+      "deanery": "Chư Păh",
+      "address": "Ia Khươl, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-plei-tower-gio-le"
+    },
+    {
+      "parish": "Ngô Sơn",
+      "deanery": "Chư Păh",
+      "address": "Biển Hồ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-ngo-son"
+    },
+    {
+      "parish": "Chư Đang Ya",
+      "deanery": "Chư Păh",
+      "address": "Biển Hồ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-ha-bau"
+    },
+    {
+      "parish": "Ia Kha",
+      "deanery": "Chư Păh",
+      "address": "Ia Grai, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-ia-kha"
+    },
+    {
+      "parish": "Chư San",
+      "deanery": "Chư Păh",
+      "address": "la Hrung, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-chu-san"
+    },
+    {
+      "parish": "Đức Bà Biển Hồ",
+      "deanery": "Chư Păh",
+      "address": "Biển Hồ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-duc-ba-bien-ho"
+    },
+    {
+      "parish": "Plei Jut",
+      "deanery": "Chư Păh",
+      "address": "Ia Hrung, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-plei-jut"
+    },
+    {
+      "parish": "Ia Tô",
+      "deanery": "Chư Păh",
+      "address": "Ia Krái, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-ia-to"
+    },
+    {
+      "parish": "Hòa Phú",
+      "deanery": "Chư Păh",
+      "address": "Chư Păh, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-hoa-phu"
+    },
+    {
+      "parish": "Ninh Đức",
+      "deanery": "Chư Păh",
+      "address": "Xã Chư Păh, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-pah/giao-xu-ninh-duc"
+    },
+    {
+      "parish": "Ia Lâu",
+      "deanery": "Chư Prông",
+      "address": "Ia Lâu, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-ia-lau"
+    },
+    {
+      "parish": "Thanh Thiên",
+      "deanery": "Chư Prông",
+      "address": "Bàu Cạn, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-ho-thanh-thien"
+    },
+    {
+      "parish": "Plơi Ba",
+      "deanery": "Chư Prông",
+      "address": "Ia Pnôn, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-ho-ploi-ba"
+    },
+    {
+      "parish": "Đồng Tâm",
+      "deanery": "Chư Prông",
+      "address": "Ia Krêl, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-ho-dong-tam"
+    },
+    {
+      "parish": "Chư Ty",
+      "deanery": "Chư Prông",
+      "address": "Đức Cơ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-chu-ty"
+    },
+    {
+      "parish": "Plei Rơngol Khop",
+      "deanery": "Chư Prông",
+      "address": "Làng: Khóp, Ia Krêl, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-plei-rong-khop"
+    },
+    {
+      "parish": "Ia Pia",
+      "deanery": "Chư Prông",
+      "address": "Ia Pia, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-ia-pia"
+    },
+    {
+      "parish": "Thanh Hà",
+      "deanery": "Chư Prông",
+      "address": "Chư Prông, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-thanh-ha"
+    },
+    {
+      "parish": "Thanh Bình",
+      "deanery": "Chư Prông",
+      "address": "Thanh Bình, Bàu Cạn, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-thanh-binh"
+    },
+    {
+      "parish": "Phú Mỹ",
+      "deanery": "Chư Prông",
+      "address": "Ia Tôr, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-phu-my"
+    },
+    {
+      "parish": "Hoàng Yên",
+      "deanery": "Chư Prông",
+      "address": "Chư Prông, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-hoang-yen"
+    },
+    {
+      "parish": "Đức Hưng",
+      "deanery": "Chư Prông",
+      "address": "Thôn 1, Bàu Cạn, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-prong/giao-xu-duc-hung"
+    },
+    {
+      "parish": "Tao Roong",
+      "deanery": "Chư Sê",
+      "address": "Chư Sê, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ho-tao-roong"
+    },
+    {
+      "parish": "la H’Lốp",
+      "deanery": "Chư Sê",
+      "address": "Ia Ko Làng: Á, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ho-la-hlop"
+    },
+    {
+      "parish": "Têrêxa Bar Măih",
+      "deanery": "Chư Sê",
+      "address": "Bờ Ngoong, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ho-terexa-bar-maih"
+    },
+    {
+      "parish": "Vinh Sơn – Hố Bi",
+      "deanery": "Chư Sê",
+      "address": "Bờ Ngoong, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ho-vinh-son-ho-bi"
+    },
+    {
+      "parish": "Mân Côi",
+      "deanery": "Chư Sê",
+      "address": "Làng: Pan, Chư Sê, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-man-coi"
+    },
+    {
+      "parish": "Ia Dreng",
+      "deanery": "Chư Sê",
+      "address": "Tung Neng, Ia Hrú, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ia-dreng"
+    },
+    {
+      "parish": "Ia Blứ",
+      "deanery": "Chư Sê",
+      "address": "Phú Vinh, Ia Le, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ia-blu"
+    },
+    {
+      "parish": "Ia Tiêm",
+      "deanery": "Chư Sê",
+      "address": "Bờ Ngoong, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-phaolo-ia-tiem"
+    },
+    {
+      "parish": "Phú Nhơn",
+      "deanery": "Chư Sê",
+      "address": "323 Hùng Vương, Chư Pưh, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-phu-nhon"
+    },
+    {
+      "parish": "Plei Kly",
+      "deanery": "Chư Sê",
+      "address": "132 Hùng Vương, Chư Pưh, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-plei-kly"
+    },
+    {
+      "parish": "Ia Hrú – Phú Quang",
+      "deanery": "Chư Sê",
+      "address": "Ia Hrú, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-ia-hru"
+    },
+    {
+      "parish": "Mỹ Thạch",
+      "deanery": "Chư Sê",
+      "address": "365 Hùng Vương, Chư Sê, Gia Lai",
+      "weekdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "09:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-my-thach"
+    },
+    {
+      "parish": "H’Bông",
+      "deanery": "Chư Sê",
+      "address": "Kte 2, Ia Hrú, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-hbong"
+    },
+    {
+      "parish": "An Tôn",
+      "deanery": "Chư Sê",
+      "address": "AlBá, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-chu-se/giao-xu-an-ton"
+    },
+    {
+      "parish": "Plei Groi",
+      "deanery": "Mang Yang",
+      "address": "Đăk Đoa Làng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-plei-groi"
+    },
+    {
+      "parish": "Kon Jôt",
+      "deanery": "Mang Yang",
+      "address": "Đăk Sơmei Làng: Kon Jôt, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-ho-kon-jot"
+    },
+    {
+      "parish": "De Tul",
+      "deanery": "Mang Yang",
+      "address": "Đăk Sơmei, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-ho-de-tul"
+    },
+    {
+      "parish": "Kon Rơng",
+      "deanery": "Mang Yang",
+      "address": "Đăk Sơmei Làng: Kon Nak, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-ho-kon-rong"
+    },
+    {
+      "parish": "Kon Mahar",
+      "deanery": "Mang Yang",
+      "address": "Đăk Sơmei, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-kon-mahar"
+    },
+    {
+      "parish": "De Sơmei",
+      "deanery": "Mang Yang",
+      "address": "Đăk Sơmei, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-de-somei"
+    },
+    {
+      "parish": "Angleh",
+      "deanery": "Mang Yang",
+      "address": "Kon Gang, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-angleh"
+    },
+    {
+      "parish": "Kon Thụp",
+      "deanery": "Mang Yang",
+      "address": "Làng: Đăk Pơnan, Lơ Pang, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-kon-thup"
+    },
+    {
+      "parish": "Châu Khê",
+      "deanery": "Mang Yang",
+      "address": "Châu Khê, Mang Yang, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-chau-khe"
+    },
+    {
+      "parish": "Plei Bông",
+      "deanery": "Mang Yang",
+      "address": "Ayun, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-plei-bong"
+    },
+    {
+      "parish": "Phú Yên – H’ra",
+      "deanery": "Mang Yang",
+      "address": "Hra, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-phu-yen-hra"
+    },
+    {
+      "parish": "Vinh Sơn",
+      "deanery": "Mang Yang",
+      "address": "Ia Băng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-vinh-son"
+    },
+    {
+      "parish": "Phaolô Hneng",
+      "deanery": "Mang Yang",
+      "address": "Đăk Đoa, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-hneng"
+    },
+    {
+      "parish": "Lệ Chí",
+      "deanery": "Mang Yang",
+      "address": "Kon Gang, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-le-chi"
+    },
+    {
+      "parish": "Lệ Cần",
+      "deanery": "Mang Yang",
+      "address": "Đăk Đoa, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-mang-yang/giao-xu-le-can"
+    },
+    {
+      "parish": "Diên Phú",
+      "deanery": "Pleiku",
+      "address": "Diên Hồng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-ho-dien-phu"
+    },
+    {
+      "parish": "Tiên Sơn",
+      "deanery": "Pleiku",
+      "address": "Biển Hồ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-tien-son"
+    },
+    {
+      "parish": "Phaolô Pleiku",
+      "deanery": "Pleiku",
+      "address": "325 Nguyễn Viết Xuân, Hội Phú, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "08:00",
+        "18:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-phaolo-plei-ku"
+    },
+    {
+      "parish": "Hiếu Nghĩa",
+      "deanery": "Pleiku",
+      "address": "23/5/7 Vạn Kiếp, Thống Nhất, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-hieu-nghia"
+    },
+    {
+      "parish": "Hiếu Đức",
+      "deanery": "Pleiku",
+      "address": "02 Quang Trung, Diên Hồng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-hieu-duc"
+    },
+    {
+      "parish": "Thăng Thiên",
+      "deanery": "Pleiku",
+      "address": "02 Quang Trung, Pleiku, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-thang-thien"
+    },
+    {
+      "parish": "Hiếu Đạo",
+      "deanery": "Pleiku",
+      "address": "02 Quang Trung, Pleiku, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-hieu-dao"
+    },
+    {
+      "parish": "Hòa Bình",
+      "deanery": "Pleiku",
+      "address": "82 Hàn Thuyên, Biển hồ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-hoa-binh"
+    },
+    {
+      "parish": "Đức An",
+      "deanery": "Pleiku",
+      "address": "20 Wừu, Diên Hồng, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "09:30",
+        "17:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-duc-an"
+    },
+    {
+      "parish": "Phú Thọ",
+      "deanery": "Pleiku",
+      "address": "An Phú, Gia Lai",
+      "weekdayMass": [
+        "05:00",
+        "05:15",
+        "18:00",
+        "18:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "17:00",
+        "18:15"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:30",
+        "17:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-phu-tho"
+    },
+    {
+      "parish": "Plei Chuet",
+      "deanery": "Pleiku",
+      "address": "777 Nguyễn Chí Thanh, An Phú, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-plei-chuet"
+    },
+    {
+      "parish": "Hoa Lư",
+      "deanery": "Pleiku",
+      "address": "175 Cách Mạng Tháng Tám, Pleiku, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:45"
+      ],
+      "sundayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-me-vo-nhiem-hoa-lu"
+    },
+    {
+      "parish": "Thánh Tâm",
+      "deanery": "Pleiku",
+      "address": "542 Hùng Vương, Pleiku, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "09:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-thanh-tam"
+    },
+    {
+      "parish": "An Mỹ",
+      "deanery": "Pleiku",
+      "address": "An Phú, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-an-my"
+    },
+    {
+      "parish": "Trà Đa",
+      "deanery": "Pleiku",
+      "address": "Biển Hồ, Gia Lai",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "09:00",
+        "15:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-gia-lai/giao-hat-pleiku/giao-xu-tra-da"
+    },
+    {
+      "parish": "Đăk Kroong",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Pxi, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-ho-dak-kroong"
+    },
+    {
+      "parish": "Kon Trang Long Loi",
+      "deanery": "Đăk Hà",
+      "address": "Long Loi, Đăk Hà, Kon Tum",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-ho-kon-trang-long-loi"
+    },
+    {
+      "parish": "Đăk Tiêng Kơtu",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Hà, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-ho-dak-tieng-kotu"
+    },
+    {
+      "parish": "Kon Gu",
+      "deanery": "Đăk Hà",
+      "address": "Ngọk Réo, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-ho-kon-gu"
+    },
+    {
+      "parish": "Đăk Mút",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Mar, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-dak-mut"
+    },
+    {
+      "parish": "Kon Bơbăn",
+      "deanery": "Đăk Hà",
+      "address": "Ngọk Réo, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-kon-boban"
+    },
+    {
+      "parish": "Kon Trang Mơnei",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Hà, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-kon-trang"
+    },
+    {
+      "parish": "Kon Gung",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Mar, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-kon-gung"
+    },
+    {
+      "parish": "Đăk Kơđem",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Ui, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-dak-kodem"
+    },
+    {
+      "parish": "Ling La",
+      "deanery": "Đăk Hà",
+      "address": "Đăk Pxi, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-ha/giao-xu-ling-la"
+    },
+    {
+      "parish": "Đăk Xú",
+      "deanery": "Đăk Mót",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-ho-dak-xu"
+    },
+    {
+      "parish": "Phaolô",
+      "deanery": "Đăk Mót",
+      "address": "Dục Nông, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-ho-phaolo"
+    },
+    {
+      "parish": "Pờ Y",
+      "deanery": "Đăk Mót",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-ho-po-y"
+    },
+    {
+      "parish": "Sa Loong",
+      "deanery": "Đăk Mót",
+      "address": "Sa Loong, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-ho-sa-loong"
+    },
+    {
+      "parish": "Đăk Long",
+      "deanery": "Đăk Mót",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-ho-dak-long"
+    },
+    {
+      "parish": "Ya Tun",
+      "deanery": "Đăk Mót",
+      "address": "Dục Nông, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-ho-ya-tun"
+    },
+    {
+      "parish": "Đăk Glây",
+      "deanery": "Đăk Mót",
+      "address": "Xốp, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-xu-ho-dak-glay"
+    },
+    {
+      "parish": "Đăk Mót",
+      "deanery": "Đăk Mót",
+      "address": "Bờ Y, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-xu-dak-mot"
+    },
+    {
+      "parish": "Đăk Giấc",
+      "deanery": "Đăk Mót",
+      "address": "Đăk Môn, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-xu-dak-jak"
+    },
+    {
+      "parish": "Đăk Tuk",
+      "deanery": "Đăk Mót",
+      "address": "Đăk Môn Tinh:Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-mot/giao-xu-dak-tuk"
+    },
+    {
+      "parish": "Kon Hia 3",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Tờ Kan, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-ho-kon-hia-3"
+    },
+    {
+      "parish": "Kon Hnong",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Mar, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-ho-kon-hnong"
+    },
+    {
+      "parish": "Pô Kô",
+      "deanery": "Đăk Tô",
+      "address": "Tu Dốp 1, Đăk Tô, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-ho-po-ko"
+    },
+    {
+      "parish": "Tri Lễ",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Tô, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-tri-le"
+    },
+    {
+      "parish": "Đăk Lung",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Lung, Kon Đào, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-dak-lung"
+    },
+    {
+      "parish": "Đăk Manh",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Manh 1, Ngọk Tụ, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-dak-manh"
+    },
+    {
+      "parish": "Đăk Rao",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Tô, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-dak-rao-kram"
+    },
+    {
+      "parish": "Tea Hnă",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Tờ Kan, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-tea-hna"
+    },
+    {
+      "parish": "Đăk Chô",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Chờ, Ngọk Tụ, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-dak-cho"
+    },
+    {
+      "parish": "Kon Hring",
+      "deanery": "Đăk Tô",
+      "address": "Đăk Tô, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-kon-hring"
+    },
+    {
+      "parish": "Tea Rơxá",
+      "deanery": "Đăk Tô",
+      "address": "Kon Đào, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-tea-roxa"
+    },
+    {
+      "parish": "Kon Pia",
+      "deanery": "Đăk Tô",
+      "address": "Thành phố, Tu Mơ Rông, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-dak-to/giao-xu-dak-long"
+    },
+    {
+      "parish": "Plei Chor",
+      "deanery": "Kon Tum",
+      "address": "Plei Chor, Đăk Rơ Wa, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-ho-plei-chor"
+    },
+    {
+      "parish": "Đăk Rơ Wa",
+      "deanery": "Kon Tum",
+      "address": "Đăk Rơ Wa, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-ho-kon-jri-kon-kotu"
+    },
+    {
+      "parish": "Plei Don",
+      "deanery": "Kon Tum",
+      "address": "125 Nguyễn Văn Cừ, Kon Tum, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-ho-plei-don"
+    },
+    {
+      "parish": "Kon Hngo Klăh",
+      "deanery": "Kon Tum",
+      "address": "Ngọk Bay, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-ho-kon-hngo-klah"
+    },
+    {
+      "parish": "Kon Slak",
+      "deanery": "Kon Tum",
+      "address": "Kon Braih, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-ho-kon-slak"
+    },
+    {
+      "parish": "Kroong",
+      "deanery": "Kon Tum",
+      "address": "Ngọk Bay, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-ho-kroong"
+    },
+    {
+      "parish": "Kon Hơngo Kơtu",
+      "deanery": "Kon Tum",
+      "address": "Phương Quý 2, Ngọk Bay, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-ho-kon-hongo-kotu"
+    },
+    {
+      "parish": "Đăk Ngó",
+      "deanery": "Kon Tum",
+      "address": "Măng Bút, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-dak-ngo"
+    },
+    {
+      "parish": "Đăk Kia",
+      "deanery": "Kon Tum",
+      "address": "Đăk Kia, Ia Chim, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-dak-kia"
+    },
+    {
+      "parish": "Tân Hương",
+      "deanery": "Kon Tum",
+      "address": "540 Nguyễn Huệ, Kon Tum, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-tan-huong"
+    },
+    {
+      "parish": "Tân Phát",
+      "deanery": "Kon Tum",
+      "address": "Đăk Prông, Đăk Rơ Wa, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-tan-phat"
+    },
+    {
+      "parish": "Tân Phú",
+      "deanery": "Kon Tum",
+      "address": "805 Phạm Văn Đồng, Đăk Bla, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-tan-phu"
+    },
+    {
+      "parish": "Phương Quý",
+      "deanery": "Kon Tum",
+      "address": "Phương Quý 2, Ngọk Bay, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "06:40",
+        "15:20"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-phuong-quy"
+    },
+    {
+      "parish": "Kon Jơdreh",
+      "deanery": "Kon Tum",
+      "address": "Đăk Rơ Wa, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:45",
+        "08:00",
+        "16:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-kon-jodreh"
+    },
+    {
+      "parish": "PLei Rơhai",
+      "deanery": "Kon Tum",
+      "address": "Đặng Tiến Đông, Đăk Bla, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-polei-rohai"
+    },
+    {
+      "parish": "Phương Nghĩa",
+      "deanery": "Kon Tum",
+      "address": "03 Lý Tự Trọng, Kon Tum, Quảng Ngãi",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [
+        "05:00"
+      ],
+      "sundayMass": [
+        "05:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-phuong-nghia"
+    },
+    {
+      "parish": "Võ Lâm",
+      "deanery": "Kon Tum",
+      "address": "274 Trần Nhân Tông, Kon Tum, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "08:30",
+        "15:00",
+        "18:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-vo-lam"
+    },
+    {
+      "parish": "Đăk Tân",
+      "deanery": "Kon Tum",
+      "address": "Kon Braih, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-dak-tan"
+    },
+    {
+      "parish": "Măng La",
+      "deanery": "Kon Tum",
+      "address": "Ngọk Bay, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "16:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-mang-la"
+    },
+    {
+      "parish": "Kon Rơbang",
+      "deanery": "Kon Tum",
+      "address": "Ngọk Bay, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-kon-robang"
+    },
+    {
+      "parish": "Kon Xơmluh",
+      "deanery": "Kon Tum",
+      "address": "Kon Braih, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-kon-xomluh"
+    },
+    {
+      "parish": "Tân Điền",
+      "deanery": "Kon Tum",
+      "address": "Ia Chim, QuảngNgãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:15"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-tan-dien"
+    },
+    {
+      "parish": "Trung Nghĩa",
+      "deanery": "Kon Tum",
+      "address": "Đăk Bla, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "19:15"
+      ],
+      "sundayMass": [
+        "05:15",
+        "17:15"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-trung-nghia"
+    },
+    {
+      "parish": "Plei Jơdrập",
+      "deanery": "Kon Tum",
+      "address": "Ia Chim, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "07:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-plei-jodrap-gio-le"
+    },
+    {
+      "parish": "Chính Tòa",
+      "deanery": "Kon Tum",
+      "address": "13 Nguyễn Huệ, Kon Tum, Quảng Ngãi",
+      "weekdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "07:30",
+        "16:00"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-chinh-toa"
+    },
+    {
+      "parish": "Klâu Rơngol",
+      "deanery": "Kon Tum",
+      "address": "Klâu Rơngol, Ia Chim, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "07:30"
+      ],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/giao-xu-klau-rongol-2"
+    },
+    {
+      "parish": "Phương Hòa",
+      "deanery": "Kon Tum",
+      "address": "143 Nguyễn Văn Linh, Đăk Bla, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:00"
+      ],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/luoc-su-giao-xu-phuong-hoa"
+    },
+    {
+      "parish": "Hơ Moong",
+      "deanery": "Sa Thầy",
+      "address": "Sa Bình, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay/giao-xu-ho-moong"
+    },
+    {
+      "parish": "Kơbei Hơmoong",
+      "deanery": "Sa Thầy",
+      "address": "K’bay, Sa Bình, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay/giao-xu-ho-kobei-homoong"
+    },
+    {
+      "parish": "Kleng",
+      "deanery": "Sa Thầy",
+      "address": "Sa Thầy, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay/giao-xu-kleng"
+    },
+    {
+      "parish": "Hơ Moong Kờ Tu",
+      "deanery": "Sa Thầy",
+      "address": "Thôn Kờ Tu, Sa Bình, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay/giao-xu-homoong-kotu"
+    },
+    {
+      "parish": "Rờ Kơi",
+      "deanery": "Sa Thầy",
+      "address": "Khơk Klong, Rờ Kơi, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay/giao-xu-ro-koi"
+    },
+    {
+      "parish": "Plei Kơbey",
+      "deanery": "Sa Thầy",
+      "address": "Sa Bình, Quảng Ngãi",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-sa-thay/giao-xu-plei-kobei"
+    },
+    {
+      "parish": "Trung Tâm Hành Hương Đức Mẹ Măng Đen",
+      "deanery": "Kon Tum",
+      "address": "Măng Đen, Kon Tum",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophankontum.com/giao-phan/giao-xu/mien-kontum/giao-hat-kontum/trung-tam-hanh-huong-duc-me-mang-den"
+    }
+  ]
+}

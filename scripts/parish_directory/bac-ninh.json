@@ -1,0 +1,764 @@
+{
+  "diocese": "Bắc Ninh",
+  "sources": [
+    "https://giaophanbacninh.org/giao-hat-xu-ho/",
+    "https://giaophanbacninh.org/giao-hat-bac-ninh/",
+    "https://giaophanbacninh.org/giao-hat-bac-giang/",
+    "https://giaophanbacninh.org/giao-hat-noi-bai/",
+    "https://giaophanbacninh.org/giao-hat-bac-kan/",
+    "https://giaophanbacninh.org/giao-hat-vinh-phuc/",
+    "https://giaophanbacninh.org/giao-hat-thai-nguyen/",
+    "https://giaophanbacninh.org/giao-hat-tuyen-quang/"
+  ],
+  "deaneryCount": 7,
+  "note": "Lấy từ trang chính thức giaophanbacninh.org (mục Giáo hạt & xứ họ), đi hết cả 7 trang giáo hạt (Bắc Ninh, Bắc Giang, Nội Bài, Bắc Kạn, Vĩnh Phúc, Thái Nguyên, Tuyên Quang). Trang chính thức KHÔNG công bố giờ lễ nên các trường mass để rỗng. Có 1 giáo xứ 'Bắc Kạn' bị liệt kê trùng ở cả trang hạt Bắc Kạn và trang hạt Thái Nguyên (dữ liệu cũ), đã gộp về hạt Bắc Kạn. Trang hạt Vĩnh Phúc có nhắc tới 'Giáo xứ Tam Đảo' trong tin tức nhưng không có trong bảng danh sách chính thức nên chưa đưa vào — khả năng trang chưa cập nhật.",
+  "parishes": [
+    {
+      "parish": "Chính toà",
+      "deanery": "Bắc Ninh",
+      "address": "537 Ngô Gia Tự, Tiền An, Bắc Ninh, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-chinh-toa-bac-ninh/"
+    },
+    {
+      "parish": "Cẩm Giang",
+      "deanery": "Bắc Ninh",
+      "address": "Phố Nguyễn Giáo, Đồng Nguyên, Từ Sơn, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-cam-giang/"
+    },
+    {
+      "parish": "Dâu",
+      "deanery": "Bắc Ninh",
+      "address": "Thanh Khương, Khương Tự, Thuận Thành, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-dau/"
+    },
+    {
+      "parish": "Đình Tổ",
+      "deanery": "Bắc Ninh",
+      "address": "Đình Tổ, Đại Đồng, Văn Lâm, Hưng Yên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-dinh-to/"
+    },
+    {
+      "parish": "Đồng Nhân",
+      "deanery": "Bắc Ninh",
+      "address": "Đồng Nhân, Hòa Tiến, Yên Phong, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-dong-nhan/"
+    },
+    {
+      "parish": "Dũng Vi",
+      "deanery": "Bắc Ninh",
+      "address": "Thôn Giáo, Tri Phương, Tiên Du, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-dung-vi/"
+    },
+    {
+      "parish": "Kẻ Mốt",
+      "deanery": "Bắc Ninh",
+      "address": "Thôn 2, Định Sơn, Cẩm Giàng, Hải Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-ke-mot/"
+    },
+    {
+      "parish": "Lai Tê",
+      "deanery": "Bắc Ninh",
+      "address": "Lai Tê, Trung Chính, Lương Tài, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-lai-te/"
+    },
+    {
+      "parish": "Nam Viên",
+      "deanery": "Bắc Ninh",
+      "address": "Nam Viên, Lạc Vệ, Tiên Du, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-nam-vien/"
+    },
+    {
+      "parish": "Ngăm Giáo",
+      "deanery": "Bắc Ninh",
+      "address": "Ngăm, Lãng Ngâm, Gia Bình, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-ngam-giao/"
+    },
+    {
+      "parish": "Ngô Khê",
+      "deanery": "Bắc Ninh",
+      "address": "Ngô Khê, Phong Khê, Tp. Bắc Ninh, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-ngo-khe/"
+    },
+    {
+      "parish": "Nguyệt Đức",
+      "deanery": "Bắc Ninh",
+      "address": "Vạn Phúc, Vạn An, Tp. Bắc Ninh, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-nguyet-duc/"
+    },
+    {
+      "parish": "Phong Cốc",
+      "deanery": "Bắc Ninh",
+      "address": "Phong Cốc, Đức Long, Quế Võ, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-phong-coc/"
+    },
+    {
+      "parish": "Phượng Giáo",
+      "deanery": "Bắc Ninh",
+      "address": "Phượng Giáo, Thị trấn Thứa, Lương Tài, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-phuong-giao/"
+    },
+    {
+      "parish": "Phượng Mao",
+      "deanery": "Bắc Ninh",
+      "address": "Mao Trung, Phượng Mao, Quế Võ, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-phuong-mao/"
+    },
+    {
+      "parish": "Thọ Ninh",
+      "deanery": "Bắc Ninh",
+      "address": "Thọ Ninh, Phú Lương, Lương Tài, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-tho-ninh/"
+    },
+    {
+      "parish": "Tử Nê",
+      "deanery": "Bắc Ninh",
+      "address": "Tử Nê, Tân Lãng, Lương Tài, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-tu-ne/"
+    },
+    {
+      "parish": "Từ Phong",
+      "deanery": "Bắc Ninh",
+      "address": "Từ Phong, Cách Bi, Quế Võ, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-tu-phong/"
+    },
+    {
+      "parish": "Xuân Hòa",
+      "deanery": "Bắc Ninh",
+      "address": "Xuân Hòa, Đại Xuân, Quế Võ, Bắc Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-xuan-hoa/"
+    },
+    {
+      "parish": "An Tràng",
+      "deanery": "Bắc Giang",
+      "address": "Minh Đạo, Tân An, Yên Dũng, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/an-trang/"
+    },
+    {
+      "parish": "Bắc Giang",
+      "deanery": "Bắc Giang",
+      "address": "Số 66A Nguyễn Văn Cừ, Thành phố Bắc Giang, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/bac-giang/"
+    },
+    {
+      "parish": "Bỉ Nội",
+      "deanery": "Bắc Giang",
+      "address": "Bỉ, Ngọc Thiện, Tân Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/bi-noi/"
+    },
+    {
+      "parish": "Chũ",
+      "deanery": "Bắc Giang",
+      "address": "Tân Tiến, Trù Hựu, Lục Ngạn, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/chu/"
+    },
+    {
+      "parish": "Đại Lãm",
+      "deanery": "Bắc Giang",
+      "address": "Đại Lãm, Tam Dị, Lục Nam, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/dai-lam/"
+    },
+    {
+      "parish": "Đạo Ngạn",
+      "deanery": "Bắc Giang",
+      "address": "Đạo Ngạn II, Quang Châu, Việt Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/dao-ngan/"
+    },
+    {
+      "parish": "Hòa An",
+      "deanery": "Bắc Giang",
+      "address": "Lò Nồi, Hợp Đức, Tân Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/hoa-an/"
+    },
+    {
+      "parish": "Lục Hạ",
+      "deanery": "Bắc Giang",
+      "address": "Lục Hạ, Tân Trung, Tân Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/luc-ha/"
+    },
+    {
+      "parish": "Mỹ Lộc",
+      "deanery": "Bắc Giang",
+      "address": "Xóm Trám, Mỹ Hà, Lạng Giang, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/my-loc/"
+    },
+    {
+      "parish": "Nghĩa Hạ",
+      "deanery": "Bắc Giang",
+      "address": "Nghĩa Hạ, Nghĩa Trung,Việt Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/nghia-ha/"
+    },
+    {
+      "parish": "Ngọ Xá",
+      "deanery": "Bắc Giang",
+      "address": "Ngọ Xá, Châu Minh, Hiệp Hòa, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/ngo-xa/"
+    },
+    {
+      "parish": "Núi Ô",
+      "deanery": "Bắc Giang",
+      "address": "Núi Ô, Tiến Dũng, Yên Dũng, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/nui-o/"
+    },
+    {
+      "parish": "Tân An",
+      "deanery": "Bắc Giang",
+      "address": "Tân An, An Thượng, Yên Thế, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tan-an/"
+    },
+    {
+      "parish": "Thiết Nham",
+      "deanery": "Bắc Giang",
+      "address": "Thiết Nham, Minh Đức, Việt Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/thiet-nham/"
+    },
+    {
+      "parish": "Thường Thắng",
+      "deanery": "Bắc Giang",
+      "address": "Trong Làng, Thường Thắng, Hiệp Hòa, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/thuong-thang/"
+    },
+    {
+      "parish": "Tiên Lục",
+      "deanery": "Bắc Giang",
+      "address": "Thôn Tây, Tiên Lục, Lạng Giang, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tien-luc/"
+    },
+    {
+      "parish": "Tiên Nha",
+      "deanery": "Bắc Giang",
+      "address": "Già Khê, Đồi Ngô, Lục Nam, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tien-nha/"
+    },
+    {
+      "parish": "Trung Lai",
+      "deanery": "Bắc Giang",
+      "address": "Thôn Trung, Nghĩa Trung, Việt Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/trung-lai/"
+    },
+    {
+      "parish": "Yên Lễ",
+      "deanery": "Bắc Giang",
+      "address": "Am Ngàn, An Dương, Tân Yên, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/yen-le/"
+    },
+    {
+      "parish": "Yên Tập",
+      "deanery": "Bắc Giang",
+      "address": "Yên Tập Bắc, Yên Lư, Yên Dũng, Bắc Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/yen-tap/"
+    },
+    {
+      "parish": "An Bài",
+      "deanery": "Nội Bài",
+      "address": "Xóm 1, Yên Bài, Tự Lập, Mê Linh, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/an-bai/"
+    },
+    {
+      "parish": "Bến Cốc",
+      "deanery": "Nội Bài",
+      "address": "Bến Cốc, Thanh Xuân, Sóc Sơn, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/ben-coc/"
+    },
+    {
+      "parish": "Bến Đông",
+      "deanery": "Nội Bài",
+      "address": "Đại Bằng, Nguyên Khê, Đông Anh, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/ben-dong/"
+    },
+    {
+      "parish": "Lập Trí",
+      "deanery": "Nội Bài",
+      "address": "Lập Trí, Minh Trí, Sóc Sơn, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/lap-tri/"
+    },
+    {
+      "parish": "Nỷ",
+      "deanery": "Nội Bài",
+      "address": "Phố Nỉ, Trung Giã, Sóc Sơn, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/ny/"
+    },
+    {
+      "parish": "Nội Bài",
+      "deanery": "Nội Bài",
+      "address": "Tổ 11, TT. Quang Minh, Mê Linh, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/noi-bai/"
+    },
+    {
+      "parish": "Thạch Đà",
+      "deanery": "Nội Bài",
+      "address": "Xóm 3, Thôn Một, Thạch Đà, Mê Linh, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/thach-da/"
+    },
+    {
+      "parish": "Thường Lệ",
+      "deanery": "Nội Bài",
+      "address": "Thường Lê, Đại Thịnh, Mê Linh, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/thuong-le/"
+    },
+    {
+      "parish": "Trung Xuân",
+      "deanery": "Nội Bài",
+      "address": "Trung Xuân, Vạn Yên, Mê Linh, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/trung-xuan/"
+    },
+    {
+      "parish": "Tử Đình",
+      "deanery": "Nội Bài",
+      "address": "Tử Đình, P. Long Biên, Q. Long Biên, Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tu-dinh/"
+    },
+    {
+      "parish": "Ba Bể",
+      "deanery": "Bắc Kạn",
+      "address": "Chợ Rã, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-ba-be/"
+    },
+    {
+      "parish": "Bắc Kạn",
+      "deanery": "Bắc Kạn",
+      "address": "Phùng Chí Kiên, Tx. Bắc Kạn, Bắc Kạn",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/bac-kan/"
+    },
+    {
+      "parish": "Chợ Đồn",
+      "deanery": "Bắc Kạn",
+      "address": "Chợ Đồn, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-cho-don/"
+    },
+    {
+      "parish": "Nà Phặc",
+      "deanery": "Bắc Kạn",
+      "address": "Nà Phặc, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-den-duc-me-hang-cuu-giup-na-phac/"
+    },
+    {
+      "parish": "Na Rì",
+      "deanery": "Bắc Kạn",
+      "address": "Na Rì, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-na-ri/"
+    },
+    {
+      "parish": "Pác Nậm",
+      "deanery": "Bắc Kạn",
+      "address": "Bằng Thành, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/giao-xu-pac-nam/"
+    },
+    {
+      "parish": "Bảo Sơn",
+      "deanery": "Vĩnh Phúc",
+      "address": "Bảo Sơn, Bá Hiến, Bình Xuyên, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/bao-son/"
+    },
+    {
+      "parish": "Đại Điền",
+      "deanery": "Vĩnh Phúc",
+      "address": "Đại Điền, Đại Đình, Tam Đảo, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/dai-dien/"
+    },
+    {
+      "parish": "Dân Trù",
+      "deanery": "Vĩnh Phúc",
+      "address": "Dân Trù, Yên Phương, Yên Lạc, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/dan-tru/"
+    },
+    {
+      "parish": "Hòa Loan",
+      "deanery": "Vĩnh Phúc",
+      "address": "Lũng Hòa, Vĩnh Tường, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/hoa-loan/"
+    },
+    {
+      "parish": "Phúc Yên",
+      "deanery": "Vĩnh Phúc",
+      "address": "Khu phố 2, Trưng Trắc, Phúc Yên, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/phuc-yen/"
+    },
+    {
+      "parish": "Thống Nhất",
+      "deanery": "Vĩnh Phúc",
+      "address": "Thống Nhất, Bá Hiến, Bình Xuyên, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/thong-nhat/"
+    },
+    {
+      "parish": "Văn Thạch",
+      "deanery": "Vĩnh Phúc",
+      "address": "Đồng Văn, Đồng Quế, Sông Lô, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/van-thach/"
+    },
+    {
+      "parish": "Vĩnh Yên",
+      "deanery": "Vĩnh Phúc",
+      "address": "Phường Ngô Quyền, TP. Vĩnh Yên, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/vinh-yen/"
+    },
+    {
+      "parish": "Yên Mỹ",
+      "deanery": "Vĩnh Phúc",
+      "address": "35 Nhà Chung, Xuân Hòa, TP. Phúc Yên, Vĩnh Phúc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/yen-my/"
+    },
+    {
+      "parish": "Đại Từ",
+      "deanery": "Thái Nguyên",
+      "address": "Đồng Cả, Hùng Sơn, Đại Từ, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/dai-tu/"
+    },
+    {
+      "parish": "Hích",
+      "deanery": "Thái Nguyên",
+      "address": "Trung Thành, Hòa Bình, Đồng Hỷ, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/hich/"
+    },
+    {
+      "parish": "La Tú",
+      "deanery": "Thái Nguyên",
+      "address": "La Tú, Tân Khánh, Phú Bình, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/la-tu/"
+    },
+    {
+      "parish": "Ngọc Lâm",
+      "deanery": "Thái Nguyên",
+      "address": "Ngọc Lâm, Linh Sơn, Đồng Hỷ, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/ngoc-lam/"
+    },
+    {
+      "parish": "Nhã Lộng",
+      "deanery": "Thái Nguyên",
+      "address": "Núi Đô, Nhã Lộng, Phú Bình, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/nha-long/"
+    },
+    {
+      "parish": "Phú Cường",
+      "deanery": "Thái Nguyên",
+      "address": "Văn Cường 3, Phú Cường, Đại Từ, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/phu-cuong/"
+    },
+    {
+      "parish": "Phúc Xuân",
+      "deanery": "Thái Nguyên",
+      "address": "Xóm Nhà Thờ, Phúc Xuân, TP Thái Nguyên, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/phuc-xuan/"
+    },
+    {
+      "parish": "Tân Cương",
+      "deanery": "Thái Nguyên",
+      "address": "Tân Cương, Phúc Trìu, TP. Thái Nguyên, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tan-cuong/"
+    },
+    {
+      "parish": "Thái Nguyên",
+      "deanery": "Thái Nguyên",
+      "address": "Tổ 12, P. Trưng Vương, Tp. Thái Nguyên, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/thai-nguyen/"
+    },
+    {
+      "parish": "Tiểu Lễ",
+      "deanery": "Thái Nguyên",
+      "address": "Trà Thị, Đông Cao, Phổ Yên, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tieu-le/"
+    },
+    {
+      "parish": "Yên Lãng",
+      "deanery": "Thái Nguyên",
+      "address": "Cây Thị, Yên Lãng, Đại Từ, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/yen-lang/"
+    },
+    {
+      "parish": "Yên Thuỷ",
+      "deanery": "Thái Nguyên",
+      "address": "Yên Thủy 4, Yên Lạc, Phú Lương, Thái Nguyên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/yen-thuy/"
+    },
+    {
+      "parish": "Bạch Xa",
+      "deanery": "Tuyên Quang",
+      "address": "Bến Đền, Bạch Xa, Hàm Yên, Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/bach-xa/"
+    },
+    {
+      "parish": "Đồng Chương",
+      "deanery": "Tuyên Quang",
+      "address": "Vĩnh Lợi, Sơn Dương, Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/dong-chuong/"
+    },
+    {
+      "parish": "Lực Tiến",
+      "deanery": "Tuyên Quang",
+      "address": "Xóm 8, Quý Quân, Yên Sơn, Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/luc-tien/"
+    },
+    {
+      "parish": "Tân Bình",
+      "deanery": "Tuyên Quang",
+      "address": "Tân Bình, Bình Xa, Hàm Yên, Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/tan-binh/"
+    },
+    {
+      "parish": "Vân Cương",
+      "deanery": "Tuyên Quang",
+      "address": "Vân Cương, Hợp Nhất, Đoan Hùng, Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/van-cuong/"
+    },
+    {
+      "parish": "Vĩnh Ngọc",
+      "deanery": "Tuyên Quang",
+      "address": "Vĩnh Thái, Vĩnh Lộc, Chiêm hoá, Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/vinh-ngoc/"
+    },
+    {
+      "parish": "Yên Thịnh",
+      "deanery": "Tuyên Quang",
+      "address": "Thôn 2, Thái Bình,Yên Sơn, Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanbacninh.org/tag/yen-thinh/"
+    }
+  ]
+}

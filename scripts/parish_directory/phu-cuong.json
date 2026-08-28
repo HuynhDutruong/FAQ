@@ -1,0 +1,1785 @@
+{
+  "diocese": "Phú Cường",
+  "sources": [
+    "https://giaophanphucuong.org/",
+    "https://diocese-client-api.cmate.vn/api/v1/deanery/diocese/c82cf36b-db03-4fcc-900a-ad0e81b59864"
+  ],
+  "deaneryCount": 7,
+  "note": "Lấy trực tiếp từ API chính thức của giáo phận (diocese-client-api.cmate.vn), nguồn dữ liệu đứng sau trang giaophanphucuong.org. 113 giáo xứ (PARISH) + 4 giáo họ biệt lập/điểm truyền giáo (MISSION) trên 7 giáo hạt. Giờ lễ lấy nguyên trạng từ CSDL giáo phận; một số giáo xứ chưa được giáo phận cập nhật giờ lễ (để rỗng), địa chỉ/điện thoại do giáo phận tự khai báo.",
+  "parishes": [
+    {
+      "parish": "Tân Hiệp (Phú Giáo)",
+      "deanery": "Phước Thành",
+      "address": "Xã Tân Hiệp, H. Phú Giáo, Bình Dương",
+      "weekdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/3bf64f53-b6b5-42b3-806b-ce92b5bacebe"
+    },
+    {
+      "parish": "Lễ Trang",
+      "deanery": "Phước Thành",
+      "address": "Ấp 5, xã Vĩnh Hoà, Phú Giáo, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/3d5f19c8-c725-40c2-a87e-a55d98d03cab"
+    },
+    {
+      "parish": "Bàu Ao",
+      "deanery": "Phước Thành",
+      "address": "khu phố 4, TT. Phước Vĩnh, Phú Gíao, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/43bfb7d7-5827-41ca-81bb-aef5bd1c1eb5"
+    },
+    {
+      "parish": "An Linh",
+      "deanery": "Phước Thành",
+      "address": "Ấp 9, Xã An Linh, huyện Phú Giáo, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/45ab1f5e-9bb3-4d72-8190-ea8b8f040f86"
+    },
+    {
+      "parish": "Vĩnh Hòa",
+      "deanery": "Phước Thành",
+      "address": "113, tổ 3, ấp Vĩnh An, Vĩnh Hòa, Phú Giáo, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:00",
+        "16:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "15:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/68238eaf-cdf5-434e-a731-337fa026785a"
+    },
+    {
+      "parish": "Tam Lập",
+      "deanery": "Phước Thành",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/7766e5a6-1fa3-465d-92e0-662caf1e854a"
+    },
+    {
+      "parish": "Kỉnh Nhượng",
+      "deanery": "Phước Thành",
+      "address": "101, Ấp Tràng Sắn, Xã Vĩnh Hoà, Phú Giáo, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "15:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/93258e0e-a788-43aa-9c6e-d789eefa709f"
+    },
+    {
+      "parish": "Phước Vĩnh",
+      "deanery": "Phước Thành",
+      "address": "166 Đường Độc Lập, Khu phố 2, TT. Phước Vĩnh, H. Phú Giáo, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:50"
+      ],
+      "sundayMass": [
+        "04:50",
+        "06:30",
+        "15:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/bba70c26-d365-4f56-902b-01829a7fdc27"
+    },
+    {
+      "parish": "Cây Cam",
+      "deanery": "Phước Thành",
+      "address": "xã An Bình, huyện Phú Giáo, tỉnh Bình Dương",
+      "weekdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c4d1e017-f864-482a-b76e-82d4443b8be8"
+    },
+    {
+      "parish": "Nước Vàng",
+      "deanery": "Phước Thành",
+      "address": "177 Ấp Hưng Phước, xã An Bình, H. Phú Giáo, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/d3a7fbed-7416-4886-926f-f2a4d17af6f2"
+    },
+    {
+      "parish": "Phước Hoà",
+      "deanery": "Phước Thành",
+      "address": "Ấp 1A, xã Phước Hoà, huyện Phú Giáo, tỉnh Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/d3d33d97-98c5-480a-bb43-1aa35a726616"
+    },
+    {
+      "parish": "Búng",
+      "deanery": "Phú Cường",
+      "address": "288 Hưng Phước, phường Hưng Định, Tx. Thuận An, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "06:00",
+        "07:30",
+        "16:00",
+        "17:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/0b15e3e5-62b7-4abf-88b5-4def5a8e4c60"
+    },
+    {
+      "parish": "Phú Lợi",
+      "deanery": "Phú Cường",
+      "address": "234,khu phố 5, P. Phú Hoà, Tp. Thủ Dầu Một, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/2b77c0a5-9f5c-4144-8be3-72aaa8ab6b82"
+    },
+    {
+      "parish": "Bà Lụa",
+      "deanery": "Phú Cường",
+      "address": "P. Phú Thọ, Tp. Thủ Dầu Một, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/39206042-db68-464f-b8df-98c3185933f6"
+    },
+    {
+      "parish": "Bình Sơn",
+      "deanery": "Phú Cường",
+      "address": "128B ấp An Mỹ, xã An Sơn, Thuận An, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/40222d33-77a3-4441-a777-85dc86783730"
+    },
+    {
+      "parish": "Phú Long",
+      "deanery": "Phú Cường",
+      "address": "59C Kp. Hòa Long, phường Lái Thiêu, Tx. Thuận An, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:45"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "16:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/43cd97df-6599-4d75-a890-c06eb0434a13"
+    },
+    {
+      "parish": "Lái Thiêu",
+      "deanery": "Phú Cường",
+      "address": "Phường Lái Thiêu, Thuận An, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "16:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/4c6753a3-d5bb-49e0-8d47-90d6ef72a6fa"
+    },
+    {
+      "parish": "Bến Sắn",
+      "deanery": "Phú Cường",
+      "address": "Kp. Tân Bình, P.Tân Hiệp, thị xã Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "16:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/6322382c-32aa-4b79-8ca0-5d49a45e9ad5"
+    },
+    {
+      "parish": "Chánh Thiện",
+      "deanery": "Phú Cường",
+      "address": "77, khu 6, tổ 70, P. Hiệp Thành, Tp. TDM, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/6d5c4a57-5dd3-47e5-82a4-4d9d5b409750"
+    },
+    {
+      "parish": "Thánh Giuse",
+      "deanery": "Phú Cường",
+      "address": "Hoà Phú, Thủ Dầu Một, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/7c55c7dc-9335-46fb-9fa8-e510fe46117c"
+    },
+    {
+      "parish": "An Phú",
+      "deanery": "Phú Cường",
+      "address": "172c/3, khu phố 2, phường  An Phú, Thuận An, BD",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:15",
+        "09:30",
+        "16:00",
+        "18:00",
+        "19:45"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/87778664-3714-46b6-bdfd-bc573bf4ebf8"
+    },
+    {
+      "parish": "Chánh Toà Phú Cường",
+      "deanery": "Phú Cường",
+      "address": "394 Cách Mạng Tháng Tám, Phú Cường, Tp. Thủ Dầu Một, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "08:15",
+        "10:30",
+        "16:00",
+        "17:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/95822600-6471-4d06-a212-ff39f1002fc2"
+    },
+    {
+      "parish": "Bình Hòa",
+      "deanery": "Phú Cường",
+      "address": "02 A, Lô 1, Khu phố Bình Hòa, Thị trấn Lái Thiêu, Huyện Thuận An, Tỉnh Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "08:00",
+        "16:00",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a34f81e1-5573-4ccd-866e-bd8cd4173696"
+    },
+    {
+      "parish": "Bà Trà",
+      "deanery": "Phú Cường",
+      "address": "4/12 kp. Bình Phú, phường Bình Chuẩn, Tx. Thuận An, Bình Dương.",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "07:30",
+        "15:30",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/b6151b76-619e-421f-9ad4-29781f726a1e"
+    },
+    {
+      "parish": "Mỹ Hảo",
+      "deanery": "Phú Cường",
+      "address": "15/2 ấp Mỹ Hảo, P. Chánh Mỹ, Tp. Thủ Dầu Một, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/e5a6cecf-0089-4d9d-82e4-993a6485dc73"
+    },
+    {
+      "parish": "Uyên Hưng",
+      "deanery": "Phú Cường",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/f4b3a19c-f317-4479-ae89-9306e56a14b4"
+    },
+    {
+      "parish": "Vinh Sơn BD",
+      "deanery": "Phú Cường",
+      "address": "79 Khu 6, P. Phú Hoà, Tp. Thủ Dầu Một, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "08:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/fa2a040d-7a3a-4afc-afa6-ea63f794dad1"
+    },
+    {
+      "parish": "Thượng Phúc",
+      "deanery": "Lạc An",
+      "address": "Ấp 3, Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:30",
+        "16:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/1ca5660a-f03e-47d7-bd34-8655bc5910cf"
+    },
+    {
+      "parish": "Hoàng Châu",
+      "deanery": "Lạc An",
+      "address": "Ấp 2, xã Lạc An, huyện Bắc Tân Uyên, tỉnh Bình Dương",
+      "weekdayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/1f027694-82b2-4cf9-9db5-a3c95985f76c"
+    },
+    {
+      "parish": "Hội Nghĩa",
+      "deanery": "Lạc An",
+      "address": "Hội Nghĩa, Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:00",
+        "19:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/392170db-f706-4238-92fb-f4b8a87c4832"
+    },
+    {
+      "parish": "Mỹ Vân",
+      "deanery": "Lạc An",
+      "address": "Ấp 1, xã Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/5c919bed-fbae-458e-bf09-f0981dcf86a4"
+    },
+    {
+      "parish": "Tân Lập",
+      "deanery": "Lạc An",
+      "address": "Ấp 3, Xã Tân Lập, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "09:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/7cd97c48-9aee-4be8-a756-770ab0d5cbcf"
+    },
+    {
+      "parish": "Võng Phan",
+      "deanery": "Lạc An",
+      "address": "Ấp 2, Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [
+        "04:30",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/833cccb0-39f8-439f-9ce3-3de2eb792ff2"
+    },
+    {
+      "parish": "Lực Điền",
+      "deanery": "Lạc An",
+      "address": "98 Tổ 2, ấp1, xã Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/944426aa-4ce4-4820-a4f3-49c6f82140e9"
+    },
+    {
+      "parish": "Ngọc Đồng",
+      "deanery": "Lạc An",
+      "address": "Ấp 3, Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "04:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/988025d3-493b-4fdf-8076-934be3469d9a"
+    },
+    {
+      "parish": "Tân Kim Bảng",
+      "deanery": "Lạc An",
+      "address": "Cây Dừng, Hiếu Liêm, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/bcec75d0-e8f2-4d25-8f34-7b3052ee9f16"
+    },
+    {
+      "parish": "Hiếu Liêm",
+      "deanery": "Lạc An",
+      "address": "Ấp Chánh Hưng, Hiếu Liêm, Bắc Tân Uyên, BD",
+      "weekdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/d582c344-92a2-4d6f-8cb5-5011cea4f2ee"
+    },
+    {
+      "parish": "Cảnh Lâm",
+      "deanery": "Lạc An",
+      "address": "Ấp 2, Xã Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/e47bdb48-04b1-4f0c-b761-3200ccb7afe0"
+    },
+    {
+      "parish": "Biên Hà",
+      "deanery": "Lạc An",
+      "address": "Ấp 1, Lạc An, Bắc Tân Uyên, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/fa205f55-cbe5-413a-9e3f-36db1a4fa12b"
+    },
+    {
+      "parish": "Thánh Mẫu (Mỏ Công)",
+      "deanery": "Tây Ninh",
+      "address": "Ấp Thanh Tân, Xã Mõ Công, H. Tân Biên, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/11e7d95e-fa7b-4e6c-8afe-29543621c5de"
+    },
+    {
+      "parish": "Phước Điền",
+      "deanery": "Tây Ninh",
+      "address": "Thanh Điền, Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "16:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/16946cc8-27f7-4b03-bca0-e727762766b6"
+    },
+    {
+      "parish": "Cao Xá",
+      "deanery": "Tây Ninh",
+      "address": "Khu phố 2, Thị Trấn Châu Thành, Tỉnh Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:30",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/2c2f71e1-dce3-4ad8-9557-3a44a2bb400f"
+    },
+    {
+      "parish": "Thánh Mẫu Hoà Bình",
+      "deanery": "Tây Ninh",
+      "address": "Thành Đông, Thành Long, Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/3647533d-2a55-4ace-a477-50ef48794424"
+    },
+    {
+      "parish": "Thánh Linh",
+      "deanery": "Tây Ninh",
+      "address": "Ấp Thạnh Nam, Xã Thạnh Tây, H. Tân Biên, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/4934da89-0ac9-40ad-8a4f-8d70acca1585"
+    },
+    {
+      "parish": "Long Bình (Tây Ninh)",
+      "deanery": "Tây Ninh",
+      "address": "QL 22B, Long Bình, Long Thành Nam, Hoà Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/68f9f094-df82-427b-aa3b-b747bead642e"
+    },
+    {
+      "parish": "Thánh Tuân",
+      "deanery": "Tây Ninh",
+      "address": "KP II, Thị Trấn Châu Thành, Tỉnh Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/6d412e14-e97b-4e92-be28-9fb0818a9e1f"
+    },
+    {
+      "parish": "Hiệp Thạnh",
+      "deanery": "Tây Ninh",
+      "address": "Ấp Đá Hàng, xã Hiệp Thạnh, H. Gò Dầu, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/794247c0-0ed7-4d77-bf4e-3455043e749a"
+    },
+    {
+      "parish": "Tân Nghĩa",
+      "deanery": "Tây Ninh",
+      "address": "Thạnh Đông, Tân Châu, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:15",
+        "07:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/79c4c037-8843-4052-8e63-bfc5e40104d8"
+    },
+    {
+      "parish": "Tân Hội",
+      "deanery": "Tây Ninh",
+      "address": "83 Hội Tân, Tân Hội, Tân Châu, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "09:00",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/9aa505d5-168d-4b33-8e22-92b9a5a8c1ac"
+    },
+    {
+      "parish": "Phong Cốc",
+      "deanery": "Tây Ninh",
+      "address": "Ấp Bình Phong, Thái Bình, Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a0b795ea-84d9-4fdf-a3cd-aa09c5b0786d"
+    },
+    {
+      "parish": "Thiên Ân",
+      "deanery": "Tây Ninh",
+      "address": "Thạnh Tân, Xã Thạnh Tây, Huyện Tân Biên, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/b4a42dfb-b885-4fb5-95d6-9c3618cbe7b9"
+    },
+    {
+      "parish": "Suối Dây",
+      "deanery": "Tây Ninh",
+      "address": "Ấp 1, Suối Dây, Tân Châu, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/ba2d285e-7696-4cd0-9016-45ede80f0293"
+    },
+    {
+      "parish": "Hảo Đước",
+      "deanery": "Tây Ninh",
+      "address": "Xã Hảo Đước, H. Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "06:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c25f0317-5b6f-44e6-9c4a-78a8dc059067"
+    },
+    {
+      "parish": "Vinh Sơn (Tây Ninh)",
+      "deanery": "Tây Ninh",
+      "address": "KP 1, Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "06:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c2c3c1c6-55d9-439b-b8af-9477192b3ed4"
+    },
+    {
+      "parish": "Suối Đá",
+      "deanery": "Tây Ninh",
+      "address": "KP 4, Dương Minh Châu, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/cddb71f4-3eb7-4e04-a31e-a099f4d0fe70"
+    },
+    {
+      "parish": "Kiên Long",
+      "deanery": "Tây Ninh",
+      "address": "Ấp Bình Long, Thái Bình, Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "16:45"
+      ],
+      "sundayMass": [
+        "04:15",
+        "07:00",
+        "16:45",
+        "17:15"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/cfab6a81-d412-4900-be3f-bc7fa550c9e3"
+    },
+    {
+      "parish": "Phú Ninh",
+      "deanery": "Tây Ninh",
+      "address": "KP 1, Châu Thành, Tây Ninh",
+      "weekdayMass": [
+        "17:15"
+      ],
+      "saturdayMass": [
+        "17:15"
+      ],
+      "sundayMass": [
+        "04:35",
+        "17:15"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/d96367bc-cff4-4c71-904b-9fdbf53477e1"
+    },
+    {
+      "parish": "Tây Ninh",
+      "deanery": "Tây Ninh",
+      "address": "A 16, khu Phố 3, phường II, Tp. Tây Ninh, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/dd4ee22f-0bc4-43c3-8ea0-67c348ffdde5"
+    },
+    {
+      "parish": "Phước Minh",
+      "deanery": "Tây Ninh",
+      "address": "59 Ấp A4, xã Phước Minh, Dương M.Châu, Tây Ninh",
+      "weekdayMass": [
+        "05:00",
+        "18:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/ddc6814c-3ff7-4f42-ab33-3e115c9b0f44"
+    },
+    {
+      "parish": "Hoà Thạnh",
+      "deanery": "Tây Ninh",
+      "address": "432 Hiệp Phước, Xã Hoà Thạnh, Huyện Châu Thành, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/e21b1c70-0e6d-48d9-889f-8f91ec64d70c"
+    },
+    {
+      "parish": "Bến Trường",
+      "deanery": "Tây Ninh",
+      "address": "Ấp Trường, Hảo Đước, Châu Thành Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/f9998f1f-8c86-4521-8d84-def610e3bcfb"
+    },
+    {
+      "parish": "Gò Dầu",
+      "deanery": "Tây Ninh",
+      "address": "Khu phố Rạch Sơn, thị trấn Gò Dầu, Tây Ninh",
+      "weekdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "saturdayMass": [
+        "16:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "16:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/f9fa3164-091a-4afb-b964-2ad68e88a4d4"
+    },
+    {
+      "parish": "Dầu Tiếng",
+      "deanery": "Bến Cát",
+      "address": "Khu phố 4A, TT. Dầu Tiếng, Dầu Tiếng, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "06:00",
+        "16:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/036c751b-a7fb-4a5d-8eda-19eee7ebe156"
+    },
+    {
+      "parish": "Lai Uyên",
+      "deanery": "Bến Cát",
+      "address": "Ấp 2B, xã Lai Uyên, huyện Bàu Bàng, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/2ff60088-dd82-4eea-a0c9-b1bdfcddec7f"
+    },
+    {
+      "parish": "Hưng Hòa",
+      "deanery": "Bến Cát",
+      "address": "Ấp 6, Xã Hưng Hòa, huyện Bàu Bàng, Bình Dương",
+      "weekdayMass": [
+        "04:45",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/51c65d17-4488-49b6-8be1-cba9c64cf9e0"
+    },
+    {
+      "parish": "Thới Hòa",
+      "deanery": "Bến Cát",
+      "address": "Phường Thới Hòa, Bến Cát, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "15:00",
+        "16:30",
+        "18:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/582948e1-937f-4b11-b9a2-259a08603194"
+    },
+    {
+      "parish": "Cây Trường",
+      "deanery": "Bến Cát",
+      "address": "Xã Cây Trường II, huyện Bàu Bàng, Bình Dương",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/5db57d68-55f8-461c-8d03-ff30eececf89"
+    },
+    {
+      "parish": "Thánh Phaolô",
+      "deanery": "Bến Cát",
+      "address": "Đường 23. Ấp 2. Xã Trừ Văn Thố, Huyện Bàu Bàng, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/6c0ed221-5dce-4690-be52-b9ad4170fb7b"
+    },
+    {
+      "parish": "Rạch Kiến",
+      "deanery": "Bến Cát",
+      "address": "Ấp Bưng Còng, xã Thanh Tuyền, Dầu Tiếng, BD",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "17:15"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a42bf722-7ffc-4b93-94f2-2f4c6306928b"
+    },
+    {
+      "parish": "Long Hòa",
+      "deanery": "Bến Cát",
+      "address": "ấp 5, xã Long Hoà, huyện Dầu Tiếng, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "07:00",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a63b105f-8624-4061-92a3-fe039cdf27c9"
+    },
+    {
+      "parish": "Minh Tân",
+      "deanery": "Bến Cát",
+      "address": "Ấp II, Minh Thạnh, Dầu Tiếng, Bình Dương",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/b7327a22-315e-45c5-aec5-4db784d4424f"
+    },
+    {
+      "parish": "Minh Thạnh",
+      "deanery": "Bến Cát",
+      "address": "Ấp II, xã Minh Thạnh, Dầu Tiếng, Bình Dương",
+      "weekdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c4b3ee38-04b5-42e2-8cb2-d6591b40911f"
+    },
+    {
+      "parish": "Lai Khê",
+      "deanery": "Bến Cát",
+      "address": "Xã Lai Hưng, huyện Bàu Bàng, Bình Dương",
+      "weekdayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "07:30",
+        "16:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c79ee9e0-a04e-462e-86c7-50009ba9e0dc"
+    },
+    {
+      "parish": "Minh Hoà",
+      "deanery": "Bến Cát",
+      "address": "Hoà Cường, Minh Hoà, Dầu Tiếng, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/e02f7dc1-911a-4814-a331-54e2a2df93c3"
+    },
+    {
+      "parish": "Bến Cát",
+      "deanery": "Bến Cát",
+      "address": "KP 1, Phường Mỹ Phước, Tx. Bến Cát, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00",
+        "18:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/edd8d59e-7e77-4bdd-a559-8991474189c9"
+    },
+    {
+      "parish": "Tân Định",
+      "deanery": "Bến Cát",
+      "address": "Tân Định, Bến Cát, Bình Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/f6fd9565-1932-4980-bdce-dfc5688f75a2"
+    },
+    {
+      "parish": "Chơn Thành",
+      "deanery": "Bình Long",
+      "address": "Thị Trấn Chơn Thành, Huyện Chơn Thành, Tỉnh Bình Phước",
+      "weekdayMass": [
+        "05:15",
+        "17:45"
+      ],
+      "saturdayMass": [
+        "17:45"
+      ],
+      "sundayMass": [
+        "06:30",
+        "17:00",
+        "18:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/0fef85ce-b7b4-4d49-aa83-2dac46ee82fb"
+    },
+    {
+      "parish": "Minh Hưng",
+      "deanery": "Bình Long",
+      "address": "Ấp 3, Minh Hưng, Chơn Thành, Bình Phước",
+      "weekdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/13b43a66-5659-41de-8183-645fc99745ff"
+    },
+    {
+      "parish": "Bình Long",
+      "deanery": "Bình Long",
+      "address": "Phường An Lộc,  Thị xã Bình Long, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "08:00",
+        "16:00",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/18f0b21e-9e2f-494a-908c-972ef6108d6b"
+    },
+    {
+      "parish": "Nha Bích",
+      "deanery": "Bình Long",
+      "address": "Nha Bích, Chơn Thành, Bình Phước",
+      "weekdayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/28cd8f6f-9fe1-4c23-acad-c40aae448c65"
+    },
+    {
+      "parish": "Tân Châu",
+      "deanery": "Bình Long",
+      "address": "Thủ Chánh, Thành Tâm, Chơn Thành, Bình Phước",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/2a84db1b-b3a1-414c-a153-4a7082b4a703"
+    },
+    {
+      "parish": "Thanh An",
+      "deanery": "Bình Long",
+      "address": "An Quý, Thanh An, Hớn Quản, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/3a3c3ef4-9d1a-4e80-95d0-6603925c3d30"
+    },
+    {
+      "parish": "Tân Khai",
+      "deanery": "Bình Long",
+      "address": "Tân Khai, Hớn Quản, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "08:00",
+        "18:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/3a8bc74b-37f0-4c83-92bd-fb7a04285590"
+    },
+    {
+      "parish": "Minh Long",
+      "deanery": "Bình Long",
+      "address": "Ấp 1. Minh Long, Chơn Thành, Bình Phước",
+      "weekdayMass": [
+        "05:30",
+        "15:00",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/42f9cf52-d124-4a4c-adee-9308655fd5d2"
+    },
+    {
+      "parish": "Lộc Quang",
+      "deanery": "Bình Long",
+      "address": "Việt Tân, Lộc Quang, Lộc Ninh, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/4a78192e-ea9d-4f47-a47e-88f3d847191f"
+    },
+    {
+      "parish": "Đồng Tâm",
+      "deanery": "Bình Long",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/579f6e58-15ac-4715-bf36-5134958376f8"
+    },
+    {
+      "parish": "An Khương",
+      "deanery": "Bình Long",
+      "address": "An Khương, Hớn Quản, Bình Phước",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/5c03fcc6-0ebc-4703-b03f-c626efc8a757"
+    },
+    {
+      "parish": "Lộc Hiệp",
+      "deanery": "Bình Long",
+      "address": "Lộc Hiệp, Lộc Ninh, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/76c51a56-534d-4a67-a619-d40755089add"
+    },
+    {
+      "parish": "Tân Hưng",
+      "deanery": "Bình Long",
+      "address": "Tân Hưng, Hớn Quản, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/8cc6ca44-39ae-4fa1-a244-2ef4d168b049"
+    },
+    {
+      "parish": "Minh Đức",
+      "deanery": "Bình Long",
+      "address": "Minh Đức, Hớn Quản, Bình Phước",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/9027dc77-78cb-40b4-b87d-6db790bf6df2"
+    },
+    {
+      "parish": "Lộc Ninh",
+      "deanery": "Bình Long",
+      "address": "Thị Trấn Lộc Ninh, Huyện Lộc Ninh, Tỉnh Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "09:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/93074ca0-6b42-45f4-98e2-f78f0bd7b377"
+    },
+    {
+      "parish": "Lộc Thiện",
+      "deanery": "Bình Long",
+      "address": "Lộc Thiện, Lộc Ninh, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/985ee4a5-d01c-4997-b977-afd37d5743cc"
+    },
+    {
+      "parish": "Phước An",
+      "deanery": "Bình Long",
+      "address": "Phước An, Hớn Quản, Bình Phước",
+      "weekdayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/9aac5fb8-0611-4f48-80bc-1a2688a88918"
+    },
+    {
+      "parish": "Tân Quan",
+      "deanery": "Bình Long",
+      "address": "Tân Quan, Hớn Quản, Bình Phước",
+      "weekdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "saturdayMass": [
+        "05:00"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a2b56f80-485a-4525-a98f-a2e3e9e749b2"
+    },
+    {
+      "parish": "Tân Hiệp",
+      "deanery": "Bình Long",
+      "address": "Tân Hiệp, Hớn Quản, Bình Phước",
+      "weekdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a3e59799-d6f2-4180-996f-435d95b4e01c"
+    },
+    {
+      "parish": "Lộc Tấn",
+      "deanery": "Bình Long",
+      "address": "Lộc Tấn, Lộc Ninh, Bình Phước",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "08:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/ab6859b2-8901-4b9e-a6b7-37b81de5e24c"
+    },
+    {
+      "parish": "Lộc Thạnh",
+      "deanery": "Bình Long",
+      "address": "Lộc Thạnh, Lộc Ninh, Bình Phước",
+      "weekdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/b18269ff-8711-4dff-92e5-a5dbd8a6b191"
+    },
+    {
+      "parish": "Tích Thiện",
+      "deanery": "Bình Long",
+      "address": "Lộc Điền, Lộc Ninh, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "07:45",
+        "09:00",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/bf308281-243e-4166-a2c7-983ee3e60d05"
+    },
+    {
+      "parish": "Quản Lợi",
+      "deanery": "Bình Long",
+      "address": "Ấn Lợi, Tân Lợi, Hớn QUản, Bình Phước",
+      "weekdayMass": [
+        "06:00",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c11ceb3e-605b-4076-9e65-c911ccebe1d2"
+    },
+    {
+      "parish": "Mỹ Hưng",
+      "deanery": "Bình Long",
+      "address": "Mỹ Hưng, Thành Tâm, Chơn Thành, Bình Phước",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:45",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/cab1dd3f-382a-4bde-b75e-e0c107bf1b4f"
+    },
+    {
+      "parish": "Phú Lương",
+      "deanery": "Bình Long",
+      "address": "Thanh Phú, Bình Long, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/d797a5c7-a81a-4caa-ac9c-fb7a7821d92d"
+    },
+    {
+      "parish": "Minh Lập",
+      "deanery": "Bình Long",
+      "address": "Ấp 6, Minh Lập, Chơn Thành, Bình Phước",
+      "weekdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/e0481e75-a728-461c-a4dd-8213c088012d"
+    },
+    {
+      "parish": "Lộc Hoà",
+      "deanery": "Bình Long",
+      "address": "Lộc Hoà, Lộc Ninh, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "06:00",
+        "09:00",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/f88f834b-3c10-4a3e-9923-1bcb6c3e919c"
+    },
+    {
+      "parish": "Tân Thành",
+      "deanery": "Bình Long",
+      "address": "Tân Thành, Bù Đốp, Bình Phước",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/ffa60cb5-3096-469d-a305-66e4d815f7f3"
+    },
+    {
+      "parish": "Tân Thạnh Đông",
+      "deanery": "Củ Chi",
+      "address": "Ấp I, xã Tân Thạnh Đông, huyện Củ Chi,Tp Hcm",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/411aa981-0520-46ae-9c06-c30004d3f095"
+    },
+    {
+      "parish": "Mỹ Khánh",
+      "deanery": "Củ Chi",
+      "address": "557 Tỉnh lộ 7, Ấp Mỹ Khánh B, xã Thái Mỹ, huyện Củ Chi, Tp. Hồ Chí Minh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:30",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/53145f82-af41-479f-aca9-883ad4064ad8"
+    },
+    {
+      "parish": "Tân Qui",
+      "deanery": "Củ Chi",
+      "address": "ấp Thạnh An, xã Trung An, Củ Chi, TP. HCM",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:30",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/5d1df1fc-1aec-47fd-a205-1900bc18ea6d"
+    },
+    {
+      "parish": "Củ Chi",
+      "deanery": "Củ Chi",
+      "address": "khu phố 8, TT. Củ Chi, Củ Chi, TP. HCM",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "08:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/6d3a3517-ff06-4491-ad65-8085e764c414"
+    },
+    {
+      "parish": "Hiệp Nhất",
+      "deanery": "Củ Chi",
+      "address": "An Nhơn Tây, Củ Chi, thành phố Hồ Chí Minh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/799fce04-a2e4-4036-89a0-0a5c4b8b7c41"
+    },
+    {
+      "parish": "Tha La",
+      "deanery": "Củ Chi",
+      "address": "Xã An Hoà,  H. Trảng Bàng, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:45",
+        "07:00",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/8ee70165-662b-450b-bfc1-1f5b9bd05db7"
+    },
+    {
+      "parish": "Bắc Đoàn",
+      "deanery": "Củ Chi",
+      "address": "khu I, ấp Đình, xã Tân Phú Trung, Củ Chi, TP. HCM",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "05:30",
+        "07:30",
+        "18:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/98a603d4-ca9f-4a46-8ff1-a6dfcf90bcfb"
+    },
+    {
+      "parish": "Trảng Bàng",
+      "deanery": "Củ Chi",
+      "address": "36 khu phố Lộc An, H. thị trấn Trảng Bàng, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:30",
+        "17:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/9e9bd93e-8097-48df-81a7-75f978c2264d"
+    },
+    {
+      "parish": "Bắc Hà",
+      "deanery": "Củ Chi",
+      "address": "Đường Phạm Hữu Tâm, Khu phố 3, TT. Củ Chi, TP. HCM",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:40"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:30",
+        "16:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a3c28436-c19d-4c6c-baba-1ab3d3848fb4"
+    },
+    {
+      "parish": "Sơn Lộc",
+      "deanery": "Củ Chi",
+      "address": "Nhà số 1, Đường 81, Ấp Đình, xã Tân Phú Trung,   Củ Chi, TP. HCM.",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "16:45",
+        "17:30",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/a8857715-cd17-4505-987e-068028aee44a"
+    },
+    {
+      "parish": "Tân Thông",
+      "deanery": "Củ Chi",
+      "address": "Ấp Tân Tiến, xã Tân Thông Hội, H. Củ Chi, Tp. HCM",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/b85ccfa7-8031-4d25-a13a-47b82fb0d678"
+    },
+    {
+      "parish": "Bình Nguyên",
+      "deanery": "Củ Chi",
+      "address": "Ấp Bình Nguyên I, xã Gia Bình, Trảng Bàng, Tây Ninh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/c182693b-84d8-4280-bd4c-83ba07f3aa3d"
+    },
+    {
+      "parish": "Phú Hòa Đông",
+      "deanery": "Củ Chi",
+      "address": "Ấp Chợ, xã Phú Hoà Đông,   Củ Chi, TP. HCM.",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "06:30",
+        "16:30"
+      ],
+      "source": "https://diocese-client-api.cmate.vn/api/v1/facility/d30c0ddb-68a0-4504-9d33-16357480c687"
+    }
+  ]
+}

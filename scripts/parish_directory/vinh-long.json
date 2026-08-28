@@ -1,0 +1,2814 @@
+{
+  "diocese": "Vĩnh Long",
+  "sources": [
+    "https://giaophanvinhlong.net/",
+    "https://giaophanvinhlong.net/giao-hat/hat-ben-tre/",
+    "https://giaophanvinhlong.net/giao-hat/hat-binh-dai/",
+    "https://giaophanvinhlong.net/giao-hat/hat-cai-mon/",
+    "https://giaophanvinhlong.net/giao-hat/hat-mac-bac/",
+    "https://giaophanvinhlong.net/giao-hat/hat-mai-phop/",
+    "https://giaophanvinhlong.net/giao-hat/hat-sa-dec/",
+    "https://giaophanvinhlong.net/giao-hat/hat-thanh-phu/",
+    "https://giaophanvinhlong.net/giao-hat/hat-tra-vinh/",
+    "https://giaophanvinhlong.net/giao-hat/hat-vinh-kim/",
+    "https://giaophanvinhlong.net/giao-hat/hat-vinh-long/",
+    "https://giaophanvinhlong.net/ho-dao-*/ (207 trang chi tiết từng họ đạo)"
+  ],
+  "deaneryCount": 10,
+  "note": "Lấy đủ 207 giáo xứ/họ đạo thuộc 10 giáo hạt từ các trang danh sách theo hạt (giaophanvinhlong.net/giao-hat/hat-*/, có phân trang). Địa chỉ và giờ lễ lấy từ 207 trang chi tiết ho-dao-*; 5 họ đạo không có địa chỉ công bố trên trang, để rỗng. Giờ lễ chỉ ghi được khi trang liệt kê rõ theo 'Chúa nhật'/'Ngày thường'/'Thứ Bảy'.",
+  "parishes": [
+    {
+      "parish": "Bến Tre",
+      "deanery": "Bến Tre",
+      "address": "75 Hùng Vương, P3, Tp.BẾN TRE",
+      "weekdayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:40",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ben-tre/"
+    },
+    {
+      "parish": "Cái Sơn",
+      "deanery": "Bến Tre",
+      "address": "xã Lương Phú, Giồng Trôm, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-son-ben-tre/"
+    },
+    {
+      "parish": "Mỹ Hoá",
+      "deanery": "Bến Tre",
+      "address": "Ấp Bình Công, Xã Bình Phú, Tp. Bến Tre",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-hoa/"
+    },
+    {
+      "parish": "Mỹ Lồng",
+      "deanery": "Bến Tre",
+      "address": "Ấp Chợ Hàng Sao, Xã Mỹ Thạnh, Huyện Giồng Trôm, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-long/"
+    },
+    {
+      "parish": "Mỹ Nhơn",
+      "deanery": "Bến Tre",
+      "address": "ấp Nhơn Thuận, xã Mỹ Nhơn, Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-nhon/"
+    },
+    {
+      "parish": "Mỹ Thạnh",
+      "deanery": "Bến Tre",
+      "address": "xã Mỹ Thạnh, Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-thanh/"
+    },
+    {
+      "parish": "Phú Lễ",
+      "deanery": "Bến Tre",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-le/"
+    },
+    {
+      "parish": "Tân Hưng",
+      "deanery": "Bến Tre",
+      "address": "ấp Hưng Nhơn, Tân Hưng, Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "05:16"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-hung/"
+    },
+    {
+      "parish": "Tân Thanh",
+      "deanery": "Bến Tre",
+      "address": "Ấp Bình Thuận, Xã Tân Thanh, Huyện Giồng Trôm, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "07:04"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-thanh/"
+    },
+    {
+      "parish": "Tân Xuân",
+      "deanery": "Bến Tre",
+      "address": "ấp Tân Hòa, xã Tân Xuân, Ba Tri, BẾN TRE",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-xuan/"
+    },
+    {
+      "parish": "Bảo Thạnh",
+      "deanery": "Bến Tre",
+      "address": "ấp Thạnh Thọ, Xã Bảo Thạnh, Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "05:18"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-bao-thanh/"
+    },
+    {
+      "parish": "Cái Bông",
+      "deanery": "Bến Tre",
+      "address": "ấp 3, xã An Phú Trung, Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-bong/"
+    },
+    {
+      "parish": "Cái Nứa",
+      "deanery": "Bến Tre",
+      "address": "ấp 4, xã Sơn Đông, Tp.BẾN TRE",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-nua/"
+    },
+    {
+      "parish": "Cù Lao Lá",
+      "deanery": "Bến Tre",
+      "address": "ấp Tân Phú, xã Tân Mỹ, Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cu-lao-la/"
+    },
+    {
+      "parish": "Gãnh",
+      "deanery": "Bến Tre",
+      "address": "Ấp An Bình 1, Xã An Hòa Tây, Huyện Ba Tri, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "20:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ganh/"
+    },
+    {
+      "parish": "Giồng Giá",
+      "deanery": "Bến Tre",
+      "address": "ấp 3, xã Vĩnh Hòa, huyện Ba Tri, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-gia/"
+    },
+    {
+      "parish": "Giồng Ổi",
+      "deanery": "Bến Tre",
+      "address": "ấp 5, xã Sơn Phú , huyện Giồng Trôm, BẾN TRE",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-oi/"
+    },
+    {
+      "parish": "Giồng Quít",
+      "deanery": "Bến Tre",
+      "address": "ấp7, xã Phước Long, Giồng Trôm, BẾN TRE",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:40",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-quit/"
+    },
+    {
+      "parish": "Giồng Trôm",
+      "deanery": "Bến Tre",
+      "address": "ấp 5, xã Bình Thành, Giồng Trôm, BẾN TRE",
+      "weekdayMass": [
+        "05:15",
+        "17:15"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:15",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-trom/"
+    },
+    {
+      "parish": "La Mã",
+      "deanery": "Bến Tre",
+      "address": "ấp 6, xã Hưng Nhượng, Giồng Trôm, BẾN TRE",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "10:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-la-ma/"
+    },
+    {
+      "parish": "An Điền",
+      "deanery": "Bến Tre",
+      "address": "Ấp An Thuận, Xã An Bình Tây, Huyện Ba Tri, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "18:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-dien/"
+    },
+    {
+      "parish": "Ba Châu",
+      "deanery": "Bến Tre",
+      "address": "ấp Phú Tân, xã Châu Hòa, Giồng Trôm, BẾN TRE",
+      "weekdayMass": [
+        "04:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-chau/"
+    },
+    {
+      "parish": "Ba Tri",
+      "deanery": "Bến Tre",
+      "address": "114 Trần Hưng Đạo, Khu Phố 1, Thị Trấn Ba Tri, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-tri/"
+    },
+    {
+      "parish": "Bãi Ngao",
+      "deanery": "Bến Tre",
+      "address": "Khu phố An Thạnh, Thị trấn Tiệm Tôm, Huyện Ba Tri, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "07:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-bai-ngao/"
+    },
+    {
+      "parish": "An Hiệp_ Bến Tre",
+      "deanery": "Bình Đại",
+      "address": "ấp An Bình, xã An Hiệp, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-hiep-ben-tre/"
+    },
+    {
+      "parish": "Bình Đại",
+      "deanery": "Bình Đại",
+      "address": "ấp 3, xã Bình Thới, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-binh-dai/"
+    },
+    {
+      "parish": "Phú Đức",
+      "deanery": "Bình Đại",
+      "address": "ấp Phú Long, xã Phú Đức, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-duc/"
+    },
+    {
+      "parish": "Phú Túc",
+      "deanery": "Bình Đại",
+      "address": "ấp 5, xã Phú Túc, Châu Thành, BẾN TRE",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-tuc/"
+    },
+    {
+      "parish": "Quới Thành",
+      "deanery": "Bình Đại",
+      "address": "ấp Phú Thuận, Qưới Thành, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-quoi-thanh/"
+    },
+    {
+      "parish": "Tân Thạch",
+      "deanery": "Bình Đại",
+      "address": "ấp Tân An Thượng, xã Tân Thạch, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "07:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-thach/"
+    },
+    {
+      "parish": "Thạnh Phước",
+      "deanery": "Bình Đại",
+      "address": "ấp 3, xã Thạnh Phước, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "05:16"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-phuoc/"
+    },
+    {
+      "parish": "Thành Triệu",
+      "deanery": "Bình Đại",
+      "address": "ấp Chợ, xã Thành Triệu, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-trieu/"
+    },
+    {
+      "parish": "Tiên Thuỷ",
+      "deanery": "Bình Đại",
+      "address": "ấp Chánh, xã Tiên Thủy, Châu Thành, BẾN TRE",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tien-thuy/"
+    },
+    {
+      "parish": "Vang Quới",
+      "deanery": "Bình Đại",
+      "address": "ấp Vinh Huê, xã Văn Quới Đông, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "07:16"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vang-quoi/"
+    },
+    {
+      "parish": "Bình Huề",
+      "deanery": "Bình Đại",
+      "address": "ấp Bình Huề 1, xã Đại Hòa Lộc, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "07:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-binh-hue/"
+    },
+    {
+      "parish": "Giồng Quéo",
+      "deanery": "Bình Đại",
+      "address": "ấp Hưng Chánh, xã Châu Hưng, huyện Bình Đại, Bến Tre",
+      "weekdayMass": [
+        "06:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "10:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-queo/"
+    },
+    {
+      "parish": "Giồng Tre",
+      "deanery": "Bình Đại",
+      "address": "Ấp Giồng Tre, Xã Phú Long, Huyện Bình Đại, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "07:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-tre/"
+    },
+    {
+      "parish": "Kiến Vàng",
+      "deanery": "Bình Đại",
+      "address": "",
+      "weekdayMass": [
+        "07:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-kien-vang/"
+    },
+    {
+      "parish": "Kinh Điều",
+      "deanery": "Bình Đại",
+      "address": "Ấp Phước Thạnh, Xã An Khánh, Huyện Châu Thành, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-kinh-dieu/"
+    },
+    {
+      "parish": "Lộc Thuận",
+      "deanery": "Bình Đại",
+      "address": "ấp 6, xã Lộc Thuận, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "07:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-loc-thuan/"
+    },
+    {
+      "parish": "Phú Thuận",
+      "deanery": "Bình Đại",
+      "address": "ấp Phú Thạnh, Phú Thuận, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "06:04"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:15",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-thuan/"
+    },
+    {
+      "parish": "Quới Sơn",
+      "deanery": "Bình Đại",
+      "address": "177/4A, x Quới Sơn, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:45",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-quoi-son/"
+    },
+    {
+      "parish": "Rạch Gừa",
+      "deanery": "Bình Đại",
+      "address": "ấp 4, xã Phú Long, Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "05:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "15:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-rach-gua/"
+    },
+    {
+      "parish": "Tân Lợi",
+      "deanery": "Bình Đại",
+      "address": "ấp Tân Nam, xã Tân Phú, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "05:16"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-loi/"
+    },
+    {
+      "parish": "Ba Lai",
+      "deanery": "Bình Đại",
+      "address": "ấp Thạnh Hựu,xã Tam Phước, Châu Thành, BẾN TRE",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00",
+        "17:10"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-lai/"
+    },
+    {
+      "parish": "Bình Châu",
+      "deanery": "Bình Đại",
+      "address": "xã Bình Thắng, huyện Bình Đại, BẾN TRE",
+      "weekdayMass": [
+        "06:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-binh-chau/"
+    },
+    {
+      "parish": "Bà Dung",
+      "deanery": "Cái Mơn",
+      "address": "ấp Vĩnh Nam – xã Vĩnh Thành – huyện Chợ Lách – tỉnh Bến Tre",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-dung/"
+    },
+    {
+      "parish": "Cái Nhum_Bến Tre",
+      "deanery": "Cái Mơn",
+      "address": "Số 124/67 Long Thới, Chợ Lách, Bến Tre",
+      "weekdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "15:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-nhum-ben-tre/"
+    },
+    {
+      "parish": "Chợ Lách",
+      "deanery": "Cái Mơn",
+      "address": "Thị trấn Chợ Lách, huyện Chợ Lách, tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cho-lach/"
+    },
+    {
+      "parish": "Giồng Thủ Bá",
+      "deanery": "Cái Mơn",
+      "address": "ấp Thanh Yên, xã Tân Thiềng, huyện Chợ Lách, tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00",
+        "07:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "09:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-thu-ba/"
+    },
+    {
+      "parish": "Nhân Nghĩa",
+      "deanery": "Cái Mơn",
+      "address": "Hưng Nhơn, Hòa Nghĩa, Chợ Lách, Bến Tre",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nhan-nghia/"
+    },
+    {
+      "parish": "Quảng Ngãi",
+      "deanery": "Cái Mơn",
+      "address": "ấp Đông Nam – xã Vĩnh Thành – huyện Chợ Lách – tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-quang-ngai/"
+    },
+    {
+      "parish": "Vĩnh Bình (Cái Mơn)",
+      "deanery": "Cái Mơn",
+      "address": "ấp Bình Tây – xã Vĩnh Thành – huyện Chợ Lách – tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-binh-cai-mon/"
+    },
+    {
+      "parish": "Vĩnh Bình (Phú Phụng)",
+      "deanery": "Cái Mơn",
+      "address": "ấp Phú Lộc, xã Vĩnh Bình , huyện Chợ Lách, tỉnh Bến Tre",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-binh-phu-phung/"
+    },
+    {
+      "parish": "Vĩnh Chính (Cái Mơn)",
+      "deanery": "Cái Mơn",
+      "address": "ấp Vĩnh Chính – xã Vĩnh Hòa – huyện Chợ Lách – tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-chinh-cai-mon/"
+    },
+    {
+      "parish": "Cái Hàng",
+      "deanery": "Cái Mơn",
+      "address": "ấp Phú Xuân, xã Hưng Khánh Trung A, huyện Mỏ Cày Bắc, tỉnh Bến Tre",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-hang/"
+    },
+    {
+      "parish": "Cái Mơn",
+      "deanery": "Cái Mơn",
+      "address": "ấp Vĩnh Bắc – xã Vĩnh Thành – huyện Chợ Lách – tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "09:45",
+        "15:30",
+        "17:30",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-mon/"
+    },
+    {
+      "parish": "Cái Tắc",
+      "deanery": "Cái Mơn",
+      "address": "Quốc lộ 57, ấp Phú Long, xã Hưng Khánh Trung B, huyện Chợ Lách, tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-tac/"
+    },
+    {
+      "parish": "Đìa Cừ",
+      "deanery": "Cái Mơn",
+      "address": "ấp Tân Thạnh – xã Tân Thiềng – huyện Chợ Lách – Tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-dia-cu/"
+    },
+    {
+      "parish": "Giồng Dầu",
+      "deanery": "Cái Mơn",
+      "address": "Ấp Tân Hòa, Xã Tân Bình, Huyện Mỏ Cày, tỉnh Bến Tre",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-dau/"
+    },
+    {
+      "parish": "Giồng Keo",
+      "deanery": "Cái Mơn",
+      "address": "ấp Thanh Bắc, xã Tân Thanh Tây, huyện Mỏ Cày Bắc, Bến Tre",
+      "weekdayMass": [
+        "05:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-keo/"
+    },
+    {
+      "parish": "Mỹ Sơn",
+      "deanery": "Cái Mơn",
+      "address": "ấp Mỹ Sơn Đông, xã Phú Mỹ, huyện Mỏ Cày Bắc, BẾN TRE",
+      "weekdayMass": [
+        "06:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-son/"
+    },
+    {
+      "parish": "Phú Đa",
+      "deanery": "Cái Mơn",
+      "address": "xã Vĩnh Bình, Chợ Lách, BẾN TRE",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-da/"
+    },
+    {
+      "parish": "Phú Hiệp",
+      "deanery": "Cái Mơn",
+      "address": "Phú Hiệp, Phú Sơn, Chợ Lách, Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-hiep/"
+    },
+    {
+      "parish": "Phú Phụng",
+      "deanery": "Cái Mơn",
+      "address": "ấp Chợ, xã Phú Phụng, huyện Chợ Lách, tỉnh Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-phung/"
+    },
+    {
+      "parish": "Ba Vát",
+      "deanery": "Cái Mơn",
+      "address": "43 ấp Phước Khánh, xã Phước Mỹ Trung, huyện Mỏ Cày Bắc, Bến Tre",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-vat/"
+    },
+    {
+      "parish": "Bình An",
+      "deanery": "Cái Mơn",
+      "address": "Xã Hòa Nghĩa, Huyện Chợ Lách, Tỉnh Bến Tre",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-binh-an/"
+    },
+    {
+      "parish": "Thới Lộc",
+      "deanery": "Cái Mơn",
+      "address": "ấp Tân Thới, xã Sơn Định, huyện Chợ Lách, BẾN TRE",
+      "weekdayMass": [
+        "18:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-thoi-loc/"
+    },
+    {
+      "parish": "Vĩnh Phước (Bà Chủ)",
+      "deanery": "Cái Mơn",
+      "address": "Hoà Phước, Vĩnh Hoà, Chợ Lách, Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-phuoc-ba-chu/"
+    },
+    {
+      "parish": "Cây Gòn",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Cây Gòn, Hiếu Trung, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cay-gon/"
+    },
+    {
+      "parish": "Mặc Bắc",
+      "deanery": "Mặc Bắc",
+      "address": "Khóm 1,TT Cầu Quan,Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-mac-bac/"
+    },
+    {
+      "parish": "Phước Hưng",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Đầu Giồng, Phước Hưng, Trà Cú, Trà Vinh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "14:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phuoc-hung/"
+    },
+    {
+      "parish": "Rạch Lọp",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Lê Văn Quới, Tập Ngãi, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-rach-lop/"
+    },
+    {
+      "parish": "Rạch Vồn",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Định Bình, Long Thới, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-rach-von/"
+    },
+    {
+      "parish": "Tân Long",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Ba Tục, xã Thanh Sơn, Trà Cú, Trà Vinh",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-long-ba-tuc/"
+    },
+    {
+      "parish": "Tân Thành",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Tân Thành Đông, Tân Hòa, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-thanh1/"
+    },
+    {
+      "parish": "Tiểu Cần",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Đại Mong, xã Tiểu Cần, Tỉnh Vinh Long",
+      "weekdayMass": [
+        "04:20"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:20",
+        "17:20"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tieu-can/"
+    },
+    {
+      "parish": "Ba Giồng",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Định Phú A, Long Thới, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-giong/"
+    },
+    {
+      "parish": "Định Thuận",
+      "deanery": "Mặc Bắc",
+      "address": "K3 , TT Cầu Quan, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-dinh-thuan/"
+    },
+    {
+      "parish": "Lộ Mới",
+      "deanery": "Mặc Bắc",
+      "address": "ấp Định Phú B, Long Thới, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-lo-moi/"
+    },
+    {
+      "parish": "Ngọn",
+      "deanery": "Mặc Bắc",
+      "address": "Khóm 5,TT Cầu Quan, Tiểu Cần, Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ngon/"
+    },
+    {
+      "parish": "Phú Thọ II",
+      "deanery": "Mặc Bắc",
+      "address": "Ấp Phú Thọ, Xã Hiếu Trung, Huyện tiểu Cần, Tỉnh Trà Vinh",
+      "weekdayMass": [
+        "16:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-tho-ii/"
+    },
+    {
+      "parish": "Cái Tôm",
+      "deanery": "Mai Phốp",
+      "address": "ấp Quang Bình, xã Quới An, huyện Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-tom/"
+    },
+    {
+      "parish": "Cầu Đá",
+      "deanery": "Mai Phốp",
+      "address": "ấp An Thành Tây, xã Trung Hiếu, huyện Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cau-da/"
+    },
+    {
+      "parish": "Cầu Vĩ",
+      "deanery": "Mai Phốp",
+      "address": "ấp Tân Quang, xã Hiếu Phụng, Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cau-vi/"
+    },
+    {
+      "parish": "Đức Hoà",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Hòa Thuận, Xã Trung Thành Đông, Huyện Vũng Liêm, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:45"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:45",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-duc-hoa/"
+    },
+    {
+      "parish": "Nhơn Ngãi",
+      "deanery": "Mai Phốp",
+      "address": "ấp Nhân Ngãi, xã Hiếu Phụng, Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nhon-ngai/"
+    },
+    {
+      "parish": "Tân An Đông",
+      "deanery": "Mai Phốp",
+      "address": "ấp Tân Đông, xã Tân Quới Trung, huyện Vũng Liêm, tỉnh Vĩnh Long.Bổn mạng: Lễ Đức Maria Mẹ Thiên Chúa 1/1",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-an-dong/"
+    },
+    {
+      "parish": "Tân Mỹ",
+      "deanery": "Mai Phốp",
+      "address": "Mỹ Định, xã Tân Mỹ, huyện Trà Ôn, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-my/"
+    },
+    {
+      "parish": "Thới Hiệp",
+      "deanery": "Mai Phốp",
+      "address": "xã Xuân Hiệp, huyện Trà Ôn, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00",
+        "17:30",
+        "03:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thoi-hiep/"
+    },
+    {
+      "parish": "Vĩnh Xuân",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Vĩnh Tắc, Xã Vĩnh Xuân, Huyện Trà Ôn, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "17:10"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-xuan/"
+    },
+    {
+      "parish": "Vũng Liêm",
+      "deanery": "Mai Phốp",
+      "address": "Đường 3, Khóm 1, Thị Trấn Vũng Liêm, Huyện Vũng Liêm, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vung-liem-2/"
+    },
+    {
+      "parish": "Bưng Trường",
+      "deanery": "Mai Phốp",
+      "address": "ấp Quang Trường, xã Hiếu Thuận,Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-bung-truong/"
+    },
+    {
+      "parish": "Cái Kè",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Cái Kè, xã Mỹ Phước, huyện Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "17:30",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-ke/"
+    },
+    {
+      "parish": "Cần Thư",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Thái Bình, Xã Thanh Bình, Huyện Vũng Liêm, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "07:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-can-thu/"
+    },
+    {
+      "parish": "Cầu Mới",
+      "deanery": "Mai Phốp",
+      "address": "xã Tân Long Hội, Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cau-moi/"
+    },
+    {
+      "parish": "Cù Lao Dài",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Phước Lý Nhì, Xã Quới Thiện, Huyện Vũng Liêm, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cu-lao-dai/"
+    },
+    {
+      "parish": "Hoà Tịnh",
+      "deanery": "Mai Phốp",
+      "address": "ấp Thiềng Long 1, xã Hòa Tịnh, Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-hoa-tinh/"
+    },
+    {
+      "parish": "Hựu Thành",
+      "deanery": "Mai Phốp",
+      "address": "ấp Vĩnh Thiện, xã Hựu Thành, huyệnTrà Ôn, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-huu-thanh/"
+    },
+    {
+      "parish": "Long Hiệp",
+      "deanery": "Mai Phốp",
+      "address": "ấp Long Hiệp, xã Long An, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:15"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-long-hiep/"
+    },
+    {
+      "parish": "Minh Đức_Vĩnh Long",
+      "deanery": "Mai Phốp",
+      "address": "4 Hùng Vương, Khóm 2, Thị trấn Mang Thít, huyện Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-minh-ducvinh-long/"
+    },
+    {
+      "parish": "Xuân Hiệp",
+      "deanery": "Mai Phốp",
+      "address": "xã Xuân Hiệp, huyện Trà Ôn, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-xuan-hiep/"
+    },
+    {
+      "parish": "Hiếu Nhơn",
+      "deanery": "Mai Phốp",
+      "address": "ấp Ngãi Thạnh, xã Hiếu Thuận,Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-hieu-nhon/"
+    },
+    {
+      "parish": "Mai Phốp",
+      "deanery": "Mai Phốp",
+      "address": "ấp Bình Trung, xã Trung Hiếu, huyện Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "08:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-mai-phop/"
+    },
+    {
+      "parish": "Mỹ Chánh",
+      "deanery": "Mai Phốp",
+      "address": "xã Chánh An, Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-chanh/"
+    },
+    {
+      "parish": "Nhơn Phú",
+      "deanery": "Mai Phốp",
+      "address": "xã Nhơn Phú, Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:45"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:30",
+        "18:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nhon-phu/"
+    },
+    {
+      "parish": "Quang Diệu",
+      "deanery": "Mai Phốp",
+      "address": "ấp Quang Hiệp, xã Tân Quới Trung,Vũng Liêm",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-quang-dieu/"
+    },
+    {
+      "parish": "Quang Phong",
+      "deanery": "Mai Phốp",
+      "address": "ấp Bà Đông, xã Trung Chánh, huyện Vũng Liêm, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "06:16"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "15:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-quang-phong/"
+    },
+    {
+      "parish": "Tân Dinh",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Tích Phú, Xã Tích Thiện, Huyện Trà Ôn, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-dinh/"
+    },
+    {
+      "parish": "Thuỷ Thuận",
+      "deanery": "Mai Phốp",
+      "address": "ấp Thanh Thuỷ, xã An Phước, huyện Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-thuy-thuan/"
+    },
+    {
+      "parish": "Tích Thiện",
+      "deanery": "Mai Phốp",
+      "address": "Ấp Tích Lợi, Xã Tích Thiện, Huyện Trà Ôn, Tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-tich-thien/"
+    },
+    {
+      "parish": "Trà Ôn",
+      "deanery": "Mai Phốp",
+      "address": "53/6 Đốc Phủ Yên, Khu 5, Xã Trà Ôn, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tra-on/"
+    },
+    {
+      "parish": "An Phú Thuận",
+      "deanery": "Sa Đéc",
+      "address": "Ấp An Thạnh, xã An Phú Thuận, Huyện Châu Thành, Đồng Tháp",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-phu-thuan/"
+    },
+    {
+      "parish": "Cái Tàu Hạ",
+      "deanery": "Sa Đéc",
+      "address": "128 khóm Mỹ Phú Hiệp, Thị trấn Cái Tàu Hạ, huyện Châu Thành, tỉnh Đồng Tháp",
+      "weekdayMass": [
+        "05:45"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-tau-ha/"
+    },
+    {
+      "parish": "Hoà Long",
+      "deanery": "Sa Đéc",
+      "address": "300 TT Lai Vung, Lai Vung, Đồng Tháp",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-hoa-long/"
+    },
+    {
+      "parish": "Lấp Vò",
+      "deanery": "Sa Đéc",
+      "address": "TT Lấp Vò, huyện Lấp Vò, Đồng Tháp",
+      "weekdayMass": [
+        "04:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-lap-vo/"
+    },
+    {
+      "parish": "Long Hưng",
+      "deanery": "Sa Đéc",
+      "address": "ấp Vĩnh Hưng, xã Vĩnh Thạnh, Lấp Vò, Đồng Tháp",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-long-hung/"
+    },
+    {
+      "parish": "Long Thắng",
+      "deanery": "Sa Đéc",
+      "address": "148/1 ấp Định Mỹ, xã Định Hoà, Lai Vung, Đồng Tháp",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-long-thang/"
+    },
+    {
+      "parish": "Nha Mân",
+      "deanery": "Sa Đéc",
+      "address": "125/1 Quốc Lộ 80, An Thạnh 2, Phú Hựu, Đồng Tháp",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nha-man/"
+    },
+    {
+      "parish": "Phong Hoà",
+      "deanery": "Sa Đéc",
+      "address": "170/2 ấpTân Phong, xã Phong Hòa, Lai Vung, Đồng Tháp",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phong-hoa/"
+    },
+    {
+      "parish": "Phú Long",
+      "deanery": "Sa Đéc",
+      "address": "74 ấp Phú Long Tân Phú Đông, Sa Đéc, Đồng Tháp",
+      "weekdayMass": [
+        "06:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-long/"
+    },
+    {
+      "parish": "Tân Phú Trung",
+      "deanery": "Sa Đéc",
+      "address": "ấp Tân Quới, Tân Phú Trung, Châu Thành, Đồng Tháp",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:45"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-phu-trung/"
+    },
+    {
+      "parish": "Nhơn Lương",
+      "deanery": "Sa Đéc",
+      "address": "ấp An Lợi I, An Khánh, Châu Thành, Đồng Tháp",
+      "weekdayMass": [
+        "07:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nhon-luong/"
+    },
+    {
+      "parish": "Sa Đéc",
+      "deanery": "Sa Đéc",
+      "address": "278/3, Nguyễn Sinh Sắc, K. Hòa Khánh, P.2, Tp. Sa Đéc, Đồng Tháp",
+      "weekdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-sa-dec/"
+    },
+    {
+      "parish": "Tân Quy",
+      "deanery": "Sa Đéc",
+      "address": "18 Lê Lợi, Khóm 1, phường 3, Tp. Sa Đéc, Đồng Tháp",
+      "weekdayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-quy/"
+    },
+    {
+      "parish": "Vĩnh Thạnh",
+      "deanery": "Sa Đéc",
+      "address": "ấp Vĩnh Bình, Vĩnh Thạnh, Lấp Vò, Đồng Tháp",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-thanh/"
+    },
+    {
+      "parish": "Khâu Băng",
+      "deanery": "Thạnh Phú",
+      "address": "xã Thạnh Phong, T Phú, BẾN TRE",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-khau-bang/"
+    },
+    {
+      "parish": "Mỏ Cày",
+      "deanery": "Thạnh Phú",
+      "address": "93 KP5, Công Lý, tt Mỏ Cày, huyện Mỏ Cày Nam, BẾN TRE",
+      "weekdayMass": [
+        "07:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-mo-cay/"
+    },
+    {
+      "parish": "Rạch Dầu",
+      "deanery": "Thạnh Phú",
+      "address": "xã Khánh Thạnh Tân, Huyện Mỏ Cày Bắc, BẾN TRE",
+      "weekdayMass": [
+        "05:00",
+        "18:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-rach-dau/"
+    },
+    {
+      "parish": "Tân Phó",
+      "deanery": "Thạnh Phú",
+      "address": "ấp Tân Thuận, xã Tân Phú Tây, Mỏ Cày Bắc, BẾN TRE",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-pho/"
+    },
+    {
+      "parish": "Thạnh Hưng",
+      "deanery": "Thạnh Phú",
+      "address": "xã Mỹ Hưng,Thạnh Phú, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-hung/"
+    },
+    {
+      "parish": "Thạnh Phú",
+      "deanery": "Thạnh Phú",
+      "address": "Thị Trấn Thạnh Phú, Thạnh Phú, Bến Tre",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-phu/"
+    },
+    {
+      "parish": "Thanh Sơn",
+      "deanery": "Thạnh Phú",
+      "address": "ấp Thanh Sơn 4, xãThanh Tân, Mỏ Cày Bắc, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:15",
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-son/"
+    },
+    {
+      "parish": "Thành Thới",
+      "deanery": "Thạnh Phú",
+      "address": "ấp An Hòa, Thành Thới A, Mỏ Cày Nam, BẾN TRE",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-thoi/"
+    },
+    {
+      "parish": "Thom",
+      "deanery": "Thạnh Phú",
+      "address": "xã An Thạnh huyện Mỏ Cày Nam, BẾN TRE",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thom/"
+    },
+    {
+      "parish": "Tú San",
+      "deanery": "Thạnh Phú",
+      "address": "xã Ngãi Đăng, huyện Mỏ Cày Nam, BẾN TRE",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tu-san/"
+    },
+    {
+      "parish": "An Định",
+      "deanery": "Thạnh Phú",
+      "address": "Xã An Định, Huyện Mỏ Cày, Tỉnh Bến Tre",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-dinh/"
+    },
+    {
+      "parish": "Bến Luông",
+      "deanery": "Thạnh Phú",
+      "address": "xã Thới Thạnh, Thạnh Phú, BẾN TRE",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "18:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ben-luong/"
+    },
+    {
+      "parish": "Bến Vinh",
+      "deanery": "Thạnh Phú",
+      "address": "xã An Thạnh, Thạnh Phú, BẾN TRE",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ben-vinh/"
+    },
+    {
+      "parish": "Bến Vông",
+      "deanery": "Thạnh Phú",
+      "address": "Ấp Thạnh An, Xã Bình Thạnh, Huyện Thạnh Phú, Tỉnh Bến Tre",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ben-vong/"
+    },
+    {
+      "parish": "Cái Cá",
+      "deanery": "Thạnh Phú",
+      "address": "xã Quới Điền, huyện Thạnh Phú, BẾN TRE",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-ca/"
+    },
+    {
+      "parish": "Cầu Đúc",
+      "deanery": "Thạnh Phú",
+      "address": "xã Quới Điền,Thạnh Phú, BẾN TRE",
+      "weekdayMass": [
+        "06:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cau-duc-quoi-dien/"
+    },
+    {
+      "parish": "Giồng Luông",
+      "deanery": "Thạnh Phú",
+      "address": "xã Đại Điền, Thạnh Phú, BẾN TRE",
+      "weekdayMass": [
+        "16:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-luong/"
+    },
+    {
+      "parish": "Hàm Luông",
+      "deanery": "Thạnh Phú",
+      "address": "ấp Thanh Sơn, xã Thanh Tân, Mỏ Cày Bắc, BẾN TRE",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ham-luong/"
+    },
+    {
+      "parish": "Bà Tùng",
+      "deanery": "Trà Vinh",
+      "address": "ấp Bà Liêm, xã Hòa Minh, huyện Châu Thành , tỉnh Trà Vinh",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-tung-ba-liem/"
+    },
+    {
+      "parish": "Bãi Vàng",
+      "deanery": "Trà Vinh",
+      "address": "ấp Đại Thôn, Hưng Mỹ, CT, Trà Vinh",
+      "weekdayMass": [
+        "06:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-bai-vang/"
+    },
+    {
+      "parish": "Bãi Xan",
+      "deanery": "Trà Vinh",
+      "address": "ấp Trung, xã Đại Phước, Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-bai-xan/"
+    },
+    {
+      "parish": "Cái Hô",
+      "deanery": "Trà Vinh",
+      "address": "ấp Mỹ Hiệp A, Đức Mỹ, Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "17:15"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-ho/"
+    },
+    {
+      "parish": "Càng Long",
+      "deanery": "Trà Vinh",
+      "address": "K4, TT Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "04:04"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cang-long/"
+    },
+    {
+      "parish": "Cổ Chiên",
+      "deanery": "Trà Vinh",
+      "address": "",
+      "weekdayMass": [
+        "04:30",
+        "07:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-co-chien/"
+    },
+    {
+      "parish": "Đức Mỹ",
+      "deanery": "Trà Vinh",
+      "address": "ấp Đức Mỹ xã Đức Mỹ, Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-duc-my/"
+    },
+    {
+      "parish": "Hoà Lạc",
+      "deanery": "Trà Vinh",
+      "address": "ấp Hòa Lạc A, Lương Hòa A, Châu Thành, Trà Vinh",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-hoa-lac/"
+    },
+    {
+      "parish": "Kinh Long Hội",
+      "deanery": "Trà Vinh",
+      "address": "ấp Nhà Thờ, xã Tân An, Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-kinh-long-hoi/"
+    },
+    {
+      "parish": "Nhị Long",
+      "deanery": "Trà Vinh",
+      "address": "ấp Đỏ 3, xã Nhị Long Phú, Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nhi-long/"
+    },
+    {
+      "parish": "An Trường",
+      "deanery": "Trà Vinh",
+      "address": "An Trường, ấp 4A, xã An Trường, huyện Càng Long, Trà Vinh",
+      "weekdayMass": [
+        "07:04"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-truong/"
+    },
+    {
+      "parish": "Bông Bót",
+      "deanery": "Trà Vinh",
+      "address": "ấp Bà My, xã Tam Ngãi, Cầu Kè, Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-bong-bot-ba-my/"
+    },
+    {
+      "parish": "Cam Son",
+      "deanery": "Trà Vinh",
+      "address": "Ấp Vĩnh Hội, Phường Long Đức, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cam-son/"
+    },
+    {
+      "parish": "Cầu Kè",
+      "deanery": "Trà Vinh",
+      "address": "ấp Chông Nô 1, x Hòa Tân, Cầu Kè, Trà Vinh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-cau-ke/"
+    },
+    {
+      "parish": "Phước Hảo",
+      "deanery": "Trà Vinh",
+      "address": "Ấp Hòa Hảo, Xã Phước Hảo, Huyện Châu Thành, Tỉnh Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "08:00",
+        "15:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phuoc-hao/"
+    },
+    {
+      "parish": "Rạch Giồng",
+      "deanery": "Trà Vinh",
+      "address": "Ấp Rạch Giồng, xã Long Hòa, Huyện Châu Thành, tỉnh Trà Vinh",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-rach-giong/"
+    },
+    {
+      "parish": "Tân Hạnh",
+      "deanery": "Trà Vinh",
+      "address": "Ấp Tân Hạnh, Xã Bình Phú, Tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-hanh/"
+    },
+    {
+      "parish": "Trà Mẹt",
+      "deanery": "Trà Vinh",
+      "address": "ấp Trà Mẹt, xã Thông Hòa, huyện Cầu Kè, Trà Vinh",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tra-met/"
+    },
+    {
+      "parish": "Trà Vinh",
+      "deanery": "Trà Vinh",
+      "address": "20, Lê Lợi, Khóm II, Phường Trà Vinh, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "07:30",
+        "16:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tra-vinh/"
+    },
+    {
+      "parish": "Xóm Chòi",
+      "deanery": "Trà Vinh",
+      "address": "Ấp Hòa Hảo, Xã Phước Hảo, Huyện Châu Thành, Tỉnh Trà Vinh",
+      "weekdayMass": [
+        "07:04"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-xom-choi/"
+    },
+    {
+      "parish": "Cái Đôi",
+      "deanery": "Vĩnh Kim",
+      "address": "TT Long Thành, huyện Duyên Hải, tỉnh Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:00",
+        "07:30",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-doi/"
+    },
+    {
+      "parish": "Cầu Ngang",
+      "deanery": "Vĩnh Kim",
+      "address": "Khóm Mỹ Cẩm A, Xã Cầu Ngang, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30",
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cau-ngang/"
+    },
+    {
+      "parish": "Giồng Lớn",
+      "deanery": "Vĩnh Kim",
+      "address": "ấp Giồng Lớn, Vinh Kim, Cầu Ngang, Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giong-lon/"
+    },
+    {
+      "parish": "Mai Hương",
+      "deanery": "Vĩnh Kim",
+      "address": "ấp Vinh Cửu, xãVĩnh Kim, Cầu Ngang, Trà Vinh",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-mai-huong/"
+    },
+    {
+      "parish": "Phó Long",
+      "deanery": "Vĩnh Kim",
+      "address": "Khóm 1, Phường 2, Thị xã Duyên Hải, Tỉnh Trà Vinh",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "16:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-pho-long/"
+    },
+    {
+      "parish": "Phước Vĩnh",
+      "deanery": "Vĩnh Kim",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-phuoc-vinh-thon-ron/"
+    },
+    {
+      "parish": "Vĩnh Hòa",
+      "deanery": "Vĩnh Kim",
+      "address": "ấp Trà Cuôn, Vinh Kim, Cầu Ngang, Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-hoa/"
+    },
+    {
+      "parish": "Vĩnh Kim",
+      "deanery": "Vĩnh Kim",
+      "address": "Ấp Chà Và, xã Vinh Kim, Cầu Ngang, Trà Vinh",
+      "weekdayMass": [
+        "04:30",
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-vinh-kim/"
+    },
+    {
+      "parish": "Động Cao",
+      "deanery": "Vĩnh Kim",
+      "address": "ấp Định An, xã Đông Hải, huyện Duyên Hải, Trà Vinh",
+      "weekdayMass": [
+        "04:00",
+        "16:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:00",
+        "15:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-dong-cao/"
+    },
+    {
+      "parish": "Cai Quá",
+      "deanery": "Vĩnh Long",
+      "address": "ấp III, xã Hậu Lộc, Tam Bình, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-qua/"
+    },
+    {
+      "parish": "Cái Sơn",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp 6B, xã Long Phú, Tam Bình, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-son/"
+    },
+    {
+      "parish": "Long Mỹ",
+      "deanery": "Vĩnh Long",
+      "address": "ấp Long Khánh, Long Mỹ, Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "16:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-long-my/"
+    },
+    {
+      "parish": "Ngã Cạy",
+      "deanery": "Vĩnh Long",
+      "address": "ấp II, xã Tân Lộc, huyện Tam Bình, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-nga-cay/"
+    },
+    {
+      "parish": "Phường Tư",
+      "deanery": "Vĩnh Long",
+      "address": "88 Phạm Thái Bường, P4, Tp.Vĩnh Long, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:20"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phuong-tu/"
+    },
+    {
+      "parish": "Tam Bình",
+      "deanery": "Vĩnh Long",
+      "address": "ấp Nhà Thờ, xã Tường Lộc, Tam Bình, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tam-binh/"
+    },
+    {
+      "parish": "Tân Ngãi",
+      "deanery": "Vĩnh Long",
+      "address": "Phường Tân Ngãi, Tp. Vĩnh Long, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "06:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:45"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-ngai/"
+    },
+    {
+      "parish": "Tân Phú",
+      "deanery": "Vĩnh Long",
+      "address": "xã Phú Thịnh, Tam Bình, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-phu/"
+    },
+    {
+      "parish": "Tân Quới",
+      "deanery": "Vĩnh Long",
+      "address": "xã Phú Thịnh, Tam Bình, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-quoi/"
+    },
+    {
+      "parish": "Thủ Thể",
+      "deanery": "Vĩnh Long",
+      "address": "ấp Long Hiệp, xã Long An, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thu-the/"
+    },
+    {
+      "parish": "An Bình",
+      "deanery": "Vĩnh Long",
+      "address": "ấp An Thành, An Bình, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "06:05"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-binh/"
+    },
+    {
+      "parish": "An Đức",
+      "deanery": "Vĩnh Long",
+      "address": "TTrấn Long Hồ, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-duc-long-ho/"
+    },
+    {
+      "parish": "An Hiệp",
+      "deanery": "Vĩnh Long",
+      "address": "xã Lộc Hòa, huyện Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "08:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-an-hiep-vinh-long/"
+    },
+    {
+      "parish": "Ba Càng",
+      "deanery": "Vĩnh Long",
+      "address": "ấp Phú Hòa Yên, Song Phú, Tam Bình, , tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "07:18"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-cang/"
+    },
+    {
+      "parish": "Ba Kè",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Cái Cui, Xã Hòa Lộc, Huyện Tam Bình, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-ba-ke/"
+    },
+    {
+      "parish": "Cái Lóc",
+      "deanery": "Vĩnh Long",
+      "address": "ấp An Hương 2, xã Mỹ An, Mang Thít, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "07:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "07:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-loc/"
+    },
+    {
+      "parish": "Giáo Mẹo",
+      "deanery": "Vĩnh Long",
+      "address": "xã Đông Thạnh, Bình Minh, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-giao-meo/"
+    },
+    {
+      "parish": "Phú Quới",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Phước Yên A, Xã Phú Quới, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "17:30",
+        "05:00",
+        "17:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phu-quoi/"
+    },
+    {
+      "parish": "Thành Lợi",
+      "deanery": "Vĩnh Long",
+      "address": "606 Nguyễn Văn Thảnh, tổ 9 K1, P.Thành Phước, Thị xã Bình Minh, , tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:30",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thanh-loi/"
+    },
+    {
+      "parish": "Trà Kiết",
+      "deanery": "Vĩnh Long",
+      "address": "xã Mỹ Thuận, huyện Bình Tân, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:15"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tra-kiet/"
+    },
+    {
+      "parish": "Bình Minh",
+      "deanery": "Vĩnh Long",
+      "address": "150 Phan Văn Năm, phường Cái Vồn, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "05:15"
+      ],
+      "sundayMass": [
+        "06:00",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-binh-minh/"
+    },
+    {
+      "parish": "Cái Muối",
+      "deanery": "Vĩnh Long",
+      "address": "185 ấp Hòa Phú, Hòa Ninh, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-cai-muoi/"
+    },
+    {
+      "parish": "Đình Khao",
+      "deanery": "Vĩnh Long",
+      "address": "Thanh Mỹ 1,Thanh Đức, Long Hồ , tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-dinh-khao/"
+    },
+    {
+      "parish": "Đồng Phú",
+      "deanery": "Vĩnh Long",
+      "address": "ấp Thuận Long, xã Đồng Phú, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-dong-phu/"
+    },
+    {
+      "parish": "Hàn Thẻ",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Phước Lợi, Thạnh Quới, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-han-the/"
+    },
+    {
+      "parish": "Lộc Hoà",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Phước Tân, Xã Lộc Hòa, Long Hồ, Vĩnh Long",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:30",
+        "16:30"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-loc-hoa/"
+    },
+    {
+      "parish": "Mỹ Thuận",
+      "deanery": "Vĩnh Long",
+      "address": "147 ấp Mỹ Thuận, Phường Tân Hội, Tp Vĩnh Long, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30",
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-my-thuan/"
+    },
+    {
+      "parish": "Phước Định",
+      "deanery": "Vĩnh Long",
+      "address": "ấp Phước Định 1, Bình Hòa Phước, Long Hồ, tỉnh Vĩnh Long",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phuoc-dinh/"
+    },
+    {
+      "parish": "Phước Hoà",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Long Hòa, Xã Lộc Hòa, Long Hồ, Vĩnh Long",
+      "weekdayMass": [
+        "06:17"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-phuoc-hoa-ca-ro/"
+    },
+    {
+      "parish": "Tân Lược",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Tân Vĩnh, Xã Tân Lược, Huyện Bình Tân, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:30",
+        "16:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-luoc/"
+    },
+    {
+      "parish": "Chánh Tòa Vĩnh Long",
+      "deanery": "Vĩnh Long",
+      "address": "141 Lê Thái Tổ, P.2, Tp. Vĩnh Long, tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "05:30",
+        "17:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:45",
+        "08:00",
+        "16:30",
+        "18:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-chanh-toa-vinh-long/"
+    },
+    {
+      "parish": "Tân Phong",
+      "deanery": "Vĩnh Long",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanvinhlong.net/ho-dao-tan-phong/"
+    },
+    {
+      "parish": "Thiềng Đức",
+      "deanery": "Vĩnh Long",
+      "address": "192B Nguyễn Chí Thanh, khóm 1, P5, VL",
+      "weekdayMass": [
+        "05:15"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:15",
+        "17:15"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thieng-duc/"
+    },
+    {
+      "parish": "Thông Lưu",
+      "deanery": "Vĩnh Long",
+      "address": "Ấp Tân Biên, Xã Tân Bình, Huyện Bình Tân, Tỉnh Vĩnh Long",
+      "weekdayMass": [
+        "17:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanvinhlong.net/ho-dao-thong-luu/"
+    }
+  ]
+}

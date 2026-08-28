@@ -1,0 +1,39 @@
+{
+  "diocese": "Lạng Sơn - Cao Bằng",
+  "sources": [
+    "https://giaophanlangson.net/noi-dung/gioi-thieu-3194-03072024",
+    "https://hdgmvietnam.com/chi-tiet/gp-lang-son-cao-bang-31444",
+    "https://giothanhle.net/gio-le/nha-tho-thanh-tam-ha-giang/",
+    "https://giothanhle.vn/c/1d8f6/nha-tho-my-son",
+    "https://giothanhle.vn/c/534DB",
+    "https://www.facebook.com/p/Gi%C3%A1o-X%E1%BB%A9-Thanh-S%C6%A1n-Cao-B%E1%BA%B1ng-100066816755980/",
+    "https://baocaobang.vn/giao-xu-thanh-son-song-tot-doi-dep-dao-3183600.html",
+    "https://nhathoconggiaovietnam.com/chi-tiet-nha-tho/223",
+    "https://nhathoconggiaovietnam.com/nha-tho/nha-tho-giao-xu-ban-lim",
+    "https://top9.com.vn/nha-tho-giao-xu-that-khe-kham-pha-ve-dep/",
+    "https://ofmvn.org/bai-viet/muc-vu-giao-xu/giao-xu-vu-le-mung-bon-mang-va-ky-niem-3-nam-thanh-lap",
+    "https://giaophanlangson.net/noi-dung/tu-lieux3aluoc-su-giao-xu-dong-dang-1143-10360304092020",
+    "http://vietcatholicnews.org/News/html/73003.htm",
+    "http://vietcatholic.org/News/html/86257.htm",
+    "http://nhathoconggiaovietnam.com/nha-tho/nha-tho-giao-xu-cao-binh",
+    "https://giaophanlangson.net/noi-dung/dai-hoi-dan-chua-giao-xu-na-cap-1030-08192723112018"
+  ],
+  "deaneryCount": 3,
+  "note": "Danh bạ 14 giáo xứ chính thức lấy từ trang Giới thiệu tổng quát giaophanlangson.net (khớp với hdgmvietnam.com). Đây là giáo phận nhỏ nhất Việt Nam về số giáo dân nên rất ít nguồn công bố giờ lễ trực tuyến; chỉ 3/14 giáo xứ (Mỹ Sơn, Thanh Sơn, Thánh Tâm-Hà Giang) tìm được giờ lễ, phần lớn địa chỉ chỉ ở cấp xã/phường (không có số nhà) do nguồn gốc chỉ công bố mức đó. Các giáo điểm (Đình Lập, Na Sầm, Bình Gia, Quảng Uyên, Trùng Khánh, Bắc Mê, Yên Minh...) không có linh mục/nhà thờ chính thức nên không đưa vào danh sách. Giáo họ của Chính Tòa (Tổ Sơn, Thác Trà, Giếng Vuông-Kỳ Lừa, Hùng Vương, Cửa Nam, Văn Miếu) là giáo họ phụ thuộc, không tách dòng riêng.",
+  "parishes": [
+    {"parish":"Chính Tòa","deanery":"Lạng Sơn","address":"Phường Chi Lăng, TP. Lạng Sơn, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://giothanhle.vn/c/534DB"},
+    {"parish":"Ngạn Sơn","deanery":"Lạng Sơn","address":"Phường Đông Kinh, TP. Lạng Sơn, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://giaophanlangson.net/noi-dung/gioi-thieu-3194-03072024"},
+    {"parish":"Mỹ Sơn","deanery":"Lạng Sơn","address":"Phường Vĩnh Trại, TP. Lạng Sơn, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://giothanhle.vn/c/1d8f6/nha-tho-my-son"},
+    {"parish":"Lộc Bình","deanery":"Lạng Sơn","address":"Thị trấn Lộc Bình, huyện Lộc Bình, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://daminhvn.net/su-vu/tuong-thuat-le-khanh-thanh-nha-tho-giao-xu-loc-binh-giao-phan-lang-son-8536.html"},
+    {"parish":"Bản Lìm","deanery":"Lạng Sơn","address":"Xã Gia Cát, huyện Cao Lộc, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://nhathoconggiaovietnam.com/nha-tho/nha-tho-giao-xu-ban-lim"},
+    {"parish":"Đồng Đăng","deanery":"Lạng Sơn","address":"Khối Phú Xá, thị trấn Đồng Đăng, huyện Cao Lộc, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://giaophanlangson.net/noi-dung/tu-lieux3aluoc-su-giao-xu-dong-dang-1143-10360304092020"},
+    {"parish":"Thất Khê","deanery":"Lạng Sơn","address":"181 Quốc lộ 4A, thị trấn Thất Khê, huyện Tràng Định, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://top9.com.vn/nha-tho-giao-xu-that-khe-kham-pha-ve-dep/"},
+    {"parish":"Vũ Lễ","deanery":"Lạng Sơn","address":"Ngã Hải, xã Vũ Lễ, huyện Bắc Sơn, tỉnh Lạng Sơn","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://ofmvn.org/bai-viet/muc-vu-giao-xu/giao-xu-vu-le-mung-bon-mang-va-ky-niem-3-nam-thanh-lap"},
+    {"parish":"Thanh Sơn","deanery":"Cao Bằng","address":"Tổ 13, phường Thục Phán, tỉnh Cao Bằng","weekdayMass":["05:00","19:30"],"saturdayMass":[],"sundayMass":["05:30","09:00","19:30"],"source":"https://www.facebook.com/p/Gi%C3%A1o-X%E1%BB%A9-Thanh-S%C6%A1n-Cao-B%E1%BA%B1ng-100066816755980/"},
+    {"parish":"Bó Tờ","deanery":"Cao Bằng","address":"Xã Hòa Thuận, huyện Phục Hòa, tỉnh Cao Bằng","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"http://vietcatholicnews.org/News/html/73003.htm"},
+    {"parish":"Tà Lùng","deanery":"Cao Bằng","address":"Thị trấn Tà Lùng, huyện Phục Hòa, tỉnh Cao Bằng (gần cửa khẩu Tà Lùng)","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"http://vietcatholic.org/News/html/86257.htm"},
+    {"parish":"Nà Cáp","deanery":"Cao Bằng","address":"Tổ 1, phường Thục Phán, tỉnh Cao Bằng","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"https://giaophanlangson.net/noi-dung/dai-hoi-dan-chua-giao-xu-na-cap-1030-08192723112018"},
+    {"parish":"Cao Bình","deanery":"Cao Bằng","address":"Phố Cao Bình, phường Thục Phán, tỉnh Cao Bằng","weekdayMass":[],"saturdayMass":[],"sundayMass":[],"source":"http://nhathoconggiaovietnam.com/nha-tho/nha-tho-giao-xu-cao-binh"},
+    {"parish":"Thánh Tâm","deanery":"Hà Giang","address":"Tổ 7, phường Quang Trung, TP. Hà Giang, tỉnh Hà Giang","weekdayMass":["19:30"],"saturdayMass":[],"sundayMass":["08:00","19:30"],"source":"https://giothanhle.net/gio-le/nha-tho-thanh-tam-ha-giang/"}
+  ]
+}

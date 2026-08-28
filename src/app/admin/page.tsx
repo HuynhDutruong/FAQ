@@ -1,11 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Script from 'next/script';
 import { useAuth } from '@/lib/AuthContext';
 import { LogOut, Trash2, CheckCircle, Clock } from 'lucide-react';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, onSnapshot, doc, updateDoc, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
 import MassTimeAdmin from '@/components/MassTimeAdmin';
 
 interface Submission {
@@ -140,7 +139,7 @@ export default function AdminDashboard() {
           <div style={{ padding: '24px', backgroundColor: '#FEE2E2', color: '#B91C1C', borderRadius: '12px' }}>
             <strong>Lỗi tải dữ liệu:</strong> {error}
             <p style={{ marginTop: '8px', fontSize: '0.9rem' }}>
-              Nếu thấy lỗi "Missing or insufficient permissions", có nghĩa là Firestore Security Rules đang khoá quyền đọc. Vui lòng cập nhật luật thành <code>allow read, write: if true;</code> trên Firebase Console.
+              Nếu thấy lỗi &quot;Missing or insufficient permissions&quot;, có nghĩa là Firestore Security Rules đang khoá quyền đọc. Vui lòng cập nhật luật thành <code>allow read, write: if true;</code> trên Firebase Console.
             </p>
           </div>
         ) : activeTab === 'giole' ? (

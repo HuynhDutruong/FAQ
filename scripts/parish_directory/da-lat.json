@@ -1,0 +1,1564 @@
+{
+  "diocese": "Đà Lạt",
+  "sources": [
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat",
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc",
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong",
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong",
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong",
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh",
+    "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+  ],
+  "deaneryCount": 6,
+  "note": "Lấy từ trang chính thức giaophandalat.com (mục Giới thiệu > Giáo hạt và Giáo xứ), đủ 6 giáo hạt: Đà Lạt, Bảo Lộc, Đức Trọng, Đơn Dương, Đạ Tông, Di Linh, Madaguôi. Trang chính thức liệt kê tên + địa chỉ giáo xứ/giáo họ/giáo sở nhưng KHÔNG công bố giờ lễ, nên toàn bộ trường giờ lễ để rỗng. Vài giáo xứ trùng tên (vd Thánh Mẫu, Mẹ Vô Nhiễm, Tân Thanh) xuất hiện ở 2 hạt khác nhau, đã giữ nguyên vì nguồn liệt kê riêng biệt.",
+  "parishes": [
+    {
+      "parish": "An Bình",
+      "deanery": "Đà Lạt",
+      "address": "69, An Bình, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Bạch Đằng",
+      "deanery": "Đà Lạt",
+      "address": "Phường 7, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Cầu Đất",
+      "deanery": "Đà Lạt",
+      "address": "Xã Xuân Trường, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Chính Tòa",
+      "deanery": "Đà Lạt",
+      "address": "15, Trần Phú, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Chi Lăng",
+      "deanery": "Đà Lạt",
+      "address": "34 Ngô Văn Sở, Phường 9, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Du Sinh",
+      "deanery": "Đà Lạt",
+      "address": "12, Huyền Trân Công Chúa, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Đa Thiện",
+      "deanery": "Đà Lạt",
+      "address": "Phường 8, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Đưng Kơ Nớ",
+      "deanery": "Đà Lạt",
+      "address": "Dưng Kơnơ, Lạc Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Hà Đông",
+      "deanery": "Đà Lạt",
+      "address": "Phường 8, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Langbiang",
+      "deanery": "Đà Lạt",
+      "address": "Xã Lát, Lạc Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Mai Anh",
+      "deanery": "Đà Lạt",
+      "address": "1, Ngô Quyền, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Minh Giáo",
+      "deanery": "Đà Lạt",
+      "address": "111 Ngô Thì Nhậm, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Păng Tiêng",
+      "deanery": "Đà Lạt",
+      "address": "Păng Tiêng – Lát – Lạc Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Phát Chi",
+      "deanery": "Đà Lạt",
+      "address": "Xã Trạm Hành, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Tà Nung",
+      "deanery": "Đà Lạt",
+      "address": "Xã Tà Nung, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Tạo Tác",
+      "deanery": "Đà Lạt",
+      "address": "3A, Nguyễn Đình Chiểu, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Thánh Mẫu",
+      "deanery": "Đà Lạt",
+      "address": "89, Thánh Mẫu, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Thiện Lâm",
+      "deanery": "Đà Lạt",
+      "address": "419A/23, Nguyên Tử Lực, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Tùng Lâm",
+      "deanery": "Đà Lạt",
+      "address": "Dankia, Phường 7, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Vạn Thành",
+      "deanery": "Đà Lạt",
+      "address": "Phường 5, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Vinh Sơn",
+      "deanery": "Đà Lạt",
+      "address": "11, Yết Kiêu, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Đa Lộc",
+      "deanery": "Đà Lạt",
+      "address": "Xã Xuân Thọ, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Don Bosco",
+      "deanery": "Đà Lạt",
+      "address": "4G, Bùi Thị Xuân, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Thánh Tâm",
+      "deanery": "Đà Lạt",
+      "address": "38 Trần Phú, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Cam Ly",
+      "deanery": "Đà Lạt",
+      "address": "Phường 6, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Đạ Nhim",
+      "deanery": "Đà Lạt",
+      "address": "Xã Đạ Nhim, Lạc Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Măng Linh",
+      "deanery": "Đà Lạt",
+      "address": "Phường 7, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Mẹ Vô Nhiễm",
+      "deanery": "Đà Lạt",
+      "address": "Phường 2, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "Trại Hầm",
+      "deanery": "Đà Lạt",
+      "address": "75 Hoàng Hoa Thám, Phường 10, Đà Lạt",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-lat"
+    },
+    {
+      "parish": "B'Dơr",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc An, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "B'Sumrăc",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Tân, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Bảo Lộc",
+      "deanery": "Bảo Lộc",
+      "address": "P. Blao, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Chân Lộc",
+      "deanery": "Bảo Lộc",
+      "address": "Phường 2, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Chúa Kitô Vua",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Đa Minh",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Đại Lộc",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Thành, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Đức Giang",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Đức, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Đức Thanh",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Đức, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Gioan",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Hiệp Phát (Anê Đê)",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Ngãi, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Hòa Phát",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "La Vang",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Đambri, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lâm Phát",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Ngãi, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lê Bảo Tịnh LC",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lê Bảo Tịnh LN",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Ngãi, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lộc An",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc An, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lộc Bắc – Lộc Bảo",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Bắc, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lộc Đức",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Đức, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lộc Nam",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Nam, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Mẹ Thiên Chúa",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Mẹ Hằng Cứu Giúp",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Minh Rồng",
+      "deanery": "Bảo Lộc",
+      "address": "Tt. Lộc Thắng, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Nam Phương",
+      "deanery": "Bảo Lộc",
+      "address": "P. Blao, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Phúc Lộc",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Sơn, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Quảng Lâm",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Quảng, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Suối Mơ",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Đại Lào, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Bình",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Thanh, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Bùi",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Hà",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Tiến, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Hóa",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Nga, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Lạc",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Tân Lạc, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Rai",
+      "deanery": "Bảo Lộc",
+      "address": "Tt. Lộc Thắng, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Tân Thanh",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Thanh, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thánh Mẫu",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thánh Tâm Lộc Phát",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thánh Tâm Lộc Tiến",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Tiến, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thanh Xá",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Nga, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thanh Xuân",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Thanh, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thiện Lộc",
+      "deanery": "Bảo Lộc",
+      "address": "P. 2, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Thượng Thanh",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Thanh, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Vinh Sơn Liêm",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Tiến, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "B'Lá",
+      "deanery": "Bảo Lộc",
+      "address": "Xã B'Lá, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Mẹ Vô Nhiễm",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Đạ Lơ Nghệt",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Martinô",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Châu, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Giuse (Đồi Dổi)",
+      "deanery": "Bảo Lộc",
+      "address": "P. Lộc Phát, Bảo Lộc",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "Lộc Phú – Lộc Lâm",
+      "deanery": "Bảo Lộc",
+      "address": "Xã Lộc Phú, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "B'Kẻh",
+      "deanery": "Bảo Lộc",
+      "address": "Thôn 4, Xã Lộc Ngãi, Bảo Lâm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-bao-loc"
+    },
+    {
+      "parish": "An Hòa",
+      "deanery": "Đức Trọng",
+      "address": "Xã Liên Hiệp, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Bắc Hội",
+      "deanery": "Đức Trọng",
+      "address": "Xã Hiệp Thạnh, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Đà Loan",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đà Loan, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Đam Pao",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đạ Nung, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Đinh Văn",
+      "deanery": "Đức Trọng",
+      "address": "Tt. Đinh Văn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Đoàn Kết",
+      "deanery": "Đức Trọng",
+      "address": "Tt. Đinh Văn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Gânreo",
+      "deanery": "Đức Trọng",
+      "address": "Xã Liên Hiệp, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "K'Long",
+      "deanery": "Đức Trọng",
+      "address": "Xã Hiệp An, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "K'Nai",
+      "deanery": "Đức Trọng",
+      "address": "Xã Phú Hội, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Kim Phát",
+      "deanery": "Đức Trọng",
+      "address": "Xã Bình Thạnh, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Lán Tranh",
+      "deanery": "Đức Trọng",
+      "address": "Xã Hoài Đức, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Liên Khương",
+      "deanery": "Đức Trọng",
+      "address": "Tt. Liên Nghĩa, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Nam Ban",
+      "deanery": "Đức Trọng",
+      "address": "Tt. Nam Ban, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Nghĩa Lâm",
+      "deanery": "Đức Trọng",
+      "address": "Xã Liên Hiệp, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Ninh Loan",
+      "deanery": "Đức Trọng",
+      "address": "Xã Ninh Loan, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Phú Sơn",
+      "deanery": "Đức Trọng",
+      "address": "Xã Phú Sơn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Rơlơm",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đạ Đờn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Tà Hine",
+      "deanery": "Đức Trọng",
+      "address": "Xã Tà In, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Tân Thành – Tân Hội",
+      "deanery": "Đức Trọng",
+      "address": "Xã Tân Hội, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Tân Văn",
+      "deanery": "Đức Trọng",
+      "address": "Xã Tân Văn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Thanh Bình",
+      "deanery": "Đức Trọng",
+      "address": "Xã Bình Thạnh, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Thánh Giuse (Bình Thạnh)",
+      "deanery": "Đức Trọng",
+      "address": "Xã Bình Thạnh, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Thánh Giuse (Làng Hai)",
+      "deanery": "Đức Trọng",
+      "address": "Xã Phúc Thọ, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Tùng Nghĩa",
+      "deanery": "Đức Trọng",
+      "address": "Tt. Liên Nghĩa, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "K'Rèn",
+      "deanery": "Đức Trọng",
+      "address": "Xã Hiệp An, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Ninh Gia",
+      "deanery": "Đức Trọng",
+      "address": "Xã Ninh Gia, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Phitô",
+      "deanery": "Đức Trọng",
+      "address": "Xã Phitô, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Định An",
+      "deanery": "Đức Trọng",
+      "address": "Xã Hiệp An, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Ngọc Long",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đạ Nung, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Tà Năng",
+      "deanery": "Đức Trọng",
+      "address": "Xã Tà Năng, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Hòa Lạc",
+      "deanery": "Đức Trọng",
+      "address": "Tt. Đinh Văn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Prteing",
+      "deanery": "Đức Trọng",
+      "address": "Xã Phú Sơn, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Đa Quyn",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đa Quyn, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Soop",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đà Loan, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Maam",
+      "deanery": "Đức Trọng",
+      "address": "Xã Đà Loan, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Hiệp Thuận",
+      "deanery": "Đức Trọng",
+      "address": "Xã Ninh Gia, Đức Trọng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Tân Thanh",
+      "deanery": "Đức Trọng",
+      "address": "Xã Tân Thanh, Lâm Hà",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-duc-trong"
+    },
+    {
+      "parish": "Châu Sơn",
+      "deanery": "Đơn Dương",
+      "address": "Xã Lạc Xuân, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Diom",
+      "deanery": "Đơn Dương",
+      "address": "Xã Lạc Xuân, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Kađơn",
+      "deanery": "Đơn Dương",
+      "address": "Xã Kađơn, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Lạc Hòa",
+      "deanery": "Đơn Dương",
+      "address": "Xã Kađô, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Lạc Lâm",
+      "deanery": "Đơn Dương",
+      "address": "Xã Lạc Lâm, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Lạc Nghiệp",
+      "deanery": "Đơn Dương",
+      "address": "Thị trấn Dran, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Lạc Sơn",
+      "deanery": "Đơn Dương",
+      "address": "Xã Lạc Lâm, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Lạc Viên",
+      "deanery": "Đơn Dương",
+      "address": "Xã Lạc Xuân, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Próh",
+      "deanery": "Đơn Dương",
+      "address": "Xã Próh, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Suối Thông",
+      "deanery": "Đơn Dương",
+      "address": "Xã Đạ Roòn, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Thạnh Mỹ",
+      "deanery": "Đơn Dương",
+      "address": "Thị trấn Thạnh Mỹ, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Tu Tra",
+      "deanery": "Đơn Dương",
+      "address": "Xã Tu Tra, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "M'Răng",
+      "deanery": "Đơn Dương",
+      "address": "Xã Lạc Lâm, Đơn Dương",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-don-duong"
+    },
+    {
+      "parish": "Đạ K'Nàng",
+      "deanery": "Đạ Tông",
+      "address": "Xã Đạ K'Nàng, Đam Rông",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong"
+    },
+    {
+      "parish": "Đạ R'Sal",
+      "deanery": "Đạ Tông",
+      "address": "Xã Đạ R'Sal, Đam Rông",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong"
+    },
+    {
+      "parish": "Đạ Tông",
+      "deanery": "Đạ Tông",
+      "address": "Xã Đạ Tông, Đam Rông",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong"
+    },
+    {
+      "parish": "Liêng Srônh",
+      "deanery": "Đạ Tông",
+      "address": "Xã Liêng Srônh, Đam Rông",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong"
+    },
+    {
+      "parish": "Phi Liêng",
+      "deanery": "Đạ Tông",
+      "address": "Xã Phi Liêng, Đam Rông",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong"
+    },
+    {
+      "parish": "Rômen",
+      "deanery": "Đạ Tông",
+      "address": "Xã Rômen, Đam Rông",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-da-tong"
+    },
+    {
+      "parish": "Di Linh",
+      "deanery": "Di Linh",
+      "address": "Tt. Di Linh, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Đinh Trang Hòa",
+      "deanery": "Di Linh",
+      "address": "Xã Đinh Trang Hòa, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Gia Lành",
+      "deanery": "Di Linh",
+      "address": "Xã Gia Hiệp, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Hàng Hải",
+      "deanery": "Di Linh",
+      "address": "Xã Gung Ré, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Hòa Nam",
+      "deanery": "Di Linh",
+      "address": "Xã Hòa Nam, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Hòa Ninh",
+      "deanery": "Di Linh",
+      "address": "Xã Hòa Ninh, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Kala",
+      "deanery": "Di Linh",
+      "address": "Xã Bảo Thuận, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Kaming",
+      "deanery": "Di Linh",
+      "address": "Xã Gung Ré, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Liăng Dăm",
+      "deanery": "Di Linh",
+      "address": "Xã Liên Đầm, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Phú Hiệp",
+      "deanery": "Di Linh",
+      "address": "Xã Gia Hiệp, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Sơn Điền",
+      "deanery": "Di Linh",
+      "address": "Xã Sơn Điền, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Tam Bố",
+      "deanery": "Di Linh",
+      "address": "Xã Tam Bố, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Tân Lâm",
+      "deanery": "Di Linh",
+      "address": "Xã Tân Lâm, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Tân Nghĩa",
+      "deanery": "Di Linh",
+      "address": "Xã Tân Nghĩa, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Tân Phú",
+      "deanery": "Di Linh",
+      "address": "Xã Đinh Lạc, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Xà Lùng",
+      "deanery": "Di Linh",
+      "address": "Xã Đ.Trang Hòa 2, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Gia Bắc",
+      "deanery": "Di Linh",
+      "address": "Xã Gia Bắc, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "B'Lát",
+      "deanery": "Di Linh",
+      "address": "Xã Tân Lâm, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Hòa Bắc",
+      "deanery": "Di Linh",
+      "address": "Xã Hòa Bắc, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Hòa Trung",
+      "deanery": "Di Linh",
+      "address": "Xã Hòa Trung, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Đinh Trang Thượng",
+      "deanery": "Di Linh",
+      "address": "Xã Đinh Trang Thượng, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Micae",
+      "deanery": "Di Linh",
+      "address": "Xã Đinh Lạc, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Tân Thượng",
+      "deanery": "Di Linh",
+      "address": "Xã Tân Thượng, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Trại Phong",
+      "deanery": "Di Linh",
+      "address": "Xã Bảo Thuận, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Phaolô – Đaminh",
+      "deanery": "Di Linh",
+      "address": "Xã Bảo Thuận, Di Linh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-di-linh"
+    },
+    {
+      "parish": "Cát Tiên",
+      "deanery": "Madaguôi",
+      "address": "Thị trấn Đông Nai, Cát Tiên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Đạ M'Ri",
+      "deanery": "Madaguôi",
+      "address": "Thị trấn Đạ M'Ri, Đạ Huoai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Đạ Nhar",
+      "deanery": "Madaguôi",
+      "address": "Xã Quốc Oai, Đạ Tẻh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Đạ Tẻh",
+      "deanery": "Madaguôi",
+      "address": "Thị trấn Đạ Tẻh, Đạ Tẻh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Đồng Nai Thượng",
+      "deanery": "Madaguôi",
+      "address": "Xã Đồng Nai Thượng, Cát Tiên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Madaguôi",
+      "deanery": "Madaguôi",
+      "address": "Thị trấn Madaguôi, Đạ Huoai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Phaolô",
+      "deanery": "Madaguôi",
+      "address": "Thôn Phước Trung, Xã Phước Lộc, Đạ Huoai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Mỹ Đức",
+      "deanery": "Madaguôi",
+      "address": "Xã Mỹ Đức, Đạ Tẻh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Phước Cát",
+      "deanery": "Madaguôi",
+      "address": "Xã Phước Cát, Cát Tiên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Đạ Oai",
+      "deanery": "Madaguôi",
+      "address": "Xã Đạ Oai, Đạ Huoai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Gia Viễn – Tiên Hoàng",
+      "deanery": "Madaguôi",
+      "address": "Xã Gia Viễn, Cát Tiên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Tôn K'Long",
+      "deanery": "Madaguôi",
+      "address": "Xã Đạ Pal, Đạ Tẻh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    },
+    {
+      "parish": "Đạ Lây",
+      "deanery": "Madaguôi",
+      "address": "Xã Đạ Lây, Đạ Tẻh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophandalat.com/gioi-thieu/giao-hat-va-giao-xu/giao-hat-madaguoi"
+    }
+  ]
+}

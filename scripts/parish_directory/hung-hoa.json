@@ -1,0 +1,1309 @@
+{
+  "diocese": "Hưng Hóa",
+  "sources": [
+    "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/",
+    "https://giaophanhunghoa.org/vi/thong-bao/gio-le-times-of-mass/"
+  ],
+  "deaneryCount": 9,
+  "note": "Lấy từ trang chính thức giaophanhunghoa.org (mục Giáo hạt giáo xứ, đi từng hạt/từng giáo xứ) + trang Giờ lễ (Times of mass) cho giờ lễ. Địa chỉ lấy từ trang riêng mỗi giáo xứ khi có. Giờ lễ chỉ có cho một số nhà thờ lớn được liệt kê trên trang Giờ lễ; phần lớn giáo xứ không có giờ lễ công bố nên để rỗng. Số giáo xứ theo link thực tế trên trang có thể khác số 'Số giáo xứ' ghi ở trang tổng hợp (số liệu có thể chưa cập nhật).",
+  "parishes": [
+    {
+      "parish": "Bãi Dòng",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 3, xã Xuân Huy, huyện Lâm Thao, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bai-dong-o81E20162.html"
+    },
+    {
+      "parish": "Cây Hồng",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 3 xã Phú Mỹ, huyện Phù Ninh, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--cay-hong-o81E203DC.html"
+    },
+    {
+      "parish": "Chiêu Ứng",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 3, Xã Sơn Cương, huyện Thanh Ba, Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--chieu-ung-o81E2105E.html"
+    },
+    {
+      "parish": "Đồng Xa",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu III, xã Ninh Dân, huyện Thanh Ba, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dong-xa-o81E21038.html"
+    },
+    {
+      "parish": "Gia Thanh",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Xã Gia Thanh, huyện Phù Ninh, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--gia-thanh-o81E2105C.html"
+    },
+    {
+      "parish": "Hà Thạch",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 03, xã Hà Thạch, thị xã Phú Thọ, tỉnh Phú Thọ",
+      "weekdayMass": [
+        "05:45",
+        "19:30"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "09:30",
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ha-thach-o81E21060.html"
+    },
+    {
+      "parish": "Làng Lang",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 16, xã Lệ Mỹ, huyện Phù Ninh, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--lang-lang-o81E203DE.html"
+    },
+    {
+      "parish": "Nỗ Lực",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Làng Nỗ Lực, xã Thụy Vân, thành phố Việt Trì, tỉnh Phú Thọ",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [
+        "07:00",
+        "09:15"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--no-luc-o81E21302.html"
+    },
+    {
+      "parish": "Phù Lỗ",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 3, thị trấn Phong Châu, huyện Phù Ninh, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-lo-o81E2105A.html"
+    },
+    {
+      "parish": "Phụng Thượng",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 2, xã Đông Thành, huyện Thanh Ba, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phung-thuong-o81E203E0.html"
+    },
+    {
+      "parish": "Sơn Vi",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 17, xã Sơn Vi, huyện Lâm Thao, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--son-vi-o81E203FE.html"
+    },
+    {
+      "parish": "Thạch Sơn",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Xã Thạch Sơn, huyện Lâm Thao, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--thach-son-o81E21058.html"
+    },
+    {
+      "parish": "Tiên Cát",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Phường Tiên Cát, thành phố Việt Trì, tỉnh Phú Thọ ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tien-cat-o81E2130A.html"
+    },
+    {
+      "parish": "Tiên Kiên",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 9, xã Tiên Kiên, huyện Lâm Thao, tỉnh Phú Thọ.&nbsp;",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tien-kien-o81E21064.html"
+    },
+    {
+      "parish": "Tiên Phú",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 7, xã Tiên Phú, huyện Phù Ninh, tỉnh Phú Thọ",
+      "weekdayMass": [
+        "19:30"
+      ],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [
+        "07:00",
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tien-phu-o81E21066.html"
+    },
+    {
+      "parish": "Trù Mật",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Xã Văn Lung, thị xã Phú Thọ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "19:00"
+      ],
+      "sundayMass": [
+        "09:00"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tru-mat-o81E21030.html"
+    },
+    {
+      "parish": "Vân Thê (Tx. Phú Thọ)",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 3, xã Hà Lộc, thị xã Phú Thọ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--van-the-tx-phu-tho-o81E21062.html"
+    },
+    {
+      "parish": "Vĩnh Hóa",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Thôn Vĩnh Phú, xã Thụy Vân, thành phố Việt Trì, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--vinh-hoa-o81E20300.html"
+    },
+    {
+      "parish": "Xuân Thành",
+      "deanery": "Đông Nam Phú Thọ",
+      "address": "Khu 8, xã Văn Lung, thị xã Phú Thọ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--xuan-thanh-o81E20386.html"
+    },
+    {
+      "parish": "Ân Thịnh",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": ": Xóm Trầm Ân, xã Thắng Quân, huyện Yên Sơn, tỉnh Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--an-thinh-o81E20282.html"
+    },
+    {
+      "parish": "Đồng Đam",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Xã Bằng Luân, huyện Đoan Hùng, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dong-dam-o81E203E8.html"
+    },
+    {
+      "parish": "Hàm Yên",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "TT Tân Yên - Hàm Yên - Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ham-yen-o81E203E6.html"
+    },
+    {
+      "parish": "Lã Hoàng",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Thôn Lã Hoàng 3, xã Chí Đám, huyện Đoan Hùng, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--la-hoang-o81E20352.html"
+    },
+    {
+      "parish": "Mỹ Bằng",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Thôn Tâm Bằng, xã Mỹ Bằng, huyện Yên Sơn, tỉnh Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--my-bang-o81E210BC.html"
+    },
+    {
+      "parish": "Phú Lâm",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Tổ 1, phường Mỹ Lâm, Tp Tuyên Quang, tỉnh Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-lam-o81E210AE.html"
+    },
+    {
+      "parish": "Tân Quang",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Thôn Xuân Hòa, xã Tân Quang, huyện Bắc Quang, tỉnh Hà Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tan-quang-o81E202AC.html"
+    },
+    {
+      "parish": "Tân Yên",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": ": Tổ dân phố Tân Phú, thị trấn Tân Yên, huyện Hàm Yên, tỉnh Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tan-yen-o81E20406.html"
+    },
+    {
+      "parish": "Trại Cỏ (Sông Chảy)",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": ": Thôn Bình Minh, xã H ùng",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--trai-co-song-chay-o81E2035C.html"
+    },
+    {
+      "parish": "Tuyên Quang",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Phường Minh Xuân, thành phố Tuyên Quang, tỉnh Tuyên Quang",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [
+        "08:00"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tuyen-quang-o81E20270.html"
+    },
+    {
+      "parish": "Vân Đồn",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": ": Thôn 3, xã Vân Đồn, huyện Đoan Hùng, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--van-don-o81E2035A.html"
+    },
+    {
+      "parish": "Vân Du",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": ": Thôn 3, xã Vân Du, huyện Đoan Hùng, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--van-du-o81E20364.html"
+    },
+    {
+      "parish": "Vĩnh Tuy",
+      "deanery": "Hà - Tuyên - Hùng",
+      "address": "Thôn Tân Long, thị trấn Vĩnh Tuy, huyện Bắc Quang, tỉnh Hà Giang",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--vinh-tuy-o81E203E4.html"
+    },
+    {
+      "parish": "Chuẩn xứ Tuần Giáo",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Nhà thờ Tuần Giáo, TT. Tuần Giáo, huyện Tuần Giáo, tỉnh Điện Biên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--chuan-xu-tuan-giao-o81E20418.html"
+    },
+    {
+      "parish": "Điện Biên",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Thôn Trần Phú, Noong Hẹt, huyện Điện Biên, tỉnh Điện Biên (cách Tòa giám mục Giáo phận Hưng Hóa hơn 500 km)",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "20:00"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dien-bien-o81E202A8.html"
+    },
+    {
+      "parish": "Hòa Bình",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Tổ 21, Đồng Tiến, Tp Hòa Bình, Hòa Bình",
+      "weekdayMass": [
+        "19:30"
+      ],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [
+        "09:30",
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--hoa-binh-o81E2104E.html"
+    },
+    {
+      "parish": "Mai Yên",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Tiểu khu 3/2, Cò nòi, Mai Sơn, Sơn La",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--mai-yen-o81E2103C.html"
+    },
+    {
+      "parish": "Mộc Châu",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Tiểu Khu Nhà Nghỉ, thị trấn Nông Trường Mộc Châu, huyện Mộc Châu, tỉnh Sơn La",
+      "weekdayMass": [
+        "05:30",
+        "19:30"
+      ],
+      "saturdayMass": [
+        "14:00",
+        "19:30"
+      ],
+      "sundayMass": [
+        "08:30",
+        "14:00",
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--moc-chau-o81E2103E.html"
+    },
+    {
+      "parish": "Mường La",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Thị trấn Ít Ong, huyện Mường La, tỉnh Sơn La. Quan thầy: Thánh Anphongsô (01/08)",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--muong-la-o81E21036.html"
+    },
+    {
+      "parish": "Mường Nhé",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Bản Huổi Thủng 1, xã Nacôsa, huyện Nậm Pồ, tỉnh Điện Biên",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--muong-nhe-o81E202AA.html"
+    },
+    {
+      "parish": "Phù Yên",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Phù Yên - Sơn La",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-yen-o81E203D6.html"
+    },
+    {
+      "parish": "Sông Mã",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Bản Co Hay, xã Chiềng Khoong, huyện Sông Mã, tỉnh Sơn La. Năm thành lập: 2009",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--song-ma-o81E202A6.html"
+    },
+    {
+      "parish": "Tp Sơn La",
+      "deanery": "Hòa Bình - Sơn La - Điện Biên",
+      "address": "Số 8, ngõ 2, tổ 4, phường Quyết Thắng, thành phố Sơn La, tỉnh Sơn La",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tp-son-la-o81E2103A.html"
+    },
+    {
+      "parish": "Bảo Yên",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Tổ 9, thị trấn Phố Ràng, huyện Bảo Yên, tỉnh Lào Cai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bao-yen-o81E202AE.html"
+    },
+    {
+      "parish": "Cam Đường",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Phường Bắc Lệnh, thành phố Lào Cai, tỉnh Lào Cai",
+      "weekdayMass": [
+        "19:30"
+      ],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--cam-duong-o81E2040E.html"
+    },
+    {
+      "parish": "Lai Châu",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Bản Xéo Sin Chải, xã San Thàng, thành phố Lai châu, tỉnh Lai Châu",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--lai-chau-o81E203EA.html"
+    },
+    {
+      "parish": "Lào Cai",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Tổ 18, phường Cốc Lếu, thành phố Lào Cai, tỉnh Lào Cai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--lao-cai-o81E21308.html"
+    },
+    {
+      "parish": "Mường Khương",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Thị trấn Mường Khương, huyện Mường Khương, tỉnh Lào Cai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--muong-khuong-o81E20410.html"
+    },
+    {
+      "parish": "Mường So",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Thôn Tây Sơn, xã Mường So, huyện Phong Thổ, tỉnh Lai Châu",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--muong-so-o81E20412.html"
+    },
+    {
+      "parish": "Phố Lu",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Thôn Phú Thịnh, thị trấn Phố Lu, huyện Bảo Thắng, tỉnh Lào Cai",
+      "weekdayMass": [
+        "19:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "15:00"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--pho-lu-o81E202B0.html"
+    },
+    {
+      "parish": "Sa Pa",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Thị trấn Sapa, Lào Cai",
+      "weekdayMass": [
+        "19:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "09:00"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--sa-pa-o81E21304.html"
+    },
+    {
+      "parish": "Than Uyên",
+      "deanery": "Lào Cai - Lai Châu",
+      "address": "Bản Mạ, xã Mường Cang, huyện Than Uyên, tỉnh Lai Châu",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--than-uyen-o81E203EC.html"
+    },
+    {
+      "parish": "Chuẩn xứ Vàng Cài",
+      "deanery": "Nghĩa Lộ",
+      "address": "Thị trấn Nông Trường Liên Sơn, huyện Văn Chấn, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--chuan-xu-vang-cai-o81E20408.html"
+    },
+    {
+      "parish": "Đồng Hẻo",
+      "deanery": "Nghĩa Lộ",
+      "address": "Thị trấn Nông Trường Trần Phú, Văn Chấn, Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dong-heo-o81E2040C.html"
+    },
+    {
+      "parish": "Đồng Lú",
+      "deanery": "Nghĩa Lộ",
+      "address": "Tổ 6, thị trấn nông trường Nghĩa Lộ, huyện Văn Chấn, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dong-lu-o81E210A6.html"
+    },
+    {
+      "parish": "Giàng La Pán",
+      "deanery": "Nghĩa Lộ",
+      "address": "Xã Bản Mù, huyện Trạm Tấu, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--giang-la-pan-o81E2108A.html"
+    },
+    {
+      "parish": "Mỹ Hưng",
+      "deanery": "Nghĩa Lộ",
+      "address": "Xã Hưng Khánh, huyện Trấn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--my-hung-o81E2109A.html"
+    },
+    {
+      "parish": "Nghĩa Lộ",
+      "deanery": "Nghĩa Lộ",
+      "address": "Tổ 3, phường Trung Tâm, thị xã Nghĩa Lộ, tỉnh Yên Bái",
+      "weekdayMass": [
+        "19:30"
+      ],
+      "saturdayMass": [
+        "05:30",
+        "19:30"
+      ],
+      "sundayMass": [
+        "15:00",
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--nghia-lo-o81E210AA.html"
+    },
+    {
+      "parish": "Phình Hồ",
+      "deanery": "Nghĩa Lộ",
+      "address": "Xã Phình Hồ, huyện Trạm Tấu, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phinh-ho-o81E210A4.html"
+    },
+    {
+      "parish": "Sùng Đô",
+      "deanery": "Nghĩa Lộ",
+      "address": "Giáo xứ nằm trên địa bàn hai xã là Sùng Đô và Nậm Lành của huyện Văn Chấn, Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--sung-do-o81E2040A.html"
+    },
+    {
+      "parish": "Vĩnh Quang",
+      "deanery": "Nghĩa Lộ",
+      "address": "Thị trấn Nông Trường Liên Sơn, huyện Văn Chấn, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--vinh-quang-o81E210AC.html"
+    },
+    {
+      "parish": "Bách Lộc",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Ổ Thôn, xã Thọ Lộc, huyện Phúc Thọ, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bach-loc-o81E21034.html"
+    },
+    {
+      "parish": "Bến Thôn",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Bến Thôn ,",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ben-thon-o81E202A0.html"
+    },
+    {
+      "parish": "Cần Kiệm",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Yên Lạc, xã Cần Kiệm, huyện Thạch Thất, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--can-kiem-o81E21050.html"
+    },
+    {
+      "parish": "Cát Ngòi",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Cát Ngòi, xã Cát Quế, huyện Hoài Đức, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--cat-ngoi-o81E2102C.html"
+    },
+    {
+      "parish": "Dị Nậu",
+      "deanery": "Sơn Tây",
+      "address": ": Thôn Dị Nậu, xã Dị Nậu, huyện Thạch Thất, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--di-nau-o81E21052.html"
+    },
+    {
+      "parish": "Hạ Hiệp",
+      "deanery": "Sơn Tây",
+      "address": ": Thôn Hạ Hiệp, xã Liên Hiệp, huyện Phúc Thọ, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ha-hiep-o81E2102A.html"
+    },
+    {
+      "parish": "Mộc Hoàn",
+      "deanery": "Sơn Tây",
+      "address": "Xã Vân Côn, huyện Hoài Đức, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--moc-hoan-o81E2104A.html"
+    },
+    {
+      "parish": "Phú Cát (chuẩn xứ)",
+      "deanery": "Sơn Tây",
+      "address": "Xã Phú Cát, huyện Quốc Oai, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-cat-chuan-xu-o81E203FC.html"
+    },
+    {
+      "parish": "Phú Hữu",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Phú Hữu, xã Tân Xã, huyện Thạch Thất, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-huu-o81E202A2.html"
+    },
+    {
+      "parish": "Phú Nghĩa - Ba Vì",
+      "deanery": "Sơn Tây",
+      "address": "Xã Phú Đông, huyện Ba Vì, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-nghia-ba-vi-o81E2019E.html"
+    },
+    {
+      "parish": "Phú Nghĩa - Thạch Thất",
+      "deanery": "Sơn Tây",
+      "address": "Xã Phú Kim, huyện Thạch Thất, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-nghia-thach-that-o81E21056.html"
+    },
+    {
+      "parish": "Sơn Đông",
+      "deanery": "Sơn Tây",
+      "address": "Xã Sơn Đông, thị xã Sơn Tây, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--son-dong-o81E203FA.html"
+    },
+    {
+      "parish": "Sơn Lộc",
+      "deanery": "Sơn Tây",
+      "address": "175A Phố Sơn Lộc, Phường Trung Sơn Trầm, thị xã Sơn Tây, Thành phố Hà Nội",
+      "weekdayMass": [
+        "05:30"
+      ],
+      "saturdayMass": [
+        "19:45"
+      ],
+      "sundayMass": [
+        "07:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--son-loc-o81E21048.html"
+    },
+    {
+      "parish": "Sơn Tây",
+      "deanery": "Sơn Tây",
+      "address": "số 70, Phố Lê Lợi, thị xã Sơn Tây, Thành phố Hà Nội",
+      "weekdayMass": [
+        "19:30"
+      ],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [
+        "07:30",
+        "19:13"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--son-tay-o81E21040.html"
+    },
+    {
+      "parish": "Thuấn Nội",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Đường Hồng, xã Thanh Đa, huyện Phúc Thọ, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--thuan-noi-o81E2102E.html"
+    },
+    {
+      "parish": "Tình Lam",
+      "deanery": "Sơn Tây",
+      "address": "thôn Tình Lam, xã Đại Thành, huyện Quốc Oai, Tp. Hà Nội. Quan thầy: Đức Mẹ Vô Nhiễm Nguyên Tội (08/12)",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "15:30"
+      ],
+      "sundayMass": [
+        "19:30"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tinh-lam-o81E21054.html"
+    },
+    {
+      "parish": "Trại Vàng",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Đông Hạ, Xã Đông Yên, huyện Quốc Oai, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--trai-vang-o81E21046.html"
+    },
+    {
+      "parish": "Vĩnh Lộc",
+      "deanery": "Sơn Tây",
+      "address": "Xã Phùng Xá, huyện Thạch Thất, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--vinh-loc-o81E2104C.html"
+    },
+    {
+      "parish": "Vĩnh Thọ",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Vĩnh Thọ, xã Vân Phúc, huyện Phúc Thọ, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--vinh-tho-o81E21044.html"
+    },
+    {
+      "parish": "Yên Khoái",
+      "deanery": "Sơn Tây",
+      "address": "Thôn Yên Khoái, xã Thụy An, huyện Ba Vì, Thành phố Hà Nội",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-khoai-o81E21042.html"
+    },
+    {
+      "parish": "Bằng Giã",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Bằng Giã, Vô Chanh, Cẩm Khê, Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bang-gia-o81E2106C.html"
+    },
+    {
+      "parish": "Đồng Cạn",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Thôn Đồng Cạn, thị trấn Yên Lập, huyện Yên Lập, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dong-can-o81E20262.html"
+    },
+    {
+      "parish": "Dư Ba",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Thôn Dậu Hai, xã Minh Tân, huyện Cẩm Khê, tỉnh Phú Thọ. Quan thầy: Thánh Micae, được mừng kính vào ngày 29 tháng 9 hàng năm",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--du-ba-o81E2106A.html"
+    },
+    {
+      "parish": "Hương Tran",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Khu Hương Tran 2, xã Hương Lung, huyện Cẩm Khê, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--huong-tran-o81E20402.html"
+    },
+    {
+      "parish": "Khổng Tước",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "khu 3 Phượng Vĩ: gồm giáo dân của các khu 3, khu 4",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--khong-tuoc-o81E20114.html"
+    },
+    {
+      "parish": "Mộ Xuân",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Xã Xuân An, huyện Yên Lập, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--mo-xuan-o81E21074.html"
+    },
+    {
+      "parish": "Ngô Xá",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Nhà thờ Ngô Xá, xã Ngô Xá, Cẩm Khê, Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ngo-xa-o81E21078.html"
+    },
+    {
+      "parish": "Phi Đình",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Khu 1, xã Lang Sơn, huyện Hạ Hòa, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phi-dinh-o81E203F0.html"
+    },
+    {
+      "parish": "Phượng Vĩ",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "khu 10 Phượng Vĩ: gồm giáo dân của các khu 10, khu 11, khu 13",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phuong-vi-o81E2107A.html"
+    },
+    {
+      "parish": "Ro Lục",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Xã Hương Lung, huyện Cẩm Khê, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ro-luc-o81E21072.html"
+    },
+    {
+      "parish": "Sản Đãng",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Xã Vô Tranh, huyện Hạ Hoà, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--san-dang-o81E20404.html"
+    },
+    {
+      "parish": "Tạ Xá",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Xã Tạ Xá, huyện Cẩm Khê, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--ta-xa-o81E2107C.html"
+    },
+    {
+      "parish": "Tiên Phong",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Khu 7, xã Yên Tập, huyện Cẩm Khê, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tien-phong-o81E203EE.html"
+    },
+    {
+      "parish": "Văn Bán",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "Xóm nhà thờ, xã Tam Sơn, huyện Cẩm Khê, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--van-ban-o81E2038E.html"
+    },
+    {
+      "parish": "Vân Thê (Cẩm Khê)",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "khu 16 Phượng Vĩ: gồm giáo dân của các khu 7, khu 9, khu 16",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--van-the-cam-khe-o81E20116.html"
+    },
+    {
+      "parish": "Yên Tập",
+      "deanery": "Tây Bắc Phú Thọ",
+      "address": "xóm Trung Thuận, xã Phú Khê, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-tap-o81E21076.html"
+    },
+    {
+      "parish": "Đồn Vàng",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": ": Khu Thống Nhất, thị trấn Thanh Sơn, huyện Thanh Sơn, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--don-vang-o81E203D0.html"
+    },
+    {
+      "parish": "Hiền Quan",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Xã Hiền Quan, huyện Tam Nông, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--hien-quan-o81E2130E.html"
+    },
+    {
+      "parish": "Hoàng Xá",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Khu 2, xã Hoàng Xá, huyện Thanh Thuỷ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--hoang-xa-o81E210EC.html"
+    },
+    {
+      "parish": "Kiệt Sơn",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Khu I (Đồng Than), xã Kiệt Sơn, huyện Tân Sơn, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--kiet-son-o81E203D4.html"
+    },
+    {
+      "parish": "Lũng Hiền",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Khu 13, xã Hiền Quan, huyện Tam Nông, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--lung-hien-o81E203D8.html"
+    },
+    {
+      "parish": "Lương Sơn",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Thôn Ấp Giáo, xã Tinh Nhuệ, huyện Thanh Sơn, tỉnh Phú Thọ. Thành lập năm: 21/11/2011",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--luong-son-o81E2028E.html"
+    },
+    {
+      "parish": "Phù Lao",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": ":&nbsp;",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-lao-o81E210C4.html"
+    },
+    {
+      "parish": "Phù Yên",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Phù Yên - Sơn La",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--phu-yen-o81E20400.html"
+    },
+    {
+      "parish": "Thạch Khoán",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Xóm Nhà Thờ, xã Thạch Khoán, huyện Thanh Sơn, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--thach-khoan-o81E203F2.html"
+    },
+    {
+      "parish": "Thanh Lâm",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Thị trấn Thanh Thuỷ, huyện Thanh Thuỷ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--thanh-lam-o81E203D2.html"
+    },
+    {
+      "parish": "Thanh Uyên",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Xã Thanh Uyên, huyện Tam Nông, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--thanh-uyen-o81E21010.html"
+    },
+    {
+      "parish": "Thủy Trạm",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Xã Sơn Thủy, huyện Thanh Thủy, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--thuy-tram-o81E21032.html"
+    },
+    {
+      "parish": "Trại Sơn",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Khu 17, xã Hoàng Xá, huyện Thanh Thuỷ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--trai-son-o81E20118.html"
+    },
+    {
+      "parish": "Xuân Dương",
+      "deanery": "Tây Nam Phú Thọ",
+      "address": "Xã Xuân Lộc, huyện Thanh Thuỷ, tỉnh Phú Thọ",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--xuan-duong-o81E203DA.html"
+    },
+    {
+      "parish": "An Bình",
+      "deanery": "Yên Bái",
+      "address": "Xã Quy Mông, huyện Trấn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--an-binh-o81E203F6.html"
+    },
+    {
+      "parish": "An Thịnh",
+      "deanery": "Yên Bái",
+      "address": "Thôn Đồng Cọn, xã An Thịnh, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--an-thinh-o81E21082.html"
+    },
+    {
+      "parish": "Bạch Hà",
+      "deanery": "Yên Bái",
+      "address": "Xã Bạch Hà, huyện Yên Bình, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bach-ha-o81E203F8.html"
+    },
+    {
+      "parish": "Bảo Ái",
+      "deanery": "Yên Bái",
+      "address": "Thôn Ngòi Khang, xã Bảo Ái, huyện Yên Bình, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bao-ai-o81E2108E.html"
+    },
+    {
+      "parish": "Bảo Long",
+      "deanery": "Yên Bái",
+      "address": "Thôn Chiến Khu, xã Bảo Hưng, huyện Trấn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--bao-long-o81E203F4.html"
+    },
+    {
+      "parish": "Chuẩn xứ Viễn Sơn",
+      "deanery": "Yên Bái",
+      "address": "&nbsp;Thôn Khe Qué, xã Xuân Ái, tỉnh Lào Cai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--chuan-xu-vien-son-o81E20422.html"
+    },
+    {
+      "parish": "Cổ Phúc",
+      "deanery": "Yên Bái",
+      "address": "số 581 Đường Phạm Văn Đồng, thôn 1 Cổ Phúc, xã Trấn Yên, tỉnh Lào Cai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--co-phuc-o81E20424.html"
+    },
+    {
+      "parish": "Đại An",
+      "deanery": "Yên Bái",
+      "address": "An Bình, Quy Mông, Trấn Yên, Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dai-an-o81E21088.html"
+    },
+    {
+      "parish": "Đại Phác",
+      "deanery": "Yên Bái",
+      "address": "Thôn 8, xã Đại Phác, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--dai-phac-o81E2107E.html"
+    },
+    {
+      "parish": "Hán Đà",
+      "deanery": "Yên Bái",
+      "address": "Xã Hán Đà, huyện Yên Bình, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--han-da-o81E21086.html"
+    },
+    {
+      "parish": "Lạc Hồng",
+      "deanery": "Yên Bái",
+      "address": "Thôn Tân Thịnh, xã An Thịnh, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--lac-hong-o81E21080.html"
+    },
+    {
+      "parish": "Lục Yên",
+      "deanery": "Yên Bái",
+      "address": "Thị trấn Yên Thế, huyện Lục Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--luc-yen-o81E21092.html"
+    },
+    {
+      "parish": "Mậu Đông",
+      "deanery": "Yên Bái",
+      "address": "Thôn 5, xã Mậu Đông, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--mau-dong-o81E21096.html"
+    },
+    {
+      "parish": "Mông Sơn",
+      "deanery": "Yên Bái",
+      "address": "Thôn Trung Tâm, xã Mông Sơn, huyện Yên Bình, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--mong-son-o81E21098.html"
+    },
+    {
+      "parish": "Nhân Nghĩa",
+      "deanery": "Yên Bái",
+      "address": "Xã Nhân Nghĩa, huyện Trấn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--nhan-nghia-o81E21090.html"
+    },
+    {
+      "parish": "Quần Hào",
+      "deanery": "Yên Bái",
+      "address": "Tổ 4, phường Yên Thịnh, thành phố Yên Bái, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--quan-hao-o81E21084.html"
+    },
+    {
+      "parish": "Tân Hợp",
+      "deanery": "Yên Bái",
+      "address": "Xã Tân Hợp, Văn Yên, Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tan-hop-o81E20420.html"
+    },
+    {
+      "parish": "Tân Thịnh",
+      "deanery": "Yên Bái",
+      "address": "&nbsp;Thôn Lương Thịnh, xã Tân Thịnh, thành phố Yên Bái, tỉnh Yên Bái. Năm thành lập: 1990",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--tan-thinh-o81E20414.html"
+    },
+    {
+      "parish": "Xuân Ái",
+      "deanery": "Yên Bái",
+      "address": "Thôn Đoàn Kết, xã Xuân Ái, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--xuan-ai-o81E2109E.html"
+    },
+    {
+      "parish": "Yên Bái",
+      "deanery": "Yên Bái",
+      "address": "Tổ 44, phường Hồng Hà, thành phố Yên Bái, tỉnh Yên Bái",
+      "weekdayMass": [
+        "19:00"
+      ],
+      "saturdayMass": [
+        "19:00"
+      ],
+      "sundayMass": [
+        "15:00"
+      ],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-bai-o81E21094.html"
+    },
+    {
+      "parish": "Yên Bình",
+      "deanery": "Yên Bái",
+      "address": "Thôn Đức Tiến 1, xã Yên Bình, huyện Yên Bình, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-binh-o81E20192.html"
+    },
+    {
+      "parish": "Yên Hợp",
+      "deanery": "Yên Bái",
+      "address": "Thôn Chăn Nuôi, xã Yên Hợp, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-hop-o81E210A2.html"
+    },
+    {
+      "parish": "Yên Hưng",
+      "deanery": "Yên Bái",
+      "address": "Xã Yên Hưng, huyện Văn Yên, tỉnh Yên Bái",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-hung-o81E210A8.html"
+    },
+    {
+      "parish": "Yên Phú",
+      "deanery": "Yên Bái",
+      "address": "&nbsp; thôn Phú Sơn, xã Xuân Ái. tỉnh Lào Cai",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhunghoa.org/vi/giao-phan/giao-hat-giao-xu/giao-xu--yen-phu-o81E210A0.html"
+    }
+  ]
+}

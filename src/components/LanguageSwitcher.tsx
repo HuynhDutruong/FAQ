@@ -5,7 +5,7 @@ import { Language } from '@/lib/i18n/translations';
 import { Globe } from 'lucide-react';
 
 export default function LanguageSwitcher() {
-  const { lang, setLang, t } = useLanguage();
+  const { lang, setLang } = useLanguage();
 
   return (
     <div style={{

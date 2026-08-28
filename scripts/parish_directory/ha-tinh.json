@@ -1,0 +1,1284 @@
+{
+  "diocese": "Hà Tĩnh",
+  "sources": [
+    "https://giaophanhatinh.org/",
+    "https://giaophanhatinh.org/hat-van-hanh",
+    "https://giaophanhatinh.org/hat-can-loc",
+    "https://giaophanhatinh.org/hat-ngan-pho",
+    "https://giaophanhatinh.org/hat-nghia-yen",
+    "https://giaophanhatinh.org/hat-trung-nghia",
+    "https://giaophanhatinh.org/hat-ngan-sau",
+    "https://giaophanhatinh.org/hat-huong-pho",
+    "https://giaophanhatinh.org/hat-cam-xuyen",
+    "https://giaophanhatinh.org/hat-ky-anh",
+    "https://giaophanhatinh.org/hat-binh-chinh",
+    "https://giaophanhatinh.org/hat-minh-cam",
+    "https://giaophanhatinh.org/hat-hoa-ninh",
+    "https://giaophanhatinh.org/hat-nguon-son",
+    "https://giaophanhatinh.org/hat-tam-toa"
+  ],
+  "deaneryCount": 14,
+  "note": "Lấy từ trang chính thức giaophanhatinh.org, mục Giáo hạt (14 hạt: Chính Tòa Văn Hạnh, Can Lộc, Ngàn Phố, Nghĩa Yên, Trung Nghĩa, Ngàn Sâu, Hương Phố, Cẩm Xuyên, Kỳ Anh, Bình Chính, Minh Cầm, Hòa Ninh, Nguồn Son, Tam Tòa). Mỗi hạt có trang riêng liệt kê từng giáo xứ/giáo họ biệt lập kèm địa chỉ (mục THÔNG TIN CHUNG); số lượng khớp với đoạn tổng quan mỗi hạt (139/139). Trang không công bố giờ lễ nên các trường mass để rỗng — cần bổ sung từ giole.vn hoặc nguồn khác nếu cần giờ lễ.",
+  "parishes": [
+    {
+      "parish": "Văn Hạnh",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Thôn Bắc Phú, phường Trần Phú, tỉnh Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "An Nhiên",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Phường Trần Phú, tỉnh Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Chân Thành",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Phường Trần Phú, tỉnh Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Kẻ Đông",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Thạch Xuân, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Hòa Thắng",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Thạch Lạc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Hương Bình",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Phường Hà Huy Tập, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Lộc Thủy",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Thạch Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Tân Lâm",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Thạch Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Tiến Thủy",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Thạch Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Thanh Thủy",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Thạch Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Tĩnh Giang",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Phường Thành Sen, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Văn Hòa",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Phường Hà Huy Tập, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Ngũ Đông",
+      "deanery": "Chính Tòa Văn Hạnh",
+      "address": "Xã Toàn Lưu, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-van-hanh"
+    },
+    {
+      "parish": "Tân Vĩnh",
+      "deanery": "Can Lộc",
+      "address": "Xã Can Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Trại Lê",
+      "deanery": "Can Lộc",
+      "address": "Xã Xuân Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Tam Đa",
+      "deanery": "Can Lộc",
+      "address": "Xã Xuân Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Hòa Mỹ",
+      "deanery": "Can Lộc",
+      "address": "Xã Xuân Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Phương Mỹ",
+      "deanery": "Can Lộc",
+      "address": "Xã Đồng Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Tân Sơn",
+      "deanery": "Can Lộc",
+      "address": "Xã Can Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Văn Định",
+      "deanery": "Can Lộc",
+      "address": "Xã Xuân Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Tràng Đình",
+      "deanery": "Can Lộc",
+      "address": "Xã Gia Hanh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Yên Mỹ",
+      "deanery": "Can Lộc",
+      "address": "Xã Gia Hanh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Kim Lâm",
+      "deanery": "Can Lộc",
+      "address": "Xã Can Lộc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Tân Thành",
+      "deanery": "Can Lộc",
+      "address": "Xã Gia Hanh, tỉnh Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-can-loc"
+    },
+    {
+      "parish": "Kẻ Mui",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Hương Sơn, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Khe Sắn",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Sơn Giang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Đông Tràng",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Tứ Mỹ, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Đức Vọng",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Sơn Giang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Kẻ Đọng",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Sơn Giang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Kim Cương",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Sơn Kim 1, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Truyền Tin",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Sơn Giang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Mân Côi",
+      "deanery": "Ngàn Phố",
+      "address": "Xã Vũ Quang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-pho"
+    },
+    {
+      "parish": "Nghĩa Yên",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Đức Thọ, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Đông Cường",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Đức Thọ, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Gia Hòa",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Nghi Xuân, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Kẻ Tùng",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Đức Quang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Thọ Ninh",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Đức Minh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Tiếp Võ",
+      "deanery": "Nghĩa Yên",
+      "address": "Phường Nam Hồng Lĩnh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Thượng Ích",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Đức Thịnh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Yên Lĩnh",
+      "deanery": "Nghĩa Yên",
+      "address": "Xã Nghi Xuân, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nghia-yen"
+    },
+    {
+      "parish": "Trung Nghĩa",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Lộc Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Cam Lâm",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Cổ Đạm, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Cửa Sót",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Lộc Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Mỹ Lộc",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Lộc Hà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Làng Khe",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Đồng Tiến, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Thu Chỉ",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Thạch Lạc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Vĩnh Luật",
+      "deanery": "Trung Nghĩa",
+      "address": "Xã Mai Phụ, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Xuân Tình",
+      "deanery": "Trung Nghĩa",
+      "address": "Phường Trần Phú, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Xuân Hải",
+      "deanery": "Trung Nghĩa",
+      "address": "Phường Trần Phú, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-trung-nghia"
+    },
+    {
+      "parish": "Tràng Lưu",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Hương Đô, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Chúc A",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Hương Xuân, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Gia Phổ",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Hương Khê, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Làng Truông",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Hương Phố, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Tân Hội",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Phúc Trạch, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Tân Phú",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Phúc Trạch, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Tân Phương",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Hương Khê, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Thịnh Lạc",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Hương Phố, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Vĩnh Cư",
+      "deanery": "Ngàn Sâu",
+      "address": "Xã Phúc Trạch, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Phú Sơn",
+      "deanery": "Ngàn Sâu",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ngan-sau"
+    },
+    {
+      "parish": "Ninh Cường",
+      "deanery": "Hương Phố",
+      "address": "Xã Hương Phố, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Thượng Bình",
+      "deanery": "Hương Phố",
+      "address": "Xã Hương Khê, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Tri Bản",
+      "deanery": "Hương Phố",
+      "address": "Xã Hương Bình, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Vạn Căn",
+      "deanery": "Hương Phố",
+      "address": "Xã Hà Linh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Thổ Hoàng",
+      "deanery": "Hương Phố",
+      "address": "Xã Hà Linh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Thọ Vực",
+      "deanery": "Hương Phố",
+      "address": "Xã Hà Linh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Kẻ Vang",
+      "deanery": "Hương Phố",
+      "address": "Xã Hà Linh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Vĩnh Hội",
+      "deanery": "Hương Phố",
+      "address": "Xã Vũ Quang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-huong-pho"
+    },
+    {
+      "parish": "Ngô Xá",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Cẩm Xuyên, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Lạc Sơn",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Cẩm Lạc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Mỹ Hòa",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Yên Hoà, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Nhượng Bạn",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Thiên Cầm, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Phúc Thành",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Cẩm Duệ, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Quèn Đông",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Cẩm Trung, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Vạn Thành",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Cẩm Duệ, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Vĩnh Phước (ht)",
+      "deanery": "Cẩm Xuyên",
+      "address": "Xã Thiên Cầm, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-cam-xuyen"
+    },
+    {
+      "parish": "Kỳ Anh",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Sông Trí, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Dũ Lộc",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Sông Trí, tĩnh Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Dũ Thành",
+      "deanery": "Kỳ Anh",
+      "address": "Xã Kỳ Khang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Dũ Yên",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Vũng Áng, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Đông Sơn",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Hoành Sơn, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Đông Yên",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Hoành Sơn, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Đồng Hòa",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Hải Ninh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Kim Sơn",
+      "deanery": "Kỳ Anh",
+      "address": "Xã Kỳ Khang, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Quý Hòa",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Hải Ninh, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Thiên Lý",
+      "deanery": "Kỳ Anh",
+      "address": "Phường Vũng Áng, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Xuân Sơn",
+      "deanery": "Kỳ Anh",
+      "address": "Xã Kỳ Lạc, Hà Tĩnh",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-ky-anh"
+    },
+    {
+      "parish": "Hướng Phương",
+      "deanery": "Bình Chính",
+      "address": "Xã Quảng Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Ba Đồn",
+      "deanery": "Bình Chính",
+      "address": "Phường Ba Đồn, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Chợ Sàng",
+      "deanery": "Bình Chính",
+      "address": "Xã Tân Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Đan Sa",
+      "deanery": "Bình Chính",
+      "address": "Phường Bắc Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Nhân Thọ",
+      "deanery": "Bình Chính",
+      "address": "Phường Bắc Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Phù Ninh",
+      "deanery": "Bình Chính",
+      "address": "Xã Tân Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Tân Mỹ",
+      "deanery": "Bình Chính",
+      "address": "Phường Bắc Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Tân Phong",
+      "deanery": "Bình Chính",
+      "address": "Phường Ba Đồn, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Thủy Vực",
+      "deanery": "Bình Chính",
+      "address": "Xã Phú Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Trừng Hải",
+      "deanery": "Bình Chính",
+      "address": "Xã Phú Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Xuân Hòa",
+      "deanery": "Bình Chính",
+      "address": "Xã Quảng Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Diên Phúc",
+      "deanery": "Bình Chính",
+      "address": "Phường Bắc Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-binh-chinh"
+    },
+    {
+      "parish": "Minh Cầm",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tuyên Bình, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Đá Nện",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tuyên Sơn, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Đồng Tiến",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tuyên Hóa, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Kim Lũ",
+      "deanery": "Minh Cầm",
+      "address": "Xã Đồng Lê, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Kinh Nhuận",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tân Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Lâm Sơn",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tuyên Lâm, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Minh Tú",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tuyên Hóa, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Phù Kinh",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tân Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Tân Hội",
+      "deanery": "Minh Cầm",
+      "address": "Xã Tuyên Phú, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-minh-cam"
+    },
+    {
+      "parish": "Hòa Ninh",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Chay",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Ba Đồn, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Cồn Nâm",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Cồn Sẻ",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Diên Trường",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Ba Đồn, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Giáp Tam",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Hòa Đồng",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Liên Hòa",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Thanh Hà",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Văn Phú",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Vĩnh Phước - Qb",
+      "deanery": "Hòa Ninh",
+      "address": "Xã Nam Gianh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-hoa-ninh"
+    },
+    {
+      "parish": "Đồng Troóc",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Bàu Sen",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Cây Lim",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Chày",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Gia Hưng",
+      "deanery": "Nguồn Son",
+      "address": "Xã Bố Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Khe Gát",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Khe Ngang",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Hội Nghĩa",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Tam Trang",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Thanh Thủy",
+      "deanery": "Nguồn Son",
+      "address": "Xã Bố Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Yên Giang",
+      "deanery": "Nguồn Son",
+      "address": "Xã Bắc Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Phú Trang",
+      "deanery": "Nguồn Son",
+      "address": "Xã Bắc Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Na",
+      "deanery": "Nguồn Son",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-nguon-son"
+    },
+    {
+      "parish": "Tam Tòa",
+      "deanery": "Tam Tòa",
+      "address": "Phường Đồng Hới, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Bình Thôn",
+      "deanery": "Tam Tòa",
+      "address": "Xã Ninh Châu, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Bồng Lai",
+      "deanery": "Tam Tòa",
+      "address": "Xã Bố Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Hà Lời",
+      "deanery": "Tam Tòa",
+      "address": "Xã Phong Nha, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Hoành Phổ",
+      "deanery": "Tam Tòa",
+      "address": "Xã Trường Ninh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Phúc Tín",
+      "deanery": "Tam Tòa",
+      "address": "Xã Trường Ninh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Sen Bàng",
+      "deanery": "Tam Tòa",
+      "address": "Xã Hoàn Lão, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Thanh Hải",
+      "deanery": "Tam Tòa",
+      "address": "Xã Bắc Trạch, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    },
+    {
+      "parish": "Trung Quán",
+      "deanery": "Tam Tòa",
+      "address": "Xã Trường Ninh, Quảng Trị",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanhatinh.org/hat-tam-toa"
+    }
+  ]
+}

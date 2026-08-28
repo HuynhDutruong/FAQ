@@ -1,0 +1,1055 @@
+{
+  "diocese": "Thanh Hóa",
+  "sources": [
+    "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html",
+    "https://giole.vn/ (dữ liệu đã scrape sẵn trong public/giole.json của repo)"
+  ],
+  "deaneryCount": 7,
+  "note": "Danh sách 94 đơn vị nhiệm sở (79 giáo xứ + 14 chuẩn giáo xứ + 1 giáo họ biệt lập) theo 7 giáo hạt, tên và giáo hạt lấy từ trang chính thức giaophanthanhhoa.net (trang đó không có địa chỉ/giờ lễ). Địa chỉ và giờ lễ bổ sung cho 35/94 giáo xứ từ dữ liệu giole.vn (khớp theo tên, đã xác minh vị trí); giole.vn không gắn nhãn giáo phận cho các mục này nên phải khớp thủ công qua tỉnh Thanh Hóa. 59 giáo xứ còn lại không tìm thấy trong giole.vn (tên không khớp rõ hoặc chưa được giole.vn thu thập) nên để rỗng, không bịa.",
+  "parishes": [
+    {
+      "parish": "Ba Làng",
+      "deanery": "Ba Làng",
+      "address": "Hải Thanh, Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "17:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-ba-lang-1845.html"
+    },
+    {
+      "parish": "Hoài Yên",
+      "deanery": "Ba Làng",
+      "address": "Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "07:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-hoai-yen-1846.html"
+    },
+    {
+      "parish": "Minh Thanh",
+      "deanery": "Ba Làng",
+      "address": "Trường Lâm, Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "19:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "17:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-minh-thanh-1847.html"
+    },
+    {
+      "parish": "Nghi Sơn",
+      "deanery": "Ba Làng",
+      "address": "Bắc Sơn, Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-nghi-son-1848.html"
+    },
+    {
+      "parish": "Thanh Thủy",
+      "deanery": "Ba Làng",
+      "address": "Trúc Lâm, Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-thanh-thuy-1849.html"
+    },
+    {
+      "parish": "Thủy Cơ",
+      "deanery": "Ba Làng",
+      "address": "Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-thuy-co-1850.html"
+    },
+    {
+      "parish": "Thượng Chiểu",
+      "deanery": "Ba Làng",
+      "address": "Hải Lĩnh, Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-thuong-chieu-1851.html"
+    },
+    {
+      "parish": "Cổ Định",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Chính Tòa",
+      "deanery": "Chính Tòa",
+      "address": "232A Trường Thi, P. Trường Thi, Thanh Hóa",
+      "weekdayMass": [
+        "05:00",
+        "19:30"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "17:00",
+        "17:30"
+      ],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "17:00",
+        "17:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-chinh-toa-thanh-hoa-310.html"
+    },
+    {
+      "parish": "Đa Minh",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đại Tiền",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Gia Hà",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Hà Nhuận",
+      "deanery": "Chính Tòa",
+      "address": "ngõ 1 Tô Vĩnh Diện, Minh Châu, Triệu Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "04:30",
+        "15:30"
+      ],
+      "saturdayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "sundayMass": [
+        "07:00",
+        "19:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-ha-nhuan-3262.html"
+    },
+    {
+      "parish": "Hải Lập",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Hòa Chúng",
+      "deanery": "Chính Tòa",
+      "address": "55 Nguyễn Văn Trỗi, Quảng Thọ, TP Sầm Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [],
+      "sundayMass": [
+        "16:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-giao-ho-hoa-chung-2139.html"
+    },
+    {
+      "parish": "Hoành Suối",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Ngọc Tranh",
+      "deanery": "Chính Tòa",
+      "address": "Quảng Thịnh, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00",
+        "19:00",
+        "19:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-tuc-tranh-ngoc-tranh-1855.html"
+    },
+    {
+      "parish": "Phù Bình",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Phúc Lãng",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Sầm Sơn",
+      "deanery": "Chính Tòa",
+      "address": "112 Nguyễn Du, Thành phố Sầm Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "19:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "15:30"
+      ],
+      "sundayMass": [
+        "04:00",
+        "19:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-sam-son-4098.html"
+    },
+    {
+      "parish": "Đại Thảo",
+      "deanery": "Chính Tòa",
+      "address": "78 Nguyễn Trãi, P. Phú Sơn, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "08:00",
+        "19:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-dai-thao-1854.html"
+    },
+    {
+      "parish": "Toàn Tân",
+      "deanery": "Chính Tòa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Thanh Bình",
+      "deanery": "Chính Tòa",
+      "address": "Văn Sơn, Quảng Xương, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "04:00",
+        "06:30",
+        "16:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-thanh-binh-1859.html"
+    },
+    {
+      "parish": "Bích Phương",
+      "deanery": "Hữu Lễ",
+      "address": "Thôn Bích Phương , xã Xuân Sinh , Huyện Thọ Xuân, Thanh Hóa",
+      "weekdayMass": [
+        "04:45"
+      ],
+      "saturdayMass": [
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:45"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-giao-xu-bich-phuong-4173.html"
+    },
+    {
+      "parish": "Đạt Giáo",
+      "deanery": "Hữu Lễ",
+      "address": "Thiệu Vũ, Thiệu Hóa, Thanh Hóa",
+      "weekdayMass": [
+        "05:00",
+        "19:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "19:00"
+      ],
+      "sundayMass": [
+        "07:00",
+        "17:00",
+        "19:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-dat-giao-4009.html"
+    },
+    {
+      "parish": "Điền Thôn",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Hậu Hiền",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Hữu Lễ",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Kẻ Đầm",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Kẻ Láng",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Kẻ Vàng",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Lam Sơn",
+      "deanery": "Hữu Lễ",
+      "address": "Thôn Đoàn Kết, Xã Lam Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "05:00",
+        "17:00"
+      ],
+      "saturdayMass": [
+        "05:00",
+        "19:00"
+      ],
+      "sundayMass": [
+        "05:00",
+        "07:00",
+        "16:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-giao-xu-lam-son-4383.html"
+    },
+    {
+      "parish": "Mục Sơn",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Ngọc Đông",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Ngọc Lạp",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Phúc Địa",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Phương Long",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Thường Xuân",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Thiện Giáo",
+      "deanery": "Hữu Lễ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Bá Thước",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Bản Thủy",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Bằng Phú",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Dương Giao",
+      "deanery": "Kẻ Bền",
+      "address": "Thôn Đại Dương, Thạch Đồng, Thạch Thành, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "19:00"
+      ],
+      "sundayMass": [
+        "07:00",
+        "19:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-duong-giao-3140.html"
+    },
+    {
+      "parish": "Đa Lộc",
+      "deanery": "Kẻ Bền",
+      "address": "Tam Đa, Yên Phong, Thanh Hóa",
+      "weekdayMass": [
+        "19:00"
+      ],
+      "saturdayMass": [
+        "19:00"
+      ],
+      "sundayMass": [
+        "06:15",
+        "15:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-da-loc-3441.html"
+    },
+    {
+      "parish": "Đắc Lộc",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đồng Mực",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đồng Phúc",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Khánh Linh",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Kẻ Bền",
+      "deanery": "Kẻ Bền",
+      "address": "Xóm 8, Xã Biện Thượng, Thanh Hóa",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "sundayMass": [
+        "05:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-ke-ben-2246.html"
+    },
+    {
+      "parish": "Kiên Khánh",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Ngọc Đường",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Ngọc Sơn",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Nhân Lộ",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Pháp Ngỡ",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Phong Ý",
+      "deanery": "Kẻ Bền",
+      "address": "Nghĩa Dũng, Cẩm Thuỷ, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:00",
+        "08:00",
+        "18:45"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-phong-y-1860.html"
+    },
+    {
+      "parish": "Quan Nhân",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Quần Xá",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Tây Trác",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Vân Lung",
+      "deanery": "Kẻ Bền",
+      "address": "Eo Bàn, Thành Long, Thạch Thành, Thanh Hóa",
+      "weekdayMass": [
+        "05:00"
+      ],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "19:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-giao-xu-van-lung-3994.html"
+    },
+    {
+      "parish": "Yên Khánh",
+      "deanery": "Kẻ Bền",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Do Hạ",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đa Nam",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đa Phạn",
+      "deanery": "Ngọc Đỉnh",
+      "address": "Hải Lộc, Hậu Lộc, Thanh Hóa",
+      "weekdayMass": [
+        "18:00"
+      ],
+      "saturdayMass": [
+        "17:30"
+      ],
+      "sundayMass": [
+        "04:00",
+        "08:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-da-phan-2845.html"
+    },
+    {
+      "parish": "Đông Quang",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đông Sơn",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đức Tâm",
+      "deanery": "Ngọc Đỉnh",
+      "address": "105 Lương Đình Của, phường Phú Sơn, thị xã Bỉm Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "19:30"
+      ],
+      "saturdayMass": [
+        "19:30"
+      ],
+      "sundayMass": [
+        "07:30",
+        "17:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-giao-xu-duc-tam-4051.html"
+    },
+    {
+      "parish": "Kẻ Rừa",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Mỹ Điện",
+      "deanery": "Ngọc Đỉnh",
+      "address": "Thuần Lộc, Hậu Lộc, Thanh Hóa",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [
+        "04:30"
+      ],
+      "sundayMass": [
+        "06:00",
+        "17:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-my-dien-1856.html"
+    },
+    {
+      "parish": "Ngọc Đỉnh",
+      "deanery": "Ngọc Đỉnh",
+      "address": "Hoàng Hà, Hoằng Hoá, Thanh Hóa",
+      "weekdayMass": [
+        "04:00"
+      ],
+      "saturdayMass": [
+        "04:00",
+        "15:00"
+      ],
+      "sundayMass": [
+        "04:00",
+        "07:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-ngoc-dinh-1861.html"
+    },
+    {
+      "parish": "Thánh Mẫu",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Thiên An",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Tiên Thôn",
+      "deanery": "Ngọc Đỉnh",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Trinh Hà",
+      "deanery": "Ngọc Đỉnh",
+      "address": "Hoằng Trung, Hoằng Hoá, Thanh Hóa",
+      "weekdayMass": [
+        "15:00"
+      ],
+      "saturdayMass": [
+        "19:00"
+      ],
+      "sundayMass": [
+        "15:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-trinh-ha-1862.html"
+    },
+    {
+      "parish": "Bạch Câu",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Chính Nghĩa",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Điền Hộ",
+      "deanery": "Tam Tổng",
+      "address": "Nga Điền, Nga Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [
+        "04:30"
+      ],
+      "sundayMass": [
+        "04:30",
+        "07:00",
+        "16:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-dien-ho-1853.html"
+    },
+    {
+      "parish": "Liên Hải",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Liên Nghĩa",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Mông Ân",
+      "deanery": "Tam Tổng",
+      "address": "Nga Điền, Nga Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [
+        "04:30",
+        "18:00"
+      ],
+      "sundayMass": [
+        "04:30",
+        "16:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-mong-an-1857.html"
+    },
+    {
+      "parish": "Phúc Lạc",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Phước Nam",
+      "deanery": "Tam Tổng",
+      "address": "Nga Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "04:45"
+      ],
+      "saturdayMass": [
+        "04:45"
+      ],
+      "sundayMass": [
+        "04:45",
+        "07:00",
+        "16:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-phuoc-nam-1852.html"
+    },
+    {
+      "parish": "Tam Linh",
+      "deanery": "Tam Tổng",
+      "address": "Nga Thắng, Nga Sơn, Thanh Hóa",
+      "weekdayMass": [
+        "04:45"
+      ],
+      "saturdayMass": [
+        "04:45",
+        "16:00"
+      ],
+      "sundayMass": [
+        "05:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-tam-linh-1863.html"
+    },
+    {
+      "parish": "Tam Tổng",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Tân Hải",
+      "deanery": "Tam Tổng",
+      "address": "Nga phú, Nga Sơn, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [
+        "16:30"
+      ],
+      "sundayMass": [
+        "04:30"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-tan-hai-thanh-1864.html"
+    },
+    {
+      "parish": "Vĩnh Thiện",
+      "deanery": "Tam Tổng",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Đông Yên",
+      "deanery": "Thái Yên",
+      "address": "Hùng Sơn, Tĩnh Gia, Thanh Hóa",
+      "weekdayMass": [
+        "04:30"
+      ],
+      "saturdayMass": [
+        "17:00"
+      ],
+      "sundayMass": [
+        "17:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-giao-xu-dong-yen-4045.html"
+    },
+    {
+      "parish": "Kiến An",
+      "deanery": "Thái Yên",
+      "address": "Kén Thôn, Nông Cống, Thanh Hóa",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [
+        "05:15",
+        "17:15"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-kien-an-1858.html"
+    },
+    {
+      "parish": "Ngọc Lẫm",
+      "deanery": "Thái Yên",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Tân Đạo",
+      "deanery": "Thái Yên",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Tân Sơn",
+      "deanery": "Thái Yên",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Thanh Xuân",
+      "deanery": "Thái Yên",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Thái Yên",
+      "deanery": "Thái Yên",
+      "address": "Công Chính, Nông Cống, Thanh Hóa",
+      "weekdayMass": [
+        "18:45"
+      ],
+      "saturdayMass": [
+        "18:45"
+      ],
+      "sundayMass": [
+        "07:00",
+        "16:00"
+      ],
+      "source": "https://giole.vn/thanh-hoa.19/nha-tho-thai-yen-2224.html"
+    },
+    {
+      "parish": "Vạn Thành",
+      "deanery": "Thái Yên",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    },
+    {
+      "parish": "Yên Sơn",
+      "deanery": "Thái Yên",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthanhhoa.net/theo-giao-hat/cac-giao-xu-thuoc-giao-hat-trong-giao-phan-thanh-hoa-13592.html"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Star, MessageCircle } from 'lucide-react';
 import { useLanguage } from '../lib/i18n/LanguageContext';
 
@@ -15,7 +16,9 @@ export default function IntroModalContent() {
         </h3>
 
         <div style={{ float: 'right', marginLeft: '16px', marginBottom: '8px', textAlign: 'center', width: '120px' }}>
-          <img src="/images/bishop.jpg" alt={t.bishopName} style={{ width: '120px', height: '160px', objectFit: 'cover', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+          <div style={{ position: 'relative', width: '120px', height: '160px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+            <Image src="/images/bishop.jpg" alt={t.bishopName} fill sizes="120px" style={{ objectFit: 'cover' }} />
+          </div>
           <div style={{ fontSize: '0.75rem', fontWeight: 'bold', marginTop: '8px', color: '#111827', lineHeight: '1.2' }}>{t.bishopTitle}</div>
           <div style={{ fontSize: '0.7rem', color: '#4b5563', lineHeight: '1.2' }}>{t.bishopName}</div>
         </div>
@@ -34,7 +37,9 @@ export default function IntroModalContent() {
         </h3>
         
         <div style={{ float: 'left', marginRight: '16px', marginBottom: '8px', textAlign: 'center', width: '120px' }}>
-          <img src="/images/priest.jpg" alt={t.priestName} style={{ width: '120px', height: '160px', objectFit: 'cover', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+          <div style={{ position: 'relative', width: '120px', height: '160px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+            <Image src="/images/priest.jpg" alt={t.priestName} fill sizes="120px" style={{ objectFit: 'cover' }} />
+          </div>
           <div style={{ fontSize: '0.75rem', fontWeight: 'bold', marginTop: '8px', color: '#111827', lineHeight: '1.2' }}>{t.priestTitle}</div>
           <div style={{ fontSize: '0.7rem', color: '#4b5563', lineHeight: '1.2' }}>{t.priestName}</div>
         </div>
@@ -71,6 +76,7 @@ export default function IntroModalContent() {
             <div key={i} style={{ 
               minWidth: '280px', 
               maxWidth: '320px', 
+              height: '220px',
               flexShrink: 0, 
               scrollSnapAlign: 'start',
               position: 'relative',
@@ -78,11 +84,12 @@ export default function IntroModalContent() {
               overflow: 'hidden',
               boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
             }}>
-              <img 
+              <Image 
                 src={img.src} 
                 alt={img.alt} 
-                style={{ width: '100%', height: '220px', objectFit: 'cover', display: 'block' }}
-                loading="lazy"
+                fill
+                sizes="320px"
+                style={{ objectFit: 'cover' }}
               />
             </div>
           ))}

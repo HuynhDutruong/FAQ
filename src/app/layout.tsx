@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${beVietnamPro.variable} ${inter.variable} ${notoSansSC.variable}`}>
+    <html lang="en" className={`${beVietnamPro.variable} ${inter.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
       <body>
         <LanguageProvider>
           {children}

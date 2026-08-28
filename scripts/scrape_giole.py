@@ -31,6 +31,7 @@ import urllib.request
 API = "https://giothanhle.net/wp-json/wp/v2"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 OUT = pathlib.Path(__file__).resolve().parent.parent / "public" / "giole.json"
+LOCAL_DIRECTORY = pathlib.Path(__file__).resolve().parent / "parish_directory"
 
 # Tên meta field bị WordPress mã hoá: "fave_" + tên tiếng Việt (ký tự non-ASCII -> hex UTF-8)
 META_SUNDAY = "fave_chc3baa-nhe1baadt"          # fave_chúa-nhật
@@ -491,6 +492,31 @@ def fetch_parish_directory():
                 index[k].add(("Ban Mê Thuột", dean))
                 n += 1
     print(f"  {'Ban Mê Thuột':12}   6 hạt {n:4d} giáo xứ")
+
+    # Danh bạ chép tay từ trang chính thức của từng giáo phận, cho những giáo phận
+    # không có mặt trên sotayconggiao.com (Bắc Ninh, Bùi Chu, Vinh, Kon Tum...).
+    # Mỗi file: {"diocese": "...", "parishes": [{"parish": "...", "deanery": "..."}, ...]}
+    for f in sorted(LOCAL_DIRECTORY.glob("*.json")):
+        try:
+            d = json.loads(f.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"  ! {f.name}: {e}", file=sys.stderr)
+            continue
+        dio = norm_diocese(d.get("diocese", ""))
+        if not dio:
+            print(f"  ! {f.name}: 'diocese' không thuộc 27 giáo phận -> bỏ", file=sys.stderr)
+            continue
+        deans, n = set(), 0
+        for p in d.get("parishes") or []:
+            k = parish_key(p.get("parish", ""))
+            if not k:
+                continue
+            dean = clean(p.get("deanery", ""))
+            index[k].add((dio, dean))
+            deans.add(dean)
+            n += 1
+        print(f"  {dio:12} {len(deans):3d} hạt {n:4d} giáo xứ  (danh bạ nội bộ)")
+
     return index
 
 
@@ -636,14 +662,18 @@ def merge(primary, extra):
 
         if hit:
             dupes += 1
-            # nguồn 2 có giờ lễ theo từng thứ -> ưu tiên giờ lễ của nó
-            for k in ("weekdayMass", "sundayMass", "byDay"):
-                if r.get(k):
-                    hit[k] = r[k]
-            # các trường còn lại chỉ dùng để lấp chỗ trống, không đè.
-            # deanery BẮT BUỘC có mặt ở đây: giole.vn (nguồn chính) không có trường
-            # này, bỏ sót thì nhãn Giáo hạt của nguồn khác mất sạch khi gộp.
-            for k in ("diocese", "deanery", "province", "address", "lat", "lng"):
+            # byDay là thứ giole.vn KHÔNG có (giờ theo từng thứ) -> nhận thêm.
+            if r.get("byDay"):
+                hit["byDay"] = r["byDay"]
+            # Giờ lễ thì CHỈ LẤP CHỖ TRỐNG, không đè. giole.vn là app chính thức của
+            # Văn phòng HĐGM; đè bằng WordPress bên thứ ba (dữ liệu cũ hơn) làm hỏng
+            # ngay cả bản ghi đúng, và lệch giữa các ngày vì saturdayMass không bị đè:
+            # Phước Hoà (Nha Trang) thành T2-6 17:45 / T7 17:30 trong khi nguồn gốc
+            # ghi 17:30 cả tuần.
+            # deanery BẮT BUỘC có mặt ở đây: giole.vn không có trường này, bỏ sót thì
+            # nhãn Giáo hạt của nguồn khác mất sạch khi gộp.
+            for k in ("weekdayMass", "saturdayMass", "sundayMass",
+                      "diocese", "deanery", "province", "address", "lat", "lng"):
                 if not hit.get(k) and r.get(k):
                     hit[k] = r[k]
         else:

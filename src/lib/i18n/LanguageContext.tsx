@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useSyncExternalStore } from 'react';
 import { Language, translations } from './translations';
 
 type LanguageContextType = {
@@ -10,34 +10,40 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+function detectLanguage(): Language {
+  if (typeof window === 'undefined') return 'vi';
+  const pathname = window.location.pathname;
+  const pathLangMatch = pathname.match(/^\/([a-z]{2})(?:\/|$)/);
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryLang = urlParams.get('lang');
+  const storedLang = localStorage.getItem('app_lang') as Language;
+
+  if (pathLangMatch && Object.keys(translations).includes(pathLangMatch[1])) {
+    return pathLangMatch[1] as Language;
+  } else if (queryLang && Object.keys(translations).includes(queryLang)) {
+    return queryLang as Language;
+  } else if (storedLang && Object.keys(translations).includes(storedLang)) {
+    return storedLang;
+  }
+  return 'vi';
+}
+
+const emptySubscribe = () => () => {};
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Language>('vi');
-  const [mounted, setMounted] = useState(false);
+  const detectedLang = useSyncExternalStore(
+    emptySubscribe,
+    detectLanguage,
+    () => 'vi' as Language
+  );
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
-  useEffect(() => {
-    // 1. Đọc từ pathname (Ví dụ: /en, /zh/gio-le)
-    const pathname = window.location.pathname;
-    const pathLangMatch = pathname.match(/^\/([a-z]{2})(?:\/|$)/);
-    
-    // 2. Đọc từ query param do Middleware gửi về (?lang=en)
-    const urlParams = new URLSearchParams(window.location.search);
-    const queryLang = urlParams.get('lang');
-    
-    const storedLang = localStorage.getItem('app_lang') as Language;
-    
-    let initialLang: Language = 'vi'; // Mặc định là Tiếng Việt
-    
-    if (pathLangMatch && Object.keys(translations).includes(pathLangMatch[1])) {
-      initialLang = pathLangMatch[1] as Language;
-    } else if (queryLang && Object.keys(translations).includes(queryLang)) {
-      initialLang = queryLang as Language;
-    } else if (storedLang && Object.keys(translations).includes(storedLang)) {
-      initialLang = storedLang;
-    }
-
-    setLangState(initialLang);
-    setMounted(true);
-  }, []);
+  const [langOverride, setLangOverride] = useState<Language | null>(null);
+  const lang = langOverride ?? detectedLang;
 
   useEffect(() => {
     if (mounted) {
@@ -47,7 +53,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, [lang, mounted]);
 
   const setLang = (newLang: Language) => {
-    setLangState(newLang);
+    setLangOverride(newLang);
     localStorage.setItem('app_lang', newLang);
     
     // Cập nhật URL trình duyệt (chèn locale vào path)

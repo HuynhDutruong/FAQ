@@ -1,0 +1,1389 @@
+{
+  "diocese": "Thái Bình",
+  "sources": [
+    "https://giaophanthaibinh.net/",
+    "https://giaophanthaibinh.net/sitemap.xml",
+    "https://vi.wikipedia.org/wiki/Gi%C3%A1o_ph%E1%BA%ADn_Th%C3%A1i_B%C3%ACnh"
+  ],
+  "deaneryCount": 8,
+  "note": "Lay tu trang chinh thuc giaophanthaibinh.net (qua sitemap.xml, da xu ly 153/153 trang giao xu). Giao hat va dia chi lay tu breadcrumb + dong 'Dia chi' cua tung trang giao xu. Trang giao xu KHONG cong bo gio le nen weekdayMass/saturdayMass/sundayMass de trong. Giao ho biet lap chua duoc liet ke rieng.",
+  "parishes": [
+    {
+      "parish": "An Bình",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Giáo xứ An Bình, làng Đội Trạch, xã Vũ Đoài, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-binh"
+    },
+    {
+      "parish": "An Châu",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ An Châu, thôn Song Thủy, xã Vũ Tiến, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-chau"
+    },
+    {
+      "parish": "An Lạc",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ An Lạc, thôn An Lạc, xã Trung An, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-lac"
+    },
+    {
+      "parish": "An Lão",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ An Lão, thôn Gia Hội, xã Song An, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-lao"
+    },
+    {
+      "parish": "An Lập",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ An Lập, xã Hồng Giang, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-lap"
+    },
+    {
+      "parish": "An Thái",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ An Thái, xã Mê Linh, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-thai"
+    },
+    {
+      "parish": "An Vỹ",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ An Vỹ, xã An Vỹ, huyện Khoái Châu, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-an-vy"
+    },
+    {
+      "parish": "Bắc Hải",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Bắc Hải, xã Bắc Hải, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bac-hai"
+    },
+    {
+      "parish": "Đền Thánh Bác Trạch",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Đền Thánh Bác Trạch, xã Vân Trường, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bac-trach"
+    },
+    {
+      "parish": "Bạch Long",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Bạch Long, xã Đông Hoàng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bach-long"
+    },
+    {
+      "parish": "Bích Đông",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Bích Đông, thôn Thủy Cơ, xã Tiền Phong, huyện Ân Thi, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bich-dong"
+    },
+    {
+      "parish": "Bích Du",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Bích Du, xã Thái Thượng, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bich-du"
+    },
+    {
+      "parish": "Bồ Ngọc",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Bồ Ngọc, xã Quỳnh Hoa, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bo-ngoc"
+    },
+    {
+      "parish": "Bơn Làng",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Bơn Làng, xã Hồng Châu, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bon-lang"
+    },
+    {
+      "parish": "Bồng Tiên",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Bồng Tiên, thôn Nam Tiên, xã Vũ Tiến, huyện Vũ Thư, tỉnh Thái Bình I - VỊ TRÍ Giáo xứ Bồng Tiên cách Tòa Giám mục khoảng 8km hướng Tây Nam; phía Đông Bắc giáp xứ Hoàng Xá; phía Nam giáp xứ Đông A.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-bong-tien"
+    },
+    {
+      "parish": "Cam Châu",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Cam Châu, thôn Cam Đông, xã Thụy Liên, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cam-chau"
+    },
+    {
+      "parish": "Cam Lai",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Cam Lai, thôn Cam Lai, xã Đông Cơ, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cam-lai"
+    },
+    {
+      "parish": "Cao Bình",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Cao Bình, thôn Nam Tiến, xã Hồng Tiến, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cao-binh"
+    },
+    {
+      "parish": "Cao Mộc",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Cao Mộc, xã Đồng Tiến, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cao-moc"
+    },
+    {
+      "parish": "Cao Xá",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Cao Xá, thị trấn Trần Cao, huyện Phù Cừ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cao-xa"
+    },
+    {
+      "parish": "Cát Đàm",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Cát Đàm, xóm 7, xã Đông Hòa, Tp.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cat-dam"
+    },
+    {
+      "parish": "Cát Nội",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Cát Nội, thôn Trung Nghĩa, xã Đông Hòa, Tp.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cat-noi"
+    },
+    {
+      "parish": "Cát Trại",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Cát Trại, phường Hoàng Diệu, thành phố Thái Bình, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cat-trai"
+    },
+    {
+      "parish": "Chấp Trung",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Chấp Trung, xã Đoan Hùng, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-chap-trung"
+    },
+    {
+      "parish": "Châu Nhai",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Châu Nhai, xã Nam Thanh, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-chau-nhai"
+    },
+    {
+      "parish": "Chính toà Thái Bình",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Chính Toà Thái Bình, số 08 Trần Hưng Đạo, Lê Hồng Phong, Tp.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-chinh-toa-thai-binh"
+    },
+    {
+      "parish": "Cổ Việt",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Cổ Việt, thôn Việt Cường, xã Việt Thuận, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-co-viet"
+    },
+    {
+      "parish": "Công Bồi",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Công Bồi, xã Phương Công, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-cong-boi"
+    },
+    {
+      "parish": "Đại Điền",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Đại Điền, thôn Đại Điền, xã An Vũ, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dai-dien"
+    },
+    {
+      "parish": "Đại Hội",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Đại Hội, thôn Bắc Hưng, xã Phúc Thành, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dai-hoi"
+    },
+    {
+      "parish": "Đan Chàng",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Đan Chàng, xã Hồng Vân, huyện Ân Thi, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dan-chang"
+    },
+    {
+      "parish": "Danh Giáo",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Danh Giáo, xã Thái Đô, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-danh-giao"
+    },
+    {
+      "parish": "Đền Thánh Cao Mại",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Cao Mại, thôn Đông Nghĩa, xã Quang Hưng, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-den-thanh-cao-mai"
+    },
+    {
+      "parish": "Đền Thánh Giuse Thượng Phúc",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Thượng Phúc, xã Thụy Sơn, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-den-thanh-giuse-thuong-phuc"
+    },
+    {
+      "parish": "Đông A",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Đông A, thôn Đông Tiên, xã Vũ Tiến, huyện Vũ Thư, Thái Bình I - VỊ TRÍ Giáo xứ Đông A cách Tòa Giám mục gần 12km về hướng Tây Nam; phía Bắc giáp xứ Bồng Tiên; phía Nam giáp Chùa Keo; phía Đông Nam giáp xứ An Châu; phía Tây giáp sông Hồng.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-a"
+    },
+    {
+      "parish": "Đông Châu",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Đông Châu, thôn Đông Châu, xã Quỳnh Ngọc, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-chau"
+    },
+    {
+      "parish": "Đông Khê",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Đông Khê, xã Đông Cường, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-khe"
+    },
+    {
+      "parish": "Đông Phú",
+      "deanery": "Nam Tiền Hải",
+      "address": "Giáo xứ Đền Thánh Đông Phú, xã Nam Trung, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-phu"
+    },
+    {
+      "parish": "Đồng Quan",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Đồng Quan, thôn Đồng Tâm, xã Vũ An, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-quan"
+    },
+    {
+      "parish": "Đông Thành",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Đông Thành, xã Nam Hải, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-thanh"
+    },
+    {
+      "parish": "Đồng Vân",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Đồng Vân, thôn Đồng Vân, xã Vũ Lễ, huyện Kiến Xương, tỉnh Thái Bình; cách nhà xứ khoảng 1km về hướng Đông Bắc.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-dong-van"
+    },
+    {
+      "parish": "Đức Long",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Đức Long, thôn Minh Hồng, xã Duy Nhất, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-duc-long"
+    },
+    {
+      "parish": "Đức Ninh",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Đức Ninh, xã Đức Hợp, huyện Kim Động, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-duc-ninh"
+    },
+    {
+      "parish": "Dương Cước",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Dương Cước, xã Hồng Thái, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-duong-cuoc"
+    },
+    {
+      "parish": "Duyên Lãng",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Duyên Lãng, xã Minh Hòa, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-duyen-lang"
+    },
+    {
+      "parish": "Duyên Tục",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Duyên Tục, thôn Duyên Tục, xã Phú Lương, huyện Đông Hưng, tỉnh Thái Bình I - VỊ TRÍ Giáo xứ Duyên Tục cách Tòa giám mục khoảng 16km về hướng Bắc; phía Tây Bắc giáp xứ Phục Lễ; phía Đông giáp xứ Thuần Túy; phía Tây Nam giáp xứ Nam Lỗ.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-duyen-tuc"
+    },
+    {
+      "parish": "Gia lạc",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Gia Lạc, xã Hồng Lý, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-gia-lac"
+    },
+    {
+      "parish": "Giáo Lạc",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Giáo Lạc, xã Thái Thọ, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-giao-lac"
+    },
+    {
+      "parish": "Giáo Nghĩa",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Giáo Nghĩa, thôn Giáo Nghĩa, xã Bình Minh, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-giao-nghia"
+    },
+    {
+      "parish": "Giáo Thiện",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Giáo Thiện, thôn Giáo Thiện, xã Quỳnh Minh, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-giao-thien"
+    },
+    {
+      "parish": "Hạ Lễ",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Hạ Lễ, thôn 1, xã Hạ Lễ, huyện Ân Thi, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ha-le"
+    },
+    {
+      "parish": "Hà Xá",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Hà Xá, thôn Hà Xá, xã Tân Lễ, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ha-xa"
+    },
+    {
+      "parish": "Hải Linh",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Hải Linh, xã Mỹ Lộc, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-hai-linh"
+    },
+    {
+      "parish": "Hàm Tải",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Hàm Tải, xã Hàm Tử, huyện Khoái Châu, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ham-tai"
+    },
+    {
+      "parish": "Hoàng Xá",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Hoàng Xá, thôn Thái, xã Nguyên Xã, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-hoang-xa"
+    },
+    {
+      "parish": "Hợp Châu",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Hợp Châu, thôn Thiện Châu, xã Nam Thịnh, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-hop-chau"
+    },
+    {
+      "parish": "Hưng Long",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Hưng Long, xóm 3, xã Đông Long, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-hung-long"
+    },
+    {
+      "parish": "Hưng Yên",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Hưng Yên, 76 Bãi Sậy, Minh Khai, Tp.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-hung-yen"
+    },
+    {
+      "parish": "Hữu Tiệm",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Hữu Tiệm, thôn Nam Tiến, xã Minh Quang, h.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-huu-tiem"
+    },
+    {
+      "parish": "Hữu Vy",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Hữu Vy, xã Nam Chính, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-huu-vy"
+    },
+    {
+      "parish": "Khúc Mai",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Khúc Mai, thôn Khúc Mai, xã Thụy Thanh, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-khuc-mai"
+    },
+    {
+      "parish": "Kim Châu",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Kim Châu, thôn Tiến Lợi, xã Nam Thanh, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-kim-chau"
+    },
+    {
+      "parish": "Kính Danh",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Kính Danh, xã Nam Hải, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-kinh-danh"
+    },
+    {
+      "parish": "Lạc Đạo",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Lạc Đạo, tổ 26, p.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-lac-dao"
+    },
+    {
+      "parish": "Lạc Thành",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Lạc Thành, thôn Lạc Thành, xã Tây Ninh, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-lac-thanh"
+    },
+    {
+      "parish": "Lai Ổn",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Lai Ổn, xã An Quý, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-lai-on"
+    },
+    {
+      "parish": "Lãm Khê",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Lãm Khê, xã Đông Kinh, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-lam-khe"
+    },
+    {
+      "parish": "Lập Trại",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Lập Trại, thôn Vạn Lập, xã Hồng Giang, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-lap-trai"
+    },
+    {
+      "parish": "Lê Xá",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Lê Xá, xã Vũ Xá, huyện Kim Động, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-le-xa"
+    },
+    {
+      "parish": "Linh Châu",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Linh Châu, xã Nam Thanh, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-linh-chau"
+    },
+    {
+      "parish": "Lộc Trung",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Lộc Trung, xã Nam Hưng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-loc-trung"
+    },
+    {
+      "parish": "Luật Trung",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Luật Trung, thôn Luật Trung, xã Quang Lịch, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-luat-trung"
+    },
+    {
+      "parish": "Lực Điền",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Lực Điền, xã Minh Châu, huyện Yên Mỹ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-luc-dien"
+    },
+    {
+      "parish": "Lương Điền",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Lương Điền, thôn Lương Điền, xã Đông Cơ, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-luong-dien"
+    },
+    {
+      "parish": "Lương Đống",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Lương Đống, xã Đông Giang, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-luong-dong"
+    },
+    {
+      "parish": "Micae",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Micae, thôn Quốc Tuấn, xã Đông Phương, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-micae"
+    },
+    {
+      "parish": "Minh Châu",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Minh Châu, thôn Hải Định, xã Nam Trung, Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-minh-chau"
+    },
+    {
+      "parish": "Minh Đức",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Minh Đức, thôn Minh Đức, xã An Ninh, huyện Thái Thụy, tỉnh Thái Bình I- VỊ TRÍ Giáo xứ Minh Đức cách Tòa Giám mục khoảng 35km về phía Đông Bắc; nằm cạnh sông Hóa, giáp với Giáo phận Hải Phòng.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-minh-duc"
+    },
+    {
+      "parish": "Minh Nghĩa",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Minh Nghĩa, xã Nam Hồng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-minh-nghia"
+    },
+    {
+      "parish": "Mỹ Đình",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Mỹ Đình, thôn Mỹ Đình, xã Văn Cẩm, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-my-dinh"
+    },
+    {
+      "parish": "Nam Biên",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Nam Biên, xã Nam Trung, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-nam-bien"
+    },
+    {
+      "parish": "Nam Lỗ",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Nam Lỗ, thôn Ái Quốc, xã Hợp Tiến, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-nam-lo"
+    },
+    {
+      "parish": "Nam Thái",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Giáo xứ Nam Thái, xã Bắc Hải, huyện Tiền Hải, tỉnh Thái Bình I - VỊ TRÍ Giáo xứ Nam Thái nằm cách Tòa giám mục Thái Bình 21km về phía Đông Nam; phía Bắc giáp xứ Bác Trạch; phía Tây giáp xứ Cao Mại; phía Đông giáp xứ Vinh sơn.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-nam-thai"
+    },
+    {
+      "parish": "Nghĩa Chính",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Nghĩa Chính, xã Phú Xuân, thành phố Thái Bình, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-nghia-chinh"
+    },
+    {
+      "parish": "Ngô Xá",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Ngô Xá, xã Vĩnh Xá, huyện Kim Động, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ngo-xa"
+    },
+    {
+      "parish": "Ngọc Châu",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Ngọc Châu, thôn Ngọc Châu, xã Quang Vinh, huyện Ân Thi, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ngoc-chau"
+    },
+    {
+      "parish": "Ngọc Đồng",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Ngọc Đồng, xã Ngọc Thanh, huyện Kim Động, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ngoc-dong"
+    },
+    {
+      "parish": "Nguyệt Lãng",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Nguyệt Lãng, xã Minh Khai, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-nguyet-lang"
+    },
+    {
+      "parish": "Ninh Cù",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Ninh Cù, xã Thụy Ninh, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-ninh-cu"
+    },
+    {
+      "parish": "Phú Đồng",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Phú Đồng, xã Nam Thắng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phu-dong"
+    },
+    {
+      "parish": "Phú Giáo",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Phú Giáo, xã Hùng Dũng, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phu-giao"
+    },
+    {
+      "parish": "Phú Lạc",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Phú Lạc, xã Minh Tân, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phu-lac"
+    },
+    {
+      "parish": "Phú Lễ",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Phú Lễ, xã Tự Tân, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phu-le"
+    },
+    {
+      "parish": "Phục Lễ",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Phục Lễ, thôn Phục Lễ, xã Quỳnh Châu, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phuc-le"
+    },
+    {
+      "parish": "Phương Bồ",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Phương Bồ, xã Phan Sào Nam, huyện Phù Cừ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phuong-bo"
+    },
+    {
+      "parish": "Phương Mai",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Phương Mai, xã Đông Cường, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phuong-mai"
+    },
+    {
+      "parish": "Phương Quan",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Phương Quan, thôn Trần Phú, xã Đông Phương, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phuong-quan"
+    },
+    {
+      "parish": "Phương Xá",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Phương Xá, thôn Trung, xã Đông Phương, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-phuong-xa"
+    },
+    {
+      "parish": "Quan Cao",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Quan Cao, xóm 8, xã Vân Trường, huyện Tiền Hải, tỉnh Thái Bình I - VỊ TRÍ Giáo xứ Quan Cao tọa lạc tại thôn Quan Cao, xã Vân Trường, huyện Tiền Hải, tỉnh Thái Bình; cách Tòa giám mục Thái Bình khoảng 22 km về hướng Đông Nam; phía Nam giáp xứ Đền Thánh Bác Trạch; phía Tây giáo xứ Đền Thánh Cao Mại.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-quan-cao"
+    },
+    {
+      "parish": "Quan Khê",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Quan Khê, thôn Quan Khê, xã Tân Lễ, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-quan-khe"
+    },
+    {
+      "parish": "Quân Trạch",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Số 6 - Trần Hưng Đạo, phường Thái Bình, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-quan-trach"
+    },
+    {
+      "parish": "Quỳnh Lang",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Quỳnh Lang, xã Quỳnh Ngọc, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-quynh-lang"
+    },
+    {
+      "parish": "Sa Cát",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Sa Cát, phường Hoàng Diệu, thành phố Thái Bình, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-sa-cat"
+    },
+    {
+      "parish": "Sài Quất",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Sài Quất, xã Thành Công, huyện Khoái Châu, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-sai-quat"
+    },
+    {
+      "parish": "Song Hai",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Song Hai, xã Thái Thuần, huyện Thái Thụy Tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-song-hai"
+    },
+    {
+      "parish": "Tân Châu",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Tân Châu, xã Nam Thắng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tan-chau"
+    },
+    {
+      "parish": "Tân Hưng",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Tân Hưng, xã Đông Xá, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tan-hung"
+    },
+    {
+      "parish": "Tân Mỹ",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Tân Mỹ, thôn Tân Mỹ, xã Quỳnh Ngọc, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tan-my"
+    },
+    {
+      "parish": "Tần Nhẫn",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Tần Nhẫn, thôn Tần Tiến, xã Minh Tân, huyện Phù Cừ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tan-nhan"
+    },
+    {
+      "parish": "Tây Làng",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Tây Làng, thôn Tây Chí, xã Hồng Giang, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tay-lang"
+    },
+    {
+      "parish": "Thái Nội",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Thái Nội, xã Việt Cường, huyện Yên Mỹ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thai-noi"
+    },
+    {
+      "parish": "Thái Sa",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Thái Sa, xã Vũ Vân, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thai-sa"
+    },
+    {
+      "parish": "Thân Thượng",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Thân Thượng, thôn Đoàn Kết, xã Quang Bình, h.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-than-thuong"
+    },
+    {
+      "parish": "Thánh Antôn",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ thánh Antôn, xã Quỳnh Hoàng, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thanh-an-ton"
+    },
+    {
+      "parish": "Thanh Châu",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Thanh Châu, xã Nam Thanh, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thanh-chau"
+    },
+    {
+      "parish": "Thanh Minh",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Thanh Minh, xã Nam Hồng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thanh-minh"
+    },
+    {
+      "parish": "Thanh Nê",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Thanh Nê, thị trấn Thanh Nê, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thanh-ne"
+    },
+    {
+      "parish": "Thánh Tâm",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Thánh Tâm, thôn Hợp Thành, xã Nam Trung, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thanh-tam"
+    },
+    {
+      "parish": "Thất Sự",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Thất Sự, xã Nam Thắng, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-that-su"
+    },
+    {
+      "parish": "Thiên Lộc",
+      "deanery": "Thái Thụy",
+      "address": "Giáo xứ Thiên Lộc, xã Thái Hưng, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thien-loc"
+    },
+    {
+      "parish": "Thọ Cách",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Thọ Cách, Thôn Thọ Cách, xã Thụy Quỳnh, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tho-cach"
+    },
+    {
+      "parish": "Thọ Lộc",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Thọ Lộc thôn Nội, xã Minh Khai, huyện Vũ thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tho-loc"
+    },
+    {
+      "parish": "Thọ Sở",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Thọ Sở, thôn Đại Thành, xã Quang Bình, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tho-so"
+    },
+    {
+      "parish": "Thủ Chính",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Thủ Chính, xã Nam Chính, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thu-chinh"
+    },
+    {
+      "parish": "Thuận Nghiệp",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Thuận Nghiệp, xã Bách Thuận, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thuan-nghiep"
+    },
+    {
+      "parish": "Thuần Tuý",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Thuần Tuý, thôn Rí, xã Đông La, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thuan-tuy"
+    },
+    {
+      "parish": "Thục Thiện",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Thục Thiện, xã Nam Hải, huyện Tiền Hải, tỉnh Thái Bình I-VỊ TRÍ Giáo xứ Thục Thiện cách Tòa Giám Mục Thái Bình khoảng 30km về phía Đông Nam; phía Đông Bắc giáp xứ Đông Thành; phía Nam giáp sông Hồng.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thuc-thien"
+    },
+    {
+      "parish": "Thượng Điền",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Thượng Điền, xã Tam Quang, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thuong-dien"
+    },
+    {
+      "parish": "Thượng Vạn",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Thượng Vạn, xã Hồng Minh, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thuong-van"
+    },
+    {
+      "parish": "Thụy Lôi",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Thụy Lôi, xã Thụy Lôi, huyện Tiên Lữ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-thuy-loi"
+    },
+    {
+      "parish": "Tiên Chu",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Tiên Chu, xã Hồng Nam, huyện Tiên Lữ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tien-chu"
+    },
+    {
+      "parish": "Tống Xuyên",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Tống Xuyên, xã Thái Hưng, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tong-xuyen"
+    },
+    {
+      "parish": "Trà Vy",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Trà Vy, xã Vũ Công, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-tra-vy"
+    },
+    {
+      "parish": "Trại Gạo",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Trại Cạo, thôn Việt Tiến, xã Việt Thuận, huyện Vũ Thư, tỉnh Thái Bình I-VỊ TRÍ Giáo xứ Trại Gạo cách Tòa Giám mục Thái Bình 12 km về hướng Tây Nam; phía Bắc giáp xứ An Lạc; phía Tây Nam giáp xứ Bồng Tiên; phía Đông Nam giáp xứ Cổ Việt.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trai-gao"
+    },
+    {
+      "parish": "Tràng Lũ",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Tràng Lũ, xóm Nam, thôn Tràng, xã An Tràng, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trang-lu"
+    },
+    {
+      "parish": "Tràng Quan",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Tràng Quan, xã Trọng Quan, huyện Đông Hưng, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trang-quan"
+    },
+    {
+      "parish": "Trinh Vương",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Trinh Vương, xóm 6 Tây, xã Việt Thuận, huyện Vũ Thư, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trinh-vuong"
+    },
+    {
+      "parish": "Trung Châu",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Trung Châu, xã Đông Kết, huyện Khoái Châu, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trung-chau"
+    },
+    {
+      "parish": "Trung Đồng",
+      "deanery": "Nam Tiền Hải",
+      "address": "Nhà thờ Trung Đồng, thôn Ái Quốc, xã Nam Trung, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trung-dong"
+    },
+    {
+      "parish": "Trung Thành",
+      "deanery": "Chính Tòa",
+      "address": "Nhà thờ Trung Thành, thôn Nam Tiên, xã Vũ Tiến, huyện Vũ Thư, tỉnh Thái Bình I- VỊ TRÍ Giáo xứ Trung Thành cách Tòa Giám Mục Thái Bình khoảng 14km về hướng Tây Nam; phía Bắc giáp với giáo xứ Bồng Tiên; phía Nam giáp với giáo xứ An Châu; phía Tây Nam giáp Giáo phận Bùi Chu.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-trung-thanh"
+    },
+    {
+      "parish": "Truyền Tin",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Truyền Tin, thôn Luật Trung, xã Quang Lịch, huyện Kiến Xương, t.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-truyen-tin"
+    },
+    {
+      "parish": "Vân Am",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Vân Am, thôn Vân Am, xã Thụy Quỳnh, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-van-am"
+    },
+    {
+      "parish": "Vạn Đồn",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Vạn Đồn, xã Thụy Hồng, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-van-don"
+    },
+    {
+      "parish": "Văn Lăng",
+      "deanery": "Kiến Xương",
+      "address": "Nhà thờ Văn Lăng, xã Thượng Hiền, huyện Kiến Xương, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-van-lang"
+    },
+    {
+      "parish": "Việt Yên",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Việt Yên, thôn Việt Yên, xã Điệp Nông, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-viet-yen"
+    },
+    {
+      "parish": "Vĩnh Phúc",
+      "deanery": "Tây Hưng Yên",
+      "address": "Nhà thờ Vĩnh Phúc, thôn Vĩnh Tiền, xã Đồng Thanh, huyện Kim Động, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-vinh-phuc"
+    },
+    {
+      "parish": "Vinh Sơn",
+      "deanery": "Bắc Tiền Hải",
+      "address": "Nhà thờ Vinh Sơn - Nam Trạch, xã Bắc Hải, huyện Tiền Hải, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-vinh-son"
+    },
+    {
+      "parish": "Vĩnh Trà",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Vĩnh Trà, khu 9 thị trấn Diêm Điền, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-vinh-tra"
+    },
+    {
+      "parish": "Vọng Lỗ",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Vọng Lỗ, thôn Vọng Lỗ, xã An Vũ, huyện Quỳnh Phụ, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-vong-lo"
+    },
+    {
+      "parish": "Võng Phan",
+      "deanery": "Đông Hưng Yên",
+      "address": "Nhà thờ Võng Phan, xã Tống Trân, huyện Phù Cừ, tỉnh Hưng Yên.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-vong-phan"
+    },
+    {
+      "parish": "Xá Thị",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Xá Thị, xã Thụy Hưng, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-xa-thi"
+    },
+    {
+      "parish": "Xuân Hải",
+      "deanery": "Đông Hưng",
+      "address": "Nhà thờ Xuân Hải, xã Tân Lễ, huyện Hưng Hà, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-xuan-hai"
+    },
+    {
+      "parish": "Xuân Hoà",
+      "deanery": "Thái Thụy",
+      "address": "Nhà thờ Xuân Hòa, xã Thái Thọ, huyện Thái Thụy, tỉnh Thái Bình.",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://giaophanthaibinh.net/giao-xu-xuan-hoa"
+    }
+  ]
+}

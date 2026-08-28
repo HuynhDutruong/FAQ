@@ -49,8 +49,27 @@ export default function MassTimeAdmin() {
     getByProvince(p).then(setRows).catch((e: Error) => setError(e.message)).finally(() => setLoading(false));
   }, []);
 
-  useEffect(loadFacets, [loadFacets]);
-  useEffect(() => loadRows(province), [province, loadRows]);
+  useEffect(() => {
+    let ignore = false;
+    getFacets()
+      .then(f => {
+        if (!ignore) {
+          setProvinces(f.provinces);
+          setDioceses(f.dioceses);
+        }
+      })
+      .catch((e: Error) => {
+        if (!ignore) setError(e.message);
+      });
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  const handleSelectProvince = (p: string) => {
+    setProvince(p);
+    loadRows(p);
+  };
 
   const run = async (label: string, fn: () => Promise<unknown>) => {
     setBusy(label);
@@ -113,7 +132,7 @@ export default function MassTimeAdmin() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       {/* Thanh công cụ */}
       <div style={{ ...card, padding: '20px', display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
-        <select value={province} onChange={e => setProvince(e.target.value)} style={{ ...input, width: 'auto', minWidth: '260px' }}>
+        <select value={province} onChange={e => handleSelectProvince(e.target.value)} style={{ ...input, width: 'auto', minWidth: '260px' }}>
           <option value="">-- Chọn Tỉnh / Thành ({total} nhà thờ) --</option>
           {provinces.map(p => <option key={p.name} value={p.name}>{p.name} ({p.count})</option>)}
         </select>

@@ -56,7 +56,19 @@ export default function MassTimesPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => { getFacets().then(f => setDioceseBuckets(f.dioceses)).catch(e => setError(e.message)); }, []);
+  useEffect(() => {
+    let ignore = false;
+    getFacets()
+      .then(f => {
+        if (!ignore) setDioceseBuckets(f.dioceses);
+      })
+      .catch(e => {
+        if (!ignore) setError(e.message);
+      });
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   // Xếp theo đúng thứ tự 27 giáo phận chính thức; nhóm chưa gắn nhãn xuống cuối
   const dioceses = useMemo(() => {
@@ -68,17 +80,21 @@ export default function MassTimesPage() {
     return [...known, ...rest];
   }, [dioceseBuckets]);
 
-  // Chỉ tải nhà thờ của giáo phận đã chọn (3600+ document, không tải hết cùng lúc)
-  useEffect(() => {
-    if (!selectedDiocese) { setRows([]); return; }
+  const handleSelectDiocese = (val: string) => {
+    setSelectedDiocese(val);
+    setSelectedDeanery('');
+    if (!val) {
+      setRows([]);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     setError(null);
-    setSelectedDeanery('');
-    getByDiocese(selectedDiocese === UNKNOWN_DIOCESE ? '' : selectedDiocese)
+    getByDiocese(val === UNKNOWN_DIOCESE ? '' : val)
       .then(setRows)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
-  }, [selectedDiocese]);
+  };
 
   const deaneries = useMemo(
     () => Array.from(new Set(rows.map(r => r.deanery).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'vi')),
@@ -130,7 +146,7 @@ export default function MassTimesPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <label htmlFor="diocese" style={labelStyle}>{t.filterDiocese}</label>
             <select id="diocese" value={selectedDiocese}
-              onChange={e => setSelectedDiocese(e.target.value)} style={fieldStyle}>
+              onChange={e => handleSelectDiocese(e.target.value)} style={fieldStyle}>
               <option value="">{t.allDioceses}</option>
               {dioceses.map(d => (
                 <option key={d.value} value={d.value}>{d.label} ({d.count})</option>

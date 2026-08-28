@@ -1,0 +1,1221 @@
+{
+  "diocese": "Vinh",
+  "sources": [
+    "https://gpvinh.org/",
+    "https://gpvinh.org/giao-hat-bao-nham",
+    "https://gpvinh.org/giao-hat-bot-da",
+    "https://gpvinh.org/giao-hat-cau-ram",
+    "https://gpvinh.org/giao-hat-chinh-toa-xa-doai",
+    "https://gpvinh.org/giao-hat-cua-lo",
+    "https://gpvinh.org/giao-hat-dong-thap",
+    "https://gpvinh.org/giao-hat-dua-lang",
+    "https://gpvinh.org/giao-hat-ke-dua",
+    "https://gpvinh.org/giao-hat-nhan-hoa",
+    "https://gpvinh.org/giao-hat-phu-quy",
+    "https://gpvinh.org/giao-hat-quy-hau",
+    "https://gpvinh.org/giao-hat-thuan-nghia",
+    "https://gpvinh.org/giao-hat-van-loc",
+    "https://gpvinh.org/giao-hat-vang-mai"
+  ],
+  "deaneryCount": 14,
+  "note": "Danh sách giáo xứ/giáo họ độc lập lấy từ bảng dữ liệu (Ninja Tables) trên 14 trang giáo hạt chính thức của gpvinh.org (giaophanvinh.net bị lỗi 522 không truy cập được trong lúc thu thập). Nguồn chỉ công bố tên giáo xứ, địa chỉ, số giáo dân và linh mục quản xứ — KHÔNG công bố giờ lễ, nên các trường giờ lễ để rỗng cho toàn bộ danh sách. Giáo phận Vinh hiện chỉ gồm địa bàn tỉnh Nghệ An (sau khi tách các giáo phận Hà Tĩnh và Bảo Trợ đầu 2018).",
+  "parishes": [
+    {
+      "parish": "Bảo Nham",
+      "deanery": "Bảo Nham",
+      "address": "Xã Bảo Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Hội Yên",
+      "deanery": "Bảo Nham",
+      "address": "Xã Nghi Văn, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Ngọc Long",
+      "deanery": "Bảo Nham",
+      "address": "Xã Công Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Lưu Mỹ",
+      "deanery": "Bảo Nham",
+      "address": "Xã Trù Sơn, huyện Đô Lương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Rú Đất",
+      "deanery": "Bảo Nham",
+      "address": "Xã Long Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Thanh Tân",
+      "deanery": "Bảo Nham",
+      "address": "Xã Hiến Sơn, huyện Đô Lương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Mỹ Khánh",
+      "deanery": "Bảo Nham",
+      "address": "Xã Khánh Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Lâm Xuyên",
+      "deanery": "Bảo Nham",
+      "address": "Xã Nam Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Cẩm Sơn",
+      "deanery": "Bảo Nham",
+      "address": "Xã Đại Sơn, huyện Đô Lương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Bắc Thịnh",
+      "deanery": "Bảo Nham",
+      "address": "Xã Nghi Kiều, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Kim Sơn",
+      "deanery": "Bảo Nham",
+      "address": "Nghi Văn, Nghi Lộc, Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bao-nham"
+    },
+    {
+      "parish": "Bột Đà",
+      "deanery": "Bột Đà",
+      "address": "Xã Đà Sơn, huyện Đô Lương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bot-da"
+    },
+    {
+      "parish": "Sơn La",
+      "deanery": "Bột Đà",
+      "address": "Xã Xuân Sơn, huyện Đô Lương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bot-da"
+    },
+    {
+      "parish": "Trung Hòa",
+      "deanery": "Bột Đà",
+      "address": "Xã Thanh Hòa, huyện Thanh Chương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bot-da"
+    },
+    {
+      "parish": "Đại Yên",
+      "deanery": "Bột Đà",
+      "address": "Xã Thanh Đồng, huyện Thanh Chương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bot-da"
+    },
+    {
+      "parish": "Xuân Sơn",
+      "deanery": "Bột Đà",
+      "address": "Xã Hòa Sơn, huyện Đô Lương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-bot-da"
+    },
+    {
+      "parish": "Cầu Rầm",
+      "deanery": "Cầu Rầm",
+      "address": "K. A6, phường Cửa Nam, thành phố Vinh, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Kẻ Gai",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Hưng Tây, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Yên Đại",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Nghi Phú, thành phố Vinh, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Mỹ Dụ",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Châu Nhân, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Phù Long",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Hưng Long, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Xuân Am",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Hưng Thịnh, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Phan Thôn",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Nghi Kim, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Phúc Thịnh",
+      "deanery": "Cầu Rầm",
+      "address": "Xã Hưng Thịnh, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Hưng Thịnh",
+      "deanery": "Cầu Rầm",
+      "address": "Hưng Tây, Hưng Nguyên, Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cau-ram"
+    },
+    {
+      "parish": "Xã Đoài",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Nghi Diên, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Trang Nứa",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Hưng Yên Bắc, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Bùi Ngọa",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Hưng Trung, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Bố Sơn",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Nghi Vạn, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Đồng Sơn",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Hưng Yên Nam, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Tân Yên",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Nghi Diên, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Thượng Lộc",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Nghi Vạn, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Ngọc Liễn",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Thị trấn Quán Hành, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Làng Nam",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Nghi Trung, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Trung Hậu",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Nghi Hoa, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Yên Thịnh",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Hưng Yên Bắc, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Thanh Phong",
+      "deanery": "Chính Tòa Xã Đoài",
+      "address": "Xã Hưng Trung, huyện Hưng Nguyên, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-chinh-toa-xa-doai"
+    },
+    {
+      "parish": "Tân Lộc",
+      "deanery": "Cửa Lò",
+      "address": "Phường Nghi Tân, thị xã Cửa Lò, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Lập Thạch",
+      "deanery": "Cửa Lò",
+      "address": "Xã Nghi Thạch, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Trang Cảnh",
+      "deanery": "Cửa Lò",
+      "address": "Xã Nghi Xuân, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Lộc Mỹ",
+      "deanery": "Cửa Lò",
+      "address": "Xã Nghi Quang, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Cửa Lò",
+      "deanery": "Cửa Lò",
+      "address": "Phường Thu Thủy, Thị xã Cửa Lò, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Làng Anh",
+      "deanery": "Cửa Lò",
+      "address": "Xã Nghi Phong, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Đồng Vông",
+      "deanery": "Cửa Lò",
+      "address": "Xã Nghi Xá, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Đức Xuân",
+      "deanery": "Cửa Lò",
+      "address": "Phường Nghi Tân, thị xã Cửa Lò, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-cua-lo"
+    },
+    {
+      "parish": "Đông Tháp",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Hồng, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Phú Linh",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Tân, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Vạn Phần",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Vạn, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Trung Song",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Thịnh, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Thiên Tước",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Trung, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Nghi Lộc",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Hạnh, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Yên Lý",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Yên, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Xuân Phong",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Thành, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Bến Đén",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Kỷ, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Đông Kiều",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Mỹ, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Phúc Thịnh",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Hải, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Nho Lâm",
+      "deanery": "Đông Tháp",
+      "address": "Xã Diễn Thọ, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dong-thap"
+    },
+    {
+      "parish": "Cây Chanh",
+      "deanery": "Dừa Lãng",
+      "address": "Xã Đỉnh Sơn, huyện Anh Sơn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dua-lang"
+    },
+    {
+      "parish": "Quan Lãng",
+      "deanery": "Dừa Lãng",
+      "address": "Xã Tường Sơn, huyện Anh Sơn, Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dua-lang"
+    },
+    {
+      "parish": "Lãng Điền",
+      "deanery": "Dừa Lãng",
+      "address": "Xã Thạch Sơn, huyện Anh Sơn, Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dua-lang"
+    },
+    {
+      "parish": "Đồng Lam",
+      "deanery": "Dừa Lãng",
+      "address": "Xã Hùng Sơn, huyện Anh Sơn, Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dua-lang"
+    },
+    {
+      "parish": "Yên Lĩnh",
+      "deanery": "Dừa Lãng",
+      "address": "Xã Lĩnh Sơn, huyện Anh Sơn, Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dua-lang"
+    },
+    {
+      "parish": "Con Cuông",
+      "deanery": "Dừa Lãng",
+      "address": "Xã Yên Khê, huyện Con Cuông, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-dua-lang"
+    },
+    {
+      "parish": "Kẻ Dừa",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Thọ Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Phú Vinh",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Đô Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Phú Tăng",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Đô Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Đức Lân",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Hậu Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Phúc Lộc",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Tân Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Phi Lộc",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Diễn Quảng, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Đăng Cao",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Diễn Đoài, huyện Diễn Châu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Vĩnh Hòa",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Hợp Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Hòa Bình",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Lăng Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Đồng Lạc",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Hùng Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Diệu Phúc",
+      "deanery": "Kẻ Dừa",
+      "address": "Xã Phúc Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Đông Ngô, Thanh Đạt, Cồn Đông, Xuân Yên",
+      "deanery": "Kẻ Dừa",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-ke-dua"
+    },
+    {
+      "parish": "Mỹ Yên",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Phương, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Xuân Kiều",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Kiều, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "La Nham",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Yên, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Nhân Hòa",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Thuận, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Xuân Mỹ",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Đồng, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Mẫu Lâm",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Lâm, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Bình Thuận",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Thuận, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Thanh Sơn",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Phương, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Trại Gáo",
+      "deanery": "Nhân Hòa",
+      "address": "Xã Nghi Phương, huyện Nghi Lộc, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-nhan-hoa"
+    },
+    {
+      "parish": "Cồn Cả",
+      "deanery": "Phủ Quỳ",
+      "address": "Xã Nghĩa Lộc, huyện Nghĩa Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Phú Xuân",
+      "deanery": "Phủ Quỳ",
+      "address": "Xã Quỳnh Tam, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Đồng Tâm",
+      "deanery": "Phủ Quỳ",
+      "address": "Xã Nghĩa An, huyện Nghĩa Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Vĩnh Giang",
+      "deanery": "Phủ Quỳ",
+      "address": "Xã Nghĩa Lộc, huyện Nghĩa Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Nghĩa Thành",
+      "deanery": "Phủ Quỳ",
+      "address": "Xã Nghĩa Trung, huyện Nghĩa Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Đồng Lèn",
+      "deanery": "Phủ Quỳ",
+      "address": "Xã Nghĩa Hội, huyện Nghĩa Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Giáo điểm Tân Bình",
+      "deanery": "Phủ Quỳ",
+      "address": "Huyện Nghĩa Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Giáo điểm Kim Sơn",
+      "deanery": "Phủ Quỳ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Giáo điểm Xuân Hợp",
+      "deanery": "Phủ Quỳ",
+      "address": "Quỳ Hợp, Nghĩa Xuân",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Giáo điểm Tri Lễ",
+      "deanery": "Phủ Quỳ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Đập Đanh, Sông Lim, Đồng Lào",
+      "deanery": "Phủ Quỳ",
+      "address": "",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-phu-quy"
+    },
+    {
+      "parish": "Quy Hậu",
+      "deanery": "Quy Hậu",
+      "address": "Xã Kỳ Tân, huyện Tân Kỳ, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Hậu Thành",
+      "deanery": "Quy Hậu",
+      "address": "Xã Tây Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Làng Rào",
+      "deanery": "Quy Hậu",
+      "address": "Xã Tân Hương, huyện Tân Kỳ, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Tân Diên",
+      "deanery": "Quy Hậu",
+      "address": "Xã Đồng Văn, huyện Tân Kỳ, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Đạo Đồng",
+      "deanery": "Quy Hậu",
+      "address": "Xã Quang Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Đồng Kén",
+      "deanery": "Quy Hậu",
+      "address": "Xã Tây Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Hậu Trạch",
+      "deanery": "Quy Hậu",
+      "address": "Xã Thịnh Thành, huyện Yên Thành, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-quy-hau"
+    },
+    {
+      "parish": "Thuận Nghĩa",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Lâm, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Cầm Trường",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Yên, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Thuận Giang",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Hưng, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Hội Nguyên",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Hồng, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Song Ngọc",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Ngọc, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Mành Sơn",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Tiến Thủy, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Tân Lập",
+      "deanery": "Thuận Nghĩa",
+      "address": "Thị trấn Cầu Giát, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Yên Lưu",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Giang, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Phú Yên",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã An Hòa, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Vĩnh Yên",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã An Hòa, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Vạn Thủy",
+      "deanery": "Thuận Nghĩa",
+      "address": "Xã Quỳnh Hưng, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-thuan-nghia"
+    },
+    {
+      "parish": "Quy Chính",
+      "deanery": "Vạn Lộc",
+      "address": "Thị trấn Nam Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Vạn Lộc",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Thượng Tân Lộc, huyện Nam Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Mô Vĩnh",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Thanh Khê, huyện Thanh Chương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Trang Đen",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Nam Hưng, huyện Nam Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Thượng Nậm",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Hồng Long, huyện Nam Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Yên Lạc",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Nam Lĩnh, huyện Nam Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Văn Thành",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Thanh Giang, huyện Thanh Chương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Phúc Yên",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Thanh Yên, huyện Thanh Chương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Bàn Thạch",
+      "deanery": "Vạn Lộc",
+      "address": "Xã Thanh Thủy, huyện Thanh Chương, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Nhật Quang",
+      "deanery": "Vạn Lộc",
+      "address": "Thị trấn Nam Đàn, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-van-loc"
+    },
+    {
+      "parish": "Thanh Dạ",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Thanh, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Sơn Trang",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Trang, Thị xã Hoàng Mai, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Yên Hoà",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Vinh, Thị xã Hoàng Mai, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Lộc Thuỷ",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Bảng, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Thanh Xuân",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Thanh, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Xuân An",
+      "deanery": "Vàng Mai",
+      "address": "Phường Quỳnh Xuân, thị xã Hoàng Mai, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Hiền Môn",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Thanh, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Cự Tân",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Thanh, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Dĩ Lệ",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Lộc, thị xã Hoàng Mai, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    },
+    {
+      "parish": "Tân Thanh",
+      "deanery": "Vàng Mai",
+      "address": "Xã Quỳnh Thanh, huyện Quỳnh Lưu, tỉnh Nghệ An",
+      "weekdayMass": [],
+      "saturdayMass": [],
+      "sundayMass": [],
+      "source": "https://gpvinh.org/giao-hat-vang-mai"
+    }
+  ]
+}
