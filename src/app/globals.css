@@ -368,16 +368,29 @@ button {
   to { transform: translateY(0); }
 }
 
-/* Gio Le Mobile Optimizations */
+/* Gio Le Static Solid Header - No Animations */
 .giole-header {
   padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+[data-theme="dark"] .giole-header {
+  background: rgba(28, 28, 30, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .giole-btn-contribute {
-  padding: 8px 14px;
-  background-color: rgba(255, 69, 58, 0.12);
-  color: var(--color-red);
-  border: 1px solid rgba(255, 69, 58, 0.25);
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  color: #ffffff !important;
+  border: none;
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.85rem;
@@ -386,18 +399,23 @@ button {
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
-  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+  position: relative;
+  z-index: 100;
+  pointer-events: auto;
 }
 
 .giole-btn-contribute:hover {
-  background-color: rgba(255, 69, 58, 0.22);
-  transform: scale(1.04);
+  background: linear-gradient(135deg, #b71c1c, #9a0007);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
 }
 
 @media (max-width: 640px) {
   .giole-header {
     padding: 8px 12px !important;
     gap: 8px !important;
+    transform: none !important;
+    animation: none !important;
   }
   .giole-btn-text {
     display: none !important;

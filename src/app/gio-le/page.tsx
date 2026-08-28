@@ -296,9 +296,9 @@ ${window.location.origin}/gio-le`;
         </div>
       )}
 
-      {/* Header Mobile-Friendly */}
-      <header className="liquid-glass giole-header" style={{
-        position: 'sticky', top: 0, zIndex: 50,
+      {/* Header Mobile-Friendly - No Animation */}
+      <header className="giole-header" style={{
+        position: 'sticky', top: 0, zIndex: 100,
         borderRadius: 0, borderLeft: 'none', borderRight: 'none', borderTop: 'none',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '10px'
       }}>

@@ -431,21 +431,20 @@ export default function MassTimeFeedbackModal({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 9999,
+        zIndex: 999999,
         padding: '16px'
       }}
       onClick={onClose}
     >
       <div
-        className="liquid-glass"
         style={{
           width: '100%',
           maxWidth: '620px',
           maxHeight: '90vh',
           overflowY: 'auto',
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backgroundColor: '#FFFFFF',
           borderRadius: '20px',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
           padding: '28px 24px',
           position: 'relative'
         }}
