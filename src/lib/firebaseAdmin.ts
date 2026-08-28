@@ -1,6 +1,6 @@
 import { cert, getApps, initializeApp, App } from 'firebase-admin/app';
 import { getFirestore, Firestore } from 'firebase-admin/firestore';
-import { getAuth, Auth } from 'firebase-admin/auth';
+import type { Auth } from 'firebase-admin/auth';
 
 /**
  * Firebase Admin SDK: chỉ chạy phía server, bỏ qua Firestore Rules.
@@ -52,6 +52,12 @@ export function adminDb(): Firestore {
   return getFirestore(getAdminApp());
 }
 
-export function adminAuth(): Auth {
+/**
+ * firebase-admin/auth kéo theo jwks-rsa → jose (chỉ có bản ESM). Node của Vercel
+ * require() module ESM sẽ nổ ERR_REQUIRE_ESM và làm hỏng luôn cả Firestore nếu
+ * nạp sẵn ở đầu tệp — nên chỉ nạp khi thật sự cần xác thực ID Token.
+ */
+export async function adminAuth(): Promise<Auth> {
+  const { getAuth } = await import('firebase-admin/auth');
   return getAuth(getAdminApp());
 }

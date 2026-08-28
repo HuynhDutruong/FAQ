@@ -59,7 +59,7 @@ async function verifyAdmin(request: Request): Promise<string> {
   if (!email && process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
     try {
       const { adminAuth } = await import('@/lib/firebaseAdmin');
-      const decoded = await adminAuth().verifyIdToken(idToken);
+      const decoded = await (await adminAuth()).verifyIdToken(idToken);
       email = (decoded.email || '').toLowerCase().trim();
     } catch (e) {
       console.warn('Firebase Admin verifyIdToken failed:', e);
