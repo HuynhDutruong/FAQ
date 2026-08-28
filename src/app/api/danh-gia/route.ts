@@ -128,7 +128,18 @@ export async function GET(request: Request) {
             : /credential|private_key|invalid_grant|PEM/i.test(msg)
               ? 'bad-credential'
               : 'unknown';
-    return NextResponse.json({ visits: 0, count: 0, average: 0, stars: {}, unavailable: true, reason });
+    return NextResponse.json({
+      visits: 0,
+      count: 0,
+      average: 0,
+      stars: {},
+      unavailable: true,
+      reason,
+      // Tạm thời để chẩn đoán cấu hình máy chủ, gỡ ngay sau khi sửa xong
+      debug: searchParams.get('debug') === '1'
+        ? { name: (err as Error)?.name, code: (err as { code?: unknown })?.code, message: msg.slice(0, 300) }
+        : undefined
+    });
   }
 }
 
