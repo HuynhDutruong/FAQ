@@ -23857,1682 +23857,6 @@
     "source": "https://giothanhle.net/gio-le/nha-tho-thanh-tam-ha-giang/"
   },
   {
-    "id": "gtl-12290",
-    "parish": "Nhà thờ Chính Tòa Mỹ Tho",
-    "diocese": "Mỹ Tho",
-    "deanery": "",
-    "province": "Tiền Giang",
-    "address": "32 Đường Hùng Vương, Phường 7, Tiền Giang",
-    "weekdayMass": [
-      "05:15",
-      "17:45"
-    ],
-    "sundayMass": [
-      "05:15",
-      "07:30",
-      "16:30",
-      "18:30"
-    ],
-    "lat": 10.3614232,
-    "lng": 106.3649137,
-    "source": "https://giothanhle.net/gio-le/nha-tho-chinh-toa-my-tho/"
-  },
-  {
-    "id": "gv-1436",
-    "parish": "Nhà Thờ An Long",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "An Long, Tam Nông, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:30",
-      "17:30"
-    ],
-    "lat": 10.69715808624114,
-    "lng": 105.38467453598244,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-an-long-1436.html"
-  },
-  {
-    "id": "gv-1423",
-    "parish": "Nhà Thờ Cao Lãnh",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "1 Đ. 3 Tháng 4, Phường 1, Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "lat": 10.458455659905146,
-    "lng": 105.63311996416547,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-cao-lanh-1423.html"
-  },
-  {
-    "id": "gv-1419",
-    "parish": "Nhà Thờ Kiến Văn",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "Bình Hàng Trung, Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:30"
-    ],
-    "lat": 10.381522638387365,
-    "lng": 105.743287644046,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-kien-van-1419.html"
-  },
-  {
-    "id": "gv-1422",
-    "parish": "Nhà Thờ Mỹ An",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "19 Nguyễn Thị Minh Khai, TT. Mỹ An, Tháp Mười, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "06:00",
-      "16:00"
-    ],
-    "lat": 10.522407835278512,
-    "lng": 105.84340192109818,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-my-an-1422.html"
-  },
-  {
-    "id": "gv-1420",
-    "parish": "Nhà Thờ Mỹ Quý",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "xã Mỹ Quý, Tháp Mười, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:00"
-    ],
-    "lat": 10.527344202554886,
-    "lng": 105.75652099775655,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-my-quy-1420.html"
-  },
-  {
-    "id": "gv-1434",
-    "parish": "Nhà Thờ Nhị Mỹ",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "xã Nhị Mỹ, Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:30"
-    ],
-    "lat": 10.465937180869748,
-    "lng": 105.69151869791816,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-nhi-my-1434.html"
-  },
-  {
-    "id": "gv-1426",
-    "parish": "Nhà Thờ Phong Mỹ",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "Phong Mỹ, Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.519735081309024,
-    "lng": 105.56144128320224,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-phong-my-1426.html"
-  },
-  {
-    "id": "gv-1421",
-    "parish": "Nhà Thờ Tân Hội Trung",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "FQ63+VVV, Nhà Thờ, Tân Hội Trung, Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [
-      "04:45"
-    ],
-    "saturdayMass": [
-      "04:45"
-    ],
-    "sundayMass": [
-      "04:45",
-      "06:15"
-    ],
-    "lat": 10.462250383336839,
-    "lng": 105.75480545786776,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-hoi-trung-1421.html"
-  },
-  {
-    "id": "gv-1424",
-    "parish": "Nhà Thờ Tân Thuận Đông",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "Cái Tắc-Thông Lưu, Hòa An, Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [],
-    "sundayMass": [
-      "07:30"
-    ],
-    "lat": 10.44448621868741,
-    "lng": 105.60182525884382,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-thuan-dong-1424.html"
-  },
-  {
-    "id": "gv-1437",
-    "parish": "Nhà thờ Cả Nổ",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "ấp Phú Long, Tam Nông, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "07:30"
-    ],
-    "lat": 10.751754611673876,
-    "lng": 105.43564544834418,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-ca-no-1437.html"
-  },
-  {
-    "id": "gv-4288",
-    "parish": "Nhà thờ Thiên Phước",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cao Lãnh",
-    "province": "Đồng Tháp",
-    "address": "Khóm 2, Trần Hưng Đạo, Xã Tràm Chim, Đồng Tháp",
-    "weekdayMass": [
-      "04:30",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "lat": 10.673266167864382,
-    "lng": 105.5523157334883,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-thien-phuoc-4288.html"
-  },
-  {
-    "id": "gv-1385",
-    "parish": "Nhà Thờ Bằng Lăng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Hậu Mỹ Bắc A, Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "04:45",
-      "16:45"
-    ],
-    "saturdayMass": [
-      "04:45",
-      "16:15"
-    ],
-    "sundayMass": [
-      "04:45",
-      "06:45",
-      "16:15"
-    ],
-    "lat": 10.507650965306517,
-    "lng": 105.9560395167325,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-bang-lang-1385.html"
-  },
-  {
-    "id": "gv-1365",
-    "parish": "Nhà Thờ Chợ Bưng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Ấp 1, Xã Tam Hiệp, H. Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "04:45",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "04:45"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.424356964443856,
-    "lng": 106.30353786612685,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-cho-bung-1365.html"
-  },
-  {
-    "id": "gv-1373",
-    "parish": "Nhà Thờ Giồng Cát",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Ấp Tây, Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "sundayMass": [
-      "08:00"
-    ],
-    "lat": 10.420543618736415,
-    "lng": 106.22302842225437,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-giong-cat-1373.html"
-  },
-  {
-    "id": "gv-1362",
-    "parish": "Nhà Thờ Kim Sơn",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "tổ 1, Phú Hoà, Phú Phong, H. Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.32439779711007,
-    "lng": 106.22150088906338,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-kim-son-1362.html"
-  },
-  {
-    "id": "gv-1384",
-    "parish": "Nhà Thờ Kinh Gãy",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Thạnh Lộc, Cai Lậy, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:30",
-      "16:30"
-    ],
-    "lat": 10.507462710290019,
-    "lng": 106.04171877877988,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-kinh-gay-1384.html"
-  },
-  {
-    "id": "gv-1386",
-    "parish": "Nhà Thờ Tràm Mù",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Thạnh Mỹ, Tân Phước, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "saturdayMass": [],
-    "sundayMass": [
-      "05:30",
-      "17:30"
-    ],
-    "lat": 10.550451665083227,
-    "lng": 106.19720864870933,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tram-mu-1386.html"
-  },
-  {
-    "id": "gv-1364",
-    "parish": "Nhà Thờ Tân Hiệp",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "331 QL1A, TT. Tân Hiệp, Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "17:30"
-    ],
-    "saturdayMass": [
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:30",
-      "17:30"
-    ],
-    "lat": 10.449674352109076,
-    "lng": 106.34459658303099,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-hiep-1364.html"
-  },
-  {
-    "id": "gv-4185",
-    "parish": "Nhà Thờ Xoài Mút",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Thạnh Phú, Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "17:00"
-    ],
-    "saturdayMass": [
-      "17:00"
-    ],
-    "sundayMass": [
-      "07:00",
-      "17:00"
-    ],
-    "lat": 10.373618545272281,
-    "lng": 106.30084538435173,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-xoai-mut-4185.html"
-  },
-  {
-    "id": "gv-1387",
-    "parish": "Nhà thờ An Thái Trung",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:30"
-    ],
-    "lat": 10.323743587118319,
-    "lng": 105.89173656846619,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-an-thai-trung-1387.html"
-  },
-  {
-    "id": "gv-1378",
-    "parish": "Nhà thờ Bà Tồn",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Phú An, Cai Lậy , Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:00"
-    ],
-    "lat": 10.405035758796688,
-    "lng": 106.05226213598418,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-ba-ton-1378.html"
-  },
-  {
-    "id": "gv-1369",
-    "parish": "Nhà thờ Bình Trưng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Bình Thới A, Bình Trưng, Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "05:30"
-    ],
-    "saturdayMass": [
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:30"
-    ],
-    "lat": 10.371477126683967,
-    "lng": 106.23426975554241,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-binh-trung-1369.html"
-  },
-  {
-    "id": "gv-3297",
-    "parish": "Nhà thờ Cái Bè",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "171 Lê Quý Đôn, TT Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "lat": 10.337935681455692,
-    "lng": 106.03525445770299,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-cai-be-3297.html"
-  },
-  {
-    "id": "gv-1380",
-    "parish": "Nhà thờ Cái Mây",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Hoà Khánh, Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:00"
-    ],
-    "lat": 10.327909121492986,
-    "lng": 106.01699687308671,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-cai-may-1380.html"
-  },
-  {
-    "id": "gv-1379",
-    "parish": "Nhà thờ Cái Thia",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Mỹ Đức Tây, Cái Bè, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [],
-    "sundayMass": [
-      "05:00",
-      "15:00"
-    ],
-    "lat": 10.32888713931245,
-    "lng": 105.96096742427268,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-cai-thia-1379.html"
-  },
-  {
-    "id": "gv-1388",
-    "parish": "Nhà thờ Hòa Hưng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "QL1A, Hoà Hưng, Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "05:30"
-    ],
-    "saturdayMass": [
-      "05:30",
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:30",
-      "17:00"
-    ],
-    "lat": 10.292789588554296,
-    "lng": 105.89856532353343,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-hoa-hung-1388.html"
-  },
-  {
-    "id": "gv-1375",
-    "parish": "Nhà thờ Long Quới",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Ngũ Hiệp, Cai Lậy, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [
-      "17:15"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:00"
-    ],
-    "lat": 10.30530988848432,
-    "lng": 106.16503404956971,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-long-quoi-1375.html"
-  },
-  {
-    "id": "gv-1383",
-    "parish": "Nhà thờ Mỹ Lợi",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Mỹ Lợi B, Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "saturdayMass": [
-      "16:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:30"
-    ],
-    "lat": 10.402713272695673,
-    "lng": 105.8875732479924,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-my-loi-1383.html"
-  },
-  {
-    "id": "gv-1382",
-    "parish": "Nhà thờ Mỹ Trung",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Mỹ Hiệp, Cái Bè, Đồng Tháp",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "05:30",
-      "16:30"
-    ],
-    "lat": 10.436005235656982,
-    "lng": 105.88704000184362,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-my-trung-1382.html"
-  },
-  {
-    "id": "gv-1374",
-    "parish": "Nhà thờ Ngũ Hiệp",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Cai Lậy, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:00",
-      "17:00"
-    ],
-    "lat": 10.304392291735217,
-    "lng": 106.11535159126434,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-ngu-hiep-1374.html"
-  },
-  {
-    "id": "gv-1372",
-    "parish": "Nhà thờ Thuộc Nhiêu",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Dưỡng Điền, Châu Thành, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.396027874223472,
-    "lng": 106.21198646415468,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-thuoc-nhieu-1372.html"
-  },
-  {
-    "id": "gv-1360",
-    "parish": "Nhà thờ Tín Đức",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Ấp Tân Thuận, Xã Bình Đức, H.Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "04:45",
-      "16:45"
-    ],
-    "saturdayMass": [
-      "04:45",
-      "16:45"
-    ],
-    "sundayMass": [
-      "04:45",
-      "07:00",
-      "16:45"
-    ],
-    "lat": 10.34098408278432,
-    "lng": 106.30993574588011,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tin-duc-1360.html"
-  },
-  {
-    "id": "gv-1259",
-    "parish": "Nhà thờ Vĩnh Hựu",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cái Bè",
-    "province": "Đồng Tháp",
-    "address": "Gò Công Tây, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [],
-    "sundayMass": [],
-    "lat": 10.316963572620228,
-    "lng": 106.55456280416031,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-vinh-huu-1259.html"
-  },
-  {
-    "id": "gv-1458",
-    "parish": "Nhà Thờ Bãi Chàm",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "An Bình A, Hồng Ngự, Đồng Tháp",
-    "weekdayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:15"
-    ],
-    "lat": 10.75599182686331,
-    "lng": 105.36173422624425,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-bai-cham-1458.html"
-  },
-  {
-    "id": "gv-1443",
-    "parish": "Nhà Thờ Bến Siêu",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "J966+42M, Tân Huề, Thanh Bình, Đồng Tháp",
-    "weekdayMass": [
-      "04:00",
-      "16:30"
-    ],
-    "saturdayMass": [
-      "04:00",
-      "16:30"
-    ],
-    "sundayMass": [
-      "04:00",
-      "16:30"
-    ],
-    "lat": 10.610466343673142,
-    "lng": 105.3601635404059,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-ben-sieu-1443.html"
-  },
-  {
-    "id": "gv-1452",
-    "parish": "Nhà Thờ Thánh Anrê",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "Ấp Tân Hòa, Xã Tân Long, Đồng Tháp",
-    "weekdayMass": [
-      "04:30",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "17:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "lat": 10.689063347644733,
-    "lng": 105.35963787926909,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-thanh-anre-1452.html"
-  },
-  {
-    "id": "gv-1460",
-    "parish": "Nhà Thờ Tân Hồng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "TT. Sa Rài, Tân Hồng, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.87150486991896,
-    "lng": 105.46371761358125,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-hong-1460.html"
-  },
-  {
-    "id": "gv-1450",
-    "parish": "Nhà thờ Bến Dinh",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "Tân Hoà, Thanh Bình, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.668627450316661,
-    "lng": 105.34999008178404,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-ben-dinh-1450.html"
-  },
-  {
-    "id": "gv-1462",
-    "parish": "Nhà thờ Gò Da",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "Bình Phú, Tân Hồng , Đồng Tháp",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "lat": 10.887207239551728,
-    "lng": 105.44535211414008,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-go-da-1462.html"
-  },
-  {
-    "id": "gv-1456",
-    "parish": "Nhà thờ Thường Phước",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "Thường Phước 1, Hồng Ngự, Đồng Tháp",
-    "weekdayMass": [
-      "04:00"
-    ],
-    "saturdayMass": [
-      "04:00"
-    ],
-    "sundayMass": [
-      "04:00",
-      "09:00"
-    ],
-    "lat": 10.863577443986841,
-    "lng": 105.21243162921894,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-thuong-phuoc-1456.html"
-  },
-  {
-    "id": "gv-1453",
-    "parish": "Nhà thờ Trà Đư",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Cù Lao Tây",
-    "province": "Đồng Tháp",
-    "address": "Ấp 5, Hồng Ngự, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "18:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:00"
-    ],
-    "lat": 10.826710175208495,
-    "lng": 105.31464325276404,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tra-du-1453.html"
-  },
-  {
-    "id": "gv-1357",
-    "parish": "Nhà Thờ Bình Tạo",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "90/4 Lê Hồng Gấm, P.6, Tp. Mỹ Tho, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [
-      "17:30"
-    ],
-    "sundayMass": [
-      "06:30",
-      "17:00"
-    ],
-    "lat": 10.350036581550512,
-    "lng": 106.3433328031257,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-binh-tao-1357.html"
-  },
-  {
-    "id": "gv-1347",
-    "parish": "Nhà Thờ Hòa Định",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "Chợ Gạo, Đồng Tháp",
-    "weekdayMass": [
-      "17:15"
-    ],
-    "saturdayMass": [
-      "17:15"
-    ],
-    "sundayMass": [
-      "06:45",
-      "18:00"
-    ],
-    "lat": 10.337273753088786,
-    "lng": 106.46543244909698,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-hoa-dinh-1347.html"
-  },
-  {
-    "id": "gv-1260",
-    "parish": "Nhà Thờ Rạch Cầu",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "Ấp Tân Định, Tân Thới, H. Tân Phú Đông, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:00"
-    ],
-    "lat": 10.272195886238764,
-    "lng": 106.57326012930892,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-rach-cau-1260.html"
-  },
-  {
-    "id": "gv-1351",
-    "parish": "Nhà Thờ Tân Phước",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "Ấp 7, Tân Phước, H. Gò Công Đông, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.43973762698571,
-    "lng": 106.70906114109752,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-phuoc-1351.html"
-  },
-  {
-    "id": "gv-265",
-    "parish": "Nhà thờ Chính tòa Mỹ Tho",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "32 Hùng Vương, TP Mỹ Tho, Đồng Tháp",
-    "weekdayMass": [
-      "05:15",
-      "17:45"
-    ],
-    "saturdayMass": [
-      "05:15",
-      "17:45"
-    ],
-    "sundayMass": [
-      "05:15",
-      "07:30",
-      "16:30",
-      "18:30"
-    ],
-    "lat": 10.361434703948785,
-    "lng": 106.36491311306264,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-chinh-toa-my-tho-265.html"
-  },
-  {
-    "id": "gv-1359",
-    "parish": "Nhà thờ Cồn Bà",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "Ấp Tân Thành 2, Tân Thạnh, H. Tân Phú Đông, Đồng Tháp",
-    "weekdayMass": [
-      "17:30"
-    ],
-    "saturdayMass": [
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:30",
-      "16:00"
-    ],
-    "lat": 10.256384603041704,
-    "lng": 106.59869864479542,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-con-ba-1359.html"
-  },
-  {
-    "id": "gv-1428",
-    "parish": "Nhà thờ Hoà Bình",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "Hoà Bình, Tam Nông, Đồng Tháp",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:45"
-    ],
-    "lat": 10.779539202704752,
-    "lng": 105.65021513954972,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-hoa-binh-1428.html"
-  },
-  {
-    "id": "gv-1258",
-    "parish": "Nhà thờ Nữ Vương Hòa Bình",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "23 Lý Thường Kiệt, Mỹ Tho, Đồng Tháp",
-    "weekdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:00",
-      "17:15"
-    ],
-    "lat": 10.358361957938733,
-    "lng": 106.35497393128253,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-nu-vuong-hoa-binh-1258.html"
-  },
-  {
-    "id": "gv-1467",
-    "parish": "Nhà thờ Tân Phước",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Mỹ Tho",
-    "province": "Đồng Tháp",
-    "address": "xã Tân Phước, Tân Hồng, Đồng Tháp",
-    "weekdayMass": [],
-    "saturdayMass": [],
-    "sundayMass": [
-      "08:00"
-    ],
-    "lat": 10.823167887054709,
-    "lng": 105.52902943911617,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-phuoc-1467.html"
-  },
-  {
-    "id": "gv-2537",
-    "parish": "Nhà Thờ Cả Ràng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Ấp 1, Xã Tân Tây, Thạnh Hoá, Tây Ninh",
-    "weekdayMass": [
-      "15:30"
-    ],
-    "saturdayMass": [
-      "15:30"
-    ],
-    "sundayMass": [
-      "08:00",
-      "15:30"
-    ],
-    "lat": 10.650668694844045,
-    "lng": 106.2667324478489,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-ca-rang-2537.html"
-  },
-  {
-    "id": "gv-1394",
-    "parish": "Nhà Thờ Nước Trong",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Thủy Đông, Thạnh Hóa, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "06:00",
-      "16:45"
-    ],
-    "lat": 10.657890630802312,
-    "lng": 106.21348653167483,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-nuoc-trong-1394.html"
-  },
-  {
-    "id": "gv-1393",
-    "parish": "Nhà Thờ Sông Xoài",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Thuận Nghĩa Hoà, Thạnh Hóa, Tây Ninh",
-    "weekdayMass": [
-      "04:00"
-    ],
-    "saturdayMass": [
-      "04:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:30"
-    ],
-    "lat": 10.683302433051857,
-    "lng": 106.18008927690181,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-song-xoai-1393.html"
-  },
-  {
-    "id": "gv-1400",
-    "parish": "Nhà Thờ Thạnh Trị",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Mộc Hóa, Tây Ninh",
-    "weekdayMass": [
-      "04:30",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "lat": 10.850954384722813,
-    "lng": 105.96021200211179,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-thanh-tri-1400.html"
-  },
-  {
-    "id": "gv-2526",
-    "parish": "Nhà Thờ Thận Cần",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Bắc Hòa, Tân Thạnh, Tây Ninh",
-    "weekdayMass": [
-      "17:30"
-    ],
-    "saturdayMass": [
-      "17:30"
-    ],
-    "sundayMass": [
-      "07:00"
-    ],
-    "lat": 10.718938069198407,
-    "lng": 105.91951651955812,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-than-can-2526.html"
-  },
-  {
-    "id": "gv-1390",
-    "parish": "Nhà thờ Bình Quân",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "441 QL1A, Tân An, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "sundayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "lat": 10.525561308423118,
-    "lng": 106.39282569018759,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-binh-quan-1390.html"
-  },
-  {
-    "id": "gv-1397",
-    "parish": "Nhà thờ Bắc Hòa",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Tân Thạnh, Tây Ninh",
-    "weekdayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "lat": 10.66392151225069,
-    "lng": 105.89386172947158,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-bac-hoa-1397.html"
-  },
-  {
-    "id": "gv-1396",
-    "parish": "Nhà thờ Kinh Cùng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Nhơn Hoà Lập, Tân Thạnh, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "sundayMass": [
-      "04:30",
-      "16:30"
-    ],
-    "lat": 10.627700677616275,
-    "lng": 105.94219905580889,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-kinh-cung-1396.html"
-  },
-  {
-    "id": "gv-1395",
-    "parish": "Nhà thờ Kiến Bình",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "TT. Tân Thạnh, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "05:30",
-      "16:30"
-    ],
-    "lat": 10.606596939587774,
-    "lng": 106.04976713742695,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-kien-binh-1395.html"
-  },
-  {
-    "id": "gv-1399",
-    "parish": "Nhà thờ Mộc Hóa",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Huyện Mộc Hóa, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "08:00",
-      "16:30"
-    ],
-    "lat": 10.776353123298666,
-    "lng": 105.93920961358818,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-moc-hoa-1399.html"
-  },
-  {
-    "id": "gv-1392",
-    "parish": "Nhà thờ Thủ Thừa",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "Thủ Thừa, Tây Ninh",
-    "weekdayMass": [
-      "05:30",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "05:30",
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:30",
-      "17:00"
-    ],
-    "lat": 10.606127665773164,
-    "lng": 106.40471339122331,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-thu-thua-1392.html"
-  },
-  {
-    "id": "gv-1389",
-    "parish": "Nhà thờ Tân An",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "38 QL1, Phường 4, Tân An, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30",
-      "17:00"
-    ],
-    "sundayMass": [
-      "04:30",
-      "07:00",
-      "16:30",
-      "19:00"
-    ],
-    "lat": 10.537314192521832,
-    "lng": 106.40165511503967,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-tan-an-1389.html"
-  },
-  {
-    "id": "gv-1425",
-    "parish": "Nhà thờ Tân An",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Đồng Tháp",
-    "address": "QL3, Phường 11, TP. Cao Lãnh, Đồng Tháp",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:30",
-      "17:00"
-    ],
-    "lat": 10.481523632871987,
-    "lng": 105.58930167131902,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-tan-an-1425.html"
-  },
-  {
-    "id": "gv-1401",
-    "parish": "Nhà thờ Vĩnh Hưng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Tây Ninh",
-    "address": "115 Nguyễn An Ninh, Thị trấn Vĩnh Hưng, Tây Ninh",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "07:00",
-      "17:00"
-    ],
-    "lat": 10.896863689677618,
-    "lng": 105.78176731562286,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-vinh-hung-1401.html"
-  },
-  {
-    "id": "gv-1370",
-    "parish": "Nhà thờ Đông Hòa",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Tân An",
-    "province": "Đồng Tháp",
-    "address": "Châu Thành, Đồng Tháp",
-    "weekdayMass": [
-      "05:30",
-      "18:00"
-    ],
-    "saturdayMass": [
-      "18:00"
-    ],
-    "sundayMass": [
-      "05:30"
-    ],
-    "lat": 10.384045393830407,
-    "lng": 106.2442041092021,
-    "source": "https://giole.vn/dong-thap.47/nha-tho-dong-hoa-1370.html"
-  },
-  {
-    "id": "gv-1413",
-    "parish": "Nhà Thờ Gò Đen",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Phước Lợi, Bến Lức , Tây Ninh",
-    "weekdayMass": [
-      "17:15"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "18:00"
-    ],
-    "sundayMass": [
-      "06:00",
-      "17:00"
-    ],
-    "lat": 10.638689700074774,
-    "lng": 106.53281189620066,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-go-den-1413.html"
-  },
-  {
-    "id": "gv-1402",
-    "parish": "Nhà Thờ Hiệp Hòa",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Đức Hòa, Tây Ninh",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "16:30"
-    ],
-    "sundayMass": [
-      "05:30",
-      "07:00",
-      "16:30"
-    ],
-    "lat": 10.904711652459355,
-    "lng": 106.31238750937432,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-hiep-hoa-1402.html"
-  },
-  {
-    "id": "gv-1411",
-    "parish": "Nhà Thờ Lương Hòa Hạ",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Lương Hoà, Bến Lức, Tây Ninh",
-    "weekdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:00",
-      "16:00",
-      "18:00"
-    ],
-    "lat": 10.715597989388021,
-    "lng": 106.4361138125508,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-luong-hoa-ha-1411.html"
-  },
-  {
-    "id": "gv-1410",
-    "parish": "Nhà Thờ Lương Hòa Thượng",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "ấp 4 Lương Bình, xã Thạnh Lợi, Tây Ninh",
-    "weekdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:00",
-      "17:30"
-    ],
-    "lat": 10.746419150574946,
-    "lng": 106.43162023745725,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-luong-hoa-thuong-1410.html"
-  },
-  {
-    "id": "gv-1417",
-    "parish": "Nhà Thờ Mỹ Điền",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Long Hựu Tây, Cần Đước, Tây Ninh",
-    "weekdayMass": [
-      "04:30"
-    ],
-    "saturdayMass": [
-      "04:30"
-    ],
-    "sundayMass": [
-      "05:30",
-      "16:00"
-    ],
-    "lat": 10.460896422359205,
-    "lng": 106.66897265401414,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-my-dien-1417.html"
-  },
-  {
-    "id": "gv-1404",
-    "parish": "Nhà Thờ Rạch Thiên",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Hiệp Hoà, Đức Hòa , Tây Ninh",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "15:30"
-    ],
-    "lat": 10.94182020766455,
-    "lng": 106.33815030647206,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-rach-thien-1404.html"
-  },
-  {
-    "id": "gv-1354",
-    "parish": "Nhà Thờ Thủ Đoàn",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Bình Đức, Bến Lức, Tây Ninh",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "16:30"
-    ],
-    "lat": 10.641318593633528,
-    "lng": 106.4383234876173,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-thu-doan-1354.html"
-  },
-  {
-    "id": "gv-1412",
-    "parish": "Nhà thờ Bến Lức",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "QL1A, xã Bến Lức, Tây Ninh",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "17:00"
-    ],
-    "lat": 10.63623671357981,
-    "lng": 106.48873864871545,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-ben-luc-1412.html"
-  },
-  {
-    "id": "gv-2835",
-    "parish": "Nhà thờ Cần Giuộc",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "khu phố Hoà Thuận 2, TT Cần Giuộc, Tây Ninh",
-    "weekdayMass": [
-      "18:00"
-    ],
-    "saturdayMass": [
-      "18:00"
-    ],
-    "sundayMass": [
-      "07:00",
-      "18:00"
-    ],
-    "lat": 10.585620706219279,
-    "lng": 106.6514006470365,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-can-giuoc-2835.html"
-  },
-  {
-    "id": "gv-1408",
-    "parish": "Nhà thờ Mỹ Hạnh",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Mỹ Hạnh Nam, Đức Hòa, Tây Ninh",
-    "weekdayMass": [
-      "05:00",
-      "18:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "18:00"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:00",
-      "16:30",
-      "18:00"
-    ],
-    "lat": 10.876412121388919,
-    "lng": 106.50550624560859,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-my-hanh-1408.html"
-  },
-  {
-    "id": "gv-1407",
-    "parish": "Nhà thờ Nhật Tân",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "TT. Hậu Nghĩa, Đức Hòa, Tây Ninh",
-    "weekdayMass": [
-      "05:15"
-    ],
-    "saturdayMass": [
-      "05:15",
-      "17:15"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:30",
-      "17:00"
-    ],
-    "lat": 10.895636076952597,
-    "lng": 106.3941053729058,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-nhat-tan-1407.html"
-  },
-  {
-    "id": "gv-1409",
-    "parish": "Nhà thờ Đức Hòa",
-    "diocese": "Mỹ Tho",
-    "deanery": "Giáo hạt Đức Hòa",
-    "province": "Tây Ninh",
-    "address": "Đức Hòa Hạ, Đức Hòa, Tây Ninh",
-    "weekdayMass": [
-      "05:00"
-    ],
-    "saturdayMass": [
-      "05:00",
-      "17:30"
-    ],
-    "sundayMass": [
-      "05:00",
-      "07:30",
-      "17:30"
-    ],
-    "lat": 10.81853360978826,
-    "lng": 106.46681173516161,
-    "source": "https://giole.vn/tay-ninh.32/nha-tho-duc-hoa-1409.html"
-  },
-  {
     "id": "gtl-2678",
     "parish": "Nhà Thờ Ba Làng Nha Trang",
     "diocese": "Nha Trang",
@@ -75454,5 +73778,1772 @@
       "19:00"
     ],
     "source": "TGP Sài Gòn"
+  },
+  {
+    "id": "mt-my-tho-chanh-toa",
+    "parish": "Giáo xứ Chánh Tòa",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "32 Hùng Vương, P. 7, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "05:15",
+      "17:45"
+    ],
+    "sundayMass": [
+      "05:15",
+      "07:30",
+      "16:30",
+      "18:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-thanh-giuse-lao-cong-cho-cu",
+    "parish": "Giáo xứ Thánh Giuse Lao Công (Chợ Cũ)",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "23/14 Học Lạc, P. 8, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-an-duc",
+    "parish": "Giáo xứ An Đức",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Khu 3, Ấp Chợ, Trung An, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-nu-vuong-hoa-binh",
+    "parish": "Giáo xứ Nữ Vương Hòa Bình",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "23 Lý Thường Kiệt, P.6, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "07:00",
+      "17:15"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-thanh-anton",
+    "parish": "Giáo xứ Thánh Antôn",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "227/4 Đinh Bộ Lĩnh, P. 2, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "07:00",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-trung-luong",
+    "parish": "Giáo xứ Trung Lương",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "KP.2, P.10, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "05:15"
+    ],
+    "saturdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "06:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-thoi-son",
+    "parish": "Giáo xứ Thới Sơn",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Ấp Thới Thuận, Xã Thới Sơn, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "06:00"
+    ],
+    "sundayMass": [
+      "07:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-binh-tao",
+    "parish": "Giáo xứ Bình Tạo",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "90/4 Lê Hồng Gấm, Khóm Bình Tạo, Khu 2, P.6, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "06:30",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-tan-long",
+    "parish": "Giáo xứ Tân Long",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "5/80 Tân Hòa, P. Tân Long, TP. Mỹ Tho, Tiền Giang",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "saturdayMass": [
+      "18:30"
+    ],
+    "sundayMass": [
+      "05:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-rach-cau",
+    "parish": "Giáo xứ Rạch Cầu",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Ấp Tân Định, Tân Thới, H. Tân Phú Đông, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-con-ba",
+    "parish": "Giáo xứ Cồn Bà",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Ấp Tân Thành 2, Tân Thạnh, H. Tân Phú Đông, Tiền Giang",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-thu-ngu",
+    "parish": "Giáo xứ Thủ Ngữ",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Xuân Đông, H. Chợ Gạo, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "07:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-thanh-tam",
+    "parish": "Giáo xứ Thánh Tâm",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "49 Nguyễn Trãi, P. 2, TX. Gò Công, Tiền Giang",
+    "weekdayMass": [
+      "17:45"
+    ],
+    "sundayMass": [
+      "05:45",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-thanh-giuse",
+    "parish": "Giáo xứ Thánh Giuse",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Khu phố 3, P. 2, TX. Gò Công, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-tan-phuoc",
+    "parish": "Giáo xứ Tân Phước",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Ấp 7, Tân Phước, H. Gò Công Đông, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "saturdayMass": [
+      "15:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "15:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-my-tho-vam-kinh",
+    "parish": "Giáo xứ Vàm Kinh",
+    "diocese": "Mỹ Tho",
+    "deanery": "Mỹ Tho",
+    "province": "Tiền Giang",
+    "address": "Ấp Vàm Kinh, Tân Thành, H. Gò Công Đông, Tiền Giang",
+    "weekdayMass": [
+      "05:30",
+      "17:30"
+    ],
+    "sundayMass": [
+      "07:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-tin-duc",
+    "parish": "Giáo xứ Tín Đức",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Tân Thuận, Xã Bình Đức, H.Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "04:45",
+      "16:45"
+    ],
+    "sundayMass": [
+      "04:45",
+      "16:45"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-kim-son",
+    "parish": "Giáo xứ Kim Sơn",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "1, tổ 1, Phú Hoà, Phú Phong, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-ba-giong",
+    "parish": "Giáo xứ Ba Giồng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Tân Quới, Xã Tân Lý Đông, H.Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-tan-hiep",
+    "parish": "Giáo xứ Tân Hiệp",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "331/1 Ấp Cá, TT. Tân Hiệp, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-cho-bung",
+    "parish": "Giáo xứ Chợ Bưng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp 1, Xã Tam Hiệp, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "04:45",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-long-dinh-1",
+    "parish": "Giáo xứ Long Định 1",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "144, Khu Phố Lương Minh Chánh, Long Định, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-long-dinh-2",
+    "parish": "Giáo xứ Long Định 2",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "319, Ấp Mới, Long Định, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-nhi-binh",
+    "parish": "Giáo xứ Nhị Bình",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Tây, Xã Nhị Bình, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "08:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-binh-trung",
+    "parish": "Giáo xứ Bình Trưng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "239, tổ 7, Ấp Bình Thới A, Xã Bình Trưng, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "05:30"
+    ],
+    "saturdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-dong-hoa",
+    "parish": "Giáo xứ Đông Hòa",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Tây B, xã Đông Hoà, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-vinh-kim",
+    "parish": "Giáo xứ Vĩnh Kim",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Bình Thới A, Xã Bình Trưng, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "18:00"
+    ],
+    "sundayMass": [
+      "06:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-xoai-mut",
+    "parish": "Giáo xứ Xoài Mút",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Bờ Xe, Xã Thạnh Phú, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [],
+    "sundayMass": [],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-thuoc-nhieu",
+    "parish": "Giáo xứ Thuộc Nhiêu",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Hòa, Xã Dưỡng Điềm, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [
+      "04:30",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-giong-cat",
+    "parish": "Giáo xứ Giồng Cát",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Tây, xã Nhị Bình, H. Châu Thành, Tiền Giang",
+    "weekdayMass": [],
+    "saturdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-ngu-hiep",
+    "parish": "Giáo xứ Ngũ Hiệp",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "88, Ấp Hoà Hảo, Xã Ngũ Hiệp, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "08:00",
+      "15:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-long-quoi",
+    "parish": "Giáo xứ Long Quới",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Long Quới, Xã Ngũ Hiệp, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:15"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-cai-lay",
+    "parish": "Giáo xứ Cai Lậy",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "KP 1, P.5, TX. Cai Lậy, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "06:00",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-nhi-qui",
+    "parish": "Giáo xứ Nhị Quí",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Quy Chánh, xã Nhị Quý, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "10:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-ba-ton",
+    "parish": "Giáo xứ Bà Tồn",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp 6, xã Phú An, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "15:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-cai-be",
+    "parish": "Giáo xứ Cái Bè",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "171, Khu 3, TT. Cái Bè, H. Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-cai-thia",
+    "parish": "Giáo xứ Cái Thia",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Tổ 1, ấp Lương Nhơn, xã Mỹ Lương, H.Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "15:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-cai-may",
+    "parish": "Giáo xứ Cái Mây",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Hoà Quí, Hoà Khánh, H. Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-tan-phong",
+    "parish": "Giáo xứ Tân Phong",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Tân Thái, Xã Tân Phong, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "04:30",
+      "17:00"
+    ],
+    "sundayMass": [
+      "07:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-my-trung",
+    "parish": "Giáo xứ Mỹ Trung",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Mỹ Hiệp, Xã Mỹ Trung, H. Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-my-loi",
+    "parish": "Giáo xứ Mỹ Lợi",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Lợi Thuận, xã Mỹ Lợi B, H.Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-kinh-gay",
+    "parish": "Giáo xứ Kinh Gãy",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp 4, Thạnh Lộc, H. Cai Lậy, Tiền Giang",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-bang-lang",
+    "parish": "Giáo xứ Bằng Lăng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Mỹ Chánh 5, Xã Hậu Mỹ Bắc A, H. Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "04:45"
+    ],
+    "saturdayMass": [
+      "16:30",
+      "16:45"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-tram-mu",
+    "parish": "Giáo xứ Tràm Mù",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Xã Thạnh Mỹ, H. Tân Phước, Tiền Giang",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "07:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-an-thai-trung",
+    "parish": "Giáo xứ An Thái Trung",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp 2, An Thái Trung, H. Cái Bè, Tiền Giang",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "06:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cai-be-hoa-hung",
+    "parish": "Giáo xứ Hòa Hưng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cái Bè",
+    "province": "Tiền Giang",
+    "address": "Ấp Thống, Hòa Hưng, Cái Bè, Tiền Giang.",
+    "weekdayMass": [
+      "05:00",
+      "17:10"
+    ],
+    "sundayMass": [
+      "07:15"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-tan-an",
+    "parish": "Giáo xứ Tân An",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "380 Quốc lộ 1A, P.4, TP. Tân An, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "saturdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "04:30",
+      "07:00",
+      "16:30",
+      "19:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-binh-quan",
+    "parish": "Giáo xứ Bình Quân",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "441 Quốc lộ I A, P.4, TP. Tân An, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "saturdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "04:30",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-tan-dong",
+    "parish": "Giáo xứ Tân Đông",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Số 170, Ấp 3, Tân Đông, H. Thạnh Hoá, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "06:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-thu-thua",
+    "parish": "Giáo xứ Thủ Thừa",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Ấp 11, TT. Thủ Thừa, H. Thủ Thừa, Long An",
+    "weekdayMass": [
+      "05:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-song-xoai",
+    "parish": "Giáo xứ Sông Xoài",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Ấp Vàm Lớn, Xã Thuận Nghĩa Hoà, H. Thạnh Hoá, Long An",
+    "weekdayMass": [
+      "04:30",
+      "15:30"
+    ],
+    "sundayMass": [
+      "07:00",
+      "15:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-nuoc-trong",
+    "parish": "Giáo xứ Nước Trong",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Xã Thuỷ Đông, H. Thạnh Hoá, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "06:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-kien-binh",
+    "parish": "Giáo xứ Kiến Bình",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "12, Tỉnh lộ 829, KP. 1, TT. Tân Thạnh, H. Tân Thạnh, Long An",
+    "weekdayMass": [
+      "04:30",
+      "18:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-kinh-cung",
+    "parish": "Giáo xứ Kinh Cùng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Xã Tân Lập, H. Tân Thạnh, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-bac-hoa",
+    "parish": "Giáo xứ Bắc Hoà",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Ấp 1, Bắc Hoà, H. Tân Thạnh, Long An",
+    "weekdayMass": [
+      "04:30",
+      "16:30"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-thanh-giuse",
+    "parish": "Giáo xứ Thánh Giuse",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Ấp 5, Nhơn Hoà Lập, H. Tân Thạnh, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-moc-hoa",
+    "parish": "Giáo xứ Mộc Hoá",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "43, Thiên Hộ Dương, P.2, TX. Kiến Tường, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "15:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-thanh-tri",
+    "parish": "Giáo xứ Thạnh Trị",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "Ấp 2, Xã Thạnh Trị, TX. Kiến Tường, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-tan-an-vinh-hung",
+    "parish": "Giáo xứ Vĩnh Hưng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Tân An",
+    "province": "Long An",
+    "address": "115 Nguyễn An Ninh, Khu phố 3, TT. Vĩnh Hưng, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "07:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-hiep-hoa",
+    "parish": "Giáo xứ Hiệp Hoà",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "83, Khu Vực 5, TT. Hiệp Hoà, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "saturdayMass": [
+      "16:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "07:00",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-van-hiep",
+    "parish": "Giáo xứ Văn Hiệp",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Khu vực 2, TT. Hiệp Hoà, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-rach-thien",
+    "parish": "Giáo xứ Rạch Thiên",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Hoà Bình 1, Xã Hiệp Hoà, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "15:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-lap-dien",
+    "parish": "Giáo xứ Lập Điền",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Lập Điền, Tân Mỹ, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-giong-vay-oc",
+    "parish": "Giáo xứ Giồng Vảy Ốc",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Bàu Công, Tân Mỹ, H.Đức Hòa, Long An",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "07:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-nhat-tan",
+    "parish": "Giáo xứ Nhật Tân",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Khu B, TT. Hậu Nghĩa, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "17:30"
+    ],
+    "saturdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-my-hanh",
+    "parish": "Giáo xứ Mỹ Hạnh",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Mới 1, Xã Mỹ Hạnh Nam, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "05:30",
+      "18:00"
+    ],
+    "sundayMass": [
+      "06:00",
+      "18:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-duc-hoa",
+    "parish": "Giáo xứ Đức Hoà",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Bình Tả 1, Đức Hoà Hạ, H. Đức Hoà, Long An",
+    "weekdayMass": [
+      "05:00",
+      "16:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "07:30",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-luong-hoa-thuong",
+    "parish": "Giáo xứ Lương Hoà Thượng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp 4, Lương Bình, H. Bến Lức, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "saturdayMass": [
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "07:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-luong-hoa-ha",
+    "parish": "Giáo xứ Lương Hoà Hạ",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp 7, Xã Lương Hoà, H. Bến Lức, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "saturdayMass": [
+      "16:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "07:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-ben-luc",
+    "parish": "Giáo xứ Bến Lức",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "205, Quốc lộ 1A, TT. Bến Lức, H. Bến Lức, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "saturdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-thu-doan",
+    "parish": "Giáo xứ Thủ Đoàn",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp 1, Bình Đức, H. Bến Lức, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-go-den",
+    "parish": "Giáo xứ Gò Đen",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "K. 1, Ấp Chợ, Xã Phước Lợi, H. Bến Lức, Long An",
+    "weekdayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "sundayMass": [
+      "07:15",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-long-kim",
+    "parish": "Giáo xứ Long Kim",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp 4, xã Long Định, H. Cần Đước, Long An",
+    "weekdayMass": [],
+    "saturdayMass": [
+      "18:00"
+    ],
+    "sundayMass": [
+      "05:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-van-phuoc",
+    "parish": "Giáo xứ Vạn Phước",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Mỹ Tây, Mỹ Lệ, H. Cần Đước, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "15:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-nha-ram",
+    "parish": "Giáo xứ Nha Ràm",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp 4 B, xã Tân Trạch, H. Cần Đước, Long An",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-duc-hoa-my-dien",
+    "parish": "Giáo xứ Mỹ Điền",
+    "diocese": "Mỹ Tho",
+    "deanery": "Đức Hòa",
+    "province": "Long An",
+    "address": "Ấp Mỹ Điền, Long Hựu Tây, H. Cần Đước, Long An",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-my-long",
+    "parish": "Giáo xứ Mỹ Long",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Ấp 2, Xã Mỹ Long, H. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-kien-van",
+    "parish": "Giáo xứ Kiến Văn",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Tổ 15, Ấp 1, Xã Bình Hàng Trung, H. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-my-quy",
+    "parish": "Giáo xứ Mỹ Quý",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "808/C, Ấp Mỹ Phước 1, Xã Mỹ Quí, H. Tháp Mười, Đồng Tháp",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-tan-hoi-trung",
+    "parish": "Giáo xứ Tân Hội Trung",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Ấp 2, Xã Tân Hội Trung, H. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "04:45",
+      "05:30",
+      "16:45"
+    ],
+    "sundayMass": [
+      "04:45",
+      "16:15"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-my-an",
+    "parish": "Giáo xứ Mỹ An",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Khóm 4, TT. Mỹ An, H. Tháp Mười, Đồng Tháp",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "06:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-cao-lanh",
+    "parish": "Giáo xứ Cao Lãnh",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "10, Đường 30/4, TP. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "04:30",
+      "16:45"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:15"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-tan-thuan-dong",
+    "parish": "Giáo xứ Tân Thuận Đông",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Xã Hoà An, TP. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [],
+    "sundayMass": [
+      "07:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-tan-an",
+    "parish": "Giáo xứ Tân An",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Phường 11, TP. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:30",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-phong-my",
+    "parish": "Giáo xứ Phong Mỹ",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Xã Phong Mỹ, H. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-thanh-tam",
+    "parish": "Giáo xứ Thánh Tâm",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Ấp Cà Dâm, Xã Tân Công Sính, H. Tam Nông, Đồng Tháp",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-hoa-binh",
+    "parish": "Giáo xứ Hoà Bình",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Ấp 4, Xã Hòa Bình, H. Tam Nông, Đồng Tháp",
+    "weekdayMass": [
+      "04:30",
+      "17:15"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:45"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-an-binh",
+    "parish": "Giáo xứ An Bình",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Ấp An Lạc, Xã An Bình, H. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "04:00"
+    ],
+    "sundayMass": [
+      "04:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-nhi-my",
+    "parish": "Giáo xứ Nhị Mỹ",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Ấp Hòa Dân, Xã Nhị Mỹ, H. Cao Lãnh, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-an-long",
+    "parish": "Giáo xứ An Long",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Nhà thờ An Long, Xã An Long, H. Tam Nông, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "saturdayMass": [
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "07:30",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-ca-no",
+    "parish": "Giáo xứ Cả Nổ",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Xã Phú Thành B, H. Tam Nông, Đồng Tháp",
+    "weekdayMass": [],
+    "sundayMass": [
+      "08:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cao-lanh-phu-thanh-a",
+    "parish": "Giáo xứ Phú Thành A",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cao Lãnh",
+    "province": "Đồng Tháp",
+    "address": "Xã Phú Thành A, H. Tam Nông, Đồng Tháp",
+    "weekdayMass": [],
+    "saturdayMass": [
+      "16:30"
+    ],
+    "sundayMass": [
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-tan-quoi",
+    "parish": "Giáo xứ Tân Quới",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Xã Tân Quới, H. Thanh Bình, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-fatima",
+    "parish": "Giáo xứ Fatima",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Trung, Xã Tân Quới, H. Thanh Bình, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-ben-sieu",
+    "parish": "Giáo xứ Bến Siêu",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Tân Phong, Xã Tân Huề, H. Thanh Bình, Đồng Tháp",
+    "weekdayMass": [
+      "04:00",
+      "16:30"
+    ],
+    "sundayMass": [
+      "04:00",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-tan-long",
+    "parish": "Giáo xứ Tân Long",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Tân Phú A, Xã Tân Bình, H. Thanh Bình, Đồng Tháp",
+    "weekdayMass": [
+      "04:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-ben-dinh",
+    "parish": "Giáo xứ Bến Dinh",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Tân Dinh, Xã Tân Hoà, H. Thanh Bình, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-thanh-anre",
+    "parish": "Giáo xứ Thánh Anrê",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Tân Thới, Xã Tân Hoà, H. Thanh Bình, Đồng Tháp",
+    "weekdayMass": [
+      "04:30",
+      "17:30"
+    ],
+    "saturdayMass": [
+      "16:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-tra-du",
+    "parish": "Giáo xứ Trà Đư",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Khóm Trà Đư, F. An Lạc, TX. Hồng Ngự, Đồng Tháp",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "sundayMass": [
+      "05:00",
+      "16:30"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-thuong-phuoc",
+    "parish": "Giáo xứ Thường Phước",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp 2, Xã Thường Phước 1, H. Hồng Ngự, Đồng Tháp",
+    "weekdayMass": [
+      "04:00"
+    ],
+    "sundayMass": [
+      "04:00",
+      "09:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-bai-cham",
+    "parish": "Giáo xứ Bãi Chàm",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp An Hoà, Xã An Bình A, TX. Hồng Ngự, Đồng Tháp",
+    "weekdayMass": [
+      "04:30",
+      "17:00"
+    ],
+    "sundayMass": [
+      "04:30",
+      "16:15"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-tan-hong",
+    "parish": "Giáo xứ Tân Hồng",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "324 Nguyễn Huệ, TT. Sarài, H. Tân Hồng, Đồng Tháp",
+    "weekdayMass": [
+      "05:00",
+      "17:30"
+    ],
+    "sundayMass": [
+      "05:00",
+      "15:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-go-da",
+    "parish": "Giáo xứ Gò Da",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Gò Da, xã Thạnh Phú, H. Tân Hồng, Đồng Tháp",
+    "weekdayMass": [
+      "04:30",
+      "17:00"
+    ],
+    "sundayMass": [
+      "04:30",
+      "17:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-long-thuong-xot",
+    "parish": "Giáo xứ Lòng Thương Xót",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Chiến Thắng, xã Tân Hộ Cơ, H. Tân Hồng, Đồng Tháp",
+    "weekdayMass": [
+      "05:00"
+    ],
+    "saturdayMass": [
+      "16:00"
+    ],
+    "sundayMass": [
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-thanh-mau",
+    "parish": "Giáo xứ Thánh Mẫu",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Lộc An, xã An Phước, H. Tân Hồng, Đồng Tháp",
+    "weekdayMass": [
+      "16:30"
+    ],
+    "sundayMass": [
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
+  },
+  {
+    "id": "mt-cu-lao-tay-tan-phuoc",
+    "parish": "Giáo xứ Tân Phước",
+    "diocese": "Mỹ Tho",
+    "deanery": "Cù Lao Tây",
+    "province": "Đồng Tháp",
+    "address": "Ấp Tân Bảnh, xã Tân Phước, H. Tân Hồng, Đồng Tháp",
+    "weekdayMass": [],
+    "sundayMass": [
+      "08:00"
+    ],
+    "source": "GP Mỹ Tho"
   }
 ]
