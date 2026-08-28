@@ -1,9 +1,16 @@
 'use client';
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const pathname = usePathname();
+
+  // Hide footer on all admin pages
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <footer style={{
