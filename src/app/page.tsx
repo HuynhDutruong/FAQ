@@ -8,16 +8,6 @@ import FeedbackForm from '@/components/FeedbackForm';
 import Rating from '@/components/Rating';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import {
-  MessageCircleQuestion,
-  MessageSquarePlus,
-  CheckCircle,
-  Clock,
-  Info,
-  BookOpen,
-  ArrowRight,
-  Compass
-} from 'lucide-react';
 import { db } from '@/lib/firebase';
 import IntroModalContent from '@/components/IntroModalContent';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -124,7 +114,7 @@ export default function Home() {
         gap: '16px'
       }}>
         
-        {/* ==================== 1. BRAND HERO SECTION ==================== */}
+        {/* ==================== 1. BRAND HERO (MONOCHROMATIC & CLEAN) ==================== */}
         <div style={{
           textAlign: 'center',
           display: 'flex',
@@ -134,15 +124,15 @@ export default function Home() {
         }}>
           {/* Logo */}
           <div
-            className="logo-floating"
             style={{
               position: 'relative',
-              width: '76px',
-              height: '76px',
+              width: '72px',
+              height: '72px',
               marginBottom: '10px',
               borderRadius: '50%',
               backgroundColor: '#FFFFFF',
-              boxShadow: '0 8px 24px rgba(255, 69, 58, 0.22), 0 0 0 3px rgba(251, 192, 45, 0.7)',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(0, 0, 0, 0.1)',
               padding: '3px',
               display: 'flex',
               alignItems: 'center',
@@ -154,30 +144,30 @@ export default function Home() {
                 src="/logo.jpg"
                 alt="Logo Xứ Đoàn"
                 fill
-                sizes="76px"
+                sizes="72px"
                 style={{ objectFit: 'contain' }}
                 priority
               />
             </div>
           </div>
 
-          {/* Titles */}
+          {/* Titles (Monochromatic bold & refined) */}
           <h1 style={{
-            fontSize: 'clamp(1.25rem, 3.8vw, 1.85rem)',
+            fontSize: 'clamp(1.2rem, 3.6vw, 1.7rem)',
             fontWeight: 900,
-            color: 'var(--color-red)',
+            color: 'var(--color-dark)',
             marginBottom: '3px',
             lineHeight: 1.25,
             textTransform: 'uppercase',
-            letterSpacing: '0.3px'
+            letterSpacing: '0.4px'
           }}>
             {t.title}
           </h1>
 
           <h2 style={{
-            fontSize: 'clamp(0.82rem, 2.4vw, 1.05rem)',
-            fontWeight: 700,
-            color: 'var(--color-yellow)',
+            fontSize: 'clamp(0.8rem, 2.2vw, 0.95rem)',
+            fontWeight: 600,
+            color: 'var(--color-subtle)',
             marginBottom: '10px',
             textTransform: 'uppercase',
             letterSpacing: '0.4px'
@@ -185,108 +175,82 @@ export default function Home() {
             {t.subtitle}
           </h2>
 
-          {/* Slim Gospel Verse */}
+          {/* Gospel Verse */}
           <p
             suppressHydrationWarning
             style={{
               margin: 0,
               color: 'var(--color-dark)',
-              fontSize: 'clamp(0.82rem, 2vw, 0.95rem)',
+              fontSize: 'clamp(0.82rem, 2vw, 0.92rem)',
               lineHeight: 1.55,
               fontStyle: 'italic',
-              opacity: 0.88,
-              maxWidth: '620px'
+              opacity: 0.85,
+              maxWidth: '600px'
             }}
           >
             &ldquo;{verseText}&rdquo;
           </p>
         </div>
 
-        {/* ==================== 2. PRIMARY ACTION: TRA CỨU GIỜ LỄ TOÀN QUỐC ==================== */}
+        {/* ==================== 2. PRIMARY ACTION: TRA CỨU GIỜ LỄ TOÀN QUỐC (NO ICONS) ==================== */}
         <div
           onClick={() => router.push('/gio-le?gps=1')}
           className="liquid-glass"
           style={{
             width: '100%',
-            padding: '16px 20px',
-            borderRadius: '20px',
+            padding: '18px 22px',
+            borderRadius: '18px',
             cursor: 'pointer',
-            background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.12) 100%)',
-            border: '1.5px solid rgba(220, 38, 38, 0.32)',
+            border: '1px solid rgba(0, 0, 0, 0.12)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '16px',
-            boxShadow: '0 6px 20px rgba(220, 38, 38, 0.1)'
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0, flex: 1 }}>
-            <div style={{
-              width: '46px',
-              height: '46px',
-              borderRadius: '14px',
-              background: 'linear-gradient(135deg, #d32f2f, #b71c1c)',
-              color: '#FFFFFF',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-              boxShadow: '0 4px 12px rgba(211, 47, 47, 0.35)'
-            }}>
-              <Clock size={24} />
-            </div>
-
-            <div style={{ minWidth: 0 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                <h3 style={{
-                  margin: 0,
-                  fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
-                  fontWeight: 900,
-                  color: 'var(--color-dark)',
-                  lineHeight: 1.2
-                }}>
-                  Tra Cứu Giờ Lễ Toàn Quốc
-                </h3>
-                <span style={{
-                  padding: '2px 8px',
-                  backgroundColor: 'var(--color-red)',
-                  color: '#FFFFFF',
-                  borderRadius: '999px',
-                  fontSize: '0.68rem',
-                  fontWeight: 900
-                }}>
-                  3.300+ NHÀ THỜ
-                </span>
-              </div>
-              <div style={{
-                fontSize: '0.82rem',
-                color: 'var(--color-subtle)',
-                marginTop: '3px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px'
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <h3 style={{
+                margin: 0,
+                fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
+                fontWeight: 900,
+                color: 'var(--color-dark)',
+                lineHeight: 1.2
               }}>
-                <Compass size={13} color="var(--color-red)" />
-                <span>Tự động định vị GPS tìm nhà thờ gần bạn • 27 Giáo phận</span>
-              </div>
+                Tra Cứu Giờ Lễ Toàn Quốc
+              </h3>
+              <span style={{
+                padding: '2px 8px',
+                backgroundColor: 'rgba(0, 0, 0, 0.06)',
+                color: 'var(--color-dark)',
+                borderRadius: '999px',
+                fontSize: '0.7rem',
+                fontWeight: 800
+              }}>
+                3.300+ Nhà Thờ
+              </span>
+            </div>
+            <div style={{
+              fontSize: '0.82rem',
+              color: 'var(--color-subtle)',
+              marginTop: '4px'
+            }}>
+              Định vị GPS tự động • 27 Giáo phận tại Việt Nam
             </div>
           </div>
 
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            fontSize: '0.85rem',
+            fontSize: '0.88rem',
             fontWeight: 800,
-            color: 'var(--color-red)',
+            color: 'var(--color-dark)',
             flexShrink: 0
           }}>
-            <span className="hide-on-mobile">Tra Cứu</span>
-            <ArrowRight size={18} />
+            Tra Cứu →
           </div>
         </div>
 
-        {/* ==================== 3. 2x2 ACTION TILES (EXPANDS HARMONIOUSLY ON DESKTOP) ==================== */}
+        {/* ==================== 3. 2x2 ACTION TILES (MONOCHROMATIC & NO ICONS) ==================== */}
         <div style={{
           width: '100%',
           display: 'grid',
@@ -294,45 +258,30 @@ export default function Home() {
           gap: '12px'
         }}>
           
-          {/* Tile 1: Vấn Đáp Giáo Lý (Page /van-dap) */}
+          {/* Tile 1: Vấn Đáp Giáo Lý */}
           <div
             onClick={() => router.push('/van-dap')}
             className="liquid-glass"
             style={{
-              padding: '15px 18px',
-              borderRadius: '18px',
+              padding: '16px 20px',
+              borderRadius: '16px',
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              border: '1.5px solid rgba(37, 99, 235, 0.22)',
-              background: 'linear-gradient(145deg, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.03) 100%)'
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: '4px',
+              border: '1px solid rgba(0, 0, 0, 0.09)'
             }}
           >
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '12px',
-              backgroundColor: 'rgba(37, 99, 235, 0.14)',
-              color: '#2563EB',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
-            }}>
-              <BookOpen size={22} />
-            </div>
-
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
                 Vấn Đáp Giáo Lý
-              </div>
-              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
-                Hỏi đáp đức tin, bí tích & phụng vụ
-              </div>
+              </span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', fontWeight: 600 }}>→</span>
             </div>
-
-            <ArrowRight size={16} color="#2563EB" style={{ opacity: 0.6, flexShrink: 0 }} />
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.35 }}>
+              Hỏi đáp đức tin, bí tích & phụng vụ
+            </div>
           </div>
 
           {/* Tile 2: Gửi Thắc Mắc Cho Ban Mục Vụ */}
@@ -340,39 +289,25 @@ export default function Home() {
             onClick={() => { setStep('form'); setActiveModal('faq'); }}
             className="liquid-glass"
             style={{
-              padding: '15px 18px',
-              borderRadius: '18px',
+              padding: '16px 20px',
+              borderRadius: '16px',
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              border: '1px solid var(--glass-border)'
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: '4px',
+              border: '1px solid rgba(0, 0, 0, 0.09)'
             }}
           >
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '12px',
-              backgroundColor: 'rgba(220, 38, 38, 0.12)',
-              color: 'var(--color-red)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
-            }}>
-              <MessageCircleQuestion size={22} />
-            </div>
-
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
                 Gửi Thắc Mắc
-              </div>
-              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
-                Nhận hồi đáp riêng từ Ban Mục Vụ
-              </div>
+              </span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', fontWeight: 600 }}>→</span>
             </div>
-
-            <ArrowRight size={16} color="var(--color-red)" style={{ opacity: 0.5, flexShrink: 0 }} />
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.35 }}>
+              Nhận hồi đáp riêng từ Ban Mục Vụ
+            </div>
           </div>
 
           {/* Tile 3: Ý Kiến Góp Ý */}
@@ -380,39 +315,25 @@ export default function Home() {
             onClick={() => { setStep('form'); setActiveModal('feedback'); }}
             className="liquid-glass"
             style={{
-              padding: '15px 18px',
-              borderRadius: '18px',
+              padding: '16px 20px',
+              borderRadius: '16px',
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              border: '1px solid var(--glass-border)'
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: '4px',
+              border: '1px solid rgba(0, 0, 0, 0.09)'
             }}
           >
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '12px',
-              backgroundColor: 'rgba(217, 119, 6, 0.12)',
-              color: '#D97706',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
-            }}>
-              <MessageSquarePlus size={22} />
-            </div>
-
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
                 Ý Kiến Góp Ý
-              </div>
-              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
-                Đóng góp ý kiến xây dựng xứ đoàn
-              </div>
+              </span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', fontWeight: 600 }}>→</span>
             </div>
-
-            <ArrowRight size={16} color="#D97706" style={{ opacity: 0.5, flexShrink: 0 }} />
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.35 }}>
+              Đóng góp ý kiến xây dựng xứ đoàn
+            </div>
           </div>
 
           {/* Tile 4: Chánh Tòa Mỹ Tho */}
@@ -420,39 +341,25 @@ export default function Home() {
             onClick={() => setActiveModal('intro')}
             className="liquid-glass"
             style={{
-              padding: '15px 18px',
-              borderRadius: '18px',
+              padding: '16px 20px',
+              borderRadius: '16px',
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              border: '1px solid var(--glass-border)'
+              flexDirection: 'column',
+              justifyContent: 'center',
+              gap: '4px',
+              border: '1px solid rgba(0, 0, 0, 0.09)'
             }}
           >
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '12px',
-              backgroundColor: 'rgba(5, 150, 105, 0.12)',
-              color: '#059669',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
-            }}>
-              <Info size={22} />
-            </div>
-
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
                 Chánh Tòa Mỹ Tho
-              </div>
-              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
-                Lịch sử 130 năm & Bản đồ chỉ đường
-              </div>
+              </span>
+              <span style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', fontWeight: 600 }}>→</span>
             </div>
-
-            <ArrowRight size={16} color="#059669" style={{ opacity: 0.5, flexShrink: 0 }} />
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.35 }}>
+              Lịch sử 130 năm & Bản đồ chỉ đường
+            </div>
           </div>
         </div>
 
@@ -467,8 +374,7 @@ export default function Home() {
         {step === 'form' && <FAQForm onSuccess={handleFormSuccess} />}
         {step === 'rating' && <Rating onSubmit={handleRatingSubmit} />}
         {step === 'success' && (
-          <div style={{ textAlign: 'center', padding: '32px 0', color: 'var(--color-red)' }}>
-            <CheckCircle size={64} style={{ margin: '0 auto 16px', color: '#10B981' }} />
+          <div style={{ textAlign: 'center', padding: '32px 0' }}>
             <h2>{t.thanksTitle}</h2>
             <p style={{ opacity: 0.8, marginTop: '8px' }}>{t.thanksDescFAQ}</p>
           </div>
@@ -483,8 +389,7 @@ export default function Home() {
         {step === 'form' && <FeedbackForm onSuccess={handleFormSuccess} />}
         {step === 'rating' && <Rating onSubmit={handleRatingSubmit} />}
         {step === 'success' && (
-          <div style={{ textAlign: 'center', padding: '32px 0', color: 'var(--color-yellow)' }}>
-            <CheckCircle size={64} style={{ margin: '0 auto 16px', color: '#10B981' }} />
+          <div style={{ textAlign: 'center', padding: '32px 0' }}>
             <h2>{t.thanksTitle}</h2>
             <p style={{ opacity: 0.8, marginTop: '8px' }}>{t.thanksDescFeedback}</p>
           </div>
