@@ -101,7 +101,7 @@ export default function FacebookFeed() {
             padding: `${designSystem.spacing.md} ${designSystem.spacing.lg}`,
             borderTop: `1px solid ${isDark ? designSystem.colors.darkBorder : designSystem.colors.border}`,
             display: 'flex', justifyContent: 'space-around',
-            fontSize: designSystem.fonts.sizes.sm, color: isDark ? designSystem.colors.darkTextTertiary : designSystem.colors.textTertiary
+            fontSize: designSystem.fonts.sizes.sm, color: isDark ? designSystem.colors.darkTextSecondary : designSystem.colors.textTertiary
           }}>
             <span>❤️ {post.likesCount}</span>
             <span>💬 {post.commentsCount}</span>

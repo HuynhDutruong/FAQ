@@ -27,7 +27,8 @@ export const designSystem = {
     darkBgSecondary: '#1E293B',
     darkBorder: '#334155',
     darkText: '#F1F5F9',
-    darkTextSecondary: '#CBD5E1'
+    darkTextSecondary: '#CBD5E1',
+    darkTextTertiary: '#94A3B8'
   },
 
   // Typography
@@ -100,13 +101,15 @@ export const designSystem = {
           bg: '#D32F2F',
           color: '#FFFFFF',
           hover: '#B71C1C',
-          active: '#9A0007'
+          active: '#9A0007',
+          border: 'none'
         },
         dark: {
           bg: '#EF5350',
           color: '#FFFFFF',
           hover: '#D32F2F',
-          active: '#B71C1C'
+          active: '#B71C1C',
+          border: 'none'
         }
       },
       secondary: {
