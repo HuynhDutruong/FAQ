@@ -14,14 +14,16 @@ import { db } from '@/lib/firebase';
 import IntroModalContent from '@/components/IntroModalContent';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import confetti from 'canvas-confetti';
+import { GOSPEL_VERSES, getRandomGospelVerseIndex } from '@/lib/gospelVerses';
 
 type Step = 'form' | 'rating' | 'success';
 
 export default function Home() {
   const [activeModal, setActiveModal] = useState<'faq' | 'feedback' | 'intro' | null>(null);
   const [step, setStep] = useState<Step>('form');
+  const [verseIndex] = useState(() => getRandomGospelVerseIndex());
   const router = useRouter();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   useEffect(() => {
     if (step === 'success') {
@@ -78,6 +80,9 @@ export default function Home() {
       handleClose();
     }, 2500);
   };
+
+  const currentVerse = GOSPEL_VERSES[verseIndex] || GOSPEL_VERSES[0];
+  const verseText = currentVerse?.texts[lang] || currentVerse?.texts.vi || t.description;
 
   return (
     <main style={{
@@ -163,13 +168,15 @@ export default function Home() {
 
         <p style={{ 
           color: 'var(--color-dark)', 
-          opacity: 0.8, 
+          opacity: 0.88, 
           fontSize: 'clamp(0.95rem, 2vw, 1.15rem)',
-          maxWidth: '600px',
+          maxWidth: '620px',
           margin: '0 auto',
-          lineHeight: '1.6'
+          lineHeight: '1.6',
+          fontStyle: 'italic',
+          transition: 'opacity 0.3s ease'
         }}>
-          {t.description}
+          {verseText}
         </p>
       </div>
 
