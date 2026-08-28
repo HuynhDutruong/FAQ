@@ -97,42 +97,7 @@ export default function MassTimesPage() {
     }, 2800);
   }, []);
 
-  useEffect(() => {
-    let ignore = false;
-    getFacets()
-      .then(f => {
-        if (!ignore) setDioceseBuckets(f.dioceses);
-      })
-      .catch(e => {
-        if (!ignore) setError(e.message);
-      });
-
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('gps') === '1' || params.get('nearest') === '1') {
-        handleGetLocation();
-      }
-    }
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
-
-  // 27 giáo phận chính thức
-  const dioceses = useMemo(() => {
-    const counts = new Map(dioceseBuckets.map(b => [b.name, b.count]));
-    return ALL_DIOCESES
-      .map(d => ({ value: d, label: dioceseLabel(d), count: counts.get(d) ?? 0 }))
-      .filter(d => d.count > 0);
-  }, [dioceseBuckets]);
-
-  const totalChurches = useMemo(
-    () => dioceseBuckets.reduce((acc, b) => acc + (b.count || 0), 0),
-    [dioceseBuckets]
-  );
-
-  const handleSelectDiocese = (val: string) => {
+  const handleSelectDiocese = useCallback((val: string) => {
     setSelectedDiocese(val);
     setSelectedDeanery('');
     if (!val) {
@@ -146,7 +111,74 @@ export default function MassTimesPage() {
       .then(setRows)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false));
-  };
+  }, []);
+
+  const handleGetLocation = useCallback(() => {
+    if (typeof window === 'undefined' || !navigator.geolocation) {
+      alert('Trình duyệt hoặc thiết bị của bạn không hỗ trợ định vị GPS.');
+      return;
+    }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const uLat = pos.coords.latitude;
+        const uLng = pos.coords.longitude;
+        setUserLocation({ lat: uLat, lng: uLng });
+
+        const nearest = getNearestDiocese(uLat, uLng);
+        handleSelectDiocese(nearest.diocese);
+        showToast(`📍 Đã định vị! Bạn đang ở gần ${dioceseLabel(nearest.diocese)} (~${nearest.distanceKm} km)`);
+        setLocating(false);
+      },
+      (err) => {
+        console.error('GPS error:', err);
+        setLocating(false);
+        if (err.code === 1) {
+          alert('Bạn đã chặn quyền truy cập vị trí. Vui lòng cho phép quyền truy cập Vị trí trên trình duyệt để tìm nhà thờ gần nhất.');
+        } else {
+          alert('Không thể lấy vị trí GPS. Vui lòng bật định vị thiết bị và thử lại.');
+        }
+      },
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
+    );
+  }, [handleSelectDiocese, showToast]);
+
+  useEffect(() => {
+    let ignore = false;
+    getFacets()
+      .then(f => {
+        if (!ignore) setDioceseBuckets(f.dioceses);
+      })
+      .catch(e => {
+        if (!ignore) setError(e.message);
+      });
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('gps') === '1' || params.get('nearest') === '1') {
+        setTimeout(() => {
+          handleGetLocation();
+        }, 150);
+      }
+    }
+
+    return () => {
+      ignore = true;
+    };
+  }, [handleGetLocation]);
+
+  // 27 giáo phận chính thức
+  const dioceses = useMemo(() => {
+    const counts = new Map(dioceseBuckets.map(b => [b.name, b.count]));
+    return ALL_DIOCESES
+      .map(d => ({ value: d, label: dioceseLabel(d), count: counts.get(d) ?? 0 }))
+      .filter(d => d.count > 0);
+  }, [dioceseBuckets]);
+
+  const totalChurches = useMemo(
+    () => dioceseBuckets.reduce((acc, b) => acc + (b.count || 0), 0),
+    [dioceseBuckets]
+  );
 
   const deaneries = useMemo(
     () => Array.from(new Set(rows.map(r => r.deanery).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'vi')),
@@ -193,40 +225,6 @@ export default function MassTimesPage() {
 
     return list;
   }, [rows, selectedDeanery, searchTerm, timeFilter, userLocation]);
-
-  const handleGetLocation = () => {
-    if (typeof window === 'undefined' || !navigator.geolocation) {
-      alert('Trình duyệt hoặc thiết bị của bạn không hỗ trợ định vị GPS.');
-      return;
-    }
-    setLocating(true);
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const uLat = pos.coords.latitude;
-        const uLng = pos.coords.longitude;
-        setUserLocation({ lat: uLat, lng: uLng });
-
-        const nearest = getNearestDiocese(uLat, uLng);
-        if (!selectedDiocese || selectedDiocese !== nearest.diocese) {
-          handleSelectDiocese(nearest.diocese);
-          showToast(`📍 Đã định vị! Bạn đang ở gần ${dioceseLabel(nearest.diocese)} (~${nearest.distanceKm} km)`);
-        } else {
-          showToast('📍 Đã định vị thành công! Đang xếp nhà thờ gần bạn nhất lên đầu.');
-        }
-        setLocating(false);
-      },
-      (err) => {
-        console.error('GPS error:', err);
-        setLocating(false);
-        if (err.code === 1) {
-          alert('Bạn đã chặn quyền truy cập vị trí. Vui lòng cho phép quyền truy cập Vị trí trên trình duyệt để tìm nhà thờ gần nhất.');
-        } else {
-          alert('Không thể lấy vị trí GPS. Vui lòng bật định vị thiết bị và thử lại.');
-        }
-      },
-      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
-    );
-  };
 
   const handleShare = async (item: MassTime) => {
     const origin = typeof window !== 'undefined' ? window.location.origin : 'https://xudoancacthanhtudaovietnam.web.app';
