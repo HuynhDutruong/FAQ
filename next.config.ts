@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ['firebase-admin'],
   images: {
     // Ảnh bài viết & avatar lấy từ CDN của Facebook. Không đặt `search: ''`
     // vì URL fbcdn bắt buộc kèm query string xác thực, đặt vào sẽ bị chặn 400.

@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import { getFacebookCredentials } from '@/lib/facebookHelper';
-import { withAdmin } from '@/lib/serverAuth';
 
 interface FBPostRaw {
   id: string;
@@ -16,16 +14,46 @@ interface FBPostRaw {
 
 export const dynamic = 'force-dynamic';
 
+async function resolveFacebookCredentials(): Promise<{ pageId: string; pageToken: string }> {
+  // 1. Trực tiếp từ biến môi trường
+  const envToken =
+    process.env.FACEBOOK_PAGE_ACCESS_TOKEN ||
+    process.env.FACEBOOK_PAGE_TOKEN ||
+    process.env.FACEBOOK_ACCESS_TOKEN;
+  const envPageId = process.env.FACEBOOK_PAGE_ID;
+
+  if (envToken && envToken.trim()) {
+    let resolvedPageId = (envPageId || '').trim();
+    if (!resolvedPageId) {
+      try {
+        const meRes = await fetch(
+          `https://graph.facebook.com/v20.0/me?fields=id&access_token=${envToken.trim()}`
+        );
+        const meData = await meRes.json();
+        if (meData.id) resolvedPageId = meData.id;
+      } catch {
+        // Ignore
+      }
+    }
+    if (resolvedPageId) {
+      return { pageId: resolvedPageId, pageToken: envToken.trim() };
+    }
+  }
+
+  // 2. Từ Firestore nếu chưa có ENV
+  try {
+    const { getFacebookCredentials } = await import('@/lib/facebookHelper');
+    const creds = await getFacebookCredentials();
+    return { pageId: creds.pageId, pageToken: creds.pageToken };
+  } catch {
+    return { pageId: '', pageToken: '' };
+  }
+}
+
 // 1. Lấy danh sách bài viết trên Fanpage kèm thống kê (public - hiển thị trên trang chủ)
 export async function GET() {
   try {
-    let pageId: string, pageToken: string;
-    try {
-      ({ pageId, pageToken } = await getFacebookCredentials());
-    } catch (credErr) {
-      console.warn('Facebook credentials not configured or env missing:', credErr);
-      return NextResponse.json({ success: true, posts: [] });
-    }
+    const { pageId, pageToken } = await resolveFacebookCredentials();
 
     if (!pageId || !pageToken) {
       return NextResponse.json({ success: true, posts: [] });
@@ -91,51 +119,57 @@ export async function GET() {
 }
 
 // 2. Chỉnh sửa nội dung bài viết
-export const PATCH = withAdmin(async (request: Request) => {
-  const { pageToken } = await getFacebookCredentials();
-  const { postId, message } = await request.json();
+export async function PATCH(request: Request) {
+  const { withAdmin } = await import('@/lib/serverAuth');
+  return withAdmin(async (req: Request) => {
+    const { pageToken } = await resolveFacebookCredentials();
+    const { postId, message } = await req.json();
 
-  if (!postId || !message || !message.trim()) {
-    return NextResponse.json({ error: 'Thiếu thông tin postId hoặc message' }, { status: 400 });
-  }
+    if (!postId || !message || !message.trim()) {
+      return NextResponse.json({ error: 'Thiếu thông tin postId hoặc message' }, { status: 400 });
+    }
 
-  const formData = new URLSearchParams();
-  formData.append('message', message.trim());
-  formData.append('access_token', pageToken);
+    const formData = new URLSearchParams();
+    formData.append('message', message.trim());
+    formData.append('access_token', pageToken);
 
-  const response = await fetch(`https://graph.facebook.com/v20.0/${postId}`, {
-    method: 'POST',
-    body: formData
-  });
-  const result = await response.json();
+    const response = await fetch(`https://graph.facebook.com/v20.0/${postId}`, {
+      method: 'POST',
+      body: formData
+    });
+    const result = await response.json();
 
-  if (result.error) {
-    console.error('FB Update Post Error:', result.error);
-    return NextResponse.json({ error: result.error.message }, { status: 400 });
-  }
+    if (result.error) {
+      console.error('FB Update Post Error:', result.error);
+      return NextResponse.json({ error: result.error.message }, { status: 400 });
+    }
 
-  return NextResponse.json({ success: true, postId });
-});
+    return NextResponse.json({ success: true, postId });
+  })(request);
+}
 
 // 3. Xoá bài viết trên Fanpage
-export const DELETE = withAdmin(async (request: Request) => {
-  const { pageToken } = await getFacebookCredentials();
-  const { searchParams } = new URL(request.url);
-  const postId = searchParams.get('postId');
+export async function DELETE(request: Request) {
+  const { withAdmin } = await import('@/lib/serverAuth');
+  return withAdmin(async (req: Request) => {
+    const { pageToken } = await resolveFacebookCredentials();
+    const { searchParams } = new URL(req.url);
+    const postId = searchParams.get('postId');
 
-  if (!postId) {
-    return NextResponse.json({ error: 'Thiếu postId cần xoá' }, { status: 400 });
-  }
+    if (!postId) {
+      return NextResponse.json({ error: 'Thiếu postId cần xoá' }, { status: 400 });
+    }
 
-  const response = await fetch(`https://graph.facebook.com/v20.0/${postId}?access_token=${pageToken}`, {
-    method: 'DELETE'
-  });
-  const result = await response.json();
+    const response = await fetch(`https://graph.facebook.com/v20.0/${postId}?access_token=${pageToken}`, {
+      method: 'DELETE'
+    });
+    const result = await response.json();
 
-  if (result.error) {
-    console.error('FB Delete Post Error:', result.error);
-    return NextResponse.json({ error: result.error.message }, { status: 400 });
-  }
+    if (result.error) {
+      console.error('FB Delete Post Error:', result.error);
+      return NextResponse.json({ error: result.error.message }, { status: 400 });
+    }
 
-  return NextResponse.json({ success: true, postId });
-});
+    return NextResponse.json({ success: true, postId });
+  })(request);
+}
