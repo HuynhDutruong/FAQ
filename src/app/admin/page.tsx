@@ -7,6 +7,7 @@ import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, where } from 'firebase/firestore';
 import MassTimeAdmin from '@/components/MassTimeAdmin';
 import MassTimeFeedbackAdmin from '@/components/MassTimeFeedbackAdmin';
+import AdminUsersManagement from '@/components/AdminUsersManagement';
 
 interface Submission {
   id: string;
@@ -20,7 +21,7 @@ interface Submission {
   createdAt: Timestamp;
 }
 
-type TabType = 'faq' | 'feedback' | 'duyet_giole' | 'giole' | 'history' | 'facebook';
+type TabType = 'duyet_giole' | 'giole' | 'quanly_admin' | 'faq' | 'feedback' | 'history' | 'facebook';
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
@@ -31,6 +32,7 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<TabType>('duyet_giole');
   const [fbLoading, setFbLoading] = useState(false);
   const [pendingFeedbackCount, setPendingFeedbackCount] = useState(0);
+  const [pendingUserCount, setPendingUserCount] = useState(0);
 
   const handleFacebookLogin = () => {
     setFbLoading(true);
@@ -69,9 +71,18 @@ export default function AdminDashboard() {
         console.error("Error counting pending feedback:", err);
       });
 
+      // Listen to pending admin user requests count
+      const qUsers = query(collection(db, 'users'), where('status', '==', 'pending'));
+      const unsubscribeUsers = onSnapshot(qUsers, (snapshot) => {
+        setPendingUserCount(snapshot.size);
+      }, (err) => {
+        console.error("Error counting pending users:", err);
+      });
+
       return () => {
         unsubscribeSubmissions();
         unsubscribeFeedback();
+        unsubscribeUsers();
       };
     }
   }, [user, role, loading, router]);
@@ -127,7 +138,7 @@ export default function AdminDashboard() {
           paddingBottom: '2px',
           overflowX: 'auto'
         }}>
-          {(['duyet_giole', 'giole', 'faq', 'feedback', 'history', 'facebook'] as TabType[]).map((tab) => (
+          {(['duyet_giole', 'giole', 'quanly_admin', 'faq', 'feedback', 'history', 'facebook'] as TabType[]).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -153,6 +164,8 @@ export default function AdminDashboard() {
                   ? 'Duyệt Giờ Lễ'
                   : tab === 'giole'
                   ? 'QL Giờ Lễ'
+                  : tab === 'quanly_admin'
+                  ? 'Quản lý Admin'
                   : tab === 'faq'
                   ? 'Vấn đáp'
                   : tab === 'feedback'
@@ -175,6 +188,20 @@ export default function AdminDashboard() {
                   {pendingFeedbackCount}
                 </span>
               )}
+              {tab === 'quanly_admin' && pendingUserCount > 0 && (
+                <span
+                  style={{
+                    backgroundColor: '#F59E0B',
+                    color: 'white',
+                    padding: '2px 7px',
+                    borderRadius: '999px',
+                    fontSize: '0.75rem',
+                    fontWeight: 700
+                  }}
+                >
+                  {pendingUserCount}
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -182,14 +209,13 @@ export default function AdminDashboard() {
         {error ? (
           <div style={{ padding: '24px', backgroundColor: '#FEE2E2', color: '#B91C1C', borderRadius: '12px' }}>
             <strong>Lỗi tải dữ liệu:</strong> {error}
-            <p style={{ marginTop: '8px', fontSize: '0.9rem' }}>
-              Nếu thấy lỗi &quot;Missing or insufficient permissions&quot;, có nghĩa là Firestore Security Rules đang khoá quyền đọc. Vui lòng cập nhật luật thành <code>allow read, write: if true;</code> trên Firebase Console.
-            </p>
           </div>
         ) : activeTab === 'duyet_giole' ? (
           <MassTimeFeedbackAdmin />
         ) : activeTab === 'giole' ? (
           <MassTimeAdmin />
+        ) : activeTab === 'quanly_admin' ? (
+          <AdminUsersManagement />
         ) : dataLoading ? (
           <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280' }}>
             Đang tải dữ liệu từ Firestore...

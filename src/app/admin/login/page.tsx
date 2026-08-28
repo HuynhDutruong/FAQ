@@ -1,14 +1,17 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
 import { auth } from '@/lib/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { LogIn } from 'lucide-react';
+import { LogIn, ShieldAlert, Clock, Send, LogOut, Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
-  const { user, role, loading } = useAuth();
+  const { user, role, userStatus, loading, requestAccess, signOut } = useAuth();
   const router = useRouter();
+  const [requestNote, setRequestNote] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   useEffect(() => {
     if (!loading && user && role) {
@@ -17,17 +20,44 @@ export default function LoginPage() {
   }, [user, role, loading, router]);
 
   const handleLogin = async () => {
+    setLoginLoading(true);
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      // AuthContext will handle checking if the user is in whitelist
-    } catch (error) {
-      console.error("Login failed:", error);
-      alert('Đăng nhập thất bại.');
+    } catch (error: unknown) {
+      const authErr = error as { code?: string };
+      if (authErr.code !== 'auth/popup-closed-by-user') {
+        console.error("Login failed:", error);
+        alert('Đăng nhập thất bại. Vui lòng thử lại.');
+      }
+    } finally {
+      setLoginLoading(false);
     }
   };
 
-  if (loading) return <div style={{ padding: '40px', textAlign: 'center' }}>Đang kiểm tra...</div>;
+  const handleSendRequest = async () => {
+    setSubmitting(true);
+    try {
+      await requestAccess(requestNote.trim());
+    } catch (err: unknown) {
+      console.error(err);
+      const msg = err instanceof Error ? err.message : 'Lỗi không xác định';
+      alert('Không thể gửi yêu cầu: ' + msg);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh',
+        color: 'var(--color-dark)', gap: '10px'
+      }}>
+        <Loader2 className="spin" size={24} /> Đang kiểm tra quyền truy cập...
+      </div>
+    );
+  }
 
   return (
     <div style={{
@@ -35,52 +65,169 @@ export default function LoginPage() {
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
-      backgroundColor: '#f3f4f6'
+      padding: '20px'
     }}>
-      <div style={{
-        backgroundColor: 'white',
-        padding: '40px',
-        borderRadius: '16px',
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      <div className="liquid-glass" style={{
+        padding: '36px 28px',
+        borderRadius: '24px',
         textAlign: 'center',
-        maxWidth: '400px',
-        width: '100%'
+        maxWidth: '440px',
+        width: '100%',
+        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.12)'
       }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '8px', color: '#111827' }}>
+        <div style={{
+          width: '54px', height: '54px', borderRadius: '50%',
+          backgroundColor: 'rgba(211, 47, 47, 0.1)', color: 'var(--color-red)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          margin: '0 auto 16px'
+        }}>
+          <LogIn size={26} />
+        </div>
+
+        <h1 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '6px', color: 'var(--color-dark)' }}>
           Quản trị Hệ thống
         </h1>
-        <p style={{ color: '#6B7280', marginBottom: '24px' }}>
-          Đăng nhập bằng tài khoản Google đã được cấp quyền.
+        <p style={{ color: 'var(--color-subtle)', marginBottom: '24px', fontSize: '0.9rem', lineHeight: 1.4 }}>
+          Đăng nhập bằng tài khoản Google để truy cập bảng điều khiển Admin.
         </p>
 
-        {user && !role && (
-          <div style={{ padding: '12px', backgroundColor: '#FEE2E2', color: '#B91C1C', borderRadius: '8px', marginBottom: '24px', fontSize: '0.9rem' }}>
-            Tài khoản <b>{user.email}</b> chưa được cấp quyền truy cập. Vui lòng liên hệ Host Admin.
+        {/* Chưa đăng nhập Google */}
+        {!user && (
+          <button
+            onClick={handleLogin}
+            disabled={loginLoading}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '10px',
+              width: '100%',
+              padding: '13px 20px',
+              backgroundColor: '#4285F4',
+              color: 'white',
+              borderRadius: '12px',
+              border: 'none',
+              fontSize: '0.95rem',
+              fontWeight: 700,
+              cursor: loginLoading ? 'wait' : 'pointer',
+              transition: 'all 0.2s',
+              boxShadow: '0 4px 14px rgba(66, 133, 244, 0.3)'
+            }}
+          >
+            {loginLoading ? <Loader2 size={18} className="spin" /> : <LogIn size={18} />}
+            Đăng nhập với Google
+          </button>
+        )}
+
+        {/* Đã đăng nhập nhưng trạng thái là PENDING (Đang chờ duyệt) */}
+        {user && userStatus === 'pending' && (
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+            border: '1px solid rgba(245, 158, 11, 0.25)',
+            borderRadius: '16px',
+            textAlign: 'left'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#D97706', fontWeight: 800, marginBottom: '8px' }}>
+              <Clock size={20} />
+              <span>Yêu cầu đang chờ duyệt...</span>
+            </div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-dark)', lineHeight: 1.4, marginBottom: '12px' }}>
+              Tài khoản <strong>{user.email}</strong> đã gửi yêu cầu cấp quyền Admin. Khi Host Admin duyệt, hệ thống sẽ tự động chuyển hướng bạn vào bảng quản trị ngay lập tức (Realtime).
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <button
+                onClick={signOut}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '5px',
+                  fontSize: '0.8rem', color: 'var(--color-subtle)', background: 'none', border: 'none', cursor: 'pointer'
+                }}
+              >
+                <LogOut size={13} /> Đăng xuất tài khoản khác
+              </button>
+            </div>
           </div>
         )}
 
-        <button
-          onClick={handleLogin}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            width: '100%',
-            padding: '12px 24px',
-            backgroundColor: '#4285F4',
-            color: 'white',
-            borderRadius: '8px',
-            border: 'none',
-            fontSize: '1rem',
-            fontWeight: '500',
-            cursor: 'pointer',
-            transition: 'background-color 0.2s'
-          }}
-        >
-          <LogIn size={20} />
-          Đăng nhập với Google
-        </button>
+        {/* Đã đăng nhập nhưng chưa có trong danh sách và chưa gửi yêu cầu */}
+        {user && userStatus === 'none' && !role && (
+          <div style={{
+            padding: '20px',
+            backgroundColor: 'rgba(239, 68, 68, 0.08)',
+            border: '1px solid rgba(239, 68, 68, 0.2)',
+            borderRadius: '16px',
+            textAlign: 'left'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-red)', fontWeight: 800, marginBottom: '8px' }}>
+              <ShieldAlert size={20} />
+              <span>Chưa được cấp quyền truy cập</span>
+            </div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-dark)', lineHeight: 1.4, marginBottom: '14px' }}>
+              Tài khoản <strong>{user.email}</strong> chưa có trong danh sách quản trị viên. Bạn có thể gửi yêu cầu để Admin duyệt trực tiếp:
+            </p>
+
+            <input
+              type="text"
+              placeholder="Ghi chú (Tên / Chức vụ trong Xứ Đoàn)..."
+              value={requestNote}
+              onChange={(e) => setRequestNote(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '9px 12px',
+                borderRadius: '10px',
+                border: '1px solid var(--color-input-border)',
+                backgroundColor: 'var(--color-input-bg)',
+                color: 'var(--color-input-text)',
+                fontSize: '0.88rem',
+                marginBottom: '12px',
+                outline: 'none',
+                boxSizing: 'border-box'
+              }}
+            />
+
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                onClick={handleSendRequest}
+                disabled={submitting}
+                style={{
+                  flex: 1,
+                  padding: '10px 14px',
+                  backgroundColor: 'var(--color-red)',
+                  color: 'white',
+                  borderRadius: '10px',
+                  border: 'none',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  cursor: submitting ? 'wait' : 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px'
+                }}
+              >
+                {submitting ? <Loader2 size={15} className="spin" /> : <Send size={15} />}
+                Gửi yêu cầu cấp quyền
+              </button>
+
+              <button
+                onClick={signOut}
+                style={{
+                  padding: '10px 14px',
+                  backgroundColor: 'var(--color-btn-subtle-bg)',
+                  color: 'var(--color-btn-subtle-text)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '10px',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+                title="Đăng xuất"
+              >
+                <LogOut size={15} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
