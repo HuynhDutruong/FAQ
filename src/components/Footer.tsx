@@ -15,20 +15,18 @@ export default function Footer() {
   return (
     <footer style={{
       width: '100%',
-      padding: '12px 24px',
+      padding: '16px 24px',
       marginTop: 'auto',
-      borderTop: '1px solid rgba(255, 255, 255, 0.1)',
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
-      backdropFilter: 'blur(10px)',
+      borderTop: '1px solid var(--glass-border)',
+      backgroundColor: 'transparent',
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
       justifyContent: 'center',
       alignItems: 'center',
       gap: '12px',
-      fontSize: '0.8rem',
-      color: 'var(--color-dark)',
-      opacity: 0.8
+      fontSize: '0.82rem',
+      color: 'var(--color-subtle)'
     }}>
       <div style={{ fontWeight: '500' }}>
         &copy; {new Date().getFullYear()} {t.footerCopyright}

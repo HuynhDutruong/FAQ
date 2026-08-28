@@ -15,7 +15,8 @@ import {
   Clock,
   Info,
   BookOpen,
-  ArrowRight
+  ArrowRight,
+  Compass
 } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import IntroModalContent from '@/components/IntroModalContent';
@@ -93,8 +94,10 @@ export default function Home() {
       flexDirection: 'column',
       minHeight: '100vh',
       position: 'relative',
-      padding: '20px 24px 60px',
+      padding: '24px 20px 48px',
       background: 'var(--bg-gradient)',
+      alignItems: 'center',
+      justifyContent: 'center',
       boxSizing: 'border-box'
     }}>
       {/* Top Floating Language Switcher */}
@@ -103,378 +106,353 @@ export default function Home() {
         alignItems: 'center',
         justifyContent: 'flex-end',
         width: '100%',
-        maxWidth: '1060px',
-        margin: '0 auto 16px',
+        maxWidth: '840px',
+        margin: '0 auto 12px',
         zIndex: 50
       }}>
         <LanguageSwitcher />
       </div>
 
-      {/* Hero Section */}
+      {/* Main Container */}
       <div style={{
         width: '100%',
-        maxWidth: '1060px',
-        margin: '0 auto 28px',
-        textAlign: 'center',
+        maxWidth: '840px',
+        margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        gap: '16px'
       }}>
-        <div
-          className="logo-floating"
-          style={{
-            position: 'relative',
-            width: '88px',
-            height: '88px',
-            marginBottom: '14px',
-            borderRadius: '50%',
-            backgroundColor: '#FFFFFF',
-            boxShadow: '0 10px 30px rgba(255, 69, 58, 0.25), 0 0 0 3px rgba(251, 192, 45, 0.7)',
-            padding: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
-            <Image src="/logo.jpg" alt="Logo Xứ Đoàn" fill sizes="88px" style={{ objectFit: 'contain' }} priority />
+        
+        {/* ==================== 1. BRAND HERO SECTION ==================== */}
+        <div style={{
+          textAlign: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          paddingBottom: '4px'
+        }}>
+          {/* Logo */}
+          <div
+            className="logo-floating"
+            style={{
+              position: 'relative',
+              width: '76px',
+              height: '76px',
+              marginBottom: '10px',
+              borderRadius: '50%',
+              backgroundColor: '#FFFFFF',
+              boxShadow: '0 8px 24px rgba(255, 69, 58, 0.22), 0 0 0 3px rgba(251, 192, 45, 0.7)',
+              padding: '3px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
+              <Image
+                src="/logo.jpg"
+                alt="Logo Xứ Đoàn"
+                fill
+                sizes="76px"
+                style={{ objectFit: 'contain' }}
+                priority
+              />
+            </div>
           </div>
+
+          {/* Titles */}
+          <h1 style={{
+            fontSize: 'clamp(1.25rem, 3.8vw, 1.85rem)',
+            fontWeight: 900,
+            color: 'var(--color-red)',
+            marginBottom: '3px',
+            lineHeight: 1.25,
+            textTransform: 'uppercase',
+            letterSpacing: '0.3px'
+          }}>
+            {t.title}
+          </h1>
+
+          <h2 style={{
+            fontSize: 'clamp(0.82rem, 2.4vw, 1.05rem)',
+            fontWeight: 700,
+            color: 'var(--color-yellow)',
+            marginBottom: '10px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.4px'
+          }}>
+            {t.subtitle}
+          </h2>
+
+          {/* Slim Gospel Verse */}
+          <p
+            suppressHydrationWarning
+            style={{
+              margin: 0,
+              color: 'var(--color-dark)',
+              fontSize: 'clamp(0.82rem, 2vw, 0.95rem)',
+              lineHeight: 1.55,
+              fontStyle: 'italic',
+              opacity: 0.88,
+              maxWidth: '620px'
+            }}
+          >
+            &ldquo;{verseText}&rdquo;
+          </p>
         </div>
 
-        <h1 style={{
-          fontSize: 'clamp(1.4rem, 4vw, 2.3rem)',
-          fontWeight: 900,
-          color: 'var(--color-red)',
-          marginBottom: '4px',
-          lineHeight: 1.25,
-          textTransform: 'uppercase',
-          letterSpacing: '0.3px'
-        }}>
-          {t.title}
-        </h1>
-
-        <h2 style={{
-          fontSize: 'clamp(0.9rem, 2.5vw, 1.2rem)',
-          fontWeight: 700,
-          color: 'var(--color-yellow)',
-          marginBottom: '12px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.5px'
-        }}>
-          {t.subtitle}
-        </h2>
-
-        <p
-          suppressHydrationWarning
-          style={{
-            margin: 0,
-            color: 'var(--color-dark)',
-            fontSize: 'clamp(0.88rem, 2vw, 1.02rem)',
-            maxWidth: '680px',
-            lineHeight: 1.6,
-            fontStyle: 'italic',
-            opacity: 0.9
-          }}
-        >
-          &ldquo;{verseText}&rdquo;
-        </p>
-      </div>
-
-      {/* SECTION 1: TRA CỨU GIỜ LỄ - HERO CARD */}
-      <div style={{
-        width: '100%',
-        maxWidth: '1060px',
-        margin: '0 auto 32px'
-      }}>
+        {/* ==================== 2. PRIMARY ACTION: TRA CỨU GIỜ LỄ TOÀN QUỐC ==================== */}
         <div
-          onClick={() => router.push('/gio-le')}
+          onClick={() => router.push('/gio-le?gps=1')}
           className="liquid-glass"
           style={{
-            padding: 'clamp(24px, 5vw, 40px)',
-            borderRadius: '28px',
+            width: '100%',
+            padding: '16px 20px',
+            borderRadius: '20px',
             cursor: 'pointer',
-            background: 'linear-gradient(135deg, rgba(211, 47, 47, 0.1) 0%, rgba(211, 47, 47, 0.05) 100%)',
-            border: '1.5px solid rgba(211, 47, 47, 0.22)',
+            background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(245, 158, 11, 0.12) 100%)',
+            border: '1.5px solid rgba(220, 38, 38, 0.32)',
             display: 'flex',
-            flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'space-between',
-            gap: 'clamp(18px, 4vw, 28px)',
-            minHeight: '200px',
-            boxShadow: '0 12px 32px rgba(211, 47, 47, 0.12)'
+            gap: '16px',
+            boxShadow: '0 6px 20px rgba(220, 38, 38, 0.1)'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', minWidth: 0, flex: 1 }}>
             <div style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '18px',
-              background: 'linear-gradient(135deg, #D32F2F, #C62828)',
+              width: '46px',
+              height: '46px',
+              borderRadius: '14px',
+              background: 'linear-gradient(135deg, #d32f2f, #b71c1c)',
               color: '#FFFFFF',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 8px 24px rgba(211, 47, 47, 0.3)',
-              flexShrink: 0
+              flexShrink: 0,
+              boxShadow: '0 4px 12px rgba(211, 47, 47, 0.35)'
             }}>
-              <Clock size={32} strokeWidth={1.8} />
+              <Clock size={24} />
             </div>
 
-            <span style={{
-              padding: '6px 16px',
-              borderRadius: '999px',
-              fontSize: '0.8rem',
-              fontWeight: 800,
-              backgroundColor: 'var(--color-red)',
-              color: '#FFFFFF',
-              letterSpacing: '0.4px',
-              whiteSpace: 'nowrap'
-            }}>
-              3.300+ NHÀ THỜ
-            </span>
-          </div>
-
-          <div>
-            <h2 style={{
-              margin: '0 0 12px',
-              fontSize: 'clamp(1.4rem, 4vw, 1.9rem)',
-              fontWeight: 900,
-              color: 'var(--color-dark)',
-              lineHeight: 1.3
-            }}>
-              Tra Cứu Giờ Lễ Toàn Quốc
-            </h2>
-
-            <p style={{
-              margin: 0,
-              fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
-              color: 'var(--color-subtle)',
-              lineHeight: 1.6,
-              maxWidth: '600px'
-            }}>
-              Tìm giờ lễ Chúa Nhật & ngày thường của 27 Giáo phận Việt Nam. Hệ thống GPS tự động định vị nhà thờ gần nhất.
-            </p>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                <h3 style={{
+                  margin: 0,
+                  fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
+                  fontWeight: 900,
+                  color: 'var(--color-dark)',
+                  lineHeight: 1.2
+                }}>
+                  Tra Cứu Giờ Lễ Toàn Quốc
+                </h3>
+                <span style={{
+                  padding: '2px 8px',
+                  backgroundColor: 'var(--color-red)',
+                  color: '#FFFFFF',
+                  borderRadius: '999px',
+                  fontSize: '0.68rem',
+                  fontWeight: 900
+                }}>
+                  3.300+ NHÀ THỜ
+                </span>
+              </div>
+              <div style={{
+                fontSize: '0.82rem',
+                color: 'var(--color-subtle)',
+                marginTop: '3px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}>
+                <Compass size={13} color="var(--color-red)" />
+                <span>Tự động định vị GPS tìm nhà thờ gần bạn • 27 Giáo phận</span>
+              </div>
+            </div>
           </div>
 
           <div style={{
-            display: 'inline-flex',
+            display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            fontSize: 'clamp(0.9rem, 2vw, 1rem)',
+            gap: '6px',
+            fontSize: '0.85rem',
             fontWeight: 800,
             color: 'var(--color-red)',
-            marginTop: '8px'
+            flexShrink: 0
           }}>
-            <span>Mở Bản Đồ Ngay</span>
-            <ArrowRight size={20} />
+            <span className="hide-on-mobile">Tra Cứu</span>
+            <ArrowRight size={18} />
           </div>
         </div>
-      </div>
 
-      {/* SECTION 2: VẤN ĐÁP GIÁO LÝ - DETAILED FEATURE */}
-      <div style={{
-        width: '100%',
-        maxWidth: '1060px',
-        margin: '0 auto 32px'
-      }}>
-        <div
-          onClick={() => router.push('/van-dap')}
-          className="liquid-glass"
-          style={{
-            padding: 'clamp(24px, 5vw, 36px)',
-            borderRadius: '28px',
-            cursor: 'pointer',
-            background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.04) 100%)',
-            border: '1.5px solid rgba(37, 99, 235, 0.2)',
-            boxShadow: '0 12px 32px rgba(37, 99, 235, 0.08)'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '24px', marginBottom: '20px' }}>
+        {/* ==================== 3. 2x2 ACTION TILES (EXPANDS HARMONIOUSLY ON DESKTOP) ==================== */}
+        <div style={{
+          width: '100%',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: '12px'
+        }}>
+          
+          {/* Tile 1: Vấn Đáp Giáo Lý (Page /van-dap) */}
+          <div
+            onClick={() => router.push('/van-dap')}
+            className="liquid-glass"
+            style={{
+              padding: '15px 18px',
+              borderRadius: '18px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              border: '1.5px solid rgba(37, 99, 235, 0.22)',
+              background: 'linear-gradient(145deg, rgba(37, 99, 235, 0.08) 0%, rgba(59, 130, 246, 0.03) 100%)'
+            }}
+          >
             <div style={{
-              width: '56px',
-              height: '56px',
-              borderRadius: '16px',
-              backgroundColor: 'rgba(37, 99, 235, 0.12)',
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: 'rgba(37, 99, 235, 0.14)',
               color: '#2563EB',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0
             }}>
-              <BookOpen size={28} strokeWidth={1.8} />
+              <BookOpen size={22} />
             </div>
 
-            <div style={{ flex: 1 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                <span style={{
-                  padding: '4px 10px',
-                  borderRadius: '6px',
-                  fontSize: '0.75rem',
-                  fontWeight: 800,
-                  backgroundColor: '#2563EB',
-                  color: '#FFFFFF',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px'
-                }}>
-                  Chi Tiết & Trích Dẫn
-                </span>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+                Vấn Đáp Giáo Lý
               </div>
-
-              <h2 style={{
-                margin: '0 0 8px',
-                fontSize: 'clamp(1.3rem, 3.5vw, 1.75rem)',
-                fontWeight: 900,
-                color: 'var(--color-dark)',
-                lineHeight: 1.3
-              }}>
-                Vấn Đáp Giáo Lý & Đức Tin
-              </h2>
-
-              <p style={{
-                margin: 0,
-                fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
-                color: 'var(--color-subtle)',
-                lineHeight: 1.6
-              }}>
-                Hỏi đáp chi tiết với trích dẫn Kinh Thánh về phụng vụ, bí tích, hôn nhân, gia đình & đời sống hôn nhân. Tất cả câu trả lời đều từ Ban Mục Vụ.
-              </p>
+              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
+                Hỏi đáp đức tin, bí tích & phụng vụ
+              </div>
             </div>
+
+            <ArrowRight size={16} color="#2563EB" style={{ opacity: 0.6, flexShrink: 0 }} />
           </div>
 
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: 'clamp(0.9rem, 2vw, 1rem)',
-            fontWeight: 800,
-            color: '#2563EB'
-          }}>
-            <span>Xem Giải Đáp Chi Tiết</span>
-            <ArrowRight size={20} />
-          </div>
-        </div>
-      </div>
+          {/* Tile 2: Gửi Thắc Mắc Cho Ban Mục Vụ */}
+          <div
+            onClick={() => { setStep('form'); setActiveModal('faq'); }}
+            className="liquid-glass"
+            style={{
+              padding: '15px 18px',
+              borderRadius: '18px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              border: '1px solid var(--glass-border)'
+            }}
+          >
+            <div style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: 'rgba(220, 38, 38, 0.12)',
+              color: 'var(--color-red)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <MessageCircleQuestion size={22} />
+            </div>
 
-      {/* SECTION 3: ACTION TILES - FAQ, FEEDBACK, INFO */}
-      <div style={{
-        width: '100%',
-        maxWidth: '1060px',
-        margin: '0 auto',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '18px'
-      }}>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+                Gửi Thắc Mắc
+              </div>
+              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
+                Nhận hồi đáp riêng từ Ban Mục Vụ
+              </div>
+            </div>
 
-        {/* Tile A: Gửi Câu Hỏi */}
-        <div
-          onClick={() => { setStep('form'); setActiveModal('faq'); }}
-          className="liquid-glass"
-          style={{
-            padding: 'clamp(20px, 4vw, 28px)',
-            borderRadius: '24px',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            border: '1px solid rgba(211, 47, 47, 0.15)',
-            background: 'linear-gradient(135deg, rgba(211, 47, 47, 0.06) 0%, rgba(211, 47, 47, 0.02) 100%)'
-          }}
-        >
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(211, 47, 47, 0.14)',
-            color: 'var(--color-red)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <MessageCircleQuestion size={24} strokeWidth={1.8} />
+            <ArrowRight size={16} color="var(--color-red)" style={{ opacity: 0.5, flexShrink: 0 }} />
           </div>
 
-          <div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 4px', lineHeight: 1.3 }}>
-              Gửi Thắc Mắc
-            </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.5 }}>
-              Đặt câu hỏi trực tiếp đến Ban Mục Vụ, nhận hồi đáp chi tiết trong vài ngày.
-            </p>
-          </div>
-        </div>
+          {/* Tile 3: Ý Kiến Góp Ý */}
+          <div
+            onClick={() => { setStep('form'); setActiveModal('feedback'); }}
+            className="liquid-glass"
+            style={{
+              padding: '15px 18px',
+              borderRadius: '18px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              border: '1px solid var(--glass-border)'
+            }}
+          >
+            <div style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: 'rgba(217, 119, 6, 0.12)',
+              color: '#D97706',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <MessageSquarePlus size={22} />
+            </div>
 
-        {/* Tile B: Góp Ý */}
-        <div
-          onClick={() => { setStep('form'); setActiveModal('feedback'); }}
-          className="liquid-glass"
-          style={{
-            padding: 'clamp(20px, 4vw, 28px)',
-            borderRadius: '24px',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            border: '1px solid rgba(217, 119, 6, 0.15)',
-            background: 'linear-gradient(135deg, rgba(217, 119, 6, 0.06) 0%, rgba(217, 119, 6, 0.02) 100%)'
-          }}
-        >
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(217, 119, 6, 0.14)',
-            color: '#D97706',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <MessageSquarePlus size={24} strokeWidth={1.8} />
-          </div>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+                Ý Kiến Góp Ý
+              </div>
+              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
+                Đóng góp ý kiến xây dựng xứ đoàn
+              </div>
+            </div>
 
-          <div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 4px', lineHeight: 1.3 }}>
-              Ý Kiến & Góp Ý
-            </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.5 }}>
-              Đóng góp ý tưởng giúp cộng đoàn phát triển. Ý kiến bạn rất quan trọng.
-            </p>
-          </div>
-        </div>
-
-        {/* Tile C: Lịch Sử */}
-        <div
-          onClick={() => setActiveModal('intro')}
-          className="liquid-glass"
-          style={{
-            padding: 'clamp(20px, 4vw, 28px)',
-            borderRadius: '24px',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-            border: '1px solid rgba(5, 150, 105, 0.15)',
-            background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.06) 0%, rgba(5, 150, 105, 0.02) 100%)'
-          }}
-        >
-          <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(5, 150, 105, 0.14)',
-            color: '#059669',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <Info size={24} strokeWidth={1.8} />
+            <ArrowRight size={16} color="#D97706" style={{ opacity: 0.5, flexShrink: 0 }} />
           </div>
 
-          <div>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 4px', lineHeight: 1.3 }}>
-              Chánh Tòa Mỹ Tho
-            </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.5 }}>
-              Tìm hiểu lịch sử 130 năm và vị trí Chánh Tòa trên bản đồ.
-            </p>
+          {/* Tile 4: Chánh Tòa Mỹ Tho */}
+          <div
+            onClick={() => setActiveModal('intro')}
+            className="liquid-glass"
+            style={{
+              padding: '15px 18px',
+              borderRadius: '18px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              border: '1px solid var(--glass-border)'
+            }}
+          >
+            <div style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '12px',
+              backgroundColor: 'rgba(5, 150, 105, 0.12)',
+              color: '#059669',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <Info size={22} />
+            </div>
+
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.2 }}>
+                Chánh Tòa Mỹ Tho
+              </div>
+              <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '3px' }}>
+                Lịch sử 130 năm & Bản đồ chỉ đường
+              </div>
+            </div>
+
+            <ArrowRight size={16} color="#059669" style={{ opacity: 0.5, flexShrink: 0 }} />
           </div>
         </div>
 

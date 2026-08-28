@@ -1,9 +1,11 @@
 'use client';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Navigation, Search, Loader2, MapPin, Clock, Check } from 'lucide-react';
 import { MassTime, Bucket, getFacets, getByDiocese, removeAccents } from '@/lib/massTimes';
 import { ALL_DIOCESES, dioceseLabel, getNearestDiocese, calculateDistance } from '@/lib/dioceses';
+
+const DAY_ORDER = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chúa Nhật'];
 
 export default function GioLePage() {
   const [dioceseBuckets, setDioceseBuckets] = useState<Bucket[]>([]);
@@ -16,27 +18,56 @@ export default function GioLePage() {
   const [locating, setLocating] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
-  useEffect(() => {
-    getFacets().then(f => setDioceseBuckets(f.dioceses)).catch(console.error);
+  const loadDiocese = useCallback((diocese: string) => {
+    setSelectedDiocese(diocese);
+    setSelectedDeanery('');
+    if (!diocese) {
+      setRows([]);
+      return;
+    }
+    setLoading(true);
+    getByDiocese(diocese)
+      .then(setRows)
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    let ignore = false;
-    if (selectedDiocese) {
-      setLoading(true);
-      getByDiocese(selectedDiocese)
-        .then(data => {
-          if (!ignore) setRows(data);
-        })
-        .catch(console.error)
-        .finally(() => {
-          if (!ignore) setLoading(false);
-        });
+  const handleGPS = useCallback(() => {
+    if (typeof window === 'undefined' || !navigator.geolocation) {
+      alert('Thiết bị này không hỗ trợ GPS.');
+      return;
     }
-    return () => {
-      ignore = true;
-    };
-  }, [selectedDiocese]);
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const uLat = pos.coords.latitude;
+        const uLng = pos.coords.longitude;
+        setUserLocation({ lat: uLat, lng: uLng });
+        const nearest = getNearestDiocese(uLat, uLng);
+        loadDiocese(nearest.diocese);
+        setToast(`📍 Đã định vị! Gần ${dioceseLabel(nearest.diocese)} (~${nearest.distanceKm} km)`);
+        setLocating(false);
+      },
+      () => {
+        alert('Không thể lấy vị trí GPS. Vui lòng cho phép quyền truy cập Vị trí trên trình duyệt.');
+        setLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
+    );
+  }, [loadDiocese]);
+
+  useEffect(() => {
+    getFacets().then(f => setDioceseBuckets(f.dioceses)).catch(console.error);
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('gps') === '1' || params.get('nearest') === '1') {
+        setTimeout(() => {
+          handleGPS();
+        }, 200);
+      }
+    }
+  }, [handleGPS]);
 
   const dioceses = useMemo(() => {
     const counts = new Map(dioceseBuckets.map(b => [b.name, b.count]));
@@ -61,26 +92,10 @@ export default function GioLePage() {
       list = list.map(item => {
         const dist = item.lat && item.lng ? calculateDistance(userLocation.lat, userLocation.lng, item.lat, item.lng) : Infinity;
         return { ...item, _distance: dist };
-      }).sort((a, b) => (a._distance ?? Infinity) - (b._distance ?? Infinity));
+      }).sort((a, b) => ((a as MassTime & { _distance?: number })._distance ?? Infinity) - ((b as MassTime & { _distance?: number })._distance ?? Infinity));
     }
     return list;
   }, [rows, selectedDeanery, searchTerm, userLocation]);
-
-  const handleGPS = () => {
-    if (!navigator.geolocation) { alert('Thiết bị này không hỗ trợ GPS.'); return; }
-    setLocating(true);
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-        const nearest = getNearestDiocese(pos.coords.latitude, pos.coords.longitude);
-        setSelectedDiocese(nearest.diocese);
-        setToast(`📍 Đã định vị! Gần ${dioceseLabel(nearest.diocese)}`);
-        setLocating(false);
-      },
-      () => { alert('Không thể lấy vị trí GPS'); setLocating(false); },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-    );
-  };
 
   return (
     <main style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-gradient)' }}>
@@ -115,7 +130,7 @@ export default function GioLePage() {
             <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px', textTransform: 'uppercase' }}>Chọn Giáo Phận</label>
             <select
               value={selectedDiocese}
-              onChange={(e) => { setSelectedDiocese(e.target.value); setSelectedDeanery(''); }}
+              onChange={(e) => loadDiocese(e.target.value)}
               style={{
                 width: '100%', padding: '10px 12px', borderRadius: '10px',
                 border: '1px solid var(--color-input-border)', backgroundColor: 'var(--color-input-bg)',
@@ -128,99 +143,110 @@ export default function GioLePage() {
           </div>
 
           <div style={{ display: 'flex', gap: '12px' }}>
-            <button
-              onClick={handleGPS}
-              disabled={locating}
-              style={{
-                flex: 0, padding: '10px 16px', borderRadius: '10px',
-                border: 'none', background: '#D32F2F', color: '#FFFFFF',
-                fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem'
-              }}
-            >
-              {locating ? <Loader2 size={16} className="spin" /> : <Navigation size={16} />}
-              GPS
-            </button>
-
-            {deaneries.length > 0 && (
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '6px', textTransform: 'uppercase' }}>Chọn Giáo Hạt</label>
               <select
                 value={selectedDeanery}
                 onChange={(e) => setSelectedDeanery(e.target.value)}
+                disabled={!selectedDiocese || deaneries.length === 0}
                 style={{
-                  flex: 1, padding: '10px 12px', borderRadius: '10px',
+                  width: '100%', padding: '10px 12px', borderRadius: '10px',
                   border: '1px solid var(--color-input-border)', backgroundColor: 'var(--color-input-bg)',
-                  fontSize: '0.9rem', fontWeight: 600, color: 'var(--color-dark)', outline: 'none', cursor: 'pointer'
+                  fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-dark)', outline: 'none', cursor: 'pointer',
+                  opacity: !selectedDiocese || deaneries.length === 0 ? 0.5 : 1
                 }}
               >
-                <option value="">Tất cả Giáo Xứ</option>
-                {deaneries.map(d => <option key={d} value={d}>{d}</option>)}
+                <option value="">-- Tất cả giáo hạt --</option>
+                {deaneries.map(deanery => <option key={deanery} value={deanery}>Hạt {deanery}</option>)}
               </select>
-            )}
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+              <button
+                onClick={handleGPS}
+                disabled={locating}
+                style={{
+                  height: '42px', padding: '0 16px', borderRadius: '10px',
+                  backgroundColor: 'var(--color-red)', color: '#FFFFFF', fontWeight: 700, fontSize: '0.9rem',
+                  display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(220, 38, 38, 0.25)'
+                }}
+              >
+                {locating ? <Loader2 size={16} className="animate-spin" /> : <Navigation size={16} />}
+                Định vị GPS
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div style={{ position: 'relative' }}>
+              <Search size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-subtle)' }} />
+              <input
+                type="text"
+                placeholder="Tìm tên nhà thờ, địa chỉ..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%', padding: '10px 12px 10px 38px', borderRadius: '10px',
+                  border: '1px solid var(--color-input-border)', backgroundColor: 'var(--color-input-bg)',
+                  fontSize: '0.95rem', color: 'var(--color-dark)', outline: 'none'
+                }}
+              />
+            </div>
           </div>
         </div>
 
-        {selectedDiocese && (
-          <div style={{ position: 'relative' }}>
-            <Search size={18} style={{ position: 'absolute', left: '12px', top: '11px', color: 'var(--color-subtle)', pointerEvents: 'none' }} />
-            <input
-              type="text"
-              placeholder="Tìm tên nhà thờ, địa chỉ..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                width: '100%', padding: '10px 12px 10px 42px', borderRadius: '10px',
-                border: '1px solid var(--color-input-border)', backgroundColor: 'var(--color-input-bg)',
-                fontSize: '0.95rem', outline: 'none'
-              }}
-            />
-          </div>
-        )}
-
+        {/* Results */}
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-            <Loader2 size={32} className="spin" style={{ margin: '0 auto' }} />
+          <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--color-subtle)' }}>
+            <Loader2 size={36} className="animate-spin" style={{ margin: '0 auto 12px' }} />
+            <p>Đang tải danh sách giờ lễ...</p>
           </div>
         ) : selectedDiocese ? (
           filtered.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--color-subtle)' }}>
+            <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--color-subtle)' }}>
               <MapPin size={40} style={{ margin: '0 auto 12px', opacity: 0.5 }} />
               <p>Không tìm thấy nhà thờ nào.</p>
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {filtered.map(item => (
-                <div key={item.id} className="liquid-glass" style={{
-                  padding: '14px', borderRadius: '12px',
-                  border: '1px solid rgba(211, 47, 47, 0.1)', backgroundColor: 'rgba(255, 255, 255, 0.4)'
-                }}>
-                  <div style={{ marginBottom: '8px' }}>
-                    <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-                      {item.parish}
-                    </h3>
-                    <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
-                      📍 {item.address}
-                    </p>
-                    {(item as any)._distance && (item as any)._distance !== Infinity && (
-                      <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-red)', fontWeight: 700 }}>
-                        ~{Math.round((item as any)._distance)} km
+              {filtered.map(item => {
+                const distanceVal = (item as MassTime & { _distance?: number })._distance;
+                return (
+                  <div key={item.id} className="liquid-glass" style={{
+                    padding: '14px', borderRadius: '12px',
+                    border: '1px solid rgba(211, 47, 47, 0.1)', backgroundColor: 'rgba(255, 255, 255, 0.4)'
+                  }}>
+                    <div style={{ marginBottom: '8px' }}>
+                      <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                        {item.parish}
+                      </h3>
+                      <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
+                        📍 {item.address}
                       </p>
-                    )}
-                  </div>
+                      {typeof distanceVal === 'number' && distanceVal !== Infinity && (
+                        <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-red)', fontWeight: 700 }}>
+                          ~{Math.round(distanceVal * 10) / 10} km
+                        </p>
+                      )}
+                    </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem', color: 'var(--color-dark)' }}>
-                    {DAY_ORDER.map(day => {
-                      const dayTimes = day === 'Chúa Nhật' ? item.sundayMass : day === 'Thứ Bảy' ? item.saturdayMass : item.weekdayMass;
-                      return (
-                        <div key={day} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span style={{ fontWeight: 700, minWidth: '65px' }}>{day}:</span>
-                          <span style={{ color: dayTimes?.length ? 'var(--color-red)' : 'var(--color-subtle)' }}>
-                            {dayTimes?.join(', ') || '—'}
-                          </span>
-                        </div>
-                      );
-                    })}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.8rem', color: 'var(--color-dark)' }}>
+                      {DAY_ORDER.map(day => {
+                        const dayTimes = day === 'Chúa Nhật' ? item.sundayMass : day === 'Thứ Bảy' ? item.saturdayMass : item.weekdayMass;
+                        return (
+                          <div key={day} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <span style={{ fontWeight: 700, minWidth: '65px' }}>{day}:</span>
+                            <span style={{ color: dayTimes?.length ? 'var(--color-red)' : 'var(--color-subtle)' }}>
+                              {dayTimes?.join(', ') || '—'}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )
         ) : (
