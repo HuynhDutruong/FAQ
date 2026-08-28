@@ -3,6 +3,7 @@ import { Be_Vietnam_Pro, Inter, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import Footer from '@/components/Footer';
+import ChatBubble from '@/components/ChatBubble';
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",

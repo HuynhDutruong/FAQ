@@ -9,6 +9,7 @@ import Rating from '@/components/Rating';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { db } from '@/lib/firebase';
+import FacebookFeed from '@/components/FacebookFeed';
 import IntroModalContent from '@/components/IntroModalContent';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import confetti from 'canvas-confetti';
