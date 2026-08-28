@@ -10,7 +10,20 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
-  Maximize2
+  Maximize2,
+  Flame,
+  Users,
+  Heart,
+  BookOpen,
+  Compass,
+  Tent,
+  Award,
+  Sparkles,
+  ShieldCheck,
+  Sun,
+  Target,
+  Clock,
+  CheckCircle2
 } from 'lucide-react';
 
 const BISHOPS = [
@@ -288,7 +301,7 @@ const REAL_GALLERY_IMAGES: RealPhoto[] = [
 ];
 
 export default function GioiThieuPage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'vatican' | 'vietnam' | 'diocese' | 'cathedral' | 'bishops' | 'gallery'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'vatican' | 'vietnam' | 'diocese' | 'cathedral' | 'bishops' | 'tntt' | 'gallery'>('overview');
   const [galleryFilter, setGalleryFilter] = useState<'all' | 'vatican' | 'vietnam' | 'exterior' | 'interior' | 'liturgy' | 'grounds' | 'community'>('all');
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
 
@@ -435,6 +448,7 @@ export default function GioiThieuPage() {
         }}>
           {[
             { id: 'overview', label: 'Tổng Quan' },
+            { id: 'tntt', label: 'Phong Trào TNTT VN' },
             { id: 'vatican', label: 'Tòa Thánh & Giáo Hội Toàn Cầu' },
             { id: 'vietnam', label: 'Giáo Hội VN & HĐGMVN' },
             { id: 'diocese', label: 'Lược Sử Giáo Phận' },
@@ -1024,6 +1038,372 @@ export default function GioiThieuPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+        )}
+
+        {/* ========================================================================= */}
+        {/* PHẦN MỚI: PHONG TRÀO THIẾU NHI THÁNH THỂ VIỆT NAM (LỊCH SỬ & TÔN CHỈ) */}
+        {/* ========================================================================= */}
+        {(activeTab === 'overview' || activeTab === 'tntt') && (
+          <section style={{
+            backgroundColor: 'var(--color-card-bg)',
+            borderRadius: '12px',
+            padding: '24px 28px',
+            border: '1px solid var(--color-border-subtle)',
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px'
+          }}>
+            {/* Header Banner */}
+            <div>
+              <div style={{
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                color: '#B45309',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: '6px'
+              }}>
+                PHONG TRÀO GIÁO DỤC THANH THIẾU NHI CÔNG GIÁO
+              </div>
+              <h2 style={{
+                margin: 0,
+                fontSize: 'clamp(1.2rem, 3.2vw, 1.6rem)',
+                fontWeight: 900,
+                color: 'var(--color-dark)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                <Flame size={24} color="#B71C1C" />
+                <span>Phong Trào Thiếu Nhi Thánh Thể Việt Nam</span>
+              </h2>
+              <p style={{
+                margin: '8px 0 0',
+                fontSize: '0.95rem',
+                color: 'var(--color-muted)',
+                lineHeight: 1.6
+              }}>
+                Phong trào Thiếu Nhi Thánh Thể (TNTT) là một đoàn thể Công giáo Tiến hành trực thuộc Giáo hội, có mục đích đào tạo giới trẻ thành những con người kiện toàn về nhân bản và những Kitô hữu đích thực, lấy <strong>Chúa Giêsu Thánh Thể</strong> làm trung tâm và lý tưởng sống.
+              </p>
+            </div>
+
+            {/* 1. Bốn Cột Mốc Lịch Sử Hình Thành & Phát Triển */}
+            <div>
+              <div style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                color: '#B71C1C',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <Clock size={16} />
+                <span>Lịch Sử & Các Giai Đoạn Phát Triển</span>
+              </div>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+                gap: '14px'
+              }}>
+                <div style={{
+                  padding: '16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--color-btn-subtle-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderLeft: '4px solid #B45309'
+                }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#B45309' }}>1844 – 1915</div>
+                  <h4 style={{ margin: '4px 0 6px', fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                    Cội Nguồn Nghĩa Binh
+                  </h4>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--color-muted)', lineHeight: 1.5 }}>
+                    Bắt nguồn từ Hội Cầu Nguyện của các linh mục Dòng Tên tại Pháp. Sau Sắc chỉ <em>Quam Singulari (1910)</em> của Thánh Giáo hoàng Piô X cho phép trẻ em rước lễ sớm, phong trào <strong>Nghĩa Binh Thánh Thể (Eucharistic Crusade)</strong> chính thức được thành lập năm 1915 tại Pháp.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--color-btn-subtle-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderLeft: '4px solid #B71C1C'
+                }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#B71C1C' }}>1929 – 1964</div>
+                  <h4 style={{ margin: '4px 0 6px', fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                    Du Nhập Vào Việt Nam
+                  </h4>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--color-muted)', lineHeight: 1.5 }}>
+                    Năm 1929, hai linh mục Dòng Xuân Bích (Cha Léon Palliard và Cha Paul Nguyễn Văn Định) thành lập Xứ đoàn Nghĩa Binh Thánh Thể đầu tiên tại <strong>Giáo xứ Hàm Long, Hà Nội</strong>. Phong trào nhanh chóng lan rộng khắp các giáo phận miền Bắc và miền Nam.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--color-btn-subtle-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderLeft: '4px solid #1D4ED8'
+                }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#1D4ED8' }}>1965 – 1975</div>
+                  <h4 style={{ margin: '4px 0 6px', fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                    Đổi Tên Thành Phong Trào TNTT
+                  </h4>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--color-muted)', lineHeight: 1.5 }}>
+                    Năm 1965, Hội Đồng Giám Mục Việt Nam chính thức phê chuẩn Nội quy mới, đổi tên thành <strong>Phong Trào Thiếu Nhi Thánh Thể Việt Nam</strong>. Đại hội Toàn quốc <em>Về Đất Hứa 1</em> năm 1972 tại Bình Triệu (Sài Gòn) quy tụ hơn 2.000 Huynh Trưởng trên cả nước.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '16px',
+                  borderRadius: '10px',
+                  backgroundColor: 'var(--color-btn-subtle-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderLeft: '4px solid #059669'
+                }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#059669' }}>1975 – Nay</div>
+                  <h4 style={{ margin: '4px 0 6px', fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                    Tái Thiết Lập & Phát Triển
+                  </h4>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--color-muted)', lineHeight: 1.5 }}>
+                    Phong trào tiếp tục phát triển mạnh mẽ tại cộng đoàn hải ngoại và được tái lập vững mạnh tại cả 27 Giáo phận Việt Nam, dưới sự đồng hành của Tổng Liên Đoàn TNTT Việt Nam nhận Thánh Tử Đạo <strong>Chân Phước Anrê Phú Yên</strong> làm Quan Thầy Huynh Trưởng.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Tôn Chỉ & Mục Đích */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '16px'
+            }}>
+              <div style={{
+                padding: '18px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(183, 28, 28, 0.04)',
+                border: '1px solid rgba(183, 28, 28, 0.15)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#B71C1C', fontWeight: 800, fontSize: '1rem', marginBottom: '8px' }}>
+                  <Target size={18} />
+                  <span>TÔN CHỈ PHONG TRÀO</span>
+                </div>
+                <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--color-muted)', lineHeight: 1.6 }}>
+                  Sống Lời Chúa và kết hiệp mật thiết với Chúa Giêsu Thánh Thể trong đời sống cầu nguyện, rước lễ, hy sinh và làm tông đồ dưới sự hướng dẫn của Giáo hội.
+                </p>
+              </div>
+
+              <div style={{
+                padding: '18px',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(37, 99, 235, 0.04)',
+                border: '1px solid rgba(37, 99, 235, 0.15)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#1D4ED8', fontWeight: 800, fontSize: '1rem', marginBottom: '8px' }}>
+                  <Award size={18} />
+                  <span>MỤC ĐÍCH ĐÀO TẠO</span>
+                </div>
+                <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '0.88rem', color: 'var(--color-muted)', lineHeight: 1.6 }}>
+                  <li><strong>Phương diện tự nhiên:</strong> Rèn luyện thể dục, trí dục, đức dục để trở thành những con người kiện toàn và công dân có ích cho xã hội.</li>
+                  <li><strong>Phương diện siêu nhiên:</strong> Nuôi dưỡng đời sống ân sủng, đào tạo đức tin vững chắc để trở thành người Kitô hữu trưởng thành và tông đồ nhiệt thành.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 3. Bốn Khẩu Hiệu Vàng */}
+            <div>
+              <div style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                color: '#B71C1C',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <Sparkles size={16} />
+                <span>Bốn Khẩu Hiệu Cốt Lõi Của Phong Trào</span>
+              </div>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                gap: '12px'
+              }}>
+                <div style={{
+                  padding: '14px',
+                  borderRadius: '8px',
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  textAlign: 'center',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
+                }}>
+                  <div style={{ fontSize: '1.4rem', marginBottom: '4px' }}>🕊️</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#B71C1C', marginBottom: '4px' }}>CẦU NGUYỆN</div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>
+                    Khởi đầu ngày sống và mọi hoạt động bằng việc kết hiệp tâm hồn cùng Chúa.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '14px',
+                  borderRadius: '8px',
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  textAlign: 'center',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
+                }}>
+                  <div style={{ fontSize: '1.4rem', marginBottom: '4px' }}>🍞</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#D97706', marginBottom: '4px' }}>RƯỚC LỄ</div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>
+                    Tham dự Thánh lễ và đón rước Mình Thánh Chúa làm nguồn sống thiêng liêng.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '14px',
+                  borderRadius: '8px',
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  textAlign: 'center',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
+                }}>
+                  <div style={{ fontSize: '1.4rem', marginBottom: '4px' }}>❤️</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#DC2626', marginBottom: '4px' }}>HY SINH</div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>
+                    Vui lòng đón nhận khó khăn, vác thập giá nhỏ mỗi ngày để phục vụ tha nhân.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '14px',
+                  borderRadius: '8px',
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  textAlign: 'center',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)'
+                }}>
+                  <div style={{ fontSize: '1.4rem', marginBottom: '4px' }}>🌟</div>
+                  <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#2563EB', marginBottom: '4px' }}>LÀM TÔNG ĐỒ</div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>
+                    Làm chứng nhân Tin Mừng bằng đời sống gương mẫu nơi gia đình và trường lớp.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Cơ Cấu Phân Ngành & Khăn Quàng */}
+            <div>
+              <div style={{
+                fontSize: '0.82rem',
+                fontWeight: 800,
+                color: '#B71C1C',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <Users size={16} />
+                <span>Cơ Cấu Các Ngành & Ý Nghĩa Khăn Quàng</span>
+              </div>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '10px'
+              }}>
+                <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'rgba(236, 72, 153, 0.08)', border: '1px solid rgba(236, 72, 153, 0.25)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <strong style={{ color: '#BE185D', fontSize: '0.92rem' }}>Ngành Chiên Con</strong>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FDF2F8', color: '#BE185D' }}>4 – 6 tuổi</span>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-dark)', fontWeight: 600 }}>Khăn Hồng • Khẩu hiệu: <em>Hiền Lành</em></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '2px' }}>Tượng trưng cho sự ngây thơ, đơn sơ và trong trắng của trẻ thơ.</div>
+                </div>
+
+                <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <strong style={{ color: '#047857', fontSize: '0.92rem' }}>Ngành Ấu Nhi</strong>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', backgroundColor: '#ECFDF5', color: '#047857' }}>7 – 9 tuổi</span>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-dark)', fontWeight: 600 }}>Khăn Xanh Lá • Khẩu hiệu: <em>Vâng Lời</em></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '2px' }}>Màu xanh tươi của mầm non đang vươn mình lớn lên trong tình thương.</div>
+                </div>
+
+                <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'rgba(37, 99, 235, 0.08)', border: '1px solid rgba(37, 99, 235, 0.25)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <strong style={{ color: '#1D4ED8', fontSize: '0.92rem' }}>Ngành Thiếu Nhi</strong>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', backgroundColor: '#EFF6FF', color: '#1D4ED8' }}>10 – 12 tuổi</span>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-dark)', fontWeight: 600 }}>Khăn Xanh Biển • Khẩu hiệu: <em>Hy Sinh</em></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '2px' }}>Màu trời xanh rộng lớn biểu trưng cho lý tưởng cao đẹp và lòng kiên trì.</div>
+                </div>
+
+                <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'rgba(217, 119, 6, 0.08)', border: '1px solid rgba(217, 119, 6, 0.25)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <strong style={{ color: '#B45309', fontSize: '0.92rem' }}>Ngành Nghĩa Sĩ</strong>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FFFBEB', color: '#B45309' }}>13 – 15 tuổi</span>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-dark)', fontWeight: 600 }}>Khăn Vàng Nghệ • Khẩu hiệu: <em>Chinh Phục</em></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '2px' }}>Ánh bình minh rạng rỡ của tuổi trẻ dấn thân mở mang Nước Chúa.</div>
+                </div>
+
+                <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'rgba(120, 53, 15, 0.08)', border: '1px solid rgba(120, 53, 15, 0.25)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <strong style={{ color: '#78350F', fontSize: '0.92rem' }}>Ngành Hiệp Sĩ</strong>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FEF3C7', color: '#78350F' }}>16 – 17 tuổi</span>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-dark)', fontWeight: 600 }}>Khăn Nâu Đất • Khẩu hiệu: <em>Dấn Thân</em></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '2px' }}>Màu đất mẹ phù sa, sẵn sàng phục vụ và hòa mình vào đời sống xã hội.</div>
+                </div>
+
+                <div style={{ padding: '12px 14px', borderRadius: '8px', backgroundColor: 'rgba(183, 28, 28, 0.08)', border: '1px solid rgba(183, 28, 28, 0.25)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <strong style={{ color: '#B71C1C', fontSize: '0.92rem' }}>Huynh Trưởng / Trợ Tá</strong>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', backgroundColor: '#FEF2F2', color: '#B71C1C' }}>18 tuổi trở lên</span>
+                  </div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--color-dark)', fontWeight: 600 }}>Khăn Đỏ Viền Vàng • Khẩu hiệu: <em>Phụng Sự</em></div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '2px' }}>Màu máu tử đạo và nhiệt huyết hy sinh vô vị lợi vì các em thiếu nhi.</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Xứ Đoàn Các Thánh Tử Đạo Việt Nam - Gx. Chánh Tòa Mỹ Tho */}
+            <div style={{
+              padding: '18px 20px',
+              borderRadius: '10px',
+              backgroundColor: 'var(--color-btn-subtle-bg)',
+              border: '1px solid var(--color-border-subtle)',
+              borderLeft: '4px solid #B71C1C'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#B71C1C', fontWeight: 800, fontSize: '1.05rem', marginBottom: '6px' }}>
+                <ShieldCheck size={20} />
+                <span>Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Gx. Chánh Tòa Mỹ Tho</span>
+              </div>
+              <p style={{ margin: '0 0 10px', fontSize: '0.92rem', color: 'var(--color-muted)', lineHeight: 1.6 }}>
+                Là chiếc nôi rèn luyện đức tin và nhân bản cho các thế hệ thanh thiếu nhi tại trung tâm Giáo phận Mỹ Tho. Xứ đoàn quy tụ hàng trăm đoàn sinh thuộc các ngành Chiên Con, Ấu Nhi, Thiếu Nhi, Nghĩa Sĩ cùng Ban Huynh Trưởng nhiệt thành dưới sự coi sóc trực tiếp của Cha Sở và Quý Cha Tuyên úy.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', backgroundColor: 'rgba(183, 28, 28, 0.08)', color: '#B71C1C' }}>
+                  ⛪ Thánh lễ Thiếu Nhi Sáng Chúa Nhật
+                </span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', backgroundColor: 'rgba(183, 28, 28, 0.08)', color: '#B71C1C' }}>
+                  📚 Huấn Luyện Giáo Lý & Nhân Bản
+                </span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', backgroundColor: 'rgba(183, 28, 28, 0.08)', color: '#B71C1C' }}>
+                  ⛺ Sa Mạc & Trại Hè Rèn Luyện Kỹ Năng
+                </span>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, padding: '3px 10px', borderRadius: '4px', backgroundColor: 'rgba(183, 28, 28, 0.08)', color: '#B71C1C' }}>
+                  🤝 Hoạt Động Tông Đồ Bác Ái Xã Hội
+                </span>
+              </div>
             </div>
           </section>
         )}
