@@ -6,7 +6,6 @@ import {
   LogOut,
   Trash2,
   Clock,
-  CheckSquare,
   Church,
   Users,
   Share2,
@@ -19,8 +18,7 @@ import {
 import Image from 'next/image';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, where, doc, deleteDoc } from 'firebase/firestore';
-import MassTimeAdmin from '@/components/MassTimeAdmin';
-import MassTimeFeedbackAdmin from '@/components/MassTimeFeedbackAdmin';
+import UnifiedMassManagement from '@/components/UnifiedMassManagement';
 import AdminUsersManagement from '@/components/AdminUsersManagement';
 import FacebookAdmin from '@/components/FacebookAdmin';
 
@@ -36,7 +34,7 @@ interface Submission {
   createdAt: Timestamp;
 }
 
-type TabType = 'duyet_giole' | 'giole' | 'quanly_admin' | 'faq' | 'feedback' | 'history' | 'facebook';
+type TabType = 'giole' | 'quanly_admin' | 'faq' | 'feedback' | 'history' | 'facebook';
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
@@ -53,7 +51,7 @@ export default function AdminDashboard() {
         return 'facebook';
       }
     }
-    return 'duyet_giole';
+    return 'giole';
   });
   const [pendingFeedbackCount, setPendingFeedbackCount] = useState(0);
   const [pendingUserCount, setPendingUserCount] = useState(0);
@@ -124,8 +122,7 @@ export default function AdminDashboard() {
   }
 
   const navItems = [
-    { key: 'duyet_giole' as TabType, label: 'Duyệt Giờ Lễ', icon: CheckSquare, badge: pendingFeedbackCount },
-    { key: 'giole' as TabType, label: 'Quản Lý Giờ Lễ', icon: Church },
+    { key: 'giole' as TabType, label: 'Quản Lý Giờ Lễ', icon: Church, badge: pendingFeedbackCount },
     { key: 'quanly_admin' as TabType, label: 'Quản Lý Admin', icon: Users, badge: pendingUserCount },
     { key: 'facebook' as TabType, label: 'Fanpage Facebook', icon: Share2 },
     { key: 'faq' as TabType, label: 'Hộp Thư Vấn Đáp', icon: HelpCircle },
@@ -474,10 +471,8 @@ export default function AdminDashboard() {
             <div style={{ padding: '24px', backgroundColor: '#FEE2E2', color: '#B91C1C', borderRadius: '12px' }}>
               <strong>Lỗi tải dữ liệu:</strong> {error}
             </div>
-          ) : activeTab === 'duyet_giole' ? (
-            <MassTimeFeedbackAdmin />
           ) : activeTab === 'giole' ? (
-            <MassTimeAdmin />
+            <UnifiedMassManagement />
           ) : activeTab === 'quanly_admin' ? (
             <AdminUsersManagement />
           ) : activeTab === 'facebook' ? (

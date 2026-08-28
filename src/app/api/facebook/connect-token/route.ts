@@ -27,6 +27,24 @@ export async function POST(request: Request) {
 
     let cleanPageId = pageId ? pageId.trim() : '';
 
+    // Nếu là User Token ngắn hạn: đổi sang Token dài hạn để Page Token lấy ra dùng được vĩnh viễn
+    const appId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
+    const appSecret = process.env.FACEBOOK_APP_SECRET;
+    if (appId && appSecret) {
+      try {
+        const llRes = await fetch(
+          `https://graph.facebook.com/v20.0/oauth/access_token?grant_type=fb_exchange_token&client_id=${appId}&client_secret=${appSecret}&fb_exchange_token=${cleanToken}`
+        );
+        const llData = await llRes.json();
+        if (!llData.error && llData.access_token) {
+          cleanToken = llData.access_token;
+        }
+      } catch (e) {
+        // ponytail: token vẫn dùng được, chỉ là hạn ngắn hơn
+        console.warn('Cannot exchange long-lived token:', e);
+      }
+    }
+
     // BƯỚC 1: Kiểm tra xem đây có phải là USER Access Token không (để tự động lấy Page Token cho người dùng)
     try {
       const userAccountsRes = await fetch(`https://graph.facebook.com/v20.0/me/accounts?access_token=${cleanToken}`);

@@ -58,7 +58,8 @@ interface FBComment {
 export default function FacebookAdmin() {
   const [fbSettings, setFbSettings] = useState<FacebookSettings | null>(null);
   const [loading, setLoading] = useState(true);
-  const [fbLoading, setFbLoading] = useState(false);
+  const [statusMsg, setStatusMsg] = useState('');
+  const [tokenExpiry, setTokenExpiry] = useState<{ expiresAt: number | null; neverExpires: boolean } | null>(null);
 
   // Feed Posts
   const [posts, setPosts] = useState<FBPost[]>([]);
@@ -111,65 +112,52 @@ export default function FacebookAdmin() {
     }
   }, []);
 
-  useEffect(() => {
-    // 1. Kiểm tra trạng thái tự động từ ENV hoặc Firestore qua API
-    const checkStatus = async () => {
-      try {
-        const res = await fetch('/api/facebook/status');
-        const data = await res.json();
-        if (data.connected && data.pageId) {
-          setFbSettings(prev => ({
-            connected: true,
-            selectedPageId: data.pageId,
-            selectedPageName: data.pageName || 'Fanpage Xứ Đoàn',
-            selectedPageToken: '',
-            pages: prev?.pages || []
-          }));
-          fetchPosts();
-        }
-      } catch (e) {
-        console.warn('Cannot check facebook status:', e);
-      } finally {
-        setLoading(false);
+  // Kiểm tra trạng thái + tính hiệu lực của Token qua API (nguồn sự thật duy nhất)
+  const checkStatus = useCallback(async (fsData: FacebookSettings | null) => {
+    try {
+      const res = await fetch('/api/facebook/status');
+      const data = await res.json();
+      if (data.connected && data.pageId) {
+        setStatusMsg('');
+        setTokenExpiry({ expiresAt: data.expiresAt ?? null, neverExpires: !!data.neverExpires });
+        setFbSettings({
+          connected: true,
+          selectedPageId: data.pageId,
+          selectedPageName: data.pageName || 'Fanpage Xứ Đoàn',
+          selectedPageToken: '',
+          pages: fsData?.pages || []
+        });
+        fetchPosts();
+      } else {
+        setStatusMsg(data.message || '');
+        setTokenExpiry(null);
+        setFbSettings(null);
+        setPosts([]);
       }
-    };
-
-    checkStatus();
-
-    // 2. Lắng nghe thay đổi thời gian thực trong Firestore
-    const unsubscribe = onSnapshot(doc(db, 'settings', 'facebook'), (snap) => {
-      if (snap.exists()) {
-        const data = snap.data() as FacebookSettings;
-        if (data.connected && data.selectedPageId) {
-          setFbSettings(data);
-          fetchPosts();
-        }
-      }
+    } catch (e) {
+      console.warn('Cannot check facebook status:', e);
+    } finally {
       setLoading(false);
+    }
+  }, [fetchPosts]);
+
+  useEffect(() => {
+    // Firestore bắn snapshot ngay lần đầu và mỗi khi cấu hình đổi -> kiểm tra lại Token
+    const unsubscribe = onSnapshot(doc(db, 'settings', 'facebook'), (snap) => {
+      checkStatus(snap.exists() ? (snap.data() as FacebookSettings) : null);
     }, (err) => {
       console.error('Error reading facebook settings:', err);
-      setLoading(false);
+      checkStatus(null);
     });
 
     return () => unsubscribe();
-  }, [fetchPosts]);
-
-  const handleFacebookLogin = () => {
-    setFbLoading(true);
-    const appId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
-    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://chanhtoa.tnttgiaophanmytho.online';
-    const redirectUri = encodeURIComponent(`${origin}/api/facebook/callback`);
-    const scope = 'public_profile,pages_show_list,pages_read_engagement';
-
-    // auth_type=rerequest bắt buộc Facebook hiển thị lại màn hình chọn Fanpage
-    window.location.href = `https://www.facebook.com/v20.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUri}&scope=${scope}&auth_type=rerequest`;
-  };
+  }, [checkStatus]);
 
   // Cấu hình thủ công Page Token
   const handleSaveManualToken = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!manualPageId.trim() || !manualPageToken.trim()) {
-      alert('Vui lòng nhập Page ID và Page Access Token.');
+    if (!manualPageToken.trim()) {
+      alert('Vui lòng nhập Page Access Token.');
       return;
     }
 
@@ -188,12 +176,11 @@ export default function FacebookAdmin() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Không thể kết nối');
 
-      showToast(` Kết nối thành công với Fanpage: ${data.pageName}!`);
+      showToast(`Kết nối thành công với Fanpage: ${data.pageName}!`);
       setShowManualForm(false);
       setManualPageId('');
       setManualPageToken('');
       setManualPageName('');
-      fetchPosts();
 
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Lỗi kết nối';
@@ -211,7 +198,6 @@ export default function FacebookAdmin() {
         selectedPageToken: page.access_token
       });
       showToast(`Đã chuyển sang Fanpage: ${page.name}`);
-      fetchPosts();
     } catch (err: unknown) {
       console.error(err);
       alert('Không thể chuyển trang.');
@@ -485,6 +471,13 @@ export default function FacebookAdmin() {
                 </div>
                 <div style={{ fontSize: '0.8rem', color: '#047857', marginTop: '2px' }}>
                   Page ID: <code>{fbSettings.selectedPageId}</code>
+                  {tokenExpiry && (
+                    <span style={{ marginLeft: '10px' }}>
+                      {tokenExpiry.neverExpires || tokenExpiry.expiresAt === null
+                        ? '• Token vĩnh viễn'
+                        : `• Token hết hạn: ${new Date(tokenExpiry.expiresAt * 1000).toLocaleString('vi-VN')}`}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -523,40 +516,21 @@ export default function FacebookAdmin() {
               flexDirection: 'column',
               gap: '20px'
             }}>
-              {/* Cách 1: Đăng nhập Facebook tự động */}
-              <div style={{ textAlign: 'center', paddingBottom: '16px', borderBottom: '1px dashed #D1D5DB' }}>
-                <p style={{ color: '#374151', marginBottom: '14px', fontSize: '0.92rem', fontWeight: 600 }}>
-                  Cách 1: Đăng nhập trực tiếp tài khoản Facebook quản trị Fanpage
-                </p>
-                <button
-                  onClick={handleFacebookLogin}
-                  disabled={fbLoading}
-                  style={{
-                    padding: '12px 24px',
-                    backgroundColor: '#1877F2',
-                    color: 'white',
-                    borderRadius: '10px',
-                    border: 'none',
-                    fontSize: '0.95rem',
-                    fontWeight: 700,
-                    cursor: fbLoading ? 'wait' : 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)'
-                  }}
-                >
-                  {fbLoading ? <Loader2 size={18} className="spin" /> : <Share2 size={18} />}
-                  Đăng nhập & Kết nối Fanpage Facebook
-                </button>
-              </div>
+              {statusMsg && (
+                <div style={{
+                  padding: '10px 14px', backgroundColor: '#FEF3C7', border: '1px solid #FCD34D',
+                  borderRadius: '10px', color: '#92400E', fontSize: '0.85rem', fontWeight: 600
+                }}>
+                  {statusMsg}
+                </div>
+              )}
 
-              {/* Cách 2: Nhập trực tiếp Page Token & Page ID */}
+              {/* Kết nối trực tiếp bằng Access Token, không cần cài App Facebook */}
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#1F2937', fontWeight: 700, fontSize: '0.92rem' }}>
                     <Key size={16} color="#D97706" />
-                    <span>Cách 2: Cấu hình nhanh bằng Page ID & Page Access Token</span>
+                    <span>Kết nối Fanpage bằng Access Token (dán trực tiếp, không cần App)</span>
                   </div>
                   <button
                     onClick={() => setShowManualForm(!showManualForm)}
@@ -575,11 +549,10 @@ export default function FacebookAdmin() {
                   }}>
                     <div>
                       <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
-                        Facebook Page ID (*):
+                        Facebook Page ID (bỏ trống để hệ thống tự nhận):
                       </label>
                       <input
                         type="text"
-                        required
                         placeholder="VD: 1029384756..."
                         value={manualPageId}
                         onChange={(e) => setManualPageId(e.target.value)}
@@ -597,7 +570,7 @@ export default function FacebookAdmin() {
                       <input
                         type="password"
                         required
-                        placeholder="Dán mã Page Access Token (EAA...)..."
+                        placeholder="Dán Page Access Token hoặc User Access Token (EAA...)..."
                         value={manualPageToken}
                         onChange={(e) => setManualPageToken(e.target.value)}
                         style={{
