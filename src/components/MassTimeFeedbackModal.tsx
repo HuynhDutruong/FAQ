@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { X, Send, CheckCircle, Church, Clock, MapPin, AlertCircle, Loader2 } from 'lucide-react';
+import { X, Send, CheckCircle, Church, Clock, MapPin, AlertCircle, Loader2, User, Phone, FileText } from 'lucide-react';
 import { MassTime, parseTimes, submitMassTimeFeedback } from '@/lib/massTimes';
 import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
@@ -14,21 +14,22 @@ interface Props {
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  padding: '10px 14px',
-  borderRadius: '10px',
+  padding: '11px 14px',
+  borderRadius: '8px',
   border: '1px solid var(--color-input-border)',
   backgroundColor: 'var(--color-input-bg)',
-  fontSize: '0.95rem',
+  fontSize: '0.92rem',
   color: 'var(--color-input-text)',
   outline: 'none',
   boxSizing: 'border-box',
-  fontFamily: 'inherit'
+  fontFamily: 'inherit',
+  transition: 'border-color 0.2s, box-shadow 0.2s'
 };
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
-  marginBottom: '4px',
-  fontWeight: 600,
+  marginBottom: '6px',
+  fontWeight: 700,
   fontSize: '0.85rem',
   color: 'var(--color-dark)',
   letterSpacing: '0.2px'
@@ -110,7 +111,7 @@ function FeedbackFormContent({
       setSuccess(true);
     } catch (err: unknown) {
       console.error('Error submitting feedback:', err);
-      setError(err instanceof Error ? err.message : t.feedbackErrorSubmit);
+      setError(err instanceof Error ? err.message : (t?.feedbackErrorSubmit || 'Có lỗi xảy ra khi gửi thông tin.'));
     } finally {
       setLoading(false);
     }
@@ -118,13 +119,13 @@ function FeedbackFormContent({
 
   if (success) {
     return (
-      <div style={{ textAlign: 'center', padding: '32px 16px' }}>
+      <div style={{ textAlign: 'center', padding: '36px 16px' }}>
         <div
           style={{
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            backgroundColor: 'rgba(16, 185, 129, 0.15)',
+            backgroundColor: 'rgba(16, 185, 129, 0.12)',
             color: '#10B981',
             display: 'flex',
             alignItems: 'center',
@@ -134,72 +135,94 @@ function FeedbackFormContent({
         >
           <CheckCircle size={36} />
         </div>
-        <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#111827', marginBottom: '8px' }}>
+        <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--color-dark)', marginBottom: '8px' }}>
           Gửi Thông Tin Thành Công!
         </h3>
-        <p style={{ color: '#4B5563', fontSize: '0.95rem', lineHeight: 1.5, marginBottom: '24px' }}>
-          {t.feedbackSuccessMessage}
+        <p style={{ color: 'var(--color-muted)', fontSize: '0.92rem', lineHeight: 1.5, marginBottom: '24px', maxWidth: '380px', margin: '0 auto 24px' }}>
+          Cảm ơn bạn đã đóng góp thông tin cho cộng đoàn. Ban quản trị sẽ đối chiếu và cập nhật sớm nhất.
         </p>
         <button
           onClick={onClose}
           style={{
-            padding: '10px 24px',
+            padding: '10px 28px',
             backgroundColor: 'var(--color-red)',
-            color: 'white',
+            color: '#FFFFFF',
             border: 'none',
-            borderRadius: '10px',
+            borderRadius: '8px',
             fontWeight: 700,
             cursor: 'pointer',
-            fontSize: '0.95rem'
+            fontSize: '0.92rem'
           }}
         >
-          Đóng
+          Đóng cửa sổ
         </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
-        <div
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+      
+      {/* Header Info */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '14px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div
+            style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '8px',
+              backgroundColor: isEdit ? 'rgba(211, 47, 47, 0.1)' : 'rgba(217, 119, 6, 0.1)',
+              color: isEdit ? 'var(--color-red)' : '#D97706',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Church size={20} />
+          </div>
+          <div>
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0 }}>
+              {isEdit ? 'Yêu Cầu Chỉnh Sửa Giờ Lễ' : 'Đóng Góp Giáo Xứ Mới'}
+            </h3>
+            <p style={{ fontSize: '0.8rem', color: 'var(--color-subtle)', margin: '2px 0 0' }}>
+              {isEdit
+                ? `Đề xuất điều chỉnh thông tin cho ${targetParish?.parish}`
+                : 'Bổ sung nhà thờ / giáo xứ mới vào hệ thống tra cứu'}
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={onClose}
           style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '10px',
-            backgroundColor: isEdit ? 'rgba(211, 47, 47, 0.1)' : 'rgba(251, 192, 45, 0.2)',
-            color: isEdit ? 'var(--color-red)' : '#B45309',
+            background: 'none',
+            border: 'none',
+            color: 'var(--color-subtle)',
+            cursor: 'pointer',
+            padding: '6px',
+            borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
         >
-          <Church size={22} />
-        </div>
-        <div>
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#111827', lineHeight: 1.2 }}>
-            {isEdit ? t.feedbackModalTitleEdit : t.feedbackModalTitleAdd}
-          </h3>
-          <p style={{ fontSize: '0.8rem', color: '#6B7280', marginTop: '2px' }}>
-            {isEdit
-              ? 'Đề xuất sửa đổi giờ lễ hoặc địa chỉ của giáo xứ này'
-              : 'Đóng góp giáo xứ mới chưa có trong hệ thống'}
-          </p>
-        </div>
+          <X size={20} />
+        </button>
       </div>
 
       {error && (
         <div
           style={{
             padding: '12px 14px',
-            backgroundColor: '#FEE2E2',
-            color: '#991B1B',
-            borderRadius: '10px',
-            fontSize: '0.9rem',
+            backgroundColor: 'rgba(220, 38, 38, 0.1)',
+            color: 'var(--color-red)',
+            borderRadius: '8px',
+            fontSize: '0.88rem',
+            fontWeight: 600,
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
-            marginBottom: '16px'
+            gap: '8px'
           }}
         >
           <AlertCircle size={18} style={{ flexShrink: 0 }} />
@@ -207,172 +230,192 @@ function FeedbackFormContent({
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px', marginBottom: '14px' }}>
-        <div>
-          <label style={labelStyle}>Tên Giáo xứ / Nhà thờ *</label>
-          <input
-            style={inputStyle}
-            value={parish}
-            onChange={(e) => setParish(e.target.value)}
-            placeholder="VD: Giáo xứ Tân Định"
-            required
-          />
+      {/* 1. Basic Parish Info */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
+          <div>
+            <label style={labelStyle}>Tên Giáo xứ / Nhà thờ <span style={{ color: 'var(--color-red)' }}>*</span></label>
+            <input
+              style={inputStyle}
+              value={parish}
+              onChange={(e) => setParish(e.target.value)}
+              placeholder="VD: Giáo xứ Tân Định"
+              required
+            />
+          </div>
+
+          <div>
+            <label style={labelStyle}>Giáo phận <span style={{ color: 'var(--color-red)' }}>*</span></label>
+            <select
+              style={{ ...inputStyle, cursor: 'pointer' }}
+              value={diocese}
+              onChange={(e) => setDiocese(e.target.value)}
+              required
+            >
+              <option value="">-- Chọn Giáo phận --</option>
+              {ALL_DIOCESES.map((d) => (
+                <option key={d} value={d}>
+                  {dioceseLabel(d)}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
+          <div>
+            <label style={labelStyle}>Giáo hạt (nếu biết)</label>
+            <input
+              style={inputStyle}
+              value={deanery}
+              onChange={(e) => setDeanery(e.target.value)}
+              placeholder="VD: Tân Định, Mỹ Tho..."
+            />
+          </div>
+
+          <div>
+            <label style={labelStyle}>Tỉnh / Thành phố <span style={{ color: 'var(--color-red)' }}>*</span></label>
+            <input
+              style={inputStyle}
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
+              placeholder="VD: TP. Hồ Chí Minh, Tiền Giang..."
+              required
+            />
+          </div>
         </div>
 
         <div>
-          <label style={labelStyle}>Giáo phận *</label>
-          <select
+          <label style={labelStyle}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <MapPin size={14} color="var(--color-red)" /> Địa chỉ chi tiết
+            </span>
+          </label>
+          <input
             style={inputStyle}
-            value={diocese}
-            onChange={(e) => setDiocese(e.target.value)}
-            required
-          >
-            <option value="">-- Chọn Giáo phận --</option>
-            {ALL_DIOCESES.map((d) => (
-              <option key={d} value={d}>
-                {dioceseLabel(d)}
-              </option>
-            ))}
-          </select>
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="VD: 289 Hai Bà Trưng, Phường 8, Quận 3..."
+          />
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px', marginBottom: '14px' }}>
-        <div>
-          <label style={labelStyle}>Giáo hạt (nếu biết)</label>
-          <input
-            style={inputStyle}
-            value={deanery}
-            onChange={(e) => setDeanery(e.target.value)}
-            placeholder="VD: Tân Định, Gia Định..."
-          />
-        </div>
-
-        <div>
-          <label style={labelStyle}>Tỉnh / Thành phố *</label>
-          <input
-            style={inputStyle}
-            value={province}
-            onChange={(e) => setProvince(e.target.value)}
-            placeholder="VD: TP. Hồ Chí Minh, Tiền Giang..."
-            required
-          />
-        </div>
-      </div>
-
-      <div style={{ marginBottom: '14px' }}>
-        <label style={labelStyle}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-            <MapPin size={14} /> Địa chỉ chi tiết
-          </span>
-        </label>
-        <input
-          style={inputStyle}
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="VD: 289 Hai Bà Trưng, Phường 8, Quận 3..."
-        />
-      </div>
-
-      {/* Mass Times Inputs */}
+      {/* 2. Mass Times Schedule Inputs */}
       <div
         style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.03)',
-          borderRadius: '12px',
+          backgroundColor: 'var(--color-btn-subtle-bg)',
+          borderRadius: '10px',
           padding: '14px',
-          marginBottom: '14px',
-          border: '1px solid rgba(0, 0, 0, 0.06)'
+          border: '1px solid var(--color-border-subtle)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px'
         }}
       >
-        <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Clock size={15} /> Giờ lễ (nhập cách nhau bằng dấu phẩy, VD: 05:00, 17:30)
+        <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-dark)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <Clock size={15} color="var(--color-red)" />
+          <span>Lịch Giờ Thánh Lễ (Cách nhau bởi dấu phẩy, VD: 05:00, 17:30)</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
-          <div>
-            <label style={{ ...labelStyle, fontSize: '0.8rem', color: '#4B5563' }}>
-              Ngày thường (Thứ 2 - Thứ 6 / Thứ 7 sáng)
-            </label>
-            <input
-              style={inputStyle}
-              value={weekdayMassStr}
-              onChange={(e) => setWeekdayMassStr(e.target.value)}
-              placeholder="VD: 05:00, 17:30"
-            />
-          </div>
-
-          <div>
-            <label style={{ ...labelStyle, fontSize: '0.8rem', color: '#4B5563' }}>
-              Chiều Thứ Bảy (Lễ Vọng Chúa Nhật - nếu có)
-            </label>
-            <input
-              style={inputStyle}
-              value={saturdayMassStr}
-              onChange={(e) => setSaturdayMassStr(e.target.value)}
-              placeholder="VD: 18:00, 19:30"
-            />
-          </div>
-
-          <div>
-            <label style={{ ...labelStyle, fontSize: '0.8rem', color: 'var(--color-red)' }}>
-              Chúa Nhật *
-            </label>
-            <input
-              style={inputStyle}
-              value={sundayMassStr}
-              onChange={(e) => setSundayMassStr(e.target.value)}
-              placeholder="VD: 05:00, 07:00, 16:30, 18:00"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div style={{ marginBottom: '14px' }}>
-        <label style={labelStyle}>Ghi chú / Nguồn thông tin (lý do sửa, link bài viết...)</label>
-        <textarea
-          style={{ ...inputStyle, minHeight: '60px', resize: 'vertical' }}
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          placeholder="VD: Giờ lễ áp dụng từ tháng 10/2024 theo thông báo của Giáo xứ..."
-        />
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginBottom: '20px' }}>
         <div>
-          <label style={labelStyle}>Tên người gửi (tuỳ chọn)</label>
+          <label style={{ ...labelStyle, fontSize: '0.82rem', color: 'var(--color-muted)' }}>
+            Chúa Nhật (Lễ Chính) <span style={{ color: 'var(--color-red)' }}>*</span>
+          </label>
           <input
             style={inputStyle}
-            value={contactName}
-            onChange={(e) => setContactName(e.target.value)}
-            placeholder="VD: Giuse Nguyễn Văn A"
+            value={sundayMassStr}
+            onChange={(e) => setSundayMassStr(e.target.value)}
+            placeholder="VD: 05:00, 07:00, 16:30, 18:00"
+            required
           />
         </div>
 
         <div>
-          <label style={labelStyle}>Số điện thoại (tuỳ chọn)</label>
+          <label style={{ ...labelStyle, fontSize: '0.82rem', color: 'var(--color-muted)' }}>
+            Chiều Thứ Bảy (Lễ Vọng Chúa Nhật - nếu có)
+          </label>
           <input
             style={inputStyle}
-            value={contactPhone}
-            onChange={(e) => setContactPhone(e.target.value)}
-            placeholder="VD: 0901234567"
+            value={saturdayMassStr}
+            onChange={(e) => setSaturdayMassStr(e.target.value)}
+            placeholder="VD: 18:00, 19:30"
+          />
+        </div>
+
+        <div>
+          <label style={{ ...labelStyle, fontSize: '0.82rem', color: 'var(--color-muted)' }}>
+            Ngày trong tuần (Thứ 2 - Thứ 6)
+          </label>
+          <input
+            style={inputStyle}
+            value={weekdayMassStr}
+            onChange={(e) => setWeekdayMassStr(e.target.value)}
+            placeholder="VD: 05:00, 17:30"
           />
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+      {/* 3. Additional Note & Contact Details */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div>
+          <label style={labelStyle}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <FileText size={14} /> Ghi chú thêm (nguồn thông tin, lưu ý...)
+            </span>
+          </label>
+          <textarea
+            style={{ ...inputStyle, minHeight: '65px', resize: 'vertical' }}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="VD: Giờ lễ áp dụng theo lịch mùa hè, có lễ tiếng Anh..."
+          />
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+          <div>
+            <label style={labelStyle}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <User size={14} /> Họ tên người gửi (tuỳ chọn)
+              </span>
+            </label>
+            <input
+              style={inputStyle}
+              value={contactName}
+              onChange={(e) => setContactName(e.target.value)}
+              placeholder="VD: Giuse Nguyễn Văn A"
+            />
+          </div>
+
+          <div>
+            <label style={labelStyle}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                <Phone size={14} /> Số điện thoại liên hệ (tuỳ chọn)
+              </span>
+            </label>
+            <input
+              style={inputStyle}
+              value={contactPhone}
+              onChange={(e) => setContactPhone(e.target.value)}
+              placeholder="VD: 0901234567"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Action Footer */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '10px', paddingTop: '10px', borderTop: '1px solid var(--color-border-subtle)' }}>
         <button
           type="button"
           onClick={onClose}
-          disabled={loading}
           style={{
             padding: '10px 18px',
-            backgroundColor: '#F3F4F6',
-            color: '#374151',
-            border: 'none',
-            borderRadius: '10px',
-            fontWeight: 600,
-            cursor: 'pointer',
-            fontSize: '0.9rem'
+            borderRadius: '8px',
+            backgroundColor: 'var(--color-btn-subtle-bg)',
+            color: 'var(--color-dark)',
+            border: '1px solid var(--color-border-subtle)',
+            fontSize: '0.9rem',
+            fontWeight: 700,
+            cursor: 'pointer'
           }}
         >
           Huỷ
@@ -382,100 +425,68 @@ function FeedbackFormContent({
           type="submit"
           disabled={loading}
           style={{
-            padding: '10px 22px',
+            padding: '10px 24px',
+            borderRadius: '8px',
             backgroundColor: 'var(--color-red)',
-            color: 'white',
+            color: '#FFFFFF',
             border: 'none',
-            borderRadius: '10px',
-            fontWeight: 700,
-            cursor: loading ? 'not-allowed' : 'pointer',
             fontSize: '0.9rem',
-            display: 'flex',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '8px',
-            opacity: loading ? 0.7 : 1,
-            boxShadow: '0 4px 12px rgba(211, 47, 47, 0.25)'
+            gap: '6px',
+            boxShadow: '0 2px 8px rgba(211, 47, 47, 0.3)',
+            opacity: loading ? 0.7 : 1
           }}
         >
-          {loading ? (
-            <>
-              <Loader2 size={18} className="spin" /> Đang gửi...
-            </>
-          ) : (
-            <>
-              <Send size={18} /> Gửi Phản Hồi
-            </>
-          )}
+          {loading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+          <span>{isEdit ? 'Gửi Yêu Cầu Chỉnh Sửa' : 'Gửi Đóng Góp'}</span>
         </button>
       </div>
     </form>
   );
 }
 
-export default function MassTimeFeedbackModal({
-  isOpen,
-  onClose,
-  targetParish,
-  defaultDiocese = ''
-}: Props) {
+export default function MassTimeFeedbackModal({ isOpen, onClose, targetParish, defaultDiocese = '' }: Props) {
   if (!isOpen) return null;
 
   return (
     <div
       style={{
         position: 'fixed',
-        inset: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 99999,
         backgroundColor: 'rgba(0, 0, 0, 0.65)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        backdropFilter: 'blur(6px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 999999,
-        padding: '16px'
+        padding: '16px',
+        overflowY: 'auto'
       }}
-      onClick={onClose}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
     >
       <div
         style={{
           width: '100%',
           maxWidth: '620px',
+          backgroundColor: 'var(--color-card-bg)',
+          borderRadius: '16px',
+          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.25)',
+          border: '1px solid var(--color-border-subtle)',
+          padding: '24px',
           maxHeight: '90vh',
           overflowY: 'auto',
-          backgroundColor: '#FFFFFF',
-          borderRadius: '20px',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)',
-          padding: '28px 24px',
-          position: 'relative'
+          boxSizing: 'border-box'
         }}
-        onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '16px',
-            right: '16px',
-            background: 'rgba(0, 0, 0, 0.06)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '36px',
-            height: '36px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            color: '#4B5563',
-            transition: 'all 0.2s'
-          }}
-          aria-label="Đóng"
-        >
-          <X size={20} />
-        </button>
-
         <FeedbackFormContent
-          key={targetParish?.id ?? 'new-form'}
           targetParish={targetParish}
           defaultDiocese={defaultDiocese}
           onClose={onClose}
