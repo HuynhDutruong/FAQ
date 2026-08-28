@@ -1605,3 +1605,15 @@ button {
   background: var(--fb-chip);
   animation: none;
 }
+
+/* Ultra High-Definition & Crisp Image Clarity */
+img, picture, .news-thumb img, .article-cover img, .hdgm-post-card img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: high-quality;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
