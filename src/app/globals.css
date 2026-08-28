@@ -21,7 +21,7 @@
   --color-modal-bg: rgba(255, 255, 255, 0.94);
   
   /* Liquid Glass iOS 18 Properties */
-  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.85);
   --glass-border-bottom: rgba(255, 255, 255, 0.35);
   --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.4);
@@ -33,9 +33,9 @@
   --foreground: var(--color-dark);
 
   /* Fallback cho font chữ */
-  --font-be-vietnam-pro: 'Be Vietnam Pro', system-ui, sans-serif;
-  --font-inter: 'Inter', system-ui, sans-serif;
-  --font-noto-sans-sc: 'Noto Sans SC', system-ui, sans-serif;
+  --font-be-vietnam-pro: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-noto-sans-sc: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
 
   /* Default Font (Vietnamese) */
   --font-primary: var(--font-be-vietnam-pro);
@@ -64,11 +64,11 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  /* Light Mode Ambient Glow */
+  /* Light Mode Apple Ambient Glow */
   background: 
-    radial-gradient(circle at 15% 20%, rgba(254, 226, 226, 0.6) 0%, transparent 45%),
-    radial-gradient(circle at 85% 30%, rgba(254, 243, 199, 0.6) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(254, 226, 226, 0.5) 0%, transparent 55%),
+    radial-gradient(circle at 15% 15%, rgba(254, 226, 226, 0.65) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(254, 243, 199, 0.65) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(254, 226, 226, 0.55) 0%, transparent 55%),
     linear-gradient(135deg, #FFFDF9 0%, #FFF5F5 50%, #FFFBEB 100%);
   background-size: 150% 150%;
   animation: liquidMeshGlow 12s ease-in-out infinite alternate;
@@ -112,7 +112,7 @@ button {
 .liquid-glass:hover {
   box-shadow: var(--glass-shadow-hover);
   transform: translateY(-4px) scale(1.01);
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
 }
 
 .liquid-glass:active {
@@ -143,57 +143,71 @@ button {
 }
 
 /* ==========================================================================
-   MIDNIGHT SAPPHIRE & OBSIDIAN DARK MODE (APPLE / LINEAR PREMIUM STYLE)
+   AUTHENTIC APPLE iOS 18 DARK MODE DESIGN SYSTEM
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-beige: #090B10;
-    --color-red: #F87171;
-    --color-red-light: #FCA5A5;
-    --color-yellow: #FBBF24;
-    --color-yellow-light: #FDE68A;
-    --color-dark: #F9FAFB;
-    --color-muted: #E5E7EB;
-    --color-subtle: #9CA3AF;
-    --color-card-bg: rgba(18, 24, 38, 0.75);
-    --color-input-bg: rgba(23, 31, 48, 0.88);
-    --color-input-border: rgba(255, 255, 255, 0.16);
-    --color-input-text: #F9FAFB;
-    --color-chip-sunday-bg: rgba(239, 68, 68, 0.22);
-    --color-chip-sunday-text: #FCA5A5;
-    --color-chip-weekday-bg: rgba(245, 158, 11, 0.2);
-    --color-chip-weekday-text: #FDE68A;
-    --color-border-subtle: rgba(255, 255, 255, 0.1);
-    --color-btn-subtle-bg: rgba(255, 255, 255, 0.09);
-    --color-btn-subtle-text: #E5E7EB;
-    --color-modal-bg: rgba(18, 24, 38, 0.96);
+    /* Apple System Backgrounds */
+    --color-beige: #000000;
+    --background: #000000;
     
-    --glass-bg: rgba(16, 22, 36, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.14);
-    --glass-border-bottom: rgba(0, 0, 0, 0.6);
-    --glass-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
-    --glass-shadow-hover: 0 24px 48px -10px rgba(248, 113, 113, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.25);
+    /* Apple System Accents */
+    --color-red: #FF453A; /* Apple System Red Dark */
+    --color-red-light: #FF6961;
+    --color-yellow: #FF9F0A; /* Apple System Orange / Gold Dark */
+    --color-yellow-light: #FFD60A; /* Apple System Yellow Dark */
+    
+    /* Apple Typography Hierarchy */
+    --color-dark: #FFFFFF; /* Apple Primary Label (100% White) */
+    --color-muted: #EBEBF5; /* Apple Secondary Label */
+    --color-subtle: #8E8E93; /* Apple System Gray (Tertiary Label) */
+    
+    /* Apple Surfaces & Materials */
+    --color-card-bg: rgba(28, 28, 30, 0.85); /* Apple Secondary System Background */
+    --color-input-bg: rgba(44, 44, 46, 0.9); /* Apple Tertiary System Background */
+    --color-input-border: rgba(255, 255, 255, 0.12);
+    --color-input-text: #FFFFFF;
+    
+    /* Apple Chips & Badges */
+    --color-chip-sunday-bg: rgba(255, 69, 58, 0.18);
+    --color-chip-sunday-text: #FF453A;
+    --color-chip-weekday-bg: rgba(255, 159, 10, 0.16);
+    --color-chip-weekday-text: #FF9F0A;
+    
+    /* Apple Separators & Buttons */
+    --color-border-subtle: rgba(255, 255, 255, 0.1);
+    --color-btn-subtle-bg: rgba(120, 120, 128, 0.2);
+    --color-btn-subtle-text: #FFFFFF;
+    --color-modal-bg: rgba(28, 28, 30, 0.96); /* Apple Sheet Surface */
+    
+    /* Apple Frosted Glass Ultra-Thin Material */
+    --glass-bg: rgba(28, 28, 30, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-bottom: rgba(255, 255, 255, 0.06);
+    --glass-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    --glass-shadow-hover: 0 16px 40px 0 rgba(255, 69, 58, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    --glass-blur: blur(30px) saturate(190%);
   }
 
   body {
     background: 
-      radial-gradient(circle at 18% 18%, rgba(220, 38, 38, 0.22) 0%, transparent 45%),
-      radial-gradient(circle at 82% 25%, rgba(217, 119, 6, 0.18) 0%, transparent 50%),
-      radial-gradient(circle at 50% 85%, rgba(185, 28, 28, 0.18) 0%, transparent 55%),
-      radial-gradient(circle at 75% 75%, rgba(30, 58, 138, 0.22) 0%, transparent 45%),
-      linear-gradient(145deg, #07090E 0%, #0D111A 50%, #090B10 100%);
-    background-size: 150% 150%;
+      radial-gradient(circle at 50% 0%, rgba(255, 69, 58, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 10% 30%, rgba(255, 159, 10, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 60%, rgba(10, 132, 255, 0.08) 0%, transparent 45%),
+      #000000;
+    background-size: 100% 100%;
+    animation: none;
   }
 
   .liquid-glass:hover {
-    background: rgba(26, 35, 56, 0.88);
+    background: rgba(44, 44, 46, 0.88);
   }
 
   .liquid-glass::after {
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.15) 50%,
       transparent 100%
     );
   }
@@ -290,9 +304,9 @@ button {
 .modal-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .modal-content-container {
@@ -305,7 +319,7 @@ button {
   background-color: var(--color-modal-bg);
   animation: slideUpCenter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
   color: var(--color-dark);
 }
 
@@ -351,9 +365,9 @@ button {
 
 .giole-btn-contribute {
   padding: 8px 14px;
-  background-color: rgba(211, 47, 47, 0.12);
+  background-color: rgba(255, 69, 58, 0.12);
   color: var(--color-red);
-  border: 1px solid rgba(211, 47, 47, 0.25);
+  border: 1px solid rgba(255, 69, 58, 0.25);
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.85rem;
@@ -366,7 +380,7 @@ button {
 }
 
 .giole-btn-contribute:hover {
-  background-color: rgba(211, 47, 47, 0.22);
+  background-color: rgba(255, 69, 58, 0.22);
   transform: scale(1.04);
 }
 

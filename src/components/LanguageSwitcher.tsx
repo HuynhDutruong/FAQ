@@ -4,48 +4,65 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { Language } from '@/lib/i18n/translations';
 import { Globe } from 'lucide-react';
 
+const languages: { code: Language; label: string }[] = [
+  { code: 'vi', label: 'Tiếng Việt' },
+  { code: 'en', label: 'English' },
+  { code: 'zh', label: '中文' },
+  { code: 'fr', label: 'Français' },
+  { code: 'es', label: 'Español' },
+  { code: 'ja', label: '日本語' },
+  { code: 'ko', label: '한국어' },
+  { code: 'ru', label: 'Русский' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'pt', label: 'Português' },
+  { code: 'it', label: 'Italiano' },
+  { code: 'ar', label: 'العربية' },
+  { code: 'hi', label: 'हिन्दी' }
+];
+
 export default function LanguageSwitcher() {
   const { lang, setLang } = useLanguage();
 
   return (
     <div style={{
       position: 'absolute',
-      top: '20px',
-      right: '20px',
+      top: '18px',
+      right: '18px',
       zIndex: 100,
       display: 'flex',
       alignItems: 'center',
-      gap: '8px',
-      padding: '8px 12px',
-      borderRadius: '20px',
+      gap: '6px',
+      padding: '7px 12px',
+      borderRadius: '999px',
+      color: 'var(--color-dark)'
     }} className="liquid-glass">
-      <Globe size={18} />
+      <Globe size={16} />
       <select 
         value={lang} 
         onChange={(e) => setLang(e.target.value as Language)}
         style={{
           background: 'transparent',
           border: 'none',
-          color: 'inherit',
-          fontSize: '14px',
-          fontWeight: 'bold',
+          color: 'var(--color-dark)',
+          fontSize: '13px',
+          fontWeight: 700,
           outline: 'none',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          fontFamily: 'inherit'
         }}
       >
-        <option value="vi">VN</option>
-        <option value="en">EN</option>
-        <option value="zh">ZH</option>
-        <option value="fr">FR</option>
-        <option value="es">ES</option>
-        <option value="ja">JA</option>
-        <option value="ko">KO</option>
-        <option value="ru">RU</option>
-        <option value="de">DE</option>
-        <option value="pt">PT</option>
-        <option value="it">IT</option>
-        <option value="ar">AR</option>
-        <option value="hi">HI</option>
+        {languages.map(item => (
+          <option
+            key={item.code}
+            value={item.code}
+            style={{
+              backgroundColor: 'var(--color-modal-bg)',
+              color: 'var(--color-dark)'
+            }}
+          >
+            {item.label}
+          </option>
+        ))}
       </select>
     </div>
   );
