@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect, useState, useCallback } from 'react';
-import { db } from '@/lib/firebase';
-import { doc, onSnapshot, updateDoc, deleteDoc } from 'firebase/firestore';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { authedFetch } from '@/lib/authedFetch';
 import {
   Send,
   Loader2,
@@ -22,16 +23,12 @@ import Image from 'next/image';
 interface FacebookPage {
   id: string;
   name: string;
-  category?: string;
-  access_token: string;
 }
 
 interface FacebookSettings {
   connected: boolean;
-  connectedAt?: string;
   selectedPageId?: string;
   selectedPageName?: string;
-  selectedPageToken?: string;
   pages?: FacebookPage[];
 }
 
@@ -59,7 +56,7 @@ export default function FacebookAdmin() {
   const [fbSettings, setFbSettings] = useState<FacebookSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [statusMsg, setStatusMsg] = useState('');
-  const [tokenExpiry, setTokenExpiry] = useState<{ expiresAt: number | null; neverExpires: boolean } | null>(null);
+  const [tokenExpiry, setTokenExpiry] = useState<{ expiresAt: number | null; neverExpires: boolean; expiringSoon: boolean } | null>(null);
 
   // Feed Posts
   const [posts, setPosts] = useState<FBPost[]>([]);
@@ -98,7 +95,7 @@ export default function FacebookAdmin() {
   const fetchPosts = useCallback(async () => {
     setPostsLoading(true);
     try {
-      const res = await fetch('/api/facebook/posts');
+      const res = await authedFetch('/api/facebook/posts');
       const data = await res.json();
       if (res.ok && data.posts) {
         setPosts(data.posts);
@@ -113,44 +110,48 @@ export default function FacebookAdmin() {
   }, []);
 
   // Kiểm tra trạng thái + tính hiệu lực của Token qua API (nguồn sự thật duy nhất)
-  const checkStatus = useCallback(async (fsData: FacebookSettings | null) => {
+  const checkStatus = useCallback(async () => {
     try {
-      const res = await fetch('/api/facebook/status');
+      const res = await authedFetch('/api/facebook/status');
       const data = await res.json();
       if (data.connected && data.pageId) {
         setStatusMsg('');
-        setTokenExpiry({ expiresAt: data.expiresAt ?? null, neverExpires: !!data.neverExpires });
+        setTokenExpiry({
+          expiresAt: data.expiresAt ?? null,
+          neverExpires: !!data.neverExpires,
+          expiringSoon: !!data.expiringSoon
+        });
         setFbSettings({
           connected: true,
           selectedPageId: data.pageId,
           selectedPageName: data.pageName || 'Fanpage Xứ Đoàn',
-          selectedPageToken: '',
-          pages: fsData?.pages || []
+          pages: data.pages || []
         });
         fetchPosts();
       } else {
-        setStatusMsg(data.message || '');
+        setStatusMsg(data.message || data.error || '');
         setTokenExpiry(null);
         setFbSettings(null);
         setPosts([]);
       }
     } catch (e) {
       console.warn('Cannot check facebook status:', e);
+      setStatusMsg('Không kết nối được tới máy chủ.');
     } finally {
       setLoading(false);
     }
   }, [fetchPosts]);
 
   useEffect(() => {
-    // Firestore bắn snapshot ngay lần đầu và mỗi khi cấu hình đổi -> kiểm tra lại Token
-    const unsubscribe = onSnapshot(doc(db, 'settings', 'facebook'), (snap) => {
-      checkStatus(snap.exists() ? (snap.data() as FacebookSettings) : null);
-    }, (err) => {
-      console.error('Error reading facebook settings:', err);
-      checkStatus(null);
+    // Chờ Firebase Auth sẵn sàng rồi mới gọi API (mọi API đều cần ID Token của Admin)
+    return onAuthStateChanged(auth, (user) => {
+      if (user) {
+        checkStatus();
+      } else {
+        setStatusMsg('Bạn cần đăng nhập tài khoản quản trị.');
+        setLoading(false);
+      }
     });
-
-    return () => unsubscribe();
   }, [checkStatus]);
 
   // Cấu hình thủ công Page Token
@@ -163,7 +164,7 @@ export default function FacebookAdmin() {
 
     setSavingManual(true);
     try {
-      const res = await fetch('/api/facebook/connect-token', {
+      const res = await authedFetch('/api/facebook/connect-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -181,6 +182,7 @@ export default function FacebookAdmin() {
       setManualPageId('');
       setManualPageToken('');
       setManualPageName('');
+      checkStatus();
 
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Lỗi kết nối';
@@ -192,27 +194,33 @@ export default function FacebookAdmin() {
 
   const handleSwitchPage = async (page: FacebookPage) => {
     try {
-      await updateDoc(doc(db, 'settings', 'facebook'), {
-        selectedPageId: page.id,
-        selectedPageName: page.name,
-        selectedPageToken: page.access_token
+      const res = await authedFetch('/api/facebook/connect-token', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pageId: page.id })
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Không thể chuyển trang.');
       showToast(`Đã chuyển sang Fanpage: ${page.name}`);
+      checkStatus();
     } catch (err: unknown) {
       console.error(err);
-      alert('Không thể chuyển trang.');
+      alert(err instanceof Error ? err.message : 'Không thể chuyển trang.');
     }
   };
 
   const handleDisconnect = async () => {
     if (!confirm('Bạn có chắc chắn muốn huỷ kết nối Fanpage Facebook này?')) return;
     try {
-      await deleteDoc(doc(db, 'settings', 'facebook'));
+      const res = await authedFetch('/api/facebook/connect-token', { method: 'DELETE' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Lỗi khi huỷ kết nối.');
       setPosts([]);
       showToast('Đã huỷ kết nối Fanpage.');
+      checkStatus();
     } catch (err: unknown) {
       console.error(err);
-      alert('Lỗi khi huỷ kết nối.');
+      alert(err instanceof Error ? err.message : 'Lỗi khi huỷ kết nối.');
     }
   };
 
@@ -226,7 +234,7 @@ export default function FacebookAdmin() {
 
     setPosting(true);
     try {
-      const res = await fetch('/api/facebook/post', {
+      const res = await authedFetch('/api/facebook/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -256,7 +264,7 @@ export default function FacebookAdmin() {
     if (!confirm('Bạn có chắc muốn xoá bài viết này trên Fanpage? Thao tác này không thể hoàn tác.')) return;
 
     try {
-      const res = await fetch(`/api/facebook/posts?postId=${postId}`, { method: 'DELETE' });
+      const res = await authedFetch(`/api/facebook/posts?postId=${postId}`, { method: 'DELETE' });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Không thể xoá bài viết');
 
@@ -275,7 +283,7 @@ export default function FacebookAdmin() {
 
     setSavingEdit(true);
     try {
-      const res = await fetch('/api/facebook/posts', {
+      const res = await authedFetch('/api/facebook/posts', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -303,7 +311,7 @@ export default function FacebookAdmin() {
     setCommentsLoading(true);
     setComments([]);
     try {
-      const res = await fetch(`/api/facebook/comments?postId=${post.id}`);
+      const res = await authedFetch(`/api/facebook/comments?postId=${post.id}`);
       const data = await res.json();
       if (res.ok && data.comments) {
         setComments(data.comments);
@@ -322,7 +330,7 @@ export default function FacebookAdmin() {
 
     setSendingReply(true);
     try {
-      const res = await fetch('/api/facebook/comments', {
+      const res = await authedFetch('/api/facebook/comments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -353,6 +361,7 @@ export default function FacebookAdmin() {
   }
 
   const isConnected = fbSettings?.connected && fbSettings.selectedPageId;
+  const expiringSoon = !!tokenExpiry?.expiringSoon;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -472,10 +481,11 @@ export default function FacebookAdmin() {
                 <div style={{ fontSize: '0.8rem', color: '#047857', marginTop: '2px' }}>
                   Page ID: <code>{fbSettings.selectedPageId}</code>
                   {tokenExpiry && (
-                    <span style={{ marginLeft: '10px' }}>
+                    <span style={{ marginLeft: '10px', color: expiringSoon ? '#B45309' : undefined, fontWeight: expiringSoon ? 700 : undefined }}>
                       {tokenExpiry.neverExpires || tokenExpiry.expiresAt === null
                         ? '• Token vĩnh viễn'
                         : `• Token hết hạn: ${new Date(tokenExpiry.expiresAt * 1000).toLocaleString('vi-VN')}`}
+                      {expiringSoon && ' — hãy dán Token mới trước ngày này!'}
                     </span>
                   )}
                 </div>
