@@ -50,6 +50,11 @@ export default function IntroModalContent() {
         <p style={{ marginBottom: '16px' }}>
           {t.introParishDesc2}
         </p>
+        {t.introParishDesc3 && (
+          <p style={{ marginBottom: '16px' }}>
+            {t.introParishDesc3}
+          </p>
+        )}
       </div>
 
       {/* 3. THƯ VIỆN HÌNH ẢNH */}
