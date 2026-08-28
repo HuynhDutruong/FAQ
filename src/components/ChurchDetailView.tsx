@@ -12,7 +12,8 @@ import {
   Edit3,
   Check,
   Search,
-  Home
+  Home,
+  Sparkles
 } from 'lucide-react';
 import { MassTime } from '@/lib/massTimes';
 import { dioceseLabel } from '@/lib/dioceses';
@@ -38,7 +39,7 @@ export default function ChurchDetailView({ item }: { item: MassTime }) {
 ⏰ Chúa Nhật: ${item.sundayMass?.join(', ') || 'Chưa có thông tin'}
 ⏰ Ngày thường: ${item.weekdayMass?.join(', ') || 'Chưa có thông tin'}
 
-Tra cứu giờ lễ chi tiết tại:
+Xem thẻ giờ lễ chi tiết tại:
 ${shareUrl}`;
 
     if (navigator.share) {
@@ -56,7 +57,7 @@ ${shareUrl}`;
 
     try {
       await navigator.clipboard.writeText(shareUrl);
-      showToast('📋 Đã sao chép liên kết chia sẻ vào bộ nhớ tạm!');
+      showToast('📋 Đã sao chép liên kết thẻ giờ lễ vào bộ nhớ tạm!');
     } catch {
       showToast('Không thể sao chép liên kết tự động.');
     }
@@ -66,8 +67,10 @@ ${shareUrl}`;
     ? `https://www.google.com/maps/dir/?api=1&destination=${item.lat},${item.lng}`
     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.parish}, ${item.address || ''}`)}`;
 
+  const ticketCode = `VN-MASS-${(item.id || 'CHURCH').slice(0, 8).toUpperCase()}`;
+
   return (
-    <main style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
+    <main style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative', background: 'var(--bg-gradient)' }}>
       {/* Toast Notification */}
       {toast && (
         <div
@@ -80,7 +83,7 @@ ${shareUrl}`;
             backgroundColor: 'rgba(17, 24, 39, 0.95)',
             backdropFilter: 'blur(10px)',
             color: 'white',
-            padding: '9px 18px',
+            padding: '9px 20px',
             borderRadius: '999px',
             fontSize: '0.85rem',
             fontWeight: 600,
@@ -140,7 +143,7 @@ ${shareUrl}`;
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}>
-              {item.parish}
+              Thẻ Giờ Lễ
             </h1>
             <div style={{
               fontSize: '0.72rem',
@@ -150,7 +153,7 @@ ${shareUrl}`;
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}>
-              {item.diocese ? `Giáo Phận ${dioceseLabel(item.diocese)}` : 'Giờ Lễ Toàn Quốc'}
+              {item.diocese ? `Giáo Phận ${dioceseLabel(item.diocese)}` : 'Giáo Hội Việt Nam'}
             </div>
           </div>
         </div>
@@ -163,7 +166,7 @@ ${shareUrl}`;
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              padding: '8px 14px',
+              padding: '8px 16px',
               background: 'linear-gradient(135deg, #d32f2f, #b71c1c)',
               color: '#ffffff',
               borderRadius: '999px',
@@ -174,181 +177,284 @@ ${shareUrl}`;
             }}
           >
             <Share2 size={15} />
-            <span className="giole-btn-text">Chia sẻ</span>
+            <span className="giole-btn-text">Chia Sẻ Thẻ</span>
           </button>
         </div>
       </header>
 
       {/* Main Content Area */}
-      <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto', padding: '24px 16px 60px' }}>
+      <div style={{ width: '100%', maxWidth: '680px', margin: '0 auto', padding: '24px 16px 60px' }}>
         
-        {/* Church Showcase Card */}
-        <div className="liquid-glass" style={{ padding: '24px 20px', borderRadius: '24px', position: 'relative', overflow: 'hidden' }}>
-          
-          {/* Top Chips */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '14px' }}>
-            {item.diocese && (
+        {/* ==================== THE MASS TICKET CARD ==================== */}
+        <div style={{
+          position: 'relative',
+          backgroundColor: '#FFFFFF',
+          borderRadius: '26px',
+          boxShadow: '0 25px 60px -15px rgba(211, 47, 47, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.06)',
+          overflow: 'hidden'
+        }}>
+
+          {/* Ticket Header Banner (Catholic Gold & Red Theme) */}
+          <div style={{
+            background: 'linear-gradient(135deg, #991b1b 0%, #b91c1c 40%, #d32f2f 80%, #dc2626 100%)',
+            color: '#FFFFFF',
+            padding: '24px 22px 20px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            {/* Background Decorative Halos */}
+            <div style={{
+              position: 'absolute',
+              right: '-30px',
+              top: '-30px',
+              width: '140px',
+              height: '140px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(251, 192, 45, 0.35) 0%, rgba(251, 192, 45, 0) 70%)',
+              pointerEvents: 'none'
+            }} />
+
+            {/* Top Badges */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{
+                  padding: '3px 10px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.25)',
+                  border: '1px solid rgba(251, 192, 45, 0.6)',
+                  borderRadius: '999px',
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  color: '#FEF08A',
+                  letterSpacing: '0.5px',
+                  textTransform: 'uppercase',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px'
+                }}>
+                  <Sparkles size={11} color="#FDE047" /> THẺ THÁNH LỄ CHÍNH THỨC
+                </span>
+              </div>
+
               <span style={{
-                background: 'linear-gradient(135deg, rgba(211, 47, 47, 0.12), rgba(211, 47, 47, 0.05))',
-                color: 'var(--color-red)',
-                padding: '4px 12px',
-                borderRadius: '999px',
-                fontSize: '0.82rem',
-                fontWeight: 800,
-                border: '1px solid rgba(211, 47, 47, 0.2)'
+                fontSize: '0.75rem',
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                color: 'rgba(255, 255, 255, 0.85)',
+                letterSpacing: '0.5px'
               }}>
-                ⛪ Giáo phận {dioceseLabel(item.diocese)}
+                {ticketCode}
               </span>
-            )}
-            {item.deanery && (
-              <span style={{
-                background: 'var(--color-btn-subtle-bg)',
-                color: 'var(--color-dark)',
-                padding: '4px 12px',
-                borderRadius: '999px',
-                fontSize: '0.82rem',
-                fontWeight: 700
+            </div>
+
+            {/* Church Name & Diocese */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                backgroundColor: '#FFFFFF',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(251, 192, 45, 0.8)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                overflow: 'hidden',
+                padding: '2px'
               }}>
-                Hạt {item.deanery}
-              </span>
-            )}
-            {item.province && (
-              <span style={{
-                background: 'rgba(59, 130, 246, 0.12)',
-                color: '#2563EB',
-                padding: '4px 12px',
-                borderRadius: '999px',
-                fontSize: '0.82rem',
-                fontWeight: 700
+                <Image src="/logo.jpg" alt="Logo Xứ Đoàn" width={44} height={44} style={{ borderRadius: '50%', objectFit: 'contain' }} />
+              </div>
+
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <h2 style={{
+                  fontSize: 'clamp(1.25rem, 4.2vw, 1.7rem)',
+                  fontWeight: 900,
+                  margin: 0,
+                  lineHeight: 1.25,
+                  color: '#FFFFFF',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                }}>
+                  {item.parish}
+                </h2>
+                <div style={{
+                  fontSize: '0.86rem',
+                  fontWeight: 600,
+                  color: '#FDE047',
+                  marginTop: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}>
+                  <span>Giáo phận {item.diocese ? dioceseLabel(item.diocese) : 'Việt Nam'}</span>
+                  {item.deanery && <span>• Hạt {item.deanery}</span>}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ticket Upper Body (Location & Info) */}
+          <div style={{ padding: '20px 22px 14px' }}>
+            {item.address && (
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '10px',
+                padding: '12px 14px',
+                backgroundColor: '#F9FAFB',
+                borderRadius: '14px',
+                border: '1px solid #E5E7EB'
               }}>
-                📍 {item.province}
-              </span>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flex: 1, minWidth: '200px' }}>
+                  <MapPin size={18} color="#d32f2f" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontSize: '0.74rem', color: '#6B7280', fontWeight: 700, textTransform: 'uppercase' }}>Địa Chỉ Giáo Xứ</div>
+                    <div style={{ fontSize: '0.9rem', color: '#1F2937', fontWeight: 600, lineHeight: 1.35, marginTop: '2px' }}>
+                      {item.address}
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href={mapNavUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    padding: '8px 14px',
+                    backgroundColor: '#2563EB',
+                    color: '#FFFFFF',
+                    borderRadius: '10px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    textDecoration: 'none',
+                    boxShadow: '0 2px 6px rgba(37, 99, 235, 0.3)',
+                    flexShrink: 0
+                  }}
+                >
+                  <Navigation size={13} /> Chỉ Đường Maps
+                </a>
+              </div>
             )}
           </div>
 
-          {/* Title */}
-          <h2 style={{
-            fontSize: 'clamp(1.35rem, 4vw, 1.85rem)',
-            fontWeight: 900,
-            color: 'var(--color-dark)',
-            lineHeight: 1.25,
-            marginBottom: '12px'
-          }}>
-            {item.parish}
-          </h2>
-
-          {/* Address & Navigation */}
-          {item.address && (
+          {/* TICKET PERFORATED TEAR-OFF LINE WITH NOTCHES */}
+          <div style={{ position: 'relative', margin: '6px 0 16px' }}>
+            {/* Left Notch */}
             <div style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
-              gap: '12px',
-              flexWrap: 'wrap',
-              padding: '12px 14px',
-              backgroundColor: 'var(--color-input-bg)',
-              borderRadius: '14px',
-              border: '1px solid var(--color-border-subtle)',
-              marginBottom: '20px'
-            }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flex: 1, minWidth: '220px' }}>
-                <MapPin size={18} color="#d32f2f" style={{ marginTop: '2px', flexShrink: 0 }} />
-                <span style={{ fontSize: '0.92rem', color: 'var(--color-dark)', lineHeight: 1.4, fontWeight: 500 }}>
-                  {item.address}
+              position: 'absolute',
+              left: '-14px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              backgroundColor: '#FFFDF9',
+              boxShadow: 'inset -3px 0 4px rgba(0,0,0,0.06)',
+              zIndex: 10
+            }} />
+
+            {/* Dashed Line */}
+            <div style={{
+              borderTop: '2px dashed #E5E7EB',
+              margin: '0 24px'
+            }} />
+
+            {/* Right Notch */}
+            <div style={{
+              position: 'absolute',
+              right: '-14px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '28px',
+              height: '28px',
+              borderRadius: '50%',
+              backgroundColor: '#FFFDF9',
+              boxShadow: 'inset 3px 0 4px rgba(0,0,0,0.06)',
+              zIndex: 10
+            }} />
+          </div>
+
+          {/* Ticket Lower Body (MASS SCHEDULE) */}
+          <div style={{ padding: '4px 22px 22px' }}>
+            
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Clock size={18} color="#d32f2f" />
+                <span style={{ fontSize: '0.95rem', fontWeight: 900, color: '#111827', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
+                  Lịch Giờ Thánh Lễ
                 </span>
               </div>
-
-              <a
-                href={mapNavUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  padding: '8px 14px',
-                  backgroundColor: '#3B82F6',
-                  color: '#FFFFFF',
-                  borderRadius: '10px',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  textDecoration: 'none',
-                  boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3)',
-                  flexShrink: 0
-                }}
-              >
-                <Navigation size={14} /> Mở Google Maps
-              </a>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#059669', backgroundColor: '#ECFDF5', padding: '3px 8px', borderRadius: '6px' }}>
+                ✓ Đang Áp Dụng
+              </span>
             </div>
-          )}
 
-          {/* MASS SCHEDULE SECTION */}
-          <div style={{ marginTop: '20px' }}>
-            <h3 style={{
-              fontSize: '1rem',
-              fontWeight: 800,
-              color: 'var(--color-dark)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.4px',
-              marginBottom: '14px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <Clock size={18} color="var(--color-red)" /> Lịch Thánh Lễ
-            </h3>
-
-            {/* Sunday Mass Highlights */}
+            {/* Chúa Nhật Section - Big Ticket Focus */}
             <div style={{
-              padding: '16px',
+              padding: '16px 18px',
               borderRadius: '16px',
-              backgroundColor: 'rgba(211, 47, 47, 0.06)',
-              border: '1px solid rgba(211, 47, 47, 0.2)',
-              marginBottom: '14px'
+              backgroundColor: '#FEF2F2',
+              border: '1.5px solid #FCA5A5',
+              marginBottom: '14px',
+              boxShadow: '0 2px 8px rgba(239, 68, 68, 0.06)'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
-                <Calendar size={16} color="#d32f2f" />
-                <span style={{ fontWeight: 800, color: '#d32f2f', fontSize: '0.95rem', textTransform: 'uppercase' }}>
-                  Chúa Nhật
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Calendar size={16} color="#DC2626" />
+                  <span style={{ fontWeight: 900, color: '#B91C1C', fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
+                    Chúa Nhật (Lễ Trọng)
+                  </span>
+                </div>
+                <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#DC2626', backgroundColor: 'rgba(239, 68, 68, 0.12)', padding: '2px 8px', borderRadius: '999px' }}>
+                  CHÍNH LỄ
                 </span>
               </div>
+
               {item.sundayMass && item.sundayMass.length > 0 ? (
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {item.sundayMass.map(time => (
-                    <span
+                    <div
                       key={time}
                       style={{
-                        padding: '6px 14px',
-                        backgroundColor: '#d32f2f',
+                        padding: '8px 16px',
+                        backgroundColor: '#DC2626',
                         color: '#FFFFFF',
-                        borderRadius: '999px',
-                        fontSize: '0.95rem',
-                        fontWeight: 800,
-                        boxShadow: '0 2px 6px rgba(211, 47, 47, 0.25)'
+                        borderRadius: '12px',
+                        fontSize: '1.05rem',
+                        fontWeight: 900,
+                        fontVariantNumeric: 'tabular-nums',
+                        boxShadow: '0 3px 8px rgba(220, 38, 38, 0.3)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
                       }}
                     >
-                      {time}
-                    </span>
+                      <Clock size={13} color="#FCA5A5" />
+                      <span>{time}</span>
+                    </div>
                   ))}
                 </div>
               ) : (
-                <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--color-subtle)' }}>Chưa có thông tin giờ lễ Chúa Nhật</p>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#9CA3AF' }}>Chưa có thông tin giờ lễ Chúa Nhật</p>
               )}
             </div>
 
-            {/* Saturday Mass (If exists) */}
+            {/* Thứ Bảy Section (If present) */}
             {item.saturdayMass && item.saturdayMass.length > 0 && (
               <div style={{
                 padding: '14px 16px',
-                borderRadius: '16px',
-                backgroundColor: 'rgba(245, 158, 11, 0.08)',
-                border: '1px solid rgba(245, 158, 11, 0.25)',
-                marginBottom: '14px'
+                borderRadius: '14px',
+                backgroundColor: '#FFFBEB',
+                border: '1px solid #FDE68A',
+                marginBottom: '12px'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
                   <Calendar size={15} color="#D97706" />
-                  <span style={{ fontWeight: 800, color: '#D97706', fontSize: '0.9rem', textTransform: 'uppercase' }}>
-                    Thứ Bảy (Lễ Vọng)
+                  <span style={{ fontWeight: 800, color: '#B45309', fontSize: '0.88rem', textTransform: 'uppercase' }}>
+                    Chiều Thứ Bảy (Lễ Vọng Chúa Nhật)
                   </span>
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -356,12 +462,14 @@ ${shareUrl}`;
                     <span
                       key={time}
                       style={{
-                        padding: '5px 12px',
+                        padding: '6px 14px',
                         backgroundColor: '#F59E0B',
                         color: '#FFFFFF',
-                        borderRadius: '999px',
-                        fontSize: '0.9rem',
-                        fontWeight: 800
+                        borderRadius: '10px',
+                        fontSize: '0.92rem',
+                        fontWeight: 800,
+                        fontVariantNumeric: 'tabular-nums',
+                        boxShadow: '0 2px 6px rgba(245, 158, 11, 0.25)'
                       }}
                     >
                       {time}
@@ -371,18 +479,18 @@ ${shareUrl}`;
               </div>
             )}
 
-            {/* Weekday Mass */}
+            {/* Ngày Thường Section */}
             <div style={{
               padding: '14px 16px',
-              borderRadius: '16px',
-              backgroundColor: 'rgba(59, 130, 246, 0.06)',
-              border: '1px solid rgba(59, 130, 246, 0.2)',
+              borderRadius: '14px',
+              backgroundColor: '#EFF6FF',
+              border: '1px solid #BFDBFE',
               marginBottom: '14px'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
                 <Calendar size={15} color="#2563EB" />
-                <span style={{ fontWeight: 800, color: '#2563EB', fontSize: '0.9rem', textTransform: 'uppercase' }}>
-                  Ngày Thường
+                <span style={{ fontWeight: 800, color: '#1D4ED8', fontSize: '0.88rem', textTransform: 'uppercase' }}>
+                  Ngày Trong Tuần (Thứ Hai – Thứ Bảy)
                 </span>
               </div>
               {item.weekdayMass && item.weekdayMass.length > 0 ? (
@@ -391,12 +499,14 @@ ${shareUrl}`;
                     <span
                       key={time}
                       style={{
-                        padding: '5px 12px',
-                        backgroundColor: '#3B82F6',
+                        padding: '6px 14px',
+                        backgroundColor: '#2563EB',
                         color: '#FFFFFF',
-                        borderRadius: '999px',
-                        fontSize: '0.9rem',
-                        fontWeight: 700
+                        borderRadius: '10px',
+                        fontSize: '0.92rem',
+                        fontWeight: 800,
+                        fontVariantNumeric: 'tabular-nums',
+                        boxShadow: '0 2px 6px rgba(37, 99, 235, 0.25)'
                       }}
                     >
                       {time}
@@ -404,26 +514,26 @@ ${shareUrl}`;
                   ))}
                 </div>
               ) : (
-                <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--color-subtle)' }}>Chưa có thông tin giờ lễ ngày thường</p>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#9CA3AF' }}>Chưa có thông tin giờ lễ ngày thường</p>
               )}
             </div>
 
-            {/* By Day Timetable if available */}
+            {/* Chi tiết từng thứ trong tuần nếu có */}
             {item.byDay && (
               <div style={{
-                marginTop: '16px',
                 padding: '14px 16px',
-                borderRadius: '16px',
-                backgroundColor: 'var(--color-input-bg)',
-                border: '1px solid var(--color-border-subtle)'
+                borderRadius: '14px',
+                backgroundColor: '#F9FAFB',
+                border: '1px solid #E5E7EB',
+                marginBottom: '16px'
               }}>
-                <span style={{ display: 'block', fontWeight: 800, fontSize: '0.85rem', color: 'var(--color-dark)', marginBottom: '10px', textTransform: 'uppercase' }}>
-                  Chi Tiết Từng Ngày Trong Tuần
-                </span>
+                <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#4B5563', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Lịch Chi Tiết Từng Ngày
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {DAY_ORDER.filter(d => item.byDay?.[d]?.length).map(d => (
-                    <div key={d} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 0', borderBottom: '1px dashed var(--color-border-subtle)' }}>
-                      <span style={{ fontWeight: 700, fontSize: '0.85rem', color: d === 'Chúa Nhật' ? '#d32f2f' : 'var(--color-dark)' }}>
+                    <div key={d} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 0', borderBottom: '1px dashed #E5E7EB' }}>
+                      <span style={{ fontWeight: 700, fontSize: '0.84rem', color: d === 'Chúa Nhật' ? '#DC2626' : '#374151' }}>
                         {d}
                       </span>
                       <div style={{ display: 'flex', gap: '6px' }}>
@@ -433,8 +543,8 @@ ${shareUrl}`;
                             borderRadius: '6px',
                             fontSize: '0.8rem',
                             fontWeight: 700,
-                            backgroundColor: d === 'Chúa Nhật' ? 'rgba(211, 47, 47, 0.12)' : 'rgba(59, 130, 246, 0.12)',
-                            color: d === 'Chúa Nhật' ? '#d32f2f' : '#2563EB'
+                            backgroundColor: d === 'Chúa Nhật' ? 'rgba(220, 38, 38, 0.12)' : 'rgba(37, 99, 235, 0.12)',
+                            color: d === 'Chúa Nhật' ? '#DC2626' : '#2563EB'
                           }}>
                             {t}
                           </span>
@@ -445,60 +555,89 @@ ${shareUrl}`;
                 </div>
               </div>
             )}
-          </div>
 
-          {/* Action Row */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '10px',
-            marginTop: '28px',
-            paddingTop: '18px',
-            borderTop: '1px solid var(--color-border-subtle)'
-          }}>
-            <button
-              onClick={() => setFeedbackOpen(true)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '8px 16px',
-                backgroundColor: 'var(--color-btn-subtle-bg)',
-                color: 'var(--color-dark)',
-                border: '1px solid var(--color-border-subtle)',
-                borderRadius: '10px',
-                fontSize: '0.84rem',
-                fontWeight: 700,
-                cursor: 'pointer'
-              }}
-            >
-              <Edit3 size={14} /> Báo sai / Cập nhật giờ lễ
-            </button>
+            {/* Ticket Stub Barcode Footer */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingTop: '16px',
+              borderTop: '1px dashed #E5E7EB',
+              marginTop: '10px'
+            }}>
+              <div>
+                <div style={{
+                  fontSize: '1.2rem',
+                  fontFamily: 'monospace',
+                  letterSpacing: '2px',
+                  color: '#4B5563',
+                  fontWeight: 900,
+                  userSelect: 'none'
+                }}>
+                  ||| | || ||||| | ||| |||| |
+                </div>
+                <div style={{ fontSize: '0.68rem', color: '#9CA3AF', fontWeight: 600, marginTop: '2px' }}>
+                  Xứ Đoàn Các Thánh Tử Đạo Việt Nam
+                </div>
+              </div>
 
-            <button
-              onClick={handleShare}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '8px 16px',
-                backgroundColor: 'rgba(211, 47, 47, 0.12)',
-                color: '#d32f2f',
-                border: '1px solid rgba(211, 47, 47, 0.25)',
-                borderRadius: '10px',
-                fontSize: '0.84rem',
-                fontWeight: 700,
-                cursor: 'pointer'
-              }}
-            >
-              <Share2 size={14} /> Chia sẻ liên kết
-            </button>
+              <button
+                onClick={handleShare}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '9px 18px',
+                  background: 'linear-gradient(135deg, #d32f2f, #b71c1c)',
+                  color: '#FFFFFF',
+                  borderRadius: '12px',
+                  fontSize: '0.85rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  boxShadow: '0 3px 10px rgba(211, 47, 47, 0.3)'
+                }}
+              >
+                <Share2 size={15} /> Chia Sẻ Thẻ
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Quick Navigation Footers */}
+        {/* Action Row Under Ticket */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '10px',
+          marginTop: '16px'
+        }}>
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 14px',
+              backgroundColor: 'rgba(255, 255, 255, 0.85)',
+              color: '#4B5563',
+              border: '1px solid rgba(0, 0, 0, 0.1)',
+              borderRadius: '10px',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              backdropFilter: 'blur(8px)'
+            }}
+          >
+            <Edit3 size={14} /> Báo sai / Cập nhật giờ lễ này
+          </button>
+
+          <span style={{ fontSize: '0.78rem', color: '#6B7280', fontWeight: 600 }}>
+            Cập nhật thường xuyên
+          </span>
+        </div>
+
+        {/* Quick Navigation Cards */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -510,16 +649,17 @@ ${shareUrl}`;
             style={{
               padding: '14px 18px',
               borderRadius: '16px',
-              backgroundColor: 'var(--glass-bg)',
-              border: '1px solid var(--glass-border)',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
               display: 'flex',
               alignItems: 'center',
               gap: '10px',
               color: 'var(--color-dark)',
               fontWeight: 700,
               fontSize: '0.9rem',
-              boxShadow: 'var(--glass-shadow)',
-              textDecoration: 'none'
+              boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
+              textDecoration: 'none',
+              backdropFilter: 'blur(10px)'
             }}
           >
             <Search size={18} color="var(--color-red)" />
@@ -531,16 +671,17 @@ ${shareUrl}`;
             style={{
               padding: '14px 18px',
               borderRadius: '16px',
-              backgroundColor: 'var(--glass-bg)',
-              border: '1px solid var(--glass-border)',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
               display: 'flex',
               alignItems: 'center',
               gap: '10px',
               color: 'var(--color-dark)',
               fontWeight: 700,
               fontSize: '0.9rem',
-              boxShadow: 'var(--glass-shadow)',
-              textDecoration: 'none'
+              boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
+              textDecoration: 'none',
+              backdropFilter: 'blur(10px)'
             }}
           >
             <Home size={18} color="var(--color-red)" />
