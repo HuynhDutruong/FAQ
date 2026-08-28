@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { MassTime, Bucket, getFacets, getByDiocese, removeAccents } from '@/lib/massTimes';
-import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
+import { ALL_DIOCESES, dioceseLabel, getNearestDiocese, calculateDistance } from '@/lib/dioceses';
 import MassTimeFeedbackModal from '@/components/MassTimeFeedbackModal';
 
 const fieldStyle: React.CSSProperties = {
@@ -66,19 +66,6 @@ function TimeChips({ times, color, bg }: { times: string[]; color: string; bg: s
   );
 }
 
-// Tính khoảng cách GPS theo công thức Haversine (km)
-function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371;
-  const dLat = (lat2 - lat1) * (Math.PI / 180);
-  const dLon = (lon2 - lon1) * (Math.PI / 180);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
-    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-}
-
 export default function MassTimesPage() {
   const { t } = useLanguage();
   const [dioceseBuckets, setDioceseBuckets] = useState<Bucket[]>([]);
@@ -119,6 +106,14 @@ export default function MassTimesPage() {
       .catch(e => {
         if (!ignore) setError(e.message);
       });
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('gps') === '1' || params.get('nearest') === '1') {
+        handleGetLocation();
+      }
+    }
+
     return () => {
       ignore = true;
     };
@@ -200,26 +195,36 @@ export default function MassTimesPage() {
   }, [rows, selectedDeanery, searchTerm, timeFilter, userLocation]);
 
   const handleGetLocation = () => {
-    if (!navigator.geolocation) {
-      alert('Trình duyệt của bạn không hỗ trợ định vị GPS.');
+    if (typeof window === 'undefined' || !navigator.geolocation) {
+      alert('Trình duyệt hoặc thiết bị của bạn không hỗ trợ định vị GPS.');
       return;
     }
     setLocating(true);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        setUserLocation({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude
-        });
+        const uLat = pos.coords.latitude;
+        const uLng = pos.coords.longitude;
+        setUserLocation({ lat: uLat, lng: uLng });
+
+        const nearest = getNearestDiocese(uLat, uLng);
+        if (!selectedDiocese || selectedDiocese !== nearest.diocese) {
+          handleSelectDiocese(nearest.diocese);
+          showToast(`📍 Đã định vị! Bạn đang ở gần ${dioceseLabel(nearest.diocese)} (~${nearest.distanceKm} km)`);
+        } else {
+          showToast('📍 Đã định vị thành công! Đang xếp nhà thờ gần bạn nhất lên đầu.');
+        }
         setLocating(false);
-        showToast('📍 Đã định vị thành công! Đang xếp nhà thờ gần nhất lên đầu.');
       },
       (err) => {
-        console.error(err);
+        console.error('GPS error:', err);
         setLocating(false);
-        alert('Không thể lấy vị trí GPS. Vui lòng kiểm tra quyền truy cập vị trí trên trình duyệt.');
+        if (err.code === 1) {
+          alert('Bạn đã chặn quyền truy cập vị trí. Vui lòng cho phép quyền truy cập Vị trí trên trình duyệt để tìm nhà thờ gần nhất.');
+        } else {
+          alert('Không thể lấy vị trí GPS. Vui lòng bật định vị thiết bị và thử lại.');
+        }
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
     );
   };
 
