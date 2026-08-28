@@ -1,11 +1,24 @@
 :root {
-  --color-beige: #FDFBF7; /* Warm, modern pure beige */
-  --color-red: #D32F2F; /* Deep Catholic Red */
+  --color-beige: #FDFBF7;
+  --color-red: #D32F2F;
   --color-red-light: #EF5350;
-  --color-yellow: #D97706; /* Rich Amber Vatican Gold */
+  --color-yellow: #D97706;
   --color-yellow-light: #FDE68A;
   --color-dark: #1F2937;
-  --color-white: #FFFFFF;
+  --color-muted: #4B5563;
+  --color-subtle: #6B7280;
+  --color-card-bg: rgba(255, 255, 255, 0.75);
+  --color-input-bg: rgba(255, 255, 255, 0.88);
+  --color-input-border: rgba(0, 0, 0, 0.12);
+  --color-input-text: #1F2937;
+  --color-chip-sunday-bg: rgba(211, 47, 47, 0.1);
+  --color-chip-sunday-text: #D32F2F;
+  --color-chip-weekday-bg: rgba(251, 192, 45, 0.25);
+  --color-chip-weekday-text: #1F2937;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
+  --color-btn-subtle-bg: rgba(0, 0, 0, 0.05);
+  --color-btn-subtle-text: #374151;
+  --color-modal-bg: rgba(255, 255, 255, 0.94);
   
   /* Liquid Glass iOS 18 Properties */
   --glass-bg: rgba(255, 255, 255, 0.65);
@@ -51,7 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  /* Enhanced Living Liquid Gradient Background */
+  /* Light Mode Ambient Glow */
   background: 
     radial-gradient(circle at 15% 20%, rgba(254, 226, 226, 0.6) 0%, transparent 45%),
     radial-gradient(circle at 85% 30%, rgba(254, 243, 199, 0.6) 0%, transparent 50%),
@@ -99,7 +112,7 @@ button {
 .liquid-glass:hover {
   box-shadow: var(--glass-shadow-hover);
   transform: translateY(-4px) scale(1.01);
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .liquid-glass:active {
@@ -117,7 +130,7 @@ button {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.35) 50%,
     transparent 100%
   );
   transform: skewX(-25deg);
@@ -129,35 +142,60 @@ button {
   left: 140%;
 }
 
+/* ==========================================================================
+   MIDNIGHT SAPPHIRE & OBSIDIAN DARK MODE (APPLE / LINEAR PREMIUM STYLE)
+   ========================================================================== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-beige: #121212;
-    --color-red: #EF4444;
-    --color-red-light: #F87171;
-    --color-yellow: #F59E0B;
+    --color-beige: #090B10;
+    --color-red: #F87171;
+    --color-red-light: #FCA5A5;
+    --color-yellow: #FBBF24;
     --color-yellow-light: #FDE68A;
     --color-dark: #F9FAFB;
-    --color-white: #18181B;
+    --color-muted: #E5E7EB;
+    --color-subtle: #9CA3AF;
+    --color-card-bg: rgba(18, 24, 38, 0.75);
+    --color-input-bg: rgba(23, 31, 48, 0.88);
+    --color-input-border: rgba(255, 255, 255, 0.16);
+    --color-input-text: #F9FAFB;
+    --color-chip-sunday-bg: rgba(239, 68, 68, 0.22);
+    --color-chip-sunday-text: #FCA5A5;
+    --color-chip-weekday-bg: rgba(245, 158, 11, 0.2);
+    --color-chip-weekday-text: #FDE68A;
+    --color-border-subtle: rgba(255, 255, 255, 0.1);
+    --color-btn-subtle-bg: rgba(255, 255, 255, 0.09);
+    --color-btn-subtle-text: #E5E7EB;
+    --color-modal-bg: rgba(18, 24, 38, 0.96);
     
-    --glass-bg: rgba(24, 24, 27, 0.65);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-border-bottom: rgba(0, 0, 0, 0.4);
-    --glass-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-    --glass-shadow-hover: 0 20px 40px -10px rgba(239, 68, 68, 0.25);
+    --glass-bg: rgba(16, 22, 36, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-border-bottom: rgba(0, 0, 0, 0.6);
+    --glass-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    --glass-shadow-hover: 0 24px 48px -10px rgba(248, 113, 113, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.25);
   }
 
   body {
     background: 
-      radial-gradient(circle at 20% 20%, rgba(153, 27, 27, 0.25) 0%, transparent 45%),
-      radial-gradient(circle at 80% 30%, rgba(180, 83, 9, 0.2) 0%, transparent 50%),
-      radial-gradient(circle at 50% 80%, rgba(153, 27, 27, 0.2) 0%, transparent 55%),
-      linear-gradient(135deg, #09090B 0%, #18181B 100%);
+      radial-gradient(circle at 18% 18%, rgba(220, 38, 38, 0.22) 0%, transparent 45%),
+      radial-gradient(circle at 82% 25%, rgba(217, 119, 6, 0.18) 0%, transparent 50%),
+      radial-gradient(circle at 50% 85%, rgba(185, 28, 28, 0.18) 0%, transparent 55%),
+      radial-gradient(circle at 75% 75%, rgba(30, 58, 138, 0.22) 0%, transparent 45%),
+      linear-gradient(145deg, #07090E 0%, #0D111A 50%, #090B10 100%);
     background-size: 150% 150%;
-    animation: liquidMeshGlow 12s ease-in-out infinite alternate;
   }
 
   .liquid-glass:hover {
-    background: rgba(39, 39, 42, 0.85);
+    background: rgba(26, 35, 56, 0.88);
+  }
+
+  .liquid-glass::after {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.12) 50%,
+      transparent 100%
+    );
   }
 }
 
@@ -252,9 +290,9 @@ button {
 .modal-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .modal-content-container {
@@ -264,16 +302,11 @@ button {
   max-height: 90vh;
   overflow-y: auto;
   padding: 32px;
-  background-color: rgba(255, 255, 255, 0.92);
+  background-color: var(--color-modal-bg);
   animation: slideUpCenter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   border-radius: 24px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-@media (prefers-color-scheme: dark) {
-  .modal-content-container {
-    background-color: rgba(30, 30, 30, 0.92);
-  }
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  color: var(--color-dark);
 }
 
 @keyframes slideUpCenter {
@@ -300,7 +333,7 @@ button {
     display: block;
     width: 44px;
     height: 4px;
-    background: rgba(0,0,0,0.15);
+    background: var(--color-border-subtle);
     border-radius: 4px;
     margin: -10px auto 18px auto;
   }
@@ -318,7 +351,7 @@ button {
 
 .giole-btn-contribute {
   padding: 8px 14px;
-  background-color: rgba(211, 47, 47, 0.1);
+  background-color: rgba(211, 47, 47, 0.12);
   color: var(--color-red);
   border: 1px solid rgba(211, 47, 47, 0.25);
   border-radius: 999px;
@@ -333,7 +366,7 @@ button {
 }
 
 .giole-btn-contribute:hover {
-  background-color: rgba(211, 47, 47, 0.2);
+  background-color: rgba(211, 47, 47, 0.22);
   transform: scale(1.04);
 }
 

@@ -16,10 +16,10 @@ const inputStyle: React.CSSProperties = {
   width: '100%',
   padding: '10px 14px',
   borderRadius: '10px',
-  border: '1px solid rgba(0, 0, 0, 0.15)',
-  backgroundColor: 'rgba(255, 255, 255, 0.85)',
+  border: '1px solid var(--color-input-border)',
+  backgroundColor: 'var(--color-input-bg)',
   fontSize: '0.95rem',
-  color: '#1F2937',
+  color: 'var(--color-input-text)',
   outline: 'none',
   boxSizing: 'border-box',
   fontFamily: 'inherit'

@@ -26,10 +26,10 @@ const fieldStyle: React.CSSProperties = {
   width: '100%',
   padding: '11px 14px',
   borderRadius: '12px',
-  border: '1px solid rgba(0, 0, 0, 0.12)',
-  backgroundColor: 'rgba(255, 255, 255, 0.85)',
+  border: '1px solid var(--color-input-border)',
+  backgroundColor: 'var(--color-input-bg)',
   fontSize: '0.92rem',
-  color: '#1F2937',
+  color: 'var(--color-input-text)',
   outline: 'none',
   boxSizing: 'border-box',
   fontFamily: 'inherit',
@@ -43,9 +43,10 @@ const labelStyle: React.CSSProperties = {
   marginBottom: '5px',
   fontWeight: 700,
   fontSize: '0.78rem',
-  color: '#374151',
+  color: 'var(--color-dark)',
   textTransform: 'uppercase',
-  letterSpacing: '0.4px'
+  letterSpacing: '0.4px',
+  opacity: 0.9
 };
 
 const DAY_ORDER = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chúa Nhật'];
@@ -305,7 +306,7 @@ ${window.location.origin}/gio-le`;
           <Link href="/" aria-label={t.backToHome} style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             width: '36px', height: '36px', borderRadius: '50%',
-            background: 'rgba(0,0,0,0.05)', color: 'var(--color-dark)', flexShrink: 0
+            background: 'var(--color-btn-subtle-bg)', color: 'var(--color-dark)', flexShrink: 0
           }}>
             <ArrowLeft size={18} />
           </Link>
@@ -330,7 +331,7 @@ ${window.location.origin}/gio-le`;
             </h1>
             <div style={{
               fontSize: '0.72rem',
-              color: '#6B7280',
+              color: 'var(--color-subtle)',
               fontWeight: 600,
               whiteSpace: 'nowrap',
               overflow: 'hidden',
@@ -377,7 +378,7 @@ ${window.location.origin}/gio-le`;
                 </select>
                 <ChevronDown size={16} style={{
                   position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
-                  pointerEvents: 'none', color: '#6B7280'
+                  pointerEvents: 'none', color: 'var(--color-subtle)'
                 }} />
               </div>
             </div>
@@ -399,7 +400,7 @@ ${window.location.origin}/gio-le`;
                 </select>
                 <ChevronDown size={16} style={{
                   position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
-                  pointerEvents: 'none', color: '#6B7280'
+                  pointerEvents: 'none', color: 'var(--color-subtle)'
                 }} />
               </div>
             </div>
@@ -408,7 +409,7 @@ ${window.location.origin}/gio-le`;
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <label htmlFor="q" style={labelStyle}>{t.filterSearch}</label>
               <div style={{ position: 'relative' }}>
-                <Search size={17} color="#6B7280" style={{
+                <Search size={17} color="var(--color-subtle)" style={{
                   position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)'
                 }} />
                 <input id="q" type="text" placeholder={t.filterSearchPlaceholder} value={searchTerm}
@@ -427,7 +428,7 @@ ${window.location.origin}/gio-le`;
               flexWrap: 'wrap',
               gap: '8px',
               paddingTop: '10px',
-              borderTop: '1px solid rgba(0,0,0,0.06)'
+              borderTop: '1px solid var(--color-border-subtle)'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap' }}>
                 {(
@@ -447,8 +448,8 @@ ${window.location.origin}/gio-le`;
                       fontSize: '0.75rem',
                       fontWeight: 700,
                       border: 'none',
-                      backgroundColor: timeFilter === chip.id ? 'var(--color-red)' : 'rgba(0,0,0,0.06)',
-                      color: timeFilter === chip.id ? 'white' : '#4B5563',
+                      backgroundColor: timeFilter === chip.id ? 'var(--color-red)' : 'var(--color-btn-subtle-bg)',
+                      color: timeFilter === chip.id ? 'white' : 'var(--color-btn-subtle-text)',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}
@@ -465,9 +466,9 @@ ${window.location.origin}/gio-le`;
                 style={{
                   padding: '5px 12px',
                   borderRadius: '999px',
-                  backgroundColor: userLocation ? '#ECFDF5' : 'rgba(0,0,0,0.05)',
-                  color: userLocation ? '#065F46' : '#374151',
-                  border: userLocation ? '1px solid #A7F3D0' : '1px solid rgba(0,0,0,0.08)',
+                  backgroundColor: userLocation ? 'rgba(16, 185, 129, 0.15)' : 'var(--color-btn-subtle-bg)',
+                  color: userLocation ? '#10B981' : 'var(--color-btn-subtle-text)',
+                  border: userLocation ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid var(--color-border-subtle)',
                   fontSize: '0.78rem',
                   fontWeight: 700,
                   cursor: locating ? 'wait' : 'pointer',
@@ -482,7 +483,7 @@ ${window.location.origin}/gio-le`;
                   </>
                 ) : (
                   <>
-                    <MapPin size={13} color={userLocation ? '#10B981' : '#DC2626'} />
+                    <MapPin size={13} color={userLocation ? '#10B981' : 'var(--color-red)'} />
                     {userLocation ? 'Gần bạn nhất' : 'Tìm gần vị trí của tôi'}
                   </>
                 )}
@@ -504,8 +505,8 @@ ${window.location.origin}/gio-le`;
               width: '56px',
               height: '56px',
               borderRadius: '50%',
-              backgroundColor: 'rgba(251, 192, 45, 0.2)',
-              color: '#B45309',
+              backgroundColor: 'rgba(251, 192, 45, 0.15)',
+              color: 'var(--color-yellow)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -525,7 +526,7 @@ ${window.location.origin}/gio-le`;
             </h2>
             <p style={{
               color: 'var(--color-dark)',
-              opacity: 0.7,
+              opacity: 0.75,
               maxWidth: '480px',
               margin: '0 auto 20px',
               fontSize: '0.9rem',
@@ -550,9 +551,9 @@ ${window.location.origin}/gio-le`;
                   style={{
                     padding: '6px 14px',
                     borderRadius: '999px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.85)',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    color: '#374151',
+                    backgroundColor: 'var(--color-input-bg)',
+                    border: '1px solid var(--color-input-border)',
+                    color: 'var(--color-dark)',
                     fontSize: '0.82rem',
                     fontWeight: 700,
                     cursor: 'pointer',
@@ -570,9 +571,9 @@ ${window.location.origin}/gio-le`;
                 onClick={handleOpenAdd}
                 style={{
                   padding: '9px 18px',
-                  backgroundColor: 'rgba(211, 47, 47, 0.08)',
+                  backgroundColor: 'rgba(211, 47, 47, 0.1)',
                   color: 'var(--color-red)',
-                  border: '1px solid rgba(211, 47, 47, 0.2)',
+                  border: '1px solid rgba(211, 47, 47, 0.25)',
                   borderRadius: '12px',
                   fontWeight: 700,
                   fontSize: '0.85rem',
@@ -601,7 +602,7 @@ ${window.location.origin}/gio-le`;
         {!loading && selectedDiocese && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 4px' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#4B5563' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-subtle)' }}>
                 Hiển thị <strong>{filtered.length}</strong> giáo xứ
               </span>
             </div>
@@ -627,8 +628,8 @@ ${window.location.origin}/gio-le`;
                         <span>{[item.diocese && dioceseLabel(item.diocese), item.deanery && `Hạt ${item.deanery}`, item.province].filter(Boolean).join(' · ')}</span>
                         {hasDistance && (
                           <span style={{
-                            backgroundColor: '#D1FAE5',
-                            color: '#065F46',
+                            backgroundColor: 'rgba(16, 185, 129, 0.18)',
+                            color: '#10B981',
                             padding: '1px 6px',
                             borderRadius: '999px',
                             fontSize: '0.68rem',
@@ -652,9 +653,9 @@ ${window.location.origin}/gio-le`;
                         onClick={() => handleShare(item)}
                         style={{
                           padding: '5px 8px',
-                          backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                          color: '#374151',
-                          border: '1px solid rgba(0, 0, 0, 0.08)',
+                          backgroundColor: 'var(--color-btn-subtle-bg)',
+                          color: 'var(--color-btn-subtle-text)',
+                          border: '1px solid var(--color-border-subtle)',
                           borderRadius: '8px',
                           fontSize: '0.72rem',
                           fontWeight: 600,
@@ -673,9 +674,9 @@ ${window.location.origin}/gio-le`;
                         onClick={() => handleOpenEdit(item)}
                         style={{
                           padding: '5px 8px',
-                          backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                          color: '#374151',
-                          border: '1px solid rgba(0, 0, 0, 0.08)',
+                          backgroundColor: 'var(--color-btn-subtle-bg)',
+                          color: 'var(--color-btn-subtle-text)',
+                          border: '1px solid var(--color-border-subtle)',
                           borderRadius: '8px',
                           fontSize: '0.72rem',
                           fontWeight: 600,
@@ -695,10 +696,10 @@ ${window.location.origin}/gio-le`;
                   {item.address && (
                     <div style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px',
-                      marginTop: '6px', fontSize: '0.84rem', color: '#4B5563'
+                      marginTop: '6px', fontSize: '0.84rem', color: 'var(--color-muted)'
                     }}>
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '5px', minWidth: 0, flex: 1 }}>
-                        <MapPin size={14} style={{ marginTop: '2px', flexShrink: 0, color: '#9CA3AF' }} />
+                        <MapPin size={14} style={{ marginTop: '2px', flexShrink: 0, opacity: 0.7 }} />
                         <span style={{ lineHeight: 1.35 }}>{item.address}</span>
                       </div>
 
@@ -708,8 +709,8 @@ ${window.location.origin}/gio-le`;
                         rel="noopener noreferrer"
                         style={{
                           padding: '3px 8px',
-                          backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                          color: '#1D4ED8',
+                          backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                          color: '#3B82F6',
                           borderRadius: '6px',
                           fontSize: '0.74rem',
                           fontWeight: 700,
@@ -717,7 +718,7 @@ ${window.location.origin}/gio-le`;
                           alignItems: 'center',
                           gap: '3px',
                           textDecoration: 'none',
-                          border: '1px solid rgba(59, 130, 246, 0.2)',
+                          border: '1px solid rgba(59, 130, 246, 0.25)',
                           flexShrink: 0
                         }}
                       >
@@ -728,7 +729,7 @@ ${window.location.origin}/gio-le`;
 
                   <div style={{
                     display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px',
-                    marginTop: '12px', paddingTop: '10px', borderTop: '1px solid rgba(44,44,44,0.06)'
+                    marginTop: '12px', paddingTop: '10px', borderTop: '1px solid var(--color-border-subtle)'
                   }}>
                     {item.byDay ? (
                       <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '5px' }}>
@@ -739,14 +740,14 @@ ${window.location.origin}/gio-le`;
                             <span style={{
                               ...labelStyle, minWidth: '80px', flexShrink: 0, marginBottom: 0,
                               color: d === 'Chúa Nhật' ? 'var(--color-red)' : 'var(--color-dark)',
-                              opacity: d === 'Chúa Nhật' ? 1 : 0.7
+                              opacity: d === 'Chúa Nhật' ? 1 : 0.8
                             }}>
                               {t.dayNames[d] ?? d}
                             </span>
                             <TimeChips
                               times={item.byDay![d]}
-                              color={d === 'Chúa Nhật' ? 'var(--color-red)' : 'var(--color-dark)'}
-                              bg={d === 'Chúa Nhật' ? 'rgba(211,47,47,0.1)' : 'rgba(251,192,45,0.25)'}
+                              color={d === 'Chúa Nhật' ? 'var(--color-chip-sunday-text)' : 'var(--color-chip-weekday-text)'}
+                              bg={d === 'Chúa Nhật' ? 'var(--color-chip-sunday-bg)' : 'var(--color-chip-weekday-bg)'}
                             />
                           </div>
                         ))}
@@ -757,7 +758,7 @@ ${window.location.origin}/gio-le`;
                         <span style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '4px', marginBottom: 0 }}>
                           <Clock size={13} /> {t.colWeekday}
                         </span>
-                        <TimeChips times={item.weekdayMass} color="var(--color-dark)" bg="rgba(251,192,45,0.25)" />
+                        <TimeChips times={item.weekdayMass} color="var(--color-chip-weekday-text)" bg="var(--color-chip-weekday-bg)" />
                       </div>
                     )}
                     {(item.saturdayMass?.length ?? 0) > 0 && (
@@ -765,7 +766,7 @@ ${window.location.origin}/gio-le`;
                         <span style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '4px', marginBottom: 0 }}>
                           <Clock size={13} /> {t.dayNames['Thứ Bảy'] ?? 'Thứ Bảy'}
                         </span>
-                        <TimeChips times={item.saturdayMass!} color="var(--color-dark)" bg="rgba(251,192,45,0.25)" />
+                        <TimeChips times={item.saturdayMass!} color="var(--color-chip-weekday-text)" bg="var(--color-chip-weekday-bg)" />
                       </div>
                     )}
                     {item.sundayMass?.length > 0 && (
@@ -773,11 +774,11 @@ ${window.location.origin}/gio-le`;
                         <span style={{ ...labelStyle, display: 'flex', alignItems: 'center', gap: '4px', marginBottom: 0 }}>
                           <Calendar size={13} /> {t.colSunday}
                         </span>
-                        <TimeChips times={item.sundayMass} color="var(--color-red)" bg="rgba(211,47,47,0.1)" />
+                        <TimeChips times={item.sundayMass} color="var(--color-chip-sunday-text)" bg="var(--color-chip-sunday-bg)" />
                       </div>
                     )}
                     {!item.weekdayMass?.length && !item.saturdayMass?.length && !item.sundayMass?.length && (
-                      <div style={{ gridColumn: '1 / -1', fontSize: '0.82rem', color: '#6B7280' }}>
+                      <div style={{ gridColumn: '1 / -1', fontSize: '0.82rem', color: 'var(--color-subtle)' }}>
                         {t.noMassTimes}
                       </div>
                     )}
@@ -828,3 +829,4 @@ ${window.location.origin}/gio-le`;
     </main>
   );
 }
+

@@ -8,18 +8,21 @@ const inputStyle = {
   width: '100%',
   padding: '12px 16px',
   borderRadius: '12px',
-  border: '1px solid rgba(0,0,0,0.1)',
-  backgroundColor: 'rgba(255,255,255,0.5)',
+  border: '1px solid var(--color-input-border)',
+  backgroundColor: 'var(--color-input-bg)',
+  color: 'var(--color-input-text)',
   fontSize: '1rem',
   marginBottom: '16px',
   outline: 'none',
-  transition: 'border-color 0.2s'
+  transition: 'border-color 0.2s',
+  fontFamily: 'inherit',
+  boxSizing: 'border-box' as const
 };
 
 const labelStyle = {
   display: 'block',
   marginBottom: '6px',
-  fontWeight: '500',
+  fontWeight: '600',
   fontSize: '0.9rem',
   color: 'var(--color-dark)'
 };
