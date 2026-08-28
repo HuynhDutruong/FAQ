@@ -14,7 +14,13 @@ import {
   RotateCcw,
   Bookmark,
   BookmarkCheck,
-  X
+  X,
+  Sparkles,
+  Calendar,
+  BookOpen,
+  Heart,
+  Flame,
+  Info
 } from 'lucide-react';
 import { PRAYERS, PRAYER_CATEGORIES, Prayer } from '@/lib/prayersData';
 import { removeAccents } from '@/lib/massTimes';
@@ -110,6 +116,70 @@ export default function KinhNguyenPage() {
   const [fontSize, setFontSize] = useState<number>(17);
   const [beadCount, setBeadCount] = useState<number>(0);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [fullscreenPrayer, setFullscreenPrayer] = useState<Prayer | null>(null);
+
+  // Mầu nhiệm Mân Côi theo ngày trong tuần
+  const todayMysteryInfo = useMemo(() => {
+    const d = new Date().getDay(); // 0: CN, 1: T2, 2: T3, 3: T4, 4: T5, 5: T6, 6: T7
+    switch (d) {
+      case 1:
+      case 6:
+        return {
+          name: 'NĂM SỰ VUI',
+          sub: 'Mùa Vui (Thứ Hai & Thứ Bảy)',
+          id: 'ngam-5-su-vui',
+          emoji: '🌸',
+          color: '#BE185D',
+          badgeBg: 'rgba(236, 72, 153, 0.1)',
+          badgeText: '#BE185D'
+        };
+      case 2:
+      case 5:
+        return {
+          name: 'NĂM SỰ THƯƠNG',
+          sub: 'Mùa Thương (Thứ Ba & Thứ Sáu)',
+          id: 'ngam-5-su-thuong',
+          emoji: '🩸',
+          color: '#DC2626',
+          badgeBg: 'rgba(220, 38, 38, 0.1)',
+          badgeText: '#DC2626'
+        };
+      case 4:
+        return {
+          name: 'NĂM SỰ SÁNG',
+          sub: 'Mùa Sáng (Thứ Năm)',
+          id: 'ngam-5-su-sang',
+          emoji: '💡',
+          color: '#D97706',
+          badgeBg: 'rgba(217, 119, 6, 0.1)',
+          badgeText: '#D97706'
+        };
+      case 3:
+      case 0:
+      default:
+        return {
+          name: 'NĂM SỰ MỪNG',
+          sub: 'Mùa Mừng (Thứ Tư & Chúa Nhật)',
+          id: 'ngam-5-su-mung',
+          emoji: '👑',
+          color: '#1D4ED8',
+          badgeBg: 'rgba(37, 99, 235, 0.1)',
+          badgeText: '#1D4ED8'
+        };
+    }
+  }, []);
+
+  const openRosaryMystery = (prayerId: string) => {
+    setSelectedCategory('all');
+    setSearchQuery('');
+    setExpandedId(prayerId);
+    setTimeout(() => {
+      const el = document.getElementById(prayerId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 150);
+  };
 
   // Load favorites
   useEffect(() => {
@@ -461,6 +531,191 @@ export default function KinhNguyenPage() {
               </button>
             );
           })}
+        </div>
+
+        {/* Spotlight: Chuỗi Mân Côi & 20 Mầu Nhiệm */}
+        <div style={{
+          backgroundColor: 'var(--color-card-bg)',
+          borderRadius: '14px',
+          padding: '18px 20px',
+          border: '1px solid var(--color-border-subtle)',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '14px'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(211, 47, 47, 0.1)',
+                color: 'var(--color-red)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Sparkles size={20} />
+              </div>
+              <div>
+                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                  Chuỗi Mân Côi & 20 Mầu Nhiệm Tin Mừng
+                </h3>
+                <div style={{ fontSize: '0.82rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                  Lần chuỗi chiêm ngắm cuộc đời Chúa Cứu Thế qua đôi mắt Mẹ Maria
+                </div>
+              </div>
+            </div>
+
+            {/* Today's mystery badge button */}
+            <button
+              onClick={() => openRosaryMystery(todayMysteryInfo.id)}
+              style={{
+                padding: '7px 14px',
+                borderRadius: '8px',
+                backgroundColor: todayMysteryInfo.badgeBg,
+                color: todayMysteryInfo.badgeText,
+                border: 'none',
+                fontWeight: 800,
+                fontSize: '0.82rem',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span>{todayMysteryInfo.emoji} Hôm nay: {todayMysteryInfo.name}</span>
+              <span style={{ fontSize: '0.72rem', opacity: 0.85 }}>→ Đọc ngay</span>
+            </button>
+          </div>
+
+          {/* Quick Select Buttons */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
+            gap: '8px'
+          }}>
+            <button
+              onClick={() => openRosaryMystery('ngam-5-su-vui')}
+              style={{
+                padding: '9px 12px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(236, 72, 153, 0.08)',
+                color: '#BE185D',
+                border: '1px solid rgba(236, 72, 153, 0.25)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span>🌸</span>
+              <div>
+                <div>Năm Sự Vui</div>
+                <div style={{ fontSize: '0.7rem', opacity: 0.8, fontWeight: 500 }}>Thứ 2 & Thứ 7</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openRosaryMystery('ngam-5-su-sang')}
+              style={{
+                padding: '9px 12px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(217, 119, 6, 0.08)',
+                color: '#B45309',
+                border: '1px solid rgba(217, 119, 6, 0.25)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span>💡</span>
+              <div>
+                <div>Năm Sự Sáng</div>
+                <div style={{ fontSize: '0.7rem', opacity: 0.8, fontWeight: 500 }}>Thứ 5 hàng tuần</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openRosaryMystery('ngam-5-su-thuong')}
+              style={{
+                padding: '9px 12px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(220, 38, 38, 0.08)',
+                color: '#DC2626',
+                border: '1px solid rgba(220, 38, 38, 0.25)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span>🩸</span>
+              <div>
+                <div>Năm Sự Thương</div>
+                <div style={{ fontSize: '0.7rem', opacity: 0.8, fontWeight: 500 }}>Thứ 3 & Thứ 6</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openRosaryMystery('ngam-5-su-mung')}
+              style={{
+                padding: '9px 12px',
+                borderRadius: '8px',
+                backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                color: '#1D4ED8',
+                border: '1px solid rgba(37, 99, 235, 0.25)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span>👑</span>
+              <div>
+                <div>Năm Sự Mừng</div>
+                <div style={{ fontSize: '0.7rem', opacity: 0.8, fontWeight: 500 }}>Thứ 4 & Chúa Nhật</div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => openRosaryMystery('lich-su-va-y-nghia-kinh-man-coi')}
+              style={{
+                padding: '9px 12px',
+                borderRadius: '8px',
+                backgroundColor: 'var(--color-btn-subtle-bg)',
+                color: 'var(--color-dark)',
+                border: '1px solid var(--color-border-subtle)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                textAlign: 'left',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span>📜</span>
+              <div>
+                <div>Lịch Sử Chuỗi Mân Côi</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--color-subtle)', fontWeight: 500 }}>Theo HĐGMVN</div>
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Results summary & Font Controls */}
