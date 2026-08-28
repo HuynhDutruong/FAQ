@@ -5,6 +5,7 @@ import { useAuth } from '@/lib/AuthContext';
 import { auth } from '@/lib/firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { LogIn, ShieldAlert, Clock, Send, LogOut, Loader2 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const { user, role, userStatus, loading, requestAccess, signOut } = useAuth();
