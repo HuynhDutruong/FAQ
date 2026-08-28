@@ -25,10 +25,12 @@ export default function LoginPage() {
     try {
       await signInWithPopup(auth, provider);
     } catch (error: unknown) {
-      const authErr = error as { code?: string };
-      if (authErr.code !== 'auth/popup-closed-by-user') {
+      const authErr = error as { code?: string; message?: string };
+      if (authErr.code === 'auth/unauthorized-domain') {
+        alert('Tên miền ' + window.location.hostname + ' chưa được thêm vào Danh sách Tên miền được uỷ quyền (Authorized Domains) trên Firebase Console.\n\nVui lòng vào: Firebase Console -> Authentication -> Settings -> Authorized domains -> Thêm ' + window.location.hostname);
+      } else if (authErr.code !== 'auth/popup-closed-by-user') {
         console.error("Login failed:", error);
-        alert('Đăng nhập thất bại. Vui lòng thử lại.');
+        alert('Đăng nhập thất bại: ' + (authErr.message || 'Vui lòng thử lại.'));
       }
     } finally {
       setLoginLoading(false);
