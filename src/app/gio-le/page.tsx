@@ -1,12 +1,9 @@
 'use client';
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Navigation, Search, Loader2, MapPin, Clock, Check } from 'lucide-react';
 import { MassTime, Bucket, getFacets, getByDiocese, removeAccents } from '@/lib/massTimes';
 import { ALL_DIOCESES, dioceseLabel, getNearestDiocese, calculateDistance } from '@/lib/dioceses';
-import MassTimeFeedbackModal from '@/components/MassTimeFeedbackModal';
-
-const DAY_ORDER = ['Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy', 'Chúa Nhật'];
 
 export default function GioLePage() {
   const [dioceseBuckets, setDioceseBuckets] = useState<Bucket[]>([]);
@@ -24,12 +21,21 @@ export default function GioLePage() {
   }, []);
 
   useEffect(() => {
-    if (!selectedDiocese) { setRows([]); return; }
-    setLoading(true);
-    getByDiocese(selectedDiocese)
-      .then(setRows)
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    let ignore = false;
+    if (selectedDiocese) {
+      setLoading(true);
+      getByDiocese(selectedDiocese)
+        .then(data => {
+          if (!ignore) setRows(data);
+        })
+        .catch(console.error)
+        .finally(() => {
+          if (!ignore) setLoading(false);
+        });
+    }
+    return () => {
+      ignore = true;
+    };
   }, [selectedDiocese]);
 
   const dioceses = useMemo(() => {
@@ -193,9 +199,9 @@ export default function GioLePage() {
                     <p style={{ margin: '2px 0 0', fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
                       📍 {item.address}
                     </p>
-                    {item._distance && item._distance !== Infinity && (
+                    {(item as any)._distance && (item as any)._distance !== Infinity && (
                       <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: 'var(--color-red)', fontWeight: 700 }}>
-                        ~{Math.round(item._distance)} km
+                        ~{Math.round((item as any)._distance)} km
                       </p>
                     )}
                   </div>
