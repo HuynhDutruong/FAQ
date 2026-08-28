@@ -23,8 +23,9 @@ import { FAITH_FAQS } from '@/lib/faithFAQs';
 import { ECCLESIASTICAL_PROVINCES, ALL_DIOCESES } from '@/lib/dioceses';
 import { removeAccents } from '@/lib/massTimes';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { ALL_BOOKS } from '@/lib/library';
 
-export type SearchCategory = 'all' | 'prayers' | 'faq' | 'mass' | 'intro' | 'articles' | 'links';
+export type SearchCategory = 'all' | 'library' | 'prayers' | 'faq' | 'mass' | 'intro' | 'articles' | 'links';
 
 export interface SearchResultItem {
   id: string;
@@ -442,17 +443,65 @@ export default function OmniSearch() {
     return [...specialChurches, ...dioceseItems];
   }, []);
 
+  // Index Library Books & Chapters
+  const indexedLibrary: SearchResultItem[] = useMemo(() => {
+    const items: SearchResultItem[] = [];
+    ALL_BOOKS.forEach(b => {
+      // Sách
+      items.push({
+        id: `book-${b.id}`,
+        category: 'library',
+        categoryLabel: `Sách • ${b.categoryLabel}`,
+        categoryIcon: <BookOpen size={15} />,
+        badgeColor: { bg: 'rgba(220, 38, 38, 0.12)', text: '#DC2626', border: 'rgba(220, 38, 38, 0.3)' },
+        title: `📖 ${b.title}`,
+        subtitle: `${b.author} • ${b.totalChapters} Chương`,
+        snippet: b.summary,
+        url: `/thu-vien/${b.id}`,
+        keywords: [
+          removeAccents(b.title),
+          removeAccents(b.author),
+          removeAccents(b.summary),
+          ...b.tags.map(t => removeAccents(t))
+        ]
+      });
+
+      // Từng chương
+      b.chapters.forEach(c => {
+        items.push({
+          id: `chap-${b.id}-${c.id}`,
+          category: 'library',
+          categoryLabel: b.title,
+          categoryIcon: <BookOpen size={15} />,
+          badgeColor: { bg: 'rgba(147, 51, 234, 0.12)', text: '#9333EA', border: 'rgba(147, 51, 234, 0.3)' },
+          title: `${c.title} — ${b.title}`,
+          subtitle: c.subtitle || b.author,
+          snippet: c.summary || (c.content[0] || '').slice(0, 140) + '...',
+          url: `/thu-vien/${b.id}/${c.id}`,
+          keywords: [
+            removeAccents(c.title),
+            removeAccents(c.subtitle || ''),
+            removeAccents(b.title),
+            removeAccents(b.author)
+          ]
+        });
+      });
+    });
+    return items;
+  }, []);
+
   // Master Pool of all searchable items
   const allSearchableItems = useMemo(() => {
     return [
       ...QUICK_LINK_ITEMS,
       ...INTRO_STATIC_ITEMS,
+      ...indexedLibrary,
       ...indexedPrayers,
       ...indexedFAQs,
       ...indexedMassTimes,
       ...articles
     ];
-  }, [indexedPrayers, indexedFAQs, indexedMassTimes, articles]);
+  }, [indexedLibrary, indexedPrayers, indexedFAQs, indexedMassTimes, articles]);
 
   // Filter and Rank Results
   const searchResults = useMemo(() => {
@@ -493,11 +542,12 @@ export default function OmniSearch() {
       const catPriority: Record<SearchCategory, number> = {
         links: 1,
         intro: 2,
-        prayers: 3,
-        faq: 4,
-        mass: 5,
-        articles: 6,
-        all: 7
+        library: 3,
+        prayers: 4,
+        faq: 5,
+        mass: 6,
+        articles: 7,
+        all: 8
       };
       const pDiff = (catPriority[a.category] || 99) - (catPriority[b.category] || 99);
       if (pDiff !== 0) return pDiff;
@@ -558,6 +608,7 @@ export default function OmniSearch() {
 
   const CATEGORY_TABS: { id: SearchCategory; label: string; icon: React.ReactNode }[] = [
     { id: 'all', label: t.tabAllPosts || 'Tất Cả', icon: <Sparkles size={14} /> },
+    { id: 'library', label: `${t.tabLibrary || 'Thư Viện Sách'} (${ALL_BOOKS.length})`, icon: <BookOpen size={14} /> },
     { id: 'prayers', label: `${t.tabPrayers || 'Kinh Nguyện'} (216)`, icon: <BookOpen size={14} /> },
     { id: 'faq', label: t.tabFAQ || 'Vấn Đáp Giáo Lý', icon: <HelpCircle size={14} /> },
     { id: 'mass', label: t.tabMass || 'Giờ Lễ & Giáo Phận', icon: <Clock size={14} /> },

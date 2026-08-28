@@ -157,6 +157,9 @@ export const translations = {
     tabIntro: 'Giới Thiệu',
     tabArticles: 'Bảng Tin Xứ Đoàn',
     tabLinks: 'Liên Kết',
+    navLibrary: 'Thư Viện',
+    tabLibrary: 'Thư Viện Sách',
+    footerLibrary: 'Thư Viện Sách Công Giáo & TNTT',
   },
   en: {
     title: 'VIETNAMESE MARTYRS YOUTH CHAPTER',
@@ -314,6 +317,9 @@ export const translations = {
     tabIntro: 'About Us',
     tabArticles: 'Chapter News',
     tabLinks: 'Official Links',
+    navLibrary: 'Library',
+    tabLibrary: 'Digital Library',
+    footerLibrary: 'Catholic & EYM Digital Library',
   },
   zh: {
     title: '越南殉道圣人青年团',
@@ -1719,5 +1725,8 @@ export const translations = {
     tabIntro: 'परिचय',
     tabArticles: 'संघ के समाचार',
     tabLinks: 'आधिकारिक लिंक',
+    navLibrary: 'पुस्तकालय',
+    tabLibrary: 'पुस्तकालय पुस्तकें',
+    footerLibrary: 'कैथोलिक ई-पुस्तकालय',
   }
 };

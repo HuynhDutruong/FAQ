@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { ALL_DIOCESES } from '@/lib/dioceses';
 import { PRAYERS } from '@/lib/prayersData';
+import { ALL_BOOKS } from '@/lib/library';
 
 const BASE_URL = 'https://chanhtoa.tnttgiaophanmytho.online';
 
@@ -14,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/thu-vien`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.95,
     },
     {
       url: `${BASE_URL}/gioi-thieu`,
@@ -41,6 +48,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 
+  // Library Book Pages & Chapters
+  const bookRoutes: MetadataRoute.Sitemap = ALL_BOOKS.flatMap(b => [
+    {
+      url: `${BASE_URL}/thu-vien/${b.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    ...b.chapters.map(c => ({
+      url: `${BASE_URL}/thu-vien/${b.id}/${c.id}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    }))
+  ]);
+
   // Popular Prayers Subroutes
   const popularPrayers = PRAYERS.filter(p => p.isPopular).slice(0, 30).map(p => ({
     url: `${BASE_URL}/kinh-nguyen?id=${p.id}`,
@@ -57,5 +80,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...dioceseRoutes, ...popularPrayers];
+  return [...staticRoutes, ...bookRoutes, ...dioceseRoutes, ...popularPrayers];
 }

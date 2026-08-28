@@ -15,6 +15,7 @@ export default function SiteHeader() {
 
   const NAV = [
     { href: '/', label: t.navHome || 'Trang Chủ' },
+    { href: '/thu-vien', label: t.navLibrary || 'Thư Viện' },
     { href: '/gioi-thieu', label: t.navIntro || 'Giới Thiệu' },
     { href: '/gio-le', label: t.navMassTimes || 'Giờ Lễ' },
     { href: '/kinh-nguyen', label: t.navPrayers || 'Kinh Nguyện' },

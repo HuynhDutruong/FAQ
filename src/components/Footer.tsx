@@ -137,6 +137,19 @@ export default function Footer() {
               fontSize: '0.82rem'
             }}>
               <Link
+                href="/thu-vien"
+                style={{
+                  color: 'var(--color-dark)',
+                  textDecoration: 'none',
+                  fontWeight: 700,
+                  transition: 'color 0.15s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-red)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-dark)'}
+              >
+                📖 {t.footerLibrary || 'Thư Viện Sách Công Giáo & TNTT'}
+              </Link>
+              <Link
                 href="/gioi-thieu"
                 style={{
                   color: 'var(--color-dark)',

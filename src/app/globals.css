@@ -1845,3 +1845,27 @@ body {
   display: none !important;
 }
 
+/* ===== 3D Realistic Catholic Book Aesthetics ===== */
+.book-3d-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.book-3d-wrapper:hover .book-3d-cover {
+  transform: rotateY(-18deg) rotateX(6deg) translateY(-8px) scale(1.03) !important;
+  box-shadow: 
+    -24px 32px 48px rgba(0, 0, 0, 0.55),
+    -8px 12px 20px rgba(0, 0, 0, 0.35),
+    0 0 15px rgba(253, 230, 138, 0.25) !important;
+}
+
+.book-card-container {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-card-container:hover {
+  transform: translateY(-6px);
+  border-color: rgba(220, 38, 38, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+
