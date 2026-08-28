@@ -815,14 +815,16 @@ export default function GioLePage() {
                       backgroundColor: '#1E293B'
                     }}
                   >
-                    <Image
+                    <img
                       src={`/api/church-image?name=${encodeURIComponent(church.parish)}&diocese=${encodeURIComponent(church.diocese || '')}&lat=${church.lat || ''}&lng=${church.lng || ''}`}
                       alt={church.parish}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 960px"
-                      style={{ objectFit: 'cover' }}
                       loading="lazy"
-                      unoptimized
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
                     />
                     <div
                       style={{
