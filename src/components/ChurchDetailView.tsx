@@ -37,10 +37,10 @@ export default function ChurchDetailView({ item }: { item: MassTime }) {
 
   const handleShare = async () => {
     const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://chanhtoa.tnttgiaophanmytho.online/gio-le/${item.id}`;
-    const text = `⛪ ${item.parish} - ${item.diocese ? dioceseLabel(item.diocese) : ''}
-📍 Địa chỉ: ${item.address || 'Đang cập nhật'}
-⏰ Chúa Nhật: ${item.sundayMass?.join(', ') || 'Chưa có thông tin'}
-⏰ Ngày thường: ${item.weekdayMass?.join(', ') || 'Chưa có thông tin'}
+    const text = `${item.parish} - ${item.diocese ? dioceseLabel(item.diocese) : ''}
+Địa chỉ: ${item.address || 'Đang cập nhật'}
+Chúa Nhật: ${item.sundayMass?.join(', ') || 'Chưa có thông tin'}
+Ngày thường: ${item.weekdayMass?.join(', ') || 'Chưa có thông tin'}
 
 Tra cứu giờ lễ tại: ${shareUrl}`;
 
@@ -193,20 +193,50 @@ Tra cứu giờ lễ tại: ${shareUrl}`;
       {/* Main Content */}
       <div style={{ maxWidth: '920px', margin: '0 auto', width: '100%', padding: '24px 16px 60px', display: 'flex', flexDirection: 'column', gap: '20px', boxSizing: 'border-box' }}>
         
-        {/* 1. Header Card - Church Identity */}
+        {/* 1. Header Card - Church Identity & Photo */}
         <div
           className="liquid-glass"
           style={{
             backgroundColor: 'var(--color-card-bg)',
             borderRadius: '16px',
             border: '1px solid var(--color-border-subtle)',
-            padding: '24px',
+            padding: '20px',
             display: 'flex',
             flexDirection: 'column',
             gap: '16px',
             boxShadow: 'var(--glass-shadow)'
           }}
         >
+          {/* Church Photo Banner */}
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: 'clamp(180px, 35vw, 280px)',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              backgroundColor: '#0F172A'
+            }}
+          >
+            <img
+              src={`/api/church-image?id=${encodeURIComponent(item.id)}&name=${encodeURIComponent(item.parish)}&diocese=${encodeURIComponent(item.diocese || '')}&lat=${item.lat || ''}&lng=${item.lng || ''}&address=${encodeURIComponent(item.address || '')}`}
+              alt={item.parish}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(15, 23, 42, 0.75) 0%, transparent 60%)'
+              }}
+            />
+          </div>
+
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px', flexWrap: 'wrap' }}>
             <div style={{ flex: 1, minWidth: '260px' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '6px', backgroundColor: 'rgba(211, 47, 47, 0.08)', color: 'var(--color-red)', fontSize: '0.78rem', fontWeight: 700, marginBottom: '8px' }}>

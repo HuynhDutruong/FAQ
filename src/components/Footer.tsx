@@ -137,7 +137,7 @@ export default function Footer() {
               fontSize: '0.82rem'
             }}>
               <Link
-                href="/thu-vien"
+                href="/kinh-thanh"
                 style={{
                   color: 'var(--color-dark)',
                   textDecoration: 'none',
@@ -147,7 +147,7 @@ export default function Footer() {
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-red)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-dark)'}
               >
-                📖 {t.footerLibrary || 'Thư Viện Sách Công Giáo & TNTT'}
+                Kinh Thánh Trọn Bộ (73 Sách Cựu & Tân Ước)
               </Link>
               <Link
                 href="/gioi-thieu"

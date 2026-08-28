@@ -39,7 +39,7 @@ export function PostThumb({
   radius
 }: {
   post: MediaPost;
-  height: string;
+  height?: string;
   eager?: boolean;
   imgClassName?: string;
   radius?: string;
@@ -52,10 +52,10 @@ export function PostThumb({
   const frame: CSSProperties = {
     position: 'relative',
     width: '100%',
-    height,
+    height: height || '100%',
     overflow: 'hidden',
     borderRadius: radius,
-    backgroundColor: playing ? '#000' : 'var(--color-btn-subtle-bg)'
+    backgroundColor: playing ? '#000' : '#1E293B'
   };
 
   if (playing && player) {
@@ -90,7 +90,14 @@ export function PostThumb({
         alt=""
         loading={eager ? 'eager' : 'lazy'}
         className={imgClassName}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.3s ease' }}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center 25%',
+          display: 'block',
+          transition: 'transform 0.3s ease'
+        }}
       />
       {player && (
         <button

@@ -1,1802 +1,598 @@
-// Toàn bộ cơ sở dữ liệu các kinh Công Giáo Việt Nam (Nguồn: conggiao.org)
+// Dữ liệu các Kinh Nguyện Cốt Lõi & Chính Thống của Giáo Hội Công Giáo Việt Nam
 export interface Prayer {
   id: string;
   title: string;
   category: string;
-  url: string;
   isPopular?: boolean;
   content: string;
+  latinTitle?: string;
+  note?: string;
 }
 
 export interface PrayerCategory {
   id: string;
   label: string;
-  
   description: string;
 }
 
 export const PRAYER_CATEGORIES: PrayerCategory[] = [
-  { id: 'all', label: 'Tất Cả', description: 'Tất cả các bản kinh Công Giáo' },
-  { id: 'popular', label: 'Kinh Phổ Biến', description: 'Các kinh thường dùng hàng ngày' },
-  { id: 'hang-ngay', label: 'Hằng Ngày & Cơ Bản', description: 'Kinh Sáng, Tối, Kinh Tin Kính, Ăn Năn Tội, Lạy Cha, Sáng Danh...' },
-  { id: 'duc-me', label: 'Đức Mẹ & Mân Côi', description: 'Kinh Kính Mừng, Hãy Nhớ, Lạy Nữ Vương, Mân Côi, Đức Mẹ La Vang...' },
-  { id: 'thanh-giuse-cac-thanh', label: 'Thánh Giuse & Các Thánh', description: 'Kinh Thánh Cả Giuse, Các Thánh Tử Đạo Việt Nam, Các Thánh Tông Đồ...' },
-  { id: 'thanh-the-bi-tich', label: 'Thánh Thể & Bí Tích', description: 'Rước Lễ Thiêng Liêng, Viếng Thánh Thể, Dọn Mình...' },
-  { id: 'long-thuong-xot', label: 'Lòng Thương Xót & Chữa Lành', description: 'Chuỗi Lòng Thương Xót, Tuần Cửu Nhật, Cầu Bình An & Chữa Lành...' },
-  { id: 'dang-thanh-gia', label: '14 Đàng Thánh Giá', description: '14 Chặng Đàng Thánh Giá, Kinh Kính Thánh Giá, Chịu Nạn...' },
-  { id: 'giao-ly-bon-kinh', label: 'Giáo Lý & Điều Răn', description: '10 Điều Răn, 6 Điều Răn Hội Thánh, 8 Mối Phúc Thật, 14 Mối...' },
-  { id: 'cau-cho-linh-hon', label: 'Cầu Cho Các Linh Hồn', description: 'Kinh Vực Sâu, Đám Giỗ, Cầu Cho Người Hấp Hối & Lâm Chung...' },
-  { id: 'gia-dinh-on-goi', label: 'Gia Đình & Ơn Gọi', description: 'Kinh Cầu Cho Gia Đình, Cha Mẹ, Con Cái, Thai Nhi, Linh Mục...' },
-  { id: 'cac-kinh-khac', label: 'Lời Nguyện Khác', description: 'Các lời nguyện dâng mình, tạ ơn và tuần cửu nhật khác' }
+  { id: 'all', label: 'Tất Cả', description: 'Toàn bộ các kinh nguyện Công Giáo cốt lõi' },
+  { id: 'popular', label: 'Kinh Phổ Biến', description: 'Các kinh căn bản thường đọc hàng ngày' },
+  { id: 'hang-ngay', label: 'Hằng Ngày & Sáng Tối', description: 'Kinh Dấu Thánh Giá, Lạy Cha, Kính Mừng, Sáng Danh, Ăn Năn Tội, Dâng Ngày...' },
+  { id: 'duc-me', label: 'Đức Mẹ & Mân Côi', description: 'Chuỗi Mân Côi, Hãy Nhớ, Lạy Nữ Vương, Truyền Tin, Đức Mẹ La Vang...' },
+  { id: 'thanh-giuse-cac-thanh', label: 'Thánh Giuse & Các Thánh', description: 'Kinh Thánh Cả Giuse, Các Thánh Tử Đạo VN, Thiên Thần Micae, Kinh Hòa Bình...' },
+  { id: 'thanh-the-thuong-xot', label: 'Thánh Thể & Lòng Thương Xót', description: 'Chuỗi Lòng Thương Xót 3h Chiều, Rước Lễ Thiêng Liêng, Viếng Thánh Thể...' },
+  { id: 'dang-thanh-gia', label: '14 Đàng Thánh Giá', description: '14 Chặng Đàng Thánh Giá, Kính Năm Dấu Thánh...' },
+  { id: 'giao-ly-dieu-ran', label: 'Giáo Lý & Điều Răn', description: '10 Điều Răn, 6 Điều Răn Hội Thánh, 8 Mối Phúc Thật, 14 Mối Thương Người...' },
+  { id: 'gia-dinh-linh-hon', label: 'Gia Đình & Các Linh Hồn', description: 'Kinh Cầu Cho Gia Đình, Cha Mẹ, Ơn Gọi, Kinh Vực Sâu Cầu Cho Các Linh Hồn...' }
 ];
 
 export const PRAYERS: Prayer[] = [
-  {
-    "id": "10-dieu-ran",
-    "title": "10 Ðiều Răn",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/10-dieu-ran/",
-    "isPopular": true,
-    "content": "Đạo Đức Chúa Trời có Mười Điều Răn:\n\n• Thứ nhất: Thờ phượng một Đức Chúa Trời và kính mến Người trên hết mọi sự.\n• Thứ hai: Chớ kêu tên Đức Chúa Trời vô cớ.\n• Thứ ba: Giữ ngày Chúa Nhật.\n• Thứ bốn: Thảo kính cha mẹ.\n• Thứ năm: Chớ giết người.\n• Thứ sáu: Chớ làm sự dâm dục.\n• Thứ bảy: Chớ lấy của người.\n• Thứ tám: Chớ làm chứng dối.\n• Thứ chín: Chớ muốn vợ chồng người.\n• Thứ mười: Chớ tham của người.\n\nMười điều răn ấy tóm về hai này mà chớ:\nTrước kính mến một Đức Chúa Trời trên hết mọi sự,\nsau lại yêu người như mình ta vậy. Amen."
-  },
-  {
-    "id": "12-hoa-qua-chua-thanh-than",
-    "title": "12 Hoa Quả Chúa Thánh Thần",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/12-hoa-qua-chua-thanh-than/",
-    "isPopular": false,
-    "content": "HoaQuả1. Bác ÁiGiúp ta làm mọi việc vì mến Chúa.2. Vui VẻGiúp ta nhận biết lòng nhân từ của Chúa.3. Bình AnKết quả của niềm vui, làm cho ta được thư thái.4. Kiên NhẫnGiúp ta chịu đựng những nghịch cảnh ở đời và những đau khổ do sự chết gây nên.5. Nhân TừThôi thúc ta làm sự lành cho mọi người.6. Hòa NhãPhát sinh do lòng nhân từ trong lời nói và trong việc làm.7. Nhẫn NạiLàm ta kiên nhẫn chịu đựng lâu dài dù không có những khích lệ bên ngoài.8. Hiền LànhKìm hãm nóng giận.9. Tin TưởngGiúp ta trung thành, thẳng thắn trong những giao tế với mọi người.10. Nhã NhặnLàm phát sinh điều độ, chừng mực trong hành động bền ngoài.11. Tiết ÐộChế ngự những dục vọng.12. Trong SạchGiúp canh phòng ngũ quan để chúng không trở nên dịp tội cho ta; giúp ta coi thân xác mình và thân xác người khác như đền thờ Chúa Thánh Thần."
-  },
-  {
-    "id": "14-chang-dang-thanh-gia",
-    "title": "14 Chặng Đàng Thánh Giá Chúa Giêsu",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/14-chang-dang-thanh-gia/",
-    "isPopular": true,
-    "content": "*GIỚI THIỆU: Đàng Thánh Giá là đàng Chúa đi. Nhờ ơn Chúa, suy ngắm trên những chặng đàng Chúa đi là chúng ta kết hợp với đời sống, cuộc tử nạn, cái chết và cốt nhất là cuộc sống lại của Chúa Kytô. Các chặng đàng Chúa đi cũng là những chặng đàng mà tất cả chúng ta gặp và sống lúc nào đó trong cuộc đời. Tất cả chúng ta điều có những gánh nặng phải vác. Những gánh nặng sẽ đỡ đi nếu có người khác thông cảm chia xẻ với chúng ta. Chúng ta té ngã vì gánh quá nặng, chúng ta được người khác vác đỡ. Chúng ta cũng phải bước những lối dẫn đến nhục nhã ê chề. Chúng ta cũng phải bị lột bỏ tất cả của cải chúng ta có – và một cách nào đó, chúng ta cũng bị đóng đanh vì bệnh tật, vì mất của cải, vì chia ly, vì bị phản bội, vì những tội riêng chúng ta đã phạm, vì tuổi già, và cuối cùng vì cái chết. Đường Chúa Kytô đi như thế đó; nhưng đây là điều quan trọng, con đường đó dẫn đến sự sống lại. Suy ngắm những chặng đàng Chúa đi là cùng với Chúa Kytô đi trọn con đường cứu thế của Người. Suy ngắm những chặng đàng Chúa đi, vì thế, là muốn nói rằng không phải cái chết nhưng là chính cuộc sống mới có giá trị.*\n\n### Viếng Đàng Thánh Giá:\n\nQuì, làm Dấu Thánh Giá và đọc kinh:Nhân danh Cha, và Con, và Thánh Thần. Amen.\n\nLạy ơn Đức Chúa Giêsu, chúng con ước ao ngắm 14 nơi thương khó Đức Chúa Giêsu trong đàng thánh giá này, cho được kính mến trả nghĩa Đức Chúa Giêsu. Chớ gì chúng con được đến viếng những nơi thương khó ấy, như bổn đạo thành Giêrusalem cho được ăn mày các ơn bởi đàng thánh giá mà ra.\n\nSong le chúng con là con chiên lạc xa đàng thì xin dâng lòng chúng con làm đàng thánh giá mà ngắm, cùng in vào lòng những sự thương khó Đức Chúa Giêsu đã chịu, để mà yên ủi chúng con ở chốn khách đời này, cho ngày sau được trông cậy 14 nơi thương khó ấy, như bậc thang đem chúng con về thiên đàng mà hát mừng tạ ơn Đức Chúa Giêsu đời đời chẳng cùng. Amen.Đứng, hướng về chặng 1 và hát:Mẹ xưa đứng bên thánh giá thảm thương, thấy con đớn đau Mẹ nát gan vàng, đôi giòng nước mắt tuôn ròng ròng.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Nhất: Quan Phi-la-tô luận giết Ðức Chúa Giêsu\n\nLạy ơn Ðức Chúa Giêsu là Vua cả trên trời dưới đất, là Ðấng thiên hạ ước ao lâu đời, mà Philatô luận giết Chúa con cách xấu hổ nhuốc nha dường ấy. Xin ban cho con ăn năn đền tội, cho đáng Chúa con cứu lấy con nơi toà phán xét sau này.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 2 và hát:Lòng thân mẫu như gươm sắc thâu qua, biết bao đắng cay cùng Chúa chan hòa, ôi Mẹ đau khổ suy nào cùng.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Hai: Ðức Chúa Giêsu vác Thánh Giá\n\nLạy ơn Ðức Chúa Giêsu chịu đánh nát cả và mình ra cùng vác Thánh Giá nặng vì tội chúng con. Xin ban ơn cho con chịu các sự khốn khó trong bậc con, như Thánh Giá Ðức Chúa Trời đã định cho con phải chịu mà theo chân Ðức Chúa Giêsu cho trọn.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 3 và hát:Đã thương Con Một Thiên Chúa chí nhân, đã cưu mang xưa vinh phúc vô ngần, nay Người đau khổ hơn mọi người.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Ba: Ðức Chúa Giêsu ngã xuống đất lần thứ nhất\n\nLạy ơn Ðức Chúa Giêsu chịu nhiều sự khốn khó cùng nhịn đói, vác Thánh giá nặng yếu nhọc hết sức, thì ngã xuống đất. Xin ban ơn cho con giữ mình cho đến chết, chớ để con phạm tội lỗi gì mất lòng Chúa con.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 4 và hát:Nào ai chẳng cùng than khóc thảm thương với Maria Mẹ Chúa thiên đàng trong giờ Con Chúa mang cực hình.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Bốn: Ðức Mẹ gặp Ðức Chúa Giêsu vác Thánh Giá\n\nLạy ơn Ðức Mẹ, khi trước thấy Con ra đời thì Thiên Thần hát mừng, mà rầy thấy Con nát cả và mình ra trong tay quân dữ đem đi giết, thì lòng Ðức Mẹ đau đớn như phải dao sắc thâu qua lòng vậy. Xin Ðức Mẹ cầu bầu cho chúng con được lòng ăn năn đau đớn, và cầu cho kẻ có tội được trở lại cùng Ðức Chúa Trời.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 5 và hát:Người ơi hãy trông Mẹ Chúa Giêsu dưới cây khổ đau tâm trí thảm sầu, sao lòng chai đá không buồn rầu?\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Năm: Ông Simon vác cây Thánh Giá\n\nKhi quân dữ thấy Ðức Chúa Giêsu yếu nhọc hầu chết, thì nó bắt ông Simong vác Thánh Giá đỡ Ðức Chúa Giêsu. Thương ôi. Nào con chiên Chúa con đâu hết mà để Thánh giá nặng cho kẻ ngoại vác làm vậy. Xin ban ơn giúp sức cho con cùng kẻ thuộc về con được chịu mọi sự khó bằng lòng, như vác đỡ Thánh giá Ðức Chúa Giêsu vậy.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 6 và hát:Giờ đây ngắm suy Con Chúa chí nhân hiến thân hy sinh chuộc lỗi nhân trần, cam chịu bao đớn đau nhục hình.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Sáu: Bà Veronica trao khăn cho Ðức Chúa Giêsu lọt mặt\n\nCon khen lòng mạnh bạo bà Veronica chẳng sợ quân dữ, một mến Ðức Chúa Giêsu, mà thấy cả và mình máu chảy ra, thì trao khăn cho Người lau mặt đi. Xin in hình tượng Ðức Chúa Giêsu vào lòng con, như in vào khăn bà Veronica cho con được lòng mến Ðức Chúa Giêsu cho trọn.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 7 và hát:Mẹ Maria là suối yêu thương, hãy xin cho con đau đớn cùng Người, gây nhiều công phúc trên đường đời.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Bảy: Ðức Chúa Giêsu Ngã xuống đất lần thứ hai\n\nCác sự khốn khó Ðức Chúa Giêsu chịu một ngày một hơn gượng đi chẳng được, thì ngã xuống đất lần nữa, quân dữ đạp dậy, giục đi cho chóng. Xin Ðức Chúa Giêsu ban ơn cho con được giữ lòng vững vàng đi đàng nhân đức một ngày một hơn.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 8 và hát:Nguyện xin lửa yêu nung đốt tâm con, biết yêu mến Chúa trọn cả tâm hồn, cho dù sao cũng không sờn lòng.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Tám: Ðức Chúa Giêsu đứng lại yên ủi con thành Giêsusalem.\n\nLạy ơn Ðức Chúa Giêsu chịu trăm nghìn sự thương khó cho được đứng lại yên ủi con thành Giêrusalem như Cha yên ủi con trong cơn khóc lóc. Xin Ðức Chúa Giêsu yên ủi linh hồn con cùng các con chiên nước này, như yên ủi con thành Giêrusalem vậy, chớ bỏ chúng con mồ côi làm chi.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 9 và hát:Mẹ Maria xin hãy giúp con khắc sâu vết thương của Chúa nhân lành trong lòng con chẳng khi nào sờn.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Chín: Ðức Chúa Giêsu ngã xuống đất lần thức ba\n\nLạy ơn Ðức Chúa Giêsu, đã gần đến núi Calavariô, chẳng còn ai nhìn, máu đã chảy ra hết thì ngã xuống đất một lần nữa. Ớ con cháu Adong, hãy xem Chúa mình ngã xuống đất nhiều lần làm vậy vì ai? Xin Ðức Chúa Giêsu thương chúng con cho đến sau hết, chớ bỏ con mọn yếu đuối dại dột làm chi.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 10 và hát:Nguyện xin khóc than với Đức Nữ Trinh, đớn đau thảm thương chung với Chúa mình, bao ngày con sống trên phàm trần.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Mười: Quân dữ lột áo Ðức Chúa Giêsu\n\nLạy ơn Ðức Chúa Giêsu, khi quân dữ toan đóng đanh Ðức Chúa Giêsu thì nó lột áo ra hết để cho xấu hổ cùng đau đớn, xin ban ơn cho con giữ mình cho khỏi chước ma quỷ cám dỗ.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 11 và hát:Mẹ Maria trinh khiết vô song, hãy xin cho con chung nỗi u buồn, không hề than trách, không ngại ngùng.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Mười Một: Quân dữ đóng đanh Ðức Chúa Giêsu\n\nLạy ơn Ðức Chúa Giêsu chịu đóng đanh vào Thánh Giá vì tội con, xin ban ơn cho con đóng đanh tính xác thịt con vào Thánh Giá Chúa con, kẻo còn phạm tội lỗi nữa.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 12 và hát:Lòng con nhớ luôn ơn Chúa cứu con, hiến dâng lên Chúa toàn thể xác hồn, cho dù đau đớn không hề rời.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Mười Hai: Ðức Chúa Giêsu sinh thì trên Thánh Giá\n\nLạy ơn Ðức Chúa Giêsu chịu mọi sự khó cho đến gần hết hơi, thì gục đầu xuống giã (biệt) Ðức Mẹ mà sinh thì, xin ban ơn cho con giữ đạo cho đến giờ sau hết được phó linh hồn trong tay Chúa con.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 13 và hát:Lòng con ước được thương tích Chúa ban, biết thiết tha mến yêu Chúa muôn loài, vui lòng khi chết đi vì Người.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Mười Ba: Tháo đanh Ðức Chúa Giêsu xuống mà phó ở tay Ðức Mẹ\n\nAi xem thấy hai ông thánh tháo đanh Ðức Chúa Giêsu, mà đem xác xuống cách thảm thiết làm vậy mà cầm nước mắt được ru? Xin ban ơn cho con gỡ mình cho khỏi các tội, như tháo đanh Ðức Chúa Giêsu vậy.\n\n1 Kinh Lạy Cha, 1 Kinh Kính Mừng, 1 Kinh Sáng Danh\n\nLạy Chúa, xin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.Đứng, hướng về chặng 14 và hát:Nguyện xin Giêsu thương đến chúng con, khấng ban Mẫu Thân thương giúp linh hồn, công toàn danh thắng khi lìa trần.\n\n*(Quì):* Chúng con thờ lạy và ngợi khen Chúa Kitô\n\nVì Chúa đã dùng Thánh giá Chúa mà chuộc tội cho thiên hạ.\n\nNơi Thứ Mười Bốn: Táng xác Ðức Chúa Giêsu trong hang đá\n\nÔng thánh Giuse, ông thánh Nicôđêmô, ông thánh Gioan tắm xác Ðức Chúa Giêsu cho sạch các dấu, lấy thuốc thơm mà xức, lấy khăn sạch mà bọc cùng táng trong hang đá. Mọi sự khốn khó Ðức Chúa Giêsu chịu nào có khi nào khó khăn thiếu thốn cho bằng khi táng xác ru? Xin ban lòng mến cho con như thuốc thơm và lòng sạch sẽ như khăn sạch, cùng lòng vững vàng như hang đá và các ơn bởi sự thương khó Ðức Chúa Giêsu, cho con dọn mình chịu Mình Thánh, Máu Thánh Ðức Chúa Giêsu vào lòng như táng nhiện ở đời này, cho ngày sau được xem thấy tỏ tường Ðức Chúa Giêsu hằng sống hằng trị cùng Ðức Chúa Cha, và Ðức Chúa Thánh Thần đời đời chẳng cùng. Amen.Đứng, hướng lên Bàn Thờ (trong Nhà Thờ), và hát:Kìa khi chúng con sau phút lâm chung, cúi xin Chúa thương ban phước linh hồn, thiên đàng vinh phước muôn ngàn trùng.\n\n*(Quì đọc):*\n\n5 Kinh Lạy Cha\n5 Kinh Kính Mừng\n5 Kinh Sáng Danh\n\nLỜi NGUYỆN:\n\nChúng con là vật mọn, mà cả lòng lạy Đức Chúa Giêsu cực cao cực trọng; Chúng con nhớ đến những sự thương khó Đức Chúa Giêsu xưa chịu ba mươi ba năm vì chúng con, thì trong lòng thảm thiết đau đớn, nào có khi nào trả nghĩa Đức Chúa Giêsu cho nên. Thuở xưa khi Đức Chúa Giêsu chịu nạn, thì trời đất động địa, núi non là đá vỡ ra tan tác như thương Chúa sinh nên muôn vật, phương chi chúng con mà chẳng thương Cha Cả thì sao? Ấy Máu Thánh Cha đã chảy ra hết vì quân dữ là chúng con, mà con thấy Cha thương dường ấy, chẳng có khi đừng, nước mắt chảy ra ăn năn tội lỗi vì đã phạm cùng Đức Chúa Cha. Ấy thật bởi tội chúng con cho nên Đức Chúa Giêsu xuống thế liều mình chịu đóng đanh chịu chết làm vậy. Chúng con hằng kính mến Đức Chúa Giêsu mà tích năm Dấu Thánh ở trong lòng chúng con:\n\nChúng con lạy Dấu Thánh chân tả Đức Chúa Giêsu.\n*Đáp:* Vì tội chúng con. *(Câu nào cũng thưa như vậy)*\nChúng con lạy Dấu Thánh chân hữu Đức Chúa Giêsu.\nChúng con lạy Dấu Thánh tay tả Đức Chúa Giêsu.\nChúng con lạy Dấu Thánh tay hữu Đức Chúa Giêsu.\nChúng con lạy Dấu Thánh cạnh nương long Đức Chúa Giêsu.\nAmen."
-  },
-  {
-    "id": "14-moi",
-    "title": "14 Mối",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/14-moi/",
-    "isPopular": true,
-    "content": "Thương người có Mười Bốn Mối:\n\nThương xác bảy mối:\n• Thứ nhất: Cho kẻ đói ăn.\n• Thứ hai: Cho kẻ khát uống.\n• Thứ ba: Cho kẻ rách rưới ăn mặc.\n• Thứ bốn: Viếng kẻ liệt cùng kẻ tù rạc.\n• Thứ năm: Cho khách đỗ nhà.\n• Thứ sáu: Chuộc kẻ làm tôi.\n• Thứ bảy: Chôn xác kẻ chết.\n\nThương linh hồn bảy mối:\n• Thứ nhất: Lấy lời lành mà khuyên người.\n• Thứ hai: Mở dạy kẻ mê muội.\n• Thứ ba: Yên ủi kẻ âu lo.\n• Thứ bốn: Răn bảo kẻ có tội.\n• Thứ năm: Tha kẻ dể ta.\n• Thứ sáu: Nhịn kẻ mất lòng ta.\n• Thứ bảy: Cầu cho kẻ sống và kẻ chết."
-  },
-  {
-    "id": "6-dieu-ran-hoi-thanh",
-    "title": "6 Ðiều Răn Hội Thánh",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/6-dieu-ran-hoi-thanh/",
-    "isPopular": true,
-    "content": "Hội Thánh có Sáu Điều Răn:\n\n• Thứ nhất: Xem lễ ngày Chúa Nhật cùng các ngày lễ buộc.\n• Thứ hai: Chớ làm việc xác ngày Chúa Nhật cùng các ngày lễ buộc.\n• Thứ ba: Xưng tội trong một năm ít là một lần.\n• Thứ bốn: Rước Mình Thánh Chúa trong Mùa Phục Sinh.\n• Thứ năm: Giữ chay và kiêng thịt những ngày Hội Thánh dạy.\n• Thứ sáu: Đóng góp tài chính để giúp đỡ nhu cầu của Hội Thánh."
-  },
-  {
-    "id": "7-phep-bi-tich",
-    "title": "7 Phép Bí Tích",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/7-phep-bi-tich/",
-    "isPopular": false,
-    "content": "• Bí Tích là gì?\n• Bí Tích Rửa Tội\n• Bí Tích Thêm Sức\n• Bí Tích Mình Thánh Chúa\n• Bí Tích Giải Tội\n• Bí Tích Xức Dầu Thánh\n• Bí Tích Truyền Chức Thánh\n• Bí Tích Hôn Phối\n• Ðức Chúa Thánh Thần\n• Ơn Chúa\n*Download bản PDF để in ra ở đây.*\n\n**Các Bí Tích chuyển ngữ qua Anh Ngữ:**\n\nViệt NgữAnh NgữBí Tích Rửa TộiSacrament of BaptismBí Tích Thêm SứcSacrament of ConfirmationBí Tích Mình Thánh ChúaSacrament of Holy EucharistBí Tích Giải TộiSacrament of Reconciliation (Penance)Bí Tích Xức Dầu ThánhSacrament of Anointing SickBí Tích Truyền Chức ThánhSacrament of Holy OrderBí Tích Hôn PhốiSacrament of Holy Matrimony"
-  },
-  {
-    "id": "ba-loi-nguyen-quy-cau-cho-nguoi-lam-chung",
-    "title": "Ba Lời Nguyện Cầu cho Người Lâm Chung",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/ba-loi-nguyen-quy-cau-cho-nguoi-lam-chung/",
-    "isPopular": false,
-    "content": "*(Đọc nơi giường bệnh)*\n\n*Kinh này đã cứu một Giáo Hoàng tội lỗi, tuyệt vọng khi gần chết. Một linh mục thánh thiện cầu cho Ngài bằng kinh này, và sau đó, Đức Giáo Hoàng đã hiện ra sáng láng như mặt trời. Ngài nói với linh-mục kia: “Cho dù ai tội lỗi cách nào mà khi gần chết có ai đọc kinh này cho họ (nơi giường bệnh), thì Chúa cũng tha hết tội cho họ, và cho dù họ phải giam nơi Luyện Ngục tới ngày Phán Xét chung, thi Chúa cũng tha cho họ cả hình-phạt Luyện Ngục.”*\n\n### Đọc một Kinh Lạy Cha:\n\nLạy Cha chúng con ở trên trời, chúng con nguyện danh Cha cả sáng, nước Cha trị đến, ý Cha thể hiện dưới đất cũng như trên trời. Xin Cha cho chúng con hôm nay lương thực hằng ngày, và tha nợ chúng con, như chúng con cũng tha kẻ có nợ chúng con, xin chớ để chúng con sa chước cám dỗ, nhưng cứu chúng con cho khỏi sự dữ. Amen\n\n### Lời Nguyện Thứ Nhất:\n\nLạy Chúa Giêsu Kytô, Chúa là Con Thiên Chúa và là Con của Đức Trinh Nữ Maria, Chúa vừa là Thiên Chúa, vừa là Nguời. Chúa đã sợ hãi đến nỗi toát Mồ Hôi Máu vì chúng con trên Núi Cây Dầu để đem bình an cho chúng con, và Chúa đã dâng Sự Chết Chí Thánh cuả Chúa lên Đức Chúa Cha để cho … (tên nguời đuợc cầu nguyện) đuợc cứu rỗi. Lạy Chúa, nếu vì tội lỗi của … mà … phải lãnh nhận án phạt Hỏa Ngục đời đời, thì con xin Chúa khoan hồng cất án đó khỏi … Con nài xin Đức Chúa Cha Hằng Sống, nhờ Đức Chúa Giêsu Kytô Chúa chúng con, Con Một Yêu Dấu của Chúa, hằng sống, hằng trị Với Chúa và Chúa Thánh Thần, bây giờ và muôn đời. Amen.\n\n### Lời Nguyện Thứ Hai:\n\nLạy Chúa Giêsu Kytô, Chúa đã chết vô cùng thảm thiết trên Thánh Giá vì chúng con, Chúa đã dâng phó Thánh Ý Chúa để phục tùng Thánh Ý Thiên Chúa Cha để đem bình an cho chúng con, và Chúa đã hiến dâng Cuộc Tử Nạn chí thánh của Chúa cho Đức Chúa Cha để cho…được cứu rỗi, và để gạt ra ngòai án phạt mà … phải lãnh nhận vì tội lỗi của … Con xin Đức Chúa Cha Hằng Sống tha cho … vì Chúa Giêsu Kytô Chúa chúng con, Con Một Yêu Dấu của Chúa, hằng sống, hằng trị với Chúa và Chúa Thánh Thần, bây giờ và muôn đời. Amen.\n\n### Lời Nguyện Thứ Ba:\n\nLạy Chúa Giêsu Kytô, Chúa đả im lặng để cho các Tiên Tri nói về Chúa: Cha đã kéo Con về cùng Cha qua Tình Yêu Thương muôn thuở, cũng Tình Yêu này đã đưa Con từ Trời xuống Nhập Thể trong lòng Trinh Nữ Maria, cũng Tình Yêu này đã đem Con từ trong lòng Mẹ Con ra ngòai trần gian cần được cứu giúp, cũng Tình Yêu này để Con sống 33 năm trên trái đất, và như một Chứng Tích của Tình Yêu vô cùng cao cả, Con đã ban Mình Con làm Của Ăn thực sự, và Máu Con làm Của Uống, và cũng là Chứng Tích của Tình Yêu Cao Trọng, Con đã đồng ý làm một Tù Nhân, và bị giong đi từ thẩm phán này sang thẩm phán khác, và cũng là một Chứng Tích của Tình Yêu Cao Cả, Con đã đồng ý chịu kết án tử hình, Con đã đồng ý chết và đuợc chôn cất, và Con đã sống lại thật, và Con đã hiện ra với Mẹ Chí Thánh của Con và toàn thể các tông đồ, và như dấu chỉ cuả Tình Yêu Cao Cả, Con đã thăng thiên về Trời bằng chính quyền năng và sức mạnh của Con, và Con đã ngự bên hữu Thiên Chúa Cha Hằng Sống của Con, Con đã phái Thánh Linh của Con, Thiên Chúa Ngôi Ba, xuống ngự vào trái tim các tông đồ của con và trái tim tất cả những ai trông cậy vào Con. Qua dấu chỉ của Tình Yêu Muôn Thuở của Con, Con hãy mở cửa Thiên Đàng ra hôm nay và Con đón nhận … và tất cả tội lỗi của … nữa vào Vương Quốc của Thiên Chua Cha Hằng Sống của Con, để cho … được cùng Con cai trị, bây giờ và muôn đời. Amen."
-  },
-  {
-    "id": "cac-cau-lay",
-    "title": "Các Câu Lạy",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/cac-cau-lay/",
-    "isPopular": false,
-    "content": "**Thưa:** Lạy rất thánh Trái Tim Đức Chúa Giêsu.** Đáp:** Thương xót chúng con.\n\n**Thưa:** Lạy Trái Tim cực Thánh cực tịnh Rất Thánh Đức Bà Maria.** Đáp:** Cầu cho chúng con.\n\n**Thưa:** Lạy Ông thánh Giuse là bạn thanh sạch Đức Bà Maria trọn đời  đồng trinh.** Đáp:** Cầu cho chúng con.\n\n**Thưa:** Các Thánh Tử Vì Đạo nước Việt Nam.** Đáp:** Cầu cho chúng con.\n\n**Thưa:** Nữ Vương ban sự bằng an.** Đáp:** Cầu cho chúng con."
-  },
-  {
-    "id": "cach-cau-nguyen",
-    "title": "Cách Cầu Nguyện",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/cach-cau-nguyen/",
-    "isPopular": false,
-    "content": "MỤC LỤC:\n\n• Lời ngỏ\n• Cầu nguyện là gì?\n• Tại sao chúng ta cần cầu nguyện\n• Xây dựng một đời sống cầu nguyện hiệu quả\n• Mục đích của cầu nguyện là gì?\n• Những thành quả của việc cầu nguyện\n• Cung cách cầu nguyện\n• Lúc nào nên cầu nguyện\n• Cần cầu nguyện bao lâu\n• Các hình thức cầu nguyện\n• Những lời cầu nguyện\n• Phụ Lục:\n*Kinh tha thứ ngắn*\n* Kinh trận chiến thiêng liêng*\n\n### 1. LỜI NGỎ:\n\n*Rất nhiều người và ngay cả chính chúng tôi thường đặt câu hỏi:*\n\n• *Cầu nguyện là gì?*\n• *Cầu nguyện như thế nào?sao lời cầu nguyện không được Chúa nhận lời?*\n• *Làm sao biết được thánh ý Thiên Chúa? v.v…*\n*Sau khi cầu nguyện và được Chúa Thánh Thần soi sáng, chúng tôi tìm được tài liệu quý giá này, đáp ứng được những khao khát của cầu nguyện và trả lời thoả đáng cho các câu hỏi trên. Chúng tôi xin gởi đến Quí vị tài liệu này như là một hành trang trong đời sống cầu nguyện và theo Chúa. Xin đọc chậm rãi trong tâm tình cầu nguyện và suy niệm, đồng thời xin Chúa giúp đánh động và linh ứng những mạc khải thánh ý và tư tưởng của Chúa qua từng dòng chữ*\n\n*Xin cầu nguyện và tạ ơn Chúa cùng với chúng tôi được chia sẻ trong đời sống tâm linh với Quí vị.*\n\n*Mạng Lưới Cầu Nguyện hân hạnh giới thiệu bài viết rất hay về cầu nguyện sau đây. Xin giúp chúng tôi phổ biến tài liệu này, bằng cách copy tặng cho người thân. Chân thành cám ơn anh chị em cộng tác hoàn thành tài liệu này và quý vị độc giả.*\n\n*DXT Chuyển Dịch*\n* Mạng Lưới Cầu Nguyện ThanhLinh.net*\n\nCầu nguyện cần thiết cho đời sống tâm linh của chúng ta cũng như hơi thở cần cho đời sống tự nhiên của con người. Chúng ta không thể sống trọn vẹn cho Chúa nếu không có đời sống cầu nguyện lành mạnh, và cũng vậy chắc chắn chúng ta không thể hoàn thành bất cứ mục vụ nào nếu không có đời sống cầu nguyện liên lỉ.\n\nTrở về Mục Lục\n\n### 2. CẦU NGUYỆN LÀ GÌ?\n\nKhi bắt đầu chia sẻ một vài nguyên tắc căn bản, tôi xin thú thực từ trong thâm tâm rằng có nhiều điều về cầu nguyện mà tôi tin rằng sẽ còn huyền bí cho tới khi chúng ta được trực diện với Thiên Chúa trên thiên đàng, như trong Thánh Kinh dậy chúng ta: “Bây giờ tôi biết chỉ có ngần có hạn, mai sau tôi sẽ được biết hết, như Thiên Chúa biết tôi” (1Cor.13:12)\n\nMặc dù chúng ta có thể biết rất nhiều về cầu nguyện, và có khả năng giảng dậy nhiều sự thực tuyệt diệu về đề tài đầy thích thú, đầy bí ẩn, và những thắc mắc khó mà hầu như không có câu trả lời thỏa đáng. Tôi tin chắc mỗi người là con cái Chúa đều có một số thắc mắc muốn hỏi Chúa về những huyền bí của cầu nguyện, và về những điều con người cầu xin chưa được đáp trả.\n\nMặc dù vậy, chúng ta biết đủ để có thể xây dựng và thực hành một đời sống cầu nguyện có kết quả để yêu và phụng sự Chúa với hết khả năng của chúng ta.\n\n**a) Cầu nguyện cần thiết cho hoạt động tâm linh.**\n\nĐó là sự diễn tả tâm linh của chúng ta với Chúa mà chính ngài là Thần Khí. Đó là một sự kết hợp và hòa nhập tâm linh của thần trí chúng ta với Thần Khí Chúa. Là một sự gặp gỡ và kết hợp rạng ngời của thần trí chúng ta với Thần Khí Chúa. Đó cũng là một sự đàm thoại thiêng liêng giữa các thần trí. Tâm linh nhân loại hòa nhập và trò chuyện thân mật với Thần Khí Chúa, và khi đó Chúa ở với chúng ta. Ước gì tôi có thể làm sáng tỏ sự kiện này để bảo đảm cho bạn hiểu cặn kẽ và tỏ lòng biết ơn về điều này.\n\nCầu nguyện không phải là một hoạt động của trí tuệ. Cầu nguyện đích thực không phải là sản phẩm của tri thức con người, hay các khả năng thuộc về trí tuệ, mặc dù tri thức và tư tưởng của chúng ta có góp phần vào việc cầu nguyện. Cầu nguyện là sự kết hợp của thần trí chúng ta với Thần Khí của Chúa trong hoạt động sáng tạo của sự đàm thoại tâm linh hỗ tương giữa con người và Thiên Chúa.\n\nThần trí là trọng tâm của thân xác con người chúng ta. Đó là thần khí thiêng liêng trong phần của con người chúng ta. Chúng ta là những sinh vật linh thiêng cần thiết và quan trọng bao bọc bởi thể xác bên ngoài, và trí tuệ chi phối các hoạt động thân xác chúng ta. Trừ khi tâm linh của bạn gặp gỡ Chúa, đàm thoại với Chúa và Người ở với bạn, nếu không thì bạn chưa thực sự cầu nguyện đích thực.\n\n**b) Cầu nguyện là “đến gần bên Chúa“**\n\n“Hãy đến gần Thiên Chúa, Người sẽ đến gần anh em.“(Gc 4:8)\n\nKhi cầu nguyện là chúng ta để qua một bên tất cả những bận rộn của cuộc sống, và chỉ chú tâm hoàn toàn vào Chúa. Đó là một hành động có ý từ bỏ mọi điều cần thiết và đòi hỏi sự chú tâm của chúng ta, để chúng ta có thời giờ với Chúa. Đôi khi đìều này rất khó thực hiện đối với người làm các công tác mục vụ, vì chúng ta thường hay lý luận rằng suốt cuộc đời chúng ta tận tụy làm việc của Chúa, và những điều đòi hỏi sự chú tâm của chúng ta tất nhiên cũng nằm trong ước muốn của Ngài. Thật đáng buồn bởi vì bận rộn với công việc của Chúa, mà hầu như chúng ta có rất ít hoặc không còn thời giờ để có thể gần Chúa trong cầu nguyện. Đây là một cái bẫy tinh vi và nguy hiểm mà nhiều mục tử nhiệt tâm, thiện chí đã sa vào. Đó cũng là “nguy hiểm nghề nghiệp“ trong mục vụ mà vì chúng ta quá bận rộn trong các công việc của Chúa để đến nỗi chểnh mảng, lơ là hay thậm chí lười biếng trong việc cầu nguyện, thờ phượng cách riêng tư với Chúa. Như vậy là chúng ta đã bỏ ra nhiều thời giờđể phụng sự Chúa, nhưng hầu như lại chẳng có thời giờ bầu bạn với Ngài. (Người dịch thêm vào: chúng ta làm công việc của Chúa, nhưng chúng ta lại quên mất Chúa của công việc).\n\n**C) Cầu nguyện là dùng thời giờ qúi báu với Chúa.**\n\nCầu nguyện hầu mang lại hiệu qủa không thể làm qúa vội vàng. Hiển nhiên có những lúc đột xuất thì chỉ trong một tíc tắc ngắn ngủi thôi, cầu nguyện vẫn có kết qủa. Chẳng hạn như khi chúng ta gặp phải tai nạn bất thần xẩy ra và kêu xin với Chúa, Ngài sẽ nghe lời ta và cũng đáp trả ngay tức thì. Tuy nhiên, như là một luật lệ chung để thực hành cầu nguyện cần có thời gian và không nên vội vàng. Bởi vì những lời khi ta cầu nguyện không nhiều bằng điều Chúa muốn nói với ta, và cả những gì Chúa muốn hoàn thành nơi chúng ta khi chúng ta đứng trước nhan thánh Ngài với thái độ đầu phục và phó thác là việc mà cầu nguyện đích thực đòi hỏi nơi chúng ta.\n\nCầu nguyện riêng tư rất quan trọng đến độ chúng ta phải đặt lên hàng đầu mọi ưu tiên trong những việc chúng ta làm, tầm quan trọng của nó khiến bất cứ việc gì khác cũng phải đứng sau danh sách làm việc.\n\n**d) Cầu nguyện là đối thoại hai chiều.**\n\nĐiều người ta thường hiểu lầm nhiều nhất về cầu nguyện là tư tưởng cho rằng “cầu nguyện là cuộc trò chuyện với Chúa“. Tư tưởng này nguy hiểm ở chỗ nó chỉ đúng một phần thôi, nhưng không hoàn toàn là hẳn như vậy. Hiển nhiên về một phương diện, mà là phương diện quan trọng, cầu nguyện là truyện trò với Chúa. Nhưng vế phía bên kia của phương trình (bài toán), thì cầu nguyện cũng là dịp để Chúa nói và chia sẻ tâm tình với chúng ta. Phương diện sau này quan trong hơn (vì khi cầu nguyện là chúng ta đi tìm ý Chúa nơi chúng ta, không phải tìm ý chúng ta nơi Chúa). Những gì tôi nói với Chúa không quan trọng. Nhưng quan trọng là NHỮNG GÌ CHÚA NÓI VỚI TÔI. Cho nên khi bạn bước vào nơi chốn và thời gian cầu nguyện, hãy đi với một tâm tình rằng, bạn cần làm nhiều hơn là chỉ nói với Chúa; bạn cần có thời giờ chờ đợi Chúa, lắng nghe Chúa, và hiểu điều gì Chúa muốn nói với bạn.\n\n**e) Cầu nguyện là chia sẻ tâm tình với Chúa.**\n\nKinh Thánh thường nói “Hãy mở hết trái tim ra cho Chúa”. Vua David là một thí dụ điển hình, và Thánh vịnh 51 là minh chứng rõ ràng nhất. Rất nhiều lần vua David thấy lòng bối rối với những khó khăn phiền muộn trong đời, và chính những lúc ấy Vua khôn ngoan đến trước nhan thánh Chúa và nói:\n\n“Từ cùng cõi địa cầu, con kêu lên Chúa, tâm thần đang mòn mỏi rã rời. Trên tảng đá kia cao vòi vọi, xin Ngài dẫn con lên.” (Tv61:2) Những lúc đó David thổ lộ hết tâm tư với Chúa. Vua mở hết trái tim ra kêu cầu Chúa lắng nghe. “Lạy Chúa Trời, xin lắng nghe lời con cầu nguyện, con khẩn nài, xin đừng nỡ làm ngơ, xin để ý đến con và thương đáp lại”. (Tv 55:22)\n\n**f) Cầu nguyện là phải đợi Chúa.**\n\nDavid thường tạo thói quen “chờ đợi Chúa”. Điều này cho thấy ngay là ta không thể vội vàng đến với Chúa rồi cũng vội vàng rời xa thánh nhan Chúa, nhưng tốt hơn là hãy có đủ thời giờ để kiên nhẫn chờ đợi Người. Quan niệm chờ đợi nói lên cung cách của một tôi tớ hay một tiếp viên kiên nhẫn và khiêm tốn chờ lệnh của Chủ. Anh ta đứng kiên nhẫn chờ cho tới lúc thích hợp khi Chủ ra lệnh hoặc bày tỏ ý muốn của ông.\n\n**g) Cầu nguyện là phục tùng Ý muốn của Chủ.**\n\nThực hành đích thực của cầu nguyện là một hành động vâng phục Chúa. Lý do chính mà chúng ta cầu nguyện là vì chính Chúa đã truyền cho chúng ta hãy làm như vậy. Nên khi chúng ta đem mình tới trước nhan thánh Chúa để cầu nguyện, chúng ta hãy làm với một tinh thần đầu phục và phó thác cho Thánh Ý Chúa. Chỉ một thái độ này thôi cũng đủ là lý do chính đáng để cầu nguyện rồi. Tâm hồn chúng ta cần được canh tân đầu phục Chúa và tuân phục Thánh Ý Ngài.\n\nTrở về Mục Lục\n\n### 3. TẠI SAO CHÚNG TA CẦN CẦU NGUYỆN?\n\n**a) Bởi vì Chúa muốn chúng ta đồng hành với Người.**\n\nĐây là khía cạnh đáng chú ý nhất trong chương trình cứu độ lớn lao của Chúa, đó là một Thiên Chúa Toàn Năng, Đấng tạo dựng và làm chủ vũ trụ bao la, nhưng lại tự hạ mình xuống để trò chuyện với một trong những thụ tạo nhỏ bé nhất của Ngài làm nên. Thiên Chúa toàn năng hằng hữu dành thời gian và nỗ lực để trò chuyện thân mật với một người chẳng là gì như bạn và tôi. Ngài còn chú ý đến những chi tiết nhỏ nhặt trong từng giây phút ngắn ngủi của cuộc đời chúng ta, và sẵn sàng truyền đạt với chúng ta về những chi tiết này. Tôi luôn luôn ngạc nhiên về những ân huệ kể trên, và do đó trong tôi dấy lên niềm kính sợ sâu xa đối với Thiên Chúa cao cả.\n\n**b) Bởi vì chúng ta cần hạ mình xuống khi cầu nguyện.**\n\nCầu nguyện là linh thao (tập thể thao tâm linh) mang lại lợi ích tâm linh, vì khi đến với Chúa chúng ta khiêm nhường trước nhan Thánh Ngài, nhận biết sự hiện diện của chúng ta là cần tới Ngài vì chúng ta bất lực không thể làm được điều gì cho có ý nghĩa và kết quả, nếu không có sự giúp sức của Ngài. Trong cầu nguyện, chúng ta tự coi mình như thái độ của những tôi tớ đứng đợi lệnh chủ. Chúng ta tự hạ thân phận và những khả năng của con người của mình xuống bằng cách tự đặt mình dưới chân Chúa trong khiêm nhường, đầu phục và thành khẩn cầu xin.\n\n**c) Bởi vì chúng cần rèn luyện tâm hồn chúng ta khi cầu nguyện.**\n\nCầu nguyện là một hoạt động tâm linh cho nên cần có một sự rèn luyện xác thịt của chúng ta hầu có thể thực hiện được. Bản tính con người tự nhiên là không cảm thấy hứng khởi trong việc cầu nguyện, ước muốn và khuynh hướng của con người cần được rèn luyện hầu mang tới sự đầu phục để biết dành thời giờ cầu nguyện trước nhan thánh Chúa. Sự thực hành rèn luyện này rất cần thiết cho việc tăng trưởng và phát triển tâm linh. Chúng ta làm cho tâm linh con người được phong phú mỗi lần chúng ta cầu nguyện sốt sắng với Chúa.\n\n**d) Bởi vì chúng ta cần nhận biết và bày tỏ sự lệ thuộc của chúng ta vào Chúa.**\n\nHành động đến trước nhan Chúa trong cầu nguyện là nói lên sự lệ thuộc của chúng ta vào Chúa. Mỗi lần chúng ta tìm Chúa và đến với Ngài bằng con người và những nhu cầu của chúng ta, là chúng ta tỏ cho Ngài biết chúng ta lệ thuộc vào Ngài. Đó là một hoạt động hữu ích giúp chúng ta luôn có thái độ khiêm nhường chính đáng với Chúa.\n\n**e) Bởi vì khi cầu nguyện chúng ta cần từ bỏ chính bản thân mình.**\n\n“Kẻ nào muốn làm môn đệ ta, kẻ ấy hãy từ bỏ chính mình mà vác thánh gía theo ta.” (Mt16,24). Cầu nguyện cho có ý nghĩa luôn đòi hỏi chúng ta phải từ bỏ chính mình. Trong cuộc sống có rất nhiều điều chúng ta cần phải làm hơn là dành thời giờ cho cầu nguyện, vì vậy để có thời giờvà cơ hội cầu nguyện, chúng ta phải từ bỏ mình. Làm được như vậy là chúng ta đã đáp ứng điều Chúa Giêsu muốn nơi mỗi môn đệ đích thực.\n\n**f) Bởi vì cầu nguyện là khía cạnh cần thiết trong mối liên lạc của ta với Chúa.**\n\nChúa Giêsu luôn là một thí dụ và gương mẫu toàn thiện nhất trong việc cầu nguyện của chúng ta. Kinh Thánh ghi lại cuộc đời Chúa khi còn ở trần thế cho thấy Ngài luôn luôn trung thành cầu nguyện cùng Chúa Cha. Nhiều lần, chúng ta thấy Chúa Giêsu lui khỏi các hoạt động, khỏi đám đông dân chúng, và ngay cả các môn đệ của Ngài nữa để có thể một mình cầu nguyện cùng Thiên Chúa Cha. Nếu Chúa Giêsu đã phải làm như thế để duy trì mối liên hệ tốt đẹp với Chúa Cha, thì phần chúng ta cần phải làm nhiều hơn bao nhiêu nữa để tạo được mối liên hệ này? Một sự liên kết gắn bó khi cầu nguyện rất cần thiết để thăng tiến trong mối liên hệ của chúng ta với Chúa.\n\n**g) Bởi vì Chúa đáp ứng những nhu cầu của chúng ta qua cầu nguyện.**\n\nBây giờ chúng ta hãy bàn về điều rất căn bản của cầu nguyện. Nói trắng ra là tại sao chúng ta phải cầu nguyện. Đích thực là vì trong sự khôn ngoan và mục đích của Thiên Chúa, Ngài đã hứa sẽ đáp trả nhu cầu của chúng ta trước những lời van xin Ngài.\n\nDothái 11,6 cho chúng ta biết: “Không có đức tin, thì không thể làm đẹp lòng Thiên Chúa, vì ai đến gần Thiên Chúa, thì phải tin là có Thiên Chúa và tin Người là Đấng ban phần thưởng cho những ai tìm kiếm Người”. Đây là một trong những nhiệm mầu tôi nói trước đây. Chắc chắn là Chúa đã biết mọi nhu cầu và hoàn cảnh của chúng ta rồi, nhưng tại sao Chúa lại cần chúng ta phải nói ra khi cầu nguyện? Tôi tin là câu trả lời cho điều này nằm trong một mức độ nào đó mà tôi đã nói đến ở trên… Chúa muốn tình bạn đồng hành, muốn chúng ta nhận ra sự cần lệ thuộc vào Chúa, và trên thực tế, Chúa muốn chúng ta dành thời giờ liên hệ mật thiết với Ngài.\n\n**h) Bởi vì Chúa nhận lời cầu nguyện của chúng ta.**\n\nDù những nhu cầu chúng ta xin cho cá nhân, cho gia đình hoặc cho tha nhân hay cho kết quả của một mục vụ, Thiên Chúa sẽ nhận lời để đáp trả lại lời cầu nguyện thành tâm của chúng ta. Nếu chúng ta cầu nguyện thì sự việc sẽ xảy ra, còn nếu không cầu nguyện thì chẳng gì tồn tại hay giá trị có thể xẩy ra cả. Công việc của Chúa chỉ được tiến bước qua lời cầu nguyện.\n\nTrở về Mục Lục\n\n### 4. XÂY DỰNG MỘT ĐỜI SỐNG CẦU NGUYỆN HIỆU QUẢ\n\nMục đích chính của cầu nguyện là xây dựng một mối liên hệ riêng tư với Thiên Chúa. Mối liên hệ này chỉ có thể hoàn thành được khi chúng ta biết chờ đợi trước sự hiện diện của Chúa, để Ngài có thể chia sẻ với chúng ta những điều thầm kín trong trái tim Ngài.\n\nĐể có được mối liên lạc mật thiết với Chúa, chúng ta cần biết thánh ý và những mục đích của Chúa muốn cho dân của Ngài, cho nhân loại đang sống trong lầm lạc, hay cho những gì có liên quan đến hành trình hằng ngày của chúng ta với Chúa. Khi chúng ta bầu bạn với Chúa trong cầu nguyện, thì có thể những khao khát của Chúa sẽ trở thành những khao khát của chúng ta. (Tv 37:4 Hãy lấy CHÚA làm niềm vui của bạn, Người sẽ cho được phỉ chí toại lòng).\n\nÔng John Wesdley có lần đã nói: “Dường như Thiên Chúa bị giới hạn bởi đời sống cầu nguyện của chúng ta – Người chẳng làm gì đựợc cho nhân loại nếu không có ai cầu xin Ngài.” (Có người thì nói: cầu nguyện là sức mạnh của con người và là sự yếu đuối của Thiên Chúa). Thoạt mới nghe thì câu này xem ra có vẻ nghịch lý. Tuy vậy, đọc sách Sáng Thế chương 1, chúng ta thấy sau khi dựng nên người nam, Chúa cho con người quyền cai quản mọi sự do tay Ngài làm nên. Vì thế, Adong đã thống trị mặt đất và mọi loài thụ tạo do Chúa làm nên, quyền hành được chính Chúa ban cho ông. Sau khi Satan lứa dối Evà, Adong phạm tội phản nghịch cùng Chúa và theo Satan, Satan đã trở thành chúa tể của thế gian này.\n\nKhi nhìn vào tình trạng thế giới chung quanh ta, với những đau khổ, chiến tranh, đói khát, đạo đức suy đồi, luân lý sai lầm, thù ghét, bạo động v..v.. chúng ta nhận ra rằng nếu Chúa đang điều khiển thế giới này, thì những gì xảy đang xảy ra nhất định là không đúng theo đường lối của Ngài rồi. Nhưng Không, Satan đang là chúa của thế giới này trong một thời kỳ, cho tới khi hết hạn định.\n\n(1Cor4:4 Vậy xin anh em đừng vội xét xử điều gì trước kỳ hạn, trước ngày Chúa đến. Chính Người sẽ đưa ra ánh sáng những gì ẩn khuất trong bóng tối, và phơi bày những ý định trong thâm tâm con người). Thế nhưng, Chúa cho chúng ta một khí giới lớn lao để bẻ gẫy thành trì của Satan, thay mặt cho nhân loại và các quốc gia trên thế giới. VŨ KHÍ ĐÓ LÀ CẦU NGUYỆN VÀ CẦU THAY. Satan có Adong một thời kỳ, Chúa không làm gì được nếu dưới trần gian này không có ai kêu cứu Ngài.\n2 Sb 7,14 nói rằng: “Nếu dân Ta, dân vốn kêu cầu Danh Ta, mà biết hạ mình xuống khẩn nguyện và tìm kiếm Nhan Ta, từ bỏ những con đường xấu xa mà trở lại, thì Ta, từ trời, Ta sẽ nghe và thứ tha tội lỗi nó và sẽ phục hưng xứ sở của nó”.\n\nTrở về Mục Lục\n\n### 5. MỤC ĐÍCH CỦA CẦU NGUYỆN LÀ GÌ?\n\n**1. Làm mục vụ cho Chúa.**\n\nChúng ta được gọi là những tư tế – “Anh em là dòng giống được lựa chọn, là chức tư tế vương giả, là dân thánh“. Pr 2:9.\n\nChúng ta là tư tế của Chúa. Mục vụ của chúng ta cho Chúa phải vượt trên tất cả các công việc khác.\n\nChúng ta làm mục vụ cho Chúa qua ca ngợi, thờ phượng và đàm đạo với Chúa qua cầu nguyện.\nChúng ta có thể đảm nhiệm các bổn phận tư tế nhờ Máu Châu báu Chúa Giêsu. Máu Thánh Ngài làm chúng ta nên công chính để đi vào sự thánh của các thánh.\n\n1 Pr 2:5 Hãy để Thiên Chúa dùng anh em như những viên đá sống động mà xây nên ngôi Đền Thờ thiêng liêng, và hãy để Thiên Chúa đặt anh em làm hàng tư tế thánh, dâng những lễ tế thiêng liêng đẹp lòng Người, nhờ Đức Giêsu Kitô.\n\nEph1:4,5 Trong Đức Kitô, Người đã chọn ta trước cả khi tạo thành vũ trụ, để trước thánh nhan Người, ta trở nên tinh tuyền thánh thiện, nhờ tình thương của Người. Theo ý muốn và lòng nhân ái của Người, Người đã tiền định cho ta làm nghĩa tử nhờ Đức Giêsu Kitô.\n\nCn15:8 ĐỨC CHÚA ghê tởm hy lễ của đứa ác, nhưng ưa thích lời cầu của kẻ ngay.\n\n2 Cor 5:21 Đấng chẳng hề biết tội là gì, thì Thiên Chúa đã biến Người thành hiện thân của tội lỗi vì chúng ta, để làm cho chúng ta nên công chính trong Người.\n\nDt4:16 Bởi thế, ta hãy mạnh dạn tiến lại gần ngai Thiên Chúa là nguồn ân sủng, để được xót thương và lãnh ơn trợ giúp mỗi khi cần.\n\n**2) Làm bạn với Chúa – hay kết hợp với Chúa.**\n\nHãy dành thời giờvới Chúa vì bạn yêu Ngài. Trò truyện, có nghĩa là nói và nghe Ngài. Làm như vậy sự kết hợp đi sâu hơn khi bạn chia sẻ tâm tình và những ý nghĩ thầm kín nhất của mình với Chúa. Như Chúa tỏ cho ông MôSê những cách của Ngài để cứu dân Israen, thì Ngài cũng chia sẻ “những Ước Vọng của Ngài” với bạn qua Chúa Thánh Linh.\n\nXh 33:11-14 ĐỨC CHÚA đàm đạo với ông Mô-sê, mặt giáp mặt, như hai người bạn với nhau. Rồi ông Mô-sê trở về trại; nhưng phụ tá của ông là chàng thanh niên Giô-suê, con ông Nun, thì cứ ở trong Lều, không rời khỏi đó. Ông Mô-sê thưa với ĐỨC CHÚA: “Xin Ngài coi, chính Ngài đã phán với con: “Hãy đưa dân ấy lên, vậy mà Ngài lại không cho con biết Ngài sẽ cử ai đi với con. Tuy nhiên chính Ngài đã phán: Ta biết đích danh ngươi, và hơn nữa ngươi đã được nghĩa với Ta. Vậy bây giờ, nếu quả thật con đã được nghĩa với Ngài, xin khấng tỏ cho con biết đường lối của Ngài, để con biết Ngài, và được nghĩa với Ngài. Xin cũng coi dân tộc này là dân của Ngài.”\n\n**3) Cầu nguyện là nhiệm vụ của mọi tín hữu.**\n\nMục đích của cầu nguyện là xác định Thánh Ý Chúa trong mọi hoàn cảnh và cầu nguyện để thánh ý Chúa được thể hiện. Cầu nguyện là ưu tiên trong đời sống của Chúa Giêsu. Ngài đặt ưu tiên cầu nguyện trên sự nghỉ ngơi của thân xác, trên sự tiếp xúc với đám đông và ăn uống. Cầu nguyện là sự liên lạc giữa Chúa Giêsu và Chúa Cha; chúng ta cầu nguyện cũng phải có sự hiệp thông như vậy.\nMt14:23 Giải tán họ xong, Người lên núi một mình mà cầu nguyện. Tối đến Người vẫn ở đó một mình.\nLc6:12 Trong những ngày ấy, Đức Giêsu đi ra núi cầu nguyện, và Người đã thức suốt đêm cầu nguyện cùng Thiên Chúa.\n\n**4) Cảm thông với những đau buồn của tha nhân.**\n\nNhân danh tha nhân mà cầu thay cho họ, cho những người thân yêu đang buồn phiền, những kẻ vô thần, những kẻ mất niềm tin, những người chưa chạy đến với Chúa, những người cần được chữa lành, những người đang thất vọng. Ngay cả chúng ta phải biết cảm tạ trong những hoàn cảnh đó, và cho những người đã chúc phúc cho chúng ta.\n\nEph1:15,16 Bởi vậy, cả tôi nữa, từ khi được nghe nói về lòng tin của anh em vào Chúa Giêsu, và về lòng mến của anh em đối với toàn thể dân thánh, tôi không ngừng tạ ơn Thiên Chúa vì anh em, khi nhắc tới anh em trong những lời cầu nguyện của tôi.\n\nTrở về Mục Lục\n\n### 6. NHỮNG THÀNH QUẢ CỦA VIỆC CẦU NGUYỆN\n\n**1) Cầu nguyện đem đến thành qủa cho nước Chúa và làm vui lòng Chúa.**\n\nKhi bạn bắt đầu cầu nguyện và liên lạc với Chúa, Người sẽ trò truyện với bạn, cho bạn biết hướng đi, sự khôn ngoan, hiểu biết, sức mạnh, và che chở.\n\nCol 1:9-11 Vì thế, từ ngày chúng tôi nghe biết như vậy, chúng tôi cũng không ngừng cầu nguyện và kêu xin Thiên Chúa cho anh em được am tường thánh ý Người, với tất cả sự khôn ngoan và hiểu biết mà Thần Khí ban cho. Như vậy, anh em sẽ sống được như Chúa đòi hỏi, và làm đẹp lòng Người về mọi phương diện, sẽ sinh hoa trái là mọi thứ việc lành, và mỗi ngày một hiểu biết Thiên Chúa hơn. Nhờ sức mạnh vạn năng của Thiên Chúa vinh quang, anh em sẽ nên mạnh mẽ để kiên trì chịu đựng tất cả.\n\nTv 40:1,2 Tôi đã hết lòng trông đợi CHÚA, Người nghiêng mình xuống và nghe tiếng tôi kêu. Người kéo tôi ra khỏi hố diệt vong, khỏi vũng lầy nhơ nhớp, đặt chân tôi đứng trên tảng đá, làm cho tôi bước đi vững vàng.\n\nGa 15:7,8 Nếu anh em ở lại trong Thầy và lời Thầy ở lại trong anh em, thì muốn gì, anh em cứ xin, anh em sẽ được như ý. Điều làm Chúa Cha được tôn vinh là: Anh em sinh nhiều hoa trái và trở thành môn đệ của Thầy.\n\n**2) Cầu nguyện mở đôi mắt tâm linh của bạn ra.**\n\nSự hiểu biết trong lãnh vực Thần Khí sẽ đến khi bạn rèn luyện bản thân trong việc cầu nguyện, ca ngợi, ăn chay và suy niệm Lời Chúa, khi chờ đợi trước nhan thánh Ngài. Hãy xin Chúa mạc khải cho bạn biết điều gì đang xẩy ra trong lãnh vực tâm linh như xưa tiên tri Êlisa đã làm khi ông xin Chúa mở đôi mắt cho người tôi tớ của Ngài.\n\n2Vua 6:16,17 Ông Ê-li-sa cầu xin rằng: “Lạy ĐỨC CHÚA, xin mở mắt cho nó thấy! ” ĐỨC CHÚA mở mắt người đầy tớ của ông và người ấy thấy núi đầy những ngựa và xe đỏ như lửa vây quanh ông Ê-li-sa.\n\n**3) Cầu nguyện làm nguôi cơn giận của Chúa.**\n\nMặc dù chúng ta thường cảm thấy số phận của thế giới nằm trong tay các nhà độc tài, các chính trị gia, thống đốc, vua chúa v..v.. thế nhưng nhiều lúc các tín hữu cầu nguyện có thể làm thay đổi các biến cố lịch sử. Tôi và bạn cũng có thể có ảnh hưởng mạnh mẽ như Apraham và Danien trong thời Cựu ước xưa. Thật là một điều thích thú khi nghĩ đến những lời cầu nguyện của chúng ta có thể thay đổi các biến cố của quốc gia cũng như của thế giới, khi chúng ta kêu xin lên trời cao.\n\nXh32:14 ĐỨC CHÚA đã thương, không giáng phạt dân Người như Người đã đe.\n\n**4) Qua cầu nguyện bạn nhận được sự mạc khải của Chúa**\n\nThiên Chúa sẽ mạc khải cho chúng ta qua Thánh Thần điều gì Người muốn chúng ta cầu xin, và Người có thể làm sáng tỏ một lãnh vực trở ngại trong đời sống một người, hay trong một tình huống đặc biệt nào đó. Chúa cho phép bạn biết một chút xíu sự hiểu biết của Ngài. Phần bạn, bạn phải tìm kiếm sự hướng dẫn sáng tỏ của Ngài liên quan đến cách ứng phó với lời mạc khải mà Chúa ban cho bạn khi cầu nguyện.\n\nMt11:25,26 Vào lúc ấy, Đức Giêsu cất tiếng nói: “Lạy Cha là Chúa Tể trời đất, con xin ngợi khen Cha, vì Cha đã giấu không cho bậc khôn ngoan thông thái biết những điều này, nhưng lại mặc khải cho những người bé mọn. Vâng, lạy Cha, vì đó là điều đẹp ý Cha.\n\nLc 10,22 “Cha tôi đã giao phó mọi sự cho tôi. Và không ai biết người Con là ai, trừ Chúa Cha, cũng như không ai biết Chúa Cha là ai, trừ người Con, và kẻ mà người Con muốn mặc khải cho.”\nPhil 3:15 Vậy tất cả chúng ta là những người hoàn thiện, chúng ta hãy nghĩ như vậy; và giả như có điểm nào anh em nghĩ khác, thì Thiên Chúa sẽ mặc khải cho anh em.\n\n**5) Cầu nguyện giúp bạn được nghỉ ngơi trong Chúa.**\n\nChúa mời gọi bạn đem những buồn phiền, lo âu, gánh nặng đến cho Ngài. Khi bạn làm điều này bằng tâm tình cầu nguyện tạ ơn, Ngài hứa sẽ ban an bình cho tâm hồn bạn.\n\nPl4:6,7 Anh em đừng lo lắng gì cả. Nhưng trong mọi hoàn cảnh, anh em cứ đem lời cầu khẩn, van xin và tạ ơn, mà giãi bày trước mặt Thiên Chúa những điều anh em thỉnh nguyện. Và bình an của Thiên Chúa, bình an vượt lên trên mọi hiểu biết, sẽ giữ cho lòng trí anh em được kết hợp với Đức Kitô Giêsu.\n\n1Pr5:7 Mọi âu lo, hãy trút cả cho Người, vì Người chăm sóc anh em.\n\nMt6:25,26 “Vì vậy Thầy bảo cho anh em biết: đừng lo cho mạng sống: lấy gì mà ăn; cũng đừng lo cho thân thể: lấy gì mà mặc. Mạng sống chẳng trọng hơn của ăn, và thân thể chẳng trọng hơn áo mặc sao?\n\nTv55:22 Hãy trút nhẹ gánh lo vào tay CHÚA, Người sẽ đỡ đần cho, chẳng để chính nhân phải nghiêng ngửa bao giờ.\n\n**6) Cầu nguyện kinh trận chiến thiêng liêng, bạn có thể đánh đổ thành trì của Satan.**\n\nChúa Giêsu đã chiến thắng Satan khi bị cám dỗ trong sa mạc, bạn cũng có thể chiến thắng ma qủi như Chúa Giêsu đã thắng. Trước khi đi rao giảng cho dân chúng, Chúa đã giao chiến với Satan. Phần bạn, bạn cũng phải thắng trước khi bạn có thể hoàn toàn hoạt động những việc Chúa kêu gọi bạn. Sự thành công của chúng ta tùy thuộc vào sự chiến thắng… trong việc cầu nguyện.\n\nGiôsuê 1:3,11,15 Mọi nơi bàn chân các ngươi dẫm lên thì Ta đã ban cho các ngươi rồi, như Ta đã phán với Mô-sê. “Các anh hãy rảo khắp trại và truyền cho dân: Hãy chuẩn bị lương thực, vì còn ba ngày nữa anh em sẽ qua sông Gio-đan kia để vào chiếm đất mà ĐỨC CHÚA, Thiên Chúa của anh em, cho anh em chiếm hữu.” cho đến khi ĐỨC CHÚA ban cho anh em cũng như anh em của anh em được an cư lạc nghiệp, cho đến khi chính họ cũng chiếm hữu phần đất mà ĐỨC CHÚA, Thiên Chúa của anh em, ban cho họ. Bấy giờ anh em sẽ trở về phần đất mà anh em đã chiếm hữu. Anh em sẽ chiếm hữu phần đất mà ông Mô-sê, tôi trung của ĐỨC CHÚA, đã ban cho anh em bên kia sông Gio-đan, phía mặt trời mọc.\n\nMc 3:27 Không ai vào nhà một người mạnh mà có thể cướp của được, nếu không trói người mạnh ấy trước đã, rồi mới cướp sạch nhà nó.\n\nDanien 10:12,13 Người còn bảo tôi: “Đa-ni-en, đừng sợ, bởi vì ngay từ hôm đầu, khi ngươi đem hết lòng tìm hiểu và ăn chay hãm mình trước nhan Thiên Chúa của ngươi, thì Thiên Chúa đã nghe những lời ngươi nói, và chính vì những lời ấy mà ta đến. Thiên sứ lãnh đạo vương quốc Ba-tư đứng chống lại ta hai mươi mốt ngày. Và này Mi-ca-en, một trong các thiên sứ lãnh đạo cao cấp, đã đến trợ lực ta. Ta để người ở đó, bên cạnh các vua Ba-tư.\n\nTrở về Mục Lục\n\n### 7. CUNG CÁCH CẦU NGUYỆN\n\nNơi chốn để cầu nguyện không quan trọng bằng việc làm theo lời giáo huấn về cầu nguyện của Chúa Giêsu.\n\nMt 6:5-6, Chúa nói: Còn anh, khi cầu nguyện, hãy vào phòng, đóng cửa lại, và cầu nguyện cùng Cha của anh, Đấng hiện diện nơi kín đáo. Và Cha của anh, Đấng thấu suốt những gì kín đáo, sẽ trả lại cho anh. Chúa Giêsu nói cầu nguyện “trong phòng“.\n\nPhòng trong, hay buồng trong thường là nơi được che chở dưới mái nhà. Nơi này cũng có thể dùng làm chòi canh quân địch hay cũng là một chỗ cao để có thể đặt bàn thờ, hay một nơi để cầu nguyện. Thánh kinh dậy rằng dù bạn cầu nguyện kín đáo, nhưng Chúa cũng vẫn trả công cho bạn cách công khai. Mặc dầu không cần phải chỉ cầu nguyện hay kết hợp với Chúa trong phòng, nhưng ngay cả khi chúng ta đi đứng, lái xe, hoặc khi có nhiều người ở chung quanh, chúng ta vẫn có thể hiệp thông với Chúa. Khi Thánh Thần thúc giục bạn cầu nguyện, bạn hãy nâng tâm hồn và tâm trí lên với Chúa. Tất nhiên, mỗi ngày nên dành thời giờ riêng để thịnh lặng cầu nguyện là một điều tốt và cần thiết, nhưng cũng cần nhậy bén để biết khi nào Thánh Thần thôi thúc bạn cầu nguyện ngay cho một nhu cầu cấp bách, và không cần biết bạn đang ở đâu. Sau đây là một số nơi chốn người ta thường cầu nguyện được nhắc tới trong Kinh Thánh:\n\n**Trong phòng trên**\nCv1:13.14 Trở về nhà, các ông lên lầu trên, là nơi các ông trú ngụ. Đó là các ông: Phê-rô, Gio-an, Gia-cô-bê, An-rê, Phi-líp-phê, Tô-ma, Ba-tô-lô-mê-ô, Mát-thêu, Gia-cô-bê con ông An-phê, Si-môn thuộc nhóm Quá Khích, và Giu-đa con ông Gia-cô-bê. Tất cả các ông đều đồng tâm nhất trí, chuyên cần cầu nguyện cùng với mấy người phụ nữ, với bà Ma-ri-a thân mẫu Đức Giêsu, và với anh em của Đức Giêsu.\n\n**Trong nhà**\nCv10:30 Ông Co-nê-li-ô trả lời: “Cách đây bốn hôm, vào khoảng giờ này, lúc tôi đang đọc kinh giờ chín tại nhà, bỗng có một người đứng trước mặt tôi, y phục rực rỡ.\n\nCv12:5-7 Đang khi ông Phê-rô bị giam giữ như thế, thì Hội Thánh không ngừng dâng lên Thiên Chúa lời cầu nguyện khẩn thiết cho ông. Trong đêm trước ngày bị vua Hê-rô-đê đem ra xử, ông Phê-rô ngủ giữa hai người lính, và bị khoá vào hai cái xiềng. Trước cửa ngục lại có lính canh. Bỗng thiên sứ của Chúa đứng bên cạnh ông, và ánh sáng chói rực cả phòng giam. Thiên sứ đập vào cạnh sườn ông Phê-rô, đánh thức ông và bảo: “Đứng dậy mau đi! ” Xiềng xích liền tuột khỏi tay ông.\n\n**Bên bờ sông**\nCv16:13 Ngày sa-bát, chúng tôi ra khỏi cổng thành, men theo bờ sông, đến một chỗ chúng tôi đoán chừng có nơi cầu nguyện. Chúng tôi ngồi xuống nói chuyện với những phụ nữ đang họp nhau tại đó.\n\n**Trên bãi biển**\nCv21:5 Nhưng khi hết thời gian ở đó, chúng tôi ra đi và lên đường, có tất cả các môn đệ cùng với vợ con họ tiễn chân đến tận ngoại thành. Chúng tôi quỳ xuống trên bãi biển mà cầu nguyện.\n\n**Nơi hoang địa**\nLc5:16 Tiếng đồn về Người ngày càng lan rộng; đám đông lũ lượt tuôn đến để nghe Người và để được chữa bệnh. Nhưng Người lui vào nơi hoang vắng mà cầu nguyện.\n\n**Một mình nơi thanh vắng**\nMc1:35 Sáng sớm, lúc trời còn tối mịt, Người đã dậy, đi ra một nơi hoang vắng và cầu nguyện ở đó.\n\nLuka 4:42 Sáng ngày, Người đi ra một nơi hoang vắng. Đám đông tìm Người, đến tận nơi Người đã đến, và muốn giữ Người lại, kẻo Người bỏ họ mà đi.\n\n**Trên núi**\nMt 14:23 Giải tán họ xong, Người lên núi một mình mà cầu nguyện. Tối đến Người vẫn ở đó một mình.\n\nMc6:46 Sau khi từ biệt các ông, Người lên núi cầu nguyện.\n\nLc 5:16 Nhưng Người lui vào nơi hoang vắng mà cầu nguyện.\n\n**Riêng một mình**\nMt6:6 Còn anh, khi cầu nguyện, hãy vào phòng, đóng cửa lại, và cầu nguyện cùng Cha của anh, Đấng hiện diện nơi kín đáo. Và Cha của anh, Đấng thấu suốt những gì kín đáo, sẽ trả lại cho anh.\n\nMt26:39 Người đi xa hơn một chút, sấp mặt xuống, cầu nguyện rằng: “Lạy Cha, nếu có thể được, xin cho con khỏi phải uống chén này. Tuy vậy, xin đừng theo ý con, mà xin theo ý Cha.”\n\nMc14:32-42 Sau đó, Đức Giêsu và các môn đệ đến một thửa đất gọi là Ghết-sê-ma-ni. Người nói với các ông: “Anh em ngồi lại đây, trong khi Thầy cầu nguyện.” Rồi Người đem các ông Phê-rô, Gia-cô-bê và Gio-an đi theo. Người bắt đầu cảm thấy hãi hùng xao xuyến. Người nói với các ông: “Tâm hồn Thầy buồn đến chết được. Anh em ở lại đây mà canh thức.” Người đi xa hơn một chút, sấp mình xuống đất mà cầu xin cho mình khỏi phải qua giờ ấy, nếu có thể được. Người nói: “Áp-ba, Cha ơi, Cha làm được mọi sự, xin cất chén này xa con. Nhưng xin đừng làm điều con muốn, mà làm điều Cha muốn.” Rồi Người trở lại, thấy các môn đệ đang ngủ, liền nói với ông Phê-rô: “Si-mon, anh ngủ à? Anh không thức nổi một giờ sao? Anh em hãy canh thức và cầu nguyện kẻo sa chước cám dỗ. Vì tinh thần thì hăng hái, nhưng thể xác lại yếu đuối.” Người lại đi cầu nguyện, kêu xin như lần trước. Rồi Người trở lại, thấy các môn đệ vẫn ngủ, vì mắt họ nặng trĩu. Các ông chẳng biết trả lời làm sao với Người. Lần thứ ba, Người trở lại và bảo các ông: “Lúc này mà còn ngủ, còn nghỉ sao? Thôi, đủ rồi. Giờ đã điểm. Này Con Người bị nộp vào tay phường tội lỗi. Đứng dậy, ta đi nào! Kìa kẻ nộp Thầy đã tới! ”\n\nLc6:12 Trong những ngày ấy, Đức Giêsu đi ra núi cầu nguyện, và Người đã thức suốt đêm cầu nguyện cùng Thiên Chúa.\n\nLc9:18 Hôm ấy, Đức Giêsu cầu nguyện một mình. Các môn đệ cũng ở đó với Người, và Người hỏi các ông rằng: “Dân chúng nói Thầy là ai?”\n\nTrở về Mục Lục\n\n### 8. LÚC NÀO NÊN CẦU NGUYỆN\n\nTv 55:17-18 Phần tôi, tôi kêu khấn Chúa Trời, CHÚA sẽ thương cứu độ. Sớm trưa chiều, tôi than sầu rên rỉ, Người sẽ nghe tiếng tôi.\n\nKhi Chúa Thánh Thần thôi thúc bạn cầu nguyện, hãy vâng lời sự cấp bách này của Thánh Thần. Ngài sẽ ban cho bạn bằng chứng trong nội tâm, hoặc sự thôi thúc cầu nguyện cho một người, cho một tình huống đặc biệt nào đó. Sự vâng phục của bạn có thể cứu được một tình trạng bi đát và có thể thay đổi ngược chiều hướng đời sống của một người nào đó để mang đến vinh quang cho Chúa.\n\nCầu nguyện đem lại kết quả hơn bất cứ phương pháp nào khác. Một thi sĩ người Anh, ông Alfred Tennyson có viết “Cả thế giới này mơ ước cũng không đem lại nhiều lợi ích cho bằng lời cầu nguyện.” Câu này đã viết hơn một trăm năm rồi, nhưng ở thế kỉ 21 mà chúng ta đang sống vẫn còn đúng. Sự lựa chọn thời gian để cầu nguyện tùy vào hoàn cảnh mỗi người. Hãy xin với Chúa cho biết lúc nào Ngài muốn chúng ta hàn huyên với Người.\n\n**– Cầu nguyện buổi sáng:**\nTv5:4 Vâng, lạy CHÚA, chính Ngài là Đấng con van vỉ, ngay từ sớm, Ngài đã nghe tiếng con. Ngay từ sớm, con tỏ bày ước nguyện, rồi chăm chú đợi trông.\n\nTv88:14 Phần con đây, con kêu lên Ngài, lạy CHÚA, mới tinh sương đã chờ chực nguyện xin.\n\nMc1:35 Sáng sớm, lúc trời còn tối mịt, Người đã dậy, đi ra một nơi hoang vắng và cầu nguyện ở đó.\n\nCv 2:1-4 Khi đến ngày lễ Ngũ Tuần, mọi người đang tề tựu ở một nơi, bỗng từ trời phát ra một tiếng động, như tiếng gió mạnh ùa vào đầy cả căn nhà, nơi họ đang tụ họp. Rồi họ thấy xuất hiện những hình lưỡi giống như lưỡi lửa tản ra đậu xuống từng người một. Và ai nấy đều được tràn đầy ơn Thánh Thần, họ bắt đầu nói các thứ tiếng khác, tuỳ theo khả năng Thánh Thần ban cho.\n\n**– Cầu nguyện buổi trưa**\nTv55:18 Sớm trưa chiều, tôi than sầu rên rỉ, Người sẽ nghe tiếng tôi.\n\n**– Cầu nguyện buổi tối**\nMt14:23 Giải tán họ xong, Người lên núi một mình mà cầu nguyện. Tối đến Người vẫn ở đó một mình.\n\nMc6:47 Sau khi từ biệt các ông, Người lên núi cầu nguyện. Chiều đến, chiếc thuyền đang ở giữa biển hồ, chỉ còn một mình Người ở trên đất.\n\nCv16:25 Vào quãng nửa đêm, ông Phao-lô và ông Xi-la hát thánh ca cầu nguyện với Thiên Chúa; các người tù nghe hai ông hát.\n\n**– Cầu nguyện luôn luôn**\n1Sam12:23 Phần tôi, không đời nào tôi phạm tội nghịch cùng ĐỨC CHÚA là thôi cầu nguyện cho anh em. Tôi sẽ cho anh em biết đường ngay nẻo chính.\n\nNeh1:6 Xin lắng tai nghe và ghé mắt nhìn mà nhậm lời cầu nguyện của con là tôi tớ Ngài giờ đây dâng lên trước Tôn Nhan, lời cầu nguyện mà ngày đêm con dâng lên Ngài cho các tôi tớ Ngài là con cái Ít-ra-en.\n\nTv72:15 Tân Vương vạn vạn tuế! Thiên hạ sẽ đem vàng Ả-rập tiến dâng lên, và cầu xin cho Người luôn mãi, ngày lại ngày chúc phúc cho Người.\n\nLc2:37 Bà không rời bỏ Đền Thờ, những ăn chay cầu nguyện, sớm hôm thờ phượng Thiên Chúa.\n\nLc6:12 Trong những ngày ấy, Đức Giêsu đi ra núi cầu nguyện, và Người đã thức suốt đêm cầu nguyện cùng Thiên Chúa.\n\nCv10:2 Ông là người đạo đức và kính sợ Thiên Chúa, cũng như cả nhà ông; ông rộng tay cứu trợ dân và luôn luôn cầu nguyện cùng Thiên Chúa.\n\nEph 6:18 Theo Thần Khí hướng dẫn, anh em hãy dùng mọi lời kinh và mọi tiếng van nài mà cầu nguyện luôn mãi. Để được như vậy, anh em hãy chuyên cần tỉnh thức và cầu xin cho toàn thể dân thánh.\n\n1Thx3:10 Đêm ngày chúng tôi tha thiết nài xin Chúa cho được thấy mặt anh em và bổ túc những gì còn thiếu trong đức tin của anh em.\n\nTrở về Mục Lục\n\n### 9. CẦN CẦU NGUYỆN BAO LÂU?\n\nNgày xưa, Chúa muốn các môn đệ của Ngài cầu nguyện với Chúa ít là một giờ đồng hồ. Vào lúc Chúa cần các tông đồ hỗ trợ tinh thần thì các ông lại bỏ rơi Chúa vì chính các ông cũng không biết và không chuẩn bị cho tình huống sắp sửa xẩy ra. Các tông đồ chọn giấc ngủ thay cho việc hỗ trợ và canh thức với Chúa. Có nhiều lúc bạn có thể cầu nguyện lâu hơn một giờ. Nhưng cũng có những lúc bạn chỉ có thể cầu nguyện trong 10 hay 15 phút mà thôi. Thế nhưng nên nhớ rằng, cầu nguyện dù ngắn ngủi vẫn còn hơn là không cầu nguyện chút nào.\n\nĐiều lý tưởng đó là cầu nguyện cho tới khi nào nhận được sự trả lời (ngày này qua ngày khác) hoặc cho tới khi nào bạn có được sự bảo đảm của Chúa rằng thế là đã đủ trong lãnh vực tâm linh. Bằng cách nào chứ? Bằng cách cầu nguyện liên tục cho tới khi Chúa cho bạn sự bình an về vấn đề ấy. Một khi bạn cảm nghiệm được sự bình an rồi, cách tốt nhất hãy bắt đầu ca tụng Chúa đi. Ca tụng đem đến chiến thắng, vậy hãy ca tụng Ngài và cám ơn sự chiến thắng vừa đạt được.\n\nNhiều khi Chúa không đáp ứng lời cầu nguyện ngay mà phải chờ đợi rất lâu mới được, thế nhưng đừng nản lòng bỏ cuộc. Nên nhớ rằng sự trả lời của Chúa không dựa theo sự đòi hỏi của chúng ta, nhưng tuỳ theo thời gian tuyệt hảo của Ngài. Chúa không bao giờ chậm trễ, ngay cả khi chúng ta nghĩ rằng Ngài lẽ ra phải trả lời sớm hơn! Hãy bắt chước người đàn bà góa Chúa nói trong dụ ngôn thánh Luca.\n\nLc18:1-8 Đức Giêsu kể cho các môn đệ dụ ngôn sau đây, để dạy các ông phải cầu nguyện luôn, không được nản chí. Người nói: “Trong thành kia, có một ông quan toà. Ông ta chẳng kính sợ Thiên Chúa, mà cũng chẳng coi ai ra gì. Trong thành đó, cũng có một bà goá. Bà này đã nhiều lần đến thưa với ông: “Đối phương tôi hại tôi, xin ngài minh xét cho. Một thời gian khá lâu, ông không chịu.\n\nNhưng cuối cùng, ông ta nghĩ bụng: “Dầu rằng ta chẳng kính sợ Thiên Chúa, mà cũng chẳng coi ai ra gì, nhưng mụ goá này quấy rầy mãi, thì ta xét xử cho rồi, kẻo mụ ấy cứ đến hoài, làm ta nhức đầu nhức óc.” Rồi Chúa nói: “Anh em nghe quan toà bất chính ấy nói đó!7 Vậy chẳng lẽ Thiên Chúa lại không minh xét cho những kẻ Người đã tuyển chọn, ngày đêm hằng kêu cứu với Người sao? Lẽ nào Người bắt họ chờ đợi mãi? Thầy nói cho anh em biết, Người sẽ mau chóng minh xét cho họ. Nhưng khi Con Người ngự đến, liệu Người còn thấy lòng tin trên mặt đất nữa chăng?”\n\nTrước khi cầu nguyện, hãy suy xét xem chúng ta nên ở trong thái độ nào. Chẳng hạn như có nhiều nơi để cấu nguyện, cũng như có nhiều nhu cầu khác nhau để cầu nguyện cho. Điều quan trọng là lúc cầu nguyện phải được thoải mái để tập trung vào Chúa, không bị chia trí bởi môi trường chung quanh hay thân thể nhức nhối khó chịu. Nhiều đoạn trong Thánh kinh cho chúng ta biết các tư thế cầu nguyện như: ngồi, quì, cúi đầu, đứng, giơ cao hai tay, đi, sấp mình xuống.\n\n**– Ngồi**\n1Sb17:16 Vua Đa-vít vào ngồi chầu trước nhan ĐỨC CHÚA và thưa: “Lạy ĐỨC CHÚA là Thiên Chúa, con là ai và nhà của con là gì, mà Ngài đã đưa con tới địa vị này?\n\n**– Quỳ**\n1Vua 8:54 Sau khi dâng tất cả những lời cầu nguyện và nài van ấy lên ĐỨC CHÚA, thì vua Sa-lô-môn phủ phục rồi đứng lên trước bàn thờ ĐỨC CHÚA, giơ hai tay lên trời, quay xuống, cất lớn tiếng chúc lành cho toàn thể cộng đoàn Ít-ra-en.\n\nEt9:5 Vào giờ đó, tôi mới ra khỏi cơn sầu khổ, trỗi dậy; áo dài trong, áo choàng ngoài xé rách, tôi quỳ gối, giơ tay lên ĐỨC CHÚA, Thiên Chúa của tôi.\n\nCv9:40 Ông Phê-rô cho mọi người ra ngoài, rồi quỳ xuống cầu nguyện.\n\n**– Cúi đầu**\nXh34:8 Ông Mô-sê vội vàng phục xuống đất thờ lạy và thưa: “Lạy Chúa, nếu quả thật con được nghĩa với Chúa, thì xin Chúa cùng đi với chúng con.\n\nTv72:11 Mọi quân vương phủ phục trước bệ rồng, muôn dân nước thảy đều phụng sự.\n\nNeh 8:6 Rồi họ sấp mặt sát đất mà thờ lạy ĐỨC CHÚA.\n\n**– Đứng**\nNeh 9:5 Còn các thầy Lê-vi thì nói: “Mời anh em đứng lên chúc tụng ĐỨC CHÚA, Thiên Chúa của anh em.”\n\nMc11:25 Khi anh em đứng cầu nguyện, nếu anh em có chuyện bất bình với ai, thì hãy tha thứ cho họ, để Cha của anh em là Đấng ngự trên trời, cũng tha lỗi cho anh em.\n\nLc18:13 Còn người thu thuế thì đứng đằng xa, thậm chí chẳng dám ngước mắt lên trời, nhưng vừa đấm ngực vừa thưa rằng: “Lạy Thiên Chúa, xin thương xót con là kẻ tội lỗi.\n\n**– Giơ cao hai tay**\n2Sb6:12 Rồi vua Sa-lô-môn đứng trước bàn thờ ĐỨC CHÚA, trước toàn thể cộng đồng Ít-ra-en và giang tay ra.\n\nTv63:5 Suốt cả đời con, nguyện dâng lời chúc tụng, và giơ tay cầu khẩn danh Ngài.\n\n1Tm2:8 Vậy tôi muốn rằng người đàn ông hãy cầu nguyện ở bất cứ nơi nào, tay giơ lên trời, tâm hồn thánh thiện, không giận hờn, không xung khắc.\n\n**– Đi bộ**\n2Vua 4:33-35 Ông đi vào chỗ cậu bé, đóng cửa lại, chỉ có hai người ở bên trong, rồi cầu nguyện với ĐỨC CHÚA. Ông lên giường nằm lên trên đứa trẻ, kề miệng ông trên miệng nó, kề mắt ông trên mắt nó, đặt bàn tay ông trên bàn tay nó. Ông cứ nằm trên đứa trẻ, da thịt nó nóng lên. Ông đi đi lại lại trong nhà, rồi lại lên nằm trên nó; cậu bé hắt hơi đến bảy lần, và mở mắt ra.\n\n**– Xấp mình**\nHs7:6 Ông Giô-suê xé áo mình ra, và cùng với các kỳ mục Ít-ra-en sấp mặt xuống đất trước Hòm Bia ĐỨC CHÚA, cho đến chiều.\n\nEt10:1 Trong khi ông Ét-ra khóc lóc và phủ phục trước Nhà Thiên Chúa, mà cầu nguyện và thú nhận tội lỗi.\n\nMt 26:39 Người đi xa hơn một chút, sấp mặt xuống, cầu nguyện rằng: “Lạy Cha, nếu có thể được, xin cho con khỏi phải uống chén này.\n\nTrở về Mục Lục\n\n### 10. CÁC HÌNH THỨC CẦU NGUYỆN\n\n**1. Chúc tụng và cảm tạ**\n\nThánh Vịnh chỉ cho chúng ta “Hãy vào cửa thánh điện cất tiếng tạ ơn, tới khuôn viên đền vàng dâng lời ca ngợi, tạ ơn Chúa và chúc tụng danh Người”. Tv100:4\n\nVua David là một gương mẫu tuyệt vời trong Thánh kinh cả về cầu nguyện và ca tụng Chúa. Trong Tv103, vua viết “Chúc tụng Thiên Chúa, hỡi hồn tôi và tất cả những gì trong tôi, hãy chúc tụng danh Thánh Chúa.” Rồi vua nói tiếp “Chúc tụng CHÚA đi, hồn tôi hỡi, chớ khá quên mọi ân huệ của Người. CHÚA tha cho ngươi muôn ngàn tội lỗi, thương chữa lành các bệnh tật ngươi. Cứu ngươi khỏi chôn vùi đáy huyệt, bao bọc ngươi bằng ân nghĩa với lượng hải hà, ban cho đời ngươi chứa chan hạnh phúc, khiến tuổi xuân ngươi mạnh mẽ tựa chim bằng”.\n\nVua David biết Đấng mà vua ca tụng chính là Chúa sống động trong ngài. Nhà vua không tôn thờ một vị thần thánh nào xa vời, nhưng là Đấng ban cho vua những điều vua cần. Mọi sự trong đời vua dâng lời ca tụng Chúa Hằng Sống, vì nhà vua đã cảm nghiệm được Chúa là Đấng tha thứ và chữa lành, tình yêu, lòng nhân từ và cứu độ của Chúa tựa như dòng suối khoan dung bất tận đổ xuống cho con cái Ngài. Vua không nói những lời này một cách nhẹ nhàng. Vua biết thế nào là bị tổn thương, bị hành hạ, bị đè nén, bị quân thù bao vây tứ phía, hoặc cảm thấy như bị bỏ rơi, và xa rời Chúa và những lời cầu xin của ngài không được Chúa chấp nhận. Nhưng trong tất cả mọi hoàn cảnh, nhà vua đã một lòng CA NGỢI CHÚA.\n\nNhiều bài Thánh vịnh, vua David vừa cầu xin, vừa ca tụng Chúa. Vua không ngần ngại đến trước nhan Chúa mạnh dạn nói lên nhu cầu của vua. Vua không hề thất vọng vì vua biết quyền năng và sự trung tín nơi Chúa và vì vậy vua tin cậy vào Chúa.\n\nNguồn ca tụng là do Thánh Thần tác động vào thần trí bạn để biểu lộ lòng tôn kính cao cả của Chúa. Bạn hãy phát huy thói quen ca tụng Chúa lúc cầu nguyện.\n\n**2. Xưng tội và tha thứ**\n\nĐể việc cầu nguyện không bị cản trở, chúng ta cần phải biết chắc mình không mắc tội hãy lỗi phạm làm ngăn cách chúng ta với Chúa. Tiên tri Isaia đã nói: Này, không phải ĐỨC CHÚA ngắn tay không thể cứu,cũng chẳng phải Người nặng tai không nghe được, mà chính lỗi lầm của các ngươi đã phân cách các ngươi với Thiên Chúa các ngươi; chính tội lỗi các ngươi đã khiến Người ẩn mặt để khỏi nhìn, khỏi nghe các ngươi”.\n\nDo đó, chúng ta biết tội lỗi ngăn cản lời cầu nguyện của chúng ta không được Chúa đoái nghe, và vì vậy, xin mà không được. Khi bắt đầu cầu nguyện, hãy xin Chúa Thánh Thần soi sáng cho biết có điều gì làm ngăn cách ta với sự hiện diện của Chúa hay không. Hãy làm như vua David cầu nguyện: ”Xin Chúa hãy xem xét con, xét xử trí khôn và tâm tư con. Vì lòng khoan dung của Ngài đang ở trước mắt con.”\n\nNếu Chúa Thánh Thần chỉ cho điều lầm lỗi nào trong đời mình, bạn cần phải xưng thú với Chúa trong sự ăn năn hối cải để được Ngài tha thứ. Một khi bóng tối đã được đem ra ánh sáng của Lời Chúa và dốc lòng thống hối thì tội lỗi được giải quyết, Máu châu báu Chúa Giêsu sẽ bao phủ và chúng ta biết Chúa không còn nhớ tới tội của ta nữa. Đừng bao giờ xưng lại tội đã được tha thứ rồi. Chúa nói Người đã chôn vùi và quên nó rồi. “Nếu chúng ta xưng tội, Chúa công thẳng tha thứ cho chúng ta và rửa sạch mọi điều bất chính nơi chúng ta.”\n\nMột trong những mưu mô của Satan là cứ xúi dục chúng ta nghĩ đến những tội lỗi trong quá khứ đã được Chúa tha rồi. Nó cốt ý để cho chúng ta chú tâm vào mình mà thất tín ơn cứu độ, lòng thương xót của Chúa. Khi xưng tội, một kinh nghiệm cảm xúc là bạn đã được tha rồi thường không luôn đến theo sau. Đơn giản là hãy xin và đón nhận bằng đức tin trong Lời Chúa là Ngài sẽ làm những gì Ngài nói. Ngài trung tín, công minh và hay tha thứ.\n\n**3. Tha thứ**\n\nCố chấp không tha thứ là vấn đề luôn luôn ngăn cách bạn và sự liên lạc trọn vẹn với Chúa.\n\nMc11:25 nói: ”Khi anh em đứng cầu nguyện, nếu anh em có chuyện bất bình với ai, thì hãy tha thứ cho họ, để Cha của anh em là Đấng ngự trên trời, cũng tha lỗi cho anh em.” Lời trong sách Thánh này xác quyết rằng chúng ta cần Chúa tha thứ để lời cầu nguyện trở lên có hiệu quả. Chúng ta chỉ đựợc tha thứ nếu chúng ta cũng tha thứ cho kẻ khác. Tha thứ cũng giải thoát cho kẻ khác hoặc làm thay đổi hoàn cảnh gây ra sự bất hòa. Điều này chúng ta để cho Chúa Thánh Thần làm việc, chỉ cho thấy rõ tội, sự công chính và xét xử.\n\nĐừng để lòng tự phụ làm mất đi cảm nghiệm một mối liên hệ mật thiết với Chúa. Tha thứ cho kẻ gây thiệt hại cho mình, bất kể sự đau đớn, xúc phạm ở mức nào. Khi đó bạn sẽ cảm thấy tâm hồn nhẹ nhàng và mối giao hòa với Chúa được hồi phục.\n\n**Ba lãnh vực có thể tha thứ như sau:**\n\na) Tha thứ cho kẻ xúc phạm tới mình.\n\nb) Không trách Chúa. (tuyên bố Ngài vô can) vì trong sự xét đoán của chúng ta, Ngài không can thiệp theo ý chúng ta muốn.\n\nc) Tha thứ cho chính mình.\n\nMặc cảm tội lỗi và tự kết án mình về việc đã gây ra cho mình hoặc cho tha nhân đau khổ.\nNhiều khi chúng ta thấy tha thứ cho Chúa hay cho người khác dễ hơn là tha thứ cho chính mình. Bạn giữ lấy sự chỉ trích và kết án mình trong lòng, nhưng sự tha thứ hoàn toàn bao gồm tha thứ cho chính mình, đó là điều cần thiết để chúng ta cầu nguyện có hiệu qủa.\n\nChúng ta hãy quyết định bước đi trong tha thứ mỗi ngày. Tha thứ cho tha nhân để chính mình được Chúa tha thứ, tha thứ ngay giây phút bị xúc phạm như Chúa đã làm. Tha thứ và hối lỗi phải đi đôi với nhau. Hối lỗi là cảm thấy hối tiếc và ân hận về tư tưởng và hành động của mình, hãy cởi trói cho tha nhân hoặc cho chính mình ra khỏi những đắng cay dằn vặt ấp ủ trong lòng.\n\nNếu tư tưởng chúng ta luôn có thái độ tiêu cực về một người mà chúng ta chọn để tha thứ, chúng ta cần trừ tà những tư tưởng đó của mình. Hãy truyền cho tâm trí bạn, nhân danh Chúa Giêsu khỏi những tư tưởng tiêu cực đó và thay thế bằng những ý tưởng ngay thật, trung tín, đứng đắn, tinh tuyền, tốt lành, biết ca tụng Chúa.\n\nSau khi đã được Thánh Thần soi sáng nói với tâm hồn bạn, hãy đón nhận sự thanh tẩy và tha thứ của Chúa. Xin Ngài đổ tràn Thánh Thần vào trong chúng ta.\n\n**4. Cầu thay**\n\nChúa Giêsu là Thày cả Thượng Phẩm cho chúng ta một tấm gương về cầu thay cho người khác. Ngay khi còn ở trần gian, Chúa đã cầu thay, và vẫn tiếp tục cầu thay cho chúng ta trên Thiên Đàng. Dt7:24-25 “Còn Đức Giêsu, chính vì Người hằng sống muôn đời, nên phẩm vị tư tế của Người tồn tại mãi mãi. Do đó, Người có thể đem ơn cứu độ vĩnh viễn cho những ai nhờ Người mà tiến lại gần Thiên Chúa. Thật vậy, Người hằng sống để chuyển cầu cho họ”.\n\nBởi vậy, khi chúng ta cầu thay cho người khác, thì chúng ta cũng theo gương Chúa. Cầu thay cho kẻ khác được mô tả như là môt tình yêu đáp lại sự khơi dậy của Chúa Thánh Thần cho một nhu cầu cấp bách nào đó. Đó cũng có thể là một lời kêu cứu lên Thiên Chúa thay cho người chúng ta yêu mến.\n\n“Anh em hãy mang gánh nặng cho nhau, như vậy là anh em chu toàn luật Đức Kitô.” Gl6:2. Chúa vui lòng khi chúng ta cầu nguyện cho nhau, nhân danh anh em mình mà cầu thay cho họ.\n\nTiên tri Danien thuật lại trong chương 10 rằng khi Thiên Chúa bất thần cho ông một thông điệp về cuộc đại chiến giữa các thiên thần hộ thủ của các dân tộc. Thường khi Chúa cho chúng ta một thông điệp trong đó gánh nặng đè trên chúng ta, là để chúng ta cầu nguyện cho gánh nặng đó trở thành hành động. Có lúc Chúa hướng dẫn chúng ta cầu nguyện với Lời Chúa. Lúc khác, chúng ta có thể cảm thấy ước muốn mãnh liệt cầu nguyện kinh trận chiến thiêng liêng chống lại những thế lực của bóng tối.\n\nĐể cầu thay cho tha nhân, chúng ta sẵn sàng nhận từ Thiên Chúa gành nặng cầu nguyện. Đây là một sự tín thác thần thiêng khi Thiên Chúa mạc khải sự mầu nhiệm của Người cho chúng ta bằng cách này. Đừng coi nhẹ điều này, mà chúng ta phải tỏ ra xứng đáng với sự tín thác đó. Khi chúng ta cảm nhận Chúa Thánh Thần đang tác động trong tâm hồn mình liên quan tới một tình trạng mà Ngài tỏ ra cho chúng ta, hãy tuân theo mà kêu cầu Chúa cho tình trạng đó. Nhiều khi là Người hướng dẫn chúng ta cầu thay cho những vị linh hướng đang bị sự dữ tấn công, cho các nhà truyền giáo ở những vùng thờ tà thần, cho kẻ đang bị nguy hiểm hoặc cho người đang đau bệnh trầm trọng. Nhiều khi người ta không biết gì về hoàn cảnh cần được cầu thay, ngoài sự hướng dẫn của Chúa Thánh Thần.\n\nLàm sao mình biết phải cầu nguyện cho ai? Một cách để bắt đầu là đặt câu hỏi với Chúa. “Chúa ơi, điều gì đang có trong tim Chúa? Hoàn cảnh nào quan trọng nhất?“ Có thể chúng ta tự hỏi làm thế nào để biết rằng Thánh Thần đang kêu gọi chúng ta cầu nguyện. Thánh Thần sẽ chỉ bảo chúng ta bằng lời, bằng thông điệp hay cảm nghĩ thôi thúc tâm trí chúng ta. Ngàì cũng có thể gợi ra trong tâm trí của chúng ta một khuôn mặt, tên một người, một gia đình, một nhà thờ, một quốc gia v.v… như những hình ảnh trong trí tưởng của chúng ta.\n\nCầu thay cho kẻ khác bắt đầu và cũng kết thúc từ Thiên Chúa. Sau khi Ngài cho chúng ta một đề tài để cầu nguyện, hãy cầu nguyện cho đến khi cảm thấy Ngài muốn chúng ta chuyển sang một tình huống khác. Có những kinh nghiệm cảm xúc như vui cười, rên rỉ, khóc lóc, kêu than không phải là điều bất thường.\n\nGl4:19 “Hỡi anh em, những người con bé nhỏ của tôi, mà tôi phải quặn đau sinh ra một lần nữa cho đến khi Đức Kitô được thành hình nơi anh em”.\n\nĐiều này không thường xẩy ra, nhưng có thể cũng sẽ diễn ra khi chúng ta cầu thay sâu đậm cho người khác. Nhiều khi, chúng ta thấy mình cầu thay trong một thái độ có uy quyền trên những thần thiêng và quyền lực của thế giới sự ác vô hình.\n\nTrở về Mục Lục\n\n### 11. NHỮNG LỜI CẦU NGUYỆN\n\nCầu xin giản dị có nghĩa là nêu ra một yêu cầu, hay đầu phục trong khiêm nhường cho người có quyền hành (chỉ bảo). Vậy khi chúng ta cầu xin với Chúa, chúng ta hãy xin cho một nhu cầu đặc biệt. Nhiều người không đạt tới cách cầu nguyện này, nhưng chính Chúa dậy chúng ta cầu nguyện như thế.\n\n1Ga 5:15 Lý do khiến chúng ta được mạnh dạn trước mặt Thiên Chúa, đó là: Người nhậm lời chúng ta, khi chúng ta xin điều gì hợp ý Người. Nếu chúng ta biết rằng Người nhậm mọi lời chúng ta xin, thì chúng ta cũng biết rằng chúng ta sẽ được những gì chúng ta đã xin Người.\n\nCầu xin là một yêu cầu đặc biệt. Thí dụ: khi bà Anna đến xin Chúa cho bà một người con trai, và hứa sẽ cho con mình theo phụng sự Chúa. Chúa đã nghe và nhận lời cầu xin của bà; phần bà, bà đã giữ trọn lời hứa. Đã từ lâu, bà Anna mong có một con trai, bà đã lớn tiếng kêu cầu Chúa hết lòng mình và bà đã được đáp ứng trọn vẹn lời cầu xin.\n\n1Sam1-2 Bà Anna đứng dậy sau khi họ đã ăn uống tại Si-lô. Tư tế Ê-li đang ngồi trên ghế ở cửa đền thờ ĐỨC CHÚA. Tâm hồn cay đắng, bà cầu nguyện với ĐỨC CHÚA và khóc nức nở. Bà khấn hứa rằng: “Lạy ĐỨC CHÚA các đạo binh, nếu Ngài đoái nhìn đến nỗi khổ cực của nữ tỳ Ngài đây, nếu Ngài nhớ đến con và không quên nữ tỳ Ngài, nếu Ngài cho nữ tỳ Ngài một mụn con trai, thì con sẽ dâng nó cho ĐỨC CHÚA mọi ngày đời nó, và dao cạo sẽ không đụng tới đầu nó.”\n\nChúa khuyến khích chúng ta cầu xin với Ngài khi nói: “Xin sẽ được, Tìm sẽ thấy, Gõ sẽ mở cho“, Nếu chúng ta làm đúng như vậy, Ngài hứa sẽ nhận lời chúng ta.\n\n**Tại sao đôi khi cầu nguyện hầu như không được đáp trả?**\n\nCó lẽ câu hỏi trên tốt hơn nên nói như thế này “tại sao lời cầu xin của tôi lại được đáp trả khác với ý tôi mong muốn?”\n\nKhông ai có thể giải thích được tại sao có một số lời cầu xin đã không được đáp trả. Những lần xẩy ra như vậy là lúc chúng ta phải cúi đầu trước thánh ý Chúa, tin tưởng vào Ngài và biết rằng đường lối của Chúa là toàn thiện. Chắc chắn chúng ta không thể biết hết được những điều này, nhưng chúng ta có được vài câu trả lời căn cứ vào Lời Chúa, chúng ta có câu trả lời. Dưới đây liệt kê một số lý do tại sao chúng ta cầu nguyện không được Chúa nhận lời:\n\n**1. Không tin tưởng.**\n\nGiacôbê 1:5-6,7 “Nếu ai trong anh em thiếu đức khôn ngoan, thì hãy cầu xin Thiên Chúa, Người sẽ ban cho. Vì Thiên Chúa ban cho mọi người cách rộng rãi, không quở trách. Nhưng người ấy phải cầu xin với lòng tin không chút do dự, vì kẻ do dự thì giống như sóng biển bị gió đẩy lên vật xuống. Người ấy đừng tưởng mình sẽ nhận được cái gì của Chúa: họ là kẻ hai lòng, hay thay đổi trong mọi việc họ làm”.\n\n**2. Không kết hợp cùng Chúa.**\n\nGa15:7” Nếu các con ở trong Ta thì lời Ta sẽ ở trong các con, và các con xin gì thì sẽ được.”\n\n**3. Không xin theo ý Chúa.**\n\nThánh ý Chúa thường được tỏ ra cho chúng ta khi chúng ta dành thời giờ suy niệm Lời Chúa, và để cho Chúa nói với chúng ta. Có những điều như sự cứu chuộc được tỏ bày rõ ràng trong Lời Chúa. Khi cầu nguyện chúng ta cần biết ý và điều Chúa mong đợi nơi chúng ta.\n\nXh32:11-14 Ông Mô-sê cố làm cho nét mặt ĐỨC CHÚA, Thiên Chúa của ông, dịu lại. Ông thưa: “Lạy ĐỨC CHÚA, tại sao Ngài lại bừng bừng nổi giận với dân Ngài, dân mà Ngài đã giơ cánh tay mạnh mẽ uy quyền đưa ra khỏi đất Ai-cập? Tại sao người Ai-cập lại có thể rêu rao: Chính vì ác tâm mà Người đã đưa chúng ra, để giết chúng trong miền núi và tiêu diệt chúng khỏi mặt đất? Xin Ngài nguôi cơn thịnh nộ và xin Ngài thương đừng hại dân Ngài. Xin Ngài nhớ đến các tôi tớ Ngài là Áp-ra-ham, I-xa-ác và Ít-ra-en; Ngài đã lấy chính danh Ngài mà thề với các vị ấy rằng: Ta sẽ làm cho dòng dõi các ngươi đông đúc như sao trên trời, và sẽ ban cho dòng dõi các ngươi tất cả miền đất ấy, là miền đất Ta đã hứa; chúng sẽ được thừa hưởng miền đất ấy đến muôn đời.” ĐỨC CHÚA đã thương, không giáng phạt dân Người như Người đã đe.\n\n1Ga 5:14-15 Lý do khiến chúng ta được mạnh dạn trước mặt Thiên Chúa, đó là: Người nhậm lời chúng ta, khi chúng ta xin điều gì hợp ý Người. Nếu chúng ta biết rằng Người nhậm mọi lời chúng ta xin, thì chúng ta cũng biết rằng chúng ta sẽ được những gì chúng ta đã xin Người.\n\nTrong nhiều trường hợp khác, Chúa có thể tiết lộ Thánh Ý Chúa trong tâm hồn hay tâm trí chúng ta khi chúng ta thinh lặng chờ đợi trước Nhan Thánh Ngài. Và tự nhiên chúng ta sẽ nhận ra nhận ra ý Ngài ban cho chúng ta.\n\n**4. Tha thứ.**\n\nMátthêu 6:14,15 là một phần trong việc cầu nguyện mà Chúa Giêsu dậy các môn đệ phải làm. “Thật vậy, nếu anh em tha lỗi cho người ta, thì Cha anh em trên trời cũng sẽ tha thứ cho anh em. Nhưng nếu anh em không tha thứ cho người ta, thì Cha anh em cũng sẽ không tha lỗi cho anh em.”\n\nMt18:21,22 Bấy giờ, ông Phê-rô đến gần Đức Giêsu mà hỏi rằng: “Thưa Thầy, nếu anh em con cứ xúc phạm đến con, thì con phải tha đến mấy lần? Có phải bảy lần không? ” Đức Giêsu đáp: “Thầy không bảo là đến bảy lần, nhưng là đến bảy mươi lần bảy.”\n\nIsaiah 43:25 Ta sẽ xoá bỏ các tội phản nghịch của ngươi, và không còn nhớ đến lỗi lầm của ngươi nữa.\n\n**5. Không xưmg tội hay không thống hối tội**\n\nTừ ban đầu, tội ngăn đã ngăn cách nhân loại với Chúa, từ trong vườn Địa Đàng và ngay cả đến bây giờ.\n\nTv66:18 nói “Điều gian ác, nếu lòng này ấp ủ, chắc hẳn là Chúa chẳng nghe đâu“.\n\nIsaiah 59:2 cũng nói “chính lỗi lầm của các ngươi đã phân cách các ngươi với Thiên Chúa các ngươi; chính tội lỗi các ngươi đã khiến Người ẩn mặt để khỏi nhìn, khỏi nghe các ngươi”.\n\nChúng ta phải tự vấn lương tâm và xin Chúa cho chúng ta biết còn có điều gì ngăn trở lời chúng ta cầu xin vì chúng ta chưa thống hối.\n\n**6. Nản lòng, bỏ cuộc qúa sớm.**\n\nNhiều lời cầu xin không được đáp trả là vì chúng ta nản lòng, bỏ cuộc một cách quá ư là dễ dàng. Chúa muốn chúng ta chờ đợi Người một cách trung thành không miễn cưỡng. Người nói “hãy xin, hãy tìm, hãy gõ cửa” (Mt7:7 “Anh em cứ xin thì sẽ được, cứ tìm thì sẽ thấy, cứ gõ cửa thì sẽ mở ra cho. Vì hễ ai xin thì nhận được, ai tìm thì sẽ thấy, ai gõ cửa thì sẽ mở ra cho) như là một tiến trình cầu nguyện thành khẩn. Chúng ta hãy nhớ câu chuyện một người đến gõ cửa nhà hàng xóm mình giữa đêm khuya để xin một ổ bánh. Lòng nhẫn nại của người ấy đã có kết quả (lời cầu xin được chấp nhận). Đó là điều Chúa khuyên chúng ta khi cầu nguyện, đừng nản lòng cho tới khi được ý xin. (Ngài muốn chúng ta chờ đợi kiên trì để chúng ta biết chúng ta cần Chúa, và để rèn luyện chúng ta. Trái cây cũng cần có thời gian để chín tới thì mới cho trái ăn thơm ngon, không kiên nhẫn đủ trong cầu nguyện thì cũng như hái trái còn xanh mà ăn vậy).\n\n**7. Thiếu hợp nhất.**\n\nCùng nhau cầu nguyện sẽ có nhiều sức mạnh hơn, nhưng để có được hiệu qủa, cần sự hiệp nhất giữa những người cấu nguyện. Mátthêu 18:19 nói ”nếu hai người trong các con đồng tâm với nhau ở dưới đất mà cầu xin bất cứ việc gì, Cha thầy trên trời cũng sẽ ban cho.“\n\n**8. Giữ lại của cải, đóng góp cho Chúa.**\n\nMal 3:8-11 “Người phàm có được phép lường gạt Thiên Chúa không? Vậy mà các ngươi đã lường gạt Ta. – Các ngươi nói: “Chúng tôi lường gạt Ngài ở chỗ nào? ” – Về thuế thập phân và phần trích dâng. Chính các ngươi đang mắc tai hoạ, thế mà các ngươi lại lường gạt Ta, các ngươi và toàn dân. Các ngươi hãy đem tất cả thuế thập phân vào nhà kho, để có lương thực trong Nhà Ta. Hãy làm thế thử xem Ta có mở cổng trời cho các ngươi, hoặc có tuôn đổ phúc lành dư dật xuống trên các ngươi không? – ĐỨC CHÚA các đạo binh phán. Vì các ngươi, Ta đã ngăn cản không cho cào cào phá hoại hoa màu ruộng đất của các ngươi, không để cho nho ngoài đồng không sinh trái, – ĐỨC CHÚA các đạo binh phán”.\n\nChúa ban ơn phước cho những ai trung thành đóng góp cho Giáo hội và ban án phạt cho kẻ nào cầm giữ lại những gì lẽ ra thuộc về Chúa. Hội Thánh thời sơ khai cũng khuyến khích đóng góp. Chúa Giêsu thường nói về việc bố thí, làm phúc và ơn lành sẽ đến tiếp theo sự bố thí.\n\n**9. Không nhân danh Chúa Giêsu mà cầu xin.**\n\nKhi Chúa dậy các môn đệ cầu nguyện, Người đặt ra một mẫu mực cho các ông theo, và chúng ta nên theo đúng sự chỉ dậy của Chúa. Đường lối của Chúa không thay đổi. Ga16:23 Ngày ấy, anh em không còn phải hỏi Thầy gì nữa. Thật, Thầy bảo thật anh em: anh em mà xin Chúa Cha điều gì, thì Người sẽ ban cho anh em nhân danh Thầy”. Khi chúng ta đến với Chúa Cha, nên nhớ rằng chúng ta chỉ có thể làm được như vậy vì nhờ Chúa Con. Vậy hãy đến với Chúa Cha qua danh Chúa Giêsu.\n\nNhân Danh Chúa Giêsu mà xin sự gì có nghĩa là xin Chúa Cha qua quyền năng của Danh Giêsu. Danh Giêsu có ảnh hưởng lớn lao đối với Chúa Cha (vì Chúa Giêsu đẹp lòng Chúa Cha, và không có Danh nào trọng hơn). Đó là chìa khóa mở cửa kho châu báu ân huệ của Thiên Chúa.\n\nNhưng nhân Danh Chúa Giêsu mà xin cũng có nghĩa là xin cho Danh Cha được tôn vinh. Do vậy, khi xin Chúa điều gì, mục đích của chúng ta không ích kỷ và có tính cách trần tục. Điều chắc chắn không phải là cá nhân chúng ta được lợi cách nào đó, nhưng giản dị là làm cho Danh Giêsu được vinh hiển.\n\n**10. Không hiệp thông, đồng hành với Chúa.**\n\nNhiều lần chúng ta cầu nguyện như đánh điện tín, gởi email vậy – gửi đi, gửi về ào ào trước sự hiện diện của Chúa. Làm như vậy chẳng khác nào chúng ta xúc phạm đến Đấng Toàn Năng. Chúa cần tình yêu, tình bạn và sự đồng hành của chúng ta.\n\n(Lời người dịch: Chúa không phải là máy phát ơn, máy ATM cần thì bấm lấy tiền. Chúa cũng có cảm tình, cảm xúc như con người chúng ta. Không ai ghé ngang nhà cha mẹ mình để xin quà rồi bỏ đi ngay). Người muốn chúng ta bỏ thời giờ để ở trước sự hiện diện của Người, vui thích với Người. Chúa Giêsu đã dành nhiều thời giờ với Chúa Cha, và chúng ta cũng nên làm như vậy. (Lời người dịch: Chúa Giêsu phải mất 33 năm mới hoàn tất việc cứu chuộc nhân loại. Chương trình Thiên Chúa dài như thế với bao nhiêu thăng trầm từ lúc thơ ấu phải trốn sang Aicập cho tới hành trình trên đường thương khó lên núi sọ. Hãy đi với Chúa con đường dài, đừng đi đường tắt).\n\n**Một trong những lý do sau đây làm cho lời cầu nguyện vô hiệu qủa:**\n– Cầu xin điều sai trái.\n– Nói xấu kẻ khác.\n– Bất tín trong đời sống giao ước hôn nhân, ơn gọi.\n– Hờ hững với tình yêu của Chúa.\n– Không tuân theo lề luật Chúa.\n– Tôn thờ ngẫu tượng.\n– Tư tưởng không ngay thẳng và thù ghét.\n– Phạm đến đấng đã được Chúa sức dầu.\n– Sợ hãi. Kẻ nào sợ hãi không có tình yêu trọn vẹn.\n– Không tự xét mình: kẻ nào không tự xét tội lỗi mình mà ăn mình và uống máu Chúa sẽ mang án phạt cho mình.\n– Coi thường Lời Chúa.\n– Không có lòng thương xót.\n\n### 12. PHỤ LỤC\n\nTrở về Mục Lục\n**Kinh Tha Thứ Ngắn**\n(Tóm ý từ kinh của Lm DeGrandis)\n\nLạy Chúa Giêsu, điều chúng con xin hôm nay là tha thứ. Như Chúa đã tha thứ và chết cho tội lỗi của con, con cũng xin tha thứ cho người khác. Xin Chúa ban sức mạnh và quyền năng của Thánh Thần cho con để giúp con tha thứ được cho người khác, không còn nhớ đến lỗi lầm của họ nữa, mà luôn cầu nguyện và chúc lành cho họ. Lạy Chúa Giêsu, con xin tha thứ cho chính con vì những tội lỗi con đã phạm; những thất bại con làm; những đau khổ con gây ra cho người khác; những nói xấu, vu oan, hành hạ làm tổn thương đến người khác. Con xin chấp nhận con người thật của con, những bất tài của con, hình dáng khó coi, thương tích, yếu điểm và tật nguyền của con. Lạy Chúa Giêsu, con xin tha thứ cho cha mẹ của con về những sự trừng phạt, khắt khe, cấm đoán đối với con; những sự bỏ bê gia đình, con cái; những sự chửi bới, nguyền rủa, đánh đập con; đối sử không công bằng với con; cha mẹ nghiện ngập, ly dị làm gương xấu cho con, cưỡng hiếp, hành hạ con; chê bai nói con vô tích sự, đuổi con ra khỏi nhà. Lạy Chúa Giêsu, con xin tha thứ cho anh chị em con về những sự ăn hiếp, đánh đập, vu oan, đổ lỗi cho con; ghen ghét, tranh giành tình yêu, gia tài của cha mẹ với con; nguyền rủa, nói xấu con. Lạy Chúa Giêsu, con xin tha thứ người vợ / người chồng của con về sự thiếu chung thuỷ, đánh đập, hành hạ con; thiếu săn sóc, thông cảm; lừa dối, xúc phạm danh dự con; bỏ rơi, chê bai, xỉ vả con và cha mẹ con, ly dị con. Lạy Chúa Giêsu, con xin tha thứ cho con cái của con về sự không vâng lời, bất hiếu, thiếu kính trọng con; gây đau khổ cho con; sự bỏ bê học hành; theo bạn bè, theo băng đảng, nghiện ngập; không chăm sóc, hỏi thăm con; làm tiêu tán tài sản gia đình, bỏ nhà ra đi. Lạy Chúa Giêsu, con xin tha thứ cho cha mẹ chồng / cha mẹ vợ của con những sự đối sử tệ bạc, khinh dể, nói xấu, cười chê con; nói người yêu bỏ con; cưỡng hiếp, hành hạ con; xúi dục, can thiệp vào nội bộ gia đình con. Lạy Chúa Giêsu, con xin tha thứ cho bà con, bạn bè, hàng xóm của con về sự nói xấu, vu khống, tố giác, kiện tụng con; ăn cắp, giựt tiền, quịt nợ của con; nguyền rủa, chúc dữ cho con. Lạy Chúa Giêsu, con xin tha thứ cho chủ hãng, cấp trên của con đã không trả lương xứng đáng cho con; bắt con làm việc quá sức, đối sử thiếu công bình, không thăng chức, lợi dụng, xúc phạm thân xác và sức khỏe của con. Lạy Chúa Giêsu, con xin tha thứ cho linh mục, tu sĩ nam nữ, những người trong hội đoàn, trong cộng đoàn đã đối xử không công bình, không cho con phục vụ, tước quyền, chức vụ của con; không tiếp đón, cho con gia nhập, chê trách, chủi rủa, nói xấu con; xúc phạm danh dự, thân xác con. Lạy Chúa Giêsu, con xin tha thứ cho một người làm con đau khổ nhất mà con không bao giờ tha thứ được. Con dâng người này (thinh lặng một chút… nói thầm tên họ) giờ phút này cho Chúa. Xin Chúa giúp ban sức mạnh để tha thứ được cho họ. Lạy Chúa Giêsu, con cảm tạ Chúa đã giúp con tha thứ được cho người khác. Xin Chúa Thánh Thần đổi mới, thanh tẩy trí nhớ của con để con không còn nhớ đến lỗi lầm của người khác. Xin Chúa tha thứ cho tội lỗi của con, và ban tràn đầy hoa quả tốt lành của Thánh Thần trong trái tim con. Xin cho con bước đi trong ánh sáng, bình an, yêu thương và niềm hoan lạc của Chúa. Amen.\n\nTrở về Mục Lục\n**KINH TRẬN CHIẾN THIÊNG LIÊNG**\n\nLạy Cha, con yêu mến Cha, ngợi khen và thờ lạy Cha. Con cảm tạ Chúa đã cho Con Chúa là Chúa Giêsu xuống thế chiến thắng tội lỗi và sự chết để cứu chuộc con. Con cảm tạ Chúa đã gởi Chúa Thánh Linh đến ban sức cho con, dẫn dắt con đến một đời sống sung mãn. Con cảm tạ Chúa về Đức Mẹ, Mẹ Thiên đàng hợp cùng các Thiên thần và các Thánh cầu bầu cho con.\n\nLạy Chúa Giêsu, con quì dưới chân Thánh giá Chúa, con xin Máu Thánh từ trái tim Chúa và các vết thương Chúa bao phủ con. Xin Nước hằng sống chảy từ tim Chúa rửa sạch con. Xin Chúa bao bọc con với ánh sáng của Chúa.\n\nLạy Cha trên trời, xin cho nguồn nước chữa lành của Phép Thánh Tẩy mà con lãnh nhận chảy trên giòng tộc con, để thánh tẩy gia đình con khỏi tội lỗi và tà lực bóng tối. Con xin Chúa Cha tha thứ cho con, thân nhân con, tổ tiên con đã có lúc mời gọi các tà lực để chúng chống đối Chúa Cha và không tôn vinh Chúa Giêsu. Nhân danh cực thánh Chúa Giêsu, con đòi lại tất cả các lãnh vực mà con đã để cho ma quỷ chiến hữu. Giờ đây, con xin đặt dưới quyền của Chúa Giêsu là Vua.\n\nNhờ quyền lực Chúa Thánh Thần, xin Chúa Cha cho con nhận ra ai con phải tha thứ, và những tội nào con chưa xưng ra. Xin cho con thấy khoảng nào trong cuộc đời con không đẹp lòng Chúa, và chỗ nào ma quỷ có thể xâm nhập vào đời con. Lạy Cha, con dâng lên Cha mọi sự không tha thứ, mọi tội lỗi con, mọi khoảng trong đời con mà ma quỷ có thể chen chân vào được. Con xin cảm tạ Chúa về những mặc khải này. Con cảm tạ Chúa về sự tha thứ và tình yêu của Chúa.\n\nNhân Danh Cực Thánh Chúa Giêsu, ta giam cầm tất cả các tà lực trong không khí, dưới nước, trên đất, dưới đất, dưới hỏa ngục. Nhân Danh Chúa Giêsu, ta giam cầm tất cả các tay chân của ma quỷ, và tuyên dương Máu Cực Thánh Chúa Giêsu trong không khí, trên không trung, dưới nước, trên đất, ở xung quanh và dưới hỏa ngục.\n\nLạy Cha trên trời, xin Chúa Cha cho Chúa Giêsu xuống với Chúa Thánh linh, Đức Mẹ, các Thiên thần và các Thánh gìn giữ con khỏi mọi tai họa và bảo vệ con khỏi sự trả thù của ma quỷ. Nhân Danh Cực Thánh Chúa Giêsu, xin bao bọc con (thân nhân con…), căn phòng này (điạ điểm này/ nhà này…) và tất cả mọi vật sở hữu của con trong Máu Cực Thánh Chúa Giêsu.\n\n– Nhân Danh Cực Thánh Chúa Giêsu, ta bẻ gẫy và phá tan tất cả… (lời rủa/ ếm, bùa ngải/ cạm bẫy/ dối trá/ trở ngại/ gạt gẫm/ chia rẽ/ ảnh hưởng quyền lực/ ham muốn và ước vọng xấu/ các hậu quả di truyền/ tất cả các lầm lạc và bệnh hoạn) đến từ mọi nguồn gốc, từ lỗi lầm, và tội lỗi.\n– Nhân Danh Chúa Giêsu, ta bẻ gẫy tất cả các lời thề, giao ước, ràng buộc tinh thần và linh hồn với ma quỷ.\n– Nhân Danh Chúa Giêsu, ta bẻ gẫy và phá đi tất cả các liên hệ và ràng buộc với… (môn thiên văn/ bói toán/ phái kỷ nguyên mới/ coi chỉ tay/ bói bài/ sùng bái satan/ phù thủy/ woodoo).\n– Nhân Danh Chúa Giêsu, ta phá tan tất cả ảnh hưởng cầu cơ, tử vi và tất cả mọi thờ phượng không tôn vinh Danh Chúa Giêsu.\n\nLạy Chúa Thánh Linh, qua ơn khôn ngoan xin cho con biết tà thần nào đang còn ở trong con. (Ngừng để nghe tiếng Chúa nói với bạn, ví dụ như: sự giận dữ, kiêu ngạo, cay đắng, tàn nhẫn, hỗn loạn, lường gạt, tham muốn, sợ hãi, ghét bỏ, bất an, ghen tị, tự hào, kinh sợ…). Đọc lời kinh sau đây sau khi thấy mỗi tà khí).\n\nNhân danh Chúa Giêsu, ta xua đuổi ____ (nói tên các tà khí đó ra). Ta ra lệnh cho ngươi đến quy hàng Chúa Giêsu, không được làm hại ta hay một người nào, để Chúa sẽ định đoạt ngươi theo thiên ý Chúa.\n\nCon cảm tạ Chúa Cha về tình yêu Chúa cho con. Con cảm tạ chúa Thánh Linh đã ban sức mạnh cho con chống lại satan và quyền lực nó. Con cảm tạ Chúa Giêsu đã giải thoát con tự do. Con cảm tạ Đức Mẹ đã cầu bầu cho con cùng với các Thiên thần và các Thánh.\n\nXin Chúa Giêsu đổ đầy con với… (sự bác ái/ đức tin/ khoan dung/ hi vọng/ khiêm nhường/ niềm vui/ lòng tốt/ ánh sáng/ tình yêu/ nhẫn nại/ bình an/ trong sạch/ an toàn/ bình thản/ tin cậy/ sự thật/ hiểu biết và khôn ngoan). Xin Chúa giúp con bước đi trong ánh sáng và sự thật của Chúa do Chúa Thánh Linh dẫn dắt, để cùng với Chúa chúng con sẽ ca ngợi, tôn vinh Chúa Cha bây giờ và cho đến thiên thu. Vì Chúa “… là đường, là sự thật và là sự sống” và Chúa “… đến để chúng con có một đời sống sung mãn”.\n\n“Chúa là Đấng cứu chuộc con; con tin tưởng và không sợ hãi. Sức mạnh con, can đảm của con là Chúa, và Chúa là Đấng Cứu Chuộc con”. Amen. Allelulia. Amen.\n\n*Trích từ tài liệu “Chua Oi Xin Day Chung Con Cau Nguyen”*\n*DXT Chuyển Dịch*\n*Mạng Lưới Cầu Nguyện ThanhLinh.net*\n*Không Rõ Chuyển Dịch Từ Tài Liệu Nào*\n*Bạn có thể tải về tài liệu này để in ra ở đây.*"
-  },
-  {
-    "id": "tuan-cuu-nhat-kinh-long-thuong-xot-chua",
-    "title": "Cách Lần Chuỗi Tuần Cửu Nhật Kính Lòng Thương Xót",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/tuan-cuu-nhat-kinh-long-thuong-xot-chua/",
-    "isPopular": false,
-    "content": "Tuần Cửu Nhật Kính Lòng Thương Xót được Chúa Giêsu truyền cho Thánh Faustina Kowalska để dọn mừng Đại Lễ Kính Lòng Thương Xót Chúa vào Chúa Nhật II Phục Sinh.\n\nTrong dịp này, chúng ta làm Tuần Cửu Nhật, xưng tội, rước lễ và làm việc bác ái sẽ được tha hết mọi tội lỗi.\n\nTuần Cửu Nhật Kính Lòng Thương Xót Chúa bắt đầu vào Thứ Sáu Tuần Thánh cho đến Chúa Nhật Lòng Thương Xót Chúa *(Chúa Nhật II Phục Sinh)*, **đọc trong 9 ngày liên tiếp**.\n\n• Thứ Sáu Tuần Thánh: một ngày lễ diễn ra vào thứ sáu trước Lễ Phục Sinh\n• Chúa Nhật II Phục Sinh: ngày Chúa nhật đầu tiên sau ngày Chúa nhật Lễ Phục Sinh.\nLễ Chúa Phục SinhLễ Phục Sinh là một trong những ngày lễ quan trọng nhất trong năm, để tưởng niệm sự kiện chết và phục sinh của Chúa Giêsu từ cõi chết sau khi bị đóng đinh trên thập tự giá.\n\n### Cách Lần chuỗi Tuần Cửu Nhật Kính Lòng Thương Xót Chúa\n\nLần chuỗi vào 3 giờ sáng hay 3 giờ chiều, giờ tuôn đổ Lòng Thương Xót Chúa, nhưng có thể đọc vào bất cứ lúc nào.\n\nNgày thứ 1: Thứ Sáu Tuần Thánh\nNgày thứ 2: Thứ Bảy Tuần Thánh\nNgày thứ 3: Chúa Nhật Phục Sinh\nNgày thứ 4: Thứ Hai sau Phục Sinh\nNgày thứ 5: Thứ Ba sau Phục Sinh\nNgày thứ 6: Thứ Tư sau Phục Sinh\nNgày thứ 7: Thứ Năm sau Phục Sinh\nNgày thứ 8: Thứ Sáu sau Phục Sinh\nNgày thứ 9: Thứ Bảy sau Phục Sinh\nChúa Nhật II Phục Sinh: Lễ Lòng Thương Xót Chúa\n\n### I. Trước Tiên, Ta Đọc Chuỗi Kinh Thương Xót:\n\nLần Chuổi Thương Xót vào lúc 3 giờTa dùng xâu chuỗi Mân Côi để đọc. Xâu chuổi Mân Côi bắt đầu bằng 1 hạt lớn → 3 hạt nhỏ → 1 hạt lớn → 10 hạt nhỏ → 1 hạt lớn → 10 hạt nhỏ → 1 hạt lớn v.v…\n\nI. (Bắt đầu) Làm Dấu Thánh Giá: Nhân Danh Cha, và Con và Thánh Thần. Amen.\n\nĐọc lời nguyện:\n\n*Lạy Chúa Giêsu, Chúa vừa trút hơi thở cuối cùng, nhưng nguồn sống đã tuôn trào đến các linh hồn, và cả một đại dương Lòng Chúa Thương Xót được mở ra cho toàn thế giới. Ôi, Nguồi Mạch Sự Sống là Lòng Thương Xót khôn dò, xin hãy bao trùm toàn thế giới và trút hết toàn thân Ngài trên chúng con.*\n\nĐọc 3 lần:\n\n*Ôi, Máu và Nước tuôn ra từ Trái Tim Chúa Giêsu để nên nguồn mạch Lòng Thương Xót cho chúng con, con tin cậy vào Chúa.*\n\nII. 3 Hạt Nhỏ, đọc:\n\n* – 1 Kinh Lạy Cha*\n* – 1 Kinh Kính Mừng*\n* – 1 Kinh Tin Kính*\n\nIII. Hạt Lớn, thay vì Kinh Lạy Cha trong chuỗi Mân Côi, đọc:\n\n*Lạy Cha Hằng Hữu, con xin dâng Cha Mình, Máu, Linh hồn, và Thiên tính của Con yêu dấu Cha là Đức Giêsu Kitô, Chúa chúng con, để đền tạ tội lỗi chúng con và tội lỗi toàn thế giới.*\n\nIV. 10 Hạt Nhỏ, thay vì 10 Kinh Kính Mừng, đọc 10 lần:\n\n*Vì cuộc tử nạn đau buồn của Chúa Giêsu,*\n* xin thương xót chúng con và toàn thế giới.*\n\nV. Lặp lại “hạt lớn” và “10 hạt nhỏ” đến hết chuỗi Mân Côi. Sau đó, để kết thúc chuỗi hạt, đọc 3 lần:\n\n*Lạy Cha Chí Thánh, Đấng Toàn Năng, Đấng Hằng Hữu, xin thương xót chúng con và toàn thế giới.*\n\nVI. Hôn Thánh Giá Chúa với tâm hồn kính mến.\n\nLần Chuổi Thương Xót vào bất cứ giờ nào khácTa dùng xâu chuỗi Mân Côi để đọc. Xâu chuổi Mân Côi bắt đầu bằng 1 hạt lớn → 3 hạt nhỏ → 1 hạt lớn → 10 hạt nhỏ → 1 hạt lớn → 10 hạt nhỏ → 1 hạt lớn v.v…\n\nI. (Bắt đầu) Làm Dấu Thánh Giá\n\nII. 3 Hạt Nhỏ, đọc:\n\n* – 1 Kinh Lạy Cha*\n* – 1 Kinh Kính Mừng*\n* – 1 Kinh Tin Kính*\n\nIII. Hạt Lớn, thay vì Kinh Lạy Cha trong chuỗi Mân Côi, đọc:\n\n*Lạy Cha Hằng Hữu, con xin dâng Cha Mình, Máu, Linh hồn, và Thiên tính của Con yêu dấu Cha là Đức Giêsu Kitô, Chúa chúng con, để đền tạ tội lỗi chúng con và tội lỗi toàn thế giới.*\n\nIV. 10 Hạt Nhỏ, thay vì 10 Kinh Kính Mừng, đọc 10 lần:\n\n*Vì cuộc tử nạn đau buồn của Chúa Giêsu,*\n* xin thương xót chúng con và toàn thế giới.*\n\nV. Lặp lại “hạt lớn” và “10 hạt nhỏ” đến hết chuỗi Mân Côi. Sau đó, để kết thúc chuỗi hạt, đọc 3 lần:\n\n*Lạy Cha Chí Thánh, Đấng Toàn Năng, Đấng Hằng Hữu, xin thương xót chúng con và toàn thế giới.*\n\nVI. Hôn Thánh Giá Chúa với tâm hồn kính mến.\n\n### II. Sau Đó, Đọc Lời Nguyện Ý Chỉ Tương Ứng Cho Từng Ngày:\n\nNgày thứ 1: Thứ Sáu Tuần ThánhHôm nay, con hãy đem đến cho Cha toàn thể nhân loại, đặc biệt là những người tội lỗi, và nhận chìm họ vào đại dương Thương Xót của Cha. Làm như thế, con sẽ an ủi lòng Cha đang bị đâm thấu vì thương tiếc các linh hồn hư mất.\n\nLạy Chúa Giêsu vô cùng thương xót, bản tính Chúa đầy từ bi và luôn tha thứ. Xin đừng nhìn đến tội lỗi chúng con, nhưng xin nhìn đến niềm tín thác chúng con đặt vào lòng nhân lành vô biên của Chúa. Xin cho chúng con được nương náu trong Trái Tim vô cùng từ bi Chúa và đừng bao giờ để chúng con lìa xa Chúa. Chúng con nài xin Chúa ơn này, vì Tình Yêu hợp nhất Chúa với Chúa Cha và Chúa Thánh Thần.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến toàn thể nhân loại, cách riêng những người tội lỗi khốn cùng đang nương mình trong Trái Tim vô cùng từ bi Chúa Giêsu. Vì cuộc Tử Nạn đau thương của Người, xin tỏ lòng thương xót chúng con, để chúng con ngợi khen quyền năng vô biên của Lòng Thương Xót Cha đến muôn đời. Amen.\n\nNgày thứ 2: Thứ Bảy Tuần ThánhHôm nay, con hãy đem đến cho Cha linh hồn các linh mục và tu sĩ, và nhận chìm họ vào Lòng Thương Xót vô biên của Cha. Chính họ là những người đem đến cho Cha sức mạnh để gánh chịu cuộc khổ nạn đầy cay đắng. Họ là máng thông chuyển Lòng Thương Xót của Cha cho nhân loại.\n\nLạy Chúa Giêsu vô cùng thương xót, là nguồn mọi điều thiện hảo, xin gia tăng ơn thánh cho những người đã dâng mình phụng sự Chúa, để họ thực thi xứng đáng các việc thương xót, hầu mọi người nhìn thấy mà tôn vinh Cha Thương Xót trên trời.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến đoàn con được chọn vào làm vườn nho Cha, là linh hồn các linh mục và tu sĩ, cùng ban phúc lành thêm sức cho họ. Vì tình yêu của Trái Tim con Cha là nơi họ nương náu, xin phú ban quyền năng và ánh sáng Cha, để họ hướng dẫn mọi người trên đường cứu rỗi, và cùng ngợi khen Lòng Thương Xót vô biên của Cha đến muôn đời. Amen.\n\nNgày thứ 3: Chúa Nhật Phục SinhHôm nay, con hãy đem đến cho Cha tất cả các linh hồn đạo đức và trung tín, và nhận chìm họ vào đại dương Thương Xót của Cha. Những linh hồn này từng an ủi Cha trên đường Thánh Giá. Họ là giọt nước an ủi Cha trong bể khổ sầu.\n\nLạy Chúa Giêsu vô cùng thương xót, từ kho tàng Thương Xót Chúa, Chúa ban ân sủng dồi dào cho mỗi người và tất cả chúng con. Xin cho chúng con được nương náu trong Trái Tim vô cùng từ bi Chúa, và đừng bao giờ để chúng con lìa xa Chúa. Chúng con nài xin ơn này, vì tình cháy dành cho Cha trên trời.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến những linh hồn trung tín, như nhìn đến gia nghiệp yêu kỳ diệu khôn lường của Trái Tim Chúa luôn nồng cháy của Con Cha. Vì cuộc Tử Nạn đau thương của Người, xin Cha chúc lành và che trở họ luôn mãi. Nhờ đó, họ sẽ không bao giờ xa sút trong tình yêu và không để mất kho tàng đức tin thánh thiện, nhưng hiệp cùng đạo binh các Thiên Thần và Chư Thánh mà tôn vinh Lòng Thương Xót vô biên của Cha đến muốn đời. Amen.\n\nNgày thứ 4: Thứ Hai sau Phục SinhHôm nay, con hãy đem đến cho Cha những người không tin vào Thiên Chúa và những người chưa nhận biết Cha. Cha đã nghĩ đến họ trong cuộc Khổ Nạn của Cha, và lòng nhiệt thành của họ trong tương lai sẽ an ủi lòng Cha. Con hãy nhận chìm họ vào đại dương Thương Xót của Cha.\n\nLạy Chúa Giêsu vô cùng từ bi, Chúa là ánh sáng cho toàn thế giới, xin cho linh hồn những người không tin Chúa hoặc chưa biết Chúa được nương náu trong Trái Tim vô cùng từ bi Chúa.\n\nXin soi chiếu họ bằng muốn tia sáng ân sủng, để họ được cùng chúng con tán dương Lòng Thương Xót kỳ diệu Chúa, và đừng bao giờ để họ lìa xa nơi nương náu là Trái Tim vô cùng từ bi Chúa.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến linh hồn những người không tin vào Con Cha và những người chưa nhận biết Cha, những vẫn được nương náu trong Trái Tim vô cùng từ bi Chúa Giêsu. Xin thu hút họ đến ánh sáng Phúc Âm, để họ biết rằng được yêu mến Cha là hạnh phúc dường bao. Xin cho họ cùng được tán dương Lòng Thương Xót vô biên của Cha đến muôn đời. Amen.\n\nNgày thứ 5: Thứ Ba sau Phục SinhHôm nay, con hãy mang đến cho Cha linh hồn những người đã ly khai Giáo Hội của Cha và nhận chìm họ vào đại dương Thương Xót của Cha. Khi Cha chịu khổ nạn đắng cay, họ là những người đã xé nát Thân Mình và Trái Tim Cha, là chính Giáo Hội Cha. Các vết thương của Cha sẽ được lành khi họ quoay về hợp nhất cùng Hội Thánh, và như vậy họ sẽ làm nhẹ bớt cuộc Khổ Nạn của Cha.\n\nLạy Chúa Giêsu vô cùng thương xót, Chúa chính là nguồn Nhân Hậu và không từ khước những ai tìm kiếm ánh sáng Chúa. Xin cho linh hồn những người đã ly khai Giáo Hội được nương náu trong Trái Tim vô cùng từ bi Chúa. Nguyện xin ánh sáng Chúa sớm thu họ về hợp nhất cùng Hội Thánh Chúa, và đừng bao giờ để họ lìa xa nơi nương náu là Trái Tim vô cùng từ bi Chúa, nhưng cho họ được tôn vinh lòng bao dung Thương Xót Chúa.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến linh hồn những người đã ly khai Giáo Hội của Con Cha, nhất là những ai đã phung phí ơn lành và lạm dụng ân sủng Cha ban, khi họ cứ mãi cố chấp trong lầm lạc. Xin Cha đừng nhìn đến các lỗi lầm của họ, một nhìn đến tình yêu của Con Cha và cuộc Tử Nạn cay đắng mà Người phải chịu vì họ, bởi Trái Tim vô cùng từ bi Người cũng bao bọc lấy họ. Xin Cha sớm đưa họ về đường hợp nhất để cùng chúng con tôn vinh Lòng Thương Xót vô biên của Cha đến muôn đời. Amen.\n\nNgày thứ 6: Thứ Tư sau Phục SinhHôm nay, con hãy đem đến cho Cha những linh hồn hiền lành và khiêm nhường cùng các linh hồn trẻ thơ, và nhận chìm họ vào Lòng Thương Xót Cha. Những linh hồn này giống Trái Tim Cha nhất. Họ là làm Cha mạnh sức trong cơn hấp hối cay đắng. Cha coi họ như thiên thần trên cõi thế và sẽ được chầu quanh bàn thờ Cha. Cha sẽ đổ trên họ những dòng tháp ân sủng. Chỉ những linh hồn khiêm nhường mới nhận lãnh được ân sủng của Cha mà thôi. Cha ưu đãi những linh hồn khiêm nhường bằng lòng Cha tín nhiệm họ.\n\nLạy Chúa Giêsu vô cùng thương xót, Chúa đã phán: “Hãy học cùng Ta vì Ta hiền lành và khiêm nhường trong lòng”. Xin cho những linh hồn hiền lành và khiêm nhường cùng bao linh hồn trẻ thơ được nương náu trong Trái Tim vô cùng từ bi Chúa. Những linh hồn này làm cả thiên đàng ngây ngất, cùng được Cha trên trời rất đỗi yêu dấu. Họ là bó hoa tỏa hương thơm ngát trước ngai Thiên Chúa; chính Thiên Chúa say mê hương hoa lòng họ. Những linh hồn này hằng được nương náu trong Trái Tim vô cùng từ bi Chúa. Ôi Chúa Giêsu! Họ sẽ hát lên bài ca Tình Yêu và Thương Xót không ngừng. Lạy Cha Hằng Hữu, xin đoái thương nhìn đến những linh hồn hiền lành và khiêm nhường cùng bao linh hồn trẻ thơ đang nép mình trong Trái Tim vô cùng từ bi Chúa Giêsu. Những linh hồn này giống Con Cha hơn cả. Hương thơm của họ từ trần gian bay lên tận ngai tòa Cha. Lạy Cha Thương Xót và nhân ái, con nài xin Cha cậy vì tình yêu Cha dành cho những linh hồn ấy và niềm vui họ đem đến cho Cha mà xin Cha chúc lành cho toàn thế giới, để mọi linh hồn đều cất tiếng ca ngợi Lòng Thương Xót của Cha đến muôn đời. Amen.\n\nNgày thứ 7: Thứ Năm sau Phục SinhHôm nay, con hãy đem đến cho Cha linh hồn những người đặc biệt sùng kính và tôn vinh Lòng Thương Xót Cha và nhận chìm họ vào Lòng Thương Xót ấy. Các linh hồn này đau khổ nhất vì cuộc Thương Khó Cha và họ đã vào sâu nhất trong thần trí Cha. Họ là hình ảnh sống động của Trái Tim từ bi Cha. Những linh hồn này sẽ sáng láng đặc biệt ở đời sau. Không ai trong họ sẽ phải sa hỏa ngục. Cha sẽ bảo vệ họ từng người cách riêng trong giờ lâm tử.\n\nLạy Chúa Giêsu vô cùng thương xót, Trái Tim Chúa chính là Tình Yêu, xin cho linh hồn những người đang sùng kính và tán dương Lòng Thương Xót cao cả Chúa được nương náu trong Trái Tim vô cùng từ bi Chúa. Những linh hồn này sẽ nên mạnh mẽ nhờ quyền năng của chính Thiên Chúa. Giữa muôn tai ương và nghịch cảnh, họ sẽ vững niềm tín thác vào Lòng Thương Xót Chúa và luôn kết hiệp với Chúa mà vác lên vai toàn thể nhân loại. Họ sẽ không bị xét xử nghiêm khắc, nhưng được Lòng Thương Xót Chúa ôm ấp lúc lìa trần.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến linh hồn những người đang sùng kính và tôn vinh phẩm tính vĩ đại nhất của Cha là: Lòng Thương Xót vô biên, và hằng được nương náu trong Trái Tim vô cùng từ bi Chúa Giêsu. Những linh hồn này là Tin Mừng sống động: vì tay họ đầy việc làm thương xót và thần trí họ luôn chan chứa niềm vui mà dâng lên Cha bài ca Thương Xót. Ôi Đấng Tối Cao! Con nài xin Cha, lạy Thiên Chúa, xin tỏ Lòng Thương Xót Cha theo như họ hy vọng và tín thác vào Cha. Xin thực hiện nơi họ lời Chúa Giêsu đã hứa: Người sẽ bảo vệ những ai sùng kính Lòng Thương Xót vô biên của Người, như bảo vệ chính vinh quang Người, khi còn sống và nhất là trong giờ lâm tử. Amen.\n\nNgày thứ 8: Thứ Sáu sau Phục SinhHôm nay, con hãy đem đến cho Cha những linh hồn đang bị giam cầm trong luyện ngục, và nhận chìm họ vào vực thẳm Thương Xót Cha. Hãy đê những giòng Máu Cha làm dịu bớt những ngọn lửa thiêu nóng họ. Cha rất thương các linh hồn này. Họ đang đền trả công lý của Cha. Chính con có khả năng cứu giúp họ. Con hãy rút hết ân xá từ kho tàng Thương Xót trong Hội Thánh mà dâng cho Cha thay cho họ. Ôi, nếu con thấu hiểu những cực hình mà họ đang chịu, chắc con sẽ tiếp tục làm các việc phúc đức mà dâng thay cho họ để đền trả lẽ công bằng của Cha.\n\nLạy Chúa Giêsu vô cùng thương xót, chính Chúa đã nói rằng Chúa muốn lòng thương xót; nay con xin đem các linh hồn nơi luyện hình vào nương náu trong Trái Tim vô cùng từ bi Chúa. Chúa rất thương mến họ, nhưng họ phải đền trả công lý của Chúa. Nguyện xin dòng Máu và Nước phun ra từ Trái Tim Chúa dập tắt bao ngọn lửa luyện hình, để ở đó họ cũng ca ngợi quyền năng của Lòng Thương Xót Chúa.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến những linh hồn đang đau đớn trong lửa luyện hình, vì họ cũng được nương náu trong Trái Tim vô cùng từ bi Chúa Giêsu. Con nài xin Cha, vì cuộc Tử Nạn đau thương của Chúa Giêsu Con Cha và vì những đắng cay tràn đầy Linh Hồn Cực Thánh Người, xin Cha tỏ Lòng Thương Xót đến các linh hồn đang chịu thẩm xét theo lẽ công bình của Cha. Xin chỉ nhìn họ qua những Thương Tích của Chúa Giêsu, Con Cha rất yêu dấu bởi chúng con tin chắc rằng Lòng Nhân Hậu và Từ Bi của Cha là vô biên khôn lường. Amen.\n\nNgày thứ 9: Thứ Bảy sau Phục SinhHôm nay, con hãy đem đến cho Cha những linh hồn khô khan nguội lạnh và nhận chìm họ vào vực thẳm Thương Xót của Cha. Những linh hồn này gây thương tích đau đớn nhất cho Trái Tim Cha. Linh hồn Cha phải chịu đau buồn khủng khiếp trong Vườn Cây Dầu vì những linh hồn khô khan này, đến nỗi phải kêu lên: “Lạy Cha, xin cất chén này khỏi con, nhưng nếu đó là Ý Cha”. Nguồn hy vọng cuối cùng cho phần rỗi họ là chạy đến Lòng Thương Xót Cha.\n\nLạy Chúa Giêsu vô cùng thương xót, Chúa chính là Lòng Thương Xót con xin đem các linh hồn khô khan nguội lạnh đến nương náu trong Trái Tim vô cùng từ bi Chúa. Xin lấy lửa Tình Yêu tinh tuyền của Chúa mà làm cho những linh hồn khô lạnh như thay ma khiến Chúa hãi hùng kinh khiếp, được trở nên sốt sắng nồng nàn. Ôi Chúa Giêsu vô cùng từ bi, xin thi thố quyền năng của Lòng Thương Xót Chúa và thu hút họ vào lò lửa nóng ấm Tình Yêu Chúa; cùng ban cho họ món quà tình yêu thánh, vì không có gì ở ngoài quyền phép Chúa.\n\nLạy Cha Hằng Hữu, xin đoái thương nhìn đến những linh hồn khô khan nguội lạnh, bởi họ cũng được nương náu trong Trái Tim vô cùng từ bi Chúa Giêsu. Ôi Cha Thương Xót! Con nài xin Cha vì cuộc tử nạn đắng cay của Con Cha và vì ba giờ Người hấp hối trên Thánh Giá, xin cho họ cùng được tôn vinh Lòng Thương Xót vô biên của Cha. Amen.\n\nCác Kinh:**Kinh Lạy Cha:**\nLạy Cha chúng con ở trên trời, chúng con nguyện danh Cha cả sáng, nước Cha trị đến, ý Cha thể hiện dưới đất cũng như trên trời.\nXin Cha cho chúng con hôm nay lương thực hằng ngày, và tha nợ chúng con như chúng con cũng tha kẻ có nợ chúng con. Xin chớ để chúng con sa chước cám dỗ, nhưng cứu chúng con cho khỏi mọi sự dữ. Amen.\n\n**Kinh Kính Mừng:**\nKính mừng Maria đầy ơn phúc Đức Chúa Trời ở cùng Bà, Bà có phúc lạ hơn mọi người nữ, và Giêsu con lòng Bà gồm phúc lạ.\nThánh Maria Đức Mẹ Chúa Trời cầu cho chúng con là kẻ có tội khi này và trong giờ lâm tử, Amen.\n\n**Kinh Tin Kính:**\nTôi tin kính Đức Chúa Trời là Cha phép tắc vô cùng dựng nên trời đất. Tôi tin kính Đức Chúa GiêSu Kitô là con một Đức Chúa Cha cùng là Chúa chúng tôi; bởi phép Đức Chúa Thánh Thần mà người xuống thai, sinh bởi Bà Maria đồng trinh; chịu nạn đời quan Phong-xi-ô Phi-la-tô, chịu đóng đanh trên cây Thánh Giá, chết và táng xác, xuống ngục tổ tông, ngày thứ ba bởi trong kẻ chết sống lại; lên trời ngự bên hữu Đức Chúa Cha phép tắc vô cùng; ngày sau bởi trời lại xuống phán xét kẻ sống và kẻ chết.\n\nTôi tin kính Đức Chúa Thánh Thần; tôi tin có hội Thánh hằng có ở khắp thế này, các Thánh thông công; tôi tin phép tha tội; tôi tin xác loài người ngày sau sống lại; tôi tin hằng sống vậy, Amen."
-  },
-  {
-    "id": "cach-lan-hat-long-thuong-xot-chua",
-    "title": "Cách Lần Hạt Lòng Thương Xót Chúa",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/cach-lan-hat-long-thuong-xot-chua/",
-    "isPopular": true,
-    "content": "Mục Lục:Lời Giới Thiệu\nCách lần hạt Lòng Thương Xót Chúa vào Bất Cứ Giờ Nào\nCách lần hạt Lòng Thương Xót Chúa vào Giờ Cao Điểm\nCác Kinh\n***A. Lời Giới Thiệu:*** Thông điệp *Lòng Thương Xót Chúa* được Chúa Giêsu truyền cho chị nữ tu Faustina Kowalska người Balan vào ngày 22, tháng 2, năm 1931.\n\nQua thông điệp này, Chúa muốn chúng ta biết rằng Thiên Chúa yêu thương hết thảy mọi người chúng ta. Người muốn chúng ta hãy tìm đến Người và cầu nguyện, và Người sẽ tha thứ tất cả các tội lỗi chúng ta dù tội lỗi có nặng nề cỡ nào đi nữa.\n\nQua cuộc khổ nạn chết trên cây thập giá, Chúa trút hơi thở cuối cùng vào lúc 3 giờ chiều và *3 giờ chiều là giờ Chúa muốn chúng ta lần hạt Lòng Thương Xót Chúa*. Tuy nhiên nếu giờ giấc không cho phép thì ta vẫn có thể lần hạt vào bất kỳ giờ nào.\n\nĐể lãnh nhận ân sủng của Người một cách trọn vẹn, cần 3 điều kiện sau:\n\n– Thỉnh cầu: hãy cầu nguyện với Người.\n– Thực hành: hãy yêu thương và tha thứ.\n– Tín thác: hãy tin tưởng phó thác vào Chúa.\n\nCó hai trường hợp lần Chuỗi Thương Xót:\n\n– Lần chuỗi vào giờ cao điểm, 3 giờ chiều\n– Lần chuỗi vào bất cứ giờ nào khác.Trở Về Mục Lục\n\nB. Cách Lần Hạt Lòng Thương Xót Chúa Vào Bất Cứ Giờ Nào:Ta dùng xâu chuỗi Mân Côi để đọc. Xâu chuổi Mân Côi bắt đầu bằng 1 hạt lớn → 3 hạt nhỏ → 1 hạt lớn → 10 hạt nhỏ → 1 hạt lớn → 10 hạt nhỏ → 1 hạt lớn v.v…\n\nI. (Bắt đầu) Làm Dấu Thánh Giá\n\nII. 3 Hạt Nhỏ, đọc:\n\n* – 1 Kinh Lạy Cha*\n* – 1 Kinh Kính Mừng*\n* – 1 Kinh Tin Kính*\n\nIII. Hạt Lớn, thay vì Kinh Lạy Cha trong chuỗi Mân Côi, đọc:\n\n*Lạy Cha Hằng Hữu, con xin dâng Cha Mình, Máu, Linh hồn, và Thiên tính của Con yêu dấu Cha là Đức Giêsu Kitô, Chúa chúng con, để đền tạ tội lỗi chúng con và tội lỗi toàn thế giới.*\n\nIV. 10 Hạt Nhỏ, thay vì 10 Kinh Kính Mừng, đọc 10 lần:\n\n*Vì cuộc tử nạn đau buồn của Chúa Giêsu,*\n* xin thương xót chúng con và toàn thế giới.*\n\nV. Lặp lại “hạt lớn” và “10 hạt nhỏ” đến hết chuỗi Mân Côi. Sau đó, để kết thúc chuỗi hạt, đọc 3 lần:\n\n*Lạy Cha Chí Thánh, Đấng Toàn Năng, Đấng Hằng Hữu, xin thương xót chúng con và toàn thế giới.*\n\nVI. Hôn Thánh Giá Chúa với tâm hồn kính mến. (hết)\n\nTrở Về Mục Lục\n\nC. Cách Lần Hạt Lòng Thương Xót Chúa Vào Giờ Cao Điểm:Nếu lần chuỗi vào **giờ cao điểm** của Lòng Thương Xót, tức là **đúng 3 giờ chiều**, ta **bắt đầu** với **Dấu Thánh Giá** rồi đọc lời nguyện như sau:\n\n*Lạy Chúa Giêsu, Chúa vừa trút hơi thở cuối cùng, nhưng nguồn sống đã tuôn trào đến các linh hồn, và cả một đại dương Lòng Chúa Thương Xót được mở ra cho toàn thế giới. Ôi, Nguồi Mạch Sự Sống là Lòng Thương Xót khôn dò, xin hãy bao trùm toàn thế giới và trút hết toàn thân Ngài trên chúng con.*\n\nSau đó đọc 3 lần:\n\n*Ôi, Máu và Nước tuôn ra từ Trái Tim Chúa Giêsu để nên nguồn mạch Lòng Thương Xót cho chúng con, con tin cậy vào Chúa.*\n\nKế đến, ta tiếp theo từ Phần II (3 hạt nhỏ, Kinh Lạy Cha, Kinh Kính Mừng, Kinh Kính Mến) cho đến hết chuỗi hạt như trên, không có gì thay đổi.\n\nTrở Về Mục Lục\n\n### D. Các Kinh:\n\nSau chuỗi Lòng Thương Xót Chúa, ta có thể đọc thêm các kinh nào ta muốn để dâng thêm lời cầu nguyện cho mình, cho gia đình, hoặc cho hết thảy mọi người. Sau đây là một số kinh thường đọc:\n\n**Kinh Lạy Cha:**\nLạy Cha chúng con ở trên trời, chúng con nguyện danh Cha cả sáng, nước Cha trị đến, ý Cha thể hiện dưới đất cũng như trên trời.\nXin Cha cho chúng con hôm nay lương thực hằng ngày, và tha nợ chúng con như chúng con cũng tha kẻ có nợ chúng con. Xin chớ để chúng con sa chước cám dỗ, nhưng cứu chúng con cho khỏi mọi sự dữ. Amen.\n\n**Kinh Kính Mừng:**\nKính mừng Maria đầy ơn phúc Đức Chúa Trời ở cùng Bà, Bà có phúc lạ hơn mọi người nữ, và Giêsu con lòng Bà gồm phúc lạ.\nThánh Maria Đức Mẹ Chúa Trời cầu cho chúng con là kẻ có tội khi này và trong giờ lâm tử, Amen.\n\n**Kinh Tin Kính:**\nTôi tin kính Đức Chúa Trời là Cha phép tắc vô cùng dựng nên trời đất. Tôi tin kính Đức Chúa GiêSu Kitô là con một Đức Chúa Cha cùng là Chúa chúng tôi; bởi phép Đức Chúa Thánh Thần mà người xuống thai, sinh bởi Bà Maria đồng trinh; chịu nạn đời quan Phong-xi-ô Phi-la-tô, chịu đóng đanh trên cây Thánh Giá, chết và táng xác, xuống ngục tổ tông, ngày thứ ba bởi trong kẻ chết sống lại; lên trời ngự bên hữu Đức Chúa Cha phép tắc vô cùng; ngày sau bởi trời lại xuống phán xét kẻ sống và kẻ chết.\n\nTôi tin kính Đức Chúa Thánh Thần; tôi tin có hội Thánh hằng có ở khắp thế này, các Thánh thông công; tôi tin phép tha tội; tôi tin xác loài người ngày sau sống lại; tôi tin hằng sống vậy, Amen.\n\n**Kinh Cầu Xin Lòng Thương Xót Chúa:**\nÔi Thiên Chúa, Đấng đầy lòng trắc ẩn, Đấng duy nhất tốt lành, con chạy đến van xin lòng thương xót Chúa, mặc dầu sự khốn nạn của con rất to lớn và việc xúc phạm con lại quá nhiều, con vẫn tín thác vào tình thương Chúa – bởi vì Chúa là Đấng xót thương. Từ xưa tới nay, con chưa từng nghe một người nào tín thác vào lòng thương xót Chúa mà bị thất vọng.\n\nÔi Thiên Chúa từ bi, chỉ mình Chúa mới phán xét con. Chúa không bao giờ từ chối khi con thống hối ăn năn chạy tới lòng thương xót Chúa, nơi mà chưa có một linh hồn nào bị từ chối, mặc dù họ là một linh hồn vô cùng tội lỗi, lời Chúa Giêsu, con Cha, đã bảo đảm với con rằng: “Thà rằng trời đất này có biến ra không, nhưng lòng thương xót của Ta luôn ấp ủ mọi linh hồn tín thác.“\n\nLạy Chúa Giêsu là bạn tri kỷ của những trái tim lẻ loi cô độc, Chúa là thiên đàng, là Đấng Cứu Độ, là niềm an bình trong những giây phút buồn phiền giữa biển hoang mang nghi ngại. Chúa là ánh sáng chiếu soi bước đường con đi. Chúa là tất cả của một linh hồn cô độc. Chúa biết sự yếu mềm của chúng con; và giống như một danh y tốt lành, Chúa an ủi và chữa lành mọi đau đớn của chúng con. Amen\n\n**Kinh Cầu Nguyện Cho Các Linh Hồn Tội Lỗi:**\nLạy Chúa Giêsu là chân lý hằng hữu, con khẩn cầu Chúa và van xin lòng thương xót Chúa cho các tội nhân khốn khổ. Ôi Trái Tim dịu hiền của Chúa Trời con, lòng thương xót Chúa vô bờ bến con van xin Chúa cho các linh hồn tội lỗi.\n\nÔi! Trái Tim Chí Thánh, nguồn mạch Lòng thương Xót, đang tuôn ra những luồng ánh sáng tràn ngập các ân sủng khôn lường trên toàn thể nhân loại, con van xin Chúa cho các linh hồn tội lỗi.\n\nÔi Chúa Giêsu, xin hãy nhìn đến cuộc khổ nạn đắng cay của Chúa, mà đừng để cho một linh hồn nào phải hư mất, bởi vì ơn cứu rỗi Máu Thánh Chúa đã đổ ra cho chúng con là cái giá quá đắt Chúa phải trả. Ôi Chúa Giêsu, khi nghĩ đến cái giá Chúa phải trả cho chúng con bằng Máu Thánh Chúa, con vui mừng vô hạn, vì chỉ cần một giọt máu của Chúa cũng đủ cho phần rỗi nhân loại. Mặc dù tội lỗi là vực sâu thăm thẳm của những yếu hèn và vong ơn bội nghĩa, chúng không thể nào cân xứng được với giá Chúa đã phải trả cho chúng con. Bởi vậy xin hãy để cho mọi linh hồn tín thác vào cuộc tử nạn của Chúa và đặt hy vọng vào Lòng Thương Xót của Ngài. Bởi vì Lòng Thương Xót Chúa không hề từ chối một người nào. Trời đất có thể đổi thay, nhưng lòng thương xót Chúa sẽ không bao giờ cạn kiệt.\n\nChúa ơi! Hồn con bốc cháy niềm vui vô bờ bến khi con suy tưởng tới sự tốt lành lân ái của Chúa. Ôi! Chúa Giêsu, con mong muốn đem mọi linh hồn tội lỗi tới chân Chúa để họ tôn vinh Lòng Thương Xót Chúa đến muôn đời. Amen.\n\n**Tạ Ơn:**\nÔi Giêsu! Chúa Trời Hằng Hữu, con tạ ơn Chúa Vì muôn ân sủng Chúa ban cho chúng con khôn xiết kể. Xin cho từng nhịp đập của trái tim chúng con là một bài ca mới cảm tạ Chúa. Xin cho từng giọt máu trong thân thể chúng con chuyển động cho Chúa. Linh hồn con là một bài ca thờ lạy Lòng Thương Xót Chúa. Con yêu mến Chúa, chỉ một mình Chúa mà thôi. Amen.\n\n**Xin Giống Trái Tim Chúa:**\nÔi Chúa Giêsu, xin cho trái tim con nên giống Trái Tim Chúa, xin Chúa hãy biến đổi nó thành chính Trái Tim Chúa, ngõ hầu con cảm nhận được nhu cầu của tâm hồn anh chị em, cách riêng những ai sầu não và buồn khổ. Ước gì luồng ánh sáng từ bi thương xót cư ngụ trong trái tim con.\n\n**Xin Lòng Mến:**\nLạy Chúa Giêsu êm ái dịu dàng, xin cho lòng con bừng cháy ngọn lửa yêu mến Chúa. Xin biến hoá thân con thành chính Mình Ngài, xin Chúa thần-linh–hoá bản thân con, ngõ hầu mọi cử chỉ, hành vi của con đều làm đẹp lòng Chúa. Ước chi Ngài thực hiện điều ấy nơi con, nhờ quyền phép Thánh Thể con được rước mỗi ngày. Ôi! con nóng lòng ước ao biến hoá toàn thân thành mình Chúa, ôi Chúa của con!\n\n**Kinh Cầu Nguyện Trong Lúc Đau Khổ:**\nÔi Bánh Hằng Sống, xin giúp con nơi chốn khách đời này, để con được sức mạnh trung thành bước theo những dấu chân của Đấng Cứu Thế. Lạy Chúa, con không xin Chúa cất con xuống khỏi thập giá, nhưng con xin Chúa ban cho con sức mạnh để con được vững vàng trên con đường ấy. Lạy Chúa Giêsu, con muốn được giang rộng trên cây Thánh giá như Chúa đã làm. Con muốn chịu mọi cực hình và đau đớn mà Chúa đã chịu. Con muốn uống cho cạn chén đắng.\n\nÔi Chúa Giêsu của con, xin ban cho con sức mạnh chịu đựng đau khổ để con không mang bộ mặt nhăn nhó khi con uống chén đắng. Xin giúp con làm việc hy sinh của con cho được đẹp lòng Chúa. Ước gì điều ấy không bị lem luốc bởi tình yêu ích kỷ của con… Xin tất cả những gì ở trong con, từ đau buồn đến sức mạnh của con là sự ca ngợi dâng lên Chúa. Amen.\n\n**Kinh Cầu Được Chết Lành:**\nÔi Chúa Giêsu đầy lòng thương xót giang cánh tay trên thánh giá, xin nhớ đến giờ chết của con. Ôi Trái tim đầy lòng thương xót của Chúa Giêsu, mở ra bởi lưỡi đòng đâm thâu, xin che chở con trong giây phút cuối cuộc đời. Ôi Máu và Nước tuôn ra từ Trái tim Chúa Giêsu là nguồn mạnh lòng thương xót vô bờ xin thương xót con, xin thanh tẩy tội lỗi và những xúc phạm của con. Ôi Chúa Giêsu hấp hối, Đấng bảo đảm của lòng thương xót, xin làm nguôi cơn thịnh nộ của Thiên Chúa vào giờ chết của con.\n\nÔi Chúa Giêsu của con, ước gì những ngày sau cùng của ở chốn khách đời này của con được hoàn toàn sống theo thánh ý của Chúa. Con kết hợp những đau khổ, cay đắng, và đau đớn trong giờ sau hết của con cho cuộc Thương Khó rất thánh của Chúa. Con dâng đau khổ của con cầu cho toàn thế giới để xin lòng thương xót vô biên của Chúa cho các linh hồn, nhất là những linh hồn tội nhân. Con tin tưởng và dâng hết người con cho thánh ý của Chúa, chính là lòng thương xót. Lòng thương xót của Chúa là tất cả cho con vào trong giờ chết. Amen.\n\nTrở Về Mục Lục*Trích từ sách: Thông Điệp và Sùng Kính LÒNG THƯƠNG XÓT CHÚA*\n* tái bản lần thứ III*\n* do nhà xuất bản Đức Mẹ Hằng Cứu Giúp phát hành.*\n*Download: download dạng pdf để in ra.*"
-  },
-  {
-    "id": "lich-su-va-y-nghia-kinh-man-coi",
-    "title": "Lịch Sử Chuỗi Mân Côi - Nguồn Gốc & Sự Phát Triển",
-    "category": "duc-me",
-    "url": "https://hdgmvietnam.com/chi-tiet/kinh-man-coi-nguon-goc-va-su-phat-trien-42818",
-    "isPopular": true,
-    "content": "### LỊCH SỬ KINH MÂN CÔI: NGUỒN GỐC VÀ SỰ TIẾN TRIỂN\n*(Tài liệu nghiên cứu theo Lm. Giuse Phan Tấn Thành, O.P. & Hội Đồng Giám Mục Việt Nam)*\n\n### I. Ý Nghĩa Tên Gọi “Mân Côi” (Rosarium)\n• **Nguồn gốc từ ngữ:** Từ \"Mân Côi\" (hoặc *Mai Khôi, Môi Khôi, Văn Côi*) bắt nguồn từ chữ Latinh **Rosarium**, có nghĩa là \"vườn hoa hồng\" hoặc \"vòng triều thiên kết bằng hoa hồng\" dâng lên Đức Trinh Nữ Maria.\n• Mỗi lời kinh Kính Mừng như một bông hoa hồng tươi thắm, và trọn chuỗi Mân Côi là một triều thiên hoa thiêng kết dâng lên Mẹ Thiên Chúa.\n• **Bản chất Kitô học:** Trải qua dòng lịch sử, các Đức Giáo hoàng (đặc biệt Thánh Phaolô VI và Thánh Gioan Phaolô II) đã khẳng định Kinh Mân Côi chính là **\"Bản Toát Yếu của toàn bộ Tin Mừng\" (Totius Evangelii Breviarium)** — là lời kinh chiêm ngắm cuộc đời, cái chết và sự phục sinh của Chúa Giêsu qua đôi mắt và trái tim của Đức Mẹ Maria.\n\n### II. Tiến Trình Hình Thành Lịch Sử Qua Các Thế Kỷ\n\n**1. Cội Nguồn \"Bộ Thánh Vịnh Đức Mẹ\" (Thế kỷ X – XII):**\n• Thời Trung Cổ, các đan sĩ mỗi tuần đọc trọn bộ 150 Thánh Vịnh Cựu Ước. Đối với giáo dân và các trợ sĩ không biết tiếng Latinh, Giáo hội cho phép đọc **150 Kinh Lạy Cha** hoặc **150 Kinh Kính Mừng** (dùng chuỗi hạt để đếm) để thay thế.\n• Nhờ phong trào cổ võ của Thánh Bênađô (1090 – 1153), xâu chuỗi 150 Kinh Kính Mừng được gọi là **Bộ Thánh Vịnh Kính Đức Mẹ (Psalterium Beatae Mariae Virginis)**.\n\n**2. Gắn Liền Kinh Kính Mừng Với Các Mầu Nhiệm Chúa Cứu Thế (Thế kỷ XV):**\n• **Dòng Chartreux:** Cha Henricus Kalcar (1328 – 1408) chia 150 kinh thành 15 chục kinh, mỗi chục mở đầu bằng Kinh Lạy Cha. Cha Dominicus Prussia (1384 – 1460) thêm những câu suy niệm ngắn về cuộc đời Chúa sau tên Thánh Giêsu.\n• **Dòng Đa Minh & Chân phước Alain de la Roche O.P. (1428 – 1475):** Cha Alain là vị có công lao vĩ đại trong việc phân chia chuỗi hạt thành 3 phần mầu nhiệm (Nhập Thể, Tử Nạn, Vinh Hiển) và thành lập **Hiệp Hội Thánh Vịnh Mẹ Maria (1470)** lan tỏa khắp Âu Châu. Năm 1479, Đức Giáo hoàng Sixtô IV chính thức phê chuẩn hiệp hội.\n• Năm 1521, Cha Alberto da Castello O.P. chính thức phân chia thành **15 Mầu Nhiệm (Sự Vui, Sự Thương, Sự Mừng)** rõ ràng trong cuốn sách kinh xuất bản tại Venezia.\n\n**3. Chiến Thắng Vịnh Lepanto & Thiết Lập Lễ Đức Mẹ Mân Côi (1571):**\n• Ngày 17/09/1569, Thánh Giáo hoàng **Piô V** (dòng Đa Minh) ban hành Sắc chỉ *Consueverunt Romani Pontifices*, ấn định cấu trúc chuẩn mực của Kinh Mân Côi gồm 150 kinh phân làm 15 chục.\n• Ngày 07/10/1571, trước nguy cơ đạo quân Hồi giáo Ottoman xâm lăng Tây Âu, Thánh Giáo hoàng Piô V đã kêu gọi toàn thể Kitô hữu lần chuỗi Mân Côi cầu nguyện. Đạo binh Công giáo đã giành thắng lợi phi thường tại **Vịnh Lepanto**.\n• Để tạ ơn Đức Mẹ, Đức Giáo hoàng Grêgôriô XIII (1573) đã thiết lập ngày lễ kính **Đức Mẹ Mân Côi (07/10)** trên toàn thế giới.\n\n**4. Bổ Sung Năm Sự Sáng Dưới Thời Thánh Gioan Phaolô II (2002):**\n• Ngày 16/10/2002, trong Tông thư *Rosarium Virginis Mariae*, Thánh Giáo hoàng **Gioan Phaolô II** đã làm phong phú thêm kho tàng kinh nguyện khi bổ sung **Năm Sự Sáng (Mysterria Lucis)** — chiêm ngắm thời kỳ hoạt động công khai của Chúa Giêsu từ khi chịu phép Rửa tại sông Giođan đến khi lập Bí tích Thánh Thể.\n• Từ đây, toàn bộ Kinh Mân Côi trọn vẹn gồm **20 Mầu Nhiệm (200 Kinh Kính Mừng)** bao quát toàn thể công trình Cứu Chuộc.\n\n### III. Giá Trị Siêu Nhiên Của Chuỗi Mân Côi\n• **Lời kinh của gia đình và hòa bình:** Đức Mẹ tại Fatima (1917) và Lộ Đức luôn nhắn nhủ: *\"Hãy siêng năng lần hạt Mân Côi mỗi ngày để cầu cho hòa bình thế giới và cho các kẻ có tội được ơn hoán cải.\"*\n• **Phương thế kết hiệp sâu sắc với Chúa:** Lần hạt Mân Côi không phải là đọc kinh máy móc, mà là phương pháp chiêm niệm sâu sắc, đưa tâm trí ta bước đi từng bước cùng Đức Mẹ bên cạnh Chúa Cứu Thế."
-  },
-  {
-    "id": "cach-lan-hat-man-coi",
-    "title": "Cách Lần Hạt Mân Côi & 20 Mầu Nhiệm Trọn Vẹn",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/cach-lan-hat-man-coi/",
-    "isPopular": true,
-    "content": "### HƯỚNG DẪN CÁCH LẦN CHUỖI MÂN CÔI TRỌN VẸN\n\n### I. Trình Tự Các Bước Lần Hạt Mân Côi:\n1. **Khởi đầu:** Cầm Thánh Giá nơi đầu chuỗi, làm **Dấu Thánh Giá** và đọc **Kinh Tin Kính**.\n2. **Hạt lớn đầu tiên:** Đọc 1 **Kinh Lạy Cha**.\n3. **3 hạt nhỏ tiếp theo:** Đọc 3 **Kinh Kính Mừng** (xin ơn Tinh - Cậy - Mến vững vàng).\n4. **Khoảng cách:** Đọc 1 **Kinh Sáng Danh**.\n5. **Bắt đầu từng Chục Kinh (5 Chục):**\n   • Xướng Mầu Nhiệm thứ nhất (ví dụ: *Thứ nhất thì ngắm: Thiên Thần truyền tin cho Đức Bà chịu thai...*)\n   • Đọc 1 **Kinh Lạy Cha** nơi hạt lớn.\n   • Đọc 10 **Kinh Kính Mừng** nơi 10 hạt nhỏ (vừa đọc vừa suy gẫm mầu nhiệm).\n   • Đọc 1 **Kinh Sáng Danh** và **Lời Nguyện Fatima** (*Lạy Chúa Giêsu, xin tha tội cho chúng con...*).\n   • Tiếp tục lặp lại cho Mầu Nhiệm 2, 3, 4, 5.\n6. **Kết thúc chuỗi hạt:** Đọc **Kinh Lạy Nữ Vương**, **Kinh Trông Cậy**, Các Câu Lạy, làm **Dấu Thánh Giá** và hôn Thánh Giá Chúa.\n\n### II. Phân Bổ Mầu Nhiệm Theo Các Ngày Trong Tuần:\n• **Thứ Hai & Thứ Bảy:** Mầu Nhiệm **NĂM SỰ VUI**\n• **Thứ Ba & Thứ Sáu:** Mầu Nhiệm **NĂM SỰ THƯƠNG**\n• **Thứ Tư & Chúa Nhật:** Mầu Nhiệm **NĂM SỰ MỪNG** *(Riêng CN Mùa Vọng - Giáng Sinh ngắm Sự Vui, CN Mùa Chay ngắm Sự Thương)*\n• **Thứ Năm:** Mầu Nhiệm **NĂM SỰ SÁNG**\n\n---\n\n### 🌸 1. NĂM SỰ VUI (Mùa Vui - Chiêm ngắm Mầu nhiệm Nhập Thể)\n• **Thứ nhất thì ngắm:** Thiên Thần truyền tin cho Đức Bà chịu thai. *(Lc 1, 26-38)*\n  $\rightarrow$ *Ta hãy xin cho được ở khiêm nhường.*\n• **Thứ hai thì ngắm:** Đức Bà đi viếng Bà Thánh Isave. *(Lc 1, 39-56)*\n  $\rightarrow$ *Ta hãy xin cho được lòng yêu người và bác ái.*\n• **Thứ ba thì ngắm:** Đức Bà sinh Đức Chúa Giêsu trong hang đá Bêlem. *(Lc 2, 1-20)*\n  $\rightarrow$ *Ta hãy xin cho được lòng khó khăn và từ bỏ của cải trần thế.*\n• **Thứ tư thì ngắm:** Đức Bà dâng Đức Chúa Giêsu trong Đền Thánh. *(Lc 2, 22-38)*\n  $\rightarrow$ *Ta hãy xin cho được vâng lời và giữ luật Chúa.*\n• **Thứ năm thì ngắm:** Đức Bà tìm được Đức Chúa Giêsu trong Đền Thánh. *(Lc 2, 41-52)*\n  $\rightarrow$ *Ta hãy xin cho được luôn gắn bó và tìm kiếm Chúa trong đời sống.*\n\n---\n\n### 💡 2. NĂM SỰ SÁNG (Mùa Sáng - Chiêm ngắm Đời sống Công khai)\n• **Thứ nhất thì ngắm:** Đức Chúa Giêsu chịu phép Rửa tại sông Giođan. *(Mt 3, 13-17)*\n  $\rightarrow$ *Ta hãy xin cho được sống xứng đáng là con cái Chúa.*\n• **Thứ hai thì ngắm:** Đức Chúa Giêsu dự tiệc cưới Cana và làm phép lạ đầu tiên. *(Ga 2, 1-12)*\n  $\rightarrow$ *Ta hãy xin cho được lắng nghe và vâng theo Lời Chúa dạy qua Mẹ Maria.*\n• **Thứ ba thì ngắm:** Đức Chúa Giêsu rao giảng Nước Trời và kêu gọi sám hối. *(Mc 1, 14-15)*\n  $\rightarrow$ *Ta hãy xin cho được thật lòng hoán cải và tin vào Tin Mừng.*\n• **Thứ tư thì ngắm:** Đức Chúa Giêsu biến hình rực rỡ trên núi Tabôrê. *(Mt 17, 1-8)*\n  $\rightarrow$ *Ta hãy xin cho tâm hồn được biến đổi nên tinh tuyền.*\n• **Thứ năm thì ngắm:** Đức Chúa Giêsu thiết lập Bí tích Thánh Thể. *(Mt 26, 26-29)*\n  $\rightarrow$ *Ta hãy xin cho được siêng năng kết hiệp với Chúa Giêsu Thánh Thể.*\n\n---\n\n### 🩸 3. NĂM SỰ THƯƠNG (Mùa Thương - Chiêm ngắm Cuộc Khổ Nạn Cứu Chuộc)\n• **Thứ nhất thì ngắm:** Đức Chúa Giêsu lo buồn đổ mồ hôi máu trong vườn Cây Dầu. *(Lc 22, 39-46)*\n  $\rightarrow$ *Ta hãy xin cho được thật lòng ăn năn ghét tội.*\n• **Thứ hai thì ngắm:** Đức Chúa Giêsu chịu đánh đòn nơi cột đá. *(Mt 27, 26)*\n  $\rightarrow$ *Ta hãy xin cho được hãm mình chịu khó bằng lòng.*\n• **Thứ ba thì ngắm:** Đức Chúa Giêsu chịu đội mão gai sỉ nhục. *(Mt 27, 27-31)*\n  $\rightarrow$ *Ta hãy xin cho được chịu mọi sự sỉ nhục vì danh Chúa.*\n• **Thứ tư thì ngắm:** Đức Chúa Giêsu vác Thánh Giá lên núi Sọ. *(Ga 19, 17)*\n  $\rightarrow$ *Ta hãy xin cho được vác thập giá theo chân Chúa mỗi ngày.*\n• **Thứ năm thì ngắm:** Đức Chúa Giêsu chịu chết trên cây Thánh Giá. *(Ga 19, 18-30)*\n  $\rightarrow$ *Ta hãy xin đóng đinh tính xác thịt vào Thánh Giá Chúa.*\n\n---\n\n### 👑 4. NĂM SỰ MỪNG (Mùa Mừng - Chiêm ngắm Sự Phục Sinh & Vinh Hiển)\n• **Thứ nhất thì ngắm:** Đức Chúa Giêsu sống lại từ cõi chết khải hoàn. *(Mt 28, 1-10)*\n  $\rightarrow$ *Ta hãy xin cho được sống lại thật về phần linh hồn.*\n• **Thứ hai thì ngắm:** Đức Chúa Giêsu lên trời vinh hiển. *(Cv 1, 6-11)*\n  $\rightarrow$ *Ta hãy xin cho được ái mộ và hướng lòng về những sự trên trời.*\n• **Thứ ba thì ngắm:** Đức Chúa Thánh Thần hiện xuống trên các Tông đồ. *(Cv 2, 1-13)*\n  $\rightarrow$ *Ta hãy xin cho được đầy dẫy mọi hồng ân Chúa Thánh Thần.*\n• **Thứ tư thì ngắm:** Đức Chúa Trời cho Đức Mẹ lên trời cả hồn lẫn xác. *(Kh 12, 1)*\n  $\rightarrow$ *Ta hãy xin ơn chết lành trong vòng tay Đức Mẹ.*\n• **Thứ năm thì ngắm:** Đức Chúa Trời thưởng Đức Mẹ trên trời làm Nữ Vương muôn loài. *(Kh 12, 1)*\n  $\rightarrow$ *Ta hãy xin Đức Mẹ phù hộ cho ta được hưởng phúc cùng Mẹ trên Thiên Đàng.*\n\n---\n\n### III. Các Lời Kinh Đọc Trong Chuỗi Mân Côi:\n\n**1. Dấu Thánh Giá:**\nNhân danh Cha, và Con, và Thánh Thần. Amen.\n\n**2. Kinh Tin Kính:**\nTôi tin kính Đức Chúa Trời là Cha phép tắc vô cùng dựng nên trời đất. Tôi tin kính Đức Chúa Giêsu Kitô là Con Một Đức Chúa Cha cùng là Chúa chúng tôi; bởi phép Đức Chúa Thánh Thần mà Người xuống thai, sinh bởi Bà Maria đồng trinh: chịu nạn đời quan Phongxiô Philatô, chịu đóng đanh trên cây Thánh Giá, chết và táng xác, xuống ngục tổ tông, ngày thứ ba bởi trong kẻ chết sống lại; lên trời ngự bên hữu Đức Chúa Cha phép tắc vô cùng; ngày sau bởi trời lại xuống phán xét kẻ sống và kẻ chết. Tôi tin kính Đức Chúa Thánh Thần. Tôi tin có Hội Thánh hằng có ở khắp thế này, các Thánh thông công. Tôi tin phép tha tội. Tôi tin xác loài người ngày sau sống lại. Tôi tin hằng sống vậy. Amen.\n\n**3. Kinh Lạy Cha:**\nLạy Cha chúng con ở trên trời, chúng con nguyện danh Cha cả sáng, nước Cha trị đến, ý Cha thể hiện dưới đất cũng như trên trời. Xin Cha cho chúng con hôm nay lương thực hằng ngày và tha nợ chúng con như chúng con cũng tha kẻ có nợ chúng con. Xin chớ để chúng con sa chước cám dỗ, nhưng cứu chúng con cho khỏi mọi sự dữ. Amen.\n\n**4. Kinh Kính Mừng:**\nKính mừng Maria đầy ơn phúc, Đức Chúa Trời ở cùng Bà, Bà có phúc lạ hơn mọi người nữ, và Giêsu Con lòng Bà gồm phúc lạ. Thánh Maria Đức Mẹ Chúa Trời, cầu cho chúng con là kẻ có tội khi này và trong giờ lâm tử. Amen.\n\n**5. Kinh Sáng Danh:**\nSáng danh Đức Chúa Cha, và Đức Chúa Con, và Đức Chúa Thánh Thần. Như đã có trước vô cùng, và bây giờ, và hằng có, và đời đời chẳng cùng. Amen.\n\n**6. Lời Nguyện Fatima (Kinh Fatima):**\nLạy Chúa Giêsu, xin tha tội cho chúng con, xin cứu chúng con khỏi sa hỏa ngục, xin đem các linh hồn lên thiên đàng, nhất là những linh hồn cần đến lòng Chúa thương xót hơn.\n\n**7. Kinh Lạy Nữ Vương:**\nLạy Nữ Vương, Mẹ nhân lành, làm cho chúng con được sống, được vui, được cậy, thân lạy Mẹ. Chúng con, con cháu E-và, ở chốn khách đày, kêu đến cùng Bà, chúng con ở nơi khóc lóc than thở kêu khẩn Bà thương. Hỡi ôi! Bà là Chúa bầu chúng con, xin ghé mặt thương xem chúng con. Đến sau khỏi đày, xin cho chúng con được thấy Đức Chúa Giêsu, Con lòng Bà gồm phúc lạ. Ôi khoan thay! Nhân thay! Dịu thay! Thánh Maria trọn đời đồng trinh. Amen.\n\n**8. Kinh Trông Cậy:**\nChúng con trông cậy rất thánh Đức Mẹ Chúa Trời, xin chớ chê chớ bỏ lời chúng con nguyện, trong cơn gian nan thiếu thốn, Đức Nữ Đồng Trinh hiển vinh sáng láng hằng chữa chúng con cho khỏi mọi sự dữ. Amen.\n\n**9. Các Câu Lạy:**\n• Thưa: Lạy rất thánh Trái Tim Đức Chúa Giêsu. $\rightarrow$ Đáp: Thương xót chúng con.\n• Thưa: Lạy Trái Tim cực thanh cực tịnh Rất Thánh Đức Bà Maria. $\rightarrow$ Đáp: Cầu cho chúng con.\n• Thưa: Lạy Ông Thánh Giuse là bạn thanh sạch Đức Bà Maria trọn đời đồng trinh. $\rightarrow$ Đáp: Cầu cho chúng con.\n• Thưa: Các Thánh Tử Đạo Việt Nam. $\rightarrow$ Đáp: Cầu cho chúng con.\n• Thưa: Nữ Vương Ban Sự Bình An. $\rightarrow$ Đáp: Cầu cho chúng con."
-  },
-  {
-    "id": "ngam-5-su-vui",
-    "title": "Ngắm Năm Sự Vui (Mầu Nhiệm Vui - Thứ Hai & Thứ Bảy)",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/cach-lan-hat-man-coi/",
-    "isPopular": true,
-    "content": "### MẦU NHIỆM NĂM SỰ VUI (Lần Hạt Thứ Hai & Thứ Bảy)\n*Chiêm ngắm Mầu Nhiệm Nhập Thể và Thời Thơ Ấu của Đấng Cứu Thế*\n\n### 1. Thứ nhất thì ngắm: Thiên Thần truyền tin cho Đức Bà chịu thai\n• **Lời Chúa (Lc 1, 38):** *Bấy giờ bà Maria nói: “Vâng, tôi đây là nữ tỳ của Chúa, xin Chúa cứ làm cho tôi như lời sứ thần nói.”*\n• **Suy niệm:** Đức Maria đã thưa tiếng Xin Vâng (Fiat) trọn vẹn để đón rước Ngôi Lời Nhập Thể làm người.\n• **Hoa trái:** Ta hãy xin cho được ở khiêm nhường và luôn biết vâng theo Thánh ý Chúa.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 2. Thứ hai thì ngắm: Đức Bà đi viếng Bà Thánh Isave\n• **Lời Chúa (Lc 1, 41):** *Bà Isave vừa nghe tiếng bà Maria chào, thì đứa con trong bụng nhảy lên, và bà được đầy Thánh Thần.*\n• **Suy niệm:** Mẹ Maria mang Chúa Giêsu trong lòng vội vã lên đường phục vụ người chị họ lớn tuổi đang mang thai.\n• **Hoa trái:** Ta hãy xin cho được lòng yêu người, mở rộng đôi tay bác ái và đem niềm vui của Chúa đến cho tha nhân.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 3. Thứ ba thì ngắm: Đức Bà sinh Đức Chúa Giêsu nơi hang đá Bêlem\n• **Lời Chúa (Lc 2, 7):** *Bà sinh con trai đầu lòng, lấy tã bọc con, rồi đặt nằm trong máng cỏ, vì hai ông bà không tìm được chỗ trong nhà trọ.*\n• **Suy niệm:** Vua muôn loài sinh ra trong cảnh cơ hàn, lạnh giá nơi máng cỏ nghèo hèn vì yêu thương nhân loại.\n• **Hoa trái:** Ta hãy xin cho được lòng thanh thoát khó nghèo, không dính bén của cải trần thế và biết mở lòng đón nhận người nghèo khổ.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 4. Thứ tư thì ngắm: Đức Bà dâng Đức Chúa Giêsu trong Đền Thánh\n• **Lời Chúa (Lc 2, 22):** *Khi đã đến ngày lễ thanh tẩy của các ngài theo luật Môsê, bà Maria và ông Giuse đem con lên Giêrusalem, để tiến dâng cho Chúa.*\n• **Suy niệm:** Đức Mẹ và Thánh Giuse chu toàn luật Chúa trong sự khiêm tốn và phó dâng người Con duy nhất cho Thiên Chúa.\n• **Hoa trái:** Ta hãy xin cho được lòng vâng lời chịu lụy và giữ trọn lề luật Hội Thánh với lòng kính mến.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 5. Thứ năm thì ngắm: Đức Bà tìm được Đức Chúa Giêsu trong Đền Thánh\n• **Lời Chúa (Lc 2, 49):** *Người đáp: “Sao cha mẹ lại tìm con? Cha mẹ không biết là con có bổn phận ở nhà của Cha con sao?”*\n• **Suy niệm:** Nỗi lo âu của Mẹ Maria khi lạc mất Con và niềm hạnh phúc khôn tả khi tìm thấy Chúa đang đàm đạo giữa các bậc thầy thông luật.\n• **Hoa trái:** Ta hãy xin cho được luôn tìm kiếm Chúa trong mọi biến cố cuộc đời và giữ gìn ân nghĩa cùng Chúa luôn mãi.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*"
-  },
-  {
-    "id": "ngam-5-su-sang",
-    "title": "Ngắm Năm Sự Sáng (Mầu Nhiệm Sáng - Thứ Năm)",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/cach-lan-hat-man-coi/",
-    "isPopular": true,
-    "content": "### MẦU NHIỆM NĂM SỰ SÁNG (Lần Hạt Thứ Năm)\n*Chiêm ngắm Cuộc Đời Công Khai và Ánh Sáng Cứu Độ của Chúa Kitô*\n\n### 1. Thứ nhất thì ngắm: Đức Chúa Giêsu chịu phép Rửa tại sông Giođan\n• **Lời Chúa (Mt 3, 17):** *Và có tiếng từ trời phán: “Đây là Con yêu dấu của Ta, Ta hài lòng về Người.”*\n• **Suy niệm:** Chúa Giêsu vô tội nhưng đã bước xuống dòng nước Giođan để gánh lấy tội lỗi trần gian và khai mở sứ vụ cứu chuộc.\n• **Hoa trái:** Ta hãy xin cho được sống xứng đáng là con cái sự sáng và trung thành với lời hứa khi chịu phép Rửa Tội.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 2. Thứ hai thì ngắm: Đức Chúa Giêsu dự tiệc cưới Cana\n• **Lời Chúa (Ga 2, 5):** *Thân mẫu Người nói với gia nhân: “Người bảo gì, các anh cứ việc làm theo.”*\n• **Suy niệm:** Nhờ lời chuyển cầu ân cần của Mẹ Maria, Chúa Giêsu đã làm phép lạ biến nước thành rượu ngon để cứu giúp gia đình đôi tân hôn.\n• **Hoa trái:** Ta hãy xin cho các gia đình luôn hòa thuận êm ấm, và biết lắng nghe làm theo Lời Chúa dạy qua sự chuyển cầu của Mẹ.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 3. Thứ ba thì ngắm: Đức Chúa Giêsu rao giảng Nước Trời và kêu gọi sám hối\n• **Lời Chúa (Mc 1, 15):** *“Thời kỳ đã mãn, và Triều Đại Thiên Chúa đã đến gần. Anh em hãy sám hối và tin vào Tin Mừng.”*\n• **Suy niệm:** Chúa Giêsu đi khắp nơi công bố ơn tha thứ, chữa lành bệnh nhân và mở cửa Nước Trời cho người tội lỗi biết quay về.\n• **Hoa trái:** Ta hãy xin cho được ơn thật lòng hoán cải tâm hồn, siêng năng lãnh nhận Bí tích Hòa Giải và nhiệt thành làm chứng cho Tin Mừng.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 4. Thứ tư thì ngắm: Đức Chúa Giêsu biến hình trên núi Tabôrê\n• **Lời Chúa (Mt 17, 2):** *Người biến đổi hình dạng trước mặt các ông. Dung nhan Người chói lọi như mặt trời, và y phục Người trở nên trắng tinh như ánh sáng.*\n• **Suy niệm:** Chúa Giêsu tỏ lộ vinh quang thiên tính để củng cố niềm tin cho các tông đồ trước khi Người bước vào cuộc Khổ Nạn.\n• **Hoa trái:** Ta hãy xin cho tâm hồn được ơn biến đổi mỗi ngày, biết chiêm ngắm vinh quang Chúa và can đảm vượt qua thử thách.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 5. Thứ năm thì ngắm: Đức Chúa Giêsu thiết lập Bí tích Thánh Thể\n• **Lời Chúa (Mt 26, 26):** *Đức Giêsu cầm lấy bánh, dâng lời chúc tụng, rồi bẻ ra, trao cho các môn đệ và nói: “Anh em cầm lấy mà ăn, đây là mình Thầy.”*\n• **Suy niệm:** Vì yêu thương loài người đến cùng, Chúa Giêsu đã hiến ban chính Thịt Máu Người làm lương thực nuôi dưỡng linh hồn ta.\n• **Hoa trái:** Ta hãy xin cho được lòng sốt sắng tham dự Thánh lễ, siêng năng rước Mình Thánh Chúa và tôn sùng Bí tích Thánh Thể.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*"
-  },
-  {
-    "id": "ngam-5-su-thuong",
-    "title": "Ngắm Năm Sự Thương (Mầu Nhiệm Thương - Thứ Ba & Thứ Sáu)",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/cach-lan-hat-man-coi/",
-    "isPopular": true,
-    "content": "### MẦU NHIỆM NĂM SỰ THƯƠNG (Lần Hạt Thứ Ba & Thứ Sáu)\n*Chiêm ngắm Cuộc Tử Nạn Đau Thương của Chúa Giêsu Cứu Thế*\n\n### 1. Thứ nhất thì ngắm: Đức Chúa Giêsu lo buồn đổ mồ hôi máu trong vườn Cây Dầu\n• **Lời Chúa (Lc 22, 44):** *Người lâm cơn xao xuyến bồi hồi, nên càng khẩn thiết cầu xin. Và mồ hôi Người như những giọt máu rơi xuống đất.*\n• **Suy niệm:** Chúa Giêsu gánh chịu nỗi âu sầu tột cùng trước cái chết nhưng đã hoàn toàn thuận phục thánh ý Chúa Cha.\n• **Hoa trái:** Ta hãy xin cho được lòng ăn năn thống hối tội lỗi và luôn vững lòng cầu nguyện trong cơn gian nan thử thách.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 2. Thứ hai thì ngắm: Đức Chúa Giêsu chịu đánh đòn nơi cột đá\n• **Lời Chúa (Ga 19, 1):** *Bấy giờ ông Philatô truyền đem Đức Giêsu đi và đánh đòn Người.*\n• **Suy niệm:** Thân xác tinh tuyền của Chúa Giêsu chịu tan nát bởi những trận đòn roi tàn nhẫn để đền bù tội dâm ô và đam mê xác thịt của nhân loại.\n• **Hoa trái:** Ta hãy xin cho được lòng hãm mình ép xác, giữ tâm hồn và thân xác luôn thanh khiết trước mặt Chúa.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 3. Thứ ba thì ngắm: Đức Chúa Giêsu chịu đội mão gai sỉ nhục\n• **Lời Chúa (Mt 27, 29):** *Chúng kết một vòng gai làm vương miện đặt lên đầu Người, và trao vào tay hữu Người một cây sậy; rồi quỳ gối trước mặt Người mà nhạo báng.*\n• **Suy niệm:** Vua vũ trụ chịu sỉ nhục, khạc nhổ và đâm thấu đầu bằng vòng gai nhọn để đền bù tội kiêu ngạo và tư tưởng xấu xa của chúng ta.\n• **Hoa trái:** Ta hãy xin cho được lòng khiêm nhường, can đảm chịu những sỉ nhục, bất công ở đời vì lòng mến Chúa.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 4. Thứ tư thì ngắm: Đức Chúa Giêsu vác Thánh Giá lên núi Sọ\n• **Lời Chúa (Ga 19, 17):** *Chính Người vác lấy thập giá đi ra, đến nơi gọi là Cái Sọ, tiếng Hípri là Gôngôtha.*\n• **Suy niệm:** Với tấm thân kiệt sức vì đòn vọt, Chúa Giêsu nặng nhọc vác cây gỗ thập giá nặng nề vì tội lỗi chúng ta.\n• **Hoa trái:** Ta hãy xin cho được can đảm vác thánh giá của bổn phận và bệnh tật hằng ngày theo chân Chúa cho đến cùng.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 5. Thứ năm thì ngắm: Đức Chúa Giêsu chịu đóng đinh và chết trên cây Thánh Giá\n• **Lời Chúa (Lc 23, 46):** *Đức Giêsu kêu lớn tiếng: “Lạy Cha, con xin phó thác hồn con trong tay Cha.” Nói xong, Người tắt thở.*\n• **Suy niệm:** Tình yêu cao cả nhất là hy sinh tính mạng vì người mình yêu. Chúa Giêsu đã đổ đến giọt máu cuối cùng để mở cửa Thiên Đàng cho ta.\n• **Hoa trái:** Ta hãy xin ơn đóng đinh tính xác thịt vào Thánh Giá Chúa, yêu mến tha thứ cho kẻ thù và được ơn chết lành.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*"
-  },
-  {
-    "id": "ngam-5-su-mung",
-    "title": "Ngắm Năm Sự Mừng (Mầu Nhiệm Mừng - Thứ Tư & Chúa Nhật)",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/cach-lan-hat-man-coi/",
-    "isPopular": true,
-    "content": "### MẦU NHIỆM NĂM SỰ MỪNG (Lần Hạt Thứ Tư & Chúa Nhật)\n*Chiêm ngắm Chiến Thắng Phục Sinh và Vinh Quang Nước Trời*\n\n### 1. Thứ nhất thì ngắm: Đức Chúa Giêsu sống lại từ cõi chết khải hoàn\n• **Lời Chúa (Mt 28, 6):** *“Người không có ở đây, vì Người đã trỗi dậy như Người đã nói. Khóa hãy đến xem chỗ Người đã nằm.”*\n• **Suy niệm:** Chúa Giêsu đã chiến thắng sự chết và tội lỗi, đem lại cho nhân loại niềm hy vọng về sự sống đời đời bất diệt.\n• **Hoa trái:** Ta hãy xin cho được ơn sống lại thật về phần linh hồn, từ bỏ nếp sống tội lỗi cũ để bước đi trong đời sống mới của ân sủng.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 2. Thứ hai thì ngắm: Đức Chúa Giêsu lên trời vinh hiển\n• **Lời Chúa (Cv 1, 9):** *Nói xong, Người được cất lên trước mắt các ông, và có một đám mây quyện lấy Người, khiến các ông không còn thấy Người nữa.*\n• **Suy niệm:** Chúa Giêsu hoàn tất sứ vụ trần thế và trở về ngự bên hữu Chúa Cha để dọn chỗ cho những ai tin theo Người.\n• **Hoa trái:** Ta hãy xin cho lòng ta luôn hướng về quê hương Thiên Quốc, ái mộ những sự trên trời hơn của cải chóng qua ở trần gian.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 3. Thứ ba thì ngắm: Đức Chúa Thánh Thần hiện xuống trên các Tông đồ\n• **Lời Chúa (Cv 2, 4):** *Và ai nấy đều được tràn đầy ơn Thánh Thần, họ bắt đầu nói các thứ tiếng khác, tuỳ theo khả năng Thánh Thần ban cho.*\n• **Suy niệm:** Chúa Thánh Thần — Đấng Bảo Trợ ngự xuống thánh hóa Hội Thánh, biến đổi những tông đồ nhút nhát thành những chứng nhân kiên cường.\n• **Hoa trái:** Ta hãy xin cho tâm hồn được tràn đầy 7 ơn Chúa Thánh Thần và can đảm tuyên xưng đức tin trong cuộc sống.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 4. Thứ tư thì ngắm: Đức Chúa Trời cho Đức Mẹ lên trời cả hồn lẫn xác\n• **Lời Chúa (Kh 12, 1):** *Một điềm lớn xuất hiện trên trời: một người Phụ Nữ, mình khoác mặt trời, chân đạp mặt trăng, và đầu đội triều thiên mười hai ngôi sao.*\n• **Suy niệm:** Sau cuộc đời trọn vẹn trung tín và khiêm nhường, Mẹ Maria được Thiên Chúa ân thưởng đưa cả hồn lẫn xác vào vinh quang Thiên Quốc.\n• **Hoa trái:** Ta hãy xin ơn giữ mình trinh trong và xin được ơn chết lành trong vòng tay dịu hiền của Mẹ Maria.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*\n\n### 5. Thứ năm thì ngắm: Đức Chúa Trời thưởng Đức Mẹ trên trời làm Nữ Vương\n• **Lời Chúa (Lc 1, 48):** *“Từ nay, hết mọi đời sẽ khen tôi diễm phúc, vì Đấng Toàn Năng đã làm cho tôi những điều cao cả.”*\n• **Suy niệm:** Mẹ Maria được tôn vinh làm Nữ Vương Thiên Đàng và Trạng Sư quyền thế luôn bầu cử, che chở cho đoàn con nơi thế trần.\n• **Hoa trái:** Ta hãy xin cho được lòng yêu mến Mẹ tha thiết và luôn cậy trông sự bảo trợ của Mẹ để mai sau được cùng Mẹ hưởng phúc trường sinh.\n• *(Đọc: 1 Kinh Lạy Cha, 10 Kinh Kính Mừng, 1 Kinh Sáng Danh, 1 Lời Nguyện Fatima)*"
-  },
-  {
-    "id": "cach-doc-kinh-cho-dam-gio",
-    "title": "Cách Đọc Kinh Cho Đám Giỗ",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/cach-doc-kinh-cho-dam-gio/",
-    "isPopular": false,
-    "content": "***Chú Thích:** Khi bạn đọc đến   tên thánh   là tên thánh của linh hồn bạn đang cầu nguyện. Nếu đám giỗ cho hai ông bà thì dùng chữ “và” ở giữa, ví dụ: Anrê và Anna.*\n\n**Bắt Đầu, mọi người tập hợp, thinh lặng và làm Dấu Thánh Giá.**\nNhân danh Cha và Con và Thánh Thần. Amen!\n\n**Đọc Kinh Đức Chúa Thánh Thần**\nChúng con lạy ơn Ðức Chúa Thánh Thần thiêng liêng sáng láng vô cùng, chúng con xin Ðức Chúa Thánh Thần xuống đầy lòng chúng con, là kẻ tin cậy Ðức Chúa Trời, và đốt lửa kính mến Ðức Chúa Trời trong lòng chúng con; Chúng con xin Ðức Chúa Trời cho Ðức Chúa Thánh Thần xuống. Sửa lại mọi sự trong ngoài chúng con.\nChúng con cầu cùng Ðức Chúa Trời, xưa đã cho Ðức Chúa Thánh Thần xuống, soi lòng dậy dỗ các Thánh Tông Ðồ, thì rày chúng con cũng xin Ðức Chúa Trời cho Ðức Chúa Thánh Thần lại xuống, an ủi dậy dỗ chúng con làm những việc lành, vì công nghiệp vô cùng Ðức Chúa Giêsu Kitô là Chúa chúng con. Amen.\n\n**Kinh Tin**\nLạy Chúa con, con tin thật có một Đức Chúa Trời, là đấng thưởng phạt vô cùng. Con lại tin thật Đức Chúa Trời có Ba Ngôi, mà Ngôi Thứ Hai đã xuống thế làm người, chịu nạn chịu chết mà chuộc tội cho thiên hạ. Bấy nhiêu điều ấy cùng các điều Hội Thánh dạy, thì con tin vững vàng vì Chúa là Đấng thông minh, và chân thật vô cùng đã phán truyền cho Hội thánh. Amen.\n\n**Kinh Cậy**\nLạy Chúa con, con trông cậy vững vàng, vì công nghiệp Đức Chúa Giêsu, thì Chúa sẽ ban ơn cho con giữ đạo nên ở đời này, cho ngày sau được lên Thiên đàng, xem thấy mặt Đức Chúa Trời hưởng phúc đời đời, vì Chúa là Đấng phép tắc và lòng lành vô cùng, đã phán hứa sự ấy chẳng có lẽ nào sai được. Amen.\n\n**Kinh Mến**\nLạy Chúa con, con kính mến Chúa hết lòng hết sức trên hết mọi sự, vì Chúa là Đấng trọn tốt trọn lành vô cùng. Lại vì Chúa, thì con thương yêu người ta như mình con vậy. Amen.\n\n**Kinh Chúa Giêsu Cực Khoan, Cực Nhân**\nLạy Chúa Giêsu cực khoan, cực nhân, chúng con là kẻ phàm hèn tội lỗi, chẳng đáng dâng lời cầu nguyện trước mặt Đức Chúa Cha, song vì Chúa đã phán rằng: Bay lấy danh Ta mà cầu xin sự gì cùng Đức Chúa Cha, thì Người sẽ ban cho sự ấy. Nên chúng con mới dám nương nhờ công nghiệp cực trọng Năm Dấu Thánh Đức Chúa Giêsu, mà dâng lời cùng Đức Chúa Cha. Xin Đức Chúa Cha nhận lời mà tha bớt phần phạt cho linh hồn   *tên thánh*   mau ra khỏi nơi khốn khó, mà về nhà Thiên Đàng hưởng phúc trọng vô cùng. Amen.\n\n**￼Kinh Ăn Năn Tội**\nLạy Chúa con, Chúa là Đấng trọn tốt trọn lành vô cùng. Chúa đã dựng nên con, mà cho con Chúa ra đời, chịu nạn chịu chết vì con; mà con đã cả lòng phản nghịch lỗi nghĩa cùng Chúa. Thì con lo buồn đau đớn, cùng chê ghét mọi tội con trên hết mọi sự. Con dốc lòng chừa cải, và nhờ ơn Chúa thì con sẽ lánh xa dịp tội, cùng làm việc đền tội cho xứng. Amen.\n\n**Phép Lần Hạt Năm Dấu Thánh Đức Chúa Giêsu**\n\n**Thứ Nhất thì ngắm:**\nKhi quân dữ bắt chân tả Đức Chúa Giêsu vào Thánh giá, mà lấy đinh sắt đóng vào đau lắm, máu chảy xuống ròng ròng. Khi ngắm sự ấy thì nguyện 5 kinh Lạy Cha, lạy ơn Đức Chúa Giêsu chịu đóng đinh chân tả vì chúng con bởi đi đàng trái; cùng nguyện một kinh Kính Mừng, thương Đức Mẹ đau đớn trong lòng, như phải đóng đinh vậy. Xin cho chúng con chừa đi đàng trái, ấy là chớ làm tội lỗi nữa. Amen.\n\n***Đọc 5 Kinh Lạy Cha***\n\nChúng con cậy vì danh Chúa nhân từ cho linh hồn   *tên thánh*   được lên chốn nghỉ ngơi, hằng xem thấy mặt Đức Chúa Trời sáng láng vui vẻ vô cùng. Amen.\n\n***Đọc 1 Kinh Kính Mừng***\n\n**Thứ Hai thì ngắm:**\nKhi quân dữ bắt chân hữu Đức Chúa Giêsu vào Thánh giá, mà đóng đinh nơi có gân cùng mạch máu nhiều, cho nên cả và mình Đức Chúa Giêsu phải khốn. Khi ngắm sự ấy thì nguyện 5 kinh Lạy Cha, lạy ơn Đức Chúa Giêsu xưa ở thế gian ba mươi ba năm, mỏi chân đi dạy dỗ chúng con mà chúng con lạy lấy đinh đóng chân cho; cùng nguyện 1 kinh Kính Mừng, thương Đức Mẹ phải khốn cùng con. Xin cho chúng con hằng đi đàng ngay thật, là đẹp lòng Đức Chúa Trời luôn. Amen.\n\n***Đọc 5 Kinh Lạy Cha***\n\nChúng con cậy vì danh Chúa nhân từ cho linh hồn   *tên thánh*   được lên chốn nghỉ ngơi, hằng xem thấy mặt Đức Chúa Trời sáng láng vui vẻ vô cùng. Amen.\n\n***Đọc 1 Kinh Kính Mừng***\n\n**Thứ Ba thì ngắm:**\nKhi quân dữ bắt tay tả Đức Chúa Giêsu vào Thánh giá mà lấy búa sắt đóng đinh đau lắm, bởi cả mình Đức Chúa Giêsu nặng thì lỗ tay liền xé ra, càng thêm đau đớn hơn nữa. Khi ngắm sự ấy thì nguyện 5 kinh Lạy Cha, lạy ơn Cha Cả chẳng tiếc mình vì con dữ là chúng con; cùng nguyện 1 kinh Kính Mừng, thương Đức Mẹ phải đau đớn cùng Con. Xin cho chúng con chừa sự chẳng nên, cho ngày sau khỏi bên tả Đức Chúa Giêsu, là bên kẻ phải sa hoả ngục. Amen.\n\n***￼Đọc 5 Kinh Lạy Cha***\n\nChúng con cậy vì danh Chúa nhân từ cho linh hồn   *tên thánh*   được lên chốn nghỉ ngơi, hằng xem thấy mặt Đức Chúa Trời sáng láng vui vẻ vô cùng. Amen.\n\n***Đọc 1 Kinh Kính Mừng***\n\n**Thứ Bốn thì ngắm:**\nKhi quân dữ bắt tay hữu Đức Chúa Giêsu vào Thánh giá, mà bởi chẳng đến lỗ nó làm đã sẵn, thì nó buộc cổ tay kéo ra cho đến nơi, liền giãn xương ngực ra cho nên đau đớn lắm, thì mới đóng đinh vào. Khi ngắm sự ấy thì nguyện 5 kinh Lạy Cha, thương Đức Chúa Giêsu lấy tay làm những sự lành cho thiên hạ, mà người ta lại trả công cho làm vậy; cùng nguyện 1 kinh Kính Mừng, thương Đức Mẹ bởi yêu con hơn mình, thì thương xót con lắm. Xin cho chúng con làm việc phúc đức, cho ngày sau được ở bên hữu Đức Chúa Giêsu là bên kẻ đáng lên Thiên đàng. Amen.\n\n***Đọc 5 Kinh Lạy Cha***\n\nChúng con cậy vì danh Chúa nhân từ cho linh hồn   *tên thánh*   được lên chốn nghỉ ngơi, hằng xem thấy mặt Đức Chúa Trời sáng láng vui vẻ vô cùng. Amen.\n\n***Đọc 1 Kinh Kính Mừng***\n\n**Thứ Năm thì ngắm:**\nKhi Đức Chúa Giêsu đã sinh thì, có một người các quan lấy đòng mà đâm cạnh nương long Đức Chúa Giêsu phải trái tim, máu cùng nước chảy ra; song le Đức Chúa Giêsu chẳng đau đớn gì vì đã sinh thì, nhưng Đức Mẹ đau đớn lắm như phải dao sắc thâu qua trái tim vậy. Khi ngắm sự ấy thì nguyện 5 kinh Lạy Cha, đội ơn Đức Chúa Giêsu đã lấy hết máu trong trái tim đổ ra cho chúng con; cùng nguyện 1 kinh Kính Mừng thương Đức Mẹ phải đau đớn như phải dao sắc thâu qua lòng vậy. Xin cho chúng con chớ yêu sự thế gian, mà bỏ nghĩa Đức Chúa Giêsu yêu dấu chúng con cho nên chịu chết làm vậy. Amen.\n\n***Đọc 5 Kinh Lạy Cha***\n\nChúng con cậy vì danh Chúa nhân từ cho linh hồn   *tên thánh*   được lên chốn nghỉ ngơi, hằng xem thấy mặt Đức Chúa Trời sáng láng vui vẻ vô cùng. Amen.\n\n***Đọc 1 Kinh Kính Mừng***\n\n**Thứ Sáu thì nguyện:**\nBa kinh Lạy Cha, kính lạy đinh sắt thâu qua chân tay Đức Chúa Giêsu, cùng nguyện 1 kinh Lạy Cha kính lạy lưỡi đòng thâu qua cạnh nương long Đức Chúa Giêsu; cùng nguyện 1 kinh Lạy Cha kính lạy Thánh giá là giường Cha Cả muôn vật nằm khi sinh thì. Xin Đức Chúa Giêsu lấy Thánh giá, đanh sắt, lưỡi đòng như chìa khoá mở cửa Thiên đàng cho linh hồn   *tên thánh*   được vào. Amen.\n\n***￼Đọc 5 kinh Lạy Cha.***\n\n**Lời Nguyện**\nChúng con lạy ơn Đức Chúa Giêsu cùng rất thánh Đức Bà, chúng con dâng bấy nhiêu kinh nguyện này, nhớ đến những sự thương khó Đức Chúa Giêsu đã chịu vì chúng con. Chớ gì chúng con có ngày nào được chịu sự gì khó vì Đức Chúa Giêsu làm chứng có lòng kính mến Cha Cả trên hết mọi sự; song chúng con là kẻ yếu sức cậy trông rất thánh Đức Bà thêm sức cho chúng con được lòng giữ đạo cho trọn, cùng xưng tên Đức Chúa Giêsu ra trước mặt thiên hạ. Amen.\n\n**Kinh Cầu Chịu Nạn**\nXin Chúa thương xót chúng con.\n*Đáp: Thương xót linh hồn   tên thánh  . (câu nào cũng đáp như vậy)*\nXin Chúa thương xót chúng con.\nXin Chúa Kitô thương xót chúng con.\nXin Chúa Kitô thương xót chúng con.\nXin Chúa thương xót chúng con.\nXin Chúa thương xót chúng con.\nChúa Giêsu nghe cho chúng con.\nChúa Giêsu nhận lời chúng con.\nĐức Chúa Cha ngự trên trời là Đức Chúa Trời thật.\nĐức Chúa Con chuộc tội cứu thế là Đức Chúa Trời thật.\nĐức Chúa Thánh Thần là Đức Chúa Trời thật.\nBa Ngôi cũng là một Đức Chúa Trời.\nChúa Giêsu thương hết người thế.\nChúa Giêsu xuống thế làm người.\nChúa Giêsu ba mươi năm ở cùng Đức Mẹ.\nChúa Giêsu ba năm giảng dạy nước Giudêu.\nChúa Giêsu cứu kẻ liệt kẻ khốn.\nChúa Giêsu cho Thánh Lazarô chết bốn ngày sống lại.\nChúa Giêsu để thằng Giuđa làm mối cho quân dữ bắt.\nChúa Giêsu quân Giudêu ra rước mừng hát.\nChúa Giêsu thương thành Giêrusalem chảy nước mắt ra.\nChúa Giêsu rửa chân cho các đầy tớ.\nChúa Giêsu truyền phép Thánh thể nuôi lấy linh hồn chúng con.\nChúa Giêsu vào vườn Giệtsimani mà nguyện cùng Đức Chúa Cha.\nChúa Giêsu lo buồn vì thương hết người thế.\nChúa Giêsu mồ hôi máu chảy ra nhỏ xuống đất.\nChúa Giêsu ra rước quân dữ phó mình cho nó.\nChúa Giêsu cho quân ấy buộc trói mình.\nChúa Giêsu các đầy tớ bỏ trốn ra hết.\nChúa Giêsu Thánh Phêrô một đêm chối ba lần.\nChúa Giêsu soi lòng Thánh Phêrô ăn năn khóc lóc.\nChúa Giêsu chịu vả trước mặt Thiên hạ.\nChúa Giêsu chịu bỏ vạ cáo gian.\nChúa Giêsu thầy cả Giudêu mắng rằng: “đáng phải giết”.\nChúa Giêsu thâu đêm chịu những sự khốn nạn.\nChúa Giêsu quân dữ nộp cho quan Philatô đôi xét.\nChúa Giêsu Philatô nộp cho vua Erođe.\nChúa Giêsu Erođe chê rằng dại dột.\nChúa Giêsu quân Giudêu ghét hơn thằng dữ là Baraba.\nChúa Giêsu chịu đòn đánh nát hết cả và mình.\nChúa Giêsu chịu những gai nhọn thâu vào đầu.\nChúa Giêsu quân dữ quì nhạo cho xấu hổ.\nChúa Giêsu Philatô đem ra cho dân thấy mà thương.\nChúa Giêsu dân Giudêu kêu xin đóng đanh vác Thánh Giá.\nChúa Giêsu Philatô phó cho quân dữ đem đi giết.\nChúa Giêsu chịu vác Thánh giá nặng lắm.\nChúa Giêsu chịu đóng đanh chân tay vào Thánh giá.\nChúa Giêsu chịu nạn cùng hai kẻ gian dữ.\nChúa Giêsu xin Đức Chúa Cha tha tội cho kẻ làm khốn mình.\nChúa Giêsu chịu các quan lấy hết áo chia nhau.\nChúa Giêsu còn trên Thánh giá chịu thiên hạ nhạo cười.\nChúa Giêsu tha tội cho một kẻ trộm phải đóng đanh cùng.\nChúa Giêsu trối Đức Mẹ cho ông Thánh Gioan.\nChúa Giêsu phó ông Thánh Gioan cho Đức Mẹ.\nChúa Giêsu nửa ngày cất sáng mặt trời tối hết thiên hạ.\nChúa Giêsu than thở cùng Đức Chúa Cha.\nChúa Giêsu phán rằng: “khát nước”.\nChúa Giêsu phán rằng: “đã đoạn, ấy là hết việc chuộc tội cho thiên hạ”.\nChúa Giêsu rằng: “Con phó linh hồn ở tay Đức Chúa Cha”.\nChúa Giêsu chảy hết máu mình ra.\nChúa Giêsu chịu chết vì tội thiên hạ.\nChúa Giêsu xuống ngục tổ tông yên ủi các Thánh.\nChúa Giêsu Thiên sầu, điạ thảm.\nChúa Giêsu quan tướng quân xưng ra là con Đức Chúa Trời.\nChúa Giêsu quân dữ đâm mình máu cùng nước chảy ra.\nChúa Giêsu đầy tớ táng trong hang đá.\nChúa Giêsu ngày thứ ba sống lại đem các Thánh lên.\nChúa Giêsu sống lại trước hết đi viếng Đức Mẹ.\nChúa Giêsu cho Thánh Tôma xem Năm Dấu Thánh mình.\nChúa Giêsu truyền cho Thánh Phêrô cai Hội thánh.\nChúa Giêsu phán các đầy tớ đi khắp thế giảng đạo.\n￼Chúa Giêsu trước mặt thiên hạ lên trời.\nChúa Giêsu hết đời lại xuống phán xét.\n\nChúa Giêsu hằng có lòng lành.\n*Đáp: Chúa Giêsu tha tội linh hồn   tên thánh  .*\nChúa Giêsu hằng có lòng lành.\n*Đáp: Chúa Giêsu nghe linh hồn   tên thánh  .*\nKẻo gặp tai sự dữ.\n*Đáp: Chúa Giêsu chữa linh hồn   tên thánh  .*\nKẻo bất nghĩa cùng Chúa Giêsu.\n*Đáp: Chúa Giêsu chữa linh hồn   tên thánh  .*\nKẻo phạm tội nghe ma qủi cám dỗ.\n*Đáp: Chúa Giêsu chữa linh hồn   tên thánh  .*\nKẻo chối đạo Đức Chúa Giêsu.\n*Đáp: Chúa Giêsu chữa linh hồn   tên thánh  .*\nKẻo sa hỏa ngục chẳng được công Đức Chúa Giêsu chuộc cho.\n*Đáp: Chúa Giêsu chữa linh hồn   tên thánh  .*\nChúng con là kẻ có tội.\n*Đáp: Chúa Giêsu tha tội linh hồn   tên thánh  .*\n\nChúa Giêsu cho chúng con ăn năn tội chừa mọi sự dữ.\n*Đáp: Cầu Chúa Giêsu nghe linh hồn   tên thánh  . (các câu kế tiếp đều đáp như vậy)*\nChúa Giêsu cho chúng con kính mến trên hết mọi sự.\n￼Chúa Giêsu cho chúng con cậy trông vì đã chuộc tội chúng con.\nChúa Giêsu mở lòng thiên hạ kính thờ cho nên.\nChúa Giêsu các nước tin đạo cho bền càng ngày càng thịnh.\nChúa Giêsu cho chúng con khi mong lìa xác khỏi chước ma qủi.\nChúa Giêsu cho chúng con được phần phúc ở trên trời.\n\nChúa Giêsu chuộc tội cứu thế.\n*Đáp: Chúa Giêsu tha tội linh hồn   tên thánh  .*\nChúa Giêsu chuộc tội cứu thế.\n*Đáp: Chúa Giêsu nhận lời linh hồn   tên thánh  .*\nChúa Giêsu chuộc tội cứu thế.\n*Đáp: Chúa Giêsu thương xót linh hồn   tên thánh  .*\n\n**Lời Nguyện, Kinh Cầu Chịu Nạn**\nChúng con là vật mọn mà cả lòng lạy Đức Chúa Giê-su cực cao trọng; chúng con nhớ đến những sự thương khó Đức Chúa Giê-su xưa chịu ba mươi ba năm vì chúng con, thì trong lòng thảm thiết đau đớn, nào có khi nào trả nghĩa Đức Chúa Giê-su cho nên. Thuở xưa khi Đức Chúa Giê-su chịu nạn thì trời đất động địa, núi non là đá vỡ ra tan tác như thương Chúa sinh nên muôn vật, phương chi chúng con mà chẳng thương Cha Cả thì sao? Ấy máu Thánh Cha đã chảy ra hết vì con dữ là chúng con, mà con thấy Cha thương dường ấy, chẳng có khi đừng nước mắt chảy ra ăn năn tội lỗi vì đã phạm cùng Đức Chúa Cha. Ấy thật bởi tội chúng con cho nên Đức Chúa Giê-su xuống thế liều mình chịu đóng đanh chịu chết làm vậy. Chúng con hằng kính mến Đức Chúa Giê-su mà tích năm dấu thánh ở trong lòng chúng con.\n\nChúng con lạy dấu thánh chân tả,\n*Đáp: vì tội linh hồn   tên thánh  .*\nChúng con lạy dấu thánh chân hữu,\n*Đáp: vì tội linh hồn   tên thánh  .*\nChúng con lạy dấu thánh tay tả,\n*Đáp: vì tội linh hồn   tên thánh  .*\nChúng con lạy dấu thánh tay hữu,\n*Đáp: vì tội linh hồn   tên thánh  .*\nChúng con lạy dấu thánh cạnh nương long Đức Chúa Giê-su.\n*Đáp: vì tội linh hồn   tên thánh  .*\n\n**Kinh Bởi Lời**\nLạy Ðức Chúa Giêsu xưa bởi Lời mà xuống thế gian, 33 năm cùng chịu những sự thương khó cho các linh hồn được rỗi. Thì rày chúng con xin Cha rất nhân lành hay thương vô cùng, xin tha phần phạt cho hinh hồn   *tên thánh*   đã cầu nguyện hôm nay, hoặc còn giam nơi lửa luyện tội thì xin mở cửa tù rạc ấy cho ra mà đem đến chốn hưởng vui thật là nước thiên đàng vì công nghiệp Chúa con đã chịu nạn chịu chết vì chúng con. Amen.\n\n**Kinh Vực Sâu**\nLạy Chúa con, con ở dưới vực sâu kêu lên Chúa con, xin Chúa con hãy thương nhận lời con kêu van; hãy lắng nghe tiếng con cầu xin. Nếu Chúa tôi chấp tội nào ai rỗi được? Bởi Chúa tôi hằng có lòng lành, cùng vì lời Chúa con phán hứa. Con đã trông cậy Chúa con. Linh hồn con cậy vì lời hứa ấy, vì đã trông cậy Chúa con. Những kẻ làm dân Đức Chúa Trời đêm ngày hãy trông cậy Người cho liên. Vì Người rất nhân lành hay thương vô cùng, sẽ tha hết tội lỗi kẻ làm dân Người thay thảy. Lạy Chúa con xin ban cho linh hồn   *tên thánh*   được nghỉ ngơi đời đời và được sáng soi vô cùng. Lạy Chúa con, xin cứu lấy linh hồn   *tên thánh*   cho khỏi tù ngục, mà được nghỉ yên. Amen.\n\n**Kinh Cầu Xin**\nLạy ơn Đức Chúa Giêsu, Chúa con đã phán dạy rằng: “Bay hãy xin thì bay sẽ được”. Vậy con xin Chúa con lòng lành vô cùng thương đến các Linh hồn nơi lửa luyện tội, xin Chúa con nghe lời con kêu van cho linh hồn Ông Bà, Cha Mẹ, Anh em; xin Chúa con mở cửa Thiên đàng cho các Linh hồn ấy vào; xin cho các Linh hồn ấy được sự sáng vô cùng hằng soi cho liên. Amen.\n\n**Kinh Cám Ơn**\nCon cám ơn Đức Chúa Trời là Chúa lòng lành vô cùng, chẳng bỏ con, chẳng để con không đời đời, mà lại sinh ra con cho con được làm người, cùng hằng gìn giữ con, hằng che chở con, lại cho Ngôi Hai xuống thế làm người, chuộc tội chịu chết trên cây Thánh giá vì con, lại cho con được đạo thánh Đức Chúa Trời, cùng chịu nhiều ơn nhiều phép Hội thánh nữa, và đã cho phần xác con ngày hôm nay được mọi sự lành, lại cứu lấy con kẻo phải chết tươi ăn năn tội chẳng kịp. Vậy các Thánh ở trên nước Thiên đàng cám ơn Đức Chúa Trời thể nào, thì con cũng hợp cùng các Thánh mà dâng cho Chúa con cùng cám ơn như vậy. Amen.\n\n**Kinh Trông Cậy**\nChúng con trông cậy rất thánh Đức Mẹ Chúa Trời, xin chớ chê chớ bỏ lời chúng con nguyện, trong cơn gian nan thiếu thốn, Đức Nữ Đồng Trinh hiển vinh sáng láng hằng chữa chúng con cho khỏi mọi sự dữ. Amen.\n\nLạy rất thánh Trái tim Đức Chúa Giêsu.\n*Đáp: Thương xót chúng con.*\nLạy trái tim cực thanh cực tịnh Đức Bà Maria.\n*Đáp: Cầu cho chúng con.*\nLạy ông Thánh Giuse là bạn thanh sạch Đức Bà Maria.\n*Đáp: Cầu cho chúng con.*\nLạy Các Thánh tử đạo Việt Nam.\n*Đáp: Cầu cho chúng con.*\n\n**Kết Thúc**, làm Dấu Thánh Giá và hôn Thánh Giá Chúa với tâm hồn kính mến.\n\n***Tải về bản PDF để print ra ở đây.***"
-  },
-  {
-    "id": "cai-toi-bay-moi",
-    "title": "Cải Tội Bảy Mối",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/cai-toi-bay-moi/",
-    "isPopular": true,
-    "content": "Cải Tội Bảy Mối (Bảy Tội Đầu và Bảy Nhân Đức Nghịch Lại):\n\n• Thứ nhất: Khiêm nhường chớ kiêu ngạo.\n• Thứ hai: Rộng rãi chớ hà tiện.\n• Thứ ba: Giữ mình sạch sẽ chớ mê dâm dục.\n• Thứ bốn: Hay nhịn chớ hờn giận.\n• Thứ năm: Kiêng bớt chớ mê ăn uống.\n• Thứ sáu: Yêu người chớ ghen ghét.\n• Thứ bảy: Siêng năng việc Đức Chúa Trời chớ làm biếng."
-  },
-  {
-    "id": "dau-thanh-gia",
-    "title": "Dấu Thánh Giá",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/dau-thanh-gia/",
-    "isPopular": true,
-    "content": "Nhân danh Cha\nvà Con,\nvà Thánh Thần. Amen.\n\n### Kinh Vì Dấu\n\nLạy Chúa chúng con,\nvì dấu Thánh giá,\nxin chữa chúng con cho khỏi kẻ thù.\n\nNhân danh Cha\nvà Con,\nvà Thánh Thần. Amen."
-  },
-  {
-    "id": "kinh-a-rat-thanh-gia",
-    "title": "Kinh A Rất Thánh Giá",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-a-rat-thanh-gia/",
-    "isPopular": false,
-    "content": "A rất thánh giá, chúng tôi kính mừng cây rất thánh giá,\nLà cây đã chuộc muôn dân đặng rỗi!\nCho kẻ có phước đặng phần vui mừng,\nCho kẻ có tội đặng lòng trông cậy,\n\nCho kẻ yếu đuối đặng nhờ sức mạnh\nCho kẻ khốn nạn đặng sự an lành.\nKhen cây thánh giá ở giữa rừng phàm,\nnên giống báu lành, nên cây sang trọng,\n\nNên đơn linh nghiệm,\nNên tàu vượt khỏi biển hiểm thế này.\nCây rất thánh giá thật là gươm giáo\nDẹp giặc linh hồn, khử trừ đánh diệt tam cừu oan gia,\n\nSát phạt tà ma, thịt mình thế tục.\nVì rất thánh giá là như chìa khóa mở cửa Thiên Đàng,\nCho chúng tôi đặng vào đến nơi quê thật,\nCây rất thánh giá tốt lành rất mực,\n\nRườm rà im mát,\nBóng che thiên hạ khỏi chốn hỏa hình.\nCội rễ nhành lá, búp bông hoa quả,\nTừ xưa đến nay,\nCây nào dám ví bằng cây thánh giá,\nTừ cây thánh giá chở mình Chúa Cả\nĐóng đinh chịu chết trên cây thánh giá.\n\nVậy cây thánh giá nên giống báu lành vô lượng vô biên,\nLưỡi khen chẳng xiết, bút ngợi khôn cùng.\nTài rất thánh giá, ai dám ví bằng?\nSức rất thánh giá, vô số chẳng cùng.\nRầy tôi trông cậy rất thánh giá này.\n\nTôi nhớ Chúa tôi là Chúa Giêsu cực cao cực cả,\nĐã dùng thánh giá mà chuộc tội tôi.\nVậy nên tôi phải hết lòng khiêm nhượng,\ncảm ơn, thờ phượng,\n\nTôi kính, tôi lạy, tôi mừng thánh giá.\nNgửa nhìn thánh giá thật giống chữa tôi.\nChuộc tôi đặng rỗi, tha hết tội tôi.\nTôi cầu đã phỉ, tôi nguyện đã đáng.\nTôi đặng cậy nhờ,\n\nĐau thì liền đã, nghèo xảy lại an.\nVậy tôi trông cậy rất thánh giá này,\nXin đưa chúng tôi qua khỏi gian nan,\nTới nước Thiên Đàng,\nĐặng ở chốn an, chẳng còn khốn khó. Amen."
-  },
-  {
-    "id": "kinh-ave-maris-stella",
-    "title": "Kinh Ave Maris Stella",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-ave-maris-stella/",
-    "isPopular": false,
-    "content": "Hỡi Ngôi Sao của đại dương\nCổng chính của Thiên​ Đàng\nĐấng mãi mãi Đồng Trinh\nCủa Thiên Chúa tối cao\n\nÔi lời chào mừng của Thiên sứ Gabriel\nđã thốt ra từ xưa\nTên của Ave đọc ngược,\nCủng cố hòa bình dưới thế\n\nbẻ gẫy gông cùm cho kẻ bị giam cầm\nánh sáng cho người mù lòa tội nghiệp,\nxua đuổi mọi bệnh hoạn\nmọi niềm sung sướng hạnh phúc chúng con khấn nguyện\n\nNgài là Mẹ của chúng con\ndâng lên Chúa những tiếng thở dài\nthay cho chúng con\nNgài sẽ không chê bỏ\n\nNữ Trinh của mọi nữ trinh\nlà nơi trú ẩn cho chúng con\ndịu dàng nhất trong những người hiền dịu\nhãy làm cho chúng con đức hạnh và dịu hiền\n\nChúng con vẫn đang lữ hành dưới thế\nXin hãy giúp đỡ cho sự yếu đuối của con,\nđể cùng với Mẹ và Chúa Giêsu\nchúng con hân hoan mãi mãi\n\nTrên thượng tầng Thiên Đàng\nvới Ba Ngôi toàn năng\nCha, Con và Thánh Thần\ncùng hưởng phúc vinh hiển. Amen."
-  },
-  {
-    "id": "kinh-ban-mai",
-    "title": "Kinh Ban Mai",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-ban-mai/",
-    "isPopular": false,
-    "content": "Lạy Chúa, trong thinh lặng sáng sớm hôm nay, con đến xin Chúa sự bình an, đức khôn ngoan và sức mạnh. Hôm nay, con muốn nhìn đời với đôi mắt yêu thương. Biết nhẫn nại, thông cảm, hiền hòa và minh mẫn. Xuyên qua các hình dáng bên ngoài, con muốn nhìn các con cái Chúa như Chúa thấy họ. Như thế, con chỉ nhìn thấy điều tốt nơi mỗi người.\n\nXin Chúa giúp con tránh nghe những lời vu cáo. Xin giữ miệng lưỡi con đừng nói những lời ác ý. Xin cho tâm trí con thấm nhuần các tư tưởng tốt lành. Xin cho con biết hòa nhã, vui vẻ để những ai đến với con đều cảm thấy sự hiện diện của Chúa.\n\nLạy Chúa, xin mặc cho con sự tốt đẹp dịu hiền của Chúa, hầu con biểu lộ Chúa suốt cả ngày hôm nay với mọi người. Amen.\n\n*Cám ơn chị Christine Nguyễn đã gửi kinh này cho Stephen!*"
-  },
-  {
-    "id": "kinh-cau-cung-thanh-anna",
-    "title": "Kinh Bà Thánh Anna",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-cau-cung-thanh-anna/",
-    "isPopular": false,
-    "content": "Kính lạy Bà thánh Anna, là mẹ của Đức Nữ Trinh Maria, bà là sự sáng thiên hạ, vì sinh được con thanh sạch sáng láng hơn mặt trời mặt trăng; bà là đấng sang trọng bởi dòng vua Davít, cùng những thánh tiên-tri sinh ra mẹ Chúa cả cao trọng vô cùng.\n\nBà là đấng khiêm nhượng đầy nhân đức, cho nên ngưới được Đức Chúa Trời ban cho chức rất cao trọng là bà của Chúa Kitô.  Bà như cây tươi tốt sinh nhiều hoa trái là nhiều phúc đức; bà như suối trong sạch làm cho người ta giản khát; bà như khóm văn côi gìn giữ hoa thơm.\n\nVậy chúng con hết lòng trông cậy cùng chọn người làm quan thày, xin thánh nhân rủ lòng thương dạy dỗ giúp đỡ chúng con cho khỏi chước ba thù, cùng coi sóc đoàn con mọn này đang ở chốn khách đầy là nơi khổ ải; lại xin người  hằng cầu bầu trước tòa Chúa cùng Đức Mẹ cực khoan cực nhân, cho chúng tôi được mọi ơn phần hồn phần xác, đến khi qua khỏi đời này được về quê thật; và xem thấy Đức Chúa Giêsu cùng Đức Bà Maria và thánh Anna đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-anna-la-me-rat-thanh-duc-ba",
-    "title": "Kinh Bà Thánh Anna Là Mẹ Rất Thánh Đức Bà",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-anna-la-me-rat-thanh-duc-ba/",
-    "isPopular": false,
-    "content": "Lạy ơn bà thánh Anna là Mẹ thánh Nữ Vương, bà làm sáng thiên hạ, vì sinh được Con thanh sạch sáng láng hơn mặt trời mặt trăng; Bà là Đấng sang trọng bởi dòng vua Đavid, cùng những thánh tiên tri, vì sinh ra Mẹ Chúa muôn vật rất trọng vô cùng; Bà là Đấng khiêm nhường cùng nhân đức, cho nên Đức Chúa Trời cho bà chức trọng là bà Chúa Kitô; Bà như cây tươi tốt rum ra sinh nhiều hoa trái là nhiều phúc đức, Bà như mạch nước trong sạch làm cho người ta khỏi khát; Bà như khóm Mân côi gìn giữ hoa thơm.\n\nVậy chúng tôi dốc lòng trông cậy chọn Bà làm quan thầy, xin dủ lòng thương yêu dạy dỗ chúng tôi kẻo phải chước ba thù thấy và xem chẳng thấy, cùng xoi sóc chúng con mọn này còn ở chốn khách đày là nơi khổ hải; vậy xin Bà hằng cầu bầu trước tòa Chúa trọng cùng Đức Mẹ cực khoan cực nhân cho chúng tôi được ích linh hồn và xác, đến khi qua khỏi đời này được về quê thật là nước bằng an xem thấy Đức Chúa Giêsu cùng Đức Bà Maria và bà thánh Anna đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-catarina",
-    "title": "Kinh Bà Thánh Catarina",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-catarina/",
-    "isPopular": false,
-    "content": "Lạy Nữ đồng trinh rất vẻ vang, hôm nay mọi nơi thiên hạ làm lễ kính Người, các thánh Thiên thần trên không khen Người, các đấng trên trời kính trọng Người, xin Người cầu cùng Chúa cho chúng tôi hằng vâng phục giới răn Đức Chúa Trời và xin thêm cho chúng tôi các nhân đức, cùng các sự lành khác.\n\nBà thánh Catarina cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLỜI NGUYỆN\n\nLạy Chúa là Đấng đã ban cho bà thánh Catarina nên vinh hiển về ơn riêng đức đồng trinh và đức nhịn nhục, mà thắng trận các quỉ dữ cùng giữ lòng kính mến Tên Chúa cách vững vàng, thì xin Chúa ban cho chúng tôi bắt chước Người, để khi đã giày đạp sự trái thế gian cừng vượt khỏi các mưu kế giặc thù thì được đến nơi cả sáng Chúa bằng an. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-cau-cung-thanh-cecilia",
-    "title": "Kinh Bà Thánh Cecilia",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-cau-cung-thanh-cecilia/",
-    "isPopular": false,
-    "content": "Lạy thánh nữ Cecilia vinh hiển đồng trinh và tử đạo của Chúa Kitô. Chúng con cảm phục lòng can đảm của thánh nữ đã tuyên xưng đức tin trước sự bách hại nghiêm trọng, và tình yêu đại lượng của thánh nữ đã dám dâng mạng sống mình để làm chứng cho lòng tin vào Thiên Chúa Ba Ngôi. Cùng với thánh nữ, chúng con cám ơn Chúa về những hồng ân kỳ diệu mà Chúa đã ban cho thánh nữ để làm cho đời sống của thánh nữ trở nên thánh thiện và đẹp lòng Chúa, giữa sự giàu sang thuộc về thánh nữ. Con cám ơn Chúa về đặc ân Ngài ban cho thánh nữ được đón nhận triều thiên vinh hiển của thánh tử đạo.\n\nLạy thánh Cecilia, con cũng cảm phục sự tinh tuyền của tình yêu đã thắt chặt thánh nữ với Đấng Cứu Độ, điều ấy thật lớn lao trong con mắt của thánh nữ hơn tất cả mọi tình cảm của loài người, để thánh nữ có thể tuyên bố chính mình trước những kẻ thù của Giáo Hội rằng: “Tôi là hiền thê của Chúa Kitô”. Xin thánh nữ cầu bầu cho chúng con biết noi gương thánh nữ hầu có thể giữ gìn thân xác chúng con trong sạch và linh hồn thánh thiện, ngõ hầu chúng con có thể yêu mến Chúa Giêsu với hết cả trái tim.\n\nTrong thời đại đầy những sự tìm kiếm thú vui nhưng thiếu đức tin, xin dạy chúng con biết can đảm tuyên xưng đức tin, và sẵng sàng hy sinh bản thân để thực hành niềm tin, hầu nhờ gương sáng của mình mà chúng con có thể dẫn đưa người khác tới gần Chúa Kitô và Giáo hội mà Ngài đã sáng lập.\n\n*Đọc 1 kinh Lạy Cha, 1 kinh Kính Mừng, 1 kinh Sáng Danh.*\n\nLạy thánh nữ Cecilia đồng trinh tử đạo của Chúa Kitô, xin cầu cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-imelda",
-    "title": "Kinh Bà Thánh Imelda",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-imelda/",
-    "isPopular": false,
-    "content": "Lạy ơn bà thánh Imelda, xưa đã nghe thấy lời Đức Chúa Trời phán rằng: Ở con đồng trinh đã dâng mình cho Đức Chúa Giêsu Kitô, hãy đến chịu lấy triều thiên Chúa trọng vô cùng đã sắm cho con đời đời.\n\nChúng tôi xin bà thánh Imelda cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Giêsu xưa đã cho bà thánh Imelda chịu lễ cách rất lạ lùng, và linh hồn ra sốt mến quá đã lìa bỏ xác mà lên thiên đàng họp cùng Đức Chúa Giêsu; thì chúng tôi xin vì lời Người cầu cho chúng tôi được lòng sốt mến trong linh hồn mà chê bỏ những sự hèn hạ chúng tôi yêu mến để chúng tôi được đẹp lòng Đức Chúa Giêsu liên, cho đến khi linh hồn lìa xác được lên hưởng phúc đời đời. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-maria-madalena",
-    "title": "Kinh Bà Thánh Maria Mađalêna",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-maria-madalena/",
-    "isPopular": false,
-    "content": "Lạy ơn Bà thánh Maria Mađalêna, xưa đã lấy bình thuốc thơm mà đi lau lưng Chúa Giêsu cùng đổ nước mắt ra trên chân Người, và lấy tóc mình mà lau cùng lấy thuốc thơm mà xức. Chúng con xin Bà thánh Mađalêna cầu cho chúng con.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nChúng con xin Đức Chúa Trời nghe lời Bà thánh Mađalêna cầu cho chúng con, vì thuở xưa Đức Chúa Giêsu đã nghe lời Bà cầu xin mà làm cho ông thánh Lazarô chết bốn ngày được sống lại. Vì Đức Chúa Giêsu Kitô là Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-monica",
-    "title": "Kinh Bà Thánh Monica",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-monica/",
-    "isPopular": false,
-    "content": "Kính lạy Bà thánh Monica, là Người Mẹ đạo đức gương mẫu của thánh Augustinô, Ngài đã kiên trì theo đuổi người con bướng bỉnh của Ngài bằng tình thương và lòng cảm mến, tha thứ và khuyên nhủ, và dùng những lời kêu cầu mạnh mẽ thấu tới thiên đàng.\n\nXin Ngài cầu bầu cho tất cả mọi người mẹ hôm nay để họ biết lôi kéo con cái họ trở về với Chúa. Xin cho họ biết gần gũi với con cái họ, dùng tình thương, tha thứ và khuyên nhủ với những người con trai, con gái hoang đàng đang sa cơ, lạc bước. Xin Ngài đưa những người con đang lạc bước trở về xum họp với mái ấm gia đình. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-matta",
-    "title": "Kinh Bà Thánh Mátta",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-matta/",
-    "isPopular": false,
-    "content": "Kính lạy rất thánh Mátta, vì đức tin của Ngài mà Chúa Giêsu đã phán: “Chính Thầy là sự sống lại và là sự sống”, và cũng vì đức tin mà Ngài đã nhìn vượt quá bản tính con người của Chúa Giêsu, khi thánh nữ tuyên xưng rằng: “Lạy Thầy, con tin Thầy là Đấng Cứu Thế, Con Thiên Chúa”. Với lòng trông cậy vững vàng, Ngài đã nói: “Con biết: Bất cứ điều gì Thầy xin cùng Thiên Chúa, Người cũng sẽ ban cho Thầy” và vì thế Chúa Giêsu đã gọi Ladarô từ cõi chết sống lại.\n\nVới tình yêu vẹn tuyền dành cho Chúa Giêsu, Ngài đã đón Chúa Giêsu về nhà Ngài. Chúng con là bạn và là tôi tớ của Chúa Giêsu cũng đang gặp những khó khăn mọi bề. Xin Ngài cầu cho chúng con, để chúng con được Chúa Giêsu thương giúp vượt qua những khó khăn, và được trưởng thành trong đức tin, đức cậy và đức mến. Xin Chúa Giêsu, Người ngồi cùng bàn tiệc với Ngài nghe lời mà ban cho chúng con một chỗ trên thiên đàng. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-rosa",
-    "title": "Kinh Bà Thánh Rosa",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-rosa/",
-    "isPopular": false,
-    "content": "Lạy ơn bà thánh Rosa là hoa Văn cõi rất tốt, hay xông ra mùi các nhân đức rất thơm tho cho khắp mọi người chúng tôi.\n\nChúng tôi xin bà thánh Rosa cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Trời có phép vô cùng đã ban ơn cho bà thánh Rosa nên tốt lành về đức đồng trinh và đức nhịn nhục cho chúng tôi được soi, thì chúng tôi xin Đức Chúa Trời ban cho chúng tôi được lòng kính mến và bắt chước Người, cho đáng Đức Chúa Trời thương đến chúng tôi. Vì Đức Chúa Giêsu hằng sống hằng trị đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-ba-thanh-terexa",
-    "title": "Kinh Bà Thánh Têrêxa",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ba-thanh-terexa/",
-    "isPopular": false,
-    "content": "Lạy ơn bà thánh Têrêxa, xưa đã nghe thấy lời Đức Chúa Trời phán rằng: Ở con đồng trinh đã dâng mình cho Đức Chúa Giêsu Kitô, hãy đến chịu lấy triều thiên Chúa trọng vô cùng đã sắm cho con đời đời.\n\nChúng tôi xin bà thánh Têrêxa cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Trời là Đấng hãy ban mọi sự lành cho chúng tôi; xin vì công nghiệp bà thánh Têrêxa đồng trinh cho chúng tôi được bắt chưóc cùng vâng cứ những lời Người dạy dỗ chúng tôi về đàng nhân đức một ngày một hơn. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-bay-loi-cau-xin-voi-thanh-ca-giuse",
-    "title": "Kinh Bảy Lời Cầu Xin Với Thánh Cả Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-bay-loi-cau-xin-voi-thanh-ca-giuse/",
-    "isPopular": false,
-    "content": "### 1. Xin ơn lành của Thánh Giuse:\n\nLạy Cha Thánh Giuse, xin Cha chúc lành cho con, cả phần xác lẫn phần hồn. Xin Cha chúc lành cho mọi quyết tâm, lời nói và hành động của con, cho mọi hoạt động và sai sót của con, cho mọi bước đường con đi. Xin Cha chúc lành mọi sự mà con có: suy nghĩ trong nội tâm và các tài sản con có, để những gì con làm là cho sáng danh vinh quang lớn lao của Thiên Chúa. Xin Cha chúc lành cho con bây giờ và đời đời, và xin gìn giữ con khỏi tội lỗi.\n\nXin Cha ban cho con ơn đền tạ mọi tội lỗi mà con đã phạm bằng các việc bác ái và thống hối khi con còn ở trần gian, để khi con thở hơi cuối cùng thì con được nằm phủ phục dưới chân Cha, hầu dâng lời cảm tạ Cha trên Thiên Đàng vì Cha đã chăm sóc, thương yêu và đối xử nhân hậu với con. Lạy Cha Hiền, xin nhìn đến con là kẻ hằng cầu xin Cha. Amen.”\n\n### 2. Thánh Hiến cho Thánh Giuse:\n\nLạy Cha Thánh Giuse, con xin thánh hiến bản thân con cho vinh quang của Cha, và con dâng mình con lên Cha để xin Cha nhận lời làm Cha Hiền, Đấng bảo vệ và hướng dẫn con trên đường cứu độ.\n\nXin Cha ban cho con một trái tim tinh tuyền và một lòng mến sốt sắng nơi đời sống nội tâm của con. Theo gương mẫu của Cha, xin cho con làm mọi sự vì vinh quang của Thiên Chúa, để hiệp thông với Thánh Tâm Chúa Giêsu và Mẫu Tâm Vô Nhiễm Mẹ Maria! Lạy Cha Thánh Giuse, xin cầu bầu cho con để con có thể được chia sẻ niềm an bình và vui mửng với cái chết thánh thiện của Cha. Amen.\n\n### 3. Lời cầu nguyện xin ơn bảo vệ:\n\nKính Lạy Cha Thánh Giuse! Con là người con bất xứng của Cha, con xin kính chào Cha. Cha là Vị Bảo Hộ trung tín và là Đấng cầu thay cho những ai yêu mến và tôn kính Cha. Cha biết con có lòng tin tưởng đặc biệt nơi Cha, Chúa Giêsu và Mẹ Maria. Con xin đặt tất cả niềm trông cậy vào ơn cứu độ nơi Cha, vì Cha có quyền năng trước Nhan Chúa và không bao giờ Cha bỏ rơi các tôi tớ trung thành của Cha.\n\nDo đó, con khiêm cung nài xin Cha, và con xin dâng bản thân con, tất cả những thân nhân của con, mọi của cải con có để xin Cha bảo vệ và cầu bầu cho con. Con cầu xin Cha, với tình yêu của Chúa Giêsu và Mẹ Maria, xin Cha đừng bỏ rơi con trong đời sống và xin cứu giúp con trong giờ lâm tử của con. Amen.\n\n### 4. Lời cầu nguyện trong lúc gặp khó khăn:\n\nLạy Cha Thánh Giuse vinh hiển, Cha có quyền thế để ban cho chúng con những điều xem ra không thể thực hiện được. Xin Cha hãy đến cứu giúp khi chúng con đang gặp khốn khó và đau buồn. Con xin dâng công việc quan trọng và khó khăn này lên Cha để xin Cha đặc biệt bảo vệ cho, và để công việc của con được kết thúc tốt đẹp (Kể những lời cầu xin.)\n\nLạy Cha Thánh Giuse, chúng con đặt mọi tin tưởng nơi Cha. Xin đừng để lời van xin của con trở nên vô ích. Cha có quyền thế trước Tòa Chúa và Mẹ Maria. Xin Cha chứng tỏ lòng nhân lành và quyền năng của Cha. Lạy Cha Thánh Giuse, bạn của Thánh Tâm Chúa Giêsu, xin cầu cho chúng con. Amen.\n\n### 5. Lời cầu nguyện xin ơn thanh khiết:\n\nLạy Cha Thánh Giuse là Đấng Bảo Hộ Đức Trinh Nữ và là người Cha đã được Thiên Chúa tin cậy để chăm sóc Chúa Giêsu KiTô Hải Đồng và Mẹ Maria, Đức Nữ Đồng Trinh Nữ trên hết những kẻ đồng trinh. Con cầu xin và van nài Cha, cùng Chúa Giêsu và Mẹ Maria, xin Cha hãy giữ gìn con và gia đình con khỏi mọi sự ô uế. Xin ban cho con một tâm trí thanh thản, một trái tim tinh tuyền và một thể xác trong sạch để con phục vụ Chúa Giêsu và Mẹ Maria một cách thanh khiết suốt mọi ngày trong đời sống con. Amen.\n\n### 6. Lời cầu nguyện cho Giáo Hội và Đức Thánh Cha:\n\nLạy Cha Thánh Giuse, Vị Thánh Quan Thầy của Giáo Hội Hoàn Vũ, chúng con luôn nài xin Cha trong lúc lo âu hay gặp khó khăn. Từ Ngai Tòa vinh quang của Cha, xin đưa mắt nhân từ nhìn đến toàn-thể thế-giới Công Giáo. Xin Trái Tim Cha Nhân Lành thương xót đến Nhiệm Thể của Chúa KiTô đang khốn khó vì thống khổ, bị bách hại bởi kẻ thù mạnh thế.\n\nÔi Lạy Cha Hiền, Cha đã nếm mọi sự tân toan nơi trần gian, xin Cha lau sạch nước mắt cho Đức Giáo Hoàng, xin Cha cầu bầu cho Ngài với Chúa là Đấng ban bình an và tình yêu để mọi sự xấu biến mất và mọi lỗi lầm được sửa đổi, để toàn Giáo Hội có thể phục vụ Thiên Chúa trong tự do và giải thoát. Amen.\n\n### 7. Cầu nguyện xin ơn chết lành:\n\nLạy Cha Thánh Giuse vinh hiển, hôm nay con xin nhận Ngài làm Thánh Quan Thầy của con trong cuộc sống và trong giờ lâm tử. Xin Cha ban cho con thêm tinh thần cầu nguyện và sự sốt sắng để con phục vụ Thiên Chúa. Xin Cha lấy ra khỏi con mọi tội lỗi. Xin cầu bầu cho con được biết trước ngày chết của con, để con có thể xưng tội, chịu các bí tích thiêng liêng, để con biết ăn năn, thống hối và đền tội xứng đáng, và rồi con được trút linh hồn trong tay của Chúa Giêsu, Mẹ Maria và Cha Thánh. Amen."
-  },
-  {
-    "id": "kinh-bay-phep-bi-tich",
-    "title": "Kinh Bảy Phép Bí Tích",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-bay-phep-bi-tich/",
-    "isPopular": false,
-    "content": "Đạo Đức Chúa Trời có bảy phép Bí-tích:\n\nThứ nhất: là phép Rửa tội.\nThứ hai: là phép Thêm sức.\nThứ ba: là phép Mình Thánh Chúa.\nThứ bốn: là phép Giải tội.\nThứ năm: là phép Xức dầu thánh.\nThứ sáu: là phép Truyền chức thánh.\nThứ bảy: là phép Hôn-phối."
-  },
-  {
-    "id": "kinh-boi-loi",
-    "title": "Kinh Bời Lời",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-boi-loi/",
-    "isPopular": false,
-    "content": "Lạy Ðức Chúa Giêsu xưa bởi lời mà xuống thế gian ba mươi ba năm cùng chịu những sự thương khó cho các linh hồn được rỗi. Thì rày chúng con xin Cha rất nhân lành hay thương vô cùng, xin tha phần phạt cho các linh hồn đã cầu nguyện hôm nay, hoặc còn giam nơi lửa luyện tội thì xin mở cửa tù rạc ấy cho ra mà đem đến chốn hưởng vui thật là nước thiên đàng vì công nghiệp Chúa con đã chịu nạn chịu chết vì chúng con. Amen."
-  },
-  {
-    "id": "kinh-boi-troi",
-    "title": "Kinh Bởi Trời",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-boi-troi/",
-    "isPopular": false,
-    "content": "Lạy ơn Đức Chúa Giêsu. Xưa bởi trời mà xuống thế gian ba mươi ba năm, cùng chịu những sự thương khó cho các linh hồn thiên hạ được rỗi thì rầy chúng con xin Cha rất nhân lành vô cùng, tha phần phạt cho (..linh hồn..) mà chúng con cầu nguyện hôm nay, hoặc còn giam nơi lửa luyện tội, thì xin mở cửa tù rạc ấy cho ra, mà đem lên chốn hưởng mọi sự vui thật là nước Thiên Đàng. Vì công nghiệp Chúa con đã chịu nạn chịu chết vì chúng con. Amen.\n\n**Còn một bản khác mà một số anh chị hay đọc:**\n\nLạy ơn Đức Chúa Giêsu! Xưa bởi trời mà xuống thế gian ba mươi ba năm chịu những sự thương khó cho các linh hồn thiên hạ được rỗi thì rầy chúng con xin Cha cực lành tha tội cho linh hồn con mọn đã khỏi thế gian này, hoặc còn nằm nơi luyện ngục cho được khỏi, cùng xin mở cửa tù rạc cho ra, mà đem lên chốn mọi sự phúc thật, được xem thấy Đức Chúa Cha đời đời, cầu cho các linh hồn (…tên…) cho được khỏi mà lên Thiên Đàng, vì công nghiệp Đức Chúa Giêsu, linh hồn ấy đã khỏi thế này; mà bây giờ chúng con lần hạt cầu nguyện cho; hoặc là rầy đã được lên chốn mọi sự phúc thật, được vui mừng mọi đàng, thì xin nhớ cầu cho cha mẹ, anh em, họ hàng, bạn hữu, con cháu, còn ở trong sóng gió biển cả là thế gian này, cho ngày sau được lên vào cửa Thiên Đàng. Hoặc linh hồn ấy đền chưa đủ tội, Chúa rất công bằng vô cùng còn cầm nơi luyện ngục, thì hãy cậy trông Cha rất nhân lành vô cùng phạt con làm vậy, cho ngày sau càng được sáng láng tốt lành hơn nữa; mà bây giờ mùa phúc đã hết, mùa tội phải đền, bao nhiêu kẻ còn sống hãy mở con mắt linh hồn ra mà xem vì sự tội lỗi là rễ những của đắng làm vậy. Amen."
-  },
-  {
-    "id": "kinh-cao-sang",
-    "title": "Kinh Cao Sang",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-cao-sang/",
-    "isPopular": false,
-    "content": "Lạy ơn Thiên Chúa cao sang\nChín tầng ngự trị thiên đàng liên liên\nLoài người mọn mạy phàm hèn\nCùng chung muôn vật ở trên địa cầu.\nTính thiêng soi tới khắp thâu,\nSuốt thông mọi sự làu làu không sai.\nRất công chẳng chút riêng ai,\nKhắp hòa che chở chẳng ngoài kiền khôn.\nChúng tôi chút phận dân con,\nTrộm đem tấc dạ ngụ hôn nghĩ rằng:\nChúa Cha phép tắc khôn chừng,\nLinh thông rất mực toàn năng vô cùng.\nBởi không rẽ đám hồng mông,\nMáy huyền tạo hóa phép thông diệu thần.\nSinh nên trời đất thần nhân,\nCùng chung muôn vật mọi phần tốt xinh,\nChúa Con lòng rất nhân lành,\nVì thương thiên hạ giáng sinh chữa đời.\nĐể tòa cao trọng trên trời,\nLiều mình chịu chết thay loài người ta.\nThánh Thần Thiên Chúa Ngôi Ba\nUy linh hiện hóa thiết tha ôn tồn.\nCho ta mạnh sức linh hồn,\nĐầy lòng đức nghĩa cao tôn khác vời.\nBa Ngôi cũng một Chúa Trời,\nMột tính một phép Ba Ngôi một giềng.\nTrí năng một thể cao sang,\nTốt lành nhân đức vẻ vang rất là.\nBây giờ trộm dám suy ra,\nHồn nay đã phải nghiêm tra trước tòa.\nXét từ hồn mới sinh ra,\nChưng nay hồn đã phải qua đời rồi.\nChịu ơn Thiên Chúa vô hồi.\nLo hồn hoặc lại luống côi vô tình.\nỞ đời những thuở bình sinh,\nChẳng suy chẳng nghĩ việc lành phải chăm.\nLòng lo miệng nói mình làm.\nChan chan lỗi phạm sai lầm lắm thôi,\nLinh hồn ba phép chẳng noi,\nDùng về nẻo khác lôi thôi nhiều chiều,\nTừ bề xác thịt ngã xiêu,\nĐi càn lối vạy chẳng theo đàng lành,\nKính dâng chẳng vẹn tâm thành.\nPhượng thờ chẳng trọn bậc mình sớm trưa.\nGặp cơn nguy ách chẳng ngờ,\nĂn năn chưa trọn ngày giờ đã qua.\nThan ôi! Giờ chết chẳng xa,\nKhí thiêng mong thở hắt ra còn gì.\nBồi hồi hoi hóp đang khi,\nCậy trông Chúa cả phù trì ủi an.\nPhương chi ngày trước lo toan,\nÍch riêng theo thói thế gian chiều lòng.\nLỗi nay khổn kể cho cùng,\nAi hay cứu thoát khỏi vòng hồng lô.\nHỡi ơi! Lạy Chúa Giêsu,\nChuộc đền ơn cả thương cho lúc này.\nCậy trông Đức Mẹ nhân thay,\nCầu cùng Chúa cả lỗi rày thứ cho.\nLại xin Đức Thánh Angiô,\nBấy lâu gìn giữ hộ phù tính linh,\nHằng ngày dạy dỗ đinh ninh,\nĐã trông coi sóc thần hình bấy thu.\nRày xin giúp đỡ cần cù,\nĐể cho thắng được kẻ thù thiêng nay.\nCùng xin đấng thánh quan thầy\nVốn từng thân thiết thuở ngày bình sinh.\nHằng hằng đỡ vực che bênh,\nXin Người thương đoái đinh ninh thay lời.\nLại xin các Thánh trên trời,\nĐang chầu chực Chúa ở nơi vui vầy,\nVì tình thương đến hồn nay,\nCầu cho chóng được thấy ngày hiển vinh.\nNhư Lời Chúa phán rành rành.\nXin thì sẽ được ơn lành đoái thương.\nSấp mình trông Chúa cao sang,\nBa Ngôi một tính rõ ràng uy nghi.\nTrời cao đất rộng cực kỳ,\nTrong tay quyền phép tóm về kỷ cương.\nCao xa Chúa ngự thiên đàng,\nThấu nghe suốt hết trần gian mọi vùng.\nKhuyên răn thưởng phạt rất công,\nLưới trời lồng lộng ai hòng trốn thâu\nChúng con cả dám khấu đầu,\nHết lòng van thiết âu sầu kêu xin.\nRộng tha phần phạt luyện đền,\nCho linh hồn ấy được lên thiên đàng.\nSống lâu hưởng phúc vinh quang,\nĐền xuân cõi thọ vẻ vang đời đời.\nKinh văn cầu khẩn một bài,\nMọi người xin hết hợp lời. Amen."
-  },
-  {
-    "id": "kinh-chan-dung-chua-giesu",
-    "title": "Kinh Chân Dung Chúa Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-chan-dung-chua-giesu/",
-    "isPopular": false,
-    "content": "Ôi! Chúa giêsu hay thương xót, chúng con tin và chúng con trông cậy Chúa. Xin đến nâng đỡ sự yếu hèn và bất lực của chúng con.\nXin ban cho chúng con ơn làm cho tất cả mọi người biết chúa và yêu mến chúa. Xin giúp đỡ chúng con _ là những người trông cậy vào tình thương bao la của chúa _ diệt trừ sự dữ trong chúng con, và trên toàn thế giới, để làm sáng danh Chúa, và cứu rỗi chúng con. Amen"
-  },
-  {
-    "id": "kinh-cam-on",
-    "title": "Kinh Cám Ơn",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-cam-on/",
-    "isPopular": true,
-    "content": "Người ta sống ở đời,\nnhờ ơn Đức Chúa Trời giữ gìn nuôi nấng;\nchúng con thờ lạy và tạ ơn Đức Chúa Trời,\nđã ban cho chúng con được mọi sự lành hồn xác ở đời này,\nlại ban Con Một giáng thế cứu chuộc chúng con.\n\nChúng con xin dâng lên Đức Chúa Trời\nmọi lời kinh nguyện, sự lao công và mọi gian khổ trong đời chúng con. Amen."
-  },
-  {
-    "id": "kinh-cam-on-sau-khi-ruoc-le",
-    "title": "Kinh Cám Ơn Sau Khi Rước Lễ",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-cam-on-sau-khi-ruoc-le/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, con tin thật Chúa đang ngự trong lòng con. Con cung kính thờ lạy Chúa là Thiên Chúa uy nghi cao cả. Con sung sướng vì Chúa đến thăm con, dù con không xứng đáng.\n\nLạy Chúa Giêsu, xin ở với con mãi mãi, trong suốt cuộc đời con. Xin làm cho con nên giống Chúa: hiền hậu và khiêm nhường, chăm chỉ và bác ái, hiếu thảo và vui tươi. Xin cho con nhớ rằng: Chúa đang ngự trong con, và con có bổn phận đem Chúa đến cho mọi nơi. Ở nhà và ở trường, trong khu xóm và trên đường phố, để tất cả những người bạn của con nhận biết Chúa, sống vui vẻ và yêu thương nhau.\n\nLạy Chúa Giêsu, con quyết tâm sống theo lời Chúa dạy, để đáp lại tình Chúa yêu con. Có Chúa, con không sợ hy sinh. Có Chúa, con đủ sức tránh xa tội lỗi và sống trung thành với Chúa suốt đời con. Lạy Chúa Giêsu, con yêu mến Chúa. Lạy Chúa Giêsu, con yêu mến Chúa biết bao. Amen."
-  },
-  {
-    "id": "kinh-cao-minh",
-    "title": "Kinh Cáo Mình",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-cao-minh/",
-    "isPopular": false,
-    "content": "Tôi thú nhận cùng Thiên Chúa toàn năng và cùng anh chị em. Tôi đã phạm tội nhiều trong tư tuởng, lời nói, việc làm và những điều thiếu sót: lỗi tại tôi, lỗi tại tôi, lỗi tại tôi mọi đàng.\n\nVì vậy tôi xin Đức Bà Maria trọn đời đồng trinh, các thiên thần, các thánh và anh chị em, khẩn cầu cho tôi trước tòa Thiên Chúa, Chúa chúng ta. Amen.\n\n**Kinh Cáo Mình (dài)**\n\nTôi cáo mình cùng Đức Chúa Trời phép tắc vô cùng, và Rất Thánh Đức Bà Maria trọn đời đồng trinh, cùng Đức Thánh Micae tổng lãnh thiên thần, cùng ông thánh Gioan Baotixita, cùng hai ông thánh tông đồ, ông thánh Phêrô, ông thánh Phaolô, cùng các thánh, (tôi lại cáo mình cùng Cha) vì tôi đã phạm tội nhiều, lòng động, lòng lo, miệng nói mình làm, lỗi tại tôi, lỗi tại tôi, lỗi tại tôi mọi đàng.\n\nVì vậy tôi xin Rất Thánh Đức Bà Maria trọn đời đồng trinh. Đức Thánh Micae tổng lãnh thiên thần, ông thánh Gioan Baotixita, hai ông thánh tông đồ, ông thánh Phêrô, ông thánh Phaolô, và các thánh (tôi lại xin Cha)* cầu cùng Đức Chúa Trời là Chúa chúng tôi tha tội cho tôi cùng. Amen.\n\nEnglish Version of Kinh Cáo Mình\n\nThe Act of Penitence\n\nI confess to almighty God and to you, my brothers and sisters, that I have greatly sinned, in my thoughts and in my words, in what I have done and in what I have failed to do,\nAnd, striking their breast, they say:\nthrough my fault, through my fault, through my most grievous fault; therefore I ask blessed Mary ever-Virgin, all the Angels and Saints, and you, my brothers and sisters to pray for me to the Lord our God."
-  },
-  {
-    "id": "kinh-cau-cha-phanxico-truong-buu-diep",
-    "title": "Kinh Cầu Cha Phanxicô Trương Bửu Diệp",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-cau-cha-phanxico-truong-buu-diep/",
-    "isPopular": false,
-    "content": "Kinh Cầu Cha Phanxicô Trương Bửu Diệp\n\n### Kinh:\n\nLạy Thiên Chúa Toàn Năng hằng hữu / chúng con cảm tạ Chúa đã ban cho giáo hội Việt Nam / một vị mục tử nhân hiền / là Cha Phanxicô Trương Bửu Diệp.\n\nLà một KiTô hữu, / Cha đã sống xứng đáng ơn gọi làm con Chúa, / với lòng tin son sắt, / lòng cậy bền đỗ / và lòng kính mến dạt dào / đối với Chúa, với Giáo Hội và với Con người.\n\nLà một Linh Mục, / Cha là hiện thân của Đức KiTô , vị mục tử tối cao, / đã tự nguyện hiến dâng mạng sống mình, / để Đoàn Chiên được sống và sống dồi dào.\n\nLà một Tông Đồ luôn thao thức loan báo Tin Mừng, / Cha là họa ảnh của lòng Chúa xót thương / hay thương xót những người nghèo khổ , yếu đau , tội lỗi / Đặc biệt Cha rất thương yêu Anh Chị Em lương dân, / và thường chuyển cầu ơn Chúa cho họ, / khiến ai nấy đều quí mến và chạy đến xin Cha giúp đỡ.\n\nNhờ Cha nguyện giúp cầu thay, / xin Chúa thương ban cho chúng con điều chúng con đang cầu khẩn………………/ với niềm hy vọng sớm thấy Cha được vinh hiển trong hàng ngũ các Thánh trên Thiên Quốc. / Amen.\n\n### Hình Ảnh:\n\nCha Phanxicô Trương Bửu Diệp\n\n### Tiểu Sử Linh Mục Trương Bửu Diệp:\n\nCha Phanxicô Trương Bửu Diệp sinh ngày 01-01-1897, một tháng sau được Cha Giuse Sớm rửa tội ngày 02-02-1897 tại họ đạo Cồn Phước, nay thuộc ấp Mỹ Lợi, xã Mỹ Luông, huyện Chợ Mới, tỉnh An Giang.\n\nCha ngài là Micae Trương Văn Đặng. Mẹ ngài là Lucia Lê Thị Thanh. Gia đình sinh sống tại họ đạo Cồn Phước tỉnh An Giang.\n\nNăm 1904, lúc ngài 7 tuổi thì mẹ mất. Cha ngài dời gia đình lên Battambang bên Campuchia, sinh sống bằng nghề thợ mộc. Tại đây, thân phụ ngài tục huyền với bà Maria Nguyễn thị Phước, sinh năm 1890, quê gốc tại Mỹ Luông, Chợ Mới, An Giang. Kế mẫu đã sinh cho ngài người em gái tên là Trương thị Thìn (1913), vừa qua đời tại Cà Mau.\n\nNăm 1909, cha Phêrô Lê Huỳnh Tiền gửi ngài vào Tiểu chủng viện Cù lao Giêng, xã Tấn Mỹ, Chợ Mới tỉnh An Giang. Học xong Tiểu Chủng Viện, Ngài lên ĐạiChủng Viện Nam Vang, Campuchia, (lúc đó các họ đạo An Giang, Châu Đốc, Hà Tiên trực thuộc giáo phận Pnom Penh, Campuchia).\n\nNăm 1924, sau thời gian tu học, Ngài được thụ phong linh mục tại Nam Vang dưới thời Đức Cha Chabalier người Pháp. Lễ vinh quy và mở tay được tổ chức tại nhà người cô ruột là bà Sáu Nhiều, tại họ đạo Cồn Phước.\n\nTừ năm 1924-1927, Ngài được bề trên bổ nhiệm làm Cha phó họ đạo Hố Trư, một họ đạo của người Việt sinh sống tại tỉnh Kandal, Campuchia.\n\nTừ năm 1927-1929, ngài về làm giáo sư tại Tiểu chủng viện Cù Lao Giêng tỉnh An Giang.\n\nTháng 03 năm 1930, ngài về trông nom họ đạo Tắc Sậy, quận Giá Rai, tỉnh Bạc Liêu. Trong những năm làm cha sở, ngài quan hệ, giúp đỡ, thành lập nhiều họ đạo khác tại các vùng phụ cận như: Bà Đốc, Cam Bô, An Hải, Đầu Sấu, Chủ Chí, Khúc Tréo, Đồng Gò, Rạch Rắn.\n\nHoàn cảnh xã hội nhiễu nhương những năm 1945-1946, chiến tranh loạn lạc, bà con nhân dân di tản, Cha Bề Trên địa phận Bạc Liêu là Phêrô Trần Minh Ký và cả các cha người Pháp cũng khuyên ngài lên Bạc Liêu lánh mặt, khi nào tình hình yên ổn thì sẽ trở lại họ đạo Tắc Sậy, nhưng Ngài trả lời: “Tôi sống giữa đàn chiên và nếu có chết cũng chết giữa đàn chiên, không đi đâu cả”.\n\nNgày 12-03-1946, ngài bị bắt cùng với trên 70 chức sắc và giáo dân tại họ đạo Tắc Sậy, bị lùa đi và nhốt tại lẫm lúa nhà ông giáo Sự ở Cây Gừa. Người ta định giết tất cả nhưng ngài nói chính ngài là chủ chăn các con chiên đó, vậy xin chết thay cho các con chiên của ngài. Họ chấp nhận. Mọi người được thả còn ngài thì bị đem đi thủ tiêu. Những người trong họ đạo kể rằng đêm hôm ấy ngài về báo mộng cho các vị chức sắc trong họ đạo biết chỗ họ ném xác ngài, trong cái ao sau nhà người anh Ông Giáo Sự. Các vị đến nơi được báo mộng thì vớt được xác ngài đã bị chặt đầu với một vết chém ngang cổ chỗ gần mang tai, có ba vết chém khác trên mình. Thân xác ngài không hiểu sao bị lột hết quần áo, trần trụi như Chúa Giêsu trên thập giá, nhưng hai tay vẫn chắp trước ngực như đang cầu nguyện và nét mặt ngài vẫn bình thản, không có vẻ gì sợ hãi.\n\nCác vị chức sắc lén đưa xác ngài về chôn bí mật trong phòng thánh nhà thờ Khúc Tréo (nhà ông giáo Sự thuộc họ đạo Khúc Tréo, làm thế kín đáo hơn đưa về Tắc Sậy). Như vậy ngài đã tử vì đạo vào ngày 12 tháng 03 năm 1946, nhằm ngày mồng 09 tháng 02 năm Bính Tuất.\n\nHăm ba năm sau, tức năm 1969, hài cốt ngài được cải táng, di dời về Nhà thờ Tắc Sậy, nơi ngài đã làm chủ chăn trong 16 năm và là cha Sở thứ nhì của họ đạo Tắc Sậy.\n\nLễ giỗ đầu đầu tiên do cha Antôn Vũ Xuân Vinh tổ chức năm 1979 với khoảng chừng 30 người tham dự đến từ những họ đạo chung quanh.\n\nMười năm sau nữa, tức năm 1989, ngôi mộ của ngài được trùng tu thành một ngôi nhà mộ nho nhỏ lợp tôn ở phía sau Nhà thờ Tắc Sậy và được khánh thành vào ngày 04-06-1989. Những ngày đầu tiên, số người tham dự cầu nguyện rất ít ỏi, nhưng dần dần số người nhận được ơn lành nhờ lời bầu cử của cha Diệp ngày càng nhiều và họ đồn thổi về sự hiển linh của ngài nên rất đông đảo người lương cũng như giáo trong nước và cả ngoài nước đều tuôn về Tắc Sậy để cầu khấn với ngài. Số khách hành hương trong ngày lễ giỗ ngày càng tăng, con số lên đến hàng chục ngàn người và không chỉ trong ngày lễ giỗ mà còn thường xuyên trong năm vẫn có những người đến hành hương. Vì thế kể từ 21-01-1997 Đức Giám mục Cần Thơ đã chính thức thành lập Trung tâm Truyền giáo Phanxicô tại Tắc Sậy. Từ nơi đây rất nhiều người đã nhận được những ơn lành phần xác cũng như phần hồn.\n\n*Nguồn: Truong Buu Diep Foundation*\n\n### Hình Ảnh Xem Thêm:\n\n*Nguồn: Nhà Thờ Tắc Sậy*"
-  },
-  {
-    "id": "kinh-cau-cho-chinh-minh",
-    "title": "Kinh Cầu Cho Chính Mình",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-cau-cho-chinh-minh/",
-    "isPopular": false,
-    "content": "Lạy Chúa, là Cha của Ðức Giêsu Kitô, con đến trước Nhan Ngài trong Danh Thánh của Chúa Giêsu. Nhờ Máu Châu Báu của Chúa Giêsu đã đổ ra cho con trên Thánh Giá ở Can-vê, xin Cha ban ơn bảo vệ con. Nhờ Danh Thánh của con Cha là Chúa Giêsu, xin Cha ban các Thiên Thần đến để các Ngài bênh vực và bảo vệ con, cũng như mọi người trong gia đình và bạn bè thân hữu con khỏi sự tấn công của kẻ thù. Xin Cha bảo vệ và chúc lành cho những ai nhờ con cầu nguyện cho họ. Xin ban cho con ơn được nghe tiếng Ngài và can đảm bước theo đường lối của Ngài. Chúng con nguyện xin nhờ Danh Chúa Giêsu Kitô, Ðấng sẽ đến trong vinh quang. Xin cho Danh Ngài được chúc tụng và ngợi khen bây giờ và đến muôn đời. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-cac-linh-hon",
-    "title": "Kinh Cầu Cho Các Linh Hồn",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-cau-cho-cac-linh-hon/",
-    "isPopular": false,
-    "content": "Lạy ơn Đức Chúa Giêsu, Chúa đã phán dạy rằng: “Bay hãy xin thì bay sẽ được”. Vậy con xin Chúa lòng lành vô cùng, thương đến các linh hồn nơi luyện ngục. Xin Chúa nghe lời con cầu xin kêu van, cho linh hồn ông bà, cha mẹ, anh em, bạn hữu con. Xin Chúa mở cửa Thiên Đàng cho các linh hồn ấy vào. Xin cho các linh hồn ấy được sự sáng vô cùng hằng soi cho liên. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-cac-linh-hon-toi-loi",
-    "title": "Kinh Cầu Cho Các Linh Hồn Tội Lỗi",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-cau-cho-cac-linh-hon-toi-loi/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu là chân lý hằng hữu, con khẩn cầu Chúa và van xin lòng thương xót Chúa cho các tội nhân khốn khổ, Ôi Trái Tim dịu hiền của Chúa Trời con, lòng thương xót Chúa vô bờ bến con van xin Chúa cho các linh hồn tội lỗi.\n\nÔi Trái Tim Chí Thánh, nguồn mạch Lòng thương Xót, đang tuôn ra những luồng ánh sáng tràn ngập các ân sủng khôn lường trên toàn thể nhân loại, con van xin Chúa cho các linh hồn tội lổi.\n\nÔi Chúa Giêsu, xin hãy nhìn đến cuộc khổ nạn đắng cay của Chúa, mà đừng để cho một linh hồn nào phải hư mất, bởi vì ơn cứu rỗi Máu Thánh Chúa đã đổ ra cho chúng con là cái giá quá đắt Chúa phải trả. Ôi Chúa Giêsu, khi nghĩ đến cái giá Chúa phải trả cho chúng con bằng Máu Thánh Chúa, con vui mừng vô hạn, vì chỉ cần một giọt máu của Chúa cũng đủ cho phần rỗi nhân loại. Mặc dù tội lỗi là vực sâu thăm thẳm của những yếu hèn và vong ơn bội nghĩa, chúng không thể nào cân xứng được với giá Chúa đã phải trả cho chúng con. Bởi vậy xin hãy để cho mọi linh hồn tín thác vào cuộc tử nạn của Chúa và đặt hy vọng vào Lòng Thương Xót của Ngài. Bởi vì Lòng Thương Xót Chúa không hề từ chối một người nào. Trời đất có thể đổi thay, nhưng lòng thương xót Chúa sẽ không bao giờ cạn kiệt.\nChúa ơi ! Hồn con bốc cháy niềm vui vô bờ bến khi con suy tưởng tới sự tốt lành lân ái của Chúa. Ôi! Chúa Giêsu, con mong muốn đem mọi linh hồn tội lỗi tới chân Chúa để họ tôn vinh Lòng Thương Xót Chúa đến muôn đời. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-cac-linh-muc",
-    "title": "Kinh Cầu Cho Các Linh Mục",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-cho-cac-linh-muc/",
-    "isPopular": false,
-    "content": "Lạy Chúa, chúng con xin Đức Mẹấp ủ các Linh Mục của Chúa trong tà áo của Mẹ, và xin Mẹ cầu bầu cho các ngài được tăng thêm sức mạnh trong đời sống mục vụ.\n\nXin Mẹ Maria hướng dẫn các Linh Mục của Chúa, vâng theo lời Mẹđã dạy, là “Người bảo gì, các con hãy tuân theo”. (Ga 2:5). Xin cho các Linh Mục của Chúa có được tâm hồn trong trắng như thánh cả Giuse, là vị hiền phu tinh tuyền tuyệt hảo của Mẹ. Xin cho trái tim bịđâm thâu của Mẹ, làm động lòng các Linh Mục của Chúa, để các ngài biết ôm ấp tất cả những ai đang đau khổ dưới chân thập giá. Xin cho các Linh Mục của Chúa được thánh thiện, được tràn đầy lửa yêu thương của Chúa, hầu các ngài không mong tìm bất cứđiều gì nữa, ngoại trừ vinh quang Chúa và phần rỗi các linh hồn. Amen.\n\nThánh Gioan Vianê, cầu cho chúng con."
-  },
-  {
-    "id": "kinh-cau-cho-cac-thai-nhi",
-    "title": "Kinh Cầu Cho Các Thai Nhi",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-cho-cac-thai-nhi/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu Thai Nhi, chúng con thật lòng yêu mến Chúa. Chúng con nài xin Chúa đoái thương. Cứu mạng các em bé đang được cưu mang nơi lòng mẹ. Xin cho các Thai Nhi trên thế giới của ngày hôm nay được thoát khỏi đại họa phá thai. Xin cho những người mẹ đang mang thai được ơn soi sáng và can đảm để gìn giữ con mình cho đến ngày sinh nở. Xin cho những người làm cha được ơn kính sợ Thiên Chúa để biết lãnh nhận trách nhiệm và tranh đấu cho sự sống của thai nhi. Xin cho các bác sĩ được lòng từ bi của Thánh Tâm Chúa để mạnh dạn từ chối và kịch liệt chống đối việc phá thai. Xin cho các nhà lãnh đạo được ơn đức tin và biết phụng thờ Thiên Chúa để lập nên những luật pháp bênh vực cho sự sống. Xin cho các Linh Mục của Chúa được ơn hóan cải hằng ngày để sống thánh thiện và sẵn sàng hy sinh tính mạng cho công cuộc tranh đấu bảo vệ thai nhi. Hôm nay con xin nhận một thai nhi đang trong cơn hiểm nghèo làm Con Linh Hồn của con nhờ lời chuyển cầu của Thánh Giêrađô là quan thầy của thai nhi và các bà mẹ có thai. Xin Chúa dủ thương nhậm lời chúng con và cậy vì lòng thương xót của Đức Giêsu Kitô Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-gia-dinh",
-    "title": "Kinh Cầu Cho Gia Đình",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-cho-gia-dinh/",
-    "isPopular": false,
-    "content": "Lạy Chúa là Cha toàn năng, ngay từ sáng thế, Cha đã tạo lập gia đình để trở thành tổ ấm cho tình thương và sự sống phát triển. Rồi khi Con Cha xuống thế làm người, chuộc tội cho nhân loại, Người đã muốn được sinh ra, nuôi dưỡng và xuất thân từ một gia đình, để thánh hóa và nêu gương cho các gia đình chúng con. Xin cho gia đình chúng con biết luôn sống yêu thương thuận hòa, theo tinh thần Phúc Âm.\n\nBiết lắng nghe, thông cảm và kính trọng nhau khi vui cùng như lúc buồn.\n\nBiết nhẫn nhục và hòa giải, khi tính tình và cách cư sử khác nhau.\n\nBiết chung thủy và hiếu nghĩa vơí nhau trong cuộc sống gia đình.\n\nBiết lấy gương lành mà dưỡng dục con cái, và làm chứng nhân cho Chúa giữa cuộc sống hằng ngày.\n\nLạy Chúa, đời chúng con gặp nhiều gian nan thư thách, xin giúp chúng con biết kiên tâm chịu đựng, và can đảm vượt qua. Gia đình chúng con trẻ già khác biệt, xin giúp chúng con biết quảng đại thứ tha, để chúng con luôn sống an vui trên thuận dưới hòa, và cùng nhau xây dựng Giáo Hội Chúa. Chúng con cầu xin, nhờ Đức Chúa Kitô Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-giao-hoi-va-linh-muc",
-    "title": "Kinh Cầu Cho Giáo Hội Và Linh Mục",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-cho-giao-hoi-va-linh-muc/",
-    "isPopular": false,
-    "content": "Ôi Chúa Giêsu của con, con nài xin Chúa nhân danh toàn thể Giáo hội: xin ban cho Giáo hội tình yêu và ánh sáng Thần Khí Chúa, và xin ban quyền năng Chúa trên lời nói của các linh mục để những tâm hồn chai đá nghe biết ăn năn sám hối và trở về với Chúa.\n\nLạy Chúa, xin ban cho chúng con những linh mục thánh thiện. Chúa là chính Đấng gìn giữ các linh mục được thánh thiện. Ôi Linh Mục Thượng Phẩm cao cả, ước gì quyền năng của lòng thương xót Chúa đồng hành với các linh mục ở mọi nơi, gìn giữ các ngài khỏi mọi cạm bẫy và cám dỗ của ma quỷ luôn luôn bủa vây các linh hồn linh mục. Lạy Chúa, Ước gì quyền năng lòng thương xót Chúa làm tan vỡ và vô hiệu tất cả những gì gây hoen ố sự thánh thiêng của các linh mục, bởi vì Chúa có thể làm mọi sự.\n\nLạy Chúa, Đấng yêu dấu nhất của con, con nài xin Chúa cho sự vinh thắng của Giáo hội, cho những ơn lành trên Đức Thánh Cha và trên tất cả hàng Giáo sĩ, cho ơn hoán cải của các tội nhân không biết sám hối. Lạy Chúa Giêsu, con xin Chúa chúc lành đặc biệt và ban ánh sáng cho các linh mục mà con đến xưng tội trong suốt cuộc đời con. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-linh-muc-va-chung-sinh",
-    "title": "Kinh Cầu Cho Linh Mục và Chủng Sinh",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-cho-linh-muc-va-chung-sinh/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, ngày xưa khi nhìn đám đông dân chúng, Chúa đã chạnh lòng thương, vì họ như đàn chiên bơ vơ không có người chăn dắt. Ngày nay, đoàn dân Chúa cũng đang khao khát nghe lời Chúa, và lãnh nhận các Bí Tích; nhưng số Linh Mục thật ít ỏi. Xin Chúa đoái thương cho chúng con có nhiều Linh Mục, và cho các Linh Mục của chúng con đầy tinh thần khiêm nhường và quảng đại, sẵn sàng hy sinh tất cả vì đoàn chiên của Chúa, và vì vô số những người còn chưa được biết Chúa. Xin cho các Ngài ngày càng trở nên giống Chúa hơn, để nơi các Ngài, chúng con được nhìn thấy chính Chúa đang ở với chúng con.\n\nXin Chúa thương ban cho có nhiều tâm hồn thanh thiếu niên quảng đại dấn thân làm Linh Mục, và xin Chúa tạo điều kiện thuận lợi, để các chủng sinh ấy sớm trở thành những Linh Mục thánh thiện, có lòng nhiệt thành, và nhiều khả năng để tiếp nối công cuộc của Chúa ở giữa trần gian.\n\nLạy Chúa Giêsu, Chúa đã hứa: “Ai xin sẽ cho, ai tìm sẽ gặp, ai gõ cửa sẽ mở cho”, thì đây là lời cầu xin tha thiết nhất của chúng con. Xin Chúa hãy đoái thương thực hiện để làm vinh danh Thiên Chúa Cha. Amen!"
-  },
-  {
-    "id": "kinh-cau-cho-nguoi-khac",
-    "title": "Kinh Cầu Cho Người Khác",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-cau-cho-nguoi-khac/",
-    "isPopular": false,
-    "content": "Lạy Cha trên trời, Con xin dâng lên Cha ____ trong Danh Thánh của Con Cha là Chúa Giêsu Kitô. Trong Danh Chúa Giêsu, xin Cha đưa Thiên Thần đến để đẩy lui mọi thần dữ đang quấy rối, không chế, tấn công hay đang lừa gạt người này. Xin cho tôi tớ Ngài là ____ được hưởng sự bảo vệ từ Máu Châu Báu của Con Cha là Chúa Giêsu Kitô, đã đổ ra cho người này trên đồi Can-vê. Xin cho người này được nghe tiếng Ngài và luôn bước theo đường lối của Ngài. Amen."
-  },
-  {
-    "id": "kinh-cau-cho-nguoi-dang-hap-hoi",
-    "title": "Kinh Cầu Cho Người Đang Hấp Hối",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-cau-cho-nguoi-dang-hap-hoi/",
-    "isPopular": false,
-    "content": "*(Của Chân Phước Mary Potter. Có thể thay chữ người đang hấp hối bằng linh hồn.)*\n\nLạy Cha hằng hữu, cậy nhờ sự chết của Chúa Giêsu con Cha, xin Cha cứu người đang hấp hối. Lạy Chúa Giêsu, cậy nhờ lòng trắc ẩn vô biên của Chúa, xin Chúa tỏ lòng trắc ẩn đến người đang hấp hối. Lạy Thần Khí yêu thương của Thiên Chúa, xin thương xót người đang hấp hối.\n\nThánh Maria Ðức Mẹ Chúa Trời cầu cho chúng con là kẻ có tội, khi này và trong giờ lâm tử. Lạy Trái Tim Từ Mẫu Maria, đầy yêu con trong thinh lặng. Nguyện xin Lòng Thương Xót Chúa ở cùng con luôn mãi. Amen. Lạy Chúa! xin thương xót con là kẻ có tội."
-  },
-  {
-    "id": "kinh-cau-cho-nhung-em-be-chua-duoc-sinh-ra",
-    "title": "Kinh Cầu Cho Những Em Bé Chưa Được Sinh Ra",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-cau-cho-nhung-em-be-chua-duoc-sinh-ra/",
-    "isPopular": false,
-    "content": "Lạy Cha Trên Trời, trong tình yêu Cha dành cho chúng con, xin bảo vệ những trẻ thơ vô vọng là những người Cha đã ban cho món quà sự sống khỏi mọi hành vi gian ác của sự dữ. Xin đánh động lương tâm những phụ nữ mang thai mà không có ước muốn làm mẹ với trái tim đầy lòng thương xót của Cha.\n\nXin giúp đỡ họ để họ thấy được người con họ đang cưu mang được dựng nên giống hình ảnh Cha – cũng như giống hình ảnh của chính họ – được tạo thành cho một đời sống vĩnh cữu mai sau. Xin Cha  xua đuổi sự sợ hãi và ích kỷ ra khỏi họ và ban cho họ một trái tim nữ tính thật sự, để họ biết yêu thương những người con và cho chúng được chào đời, cũng như cho chúng tất cả những sự chăm sóc cần thiết mà chỉ có người mẹ mới có thể ban tặng.\n\nXin Mẹ Maria cầu bầu và bảo vệ những người mẹ này để họ có được bình an và lòng nhân ái đích thực trong tâm hồn. Xin giúp họ vượt qua những sự thử thách, khó khăn trong cuộc sống.\n\nXin Thánh Cả Giuse cho những người chồng có trách nhiệm và lương tâm biết nâng đỡ, bảo vệ, săn sóc và yêu thương người bạn đời, người con của họ. Xin cho họ có sức mạnh và can đảm để dám hy sinh bản thân chấp nhận vai trò người cha cao quý của họ.\n\nChúng con cầu xin nhờ danh Chúa Giêsu Kitô, là con Cha và là Chúa chúng con; Người hằng sống, hằng trị với Chúa Cha và Chúa Thánh Thần đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-cau-chua-thanh-than",
-    "title": "Kinh Cầu Chúa Thánh Thần",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-cau-chua-thanh-than/",
-    "isPopular": false,
-    "content": "Lạy Chúa Thánh Thần, xin Ngài ngự đến tràn đầy tâm hồn người tín hữu, xin đốt lên ngọn lửa tình yêu của Ngài trong lòng chúng con. Xin sai Thánh Linh Chúa tái tạo lại muôn loài và canh tân bộ mặt trái đất.\n\nLạy Chúa là Ðấng hướng dẫn tâm hồn người tín hữu bằng ánh sáng của Thánh Thần, xin ban cho chúng con cùng một Thần khí ấy, được khôn ngoan và hoan lạc luôn mãi trong sự an ủi của Ngài, nhờ Chúa Giêsu Kitô, Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-chiu-nan",
-    "title": "Kinh Cầu Chịu Nạn",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-cau-chiu-nan/",
-    "isPopular": false,
-    "content": "Xin Chúa thương xót chúng con.\n*    Thưa: Xin Chúa thương xót chúng con.*\nXin Chúa Kitô thương xót chúng con.\n*    Thưa: Xin Chúa Kitô thương xót chúng con.*\nXin Chúa thương xót chúng con.\n*   Thưa: Xin Chúa thương xót chúng con.*\nChúa Kitô nghe cho chúng con.\n*    Thưa: Chúa Kitô nhận lời chúng con.*\n\nĐức Chúa Cha ngự trên trời là Đức Chúa Trời thật.\n*    Thưa: Thương xót chúng con. (Câu nào cũng thưa như vậy).*\nĐức Chúa Con Chuộc Tội Cứu Thế là Đức Chúa Trời thật.\nĐức Chúa Thánh Thần là Đức Chúa Trời thật.\nBa Ngôi cũng là một Đức Chúa Trời.\n\nChúa Giêsu thương hết người thế.\nChúa Giêsu xuống thế làm người.\nChúa Giêsu ba mươi năm ở cùng Đức Mẹ.\nChúa Giêsu ba năm giảng dạy Phúc Âm.\nChúa Giêsu cứu chữa các bệnh nhân.\nChúa Giêsu cho kẻ chết sống lại.\nChúa Giêsu dân Do thái vui mừng đón rước.\nChúa Giêsu thương khóc thành Giêrusalem.\nChúa Giêsu rửa chân cho các đầy tớ.\nChúa Giêsu truyền phép Thánh Thể.\nChúa Giêsu vào Vườn Giêtsimani cầu nguyện cùng Đức Chúa Cha.\nChúa Giêsu lo buồn toát mồ hôi máu ra.\nChúa Giêsu trao nộp mình cho quân lính.\nChúa Giêsu để quân ấy trói mình.\n\nChúa Giêsu các môn đệ bỏ trốn.\nChúa Giêsu Thánh Phêrô một đêm chối ba lần.\nChúa Giêsu soi lòng Thánh Phêrô ăn năn khóc lóc.\nChúa Giêsu chịu vả chịu nhổ vào mặt.\nChúa Giêsu chịu bỏ vạ cáo gian.\nChúa Giêsu thâu đêm chịu nhiều khổ nhục.\nChúa Giêsu bị nộp cho Philatô xét xử.\nChúa Giêsu Philatô lại trao cho Hêrôđê.\nChúa Giêsu Hêrôđê cho rằng điên dại.\nChúa Giêsu dân Do Thái ghét hơn tên trộm cướp là Baraba.\nChúa Giêsu chịu đòn đánh nát cả mình ra.\nChúa Giêsu chịu những gai nhọn đâm vào đầu.\nChúa Giêsu quân lính quỳ nhạo cho xấu hổ.\nChúa Giêsu Philatô đem ra cho dân thấy mà thương.\nChúa Giêsu dân Do Thái đòi đem đi đóng đinh.\nChúa Giêsu vác Thánh Giá nặng lắm.\n\nChúa Giêsu chịu đóng đinh giữa hai người trộm cướp.\nChúa Giêsu xin Đức Chúa Cha tha tội cho kẻ làm khổ mình.\nChúa Giêsu chịu quân lính lấy hết áo chia nhau.\nChúa Giêsu trên Thánh giá chịu xỉ báng nhạo cười.\nChúa Giêsu tha tội cho một kẻ trộm cùng chịu đóng đinh.\nChúa Giêsu trối Đức Mẹ cho ông Thánh Gioan. Chúa Giêsu trao Thánh Gioan cho Đức Me.\nChúa Giêsu kêu lên: Lạy Cha sao bỏ con?\nChúa Giêsu nói rằng: Tôi khát nước.\nChúa Giêsu nói rằng: Mọi sự đã hoàn tất.\nChúa Giêsu nói rằng: Con phó linh hồn trong tay Đức Chúa Cha.\nChúa Giêsu chịu chết vì tội thiên hạ.\nChúa Giêsu linh hồn xuống ngục tổ tông yên ủi các Thánh.\nChúa Giêsu viên đội trưởng tuyên xưng là Con Đức Chúa Trời.\nChúa Giêsu bị đâm cạnh sườn máu và nước chảy ra.\n\nChúa Giêsu chịu táng trong huyệt đá.\nChúa Giêsu ngày thứ ba sống lại đem các thánh lên.\nChúa Giêsu sống lại trước hết đi viếng Đức Mẹ.\nChúa Giêsu cho Thánh Tôma xem năm vết thương nơi mình.\nChúa Giêsu truyền cho Thánh Phêrô cai Hội Thánh.\nChúa Giêsu phán các đầy tớ đi khắp thế giảng đạo.\nChúa Giêsu trước mặt môn đệ lên trời.\nChúa Giêsu hết đời lại xuống phán xét.\nChúa Giêsu hằng có lòng lành.\nThưa: Chúa Giêsu tha tội chúng con.\nChúa Giêsu hằng có lòng lành.\nThưa: Chúa Giêsu nhận lời chúng con.\n\nKẻo gặp sự tai sự dữ.\n*    Thưa: Chúa Giêsu chữa chúng con. (Câu nào cũng thưa như vậy).*\nKẻo mất nghĩa cùng Đức Chúa Giêsu.\nKẻo phạm tội nghe ma quỷ cám dỗ.\nKẻo chối đạo Đức Chúa Giêsu.\nKẻo sa hoả ngục phụ công ơn Chúa Giêsu cứu chuộc.\nChúng con là kẻ có tội.\n*    Thưa: Cầu Chúa Giêsu nghe chúng con. (Câu nào cũng thưa như vậy).*\nChúa Giêsu cho chúng con ăn năn tội chừa mọi sự dữ.\nChúa Giêsu cho chúng con cậy trông vì đã chuộc tội chúng con.\nChúa Giêsu soi lòng mọi người nhận biết tôn thờ.\nChúa Giêsu cho các nước tin đạo cho bền càng ngày càng thịnh.\nChúa Giêsu cho linh hồn chúng con khi gần lìa xác khỏi tay ma quỷ.\nChúa Giêsu cho chúng con được hạnh phúc ở trên trời.\nChúa Giêsu chuộc tội cứu thế.\n*    Thưa: Tha tội chúng con.*\nChúa Giêsu chuộc tội cứu thế.\n*    Thưa: Nghe chúng con.*\nChúa Giêsu chuộc tội cứu thế.\n*    Thưa: Thương xót chúng con.*\n\n*Lời Nguyện:*\nChúng con là vật mọn sấp mình thờ lạy Đức Chúa Giêsu cực cao cực trọng. Chúng con nhớ đến những sự thương khó Đức Chúa Giêsu, xưa chịu ba mươi ba năm vì chúng con, thì trong lòng thảm thiết đau đớn, nào có bao giờ trả nghĩa Đức Chúa Giêsu cho nên. Thuở xưa, khi Đức Chúa Giêsu chịu nạn, thì trời u ám đất chuyển động, đã vỡ ra như thương Chúa sinh nên muôn vật, phương chi chúng con mà chẳng thương Cha Cả thì sao? Ấy Máu Thánh Cha đã chảy ra hết vì quân dữ là chúng con, mà con thấy Cha thương dường ấy, chẳng thể cầm nước mất chảy ra ăn năn tội lỗi, vì đã phạm cùng Đức Chúa Cha. Ấy thật bởi tội chúng con nên Đức Chúa Giêsu xuống thế liều mình chịu đóng đinh chịu chết làm vậy. Chúng con hằng kính mến Đức Chúa Giêsu mà tích năm Dấu Thánh ở trong lòng chúng con. Lạy Dấu Thánh chân tả; lạy Dấu Thánh chân hữu; lạy Dấu Thánh tay tả, lạy Dấu Thánh tay hữu, lạy Dấu Thánh cạnh nương long Đức Chúa Giêsu. Amen."
-  },
-  {
-    "id": "kinh-cau-me-maria-giai-thoat",
-    "title": "Kinh Cầu Mẹ Maria Giải Thoát",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-cau-me-maria-giai-thoat/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Maria,\n\nÔi Nữ Vương cao trọng nhất trên Thiên đàng và của những Thiên Thần, chúng con khẩn nài xin Mẹ, Người đã được Chúa ban cho quyền năng và sứ mệnh đạp dập đầu của Satan, truyền lệnh cho đạo quân trên trời đuổi bắt những ma quỷ trong chiến trận mà chúng hiện diện để trừng phạt sự cả gan của chúng, và đẩy chúng lùi vào địa ngục. Amen."
-  },
-  {
-    "id": "kinh-cau-nguyen-cho-nguoi-benh",
-    "title": "Kinh Cầu Nguyện Cho Người Bệnh",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-cau-nguyen-cho-nguoi-benh/",
-    "isPopular": false,
-    "content": "Lạy Cha chí thánh, Đấng toàn năng, hằng hữu. Con chúc tụng và ngợi khen Cha trên trời đã ban Con Một Cha là Chúa Giêsu yêu dấu đến thế gian để cứu chuộc con. Chúa Giêsu khi còn ở thế gian đã chữa lành mọi bệnh tật và giải thoát những người bị quỷ ám. Giờ đây, con cậy nhờ Danh Chúa Giêsu cao cả và quyền năng vô biên của Ngài giải thoát con khỏi mọi bệnh tật thể xác. Ôi Chúa Giêsu, xin dủ lòng thương xót nhìn vào mắt con với đôi mắt nhân từ của Chúa, xin chạm vào thương tích của con với bàn tay chữa lành của Chúa, hầu thân xác con được lành mạnh. Xin cho con một trái tim luôn biết tạ ơn và ca ngợi tình thương của Chúa. Xin Chúa dùng con là nhân chứng sự chữa lành của Chúa, và cho con luôn biết loan truyền kỳ công của Chúa đến muôn đời. Amen."
-  },
-  {
-    "id": "kinh-cau-nguyen-cua-cac-ba-me-dang-mang-thai",
-    "title": "Kinh Cầu Nguyện Của Các Bà Mẹ Đang Mang Thai",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-nguyen-cua-cac-ba-me-dang-mang-thai/",
-    "isPopular": false,
-    "content": "Lạy Thiên Chúa là Cha toàn năng, Cha đã dọn cho thân xác và linh hồn Đức Trinh Nữ Maria nên xứng đáng được cưu mang và sinh hạ Đấng Cứu thế, và đã ban cho Thánh Gioan Tiền Hô được nên thanh sạch ngay khi còn ở trong lòng mẹ. Chúng con nguyện xin Cha, nhờ lời cầu bầu của Thánh Giêrađô, ban cho chúng con được bằng an trong lúc mang thai và trong khi sinh nở. Xin Cha thương che chở đứa trẻ trong cánh tay yêu thương của Cha. Xin Cha ban cho chúng con được ơn biết nuôi dưỡng và giáo dục con cái của chúng con theo thánh ý Cha.\n\nLạy Mẹ Maria nhân hiền, khi xưa Mẹ vừa cất tiếng chào bà I-sa-ve thì Thánh Gioan đang còn trong lòng mẹ đã nhảy mừng, xin Mẹ thương cứu giúp chúng con.  Lạy Thánh Giêrađô, xin cầu bầu cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-nguyen-khi-vao-benh-vien",
-    "title": "Kinh Cầu Nguyện Khi Vào Bệnh Viện",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-cau-nguyen-khi-vao-benh-vien/",
-    "isPopular": false,
-    "content": "Lạy Cha trên trời, Cha yêu thương của con. Với hết tâm hồn và lòng tin tưởng vào Cha, con đầu phục và tín thác con người của con trong bàn tay và sự quan phòng của Chúa. Con biết Cha yêu thương con hơn con yêu thương chính mình. Con xin Cha hướng dẫn và ban sự khôn ngoan của Cha cho các bác sĩ và y tá là những người săn sóc và thi hành các trợ giúp ý tế cho con. Xin Cha cho họ trí óc, đôi mắt, bàn tay và trái tim của Cha, để họ được tham dự vào công trình cứu độ và chữa lành của Cha, giúp con hồi phục thân xác. Xin Cha hãy làm cho con điều tốt nhất trong chương trình của Cha đã tiền định, và cho con luôn tin tưởng vào thánh ý của Cha. Trên hết mọi sự, xin Cha ban cho con bình an và niềm tin không lay chuyển vào Cha. Trong tay Cha, con xin phó thác linh hồn và thân xác của con. Con cám ơn Cha và cầu xin nhờ Danh Chúa Giêsu, Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-nguyen-trong-luc-dau-kho",
-    "title": "Kinh Cầu Nguyện Trong Lúc Đau Khổ",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-cau-nguyen-trong-luc-dau-kho/",
-    "isPopular": false,
-    "content": "Ôi Bánh Hằng Sống, xin giúp con nơi chốn khách đời này, để con được sức mạnh trung thành bước theo những dấu chân của Đấng Cứu Thế. Lạy Chúa, con không xin Chúa cất con xuống khỏi thập giá, nhưng con xin Chúa ban cho con sức mạnh để con được vững vàng trên con đường ấy. Lạy Chúa Giêsu, con muốn được giang rộng trên cây Thánh giá như Chúa đã làm. Con muốn chịu mọi cực hình và đau đớn mà Chúa đã chịu. Con muốn uống cho cạn chén đắng.\n\nÔi Chúa Giêsu của con, xin ban cho con sức mạnh chịu đựng đau khổ để con không mang bộ mặt nhăn nhó khi con uống chén đắng. Xin giúp con làm việc hy sinh của con cho được đẹp lòng Chúa. Ước gì điều ấy không bị lem luốc bởi tình yêu ích kỷ của con. Xin tất cả những gì ở trong con, từ đau buồn đến sức mạnh của con là sự ca ngợi dâng lên Chúa. Amen."
-  },
-  {
-    "id": "kinh-cau-nguyen-truoc-thanh-gia-chua",
-    "title": "Kinh Cầu Nguyện Trước Thánh Giá Chúa",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-cau-nguyen-truoc-thanh-gia-chua/",
-    "isPopular": false,
-    "content": "Xin nhìn xuống trên con, hỡi Chúa Giêsu tốt lành và khoan dung, trước nhan Thánh Ngài con khiêm tốn quỳ gối, với linh hồn nóng bỏng, cầu xin Chúa hãy sửa sang tận nơi sâu thẳm trong trái tim con đức tin sống động, đầy hy vọng và nhân đức, lòng sám hối chân thành cho tội lỗi con và ý muốn hoán cải, trong khi con chiêm ngắm với tình yêu lớn lao và lòng thương xót trên Năm Dấu Thánh của Ngài, con đang suy ngẫm và nhớ lại những lời của vua David, vị tiên tri đã nói về Ngài, Chúa Giêsu của con, rằng: “Chúng đã đâm thủng tay chân Ta và đã đếm hết các xương Ta.” (Tv. 22, 17-18)\n\nKinh Lạy Cha, Kính Mừng, và cầu cho ý chỉ Ðức Giáo Hoàng. *(Ðược ơn Ðại Xá nếu đọc sau khi rước lễ; S. Paen, Ap., 2 Feb 1943)*"
-  },
-  {
-    "id": "kinh-cau-nguyen-xin-chua-chua-lanh",
-    "title": "Kinh Cầu Nguyện Xin Chúa Chữa Lành",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-cau-nguyen-xin-chua-chua-lanh/",
-    "isPopular": false,
-    "content": "Chúc tụng Thiên Chúa là Đấng tạo thành trời đất, là Vua muôn loài, là Đấng Cứu Độ con. Lạy Chúa Giêsu, Chúa mời gọi những ai gồng gánh nặng nề, hãy đến với Chúa, Chúa sẽ bổ sức cho. Giờ đây, con dâng lên Chúa thân xác bệnh tật, yếu đuối, bất lực của con, xin Chúa nâng con lên, ôm con vào lòng và cho con tựa đầu vào trái tim của Chúa. Xin Máu và Nước Cứu Độ của Chúa bao phủ lấy con, rửa sạch tất cả những tội lỗi và các thương tích nơi thân xác của con. Xin đôi bàn tay chữa lành của Chúa chạm đến những nơi thương tích, bệnh tật của con, hầu con sẽ được lành mạnh. Cậy nhờ các roi đòn của Chúa đã chịu vì tội lỗi của con, cho con thêm sức mạnh để có thể chịu đựng những đau đớn cho nên. Xin Ánh Sáng Phục Sinh của Chúa, chiếu soi vào những nơi tối tăm, chết chóc trong con người của con, để con được hồi sinh cả về thể xác và tinh thần. Cám ơn Chúa Giêsu là Đấng Cứu Độ con. Amen."
-  },
-  {
-    "id": "kinh-cau-thanh-cecilia",
-    "title": "Kinh Cầu Thánh Cecilia",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-cau-thanh-cecilia/",
-    "isPopular": false,
-    "content": "Kính lạy Bà Thánh Cécilia Thánh Bổn Mạng là đấng hưởng phước thanh nhàn đời đời, chẳng còn lo sợ điều gì nữa, một ưu lo trông ước cho tôi đặng hưởng phước như vậy. Khi Thánh Bổn Mạng còn ở dưới thế, thì đã làm việc lành mà dạy dỗ tôi, rày đã lên trước mặt Chúa, xin dâng lời cầu nguyện mà giúp tôi. Gương mọi việc lành phước đức Thánh Bổn Mạng, đã đủ mà dạy tôi sự gì phải làm cùng sự gì phải kính. Ví dầu thuở trước Thánh Bổn Mạng cũng là kho thọ sanh như tôi, mỏng giòn yếu đuối như tôi, và chịu mọi sự khốn khó cùng mọi chước cám dỗ như tôi, song bởi Thánh Bổn Mạng vững lòng kính mến Chúa chí thiết, nên đã đặng đánh dẹp tam cừu oan gia: tà ma, thịt mình, thế tục; xin dắt tôi noi theo mùi thơm tho các nhân đức Thánh Bổn Mạng là quan thầy tôi, từ ngày tôi đã chịu phép Rửa tội, và nên con cái Đức Chúa Trời, thì Chúa liền phú tôi cho Thánh Cécilia gìn giữ bầu chữa tôi. Vậy tôi xin Thánh Bổn Mạng phù hộ và cầu nguyện cho tôi, hầu cho tôi đặng vững cầm nhân đức tin cậy như nơi thân tôi, và cho tôi đặng làm nhiều việc trọn lành, mà làm cho vững ơn Chúa đã ban cho tôi khi Người đã gọi và chọn tôi làm con Chúa, hầu cho tôi khi đã vượt khỏi biển hiểm thế này, đoạn đặng vào cửa Thiên đàng, đội mũ triều thiên hưởng một phước cùng Thánh Bổn Mạng, và ngợi khen Chúa đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-cau-thanh-than-mo-long-tri-nhung-ban-tre-nam-nu-don-nhan-on-goi",
-    "title": "Kinh Cầu Thánh Thần Mở Lòng Trí Những Bạn Trẻ Nam Nữ Đón Nhận Ơn Gọi",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cau-thanh-than-mo-long-tri-nhung-ban-tre-nam-nu-don-nhan-on-goi/",
-    "isPopular": false,
-    "content": "Lạy Chúa Thánh Thần là Tình yêu muôn thuở, Ngài bởi Chúa Cha và Chúa Con mà ra, chúng con cám ơn Ngài về những ơn gọi của các tông đồ và các thánh đã xây đắp Giáo hội. Chúng con tiếp tục cầu xin việc làm này của Ngài cho Giáo hội hôm nay. Xin hãy nhớ trong ngày Lễ Ngũ Tuần, Ngài ngự xuống trên các Tông đồ đang cùng nhau tụ họp cầu nguyện với Mẹ Maria, Mẹ Chúa Giêsu mà đoái thương nhìn đến Giáo hội của Ngài hôm nay đang cần đến những linh mục thánh thiện, trung thành, và làm chứng quyền năng do ân sủng Ngài. Giáo hội đang cần những tu sĩ nam nữ tận hiến đời mình tỏ lộ niềm vui của những người sống cho Thiên Chúa Cha, những người thi hành sứ mệnh và hy lễ của Chúa Giêsu, những người xây dựng bác ái cho thế giới mới.\n\nLạy Chúa Thánh Thần là Suối trường sinh của niềm vui và bình an, chính Ngài là Đấng mở lòng, mở trí ơn gọi thánh; chính Ngài là Đấng hữu hiệu hóa mọi động lực hướng tới điều tốt lành, hướng tới sự thật, hướng tới bác ái yêu thương. Ngài dùng những “Lời rên xiết khôn tả” mà dâng lên Chúa Cha từ lòng Giáo hội đang đau khổ và đang phấn đấu cho Tin Mừng Nước Trời.\n\nXin mở lòng, mở trí những bạn trẻ nam nữ để phát triển một vườn hoa mới cho ơn gọi hướng tới sự trung thành với tình yêu Ngài, và để mọi người có thể nhận biết Chúa Giêsu, là Ánh Sáng sự thật đã đến thế gian, hầu ban cho mọi người niềm hy vọng chắc chắn vào đời sống trường sinh. Amen."
-  },
-  {
-    "id": "kinh-cau-thanh-tam-chua-giesu",
-    "title": "Kinh Cầu Thánh Tâm Chúa Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-cau-thanh-tam-chua-giesu/",
-    "isPopular": false,
-    "content": "Lạy Rất Thánh Trái Tim Ðức Chúa Giêsu, con nhờ Trái Tim Vô Nhiễm Nguyên Tội của Mẹ Maria mà dâng hiến mình con cho Rất Thánh Trái Tim Chúa.\n\nXin Chúa nhận lấy trót cả con người con và biến đổi con nên chính Chúa. Xin làm cho đôi tay con nên đôi tay Chúa, đôi chân con nên đôi chân Chúa, trái tim con nên trái tim Chúa. Xin cho con nhìn với đôi mắt Chúa, nghe với đôi tai Chúa, nói với đôi môi Chúa, yêu với trái tim Chúa, hiểu với tâm trí Chúa, phục vụ với ý chí Chúa và tận hiến cho Chúa với trót cả con người con. Xin làm cho con trở nên một Kitô khác.\n\nLạy Rất Thánh Trái Tim Ðức Chúa Giêsu, xin ban cho con thần khí Chúa để dậy con yêu mến Chúa và chỉ sống nhờ Chúa, với Chúa, trong Chúa và cho Chúa mà thôi.\n\nLạy Chúa Thánh Thần, xin ngự đến và làm cho thân xác con thành đền thờ của Chúa. Xin ngự đến và ở lại cùng con luôn mãi. Xin ban cho con tình yêu sâu thẳm nhất dành cho Thánh Tâm Chúa Giêsu, để con phụng sự Người với trọn cả tấm lòng, trọn cả linh hồn, trọn cả trí khôn, và trọn cả sức lực con.\n\nXin Chúa làm chủ tất cả các quan năng của xác hồn con. Xin điều chế mọi đam mê, cảm xúc và tình cảm trong con. Xin Chúa làm chủ trí khôn, trí hiểu, và ý chí của con, trí nhớ và trí tưởng tượng của con.\n\nÔi Thần Linh Thánh Ái, xin ban cho con tràn đầy các ân sủng linh nghiệm của Chúa. Xin ban cho con đong đầy mọi nhân đức. Xin bồi dưỡng đức tin, củng cố đức cậy, gia tăng tín thác, và đốt lên lửa mến trong con. Xin ban cho con đầy đủ bẩy ân sủng, hoa trái và phúc lộc của Chúa.\n\nLạy Chúa Ba Ngôi Cực Thánh, xin làm cho linh hồn con nên cung thánh của Chúa. Amen."
-  },
-  {
-    "id": "kinh-cau-trai-tim-duc-chua-giesu",
-    "title": "Kinh Cầu Trái Tim Đức Chúa Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-cau-trai-tim-duc-chua-giesu/",
-    "isPopular": false,
-    "content": "Xin Chúa thương xót chúng con.\n*    Thưa: Xin Chúa thương xót chúng con.*\nXin Chúa Kitô thương xót chúng con.\n*    Thưa: Xin Chúa Kitô thương xót chúng con.*\nXin Chúa thương xót chúng con.\n*    Thưa: Xin Chúa thương xót chúng con.*\nChúa Kitô nghe cho chúng con.\n*    Thưa: Chúa Kitô nhận lời chúng con.*\n\nĐức Chúa Cha ngự trên trời là Đức Chúa Trời thật.\n*    Thưa: Thương xót chúng con. (Câu nào cũng thưa như vậy).*\nĐức Chúa Con Chuộc Tội Cứu Thế là Đức Chúa Trời thật.\nĐức Chúa Thánh Thần là Đức Chúa Trời thật.\nBa Ngôi cùng là một Đức Chúa Trời.\n\nTrái tim Đức Chúa Giêsu con Đức Chúa Cha hằng có đời đời\nTrái tim Đức Chúa Giêsu bởi phép Đức Chúa Thánh Thần đã dựng nên trong lòng Rất Thánh Đức Mẹ Đồng trinh\nTrái tim Đức Chúa Giêsu hợp làm một cùng ngôi thứ Hai cho trọn\nTrái tim Đức Chúa Giêsu oai vọng vô cùng\nTrái tim Đức Chúa Giêsu là đền thánh Chúa Trời\nTrái tim Đức Chúa Giêsu là toà Đấng cực cao cực trọng\nTrái tim Đức Chúa Giêsu là đền đài Chúa Trời cùng là cửa Thiên đàng\nTrái tim Đức Chúa Giêsu là lò lửa mến hằng cháy\nTrái tim Đức Chúa Giêsu gồm sự công chính và sự thương yêu\nTrái tim Đức Chúa Giêsu đầy sự nhân lành cùng sự yêu dấu\nTrái tim Đức Chúa Giêsu là vực đầy mọi nhân đức\nTrái tim Đức Chúa Giêsu rất đáng ngợi khen mọi đàng\nTrái tim Đức Chúa Giêsu là Vua lòng mọi người cùng là chốn phải hướng về thay thảy\nTrái tim Đức Chúa Giêsu là kho mọi sự khôn ngoan thông thái\nTrái tim Đức Chúa Giêsu là nơi trót tính Đức Chúa Trời ngự\nTrái tim Đức Chúa Giêsu là chốn Đức Chúa Cha lấy làm ưa ý mọi đàng\nTrái tim Đức Chúa Giêsu là mạch đầy dẫy hằng chảy ơn lành cho hết mọi người chúng con\nTrái tim Đức Chúa Giêsu các thánh trên trời khao khát\nTrái tim Đức Chúa Giêsu hay nhịn hay thương vô cùng\nTrái tim Đức Chúa Giêsu hay ở rộng rãi cùng những kẻ nguyện xin\nTrái tim Đức Chúa Giêsu là cội rễ cho chúng con được nên lành nên thánh\nTrái tim Đức Chúa Giêsu là của lễ đền tội chúng con\nTrái tim Đức Chúa Giêsu đã phải xấu hổ nhuốc nhơ bội phần\nTrái tim Đức Chúa Giêsu đã phải tan nát vì tội chúng con\nTrái tim Đức Chúa Giêsu đã vâng lời cho đến chết\nTrái tim Đức Chúa Giêsu đã phải lưỡi đòng thâu qua\nTrái tim Đức Chúa Giêsu là nguồn mọi sự yên ủi\nTrái tim Đức Chúa Giêsu là sự sống cùng là sự sống lại chúng con\nTrái tim Đức Chúa Giêsu ban cho chúng con được bằng yên và làm lành cùng Đức Chúa Trời\nTrái tim Đức Chúa Giêsu dâng mình chịu phạt cho kẻ có tội\nTrái tim Đức Chúa Giêsu hay cứu chữa kẻ trông cậy\nTrái tim Đức Chúa Giêsu hay làm cho kẻ mong sinh thì được cậy trông\nTrái tim Đức Chúa Giêsu hay làm cho các thánh được vui mừng.\n\nChúa Giêsu Chuộc Tội Cứu Thế.\n*    Thưa: Tha tội chúng con.*\nChúa Giêsu Chuộc Tội Cứu Thế.\n*    Thưa: Nghe chúng con.*\nChúa Giêsu Chuộc Tội Cứu Thế.\n*    Thưa: Thương xót chúng con.*\nLạy Đức Chúa Giêsu hiền lành và khiêm nhường trong lòng. Xin uốn lòng chúng con nên giống Trái Tim Chúa.\n\n*Lời Nguyện:*\nChúng con lạy ơn Đức Chúa Trời phép tắc vô cùng hằng có đời đời, chúng con xin Chúa trông đến Trái Tim Con rất yêu dấu Chúa, cùng những lời ngợi khen và những việc lành người dâng thay cho kẻ có tội, mà nguôi cơn giận và tha thứ cho những kẻ ăn năn kêu van vì một Đức Chúa Giêsu Kitô Con Chúa, là Đấng hằng sống hằng trị, làm một cùng Chúa và Đức Chúa Thánh Thần đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-cau-truoc-thanh-the-cua-thanh-bonaventura",
-    "title": "Kinh Cầu Trước Thánh Thể Của Thánh Bonaventura",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-cau-truoc-thanh-the-cua-thanh-bonaventura/",
-    "isPopular": false,
-    "content": "Ôi Chúa Giêsu rất dịu dàng, xin đâm sâu vào tận đáy linh hồn con vết thương rất vui mừng và lành mạnh của tình yêu Chúa, vết thương vì đức ái tông đồ rất thánh và chân thật, mà linh hồn con đã từng mệt nhọc và tan hoà trong tình yêu và lòng khao khát Chúa, để mong mỏi Chúa và chết mệt đi tại sân Nhà Chúa. Con mong ước được tiêu tan và sống với Chúa.\n\nXin làm cho hồn con đói khát Chúa là Bánh các Thiên Thần, sự giải khát của các linh hồn lành thánh, bánh thiêng liêng hằng ngày của chúng con, bánh có mọi mùi vị ngon ngọt khoái thú. Xin cho lòng con luôn đói khát và được nuôi dưỡng, Bánh các Thiên Thần mong chờ, và ước chi tận đáy hồn con tràn đầy hương vị ngọt của Chúa. Xin cho hồn con luôn khao khát Chúa, là giếng nước hằng sống, giếng khôn ngoan và thông minh, giếng ánh sáng đời đời, dòng thác vui thoả, sự giàu có của nhà Chúa. Xin cho con được hiểu Chúa, tìm kiếm Chúa, thấy Chúa, đến cùng Chúa, đạt được Chúa, suy ngắm Chúa, nói về Chúa, và làm mọi việc để ca ngợi vinh quang và Danh thánh Chúa, với lòng khiêm tốn và cẩn trọng, với tình yêu và niềm vui, sự sẵn sàng và cảm mến, bền gan cho đến chết.\n\nChỉ có Chúa là mọi sự cho con trông cậy, là giầu có, vui vẻ, khoái lạc, niềm vui của con, sự nghỉ ngơi và yên tĩnh, bình an, dịu ngọt và hương thơm, mùi ngọt ngào, lương thực và giải khát nơi ẩn náu và giúp đỡ, sự khôn ngoan, phần của con, sở hữu và kho tàng của con. Ước gì trong Chúa, trí lòng con luôn gắn chặt vào, vững vàng và đâm rễ không hề lay chuyển. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-chua-thanh-than",
-    "title": "Kinh Cầu Với Chúa Thánh Thần",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-cau-voi-chua-thanh-than/",
-    "isPopular": false,
-    "content": "Lạy Chúa Thánh Thần, là Thiên Chúa tình yêu, con thờ lạy Chúa đang ngự thật trong linh hồn con. Xin ban cho con tình yêu thánh thiện của Chúa.\n\nLạy Chúa Thánh Thần, là Thiên Chúa của bình an, đang ngự thật trong linh hồn con, xin ban cho con sự bình an thánh thiện của Chúa, sự bình an mà không trí khôn nào hiểu thấu được.\n\nLạy Chúa Thánh Thần, là Thiên Chúa của ánh sáng, đang ngự thật trong linh hồn con, xin ban cho con được ánh sáng thánh thiêng của Chúa, để con có thể nhìn xem mọi sự một cách rõ ràng.\n\nLạy Chúa Thánh Thần, là Thiên Chúa của niềm vui và an ủi, đang ngự thật trong linh hồn con, xin đổ tràn niềm vui và an ủi của Chúa vào lòng con.\n\nLạy Chúa Thánh Thần, là Thiên Chúa của sức mạnh, đang ngự thật trong linh hồn con, xin ban cho con sức mạnh thần linh của Chúa, để con có thể làm mọi việc cho hoàn hảo.\n\nLạy Chúa Thánh Thần, là Thiên Chúa của sự ngọt ngào và tốt lành vô biên, đang ngự thật trong linh hồn con, xin ban cho con những hoa trái, những phúc lành và bẩy nguồn ơn của Chúa."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-fatima",
-    "title": "Kinh Cầu Với Ðức Mẹ Fatima",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-fatima/",
-    "isPopular": false,
-    "content": "Ôi Lạy Mẹ Fatima Vô Nhiễm Chí Thánh, Nữ Vương Mân Côi, giữa lúc nhân loại đang sa đọa trong tội lỗi và chiến tranh đe dọa nền hòa bình trên thế giới, Mẹ đã hiện ra với các trẻ nhỏ ở Fatima để ban cho chúng con một thông điệp cấp bách là hãy ăn năn đền tội, siêng năng lần hạt mân côi và cải thiện đời sống để thế giới có được hòa bình\n\nXin Mẹ giúp chúng con ý thức và thực hành những mệnh lệnh của Mẹ hôm nay, để lòng thương xót và nước Chúa được hiển trị trên thế giới. Chúng con cầu xin Mẹ khơi dậy trong trái tim chúng con sự tha thiết yêu mến lần chuỗi Mân Côi, để nhờ suy niệm những mầu nhiệm Cứu chuộc được nhắc đến trong chuỗi Mân côi, mà chúng con có thể nhận được những ơn ích thiêng liêng và những nhân đức tốt lành. Chúng con cầu xin nhờ công nghiệp Chúa Giêsu Kitô, là Thiên Chúa và là Đấng Cứu độ của chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-goa-da-lu-pe",
-    "title": "Kinh Cầu Với Ðức Mẹ Goa-Ða-Lu-Pê",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-goa-da-lu-pe/",
-    "isPopular": false,
-    "content": "Lạy Ðức Mẹ Goa-Ða-Lu-Pê rất thánh, chúng con tạ ơn và chúc tụng Mẹ như xinh đẹp những bông hoa hồng nở rực rỡ. Xin hãy nhớ đến lần Mẹ hiện ra trên đồi Tê-Pa-Giắc, Mẹ đã hứa tỏ lòng lân tuất và cảm thương đến tất cả những ai yêu mến và cậy trông ở nơi Mẹ; và những ai tìm sự phù trợ và bảo vệ của Mẹ.\n\nNhân vì lời hứa ấy, xin Mẹ lắng nghe những lời van xin của chúng con, mà ban cho chúng con niềm an ủi và xin làm vơi đi nỗi sầu khổ trong cuộc sống chúng con. Chúng con hoàn toàn hy vọng rằng nhờ sự phù trợ của Mẹ sẽ không có gì có thể làm nguy khốn và gây ảnh hưởng xấu đến với chúng con. Như Mẹ vẫn ở với chúng con qua bức ảnh Goa-Ða-Lu-Pê đầy kính mến của Mẹ, vậy giờ đây xin Mẹ cầu khẩn cùng Chúa đổ xuống trên chúng con những sự chữa lành tâm hồn và thể xác mà chúng con đang cần đến. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-la-vang",
-    "title": "Kinh Cầu Với Ðức Mẹ La Vang",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-la-vang/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Maria, Thánh Mẫu La Vang,\nđầy muôn ơn phước, ngời chói hào quang,\nmuôn vàn Thần Thánh không ai sánh bằng.\n\nÐức Chúa Trời đã đoái thương chọn Mẹ,\ntinh tuyền thánh thiện,\nsinh Ðấng cứu độ muôn loài.\n\nMẹ đã chọn La Vang mà hiện đến,\ncứu giúp hộ phù tổ tiên chúng con lương giáo,\ngiữa thời ly loạn cấm cách, khốn khổ trăm bề.\n\nTừ ấy gót chân Mẹ bước đến,\nvẫn mãi đầy ơn thiêng.\n\nƠn phần hồn ơn phần xác,\nngười bệnh tật kẻ ưu phiền,\nnào ai cầu khẩn mà Mẹ không nhậm lời.\n\nLạy Mẹ Maria, Thánh Mẫu La Vang,\nMẹ là Thánh Mẫu Chúa Trời,\ncùng là Thánh Mẫu loài người chúng con.\n\nCúi xin xuống phước hải hà,\nđoái thương con cái thiết tha van nài.\n\nXin cho chúng con tấm lòng từ bi nhân hậu,\nđại lượng bao dung,\ncùng nhau bồi đắp nền văn minh tình thương và sự sống.\n\nXin Mẹ phù hộ chúng con,\nluôn sống đức hạnh,\nđầy lòng cậy trông.\n\nVà sau cuộc đời nầy,\nxin cho chúng con được về sống bên Mẹ,\nhưởng vinh phúc trong Chúa Ba Ngôi muôn đời. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-la-me-thien-chua-cho-cac-thai-nhi",
-    "title": "Kinh Cầu Với Ðức Mẹ Là Mẹ Thiên Chúa Cho Các Thai Nhi",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-la-me-thien-chua-cho-cac-thai-nhi/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Thiên Chúa rất thánh và là Mẹ của giáo hội. Chúng con chúc tụng và cảm tạ Thiên Chúa đã ban cho Mẹ những ân huệ cao cả. Mẹ đã được tuyển chọn bởi Chúa Cha để cưu mang Chúa Con qua quyền năng của Chúa Thánh Thần để mang đến cho thế gian sự sống mới. Mẹ là Người Nữ mặc áo mặt trời đang đau đớn lúc sắp sinh Chúa Cứu thế trong lúc Satan là con rồng đỏ đang chờ để nuốt Hài nhi Con Mẹ. Cũng như vua Hêrôđê xưa kia khi tìm giết Con Mẹ đã giết tất cả các con trai đầu lòng trong xứ Giuđê, thì hôm nay việc phá thai cũng đã giết chết tất cả những thai nhi vô tội, và khai thác những bà mẹ trong việc huỷ diệt mạng sống con người là chính Thân thể và là hình ảnh của Chúa Kitô.\n\nLạy Mẹ của những tâm hồn trẻ thơ, chúng con chúc tụng Thiên Chúa về những đặc ân Ngài đã ban cho Mẹ là Mẹ Vô Nhiễm Nguyên Tội, Mẹ đầy ơn phúc, Mẹ Thiên Chúa và là Mẹ giáo hội, Mẹ đồng trinh vô nhiễm và hồn xác lên trời.\n\nLạy Mẹ là đấng bầu chữa những người tín hữu, chúng con nài xin Mẹ bảo vệ, che chở, và chúc lành cho những phụ nữ sắp làm mẹ, những thai nhi còn trong bụng mẹ để họ có được đời sống trên thế gian này, và nhờ Máu Châu Báu Con Mẹ đã đổ ra mà họ được đời sống viên mãn với Người trên thiên đàng. Chúng con cũng cầu xin Trái tim Sầu bi, Vô nhiễm của Mẹ cho tất cả những người đang thi hành và ủng hộ phá thai để họ được hoán cải và đón nhận Chúa Giêsu, Con Mẹ là Thiên Chúa và là Ðấng Cứu độ của họ. Xin Mẹ dùng roi khiêm nhường, và uy quyền của của Mẹ là Nữ Vương thiên đàng chống đỡ và bảo vệ những con cái của Mẹ đang phải chiến đấu với quyền lực bóng tối và thần dữ trong những ngày đen tối hôm nay.\n\nChúng con ước gì tất cả những thai nhi đã chết mà chưa được chịu phép rửa được rửa tội và được cứu độ của Chúa Giêsu. Chúng con xin Mẹ khẩn cầu những ơn này cho các thai nhi và xin ơn hoán cải, làm hòa và ơn tha thứ từ Thiên Chúa cho những cha mẹ và những người hành nghề phá thai.\n\nXin hãy tái lập lại một lần nữa lịch sử của thế gian này trong quyền năng vô hạn của lòng thương xót Chúa, và ra tay uy quyền chấm dứt mãnh lực của ma quỷ. Ước gì lương tâm nhân loại được biến đổi. Ước gì Trái tim Sầu bi và Vô nhiễm Mẹ tỏ ra cho mọi người tia sáng của hy vọng. Ước gì Chúa Giêsu là Vua ngự trị trên mỗi người chúng con, trong gia đình, lối xóm, quốc gia, và trên toàn thể nhân loại.\n\nÔi lòng khoan dung, Ôi lòng nhân ái, Ôi lòng dịu hiền của Mẹ Maria khiết trinh, xin nghe lời chúng con khẩn cầu và tiếng kêu tha thiết từ trái tim của chúng con. Xin Mẹ là Mẹ Thiên Chúa bảo vệ những thai nhi và cầu bầu cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-la-nu-vuong-hoa-binh",
-    "title": "Kinh Cầu Với Ðức Mẹ Là Nữ Vương Hòa Bình",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-la-nu-vuong-hoa-binh/",
-    "isPopular": false,
-    "content": "Lạy Thánh Mẹ Ðồng Trinh Vô Nhiễm, Mẹ của Chúa Giêsu và cũng là Mẹ yêu dấu của chúng con. Bởi vì là Mẹ của Thiên Chúa nên Mẹ cũng dự phần trong vương quốc của Ngài. Các nhà tiên tri và các thiên thần đã loan báo chỉ có Thiên Chúa mới là Vua của hòa bình đích thực. Với lòng thành kính trong trái tim, chúng con kính chào và tuyên dương tước hiệu Mẹ là Nữ Vương hòa bình.\n\nChúng con xin nhờ lời cầu bầu của Mẹ bảo vệ chúng con và mọi dân tộc, mọi tôn giáo trên thế giới khỏi sự thù hận và bất hòa với nhau; xin hướng dẫn trái tim chúng con vào con đường của hòa bình và công lý mà chính Chúa Giêsu, Con Mẹ đã phán dạy và làm chứng. Xin Mẹ thương phù trợ cho Ðức Thánh Cha, Ngài đang nỗ lực hòa giải các quốc gia thù nghịch trong hòa bình và yêu thương. Chúng con xin Mẹ hướng dẫn các nhà lãnh đạo quốc gia nơi chúng con đang sống và những nhà lãnh đạo khác trên thế giới biết tranh đấu và tìm kiếm hòa bình cho quốc gia và dân tộc.\n\nLạy Nữ Vương Hòa bình uy linh rạng rỡ, xin ban cho chúng con nền hòa bình thực sự trong trái tim; cho mọi gia đình được hòa thuận và các quốc gia đạt được những hòa ước với nhau. Xin gìn giữ và hàn gắn các gia đình đang bất hòa tan vỡ, vợ chồng đang ly dị, cha mẹ con cái và anh chị em đang chia rẽ. Lạy Nữ Vương Hòa bình xin canh chừng và bảo vệ chúng con với tình thương mẫu tử bao la của Mẹ. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-lo-duc",
-    "title": "Kinh Cầu Với Ðức Mẹ Lộ Ðức",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-lo-duc/",
-    "isPopular": false,
-    "content": "Ôi Maria Vô Nhiễm Khiết trinh, là Mẹ của Lòng thương xót, là Sức khỏe của người bệnh, là Chốn ẩn náu của người tội lỗi, là Niềm ủi an của người đau khổ, Mẹ biết rõ những ước muốn, khó khăn, và đau khổ của chúng con. Xin Mẹ đoái nhìn đến chúng con với Lòng thương xót.\n\nKhi Mẹ hiện ra nơi hang đá Lộ đức, Mẹ đã biến nơi đó thành chốn linh thiêng, nơi mà chúng con đến nhận những ơn lành của Mẹ, và là nơi những kẻ khốn khổ đến nhận sự chữa lành bệnh tật về tâm linh và thể xác của họ. Vì thế, chúng con chạy đến với lòng tin tưởng hoàn toàn vào Mẹ và van xin lời cầu bầu của Mẹ. Hỡi Mẹ yêu dấu của chúng con! Xin Mẹ nhận lời kêu xin của chúng con. Chúng con cố gắng học các nhân đức của Mẹ, để một ngày kia chúng con sẽ cùng chia sẻ hạnh phúc và dâng lời chúc tụng Mẹ trên nước thiên đàng. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-sau-bi",
-    "title": "Kinh Cầu Với Ðức Mẹ Sầu Bi",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-sau-bi/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Ðồng Trinh Sầu Bi, Nữ vương các thánh tử đạo, Mẹ đã sầu bi đứng dưới chân thánh giá chứng kiến sự đau đớn trong giờ chết của Con Mẹ. Xin nhìn đến chúng con đang quỳ dưới chân Mẹ đây với lòng dịu hiền và thương xót của Mẹ. Chúng con kính suy lòng sầu bi của Mẹ và chúng con đặt tất cả những ước nguyện, nỗi khổ đau của chúng con với lòng tin tưởng ẩn náu trong trái tim thương tích Mẹ. Chúng con nài xin Mẹ thay chúng con mà dâng những ước nguyện và nỗi đau khổ lên Thiên Chúa Cha nhờ công nghiệp khổ nạn và sự chết của Chúa Giêsu, cùng với sự đau khổ của Mẹ dưới chân thánh giá, xin Chúa nhận lời cầu xin của chúng con. Hỡi Mẹ lân ái, chúng con biết cậy nhờ vào ai để dâng những ước nguyện và đau khổ của chúng con nếu không có Mẹ. Mẹ đã uống cùng chén thánh Con Mẹ nên Mẹ cảm thông được nỗi sầu khổ của chúng con.\n\nLạy Mẹ rất thánh, tâm hồm Mẹ đã bị đâm thủng bởi lưỡi gươm sầu bi khi diện kiến cuộc khổ nạn của Con Chí thánh Mẹ nên chỉ có Mẹ mới hiểu và an ủi chúng con. Chúng con xin dâng những người con của chúng con lên mẹ. Những đứa con ngoan ngoãn xin Mẹ thương gìn giữ; những đứa con làm đau lòng cha mẹ xin Mẹ soi lối cho chúng trở về; những đứa con hoang đàng, tội lỗi xin Mẹ cho chúng được ăn năn thống hối. Xin cầu bầu cho chúng con, và xin Thiên Chúa nhận lời chúng con khấn nguyện. Amen."
-  },
-  {
-    "id": "kinh-cau-voi-duc-me-ngoi-loi",
-    "title": "Kinh Cầu Với Đức Mẹ Ngôi Lời",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-cau-voi-duc-me-ngoi-loi/",
-    "isPopular": false,
-    "content": "Chúc tụng Mẹ Maria Đồng Trinh, Mẹ của Ngôi Lời Mẹ của tất cả những ai tin vào Ngài và của những ai đón nhận Ngài vào đời sống của họ. Chúng con quỳ đây trước nhan Mẹ để chiêm niệm về Mẹ Chúng con tin rằng Mẹ đang ở giữa chúng con, như một người mẹ ở giữa đàn con cái của mình, mặc dù chúng con không thấy được Mẹ bằng đôi mắt xác thịt của con.\n\nChúng con chúc tụng Mẹ, Mẹ là Con Đường chắc chắn dẫn chúng con đến với Chúa Giêsu Cứu Thế, vì tất cả sự che chở phù hộ mà Mẹ không ngừng tuôn đổ trên chúng con, đặc biệt là trong sự khiêm cung, Mẹ đầy lòng từ bi nhân hậu hiện ra cách lạ lùng ở Kibeho, khi thế giới đang cần Mẹ nhất.\n\nXin Mẹ luôn ban cho chúng con ánh sáng và sức mạnh cần thiết để đón nhận, với hết cả lòng thành tâm, lời kêu gọi của Mẹ với chúng con hãy hoán cải, sám hối và sống theo Lời Thánh Kinh của Con Mẹ. Xin hãy dạy chúng con cách cầu nguyện chân thành, và yêu mến anh em như Chúa yêu chúng con, để như lời Mẹ yêu cầu chúng con, chúng con có thể luôn là những bông hoa xinh tươi lan tỏa những hương thơm êm dịu ở mọi nơi và trên mỗi người.\n\nLạy Mẹ Maria rất thánh, Mẹ Sầu Bi của chúng con, xin dạy chúng con nhận biết giá trị của thánh giá trong đời sống chúng con, để bất cứ những gì đang thiếu vắng sự đau khổ của Chúa Kitô chúng con có thể lấp đầy thân xác của chúng con cho nhiệm thể của Chúa, chính là Giáo hội của Chúa.\n\nVà khi hành trình của chúng con nơi dương thế chấm dứt, chúng con sẽ được sống vĩnh cửu với Mẹ trên Nước Trời. Amen."
-  },
-  {
-    "id": "kinh-cau-xin-long-thuong-xot-chua",
-    "title": "Kinh Cầu Xin Lòng Thương Xót Chúa",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-cau-xin-long-thuong-xot-chua/",
-    "isPopular": false,
-    "content": "Ôi Thiên Chúa, Đấng đầy lòng trắc ẩn, Đấng duy nhất tốt lành, con chạy đến van xin lòng thương xót Chúa, mặc dầu sự khốn nạn của con rất to lớn và việc xúc phạm con lại quá nhiều, con vẫn tín thác vào tình thương Chúa – bởi vì Chúa là Đấng xót thương, từ xưa tới nay, con chưa từng nghe một người nào tín thác vào lòng thương xót Chúa mà bị thất vọng.\n\nÔi Thiên Chúa từ bi, chỉ mình Chúa mới phán xét con. Chúa không bao giờ từ chối khi con thống hối ăn năn chạy tới lòng thương xót Chúa, nơi mà chưa có một linh hồn nào bị từ chối, mặc dù họ là một linh hồn vô cùng tội lỗi, lời Chúa Giêsu, con Cha, đã bảo đảm với con rằng : “Thà rằng trời đất này có biến ra không, nhưng lòng thương xót của Ta luôn ấp ủ mọi linh hồn tín thác”.\n\nLạy Chúa Giêsu là bạn tri kỷ của những trái tim lẻ loi cô độc, Chúa là thiên đàng. Là Đấng Cứu Độ, là niềm an bình trong những giây phút buồn phiền giữa biển hoang mang nghi ngại, Chúa là ánh sáng chiếu soi bước đường con đi, Chúa là tất cả của một linh hồn cô độc, Chúa biết sự yếu mềm của chúng con, và giống như một danh y tốt lành, Chúa an ủi và chữa lành mọi đau đớn của chúng con. Amen."
-  },
-  {
-    "id": "kinh-cau-ong-thanh-giuse",
-    "title": "Kinh Cầu Ông Thánh Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-cau-ong-thanh-giuse/",
-    "isPopular": true,
-    "content": "Kinh này do 2 nhóm đọc. Nhóm 1 đọc câu đầu và nhóm 2 đọc câu thưa; không đọc chữ \"Thưa\"Xin Chúa thương xót chúng con.\n\nThưa: Xin Chúa thương xót chúng con.Xin Chúa Kitô thương xót chúng con.\n\nThưa: Xin Chúa Kitô thương xót chúng con.Xin Chúa thương xót chúng con.\n\nThưa: Xin Chúa thương xót chúng con.Chúa Kitô nghe cho chúng con.\n\nThưa: Chúa Kitô nhận lời chúng con.Đức Chúa Cha ngự trên trời là Đức Chúa Trời thật.\n\nThưa: Thương xót chúng con. (các câu kế tiếp đều thưa như vậy)Đức Chúa Con chuộc tội cứu thế là Đức Chúa Trời thật.\nĐức Chúa Thánh Thần là Đức Chúa Trời thật.\nBa Ngôi cũng là một Đức Chúa Trời.\n\nRất Thánh Đức Bà Maria.\n\nThưa: Cầu cho chúng con. (các câu kế tiếp đều thưa như vậy)Ông Thánh Giuse.\nÔng Thánh Giuse là dòng dõi sang trọng vua Davit.\nÔng Thánh Giuse là Đấng sáng láng trên hết các Thánh Tổ Tông.\nÔng Thánh Giuse là bạn Đức Mẹ Chúa Trời.\nÔng Thánh Giuse là Dấng Đồng Trinh gìn giữ Đức Nữ Đồng Trinh.\nÔng Thánh Giuse là Cha nuôi Con Đức Chúa Trời.\nÔng Thánh Giuse hằng lo lắng che chở cho Đức Chúa Giêsu liên.\nÔng Thánh Giuse làm đầu Thánh Gia.\nÔng Thánh Giuse trọn tốt trọn lành.\nÔng Thánh Giuse cực thanh cực tịnh.\nÔng Thánh Giuse cực khôn cực ngoan.\nÔng Thánh Giuse là Đấng kiên tâm mạnh mẽ mọi đàng.\nÔng Thánh Giuse hay vâng lời chịu lụy cho trọn.\nÔng Thánh Giuse là Đấng ngay chính tận trung.\nÔng Thánh Giuse là gương nhân đức nhịn nhục.\nÔng Thánh Giuse yêu chuộng nhân đức khó khăn.\nÔng Thánh Giuse là gương tốt lành cho các kẻ làm thợ phải soi.\nÔng Thánh Giuse là mẫu mực sáng láng về cách ăn nết ở trong nhà.\nÔng Thánh Giuse gìn giữ các kẻ đồng trinh.\nÔng Thánh Giuse là như cột trụ cho kẻ bịnh tật được cậy trông.\nÔng Thánh Giuse là quan thầy phù hộ kẻ mong sinh thì.\nÔng Thánh Giuse các ma quỉ kinh khiếp.\nÔng Thánh Giuse là Đấng bảo hộ cả và Hội Thánh.\n\nChúa Giêsu chuộc tội cứu thế.\n\nThưa: Chúa tha tội chúng con.Chúa Giêsu chuộc tội cứu thế.\n\nThưa: Chúa nhậm lời chúng con.Chúa Giêsu chuộc tội cứu thế.\n\nThưa: Chúa thương xót chúng con.Chúa đã đặt Ông Thánh Giuse làm chủ nhà Chúa.\nCùng cai quản gia nghiệp Chúa.\n\n**Lời Nguyện:**\n\nChúng con lạy ơn Đức Chúa Giêsu bởi lòng thương vô cùng đã chọn lấy Ông Thánh Giuse làm bạn cùng Rất Thánh Đức Mẹ Chúa Trời. Chúng con kính chuộng Ông Thánh Giuse là quan thầy phù hộ cho chúng con ở dưới đất thì xin Chúa con ban cho chúng con được đáng ăn mày quyền thế Người cầu bầu cho chúng con ở trên Trời. Amen."
-  },
-  {
-    "id": "kinh-cau-duoc-chet-lanh",
-    "title": "Kinh Cầu Được Chết Lành",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-cau-duoc-chet-lanh/",
-    "isPopular": false,
-    "content": "Ôi Chúa Giêsu đầy lòng thương xót giang cánh tay trên Thánh giá, xin nhớ đến giờ chết của con. Ôi Trái tim đầy lòng thương xót của Chúa Giêsu, mở ra bởi lưỡi đòng đâm thâu, xin che chở con trong giây phút cuối cuộc đời. Ôi Máu và Nước tuôn ra từ Trái tim Chúa Giêsu là nguồn mạch lòng thương xót vô bờ xin thương xót con, xin thanh tẩy tội lỗi và những xúc phạm của con. Ôi Chúa Giêsu hấp hối, Đấng bảo đảm của lòng thương xót, xin làm nguôi cơn thịnh nộ của Thiên Chúa vào giờ chết của con.\n\nÔi Chúa Giêsu của con, ước gì những ngày sau cùng ở chốn khách đời này của con được hoàn toàn sống theo thánh ý của Chúa. Con kết hợp những đau khổ, cay đắng, và đau đớn trong giờ sau hết của con cho cuộc Thương Khó rất thánh của Chúa. Con dâng đau khổ của con cầu cho toàn thế giới để xin lòng thương xót vô biên của Chúa cho các linh hồn, nhất là những linh hồn tội nhân. Con tin tưởng và dâng hết người con cho thánh ý của Chúa, chính là lòng thương xót. Lòng thương xót của Chúa là tất cả cho con vào trong giờ chết. Amen."
-  },
-  {
-    "id": "kinh-cau-duc-ba",
-    "title": "Kinh Cầu Đức Bà",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-cau-duc-ba/",
-    "isPopular": true,
-    "content": "Kinh này do 2 nhóm đọc. Nhóm 1 đọc câu đầu và nhóm 2 đọc câu thưa; không đọc chữ “Thưa”\n\nXin Chúa thương xót chúng con.\n\nThưa: Xin Chúa thương xót chúng con.Xin Chúa Kitô thương xót chúng con.\n\nThưa: Xin Chúa Kitô thương xót chúng con.Xin Chúa thương xót chúng con.\n\nThưa: Xin Chúa thương xót chúng con.Chúa Kitô nghe cho chúng con.\n\nThưa: Chúa Kitô nhậm lời chúng con.Ðức Chúa Cha Ngự trên trời là Ðức Chúa Trời thật.\n\nThưa: Thương xót chúng con.Ðức Chúa con chuộc tội cứu thế là Ðức Chúa Trời thật.\n\nThưa: Thương xót chúng con.Ðức Chúa ThànhThần là Ðức Chúa Trời thật.\n\nThưa: Thương xót chúng con.Rất thánh Ðức Bà Maria.\n\nThưa: Cầu cho chúng con. (các câu kế tiếp đều thưa như vậy)Rất thánh Ðức Mẹ Chúa Trời.\nRất thánh Nữ đồng trinh trên hết các kẻ đồng trinh.\nÐức Mẹ Chúa Kitô.\nÐức Mẹ thông ơn Thiên Chúa.\nÐức Mẹ cực thanh cực tịnh.\nÐức Mẹ tuyền vẹn mọi đàng.\nÐức Mẹ chẳng vướng bợn nhơ.\nÐức Mẹ rất đáng yêu mến.\nÐức Mẹ cực mầu cực nhiệm.\nÐức Mẹ chỉ bảo đàng lành.\nÐức Mẹ sinh Chúa Tạo thiên lập địa.\nÐức Mẹ sinh Chúa Cứu Thế.\nÐức Nữ cực khôn cực ngoan.\nÐức Nữ rất đáng kính chuộng.\nÐức Nữ rất đáng ngợi khen.\nÐức Nữ có tài có phép.\nÐức Nữ có lòng khoan nhân.\nÐức Nữ trung tín thật thà.\nÐức Bà là gương nhân đức.\nÐức Bà là tòa Ðấng khôn ngoan.\nÐức Bà làm cho chúng con vui mừng.\nÐức Bà là Ðấng trọng thiêng.\nÐức Bà là Ðấng đáng tôn trọng.\nÐức Bà là Ðấng sốt mến lạ lùng.\nÐức Bà như hoa hường mầu nhiệm vậy.\nÐức Bà như lầu đài Ðavít vậy.\nÐức Bà như tháp ngà báu vậy.\nÐức Bà như đền vàng vậy.\nÐức Bà như hòm bia Thiên Chúa vậy.\nÐức Bà là cửa Thiên đàng.\nÐức Bà như sao mai sáng vậy.\nÐức Bà cứu kẻ liệt kẻ khốn.\nÐức Bà bầu chữa kẻ có tội.\nÐức Bà yên ủi kẻ âu lo.\nÐức Bà phù hộ các giáo hữu.\nNữ vương các thánh thiên thần.\nNữ vương các thánh Tổ tông.\nNữ vương các thánh Tiên tri.\nNữ vương các thánh Tông đồ.\nNữ vương các thánh Tử vì đạo.\nNữ vương các thánh Hiển tu.\nNữ vương các thánh Ðồng trinh.\nNữ vương các thánh Nam cùng các thánh Nữ.\nNữ vương chẳng hề mắc tội tổ tông.\nNữ vương linh hồn và xác lên trời.\nNữ vương truyền phép rất thánh Mân côi.\nNữ vương ban sự bằng an.\nNữ vương các gia đình.\nChúa Giêsu chuộc tội cứu thế.\n\nThưa: Chúa tha tội chúng con.Chúa Giêsu chuộc tội cứu thế.\n\nThưa: Chúa nhậm lời chúng con.Chúa Giêsu chuộc tội cứu thế.\n\nThưa: Chúa thương xót chúng con.Lạy rất thánh Ðức Mẹ Chúa Trời xin cầu cho chúng con.\n\nThưa: Ðáng chịu lấy những sự Chúa Kitô đã hứa.**Lời Nguyện:**\n\nChúng con lạy ơn rất thánh Ðức Mẹ Chúa Trời, chúng con trông cậy Ðức Bà là Chúa bầu chúng con: xin cho chúng con biết lòng Ðức Mẹ yêu dấu con mọn này còn ở dưới thế cách xa mặt Mẹ. Ðức Chúa Giêsu xưa xuống thế gian chẳng bỏ loài kẻ có tội, lại liều mình chịu nạn chịu chết vì hết cả và loài người ta; Ðức Mẹ cũng một lòng theo Con như vậy. Mẹ ôi! Khoan thay! Nhân thay! Chớ trở mặt đi mà chẳng nhìn chúng con; xin Ðức Mẹ thương xem dạy dỗ yên ủi chúng con. Con cậy Mẹ có phép tắc nhiều trên hết Thiên thần cùng trên hết các thánh. Chúng con còn ở dưới thế này như kẻ đi biển cả vậy. Ðức Mẹ là như ngôi sao chính ngự ở trời bên bắc vậy, xin Ðức Mẹ dẫn đàng cho chúng con được theo, kẻo phải xiêu chìm sa hỏa ngục vô cùng; chúng con trông Ðức Mẹ cho chúng con ngày sau được vào cửa thiên đàng, xem thấy mặt Ðức Chúa Giêsu cùng mặt Ðức Mẹ, được hưởng muôn muôn sự phúc gồm hết mọi sự tốt lành chẳng hay hết chẳng hay cùng. Amen."
-  },
-  {
-    "id": "kinh-cay",
-    "title": "Kinh Cậy",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-cay/",
-    "isPopular": true,
-    "content": "Lạy Chúa con,\ncon trông cậy vững vàng,\nvì công nghiệp Đức Chúa Giêsu\nthì Chúa sẽ ban ơn cho con giữ đạo nên ở đời này,\ncho ngày sau được lên thiên đàng\nxem thấy mặt Đức Chúa Trời hưởng phúc đời đời,\nvì Chúa là Đấng phép tắc và lòng lành vô cùng\nđã phán hứa sự ấy chẳng có lẽ nào sai được. Amen."
-  },
-  {
-    "id": "kinh-co-dong-on-thien-trieu",
-    "title": "Kinh Cổ Động Ơn Thiên Triệu",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-co-dong-on-thien-trieu/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu Kitô, Con Thiên Chúa Cha hằng hữu, Con Đức Trinh Nữ Maria, chúng con tạ ơn Chúa đã hy sinh đời sống trong hy lễ trên Thánh Giá và tái diễn hy lễ này trong các Thánh Lễ cử hành trên khắp thế giới. Trong quền phép Chúa Thánh Thần, chúng con thờ lạy Chúa và tuyên xưng Chúa hiện diện thực sự trong Bí Tích Thánh Thể. Chúng con ước ao bắt chước tình yêu Chúa, tỏ ra cho chúng con qua sự chết và sống lại của Chúa, bằng cách yêu thương va phục vụ lẫn nhau. Chúng con cầu xin Chúa kêu gọi nhiều người trẻ gia nhập đời sống tận hiến và cung cấp những linh mục thánh thiện và quảng đại rất cần thiết trong Giáo Hội và Tổng Giáo Phận chúng con hiện nay. Lạy Chúa Giêsu, xin nhậm lời chúng con. Amen."
-  },
-  {
-    "id": "kinh-cua-nguoi-cha",
-    "title": "Kinh Của Người Cha",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cua-nguoi-cha/",
-    "isPopular": false,
-    "content": "Lạy Chúa, Chúa cũng là người Cha như con. Chúa biết rằng, người Cha nào cũng muốn cho con cái mình được hạnh phúc. Xin cho con cái con thân thể cường tráng, trí khôn minh mẫn, phán đoán ngay thẳng, ý chí kiên cường, và ý thức trách nhiệm. Xin Chúa cất đi những dịp hiểm nghèo, khiến chúng dễ xa phạm tội làm mất lòng Chúa. Xin cho con biết chu toàn trách nhiệm của một người cha, một người chồng trong gia đình, biết mưu cầu hạnh phúc cho con cái, và cho người bạn đường yêu quý của con. Xin cho mọi thành viên trong gia đình con, biết quý trọng giá trị những của cải hạnh phúc đời sau, hơn là của cải vật chất đời này. Amen."
-  },
-  {
-    "id": "kinh-cua-nguoi-me",
-    "title": "Kinh Của Người Mẹ",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-cua-nguoi-me/",
-    "isPopular": false,
-    "content": "Lạy Chúa, chỉ có Chúa mới thấu hiểu được hết tấm lòng người Mẹ. Xin Chúa che chở cho con cái con phần hồn phần xác. Xin cho chon cái con ơn dễ dạy. Xin cho con ơn nhân ái dịu hiền mà không nhu nhược, luôn cương quyết những khi cần thiết. Xin gìn giữ con khỏi tính hay gắt gỏng, nóng giận, hoặc quá nuông chiều con cái. Xin giữ gình miệng lưỡi con, khỏi thốt ra những lời chua cay độc ác.\n\nXin Chúa đừng để con phải đau lòng, vì thấy con cái con bịnh hoạn tật nguyền, hay lười biếng ham chơi. Xin cho chúng ơn trung tín với Chúa trong đức tin suốt đời. Xin cho chúng biết sử dụng những tài năng Chúa ban, để làm vinh danh Chúa, phụng sự nhân loại và tổ quốc thân yêu. Xin cho con nêu gương sáng cho con cái con, biết nhẫn nại dạy dỗ chúng theo tinh thần Đạo Chúa, để đời này gia đình chúng con làm vui lòng Chúa, và đời sau cả nhà chúng con được hưởng kiến dung nhan dịu hiền Chúa trên trời. Amen."
-  },
-  {
-    "id": "kinh-cuu-15-linh-hon",
-    "title": "Kinh Cứu 15 Linh Hồn",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-cuu-15-linh-hon/",
-    "isPopular": false,
-    "content": "*Lời than khóc của Đức Mẹ khi ẵm xác Chúa Giêsu dưới chân Thánh Giá:*\n\nÔi Con là suối tràn đầy chân lý, giờ đây Diện Mạo của con dã dời, mệt mỏi đến chừng nào! Ôi Con là Y Sĩ khôn ngoan của các linh hồn, giờ đây Con im lặng làm sao! Ôi Con là sự huy hoàng của ánh sáng muôn đời, giờ đây Con chẳng còn một chút sinh lực! Ôi Tình Yêu mến chân thật, gương mặt của Con trước đây đẹp đẽ bao nhiêu thì giờ đây hoàn toàn biến thể! Ôi Thiên Chúa Tối Cao mà chỉ còn là sự nghèo hèn tột độ! Ôi Con là Yêu Thương của Trái Tim Mẹ, lòng nhân ái của Con bao la biết bao! Ôi Con là niềm vui bất tận! Ôi yêu thương của Trái Tim Mẹ, sự đau đớn của Con phải lớn lao đến chừng nào! Ôi Giêsu yêu dấu của Mẹ, là một Thiên Chúa cùng vơí Đức Chúa Cha và Chúa Thánh Thần, một Bản Thể duy nhất, xin Con thương xót tất cả những người sống và đặc biệt xin Con xót thương các linh hồn khốn khổ nơi Luyện Ngục. Amen.\n\nĐọc: Kinh Tin Kính, Kinh Lạy Nữ Vương, Kinh Lạy Cha, Kinh Kính Mừng, Kinh Sáng Danh\n\nLời nguyện: Chúng con cậy vì Danh Chúa nhân từ, cầu cho các linh hồn được lên chốn nghỉ ngơi, và xem thấy Mặt Đức Chúa Trời sáng láng, vui vẻ vô cùng. Amen."
-  },
-  {
-    "id": "kinh-dang-gia-dinh-cho-thanh-tam-chua-giesu",
-    "title": "Kinh Dâng Gia Đình Cho Thánh Tâm Chúa Giêsu",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-dang-gia-dinh-cho-thanh-tam-chua-giesu/",
-    "isPopular": false,
-    "content": "Lạy Chúa Cứu Thế rất dịu dàng từ hậu, chúng con khiêm nhường quỳ dâng gia đình chúng con cho Rất Thánh Trái Tim Chúa. Xin Chúa hãy làm vua chúng con, chúng con hoàn toàn tin cậy Chúa. Chớ gì tinh thần của Chúa thấu nhập tư tưởng, sự ước ao, lời nói, việc làm của chúng con. Xin Chúa chúc phúc cho các việc chúng con định làm. Xin Chúa chia phần vui khổ, sự vất vả làm ăn của chúng con. Xin ban cho chúng con được ơn hiểu biết Chúa hơn, mến Chúa hơn, và làm tôi Chúa không hề bê trễ. Chớ gì khắp tứ phương thiên hạ vang tiếng tung hô rằng : Hãy kính mến, hãy chúc tụng, hãy làm sáng danh Trái Tim hiển thắng Đức Chúa Giêsu mọi nơi mọi đời. Amen."
-  },
-  {
-    "id": "kinh-dang-gia-dinh-cho-trai-tim-me",
-    "title": "Kinh Dâng Gia Đình Cho Trái Tim Mẹ",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-dang-gia-dinh-cho-trai-tim-me/",
-    "isPopular": false,
-    "content": "Lạy Trái Tim Vô Nhiễm Nguyên Tội Mẹ Maria, Chúa đã đặt Trái Tim Mẹ làm gương mẫu cải tạo các gia đình, làm trung tâm lôi kéo mọi tấm lòng quy hướng về cùng Chúa. Hôm nay con xin dâng cho Trái Tim Mẹ trót mình con, cả hồn xác con, cả cuộc sống con, con cũng xin hiến dâng cho Trái Tim Mẹ cả gia đình con, hết mọi Người thân thuộc hoặc đi vắng, hoặc đang chung sống với nhau trong nhà này.\n\nXin Mẹ hãy cải tạo trí ý tâm tình moị người trong gia đình con, để gia đình con hòa thuận thương yêu nhau, hợp nhất cùng nhau trong Trái Tim Mẹ.\n\nXin Mẹ hãy xua đuổi quỷ tham lam của cải, lỗi đức công bằng, ra khỏi lòng mọi người trong gia đình con, để chúng con biết sống theo đức công bằng và tuân giữ giới răn thứ bảy cho trọn vẹn. Xin Mẹ hãy khử trừ thần ô uế, cám dỗ phạm giới răn thứ sáu, để chúng con biết giữ hồn xác trong sạch, xứng đáng làm cho con yêu dấu Mẹ đời này được ẩn náu trong Trái Tim Mẹ, đời sau cùng Mẹ, hát mừng yêu mến Chúa Ba Ngôi đời đời Amen."
-  },
-  {
-    "id": "kinh-dang-loai-nguoi-cho-rat-thanh-trai-tim-duc-giesu",
-    "title": "Kinh Dâng Loài Người Cho Rất Thánh Trái Tim Đức Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-dang-loai-nguoi-cho-rat-thanh-trai-tim-duc-giesu/",
-    "isPopular": false,
-    "content": "Lạy Đức Chúa Giêsu dịu ngọt là Đấng Cứu chuộc loài người. Xin Chúa đoái nhìn chúng con đang khiêm nhượng sấp mình trước bàn thờ Chúa. Chúng con là người của Chúa, cùng muốn thuộc về Chúa, và để kết hiệp cùng Chúa bền vững hơn, thì hôm nay mỗi người chúng con tự ý dâng mình cho Rất Thánh Trái Tim Chúa. Có nhiều người không hề biết Chúa, lại nhiều kẻ khinh mạn điều răn Chúa và khước từ Chúa. Lạy Đức Chúa Giêsu nhân từ, xin hãy thương xót cả hai, và đưa dẫn mọi người trở về cùng Rất Thánh Trái Tim Chúa. Lạy Chúa, xin hãy làm vua cai trị chẳng những người tín hữu không bao giờ lìa xa Chúa, mà lại những con hoang đàng đã từ bỏ Chúa; Cúi xin Chúa hãy làm cho những kẻ ấy được kịp trở về nhà Cha kẻo phải lầm than đói khát mà chết. Xin Chúa hãy làm vua những kẻ đang sống trong lầm lạc hay bởi bất thuận mà đã lìa xa Chúa, xin hãy đưa về cửa chân thật cùng một đức tin, hầu chóng nên một đoàn chiên theo một Chúa chiên. Lạy Chúa, xin hãy ban cho Hội Thánh được bình yên vững chắc thơ thới; xin hãy ban cho muôn dân trật tự hòa bình; xin làm cho từ Bắc chí Nam cực vang dội một tiếng: Ngợi khen Trái tim Chúa vì đã mua chộc ơn cứu rỗi cho chúng con: Tán tạ sáng danh Chúa đời đời. Amen."
-  },
-  {
-    "id": "kinh-dang-minh-ban-toi",
-    "title": "Kinh Dâng Mình Ban Tối",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-dang-minh-ban-toi/",
-    "isPopular": false,
-    "content": "Trời đã xế chiều, Giêsu ơi con nhờ tay Mẹ Maria, mà dâng lên Chúa, dâng chúc lời cám ơn, dâng trót cả xác hồn. Các việc con làm, các lời con xin, cùng với mọi khó nguy con chịu trót một ngày qua. Cùng với bóng chiều tà, Giêsu Maria, con hòa ca, dâng về nơi bao la. Chúa ban phép lành, một đêm ngủ an bình, hồn trong xác tươi xinh. Amen."
-  },
-  {
-    "id": "kinh-dang-minh-cho-chua-thanh-than",
-    "title": "Kinh Dâng Mình Cho Chúa Thánh Thần",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-dang-minh-cho-chua-thanh-than/",
-    "isPopular": false,
-    "content": "Lạy Chúa Thánh Thần, Thần khí của sự sáng và tình yêu, con xin dâng lên Ngài trí khôn của con, trái tim con, ước muốn con, và tất cả con người của con bây giờ và mãi đời sau.\n\nXin cho trí khôn của con luôn luôn dễ tiếp nhận những lời linh ứng từ Thánh Thần và giáo huấn của giáo hội công giáo, mà chính Ngài là Ðấng hướng dẫn chẳng hề sai lầm. Xin cho trái tim của con luôn bừng cháy tình yêu của Chúa và của những người chung quanh. Xin cho ước muốn của con luôn phù hợp với ước muốn của Chúa, và xin cho tất cả cuộc đời con luôn noi gương thánh đức Thiên Chúa và Chúa Giêsu Ðấng cứu độ, nơi Người cùng với Chúa Cha và Chúa Thánh Thần, mà danh dự và vinh quang thuộc về Thiên Chúa đến muôn muôn đời. Amen."
-  },
-  {
-    "id": "kinh-dang-minh-cho-thanh-ca-giuse",
-    "title": "Kinh Dâng Mình Cho Thánh Cả Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-dang-minh-cho-thanh-ca-giuse/",
-    "isPopular": false,
-    "content": "Lạy Thánh Giuse yêu dấu! Xin nhận con làm con của Cha.\nXin Cha chăm lo phần rỗi con, xin trông chừng con ngày đêm.\nXin gìn giữ con khỏi các dịp tội, xin cho con được trong sạch hồn xác.\nNhờ lời chuyển cầu của Cha với Chúa Giesu, cho con được lòng khiêm nhường, hy sinh và bỏ mình.\nMột tình yêu nồng cháy dành cho Chúa Giesu trong bí tích Thánh Thể.\nMột tình yêu dịu ngọt dành cho Đức Maria, Mẹ con.\nMột tình yêu vâng phục dành cho Đức Thánh Cha và Hội Thánh.\nLạy Thánh Giuse, xin ở cùng con khi sống và lúc chết. Xin cho con được sự phán xét may lành của Chúa Giesu. Chúa Cứu Thế nhân hậu của con. Amen."
-  },
-  {
-    "id": "kinh-dang-minh-cho-trai-tim-chua-giesu",
-    "title": "Kinh Dâng Mình Cho Trái Tim Chúa Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-dang-minh-cho-trai-tim-chua-giesu/",
-    "isPopular": false,
-    "content": "Lạy Trái Tim cực trọng Đức Chúa Giê-Su đã thương chúng tôi vô cùng, ai kể cho xiết được những ơn Trái Tim cực thánh đã ban cho chúng tôi, từ khi Đức Chúa Giê-Su mới sinh ra thì Trái Tim người đã nghĩ đến chúng tôi là kẻ hèn mọn, mọi việc người làm, người đã làm vì chúng tôi. Người đã chịu đau đớn, đã chịu nạn, đã chịu chết, Trái Tim Người đã chịu cực khổ vì chúng tôi. Chúng tôi mê muội bấy lâu nay, chưa suy ơn Đức Chúa Trời nên. Xin Đức Chúa Trời tha tội tha vạ cho kẻ có tội. Chúng tôi là kẻ khốn khó chẳng biết làm thế nào mà đội ơn cho xứng đáng. Lạy ơn trên trời soi sáng thì chúng tôi mới biết Đức Chúa Giê-Su muốn cho người ta kính mến Trái Tim người cách riêng, thật là chúng tôi thiếu thốn mọi đàng, trong mình những thấy tội lỗi chẳng có sự gì lành đáng dâng cho Trái Tim cực thánh. Chúng tôi xấu hổ lắm, sấp mình xuống dưới chân đấng nhân lành vô cùng, chúng tôi hợp ý cùng bề trên mà dâng mình cho Trái Tim cực trọng Đức Chúa Giê-Su. Chúng tôi dâng linh hồn, xin Trái Tim gìn giữ cho sạch mọi tội, chúng tôi dâng xác, xin Trái Tim ban ơn cho được làm tôi Đức Chúa Trời. Mọi sự bề trong bề ngoài, mọi việc chúng tôi làm, sự sống, sự chết, tài trí của cải hết mọi sự, chúng tôi dâng cho Trái Tim thay thảy, dù khi chúng tôi được sự gì lành, dù khi phải sự gì khốn khó thì xin chịu bằng lòng cho sáng danh Trái Tim Đức Chúa Giê-Su.\n\nChúng tôi cũng dâng cả anh em họ hàng, xin Trái Tim gìn giữ cùng ban mọi ơn lành. Ớ Trái Tim cực thánh hãy cai trị trong lòng chúng tôi. Xin che chở chúng tôi cho khỏi chước ma quỷ, xin ban lòng tin cậy kính mến cho chúng tôi được đẹp lòng Đức Chúa Trời, xin phá những sự dữ đang vây bọc tứ bề, xin cứu lấy chúng tôi trong giờ sau hết, xin ban mọi ơn lành cho các đấng giám mục chăn giữ con chiên Đức Chúa Giê-Su, xin phù hộ cho các thày cả được đẹp lòng Đức Chúa Trời, cùng xin giúp các đấng các bậc dậy dỗ chúng tôi cho nên. Lạy Trái Tim hay thương vô cùng, hãy chịu lấy trái tim hèn mọn chúng tôi, hãy ban lòng kính mến một ngày một hơn ở đời này, hãy đưa chúng tôi lên thiên đàng hưởng Trái Tim Đức Chúa Giê-Su đời đời chẳng cùng. Amen.\n\nCám ơn bạn Ngọc đã gửi cho mình kinh này!"
-  },
-  {
-    "id": "kinh-dang-minh-cho-duc-ba",
-    "title": "Kinh Dâng Mình Cho Đức Bà",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-dang-minh-cho-duc-ba/",
-    "isPopular": false,
-    "content": "Lạy Đức Bà Maria, nhân thay khoan thay, con xin dâng mình con cho Đức Mẹ, và cho chúng con hết lòng làm con Đức Mẹ, thì ngày hôm nay con xin dâng con mắt, lỗ tai, miệng lưỡi, trái tim, cùng trót cả linh hồn và thân xác con cho Đức Mẹ. Lạy Đức Mẹ Maria, con xin thuộc về Đức Mẹ và xin Đức Mẹ gìn giữ chúng con như của riêng Đức Mẹ vậy. Amen."
-  },
-  {
-    "id": "kinh-dang-moi-su-cho-trai-tim-chua",
-    "title": "Kinh Dâng Mọi Sự Cho Trái Tim Chúa",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-dang-moi-su-cho-trai-tim-chua/",
-    "isPopular": false,
-    "content": "Lạy Rất Thánh Trái Tim Đức Chúa Giêsu, chúng con xin phó dâng linh hồn và xác cùngmọi sự cho Trái Tim Chúa; nếu ngày hôm nay chúng con sa phạm điều gì lỗi lời chúng con đã hứa thì xin Chúa thứ tha. Lạy Chúa, xin hãy dùng Trái Tim vẹn sạch Đức Mẹ,là Nữ Vương hay ban sự bình an mà lập Nước Chúa trong mọi gia thất khắp cả miền xứ chúng con.\n\nChớ chi chẳng những mọi người giáo hữu, mà lại các dân các nước đều nhìn biết Chúa là Vua rất nhan tư, mà yêu mến phượng thờ. Chớ chi cả và thiên hạ chóng rập một tiếng tán tạ tung hô rằng: Nước Chúa trị đến! Vạn tuế Rất Thánh Trái Tim Đức Chúa Giêsu là Vua hằng sống hằng trị đời đời. Amen."
-  },
-  {
-    "id": "kinh-dang-moi-viec-ca-ngay-cho-trai-tim-chua",
-    "title": "Kinh Dâng Mọi Việc Cả Ngày Cho Trái Tim Chúa",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-dang-moi-viec-ca-ngay-cho-trai-tim-chua/",
-    "isPopular": false,
-    "content": "Lạy Rất Thánh Trái Tim Đức Chúa Giêsu, nhân vì trái tim vẹn sạch Đức Bà Maria, con xin dâng mọi sự con mơ ước, nài xin, mọi việc con làm, mọi sự cực con chịu trong ngày hôm nay, có ý bồi thường phạt tạ Rất Thánh Trái Tim Chúa, vì tội lỗi chúng con hằng sa phạm mất lòng Chúa, được hiệp cùng thánh ý Trái Tim Chúa hằng dâng mình tế lễ trên bàn thờ. Amen."
-  },
-  {
-    "id": "kinh-dang-ngay",
-    "title": "Kinh Dâng Ngày",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-dang-ngay/",
-    "isPopular": true,
-    "content": "Lạy Rất Thánh Trái Tim Đức Chúa Giesu, con nhờ Trái Tim Cực Sạch Đức Bà Maria mà dâng Cho Trái Tim Chúa mọi lời con cầu xin, mọi việc con làm, mọi sự khó con chịu trong ngày hôm nay, cho được đền vì tội lỗi con và cầu nguyện theo ý Chúa. khi dâng mình tế lễ trên bàn thờ, con lại dâng các sự ấy cho Trái Tim Chúa, có ý cầu nguyện cách riêng theo ý Đức Giáo Hoàng. Amen."
-  },
-  {
-    "id": "kinh-dang-nuoc-viet-nam-cho-trai-tim-duc-me",
-    "title": "Kinh Dâng Nước Việt Nam Cho Trái Tim Đức Mẹ",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-dang-nuoc-viet-nam-cho-trai-tim-duc-me/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Maria Vô Nhiễm Nguyên Tội, chúng con toàn thể giáo hữu Việt Nam hết lòng trông cậy chạy đến cùng Mẹ.\n\nMẹ là Mẹ Thiên Chúa, là Mẹ chúng con. Mẹ là Nữ vương toàn năng, là Đấng Bầu Cử cho chúng con trước tòa Chúạ Biết bao lần Mẹ cứu vãn Giáo hội và các dân tộc trong cơn nguy biến. Chúng con hết lòng thành kính hiến dâng Giáo Hội và tổ quốc Việt Nam cho Trái Tim Vô Nhiễm Nguyên Tội Mẹ, để thực hành mệnh lệnh của Mẹ và để nhờ Mẹ che chở phù trì ngày nay và mãi mãi!\n\nXin Mẹ gìn giữ Giáo Hội Việt Nam. Xin Mẹ soi sáng hàng giáo phẩm, dìu dắt và thánh hóa các linh mục. Xin Me giúp sức cho toàn thể giáo dân được trung thành giữ luật Chúa, và sốt sắng làm việc tông đồ. Xin Mẹ nâng đỡ và ủi an những anh em của chúng con đang phải khốn khó vì Đạo Chúa.\n\nXin Mẹ chúc lành cho Tổ Quốc Việt Nam. Xin Mẹ hướng dẫn các nhà lãnh đạo dân tộc. Xin Mẹ đem tinh thần Phúc Âm thấm nhuần tất cả các cơ cấu quốc gia. Xin Mẹ cho toàn thể dân Việt biết đoàn kết để cùng nhau xây dựng lại giang sơn. Nhất là xin Mẹ cứu chúng con thoát nạn Cộng Sản vô thần, để mọi người được sống trong tự do hòa bình, ngõ hầu Nước Chúa được mở rộng khắp nơi.\n\nChúng con nguyện muôn đời ghi nhớ ơn Mẹ và cùng nhau xây dựng một đền thờ hay một công tác nào khác dâng kính Trái Tim Vô Nhiễm Nguyên Tội Mẹ, để lưu truyền cho hậu thế ơn che chở đặc biệt của Mẹ.\n\nLạy Mẹ Vô Nhiễm Nguyên Tội, chúng con thành khẩn kêu đến Mẹ, vì chúng con biết Mẹ sẽ nhận lời chúng con, và mặc dầu mọi nỗi khó khăn hiện tại, chúng con tin chắc Trái Tim Mẹ sẽ thắng. Amen."
-  },
-  {
-    "id": "kinh-dang-dem",
-    "title": "Kinh Dâng Đêm",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-dang-dem/",
-    "isPopular": false,
-    "content": "Trời đã xế chiều, Giêsu ơi con nhờ tay Mẹ Maria mà dâng lên Chúa, dâng chúc lời cám ơn, dâng trót cả xác hồn. Các việc con làm, các lời con xin, cùng với mọi khó nguy con chịu trót một ngày qua.\n\nCùng với bóng chiều tà, Giêsu Maria, con hòa ca, dâng về nơi bao la. Chúa ban phép lành, một đêm ngủ an bình, hồn trong xác tươi xinh. Amen."
-  },
-  {
-    "id": "kinh-don-minh-ruoc-le",
-    "title": "Kinh Dọn Mình Rước Lễ",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-don-minh-ruoc-le/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, con tin thật Chúa đang ngự trong Bí Tích Thánh Thể. Chúa là Thiên Chúa thật và là người thật, đã trở nên thần lương nuôi sống chúng con trên đường về quê trời.\n\nChúa muốn ở trong con, và con cũng ước ao rước Chúa vào lòng, để được ở lại trong Chúa. Nhưng con biết, mình còn nhiều tội lỗi, chẳng đáng Chúa đến thăm.Xin Chúa tẩy sạch tâm lòng con, để con nên trong trắng. Xin Chúa mở rộng hồn con, để con đừng từ chối Chúa điều gì.\n\nLạy Chúa Giêsu, con yêu mến Chúa lắm, xin Chúa mau đến với con. Lạy Mẹ Maria và Thánh Cả Giuse, xin giúp con dọn mình xứng đáng đón rước Chúa Giêsu. Amen."
-  },
-  {
-    "id": "kinh-hien-dang-hai-gio-cuoi-cung-cua-doi-chung-ta-cho-duc-trinh-nu-maria",
-    "title": "Kinh Hiến Dâng hai giờ cuối cùng của đời chúng ta cho Đức Trinh Nữ Maria",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-hien-dang-hai-gio-cuoi-cung-cua-doi-chung-ta-cho-duc-trinh-nu-maria/",
-    "isPopular": false,
-    "content": "Ôi Maria! Con sấp mình xuống dưới chân Mẹ, ăn năn thống hối vì những\ntội lỗi của con, nhưng tràn đầy tin tưởng vào lòng Nhân Ái của Mẹ. LạymMẹ Maria, xin Mẹ hãy chấp nhận lời nguyện cầu mà linh hồn con kínhmdâng lên Mẹ đây. Đó là giờ sau hết của đời con. Mẹ sẽ dùng tình yêumcủa Mẹ để giúp đỡ con.\n\nÔi Maria hiền mẫu của con, con xin hiến dâng hai giờ cuối cùng của con cho Mẹ. Xin Mẹ hãy đến bên cạnh con để nhận lấy hơi thở cuối cùng của con và lúc sự chết đã chấm dứt chuỗi ngày của con trên trần gian này thì xin Mẹ hãy hiến dâng linh hồn con cho Chúa Giêsu và nói với Ngài rằng: “Mẹ yêu thương linh hồn này.” Chỉ một lời đó mà thôi cũng sẽ đủ cho con được sự chúc lành của Thiên Chúa và hồng phúc trông thấy Mẹ muôn đời trên Thiên Quốc. Con đặt tin tưởng vào Mẹ, là Mẹ của con, và tin chắc điều này sẽ thực hiện. Ôi Maria! Xin Mẹ hãy cầu bầu cho con là con của Mẹ, đến cùng Chúa và dẫn đưa con đến cùng Chúa Giêsu. Amen."
-  },
-  {
-    "id": "kinh-hoa-binh",
-    "title": "Kinh Hoà Bình",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-hoa-binh/",
-    "isPopular": true,
-    "content": "Lạy Chúa từ nhân,\nxin làm cho con nên khí cụ bình an của Chúa:\nĐể con đem yêu thương vào nơi oán thù,\nđem thứ tha vào nơi lăng nhục,\nđem an hòa vào nơi tranh chấp,\nđem chân lý vào chốn lỗi lầm.\n\nĐể con đem đức tin vào nơi nghi nan,\nchiếu trông cậy vào nơi thất vọng,\nđem ánh sáng vào nơi tối tăm,\nđem niềm vui đến chốn sầu buồn.\n\nLạy Chúa xin hãy dạy con:\nTìm an ủi người hơn được người ủi an,\ntìm hiểu biết người hơn được người hiểu biết,\ntìm yêu mến người hơn được người mến yêu.\n\nVì chính khi hiến thân là khi được nhận lãnh,\nchính lúc quên mình là lúc gặp lại bản thân,\nchính khi tha thứ là khi được tha thứ,\nchính lúc chết đi là khi vui sống muôn đời. Amen."
-  },
-  {
-    "id": "kinh-hay-nho",
-    "title": "Kinh Hãy Nhớ",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-hay-nho/",
-    "isPopular": true,
-    "content": "Lạy Thánh Nữ Đồng Trinh Maria là Mẹ rất nhân từ,\nxin hãy nhớ xưa nay chưa từng nghe có người nào chạy đến cùng Đức Mẹ\nxin bầu chữa cứu giúp mà Đức Mẹ từ bỏ chẳng nhậm lời.\n\nNhân vì sự ấy,\ncon lấy lòng trông cậy vững vàng chạy đến van nài Đức Mẹ,\nlà Đức Nữ Đồng Trinh trên hết các kẻ đồng trinh,\nxin Mẹ đoái đến con là kẻ tội lỗi than khóc ăn năn chạy đến cùng Mẹ.\n\nLạy Mẹ là Mẹ Ngôi Lời,\nxin chớ bỏ lời con kêu xin,\nmột dủ lòng thương mà nhậm lời con cùng. Amen."
-  },
-  {
-    "id": "kinh-hang-huu",
-    "title": "Kinh Hằng Hữu",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-hang-huu/",
-    "isPopular": false,
-    "content": "*(Của Thánh Nữ Zertrude)*\n\nLạy Cha Hằng Hữu. Con xin dâng lên Cha bửu huyết của Chúa Giêsu con Chí Thánh Cha, hiệp cùng các Thánh Lễ được cử hành trong ngày hôm nay trên khắp hoàn cầu để chỉ cho các linh hồn nơi chốn luyện hình, cho các tội nhân ở khắp nơi, trong Giáo Hội phổ quát, nơi quê hương con và trong chính gia đình con. Amen.\n\n*(Chúa phán cùng Thánh Nữ Gertrude Cả rằng: Bản kinh này mổi lần đọc có thể cứu 1000 linh hồn nơi luyện ngục, kinh nay có hiệu lực với cả tội nhân nữa.)*"
-  },
-  {
-    "id": "kinh-hong-an",
-    "title": "Kinh Hồng Ân",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-hong-an/",
-    "isPopular": false,
-    "content": "Tôi lạy ơn Đức Chúa Giêsu ra đời chuộc tội cho thiên hạ, cùng chịu phép cắt bì, cùng chịu quân Giudêu cãi những lẽ trái, cùng chịu Giuđa bán, cùng chịu trói như con chiên đi giết, cùng chịu phó mình cho Annát, Caipha, Philatô cùng Hêrôđê nữa, cùng chịu kẻ dữ cáo nài, cùng chịu đòn đánh, cùng chịu xấu hổ, cùng chịu đội mũ gai, cùng chịu giổ, chịu vả, cùng chịu đóng đanh giang tay ra trên cây Thánh Giá ở giữa hai người kẻ trộm, cùng chịu uống giấm chua mật đắng, cùng chịu đâm cạnh nương long. Tôi xin cùng Đức Chúa Giêsu vì bấy nhiêu sự này, cùng vì rất Thánh Giá là giường Chúa nằm chịu chết vì tôi, xin Chúa chữa tôi cho khỏi sự khốn nạn trong nơi hỏa ngục, xin Chúa thương tôi như đã thương người kẻ trộm phải đóng đanh bên hữu Chúa. Chúa là Đấng hằng sống hằng trị cùng Đức Chúa Cha và Đức Chúa Thánh Thần, đời đời kiếp kiếp. Amen.\n\n### Tiếng Latin:\n\nDeus, qui pro redemptióne mundi voluísti násci, circumcídi, a Judæis reprobári, a Juda traditóre ósculo tradi, vínculis alligári, sicut agnus ínnocens ad víctimam duci, atque conspéctibus Annæ, Cáiphæ, Piláti, et Heródis indecénter offérri, a falsis téstibus accusári, flagéllis et oppróbriis vexári, sputis cónspui, spinis coronári, cólaphis cædi, arúndine pércuti, fácie velári, véstribus éxui, cruci clavis affígi, in cruce levári, inter latrones deputári, felle et aceto potári, et lácea vulnerári: tu, Dómine, per has sanctíssimas pœnas tuas, quas ego indígnus récolo, et per sanctam crucem et mortem tuam, libera me a pœnis inférni, et perducere dignéris, quo perduxísti latronem tecum crucifixum. Qui cum Patre et Spíritu Sancto vivis et regnas in sæcula sæculorum. Amen."
-  },
-  {
-    "id": "kinh-hoi-ao-duc-ba",
-    "title": "Kinh Hội Áo Đức Bà",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-hoi-ao-duc-ba/",
-    "isPopular": false,
-    "content": "Lạy Ơn Rất Thánh Đồng Trinh Maria là quan thầy họ Áo Đức Bà. Chúng con dốc lòng vào họ Áo Đức Bà và mặc Áo Đức Ba trong mình mọi ngày cho đến trọn đời, hoặc khi chúng con phải sự gì khốn khó thì chúng con sẽ cậy có Áo Đức Bà phù hộ cùng thêm sức mà cứu chữa lấy chúng con cho khỏi. Mà đến giờ chết khi Đức Bà thấy áo Thánh ấy ở nơi mình chúng con thì xin Đức Bà nhận lấy chúng con làm con cái Đức Bà mà đưa chúng con về Thiên Đàng chầu chực Đức Chúa Trời Ba Ngôi cùng Rất Thánh Đức Mẹ đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-khiem-nhuong",
-    "title": "Kinh Khiêm Nhường",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-khiem-nhuong/",
-    "isPopular": false,
-    "content": "Lạy Chúa là Tình Yêu tối cao của con, con đây, con không là gì cả,\nkhông có gì là thiện, không có gì là tốt lành, không có gì là nhân\nđức, không có gì là trong trắng, không có gì là xứng hợp với các ân\nhuệ Chúa. Đây, con từ vực sâu thẩm của nỗi bần cùng của con. Con nài\nxin Chúa, vì vực thẩm của Tình Yêu Nhân Hậu của Chúa mà ban cho con:\n\nƠn được biết và làm cho người ta biết Chúa. Ơn được yêu và làm cho\nngười ta yêu Chúa. Ơn phục vụ và làm cho người ta phục vụ Chúa một\ncách hoàn hảo, đến nỗi là một tạo vật khốn khổ có thể làm được và cho\nnguồn vinh quang của Chúa ngời sáng đến độ tuyệt vời. Amen."
-  },
-  {
-    "id": "kinh-khan-thanh-giuse-bao-tro-nhung-vu-kho-khan",
-    "title": "Kinh Khấn Thánh Giuse Bảo Trợ Những Vụ Khó Khăn",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-khan-thanh-giuse-bao-tro-nhung-vu-kho-khan/",
-    "isPopular": false,
-    "content": "Lạy Thánh Giuse, xưa nay không ai kêu cầu Cha mà vô hiệu. Cha có thần thế trước mặt Đức Chúa Trời đến nỗi người ta có thể nói rằng: “Trên trời, Thánh Giuse truyền lệnh hơn là van xin”.\n\nLạy Cha hiền, xin cầu bầu cùng Chúa cho chúng con. Khi ở thế gian này, Cha đã từng là cha nuôi và là vị bảo hộ trung thành của Chúa Con Chí Thánh. Nay xin Cha bào chữa cho chúng con bên toà Chúa. Chúng con trao phó nơi Cha vụ khó khăn này (…) xin Cha giải gỡ giúp chúng con, để thêm một vinh quang mới vào bao nhiêu vinh quang sẵn có của Cha.\n\nLạy Thánh Giuse nhân từ, chúng con tin tưởng, vâng chúng con tin tưởng Cha có thể chấp nhận lời nguyện của chúng con, và giải thoát chúng con khỏi những khổ cực ưu sầu mà chúng con đang gặp phải. Hơn nữa, chúng con vững lòng trông cậy, Cha không bỏ qua điều gì giúp ích cho những người sầu khổ kêu cầu Cha. Chúng con sấp mình dưới chân Cha, tha thiết nài xin Cha đoái thương đến những than van khóc lóc của chúng con, xin Cha lấy tình thương như áo choàng che phủ chúng con và chúc lành cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-kinh-cac-thanh-tu-dao-viet-nam",
-    "title": "Kinh Kính Các Thánh Tử Đạo Việt Nam",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-kinh-cac-thanh-tu-dao-viet-nam/",
-    "isPopular": false,
-    "content": "### Kinh I:\n\nKính lạy các Thánh Tử vì Đạo nước Việt Nam ơn Chúa thương đã được sức mạnh đổ máu mình ra vì lòng kính mến Đức Chúa Giêsu . Xin nhớ đến chúng tôi đang phải chiến trận ở chốn khách đày này!\n\nChúng tôi hết lòng tạ ơn Chúa nhân lành vô cùng, ban cho các Thánh thắng trận sáng láng dường ấy. Nay chúng tôi mừng các Thánh đã được chầu chực Đức Chúa Trời trên các tầng trời, xin các Thánh hợp một lòng cùng Rất Thánh Đồng Trinh Maria là Nữ Vương các Thánh Tử vì Đạo, mà cầu bầu trước mặt Đức Chúa Trời, xin Người đoái thương Hội thánh còn đang phải kẻ dữ thù ghét cấm cách nhiều nơi .\n\nXin bênh vực ban ơn cho đạo thánh Đức Chúa Trời một ngày một sáng ra trong các nước chưa có đạo, cho kẻ còn ngồi nơi tối tăm và kẻ chết phần linh hồn được biết Chúa thật. Chúng tôi ngợi khen các Thánh Tử vì Đạo, cùng xin cầu bầu cho chúng tôi và anh em họ hàng được mọi sự chúng tôi thiếu thốn phần hồn phần xác, cho chúng tôi được vững lòng giữ Đạo Thánh Đức Chúa Giêsu cho đến chết, mà nếu chúng tôi chẳng đáng được phúc Tử vì Đạo thì xin cho chúng tôi được giữ nghĩa cùng Đức Chúa Trời, và kính mến Người cho đến trọn đời . Amen.\n\n### Kinh II:\n\nKính lạy các Thánh Tử Đạo Việt Nam, xưa đã biết dùng ơn Chúa, mà lướt thắng mọi khó khăn khổ cực, để gieo rắc hạt giống Phúc Âm, và xây dựng Hội Thánh Chúa trên đất nước Việt Nam. Các Thánh đã can đảm tuyên xưng đức tin, đến hy sinh mạng sống mình vì lòng yêu mến Chúa, và phần rỗi các linh hồn, nên đáng được hưởng hạnh phúc trên trời.\n\nChúng con xin hợp ý cùng các Thánh, mà tạ ơn Thiên Chúa, và Mẹ Maria, nữ vương các Thánh Tử Đạo, đã ban cho các Thánh được hồng phúc như vậy. Chúng con hoan hỷ ca tụng các Thánh, là những hoa tươi đầu mùa cao quý của Hội Thánh Việt Nam.\n\nXin các Thánh cầu bầu cho chúng con là con cháu, biết noi gương mà sống đạo Phúc Âm, thi hành bác ái, trung thành với Hội Thánh, và yêu mến quê hương; và khi chúng con gặp khó khăn nguy hiểm, xin các Thánh giúp đỡ ủi an, để chúng con đủ sức vâng theo ý Chúa, cộng tác vào mầu nhiệm Thập Giá cứu độ của Chúa Giêsu, tiếp tục con đường các Thánh đã đi, hầu đạt tới hạnh phúc muôn đời. Amen."
-  },
-  {
-    "id": "kinh-kinh-minh-va-mau-thanh-chua",
-    "title": "Kinh Kính Mình và Máu Thánh Chúa",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-kinh-minh-va-mau-thanh-chua/",
-    "isPopular": false,
-    "content": "Chúng con kính lạy và ngợi khen sự mầu nhiệm Mình Thánh rất sang trọng, Máu Thánh rất châu báu vô cùng bởi lòng Đức Bà Maria đồng trinh sạch sẽ mà ra, đã để mình trong phép mầu nhiệm này cho được ở cùng chúng con: là đêm sau hết khi Người còn ngồi cùng các đầy tớ mà ăn bữa tối là bữa trọng trên hết các bữa; khi đã giữ cho đủ các phép đạo cũ truyền lại mà ăn bữa này, đoạn mới phó mình cho mười hai đầy tớ lấy làm của ăn. Ngôi thứ Hai ra đời làm người phán một lời phép tắc vô cùng mà làm cho bánh thật trở nên Mình Người, cùng làm cho rượu nho hóa nên Máu Người thật; vì vậy dù con mắt chúng con xem chẳng thấy, thì phải có đức Tin cho được vững lòng.\n\nVậy chúng con phải thờ lạy phép Rất Thánh rất trọng dường ấy, vì các phép trong đạo cũ chẳng bằng phép này, thì chúng con phải có lòng tin cho bền thay vì con mắt chúng con xem thấy, chúng con phải ngợi khen Đức Chúa Cha, Đức Chúa Con, Đức Chúa Thánh Thần, cùng thờ lạy kính mến ngợi khen và hát mừng sự mầu nhiệm Rất Thánh này đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-kinh-men",
-    "title": "Kinh Kính Mến",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-kinh-men/",
-    "isPopular": true,
-    "content": "Lạy Chúa con,\ncon kính mến Chúa hết lòng hết sức trên hết mọi sự,\nvì Chúa là Đấng trọn tốt trọn lành vô cùng,\nlại vì Chúa, thì con thương yêu người ta như mình con vậy. Amen."
-  },
-  {
-    "id": "kinh-kinh-mung",
-    "title": "Kinh Kính Mừng",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-kinh-mung/",
-    "isPopular": true,
-    "content": "Kính mừng Maria đầy ơn phúc,\nĐức Chúa Trời ở cùng Bà,\nBà có phúc lạ hơn mọi người nữ,\nvà Giêsu Con lòng Bà gồm phúc lạ.\n\nThánh Maria Đức Mẹ Chúa Trời,\ncầu cho chúng con là kẻ có tội\nkhi này và trong giờ lâm tử. Amen."
-  },
-  {
-    "id": "kinh-kinh-thanh-gia-chua-giesu",
-    "title": "Kinh Kính Thánh Giá Chúa Giêsu",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-kinh-thanh-gia-chua-giesu/",
-    "isPopular": false,
-    "content": "• Lạy Thiên Chúa Toàn năng, đã chịu chết trên Thập giá vì tội lỗi con!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin ở với con!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin là niềm hy vọng của con!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin cho con tránh khỏi mọi gươm đao, vũ khí, và giặc giã!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin ban xuống cho con mọi ơn lành!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin cho con tránh khỏi mọi sự dữ!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin cho con đạt đến con đường cứu rỗi!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin xua đuổi khỏi con mọi tai ương chết chóc!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin ngăn ngừa mọi tai biến phần xác và thế tục, cho con được an lành!\n\n• Lạy Thánh Giá Chúa Giêsu Kitô, xin cho con tránh khỏi bệnh dịch tả và mọi bệnh truyền nhiễm!\n\n• Con xin thờ Lạy Thánh Giá Chúa Giêsu Kitô bây giờ và đời đời.\n\n• Lạy Chúa Giêsu Nadarét, đã chịu đóng đinh trên thập giá, xin thương xót chúng con!\n\n• Xin xua đuổi khỏi người con các thần dữ luôn ám hại bây giờ và mãi mãi. Amen.\n\n• Nhân danh Máu châu báu rất thánh Chúa Giêsu Kitô! Nhân danh mầu nhiệm nhập thể làm người cứu chuộc và dẫn đưa chúng con trên cõi trường sinh. Quả thật, Chúa Giêsu Kitô đã ra đời làm người đêm Giáng sinh, và chịu chết trên Thánh giá ngày Thứ Sáu Tuần Thánh. Amen.\n\n### Kinh Kính Thánh Giá Lạy Dấu Thánh Giá:\n\nCon kính Thánh Giá cho được bằng yên.\nCây Thánh Giá ở giữa rừng vàng; cây Thánh Giá là gươm là giáo;\nCây Thánh Giá ở khắp gần xa tróc quỉ trừ ma, khiêm nhường mỹ tục;\nCây Thánh Giá là tầu vượt sang khỏi biển;\nCây Thánh Giá là chìa khoá mở cừa Thiên Đàng cho chúng con được vào.\nLạy cây Thánh Giá,\nLạy cành cây Thánh Giá! Lạy lá cây Thánh Giá,\nLạy hoa cây Thánh Giá! Lạy quả cây Thánh Giá!\nTừ xưa đến nay chẳng có cây nào sánh bằng cây Thánh Giá.\nLạy Chúa con nằm trên cây Thánh Giá chịu chết vì chúng con. Amen.\n\n**Cám ơn Phương Mai đã gửi kinh này vào để mình có thể viết lên đây. Chúc bạn luôn vui khoẻ!*"
-  },
-  {
-    "id": "kinh-kinh-thanh-gia",
-    "title": "Kinh Kính Thánh Gía",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-kinh-thanh-gia/",
-    "isPopular": false,
-    "content": "Lạy Dấu Thánh Gía, con kính Thánh Gía cho được bằng yên. Cây Thánh Gía ở giữa rừng vàng! Cây Thánh Gía là gươm là giáo. Cây Thánh Gía ở khắp gần xa đánh qủy trừ ma, khiêm nhường mỹ tục. Cây Thánh Giá là tầu vượt sang khỏi biển. Cây Thánh Gía là chìa khóa mở cửa Thiên Đàng cho chúng con được vào. Lạy Cây Thánh Gía! Lạy Cành Cây Thánh Gía! Lạy Lá Cây Thánh Gía! Lạy Hoa Cây Thánh Gía! Lạy Qủa Cây Thánh Gía! Từ xưa đến nay chẳng có cây nào sánh bằng cây Thánh Gía. Lạy Chúa con, nằm trên Cây Thánh Gía chịu chết vì chúng con. Amen.\n\nKính lạy Thánh Gía của Đấng cứu chuộc con, con thờ lạy, con hôn kính Thánh Gía đã được Chúa Kitô yêu qúy vô ngần. Cúi xin Thánh Gía che chở con, gìn giữ con, cứu chữa con. Cúi xin Nhan Thánh hãy xoa dịu cơn khiếp sợ của con để con chỉ thấy toàn bình an và trông cậy, cùng với nguồn ơn sức mạnh và nâng đỡ. Xin Cha đổ xuống lòng chúng con Thánh Thần Chí Linh hầu chúng con biết cầu nguyện và kính mến Cha hết lòng con thảo và mạnh bước trên đường phục vụ. Amen."
-  },
-  {
-    "id": "kinh-kinh-thanh-martin-de-porres",
-    "title": "Kinh Kính Thánh Martin De Porres",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-kinh-thanh-martin-de-porres/",
-    "isPopular": false,
-    "content": "Lạy Thánh Martino rất khiêm nhường, lòng thương yêu nồng nhiệt của Người chẳng những che chở các anh em túng nghèo, mà lại cả những thú vật ngoài đồng, thật là gương huy hoàng của đức bác ái, chúng con kính mừng và cầu khấn Người.\n\nTừ tòa cao Người ngự, xin đoái thương nhậm lời anh em túng nghèo kêu xin, để chúng con được bắt chước nhân đức Người mà yên vui trong địa vị Chúa đã đặt, và được mạnh mẽ, can đảm vác Thánh Giá theo chân Chúa Cứu Thế và Mẹ Sầu Bi, sau hết được về nước Thiên Ðàng. Vì công nghiệp Chúa Giêsu Kitô là Chúa chúng con. Amen.\n\n### Bài Hát Khấn"
-  },
-  {
-    "id": "kinh-kinh-thanh-nhan-chua",
-    "title": "Kinh Kính Thánh Nhan Chúa",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-kinh-thanh-nhan-chua/",
-    "isPopular": false,
-    "content": "Lạy Thánh Nhan Chúa Giêsu, trong tuần thương khó của Cha, Cha đã trở thành người khốn khổ nhất nhân loại. Con kính thờ gương mặt Cực Thánh của Cha trước đây vẻ đẹp dịu dàng của Thiên Chúa, nhưng giờ đây đã trở nên giống như gương mặt của người phong hủi. Nhưng cho dù gương mặt của Cha có bị tàn phá biến thể như vậy, thì con vẫn nhìn nhận tình yêu vô cùng tận của Cha. Lạy Chúa Giêsu Kitô, con ao ước hứng lấy những giọt lệ chan hòa từ đôi mắt Cực Thánh của Cha để tưới cho những linh hồn tội nhân khốn khổ. Xin Cha in sâu trong tâm trí con Hình Ảnh của Cha để đốt cháy lòng con yêu mến Cha, hầu con được xứng đáng hưởng Thánh Nhan Cha trên Thiên Quốc. Amen."
-  },
-  {
-    "id": "kinh-kinh-vet-thuong-tren-vai-chua",
-    "title": "Kinh Kính Vết Thương Trên Vai Chúa",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-kinh-vet-thuong-tren-vai-chua/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu Nhân Ái là Chiên Thiên Chúa hiền lành vô cùng, con là\nmột kẻ tội lỗi khốn nạn, xin kính chào và thờ lạy Vết Thương Chí Thánh trên Vai Chúa. Thánh gía nặng đè lên vai Chúa làm trầy vai Chúa, khiến thịt và xương trên vai Chúa lòi ra đã làm cho Chúa đau đớn vì vết thương này hơn những vết thương khác trên Thân Thể Chí Thánh Chúa. Con xin thờ lạy Chúa, ôi Chúa Giêsu đau khổ vô cùng. Con chúc tụng, ngợi khen và cảm tạ Chúa vì Vết Thương cực thánh và đau đớn qúa sức này. Con nài xin Chúa, vì sự đau đớn tột cùng ấy và vì sức nặng Thánh Giá đè lên vai Chúa, xin Chúa thương xót con là kẻ tội lỗi, xin Chúa tha hết tội trọng, tội nhẹ cho con và dẫn đưa con trên đường Thánh Giá về quê thật cùng Chúa. Amen."
-  },
-  {
-    "id": "kinh-len-duong",
-    "title": "Kinh Lên Đường",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-len-duong/",
-    "isPopular": false,
-    "content": "*(Lời kinh của thánh Phanxicô trước tượng thánh giá San Damianô)*\n\nLạy Thiên Chúa tối cao và vinh hiển, xin chiếu rọi ánh sáng vào cõi lòng tăm tối cùa con, xin ban cho con đức tin ngay chính, đức cậy vững bền, và đức mến hoàn hảo. Lạy Chúa, xin ban cho con sa’ng suốt va khôn ngoan, để con hiểu biết và mau mắn thi hành ý thánh thiện, đích thực của Chúa. Amen"
-  },
-  {
-    "id": "kinh-lay-cha",
-    "title": "Kinh Lạy Cha",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-lay-cha/",
-    "isPopular": true,
-    "content": "Lạy Cha chúng con ở trên trời,\nchúng con nguyện danh Cha cả sáng,\nnước Cha trị đến,\ný Cha thể hiện dưới đất cũng như trên trời.\n\nXin Cha cho chúng con hôm nay lương thực hằng ngày,\nvà tha nợ chúng con\nnhư chúng con cũng tha kẻ có nợ chúng con.\nXin chớ để chúng con sa chước cám dỗ,\nnhưng cứu chúng con cho khỏi mọi sự dữ. Amen."
-  },
-  {
-    "id": "kinh-lay-cha-thanh-giuse",
-    "title": "Kinh Lạy Cha Thánh Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-lay-cha-thanh-giuse/",
-    "isPopular": false,
-    "content": "Lạy Cha Thánh Giuse, sự bảo vệ của Cha thật lớn lao mạnh mẽ và mau lẹ trước Toà Chúa. Con xin đặt nơi Cha tất cả mọi nhu cầu và ước vọng của con.\n\nLạy Cha Thánh Giuse xin cứu giúp con bằng lời cầu bầu mạnh thế của Cha, xin Cha cầu bầu với Con Chí Thánh của Cha là Chúa Giêsu Kitô Chúa chúng con để Ngài ban cho chúng con những ơn lành thiêng liêng: (lời cầu xin của bạn)\n\nVà đặt mọi lời cầu ấy dưới quyền năng Thiên đàng của Cha. Con xin tạ ơn Cha là cha hiền của các người Cha.\n\nLạy Cha Thánh Giuse, con không ngừng suy niệm về Cha và Chúa Giêsu đang ngũ trong tay Cha. Con không dám quấy rầy Ngài khi Ngài ở bên cạnh trái tim Cha. Xin Cha ôm ấp Ngài với tên của con và hôn lên trán Ngài thay cho con.\n\nXin Cha hãy cầu xin Ngài ban lại nụ hôn cho con khi con thở hơi cuối cùng.\n\nLạy Cha Thánh Giuse, quan thầy của kẻ hấp hối xin cầu cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-lay-chua-con",
-    "title": "Kinh Lạy Chúa Con",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-lay-chua-con/",
-    "isPopular": false,
-    "content": "Lạy Chúa Con, Chúa Con đã phán dạy rằng, bay hãy xin thì bay sẽ được. Vậy con xin Chúa Con lòng lành vô cùng thương đến các linh hồn nơi lửa luyện tội. Xin Chúa Con nghe lời con cầu xin kêu van, cho linh hồn ông bà, cha mẹ, anh em, bạn hữu con. Xin Chúa Con mở cửa thiên đàng cho các linh hồn ấy vào. Xin cho các linh hồn ấy được sự sống vô cùng hằng soi cho liên. Amen."
-  },
-  {
-    "id": "kinh-lay-nu-vuong",
-    "title": "Kinh Lạy Nữ Vương",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-lay-nu-vuong/",
-    "isPopular": true,
-    "content": "Lạy Nữ Vương, Mẹ nhân lành,\nlàm cho chúng con được sống, được vui, được cậy, thân lạy Mẹ!\n\nChúng con, con cháu E-và ở chốn khách đày kêu đến cùng Bà;\nchúng con ở nơi khóc lóc than thở kêu khấn Bà thương.\nHỡi ôi! Bà là Chúa bầu chúng con,\nxin ghé mặt thương xem chúng con.\n\nĐến sau khỏi đày,\nxin cho chúng con được thấy Đức Chúa Giêsu, Con lòng Bà gồm phúc lạ.\nÔi khoan thay! Nhân thay! Dịu thay!\nThánh Maria trọn đời đồng trinh. Amen."
-  },
-  {
-    "id": "kinh-lay-nu-vuong-gia-dinh",
-    "title": "Kinh Lạy Nữ Vương Gia Đình",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-lay-nu-vuong-gia-dinh/",
-    "isPopular": false,
-    "content": "Lạy Nữ Vương gia đình, Mẹ ở đây với chúng con, vui buồn sướng khổ, Mẹ con cùng nhau chia sẻ. Xa Mẹ chúng con biết cậy trong ai? Đời chúng con gian nan khổ sở lắm, gia đình chúng con lông đông tối ngày, nhưng có Mẹ ở bên chúng con, chúng con thấy quên hết ưu phiền, vui sống qua kiếp lưu đày, mong ngày sau sung sướng cùng Mẹ muôn đời trên thiên đàng. Amen."
-  },
-  {
-    "id": "kinh-lay-thanh-mau",
-    "title": "Kinh Lạy Thánh Mẫu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-lay-thanh-mau/",
-    "isPopular": false,
-    "content": "Lạy Thánh Mẫu Maria là Mẹ rất nhân từ, Mẹ thông ơn Chúa, xin chữa chúng con cho khỏi tay kẻ dữ, cùng xin ghé mặt thương xem trong thì lâm tử. Amen."
-  },
-  {
-    "id": "kinh-men-yeu",
-    "title": "Kinh Mến Yêu",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-men-yeu/",
-    "isPopular": false,
-    "content": "Lạy Cha Hằng Hữu, con xin dâng lên Cha bửu huyết của Chúa Giêsu, Con Chí Thánh Cha, hiệp cùng các thánh lễ được cử hành trong ngày hôm nay trên khắp hoàn cầu để chỉ cho các linh hồn nơi chốn luyện hình, cho các tội nhân ở khắp nơi, trong Giáo Hội phổ quát, nơi quê hương con và trong chính gia đình con. Amen."
-  },
-  {
-    "id": "kinh-mon-de-va-su-vu",
-    "title": "Kinh Môn Đệ Và Sứ Vụ",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-mon-de-va-su-vu/",
-    "isPopular": false,
-    "content": "Lạy Cha, Đấng hằng yêu thương. Cha đã gọi đích danh mỗi người chúng con, và đã ban Con Một Cha để cứu rỗi chúng con. Do lòng trung thành, Cha đã gởi Thánh Thần Chúa đến hoàn thành sứ vụ của Chúa Giêsu giữa chúng con. Xin hãy mở lòng chúng con với Chúa Giêsu. Xin cho chúng con can đảm tuyên xưng danh Người với những người sống xung quanh, và rộng lượng chia sẻ tình thương của Người với những kẻ còn sống cách xa. Chúng con cầu nguyện cho mọi người trên toàn thế giới được mời gọi để hiểu biết và yêu mến Chúa Giêsu, là Đấng Cứu Thế và Cứu chuộc nhân loại. Xin cho mọi người được nhận biết tình thương vô biên của Người. Xin cho tình thương của Người biến đổi mọi thành phần trong xã hội. Chúng con cầu xin nhờ danh Chúa Giêsu Kitô, Chúa chúng con. Amen.\n\nLạy Mẹ Maria, Mẹ Giáo hội, xin cầu cho chúng con. Thánh Phaolô tông đồ, cầu cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-me-chua-troi",
-    "title": "Kinh Mẹ Chúa Trời",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-me-chua-troi/",
-    "isPopular": false,
-    "content": "Thánh Maria Mẹ Chúa Trời cao cả\nXin Mẹ thương gìn giữ tấm lòng con\nTrắng tinh và trong như nước suối nguồn\nBan cho con lòng đơn số chất phác\nKhông cho sầu làm khổ, buồn làm ác\nBan cho con lòng đại độ bao dung\nBiết hy sinh và xả kỷ không cùng\nBiết thương cảm và từ bi bác ái\nMột tấm lòng trung thành và quảng đại\nQuên muôn oán và nhớ mãi muôn ơn\nCúi xin Mẹ cải tạo cõi lòng con\nCho rất đỗi khiêm nhường và hiền thảo\nYêu tận tình mà chẳng cần đền báo\nMột tấm lòng vui vẻ thích an nương\nTrong Trái Tim Con Một Mẹ yêu thương\nMột tấm lòng cương quyết và quảng đại\nKhông nao núng trước vô ơn bạc đãi\nKhông chán nản trước bạc đãi thờ ơ\nMẹ cho con tấm lòng biết chăm lo\nLàm vinh danh Chúa Giêsu cao cả\nVà lòng con mang vết thương yêu Chúa\nChỉ mong chờ hàn gắn chốn Thiên Cung. Amen."
-  },
-  {
-    "id": "kinh-nghia-duc-tin",
-    "title": "Kinh Nghĩa Đức Tin",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/kinh-nghia-duc-tin/",
-    "isPopular": false,
-    "content": "Ngày Chúa Nhật hôm nay (hay lễ trọng nào thì đọc: ngày lễ…), chúng con hợp nhau kính lạy thờ phượng Chúa, không khen cảm tạ ơn Chúa về mọi ơn lành Chúa đã ban cho chúng con, và phạt tạ Chúa vì những tội lỗi chúng con đã phạm mất lòng Chúa: thì chúng con dám xin Chúa hãy khứng ban những ơn cần kíp cho chúng con được rỗi linh hồn.\n\nNên chúng con cả lòng tin vững vàng mọi điều đạo thánh Chúa dạy; nhất là những điều cần kíp này: là có một Đức Chúa Trời phép tắc vô cùng dựng nên trời đất; mà Người có Ba Ngôi. Ngôi Thứ Nhất là Cha, Ngôi Thứ Hai là Con, Ngôi Thứ Ba là Thánh Thần; Ba Ngôi cũng một tính một phép cho nên Ba Ngôi cũng một Chúa mà thôi. Chúng con tin Ngôi Thứ Hai ra đời làm người sinh bởi Bà Maria đồng trinh, đặt tên là Giêsu; ở thế gian ba mươi ba năm, đoạn chịu chết trên cây thánh giá mà chuộc tội cho thiên hạ; đến ngày thứ ba Người sống lại; khỏi bốn mươi ngày lên trời đủ mười ngày lại cho Đức Chúa Thánh Thần xuống trên các Thánh Tông Đồ và Hội Thánh mới lập; ai chẳng thông công cùng Hội Thánh ấy thì chẳng được rỗi linh hồn; mà linh hồn là giống thiêng liêng chẳng hề chết được; và đến ngày tận thế xác loài người ta sẽ sống lại mà chịu phán xét, kẻ lành lên thiên đàng hưởng phúc đời đời; kẻ dữ sa hỏa ngục chịu phạt vô cùng.\n\nMà chúng con tin các sự ấy mà thôi thì chưa đủ cho được lên thiên đàng; song phải giữ Mười Điều Răn Đức Chúa Trời cùng Sáu Luật Điều Hội Thánh, và làm những việc lành phúc đức. Nhân vì sự ấy chúng con hằng phải sợ hãi và trốn tránh các tội lỗi, nhất là bảy mối tội đầu, là căn nguyên mọi tội lỗi khác.\n\nVậy chúng con phải ân cần lo lắng mà năng chịu các phép Bí Tích Đức Chúa Giêsu đã truyền, là những phương linh nghiệm cho chúng con được nên thánh. Có bảy phép Bí Tích mà thôi; song phép Rửa Tội, phép Mình Thánh Chúa cùng phép Giải Tội là ba phép cần kíp hơn cho chúng con được rỗi.\n\nẤy vậy chúng con hằng phải ra sức lo lắng thể nào mà chịu các phép trọng ấy cho nên, cùng tin thật vững vàng mà giữ cẩn thận các điều trước này, thì mới được hưởng phúc thanh nhàn đời đời kiếp kiếp. Amen.\n\n*Cám ơn bạn Thanh Sơn đã gửi vào kinh này!*"
-  },
-  {
-    "id": "kinh-nhat-tung",
-    "title": "Kinh Nhật Tụng",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-nhat-tung/",
-    "isPopular": false,
-    "content": "Lạy Chúa! Xin cho tâm hồn con được thư thái, sống lại cuộc đời thơ ấu, đơn sơ thật thà không gian dối với ai, không tham lam sự trần thế, không hận thù ghen ghét, không nóng nẩy, cáu giận. Vui vẻ, hòa nhã hết mọi nơi, biết mình là kẻ hèn hạ yếu đuối. Đừng tự kiêu tự đắc, ở hiền lành và khiêm nhường, đem sự thuận hòa đến cho mọi người, để con được gần Chúa và được lòng Chúa thương xót hơn.\n\nBa Kinh Sáng Danh\n\nXin cho con được bình an đức khôn ngoan và sức mạnh kính mến Chúa, yêu thương mọi người. Amen."
-  },
-  {
-    "id": "kinh-nam-duc-tin",
-    "title": "Kinh Năm Đức Tin",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/kinh-nam-duc-tin/",
-    "isPopular": false,
-    "content": "Lạy Chúa giàu lòng từ bi và nhân hậu,\nCon đến tìm gặp Chúa là Tình yêu,\nTạ ơn Chúa đã gieo vãi hạt mầm đức tin,\nTrên quê hương đất nước chúng con.\n\nNhờ tình Mẹ của Thánh Maria là Mẹ các kẻ tin,\nVà máu của các chứng nhân đức tin đã đổ ra,\nXin cho con luôn biết sống tín thác vào Chúa,\nLuôn tìm và thi hành ý Chúa là điểm tựa của đời con.\n\nXin giúp con sống trọn tình con thảo với Chúa là Cha,\nSống vẹn nghĩa huynh đệ với nhau là anh em một nhà,\nMở rộng lòng bao dung đồng cảm với mọi người,\nChia sẻ mọi nỗi vui buồn, lo âu và hy vọng.\nKề bên Chúa con mơ thành ngọn đèn dầu nhỏ,\nTỏa sáng tình Chúa yêu thương khắp nơi nơi,\nĐặc biệt nơi tâm hồn thiếu vắng niềm tin và lẽ sống,\nNơi con tim khao khát tình thương và hy vọng.\n\nSoi dẫn mọi người tìm gặp Chúa là Lời Hằng Sống,\nLà Lời ban ánh sáng chân lý và sức sống dồi dào,\nLà Lời giúp cho nhà nhà vui sống trong yêu thương,\nCho người người hợp nhất nên một trong an bình. Amen"
-  },
-  {
-    "id": "kinh-nu-vuong-thien-dang",
-    "title": "Kinh Nữ Vương Thiên Đàng",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-nu-vuong-thien-dang/",
-    "isPopular": true,
-    "content": "Lạy Nữ Vương Thiên Đàng hãy vui mừng. Alleluia.\nVì Đấng Mẹ đã đáng cưu mang trong lòng. Alleluia.\nNgười đã sống lại thật như lời đã phán trước. Alleluia.\nXin cầu cùng Chúa cho chúng con. Alleluia.\n\nX. Lạy Đức Nữ Đồng Trinh Maria, hãy hỷ hoan khoái lạc. Alleluia.\nĐ. Vì Chúa đã sống lại thật. Alleluia.\n\nLời Nguyện:\nLạy Chúa là Đấng đã làm cho thiên hạ được vui mừng quá bội, bởi Đức Chúa Giêsu Kitô là Con Chúa, cùng là Chúa chúng con đã sống lại; xin vì Đức Nữ Đồng Trinh Maria là Mẹ Người nguyện giúp cầu thay, cho chúng con được hưởng phúc vui vẻ hằng sống đời đời. Vì công nghiệp Chúa Kitô là Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-phep-la",
-    "title": "Kinh Phép Lạ",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-phep-la/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, con đến trước Chúa với con người thật của con. Con xin lỗi và ăn năn thống hối về những tội lỗi của con, xin tha thứ cho con. Trong Danh Thánh Chúa, con tha thứ cho tất cả những người khác về những gì họđã làm hại con. Con từ bỏ Satan, các tà thần ma quỷ và những việc làm của chúng. Lạy Chúa Giêsu, con xin dâng Chúa trọn cả con người con. Con tin nhận Chúa là Chúa và là Đấng Cứu độ của con. Xin hãy chữa lành con, biến đổi con, gia tăng sức mạnh phần xác, phần hồn và thần khí con.\n\nLạy Chúa Giêsu, xin Ngài hãy đến, bao bọc con với Máu Châu Báu của Chúa và đổ tràn đầy con Thần Khí Chúa. Lạy Chúa Giêsu, con yêu mến Chúa. Con quyết theo Chúa mỗi ngày trong đời sống của con.\n\nLạy Mẹ Maria, Mẹ của con, Nữ Vương Hòa Bình, lạy các Thiên thần và các Thánh, xin phù giúp con. Amen."
-  },
-  {
-    "id": "kinh-pho-dang",
-    "title": "Kinh Phó Dâng",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-pho-dang/",
-    "isPopular": false,
-    "content": "Lạy Chúa con, con xin phó dâng linh hồn và xác con ở tay Chúa con. Chúa đã phù hộ con ban ngày, thì xin Chúa cũng gìn giữ con ban đêm, kẻo sa phạm tội gì mất lòng Chúa hay là chết tươi ăn năn tội chẳng kịp. Chớ gì sống chết con được giữ một lòng kính mến Chúa luôn. Amen."
-  },
-  {
-    "id": "kinh-phu-ho",
-    "title": "Kinh Phù Hộ",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-phu-ho/",
-    "isPopular": false,
-    "content": "Chúng con thờ lạy ngợi khen Chúa là Đấng có phép tắc vô cùng, đã thương để chúng con đến sớm mai nay, thì xin Chúa xuống ơn phù hộ cho chúng con trót ngày hôm nay, khỏi sa phạm tội gì. Lại xin Chúa sửa sự lo, lời nói, việc làm chúng con hằng nên trọn lành theo ý Chúa; vì công nghiệp Đức Chúa Giêsu, là Đấng hằng sống hằng trị cùng Đức Chúa Cha và Đức Chúa Con và Đức Chúa Thánh Thần đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-phung-vu",
-    "title": "Kinh Phụng Vụ",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-phung-vu/",
-    "isPopular": false,
-    "content": "Lạy Chúa, xin giúp chúng con luôn sống phục vụ trong yêu thương\nNơi cộng đoàn, biết tâm đầu ý hợp.\nTrong gia đình, biết mặn mà dễ thương.\nNgoài xã hội, biết đối xử tốt và thương xót.\nVới mọi người, biết nhân nhượng và tôn trọng nhau.\nKhi làm việc, biết siêng năng và tận tình.\nTrong mọi sự, biết tha thứ, chịu đựng và tin tưởng.\nỞ mọi nơi, luôn chiếu toả lòng hiền hậu và khiêm nhường.\nTrước cám dỗ, luôn chiến đấu để bền đỗ trong ơn thánh.\nNhờ đó, chúng con trở nên Tông Đồ được Chúa sai đi, để xây dựng hoà bình và làm chứng về Chúa cho mọi người. Amen."
-  },
-  {
-    "id": "kinh-ruoc-le-thieng-lieng",
-    "title": "Kinh Rước Lễ Thiêng Liêng",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-ruoc-le-thieng-lieng/",
-    "isPopular": true,
-    "content": "Lạy Đức Chúa Giêsu,\ncon tin thật Chúa ngự trong Phép Mình Thánh.\nCon kính mến Chúa trên hết mọi sự,\ncùng ước ao rước Chúa vào linh hồn con.\n\nNhưng bởi vì bây giờ con chẳng có thể mà rước Chúa thật được,\nthì xin Chúa ngự vào linh hồn con cách thiêng liêng.\nChẳng khác gì như Chúa đã ngự vào thật,\nthì con xin đón rước Chúa,\ncùng kết hợp làm một cùng Chúa cho trọn.\nXin Chúa chớ để con lìa bỏ Chúa bao giờ. Amen."
-  },
-  {
-    "id": "kinh-sau-khi-an",
-    "title": "Kinh Sau Khi Ăn",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-sau-khi-an/",
-    "isPopular": true,
-    "content": "Đội ơn Chúa đời đời mạch sống, đã nuôi chúng con hồn xác hôm nay. Nguyện danh Chúa đời đời cả sáng, xuống mọi loài ơn lộc no đầy. Amen."
-  },
-  {
-    "id": "kinh-sang",
-    "title": "Kinh Sáng",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-sang/",
-    "isPopular": true,
-    "content": "Lạy Chúa con, con thờ lạy và yêu mến chúa hết lòng con. Con tạ ơn Chúa đã dựng nên con, cứu chuộc con và gìn giữ con qua đêm yên lành. Con xin dâng lên Chúa mọi lời nguyện, mọi công việc, và vui buồn của ngày hôm nay Xin cho mọi sự được xảy ra theo Thánh ý Chúa và để danh Chúa cả sáng. Xin gìn giữ con khỏi mọi tội lỗi và xin phúc lành của Chúa luôn ở cùng con và những người con yêu mến. Amen.\n\n### Bản Tiếng Anh (Morning Offering)\n\nO my God, I adore you, and I love you with all my heart. I thank you for having created me, having saved me by your grace, and for having preserved me during the night. I offer you all my prayers, works, joys, and sufferings of this daỵ Grant that they may be all according to your will and for greater glorỵ Keep me from all sin and evil, and may your grace be with me always and with those I love. Amen."
-  },
-  {
-    "id": "kinh-sang-danh",
-    "title": "Kinh Sáng Danh",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-sang-danh/",
-    "isPopular": true,
-    "content": "Sáng danh Đức Chúa Cha\nvà Đức Chúa Con,\nvà Đức Chúa Thánh Thần.\n\nNhư đã có trước vô cùng\nvà bây giờ\nvà hằng có\nvà đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-sang-soi",
-    "title": "Kinh Sáng Soi",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-sang-soi/",
-    "isPopular": true,
-    "content": "Cúi xin Chúa sáng soi,\ncho chúng con được biết việc phải làm,\ncùng cậy vì ơn Chúa giúp,\ncho mỗi kinh mỗi việc chúng con,\ntừ khởi sự cho đến hoàn thành,\nđều nhờ bởi ơn Chúa. Amen."
-  },
-  {
-    "id": "kinh-sap-minh",
-    "title": "Kinh Sấp Mình",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-sap-minh/",
-    "isPopular": false,
-    "content": "Lạy Chúa con, con sấp mình xuống trước mặt Chúa con. Con tin thật Chúa ở khắp mọi nơi, thông biết mọi sự, hằng xem thấy con, hằng nghe lời con cầu nguyện. Xin Chúa rất nhân từ hãy đoái xem sự nghèo ngặt con và nhận lời con nguyện.\n\nLạy Chúa, xin hãy mở miệng lưỡi con ra, thì con sẽ cao rao những lời ngợi khen Chúa."
-  },
-  {
-    "id": "kinh-tha-thu",
-    "title": "Kinh Tha Thứ",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-tha-thu/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, điều con xin hôm nay là ơn tha thứ.\n\nLạy Chúa, con xin tha thứ cho chính con: những tội lỗi của con, những lỗi lầm của con, những sa ngã của con, những điều xấu trong con, những mê tín dị đoan của con, cầu cơ lên đồng, xem tử vi, coi chiêm tinh gia, coi thầy bói, đeo những bùa may mắn hộ mạng. Con từ bỏ tất cả những dị đoan đó. Con tin nhận Chúa là Chúa cứu thế duy nhất của con. Xin hãy ban Thánh Thần Chúa trên con. Con tha thứ cho con vì: đã làm đau khổ cha mẹ con, chè chén say sưa, sử dụng ma tuý, đeo đuổi hành động thiếu trong sạch, ngoại tình, những hành động tình dục về đồng tình luyến ái. Như Chúa đã tha thứ cho con, hôm nay con cũng tha thứ cho con. Ðồng thời những tội khác như: phá thai, ăn cắp, nói dối, lừa đảo… Con tha thứ cho chính con.\n\nCon tha thứ cho người mẹ con qua những lần mẹ con: làm đau đớn con, phẫn nộ với con, giận dữ với con, trừng phạt con, thanh lọc con ra khỏi anh chị em, nói con đần độn, xấu xí, ngu dốt, hư hỏng nhất, hao tốn tiền của gia đình. Cho con là đứa con không được thừa nhận, là thiếu xót, là đứa con không được như ý muốn…\n\nCon tha thứ cho cha con là người cha: thiếu nâng đỡ con, thiếu tình thương, thiếu cảm tình, thiếu sự trông nom, thiếu thời giờ, thiếu sự cảm thông dành cho con. Con tha thứ cho cha con là: người nghiện ngập, ẩu đả với mẹ con, ẩu đả với những người con khác, những sự trừng phạt nghiêm khắc, những bỏ bê, bỏ nhà ra đi, ly dị mẹ con, đi lang thang…\n\nCon cũng xin tha thứ cho anh chị em con: những người xua đuổi con, nói dối con, ghét con, tranh dành tình yêu của cha mẹ con, ám hại con, nghiêm khắc với con, làm cho đời sống con khổ sở…\n\nLạy Chúa con xin tha thứ cho người phối ngẫu của con về: sự thiếu tình thương, thiếu cảm tình, thiếu thông cảm, thiếu sự chăm sóc, thiếu liên lạc trò chuyện với con. Con xin tha thứ cho những thiếu xót, vất ngã, yếu đuối, những lời nói hay hành động làm tổn thương và khó chịu cho con…\n\nLạy Chúa, con xin tha thứ cho con cái của con: Thiếu kính trọng, Thiếu vâng lời, Thiếu yêu thương, Thiếu trông nom, Thiếu âu yếm, Thiếu hiểu biết, Những thói hư tật xấu, Bỏ đi nhà thờ, Những hành động làm phiền hà con..\n\nLạy Chúa con xin tha thứ cho gia đình bên vợ/chồng con, nhất là cha mẹ, anh chị em, bà con bên vợ/chồng con đã làm tổn thương đến gia đình con…\n\nLạy Chúa con xin tha thứ cho những họ hàng thân thiết của con, ông bà nội ngoại, cô cậu chú dì, những người đã can thiệp vào nội bộ gia đình con, cố gắng gây ảnh hưởng trên cha mẹ con, gây ra những hiểu lầm, xúi cha mẹ này đến cha mẹ khác…\n\nLạy Chúa, xin giúp con tha thứ cho người bạn cùng sở của con về những sự bất đồng ý kiến, là con phải sầu khổ, bắt con phải làm việc của họ, trêu trọc con, muốn dành công việc của con.\n\nLạy Chúa, những người hàng xóm của con cũng cần được tha thứ về: Những sự ồn ào, Những tiệc tùng về khuya, chó sủa làm con thức giấc, làm cho khu xóm mất giá trị…\n\nLạy Chúa, con xin tha thứ cho những linh mục, cha sở họ đạo con, cộng đoàn con, Ðức Giám mục, Giáo Hoàng, Giáo hội công giáo về: Thiếu nâng đỡ, Nhàm chán, phục vụ tồi tệ, Thiếu niềm nở, Không xác nhận, Chẳng có điều gì khuyến khích con, Không sử dụng con vào những chức vụ chủ yếu, Không mời con phục vụ trong những tổ chức đông người, những đau đớn giáng xuống trên con, con thực sự tha thứ…\n\nCon tha thứ cho những người trí thức (professionals) về những tổn thương xảy đến con như bác sĩ, ý tá, luật sư, quan tòa, chính trị gia, dân biểu…\n\nLạy Chúa con tha thứ cho những người phục vụ công quyền (service people): cảnh sát, nhân viên cứu hỏa, tài xế xe bus, nhân viên nhà thương và những nhân viên khác.\n\nLạy Chúa, con xin tha thứ cho chủ hãng con về không trả xứng lương cho con, không biết ơn việc con làm, có thái độ thiếu lịch sự, thiếu công bình, nóng giận, thiếu hòa nhã, không thăng chức cho con…\n\nLạy Chúa, con xin tha thứ cho thầy cô giáo, huấn luyện viên trong quá khứ và hiện tại, nhất là những người đã trừng phạt con, những người đã hăm dọa con, những người đã sỉ nhục con, đối xử thiếu công bình, những người chế diễu con, những người nói con là đồ ngu ngốc, dốt nát, những người phạt con ở lại sau giờ học.\n\nLạy Chúa, con xin tha thứ cho bạn bè con về: Những người chà đạp con xuống, Những người không liên lạc với con trong lúc con cần sự giúp đỡ, mượn tiền mà không trả lại, tán gẫu về con..\n\nLạy Chúa Giêsu, con khẩn thiết cầu xin ơn tha thứ, cho một người trong cuộc sống của con đã làm con đau khổ nhất; cho những người là kẻ thù không đội trời chung của con; cho người rất khó tha thứ; cho người con thề không thể tha thứ cho họ. Lạy Chúa, con xin tha thứ những người này, cho những đau đớn con đã gây ra cho họ, đặc biệt là cha mẹ của con, người phối ngẫu của con. Con cám ơn Chúa về tất cả tình thương của Chúa đã đến trong cuộc đời con qua họ.\n\nLạy Chúa, con cảm tạ Chúa đã cho con có sức mạnh, can đảm để con tha thứ cho anh em con. Xin Cha tha thứ cho con và chúc lành cho đời sống mới của con. Amen.\n\n***LM DeGrandis***"
-  },
-  {
-    "id": "kinh-thien-than-ban-menh",
-    "title": "Kinh Thiên Thần Bản Mệnh",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-thien-than-ban-menh/",
-    "isPopular": true,
-    "content": "Lạy Thiên Thần Chúa,\nlà Đấng bảo trợ của con,\nbởi lòng nhân lành của Chúa quan phòng đã trao phó con cho Ngài,\nxin soi sáng, gìn giữ,\nhướng dẫn và cai quản con hôm nay. Amen."
-  },
-  {
-    "id": "kinh-thanh-andre-nguyen-kim-thong",
-    "title": "Kinh Thánh Andrê Nguyễn Kim Thông",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-thanh-andre-nguyen-kim-thong/",
-    "isPopular": false,
-    "content": "Thân lạy Thánh Andrê Kim Thông\nKhi còn sống ở đời này\nNgười đã nêu gương sáng\ncho những người làm chủ gia đình\nvà cho những ai giúp việc nhà Chúa.\nNgười đã chung sức với Thánh Giám mục Stêphanô để mở rộng Nước Chúa,\nđã hết lòng tôn sùng Đức Trinh Nữ Maria,\nđã góp phần xây dựng đất nước\ntrong công cuộc khai khẩn đất hoang.\nSau hết, Người đã vui lòng lãnh lấy thập giá tù đày\nvà chịu chết vì đạo Chúa.\n\nXin cầu cho chúng con là con cháu\nluôn noi gương Người\nbiết góp phần mở mang Nước Chúa,\nlàm chứng nhân cho Chúa Kitô,\nbiết yêu mến quê hương\nvà sẵn sàng đón nhận mọi gian lao thử thách dưới thế\nhầu được cùng Người hưởng phúc trên trời. Amen."
-  },
-  {
-    "id": "kinh-thanh-gia",
-    "title": "Kinh Thánh Gia",
-    "category": "dang-thanh-gia",
-    "url": "https://www.conggiao.org/kinh-thanh-gia/",
-    "isPopular": false,
-    "content": "Lạy Thánh Gia, xưa Thánh Cả Giuse đã dẫn đưa Mẹ Maria và Chúa Giêsu trốn sang Ai Cập, Thánh Gia đã chia sẻ những tân toan trong đời sống gian nan. Xin cho chúng con:\n\n• Biết thông cảm và sống theo Lời Chúa dạy trong Thánh Kinh.\n• Biết lắng nghe và kính trọng nhau, lúc vui cũng như lúc buồn.\n• Biết nhẫn nhục và hòa giải khi tính tình và cách cư xử khác nhau.\n• Biết hiếu nghĩa và chung thủy từ trong gia đình cho đến ngoài xã hội.\n• Biết lấy gương lành mà dưỡng dục con cái.\nGiêsu, Maria, Giuse – Đời chúng con sóng gió ba đào, xin Chúa ban thêm ơn quảng đại thứ tha, để chúng con an vui chấp nhận lẫn nhau. Giáo Hội Chúa cần nhiều tín hữu nhiệt thành sốt mến, xin cho chúng con biết phụng vụ trong tin yêu, để cùng nhau xây dựng nước Chúa muôn đời. Amen."
-  },
-  {
-    "id": "kinh-thanh-giuse",
-    "title": "Kinh Thánh Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-thanh-giuse/",
-    "isPopular": true,
-    "content": "Lạy thánh Giuse, xưa nay không ai kêu cầu Cha mà vô hiệu. Cha có thần thế trước mặt Đức Chúa Trời đến nỗi người ta có thể nói rằng: “Trên Trời thánh Giuse truyền lệnh hơn là van xin”.\n\nLạy Cha hiền, xin cầu bầu cùng Chúa Giêsu cho chúng con. Khi ở thế gian này. Cha đã từng là Cha nuôi và là vị bảo hộ trung thành của Chúa Con Chí Thánh, nay xin Cha bào chữa cho chúng con bên tòa Chúa. Chúng con trao phó nơi Cha vụ khó khăn này (…) Xin Cha giải gỡ giúp chúng con, để thêm một vinh quang mới vào bao nhiêu vinh quang sẵn có của Cha.\n\nLạy Thánh Giuse nhân từ, chúng con tin tưởng. Vâng, chúng con tin tưởng Cha có thể chấp nhận lời nguyện của chúng con và giải thoát chúng con khỏi những khổ cực ưu sầu mà chúng con đang gặp phải. Hơn nữa, chúng con vững lòng trông cậy. Cha không bỏ qua điều gì giúp cho những người sầu khổ kêu cầu Cha. Chúng con sấp mình dưới chân Cha, tha thiết nài xin Cha đoái thương đến những than van khóc lóc của chúng con. Xin Cha lấy tình thương như áo choàng che phủ chúng con và chúc lành cho chúng con. Amen."
-  },
-  {
-    "id": "kinh-thanh-giuse-quan-thay-cac-nguoi-lao-dong",
-    "title": "Kinh Thánh Giuse Quan Thầy Các Người Lao Động",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-thanh-giuse-quan-thay-cac-nguoi-lao-dong/",
-    "isPopular": false,
-    "content": "Lạy Thánh Giuse vinh hiển, dầu là Cha nuôi Chúa Giêsu, và bạn Đức Mẹ Chúa Trời, Cha đã từng làm nghề thợ mộc nặng nề trong xưởng nghèo hèn Nagiarét, xin dạy chúng con biết đón nhận hoàn cảnh vất vả của người lao động từ tay Thiên Chúa ban với tâm hồn thanh thản.\n\nChúng con tôn kính Cha là gương mẫu trọn hảo mọi nhân đức, và là Đấng che chở yêu thương của tất cả những ai phải đổ mồ hôi trán đổi lấy cơm ăn.\n\nXin cầu bầu cho chúng con biết theo gương lạ lùng của Cha, khiêm nhường, hy sinh, phó thác nơi thánh ý Chúa là Cha quan phòng đầy tình thương của chúng con.\n\nXin cho chúng con biết theo Cha, siêu thoát và thánh hóa công việc hàng ngày của chúng con, bằng cách dâng những công việc ấy lên Thiên Chúa như một tác động liên lỉ mến yêu, đền tạ và thánh hóa.\n\nXin làm cho giáo lý bác ái công bình và hòa thuận của Đấng đã tự hạ làm môn đệ Cha trong xưởng nhà Nagiarét ngự trị giữa thế giới ngày nay…\n\nXin soi sáng các bạn đồng lao của chúng con, để một khi đã lìa xa Chúa Ki-Tô vì ảo vọng sẽ gặp được một tương lai sáng sủa hơn ở nơi khác, thì cũng làm cho họ từ bỏ quá khứ, tìm lại đức tin trong cách sống người Công Giáo, là bảo đảm suy nhất cho mọi ơn lành dưới đất và trên trời. Amen."
-  },
-  {
-    "id": "kinh-thanh-giuse-cha-dong-trinh-ngoi-loi-nhap-the",
-    "title": "Kinh Thánh Giuse, Cha Đồng Trinh Ngôi Lời Nhập Thể",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-thanh-giuse-cha-dong-trinh-ngoi-loi-nhap-the/",
-    "isPopular": false,
-    "content": "Hỡi Cha Thánh Giuse, Cha Đồng Trinh Ngôi Lời Nhập Thể, Bạn Trinh Khiết Mẹ Maria Đồng Công Vô Nhiểm, Đấng bảo vệ các Dòng tu, giữ gìn các linh hồn tận hiến!\n\nXin Cha dùng quyền năng thế lực phi thường đặc biệt Chúa Mẹ trao ban, soi sáng hướng dẫn phù trợ chúng con chóng nhận ra nọc độc kiêu căng tự tín, tự phụ của cựu xà hỏa ngục, sự chai đá cứng cỏi, vô ơn, thất tín của con người hư đốn, luôn tràn ngập tuôn chảy như huyết mạch trong tâm hồn chúng con.\n\nXin Cha nài van ơn dũng mạnh can trường Thánh Linh Tình Ái tràn đầy trên chúng con, để chúng con cương quyết cởi bỏ con người cũ, chòng trở nên trẻ thơ bé bỏng, như Chúa Hài Nhi, khiêm nhường lệ thuộc tùng phục, trong sạch, thơ ngây, hiền hòa trung thực tín thác tuyệt đối, trong cung lòng Đồng Trinh Vô Nhiễm Mẹ Maria, trên cánh tay Cha Đồng Trinh Ngôi Lời Nhập Thể muôn đời vĩnh viễn, để chúng con luôn ca ngợi tôn vinh yêu mến Giêsu, Maria, Giuse. Amen."
-  },
-  {
-    "id": "kinh-thanh-hien-cho-thanh-tam-chua-giesu",
-    "title": "Kinh Thánh Hiến Cho Thánh Tâm Chúa Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-thanh-hien-cho-thanh-tam-chua-giesu/",
-    "isPopular": false,
-    "content": "Lạy Rất thánh trái tim Đức Chúa Giêsu, chúng con xin thánh hiến bản thân chúng con cho Rất thánh trái tim Chúa. Xin hãy chiếm lấy toàn thể sự hiện hữu của con. Xin hãy biến đổi con nên một với Chúa. Xin hãy làm đôi tay con nên đôi tay Chúa, đôi chân con nên đôi chân Chúa, và con tim con nên con tim Chúa. Xin cho con nhìn với đôi mắt Chúa, hiểu với tâm trí Chúa, yêu với con tim Chúa, phụng sự với ý chí của Chúa, và xin cho con được tôn thờ Chúa với tất cả sự hiện hữu của con. Lạy Chúa, xin hãy làm cho con trở nên một Kitô khác.\n\nLạy rất thánh trái tim Đức Chúa Giêsu, xin ban cho con Thần Khí Thánh của Chúa, để Ngài dạy con biết yêu Chúa và chỉ sống nhờ Chúa, với Chúa, trong Chúa, và cho Chúa mà thôi.\n\nLạy Đức Chúa Thánh Thần, xin hãy đến và biến đổi thân thể con thành Đền thờ của Chúa. Xin Chúa hãy ở lại cùng con luôn mãi. Xin ban cho con tình yêu sâu thẳm nhất, để con sùng kính Thánh Tâm Chúa Giêsu. Xin cho con tình yêu để con phụng sự Người với trọn cả con tim con, linh hồn con, trí khôn con và sức mạnh con. Xin hãy chiếm lấy tất cả mọi quan năng hồn xác con. Xin điều hòa mọi dục tính trong con: mọi cảm xúc, cảm tình của con. Xin hãy chiếm lấy trí khôn của con, sự hiểu biết của con, và ý chí của con. Xin hãy làm chủ trí nhớ và trí tưởng tượng của con. Lạy Thần Khí Tình yêu cực thánh, xin ban cho con tràn đầy các ân sủng linh nghiệm của Chúa. Xin ban cho con trọn vẹn các nhân đức. Xin gia tăng đức tin trong con, bồi thêm lòng trông cậy cho con, tăng thêm lòng tin tưởng nơi con, và thiêu đốt lửa yêu mến trong con. Xin hãy cho con được toàn vẹn các đặc sủng, hoa quả và ân phúc của Thần Khí Chúa.\n\nLạy Thiên Chúa Ba ngôi cực thánh, xin hãy biến đổi linh hồn con nên cung thánh của Chúa. Amen."
-  },
-  {
-    "id": "kinh-thanh-that",
-    "title": "Kinh Thánh Thất",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-thanh-that/",
-    "isPopular": false,
-    "content": "Chúng con kính lạy Đức Chúa Giêsu rất hay lân ái, Chúa đã dùng mọi nhân đức lạ cùng mọi gương gia hạnh Chúa, mà làm cho Nhà Chúa đã chọn dưới thế này hóa nên Thánh Thất; nay cả nhà chúng con thảy đều sắp mình dưới chơn Chúa, xin Chúa khoan nhơn đoái đến nhà nầy, là nhà của chúng con; cùng xin Chúa nhớ đến nhà này là nhà của Chúa, vì đã dâng mình thờ phượng Chúa cách riêng. Xin Chúa nhơn từ phù hộ nhà nầy, cùng cứu khỏi mỗi nỗi cheo leo, giúp đở mọi cơn túng ngặt; lại xin thêm sức cho đặng bền chí noi theo nề nếp Thánh Thất luôn, hầu khi còn ở đời tạm nầy, hằng tôn vinh kính mến Chúa, ngõ sau đặng ngợi khen Chúa đời đời ở trên trời.\n\nA Thánh Mẫu Maria, dịu ngọt thay. Chúng con dám xin Đức Mẹ phù hộ chúng con, vì chúng con hẳn chắc Con một Đức Mẹ hằng nhậm lời Đức Mẹ chắng sai.\n\nA thân lạy Thánh Cả Giuse, hiển vang rất mực, chúng con xin Thánh Cả Giuse dùng thuở quờn bàu, mà hộ vực chúng con; lại xin trao lời chúng con khẩn nguyện vào tay Thánh Mẫu Maria, hầu Người dâng lại cho Đức Chúa Giesu Kito. Amen.\n\nGiêsu, Maria, Giuse\nXin dâng lòng con cùng sự sống cho Ba Đấng.\nGiêsu, Maria, Giuse\nXin Ba Đấng giúp con chưng kỳ lâm tử.\nGiêsu, Maria, Giuse\nXin cho con đặng chết bằng an trong tay Ba Đấng.\nGiêsu, Maria, Giuse\nXin soi sáng phù hộ cùng cứu giúp chúng con. Amen."
-  },
-  {
-    "id": "kinh-than-lay-ong-thanh-giuse",
-    "title": "Kinh Thân lạy Ông Thánh Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-than-lay-ong-thanh-giuse/",
-    "isPopular": false,
-    "content": "Thân lạy Ông Thánh Giuse nay chúng con lâm cơn khốn khó vội chạy đến cùng Người; trước là khẩn cầu bạn Người Rất Thánh phù trì, sau lại cả lòng dám xin Người bàu chữa; cậy vì lòng Người lân ái đã trọn tín nghĩa cùng Đức Nữ Đồng Trinh chẳng vương tội tổ là Mẹ Đức Chúa Trời. Lại cậy vì lòng Người như Cha nhân lành đã ấp yêu trìu mến Đức Chúa Giêsu Hài Đồng; thì chúng con gắn vó nài xin Người đoái xem Hội Thánh là cơ nghiệp Đức Chúa Giêsu Kitô đã đổ hết máu mình mà tạo thành, và cho chúng con đặng nương cậy quyền thế Người đỡ vớt trong cơn túng ngặt thon von.\n\nChúng con thân lạy Ông Thánh Giuse là Đấng ân cần gìn giữ nhà cửa rất thánh xưa ở thành Nagiarét, xin hãy gìn giữ con cái Đức Chúa Giêsu Kitô đã chọn.\n\nỚ Cha rất yêu dấu, xin ngăn đón kẻo chúng con nhuốm lây ôn dịch; là những điều dối trá nghịch đạo cùng sự mất nết hư người.\n\nỚ Đấng hộ thủ rất mạnh đang hưởng phước trên trời hãy phù hộ chúng con đang giao chiến cùng quỷ tặc âm binh dưới đất. Lại như xưa Người đã cứu lấy Đức Chúa Giêsu Hài Đồng, cho khỏi tay kẻ toan giết Người, thì bây giờ cũng xin Người bênh vực Hội Thánh Chúa, khỏi mưu sâu chước độc kẻ nghịch thù và mọi sự gian truân tai nạn; cùng xin hằng bảo hộ che chở chúng con, mọi người đặng nhờ ơn Người nâng đỡ và học đòi bắt chước Người sống thánh chết lành hưởng phước đời đời trên nước Thiên Đàng. Amen."
-  },
-  {
-    "id": "kinh-thu-nhan",
-    "title": "Kinh Thú Nhận",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-thu-nhan/",
-    "isPopular": false,
-    "content": "Tôi thú nhận cùng Thiên Chúa toàn năng và cùng anh chị em. Tôi đã phạm tội nhiều trong tư tưởng, lời nói việc làm, và những điều thiếu sót. Lỗi tại tôi, lỗi tại tôi, lỗi tại tôi mọi đàng. Vì vậy tôi xin Ðức Bà Maria trọn đời đồng trinh, các thiên thần, các thánh, và anh chị em khẩn cầu cho tôi trước tòa Thiên Chúa, Chúa chúng ta. Amen."
-  },
-  {
-    "id": "kinh-tho-lay",
-    "title": "Kinh Thờ Lạy",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-tho-lay/",
-    "isPopular": false,
-    "content": "Lạy Chúa con, con là vật phàm hèn cùng là không trước mặt Chúa, con hết lòng thờ lạy và nhận thật. Chúa là đầu cội rễ mọi sự, là cùng sau hết mọi loàị Chúa đã dựng nên con cùng thật là Chúa con nữa, thì con xin dâng linh hồn và xác, cùng mọi sự trong ngoài con ở trong tay Chúa. Amen."
-  },
-  {
-    "id": "kinh-tin",
-    "title": "Kinh Tin",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-tin/",
-    "isPopular": true,
-    "content": "Lạy Chúa con,\ncon tin thật có một Đức Chúa Trời là Đấng thưởng phạt vô cùng.\nCon lại tin thật Đức Chúa Trời có Ba Ngôi,\nmà Ngôi Thứ Hai đã xuống thế làm người,\nchịu nạn chịu chết mà chuộc tội thiên hạ.\n\nBấy nhiêu điều ấy cùng các điều Hội Thánh dạy\nthì con tin vững vàng,\nvì Chúa là Đấng thông minh và chân thật vô cùng\nđã phán truyền cho Hội Thánh. Amen."
-  },
-  {
-    "id": "kinh-tin-kinh",
-    "title": "Kinh Tin Kính",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-tin-kinh/",
-    "isPopular": true,
-    "content": "Tôi tin kính Đức Chúa Trời\nlà Cha phép tắc vô cùng dựng nên trời đất.\n\nTôi tin kính Đức Chúa Giêsu Kitô\nlà Con Một Đức Chúa Cha cùng là Chúa chúng tôi;\nbởi phép Đức Chúa Thánh Thần mà Người xuống thai,\nsinh bởi Bà Maria đồng trinh;\nchịu nạn đời quan Phong-xi-ô Phi-la-tô,\nchịu đóng đinh trên cây Thánh Giá,\nchết và táng xác, xuống ngục tổ tông,\nngày thứ ba bởi trong kẻ chết sống lại;\nlên trời ngự bên hữu Đức Chúa Cha phép tắc vô cùng;\nngày sau bởi trời lại xuống phán xét kẻ sống và kẻ chết.\n\nTôi tin kính Đức Chúa Thánh Thần;\ntôi tin có Hội Thánh hằng có ở khắp thế này,\ncác Thánh thông công;\ntôi tin phép tha tội;\ntôi tin xác loài người ngày sau sống lại;\ntôi tin hằng sống vậy. Amen.\n\n### Kinh Tin Kính (Phụng Vụ Mới - HĐGMVN)\n\nTôi tin kính một Thiên Chúa\nlà Cha toàn năng,\nĐấng tạo thành trời đất,\nmuôn vật hữu hình và vô hình.\n\nTôi tin kính một Chúa Giêsu Kitô,\nCon Một Thiên Chúa,\nsinh bởi Đức Chúa Cha từ trước muôn đời.\nNgười là Thiên Chúa bởi Thiên Chúa,\nÁnh Sáng bởi Ánh Sáng,\nThiên Chúa thật bởi Thiên Chúa thật,\nđược sinh ra mà không phải được tạo thành,\nđồng bản thể với Đức Chúa Cha:\nnhờ Người mà muôn vật được tạo thành.\n\nVì loài người chúng ta và để cứu độ chúng ta,\nNgười đã từ trời xuống thế.\nBởi phép Đức Chúa Thánh Thần,\nNgười đã nhập thể trong lòng Trinh Nữ Maria, và đã làm người.\nNgười chịu đóng đinh vào thập giá vì chúng ta,\nthời quan Phongxiô Philatô;\nNgười chịu khổ hình và mai táng,\nngày thứ ba Người sống lại như lời Thánh Kinh.\n\nNgười lên trời, ngự bên hữu Đức Chúa Cha,\nvà Người sẽ lại đến trong vinh quang để phán xét kẻ sống và kẻ chết,\nNước Người sẽ không bao giờ cùng.\n\nTôi tin kính Đức Chúa Thánh Thần\nlà Thiên Chúa và là Đấng ban sự sống,\nNgười bởi Đức Chúa Cha và Đức Chúa Con mà ra,\nNgười được phụng thờ và tôn vinh cùng với Đức Chúa Cha và Đức Chúa Con:\nNgười đã dùng các tiên tri mà phán dạy.\n\nTôi tin Hội Thánh duy nhất, thánh thiện, công giáo và tông truyền.\nTôi tuyên xưng có một Phép Rửa để tha tội.\nTôi trông đợi kẻ chết sống lại và sự sống đời sau. Amen."
-  },
-  {
-    "id": "kinh-truyen-giao",
-    "title": "Kinh Truyền Giáo",
-    "category": "gia-dinh-on-goi",
-    "url": "https://www.conggiao.org/kinh-truyen-giao/",
-    "isPopular": false,
-    "content": "Lạy Chúa trong sự khôn ngoan vô cùng, Chúa đã muốn cho vương quốc của Chúa Kitô được thiết lập trên khắp thế gian và mọi người được cứu độ nhờ Ngài, xin ban cho Giáo hội thực sự trở thành dấu hiệu cứu độ mà Chúa dành cho tất cả và trở thành nguồn mạc khải và hoàn tất ý định tình yêu của Chúa.\n\nLạy Chúa vô cùng toàn năng và là ánh sáng không bao giờ tàn lụi, xin nhân từ nhìn đến Giáo hội là bí tích kỳ diệu . Như Chúa đã tiền định từ thuở đời đời, xin Chúa tiếp tục công việc cứu độ con người trong bình an .Xin cho cả thế giới nhận biết được điều kì diệu này là người sa ngã chỗi dậy, người già cỗi được trẻ lại và mọi sự tìm lại được sự toàn hảo thuở ban đầu của Đấng là nguyên lý tất cả là Chúa Giêsu Kitô Chúa chúng con.\n\nLạy Thiên Chúa toàn năng hằng hữu Chúa đã tạo thành con người để họ luôn luôn ước ao tìm Chúa và khi tìm thấy Chúa thì được an nghỉ, chúng con nài xin Chúa ban cho tất cả mọi người sống giữa bao nhiêu hoàn cảnh nguy hại, khi nhận ra được những dấu hiệu của lòng thương xót Chúa, và thấy được bằng chứng là việc lành của những người tin Chúa, thì được vui mừng tuyên xưng một mình Chúa là Thiên Chúa thật và là cha chung của cả nhân loại.\n\nLạy Chúa Chúa đã muốn mọi dân tộc là phần tử liên đới của nhân loại và phát triển tuỳ theo ơn sủng Chúa ban, xin đổ đầy tình yêu Chúa vào lòng con cái Chúa để họ hăng say lo lắng cho phần rỗi của anh em mình và vì Chúa đã trao phó trái đất cho con người sử dụng cho công cuộc phát triển, xin cho mỗi dân tộc trở thành phương tiện làm việc để phát triển sự kính trọng lẫn nhau và cho công lý nở hoa. Chúng con cầu xin nhờ Chúa Kitô Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-truyen-tin",
-    "title": "Kinh Truyền Tin",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-truyen-tin/",
-    "isPopular": true,
-    "content": "X. Đức Chúa Trời sai Thánh Thiên Thần truyền tin cho Rất Thánh Đức Bà Maria.\nĐ. Và Rất Thánh Đức Bà chịu thai bởi phép Đức Chúa Thánh Thần.\n(Đọc 1 Kinh Kính Mừng)\n\nX. Này tôi là tôi tá Đức Chúa Trời.\nĐ. Tôi xin vâng như lời Thánh Thiên Thần truyền.\n(Đọc 1 Kinh Kính Mừng)\n\nX. Chốc ấy Ngôi Thứ Hai xuống thế làm người.\nĐ. Và ở cùng chúng con.\n(Đọc 1 Kinh Kính Mừng)\n\nX. Lạy Rất Thánh Đức Mẹ Chúa Trời, xin cầu cho chúng con.\nĐ. Đáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLời Nguyện:\nLạy Chúa, chúng con xin Chúa ban ơn xuống trong linh hồn chúng con là kẻ nhờ lời Thánh Thiên Thần truyền, mà biết thật Chúa Kitô là Con Chúa đã xuống thế làm người, thì xin vì công ơn Chúa chịu nạn chịu chết trên cây Thánh Giá, cho chúng con ngày sau khi sống lại được đến nơi vinh hiển, cũng vì công nghiệp Chúa Kitô là Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-trong-cay",
-    "title": "Kinh Trông Cậy",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-trong-cay/",
-    "isPopular": true,
-    "content": "Chúng con trông cậy Rất Thánh Đức Mẹ Chúa Trời,\nxin chớ chê chớ bỏ lời chúng con nguyện trong cơn gian nan thiếu thốn,\nĐức Nữ Đồng Trinh hiển vinh sáng láng\nhằng chữa chúng con cho khỏi mọi sự dữ. Amen."
-  },
-  {
-    "id": "kinh-truoc-bua-an",
-    "title": "Kinh Trước Bữa Ăn",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-truoc-bua-an/",
-    "isPopular": true,
-    "content": "Lạy Chúa, chúng con chúc tụng, tạ ơn Chúa là Ðấng Nhân lành giàu lòng xót thương. Xin Chúa chúc lành cho chúng con và cho của ăn chúng con sắp dùng, do lòng rộng rãi Chúa ban, nhờ công nghiệp Chúa Giêsu Kitô, Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-truoc-khi-ruoc-le",
-    "title": "Kinh Trước Khi Rước Lễ",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-truoc-khi-ruoc-le/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, Con tin Chúa.\nLạy Chúa Giêsu, con trông cậy Chúa.\nLạy Chúa Giêsu, con yêu mến Chúa và yêu thương mọi người.\nLạy Chúa Giêsu, xin tha thứ tội lỗi cho con.\nLạy Mẹ Maria, Mẹ của con.\nXin giúp con rước Chúa cho nên.\nAmen."
-  },
-  {
-    "id": "kinh-tran-chien-thieng-lieng",
-    "title": "Kinh Trận Chiến Thiêng Liêng",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-tran-chien-thieng-lieng/",
-    "isPopular": false,
-    "content": "Lạy Cha, con yêu mến Cha, ngợi khen và thờ lạy Cha. Con cảm tạ Chúa đã cho Con Chúa là Chúa Giêsu xuống thế chiến thắng tội lỗi và sự chết để cứu chuộc con. Con cảm tạ Chúa đã gởi Chúa Thánh Linh đến ban sức cho con, dẫn dắt con đến một đời sống sung mãn. Con cảm tạ Chúa về Đức Mẹ, Mẹ Thiên đàng hợp cùng các Thiên thần và các Thánh cầu bầu cho con.\n\nLạy Chúa Giêsu, con quì dưới chân Thánh giá Chúa, con xin Máu Thánh từ trái tim Chúa và các vết thương Chúa bao phủ con. Xin Nước hằng sống chảy từ tim Chúa rửa sạch con. Xin Chúa bao bọc con với ánh sáng của Chúa.\n\nLạy Cha trên trời, xin cho nguồn nước chữa lành của Phép Thánh Tẩy mà con lãnh nhận chảy trên giòng tộc con, để thánh tẩy gia đình con khỏi tội lỗi và tà lực bóng tối. Con xin Chúa Cha tha thứ cho con, thân nhân con, tổ tiên con đã có lúc mời gọi các tà lực để chúng chống đối Chúa Cha và không tôn vinh Chúa Giêsu. Nhân danh cực thánh Chúa Giêsu, con đòi lại tất cả các lãnh vực mà con đã để cho ma quỷ chiến hữu. Giờ đây, con xin đặt dưới quyền của Chúa Giêsu là Vua.\n\nNhờ quyền lực Chúa Thánh Thần, xin Chúa Cha cho con nhận ra ai con phải tha thứ, và những tội nào con chưa xưng ra. Xin cho con thấy khoảng nào trong cuộc đời con không đẹp lòng Chúa, và chỗ nào ma quỷ có thể xâm nhập vào đời con. Lạy Cha, con dâng lên Cha mọi sự không tha thứ, mọi tội lỗi con, mọi khoảng trong đời con mà ma quỷ có thể chen chân vào được. Con xin cảm tạ Chúa về những mặc khải này. Con cảm tạ Chúa về sự tha thứ và tình yêu của Chúa.\n\nNhân Danh Cực Thánh Chúa Giêsu, ta giam cầm tất cả các tà lực trong không khí, dưới nước, trên đất, dưới đất, dưới hỏa ngục. Nhân Danh Chúa Giêsu, ta giam cầm tất cả các tay chân của ma quỷ, và tuyên dương Máu Cực Thánh Chúa Giêsu trong không khí, trên không trung, dưới nước, trên đất, ở xung quanh và dưới hỏa ngục.\n\nLạy Cha trên trời, xin Chúa Cha cho Chúa Giêsu xuống với Chúa Thánh linh, Đức Mẹ, các Thiên thần và các Thánh gìn giữ con khỏi mọi tai họa và bảo vệ con khỏi sự trả thù của ma quỷ. Nhân Danh Cực Thánh Chúa Giêsu, xin bao bọc con (thân nhân con…), căn phòng này (điạ điểm này/ nhà này…) và tất cả mọi vật sở hữu của con trong Máu Cực Thánh Chúa Giêsu.\n\n– Nhân Danh Cực Thánh Chúa Giêsu, ta bẻ gẫy và phá tan tất cả… (lời rủa/ ếm, bùa ngải/ cạm bẫy/ dối trá/ trở ngại/ gạt gẫm/ chia rẽ/ ảnh hưởng quyền lực/ ham muốn và ước vọng xấu/ các hậu quả di truyền/ tất cả các lầm lạc và bệnh hoạn) đến từ mọi nguồn gốc, từ lỗi lầm, và tội lỗi.\n– Nhân Danh Chúa Giêsu, ta bẻ gẫy tất cả các lời thề, giao ước, ràng buộc tinh thần và linh hồn với ma quỷ.\n– Nhân Danh Chúa Giêsu, ta bẻ gẫy và phá đi tất cả các liên hệ và ràng buộc với… (môn thiên văn/ bói toán/ phái kỷ nguyên mới/ coi chỉ tay/ bói bài/ sùng bái satan/ phù thủy/ woodoo).\n– Nhân Danh Chúa Giêsu, ta phá tan tất cả ảnh hưởng cầu cơ, tử vi và tất cả mọi thờ phượng không tôn vinh Danh Chúa Giêsu.\n\nLạy Chúa Thánh Linh, qua ơn khôn ngoan xin cho con biết tà thần nào đang còn ở trong con. (Ngừng để nghe tiếng Chúa nói với bạn, ví dụ như: sự giận dữ, kiêu ngạo, cay đắng, tàn nhẫn, hỗn loạn, lường gạt, tham muốn, sợ hãi, ghét bỏ, bất an, ghen tị, tự hào, kinh sợ…). Đọc lời kinh sau đây sau khi thấy mỗi tà khí).\n\nNhân danh Chúa Giêsu, ta xua đuổi ____ (nói tên các tà khí đó ra). Ta ra lệnh cho ngươi đến quy hàng Chúa Giêsu, không được làm hại ta hay một người nào, để Chúa sẽ định đoạt ngươi theo thiên ý Chúa.\n\nCon cảm tạ Chúa Cha về tình yêu Chúa cho con. Con cảm tạ chúa Thánh Linh đã ban sức mạnh cho con chống lại satan và quyền lực nó. Con cảm tạ Chúa Giêsu đã giải thoát con tự do. Con cảm tạ Đức Mẹ đã cầu bầu cho con cùng với các Thiên thần và các Thánh.\n\nXin Chúa Giêsu đổ đầy con với… (sự bác ái/ đức tin/ khoan dung/ hi vọng/ khiêm nhường/ niềm vui/ lòng tốt/ ánh sáng/ tình yêu/ nhẫn nại/ bình an/ trong sạch/ an toàn/ bình thản/ tin cậy/ sự thật/ hiểu biết và khôn ngoan). Xin Chúa giúp con bước đi trong ánh sáng và sự thật của Chúa do Chúa Thánh Linh dẫn dắt, để cùng với Chúa chúng con sẽ ca ngợi, tôn vinh Chúa Cha bây giờ và cho đến thiên thu. Vì Chúa “… là đường, là sự thật và là sự sống” và Chúa “… đến để chúng con có một đời sống sung mãn”.\n\nChúa là Đấng cứu chuộc con; con tin tưởng và không sợ hãi. Sức mạnh con, can đảm của con là Chúa, và Chúa là Đấng Cứu Chuộc con. Amen. Allelulia. Amen."
-  },
-  {
-    "id": "kinh-ta-on",
-    "title": "Kinh Tạ Ơn",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-ta-on/",
-    "isPopular": false,
-    "content": "Ôi Giêsu! Chúa Trời Hằng Hữu, con tạơn Chúa vì muôn ân sủng Chúa ban cho chúng con khôn xiết kể. Xin cho từng nhịp đập của trái tim chúng con là một bài ca mới cảm tạ Chúa. Xin cho từng giọt máu trong thân thể chúng con chuyển động cho Chúa. Linh hồn con là một bài ca thờ lạy Lòng Thương Xót Chúa. Con yêu mến Chúa, chỉ một mình Chúa mà thôi. Amen."
-  },
-  {
-    "id": "kinh-tan-hien-cho-me-maria",
-    "title": "Kinh Tận Hiến Cho Mẹ Maria",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-tan-hien-cho-me-maria/",
-    "isPopular": false,
-    "content": "Ôi Maria Trinh vương, Mẹ thương xót của chúng con. Mẹ được đặc ân Vô nhiễm Nguyên tội do Chúa Ba Ngôi Chí Thánh ban cho Mẹ. Xin Mẹ lấy đặc ân ấy bao phủ trên chúng con, thánh hóa và gìn giữ chúng con khỏi mọi mưu chước ma quỉ, để cho tình yêu và thân xác chúng con được trong sạch trước mặt Chúa luôn luôn. Xin Mẹ lấy đức đơn sơ, Điềm Tĩnh, Khôn ngoan, Hiền dịu và quả cảm của Mẹ thay thế vào lòng chúng con, để làm cho chúng con sống một cuộc đời như Mẹ.\n\nMẹ ơi, Mẹ biết chúng con yếu đuối, bất lực trong tất cả mọi sự, nên chúng con trong cậy, phó thác hoàn toàn nơi Mẹ. Xin Mẹ sống và hành động trong chúng con mãi mãi. Amen."
-  },
-  {
-    "id": "kinh-tan-hien-cho-trai-tim-vo-nhiem-me-maria",
-    "title": "Kinh Tận Hiến Cho Trái Tim Vô Nhiễm Mẹ Maria",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-tan-hien-cho-trai-tim-vo-nhiem-me-maria/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Maria đồng trinh rất thánh, Mẹ dịu hiền của nhân loại, để làm tròn ước muốn của Rất thánh Trái Tim Chúa Giêsu và lời kêu gọi của Vị Đại Diện Con Mẹ trên trần gian, chúng con xin tận hiến mình chúng con, và gia đình chúng con cho Trái Tim Sầu Bi, Vô Nhiễm Mẹ. Ôi, Nữ Vương Rất Thánh Mân Côi, chúng con phó dâng lên Mẹ tất cả mọi người của các dân tộc và mọi người trên toàn thế giới.\n\nXin Mẹ lân ái đón nhận sự tận hiến của chúng con; xin dùng chúng con như Mẹ muốn để hoàn thành ý định của Mẹ cho trần gian.\n\nÔi Trái Tim Sầu Bi và Vô Nhiễm Mẹ Maria, Nữ Vương Rất thánh Mân Côi và Nữ Vương Thế Giới, xin cai trị chúng con cùng với Rất Thánh Trái Tim Chúa Giêsu, Vua chúng con. Xin cứu chúng con khỏi biển lan tràn của chủ nghĩa vô thần hiện sinh. Xin nhóm lên trong trái tim chúng con và trong nhà chúng con lòng mến đức trong sạch, sống đời sống đạo đức, lòng ước ao cứu các linh hồn, và ước muốn lần hạt Mân Côi một cách trung thành hơn.\n\nChúng con chạy đến với lòng tin tưởng ở Mẹ, Ôi! Ngai Tòa ân phúc và Mẹ của Tình yêu. Xin đốt cháy trong chúng con bằng Lửa thần linh cháy rực trong Trái Tim Sầu Bi và Vô Nhiễm Mẹ. Xin hãy làm trái tim chúng con và nhà chúng con là đền thánh của Mẹ, và qua chúng con, xin làm cho Trái tim Chúa Giêsu cùng với sự ngự trị của Mẹ được chiến thắng vinh hiển trong mỗi trái tim và trong mỗi nhà của chúng con. Amen."
-  },
-  {
-    "id": "kinh-tan-hien-cho-duc-me",
-    "title": "Kinh Tận Hiến Cho Đức Mẹ",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-tan-hien-cho-duc-me/",
-    "isPopular": false,
-    "content": "Lạy Mẹ Vô Nhiễm, con là….., một hối nhân, hôm nay nhờ tay Mẹ, con muốn nhắc lại và minh xác lời hứa Rửa Tội của con. Con chối bỏ ma quỷ, và quyết tâm bước theo Chúa Kitô hơn bao giờ hết. Lạy Mẹ Maria, con xin dâng lên Mẹ trái tim con. Xin Mẹ đốt lửa yêu mến Chúa Giêsu. Xin Mẹ làm cho tim con luôn nhận thức Trái Tim Chúa đang khát mong tình yêu và các linh hồn. Xin Mẹ gìn giữ trái tim con trong Trái Tim vẹn sạch của Mẹ, để con được yêu mến Chúa Giêsu và các phần Thân Thể Chúa, bằng tình yêu toàn hảo của Mẹ.\n\nLạy Mẹ Maria, con xin hiến dâng trọn thân con cho Mẹ: thân xác, linh hồn, mọi của cải trong ngoài, và cả những công phúc của mọi việc lành con làm. Xin Mẹ làm cho con, với tất cả những gì thuộc về con, nên những gì đẹp lòng Mẹ nhất. Xin Mẹ biến đổi con nên dụng cụ hữu dụng trong bàn tay vô nhiễm và thương xót Mẹ, để đem lại vinh quang tối hảo cho Thiên Chúa.\n\nNếu con ngã, xin Mẹ dẫn con trở về với Chúa Giêsu. Xin rửa con trong máu và nước tuôn trào từ cạnh sườn Chúa, và giúp con đừng bao giờ mất lòng tín thác vào suối mạch của tình yêu và thương xót Chúa.\n\nLạy Mẹ Vô Nhiễm, Mẹ là người luôn làm theo thánh ý Chúa, với Mẹ, con muốn liên kết mình với sự dâng hiến toàn hảo của Chúa Giêsu, khi trong Chúa Thánh Thần, Chúa Giêsu hiến dâng chính mình cho Thiên Chúa Cha, Đấng là sự sống của thế giới. Amen."
-  },
-  {
-    "id": "kinh-toi",
-    "title": "Kinh Tối",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-toi/",
-    "isPopular": true,
-    "content": "Lạy Chúa con, con thờ lạy và yêu mến Chúa hết lòng con. Con tạ ơn Chúa đã dựng nên con, cứu chuộc con và gìn giữ con suốt ngày hôm nay Con xin dâng lên Chúa mọi sự lành con đã làm hôm nay, và xin tha thứ mọi lỗi lầm con phạm. Xin gìn giữ con đêm nay, và xin phúc lành của Chúa luôn ở cùng con và những người con yêu mến. Amen.\n\n### Bản Tiếng Anh (Prayer at Bedtime)\n\nO my God, I adore you, and I love you with all my heart. I thank you for having created me, having saved me by your grace, and for having preserved me during this daỵ I pray that you will take for yourself whatever good I might have done this day, and that you will forgive me whatever evil I might have donẹ Protect me this night, and may your grace be with me always and with those I love. Amen."
-  },
-  {
-    "id": "kinh-vinh-danh",
-    "title": "Kinh Vinh Danh",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-vinh-danh/",
-    "isPopular": false,
-    "content": "Vinh danh Thiên Chúa trên các tầng trời và bình an dưới thế cho người thiện tâm. Chúng con ca ngợi Chúa, chúng con chúc tụng Chúa, chúng con thờ lạy Chúa, chúng con tôn vinh Chúa, chúng con cảm tạ Chúa vì vinh quang cao cả Chúa, lạy Chúa là Thiên Chúa, là Vua trên trời, là Chúa Cha toàn năng. Lạy Con một Thiên Chúa, Chúa Giêsu Kitô. Lạy Chúa là Thiên Chúa, là Chiên Thiên Chúa, là Con Ðức Chúa Cha, Chúa xóa tội trần gian, xin thương xót chúng con, Chúa xóa tội trần gian, xin nhậm lời chúng con cầu khẩn. Chúa ngự bên hữu Ðức Chúa Cha, xin thương xót chúng con. Vì lạy Chúa Giêsu Kitô, chỉ có Chúa là Ðấng Thánh, chỉ có Chúa là Chúa, chỉ có Chúa là Ðấng Tối Cao, cùng Ðức Chúa Thánh Thần trong vinh quang Ðức Chúa Cha. Amen."
-  },
-  {
-    "id": "kinh-vieng-hang-da",
-    "title": "Kinh Viếng Hang Đá",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-vieng-hang-da/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu Hài Đồng, là Con Đức Chúa Cha hằng có đời đời, Chúa đã giáng sinh làm người để cứu độ trần gian, chúng con hợp cùng Đức Mẹ và Thánh Giuse mà thờ lạy tạ ơn kính mến Chúa, chúng con đồng thanh với các Thiên Thần và các mục đồng mà chúc tụng Chúa rằng:\n\nVinh danh Thiên Chúa trên trời,\nbình an hạnh phúc cho người trần gian.\n\nChớ gì lòng chúng con nên như hang đá cho Chúa giáng sinh, chớ gì lòng chúng con nên như máng cỏ cho Chúa ngự.\n\nLạy Đức Mẹ Maria. Mẹ đã sinh Chúa Giêsu cho loài người, xin giúp chúng con hăng hái loan truyền mầu nhiệm Giáng Sinh và Nhập Thể khắp nơi.\n\nLạy Đức Mẹ Maria là Mẹ Thiên Chúa, là Mẹ uy quyên cao sang, xin cho Tổ quốc và Giáo hội Việt Nam muôn ơn lành hồn xác, và cho mọi người nhận biết Đức Chúa Giêsu là Chúa Cứu Thế, và thương yêu nhau như Chúa truyền dạy.\n\nLạy Thánh Cả Giuse, là Đấng thay mặt Đức Chúa Cha nuôi dưỡng Chúa Giêsu ở trần gian, là Đấng rất mạnh thế hằng cầu bầu cùng Con Thánh của Người bênh vực che chở chúng con, xin cho chúng con biết sống đơn sơ khiêm nhường, chăm chỉ làm việc, mộ mến suy ngắm và thực hành Lời Chúa, để chúng con được sống an vui như Thánh Gia xưa.\n\nLạy Chúa Giêsu Hài Đồng, Đức Mẹ Maria và Thánh Cả Giuse, xin cho chúng con lĩnh được những ơn rất trọng bởi Mầu Nhiệm Nhập Thể. Amen."
-  },
-  {
-    "id": "kinh-vieng-thanh-the",
-    "title": "Kinh Viếng Thánh Thể",
-    "category": "thanh-the-bi-tich",
-    "url": "https://www.conggiao.org/kinh-vieng-thanh-the/",
-    "isPopular": true,
-    "content": "Lạy Đức Chúa Giêsu Kitô là Chúa con, Chúa con vì lòng thương loài người ta, hằng ngự trong phép Mình Thánh đêm ngày, Chúa con rất nhân từ, rất thương xót, hằng chờ hằng gọi, hằng chịu lấy các kẻ đến viếng Chúa con: con tin thật Chúa con đang ngự trong phép cực trọng này, dù con là vực sâu là không mặc lòng, thì con thờ lạy Chúa con, cùng đội ơn Chúa con vì mọi ơn lành Chúa con đã ban cho con, nhất là vì đã ban cho con trót Mình Thánh Máu Thánh và linh hồn Chúa con và tính Đức Chúa Trời trong phép rất trọng này. Lại con tạơn Chúa con đã dủ lòng thương ban cho con Rất Thánh Đồng Trinh Maria là Mẹ Chúa con, để Người là Đấng bầu cử cho con, lại vì bây giờ cũng đã gọi con đến viếng Chúa con trong nơi Thánh này.\n\nCon thờ lạy Trái tim Chúa con và con ước ao kính thờ Trái tim Chúa con vì ba ý sau này: thứ nhất cho được tạơn Chúa con vì ơn rất trọng này là để lại Mình Thánh Chúa con trong phép Rất Thánh này; thứ hai để cho Chúa con khỏi thịnh nộ, vì mọi sự những kẻ nghịch đảng đã làm vô phép cùng Chúa con trong phép cực trọng này; thứ ba, con ước ao thờ lạy Chúa con trong những nơi trên mặt đất có phép Rất Thánh này, mà người ta khinh dể, hay là chẳng chịu phép rất mầu nhiệm này cho nên.\n\nLạy Đức Chúa Giêsu, con kính mến Chúa con hết lòng hết sức, con ăn năn đau đớn trong lòng, vì vốn xưa nay có nhiều lần con đã phạm tội mất lòng Chúa con hay thương vô cùng; lại tự này về sau con dốc lòng chừa thật và trông cậy ơn Chúa con sẽ giúp sức cho con được chừa thật, mà dù bây giờ con là kẻ hèn hạ mặc lòng, thì con xin dâng trót mình con và ý riêng con cùng mọi sự lòng con ước ao trong tay Chúa con; lại con có làm nên được sự gì bây giờ, và làm được sự nào về sau, thì con cũng xin dâng cho Chúa con hết, tự nay về sau xin Chúa con phân định về con thể nào mặc thánh ý Chúa con, con chỉ muốn xin Chúa con một lòng kính mến và vâng theo thánh ý Chúa con cho trọn, và làm con Chúa con cho vững vàng cho đến trọn đời.\n\nCon xin Chúa con thương các linh hồn nơi luyện tội, nhất là những linh hồn có lòng sốt mến phép cực trọng này và Rất Thánh Đức Bà Maria hơn; con lại cầu xin cho các kẻ có tội nữa. Sau hết, con lạy Đấng đã cứu lấy linh hồn con, con xin hợp một ý một lòng cùng Trái tim Chúa con, mà dâng mọi sự yêu mến và ước ao cho Đức Chúa Cha hằng sống vô cùng, lại vì con đã biết Đức Chúa Cha vốn thương mến Chúa con, cho nên con xin lấy tên Chúa con mà xin cùng Đức Chúa Cha ghé mắt lại mà thương nghe, cùng chịu lấy con và mọi sự tội. Amen."
-  },
-  {
-    "id": "kinh-vi-dau",
-    "title": "Kinh Vì Dấu",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-vi-dau/",
-    "isPopular": false,
-    "content": "Lạy Chúa chúng con, vì dấu Thánh giá, xin chữa chúng con cho khỏi kẻ thù. Nhân danh Cha và Con và Thánh Thần. Amen.\n\n***Chú thích:***\n\n• *vì dấu Thánh giá: trong khi đọc câu này, chúng ta dùng ngón cái của tay phải, vẽ dấu chữ thập **lên trán**.*\n• *xin chữa chúng con: Trong khi đọc câu này, chúng ta dùng ngón cái của tay phải, vẽ dấu chữ thập **lên môi***\n• *cho khỏi kẻ thù: Trong khi đọc câu này, chúng ta dùng ngón cái của tay phải, vẽ dấu chữ thập **lên ngực***"
-  },
-  {
-    "id": "kinh-vat-mon",
-    "title": "Kinh Vật Mọn",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-vat-mon/",
-    "isPopular": false,
-    "content": "Chúng con là vật mọn, mà sấp mình thờ lạy Đức Chúa Giêsu cực cao cực trọng. Chúng con nhớ đến những sự thương khó Đức Chúa Giêsu, xưa chịu ba mươi ba năm vì chúng con, thì trong lòng thảm thiết đau đớn, nào có bao giờ trả nghĩa Đức Chúa Giêsu cho nên. Thuở xưa, khi Đức Chúa Giêsu chịu nạn, thì trời đất u ám chuyển động, và đã vỡ ra tan tác như thương Chúa sinh nên muôn vật, phương chi chúng con mà chẳng thương Cha Cả thì sao? Ấy Máu Thánh Cha đã chảy ra hết vì quân dữ là chúng con, mà con thấy Cha thương dường ấy, chẳng có thể cầm nước mất chảy ra ăn năn tội lỗi, vì đã phạm đến Đức Chúa Cha. Ấy thật bởi tội chúng con, nên Đức Chúa Giêsu xuống thế liều mình chịu đóng đanh chịu chết làm vậy. Chúng con hằng kính mến Đức Chúa Giêsu mà tích năm Dấu Thánh ở trong lòng chúng con. Lạy Dấu Thánh chân tả; lạy Dấu Thánh chân hữu; lạy Dấu Thánh tay tả, lạy Dấu Thánh tay hữu, lạy Dấu Thánh cạnh nương long Đức Chúa Giêsu. Amen."
-  },
-  {
-    "id": "kinh-vuc-sau",
-    "title": "Kinh Vực Sâu",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-vuc-sau/",
-    "isPopular": true,
-    "content": "Lạy Chúa, con ở dưới vực sâu kêu lên Chúa, xin Chúa hãy thẩm nhậm lời con kêu van. Hãy lắng nghe tiếng con cầu xin. Nếu Chúa chấp tội nào ai rỗi được ? Bởi Chúa hằng có lòng lành, cùng vì lời Chúa phán hứa. Con đã trông cậy Chúa. Linh hồn con cậy vì lời hứa ấy, thì đã trông cậy Chúa. Những kẻ làm dân Người đêm ngày hãy trông cậy Người cho liên, vì Người rất nhân lành hay thương vô cùng, sẽ tha hết mọi tội lỗi kẻ làm dân Người thay thảy. Lạy Chúa, xin ban cho các linh hồn (… tên …) được nghỉ ngơi đời đời, và được sáng soi vô cùng. Lạy Chúa, xin cứu lấy các linh hồn cho khỏi tù ngục, mà được nghỉ yên. Amen."
-  },
-  {
-    "id": "kinh-xin-9-on-duc-chua-thanh-than",
-    "title": "Kinh Xin 9 Ơn Đức Chúa Thánh Thần",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-xin-9-on-duc-chua-thanh-than/",
-    "isPopular": false,
-    "content": "Lạy Ðức Chúa Thánh Thần là đấng an ủi linh thiêng. Con thờ lạy Chúa là Ðức Chúa Trời thật, như con thờ lạy Ðức Chúa Cha và Ðức Chúa Con.\n\nHiệp với lời ngợi khen của các thánh Thiên thần và Tổng lãnh Thiên thần, con xin dâng hiến bản thân con để chúc tụng Chúa. Xin dâng lên Chúa trọn cả tâm hồn con. Con xin tạ ơn Chúa vì mọi ơn lành Chúa không ngừng tuôn đổ trên thế gian.\n\nChúa là tác giả của mọi ân huệ siêu nhiên, và là đấng đã ban cho linh hồn Ðức Maria, Mẹ Chúa Trời vô vàn ân huệ phong phú. Vậy con nài xin Chúa hãy đến viếng thăm con và ban cho con ân sủng và Tình yêu của Ngài.\n\nXin ban cho con ơn kính sợ Thiên Chúa để con khỏi phải sa ngã phạm tội như bao lần con đã thất nghĩa cùng Chúa. Vì những lần ấy, giờ đây con xin hết lòng thống hối ăn năn. Xin Chúa tha tội cho con. Amen.\n\nXin ban cho con ơn sốt sắng để từ nay con sẽ phụng sự Chúa với một tấm lòng hăng say nhiệt thành, không bao giờ trì hoãn nhưng luôn luôn mau mắn vâng nghe tiếng Thánh Thần soi dẫn và trung thành tuân giữ các giới răn của Ngài.\n\nXin ban cho con ơn Hiểu Biết để nhờ ánh sáng chân lý của Chúa, con nhận biết được những gì thuộc về Chúa, ngõ hầu con vững vàng tiến bước trên con đường về nơi vĩnh cửu.\n\nXin ban cho con ơn can đảm để con mạnh dạn vượt thắng mọi tấn công thử thách của ma quỷ và thoát khỏi mọi nguy hiểm thế gian đang cản trở con trên đường về cuộc sống vĩnh cửu.\n\nXin ban cho con ơn lo liệu để con chọn những gì có ích lợi cho đời sống linh hồn con, và nhận ra mọi chước độc mưu thâm của ma quỷ hằng rình chờ giăng bắt con.\n\nXin ban cho con ơn khôn ngoan để con quy hướng tất cả mọi hành động của con về Thiên Chúa là cùng đích cuộc đời con, ngõ hầu qua việc yêu mến và phụng sự Chúa ở đời này như Chúa đã truyền dạy, con sẽ lãnh nhận hạnh phúc tuyệt hảo là được chiếm trọn lấy Chúa mãi mãi trong cuộc sống đời sau.\n\nXin ban cho con ơn yêu mến để con chỉ yêu một mình Chúa mà thôi, và không còn luyến tiếc bất cứ sự gì ở thế gian này và để con yêu mến tha nhân như chính Chúa hằng yêu mến con ngõ hầu Nước Chúa được lan rộng trên khắp thế gian và để con không ngừng yêu mến Chúa, tôn vinh chúa, cảm tạ Chúa cả đời này lẫn đời sau.\n\nXin ban cho con ơn vui mừng để con rao truyền và chia sẻ niềm vui Nước Chúa cho mọi người trên thế gian, ngõ hầu Tin Mừng Nước Trời được lan tràn khắp nơi trên mặt đất và Danh Thánh Chúa được chúc tụng ngợi khen muôn đời.\n\nXin ban cho con ơn bình an để mọi cám dỗ thử thách của ma quỷ, thế gian và xác thịt không còn ảnh hưởng trên con ngõ hầu con chỉ nương tựa vào một mình Chúa, là nguồn bình an, là núi đá, là thành lũy bền vững bảo vệ con và nhờ đó, con đem bình an Chúa chia sẻ cho hết mọi người. Amen."
-  },
-  {
-    "id": "kinh-xin-cho-giong-trai-tim-chua",
-    "title": "Kinh Xin Cho Giống Trái Tim Chúa",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-xin-cho-giong-trai-tim-chua/",
-    "isPopular": false,
-    "content": "Ôi Chúa Giêsu! Xin cho trái tim con nên giống Trái Tim Chúa, xin Chúa hãy biến đổi nó thành chính Trái Tim Chúa, ngõ hầu con cảm nhận được nhu cầu của tâm hồn anh chị em, cách riêng những ai sầu não và buồn khổ. Ước gì luồng ánh sáng từ bi thương xót cư ngụ trong trái tim con. Amen."
-  },
-  {
-    "id": "kinh-xin-giai-thoat-khoi-bay-toi-lon",
-    "title": "Kinh Xin Giải Thoát Khỏi Bảy Tội Lớn",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-xin-giai-thoat-khoi-bay-toi-lon/",
-    "isPopular": false,
-    "content": "1. Ôi Ðấng Cứu Ðộ nhân lành và là Vua Bình An, xin ghi trong con đức tính hiền hòa và kiên nhẫn. Xin cho con kiềm chế sự giận dữ, oán ghét và khó chịu để con chiến thắng sự dữ bằng sự tốt lành. Xin cho con đạt được bình an và mừng vui trong tình yêu của Ngài.\n\n2. Ôi Ðấng khiêm nhường, xin lấy đi trong con những hãnh diện và kiêu căng. Xin cho con ý thức sự yếu đuối và tội lỗi của con để con có thể gánh chịu sự nhạo báng và khinh miệt vì Chúa, và cho con hạ mình xuống trước mặt Ngài.\n\n3. Ôi Thầy của sự kiêng chế, xin giúp con thích phục vụ Ngài hơn là sự mê ăn uống của con. Xin cho con tránh thói mê say ăn uống và để con đói khát sự công minh của Ngài.\n\n4. Ôi Vị yêu chuộng sự thanh khiết, xin lấy đi những tham muốn xác thịt trong trái tim con, để con có thể phục vụ Ngài với một tâm trí và thân xác trong sạch.\n\n5. Ôi Cha của sự khó nghèo, xin giúp con tránh tất cả sự tham lam của cải thế gian và cho con yêu chuộng những sự thánh thiện. Xin thúc đẩy con giúp đỡ người thiếu thốn, như Ngài đã chịu chết để con có thể hưởng lấy những của cải thiên đàng.\n\n6. Ôi Ðấng yêu thương mẫu mực, xin giúp con tránh những ganh tỵ và ý muốn xấu xa. Xin tình yêu của Ngài ngự trong con để con có thể vui mừng trong hạnh phúc của người khác và buồn rầu cho những bất hạnh của họ.\n\n7. Ôi Ðấng yêu các linh hồn đầy ghen tuông, xin cho con đừng lười biếng tâm hồn và thể xác. Xin thúc đẩy con nhiệt tâm cho sự vinh quanh của Ngài để con có thể phục vụ cho Ngài và trong Ngài. Amen."
-  },
-  {
-    "id": "kinh-xin-long-men",
-    "title": "Kinh Xin Lòng Mến",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-xin-long-men/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu êm ái dịu dàng xin cho lòng con bừng cháy ngọn lửa yêu mến Chúa. Xin biến hoá thân con thành chính Mình Ngài, xin Chúa thần linh hoá bản thân con, ngõ hầu mọi cử chỉ, hành vi của con đều làm đẹp lòng Chúa. Ước chi Ngài thực hiện điều ấy nơi con, nhờ quyền phép Thánh Thể con được rước mỗi ngày. Ôi! con nóng lòng ước ao biến hoá toàn thân thành mình Chúa. Amen."
-  },
-  {
-    "id": "kinh-xin-on-biet-thuong-xot",
-    "title": "Kinh Xin Ơn Biết Thương Xót",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-xin-on-biet-thuong-xot/",
-    "isPopular": false,
-    "content": "Lạy Chúa, xin cho mắt con biết thương xót, để con không bao giờ nghi ngờ hay xét đoán tha nhân theo bề ngoài, nhưng biết nhận ra vẻ đẹp trong tâm hồn họ và đến giúp đỡ họ.\n\nXin cho tai con biết thương xót, để con biết lắng nghe những nhu cầu của tha nhân và không dửng dưng trước những đau đớn và than van của họ. Xin cho lưỡi con biết thương xót, để con không bao giờ nói tiêu cực về tha nhân, nhưng biết nói lời an ủi và tha thứ cho mọi người.\n\nXin cho tay con biết thương xót và đầy việc lành, để con chỉ làm điều tốt cho tha nhân và dám nhận những công việc khó khăn và vất vả hơn.\n\nXin cho chân con biết thương xót, để con mau mắn đến giúp đỡ tha nhân và vượt thắng cơn mệt mỏi rã rời. Nơi con an nghĩ thật là trong việc phục vụ tha nhân.\n\nLạy Chúa, xin con tim con biết thương xót, để con cảm được mọi nỗi khổ niềm đau của tha nhân. Con sẽ không từ khước yêu thương bất cứ ai. Con sẽ chân thành ngay cả đối với kẻ sẽ lạm dụng lòng tốt của con. Và con sẽ khóa lòng con trong Trái Tim vô cùng thương xót của Chúa Giêsu. Con sẽ mang nỗi khổ của con luôn mãi. Amen. Lạy Chúa! xin thương xót con là kẻ có tội. Amen."
-  },
-  {
-    "id": "kinh-xin-on-chet-lanh",
-    "title": "Kinh Xin Ơn Chết Lành",
-    "category": "cau-cho-linh-hon",
-    "url": "https://www.conggiao.org/kinh-xin-on-chet-lanh/",
-    "isPopular": false,
-    "content": "Con lạy rất thánh Đức Bà Maria là Chúa bầu con, con tin thật Đức Chúa Trời Ngôi Thứ Nhất, là Đức Chúa Cha, có phép tắc vô cùng, đã ban cho Đức Bà được quyền phép cả trên trời dưới đất. Vì vậy con cầu cùng Đức Bà phù hộ cho con trong khi con lâm chung kẻo phải chước dữ kẻ nghịch thù con. Amen.\n\nKính mừng …\n\nCon lạy ơn rất thánh Đức Bà Maria là Chúa bầu con, con tin thật Ngôi Thứ Hai, là Con Đức Chúa Trời cùng là Con một Đức Bà, đã ban cho Đức Mẹ cực quang cực minh soi sáng cả và thiên đàng. Vì vậy con cầu cùng Đức Bà phù hộ cho con trong khi con lâm chung, xin soi sáng cho linh hồn con được lòng tin thật cùng mạnh mẽ kẻo phải u mê, hay là tin chước dối kẻ nghịch thù con. Amen.\n\nKính mừng …\n\nCon lạy ơn rất thánh Đức Bà Maria là Chúa bầu con, con tin thật Đức Chúa Trời Ngôi Thứ Ba, là Đức Chúa Thánh Thần, đã ban cho Đức Bà đầy lòng vui kính mến Đức Chúa Trời. Vì vậy con cầu cùng Đức Bà phù hộ cho con được lòng vui kính mến Đức Chúa Trời, trong khi con lâm chung cho con lấy sự khốn khó làm vui mừng. Amen.\n\nKính mừng …"
-  },
-  {
-    "id": "kinh-xin-on-chua-lanh-cua-chua",
-    "title": "Kinh Xin Ơn Chữa Lành Của Chúa",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-xin-on-chua-lanh-cua-chua/",
-    "isPopular": false,
-    "content": "Chúc tụng Thiên Chúa là Đấng tạo thành trời đất, là Vua muôn loài, là Đấng Cứu Độ con. Lạy Chúa Giêsu, Chúa mời gọi những ai gồng gánh nặng nề, hãy đến với Chúa, Chúa sẽ bổ sức cho. Giờ đây, con dâng lên Chúa thân xác bệnh tật, yếu đuối, bất lực của con, xin Chúa nâng con lên, ôm con vào lòng và cho con tựa đầu vào trái tim của Chúa. Xin Máu và Nước Cứu Độ của Chúa bao phủ lấy con, rửa sạch tất cả những tội lỗi và các thương tích nơi thân xác của con. Xin đôi bàn tay chữa lành của Chúa chạm đến những nơi thương tích, bệnh tật của con, hầu con sẽ được lành mạnh. Cậy nhờ các roi đòn của Chúa đã chịu vì tội lỗi của con, cho con thêm sức mạnh để có thể chịu đựng những đau đớn cho nên. Xin Ánh Sáng Phục Sinh của Chúa, chiếu soi vào những nơi tối tăm, chết chóc trong con người của con, để con được hồi sinh cả về thể xác và tinh thần. Cám ơn Chúa Giêsu là Đấng Cứu Độ con. Amen."
-  },
-  {
-    "id": "kinh-xin-on-hoa-binh",
-    "title": "Kinh Xin Ơn Hòa Bình",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-xin-on-hoa-binh/",
-    "isPopular": false,
-    "content": "Lạy Chúa xin bảo hộ Đấng đại diện Con Chúa dưới đất, xin bảo hộ các Đức Giám mục, các linh mục, các tu sĩ, các giáo hữu, thiếu niên trưởng thành và người già lão được đem hết tâm trí kết hợp với nhau thành một tảng đá kiên cố kẻ thù dữ tợn của Chúa va vào sẽ bị vỡ tan.\nXin Chúa thương ban thúc giục mọi người biết thương yêu bao kẻ khốn nạn chỉ vì nghèo khổ mà sa vào kiếp lầm than không xứng với phẩm giá con người. Xin Chúa nung nấu tâm hồn những kẻ gọi Chúa là Cha. Cho họ khát khao lấy việc lành và lòng chân thành mà cư xử với nhau cho công bằng và thương nhau như anh em.\n\nLạy Chúa xin ban hòa bình cho đời chúng con. Xin ban hòa bình trong tâm hồn, hòa bình trong gia đình, hòa bình trong tổ quốc, hòa bình giữa các dân tộc. Ước gì ánh sáng thanh quang của cầu vồng hòa bình và thỏa thuận tỏa xuống quả đất đã được Thánh hóa bởi đã làm nơi cho Con Cực Thánh Chúa sinh trưởng và chịu nạn. Lạy Chúa là nguồn mạch mọi sự yên ủi, chúng con khốn nạn thảm thương tội lổi nặng nề và thiếu thốn đủ cách, nhưng chúng con lại nhất định tín nhiệm vào Chúa. Vì cảm thấy mình hèn hạ nên chúng con thành thực phó thác toàn thân chúng con trong tay Chúa. Chúng con dâng những lời cầu nguyện thô hèn chúng con cho Đức Trinh Nữ Maria vinh hiển và toàn thể các Thánh, nhờ các Đấng ấy lấy công nghiệp mình mà chuyển cầu cho chúng con. Xin Chúa ban cho kẻ tàn tật được nhịn nhục và lành mạnh, cho thanh niên được tin vững, cho thiếu nữ được trong sạch, cho gia trưởng được thấy gia đình họ thịnh đạt và thánh thiện, cho các bà mẹ được biết giáo dục con cái, cho kẻ mồ côi được người âu yếm bảo trợ, cho kẻ lánh nạn và các tù binh được chóng về quê. Sau hết xin Chúa ban cho mọi người được đầy thánh Sủng vì thánh Sủng Chúa là của dự bị và bảo đảm phúc trường sinh trên nước hằng sống. Amen."
-  },
-  {
-    "id": "kinh-xin-on-kien-vung-khi-that-vong",
-    "title": "Kinh Xin Ơn Kiên Vững Khi Thất Vọng",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-xin-on-kien-vung-khi-that-vong/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, xin lắng nghe lời cầu xin của con.\n\nXin giúp con biết cư xử với những người gây đau khổ cho con.\n\nXin đừng để cho lòng đố kỵ chế ngự cuộc sống của con; xin đừng để con ước muốn những điều không thể được.\n\nThay vào đó, xin giúp con mở rộng tâm hồn ra với Chúa.\n\nXin giúp con cảm nhận tình yêu đích thực của Chúa; xin giúp con cảm nhận bình an đích thực trong tâm hồn con. Amen."
-  },
-  {
-    "id": "kinh-xin-on-tha-thu",
-    "title": "Kinh Xin Ơn Tha Thứ",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-xin-on-tha-thu/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, con tin, con thờ lạy, con trông cậy, con yêu mến Chúa,\ncon xin Chúa tha thứ cho những ai không tin, không thờ lạy, không\ntrông cậy, không yêu mến Chúa. Chúa là nguồn hy vọng của chúng con,\nxin Chúa thương xót chúng con cùng toàn thể nhân loại, xin Chúa tha\ntội, tha vạ cho chúng con cùng toàn thể nhân loại."
-  },
-  {
-    "id": "kinh-xin-on-trong-sach",
-    "title": "Kinh Xin Ơn Trong Sạch",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-xin-on-trong-sach/",
-    "isPopular": false,
-    "content": "Lạy Đức Bà Maria, xin Đức Bà lấy sự sạch sẽ như giây mà buộc cho chúng con, xin phá sự lo trong lòng chúng con. Xin xuống nhân đức tin soi sáng sự thanh sạch cho mọi người. Lạy Đức Bà Maria đã chịu thai mà còn Đồng Trinh sạch sẽ, xin cho lòng xác chúng con được sạch sẽ như vậy. Vì Danh Đức Chúa Cha, vì Danh Đức Chúa Con, vì Danh Đức Chúa Thánh Thần, đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-xin-on-tang-duc-tin-vao-chua",
-    "title": "Kinh Xin Ơn Tăng Đức Tin Vào Chúa",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-xin-on-tang-duc-tin-vao-chua/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu,\nCon Thiên Chúa,\nChúa đã làm người như chúng con,\nnên Chúa hiểu gánh nặng của phận người.\nCuộc đời đầy cạm bẫy mời mọc\nmà con người lại yếu đuối mong manh.\nHạnh phúc thường được trộn bằng nước mắt,\nvà giữa ánh sáng,\ncũng có những bóng mờ đe dọa.\n\nLạy Chúa Giêsu,\nnếu có lúc con mệt mỏi và xao xuyến,\nxin nhắc con nhớ rằng\ntrong vườn dầu Chúa đã thổn thức cầu nguyện.\nNếu có lúc con thấy bóng tối bủa vây,\nxin nhắc con nhớ rằng\ntrên thập giá Chúa đã thốt lên: Sao Cha bỏ con?\nXin nâng đỡ con, để con đừng bỏ cuộc.\nXin đồng hành với con, để con không cô đơn.\nXin cho con yêu đời luôn\ndù đời chẳng luôn đáng yêu.\nXin cho con can đảm đối diện với những thách đố\nvì biết rằng\ncuối cùng chiến thắng thuộc về người có niềm hy vọng lớn hơn.\nAmen."
-  },
-  {
-    "id": "kinh-xet-minh",
-    "title": "Kinh Xét Mình",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-xet-minh/",
-    "isPopular": false,
-    "content": "Lạy Chúa là sự sáng linh hồn con, xin soi sáng cho con được biết mọi tội con đã phạm trong ngày hôm nay, hoặc lo, hoặc nói, hoặc làm điều gì lỗi nghĩa cùng Chúa. Con lại xin Chúa vì công nghiệp Đức Chúa Giêsu ban ơn cho con được ăn năn ghét tội cùng dốc lòng chừa thật. Amen."
-  },
-  {
-    "id": "kinh-ao-duc-ba",
-    "title": "Kinh Áo Đức Bà",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-ao-duc-ba/",
-    "isPopular": false,
-    "content": "Lạy Rất Thánh Đức Bà Maria là Quan Thầy họ Áo Đức Bà, chúng con dốc lòng vào họ Áo Đức Bà, cùng mặc Áo Đức Bà cho đến trọn đời. Khi chúng con chết, thì Đức Bà sẽ lấy Áo thánh ấy ở nơi mình chúng con mà nhận chúng con là con cái Đức Bà, và đưa chúng con về thiên đàng mà chầu chực Đức Giêsu cùng rất thánh Đức Bà đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-anton",
-    "title": "Kinh Ông Thánh Antôn",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-anton/",
-    "isPopular": false,
-    "content": "Lạy ơn ông thánh Antôn, xưa đã chê bỏ thế gian cùng các sự thuộc về nó, cho nên đã được trận cả cùng tích nhiều của thiêng liêng lời nói và việc làm ở trên trời.\n\nChúng tôi xin ông thánh Antôn cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nChúng tôi xin Đức Chúa Trời làm cho cả Hội thánh được vui mừng trong ngày lễ ông thánh Antôn, thì chúng tôi xin Đức Chúa Trời ban sức mạnh thiêng liêng cho chúng tôi được lòng kính mến thờ phượng Đức Chúa Trời sốt sắng cho đáng hưởng phúc vô cùng đời sau. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-augustino",
-    "title": "Kinh Ông Thánh Augustinô",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-augustino/",
-    "isPopular": false,
-    "content": "Lạy ông thánh Augustinô, là đấng dã làm cho Hội thánh sáng ra, là phá các đạo rối làm nghịch cùng Hội thánh, cùng là đấng có thần thế trước mặt Đức Chúa Trời, thì chúng tôi xin Người cầu bầu cho chúng tôi là kẻ làm con chiên Hội thánh được noi gương bắt chước Người, cùng vâng giữ những lời Người giảng dạy.\n\nChúng tôi xin ông thánh Augutinô cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Trời có phép vô cùng, xưa đã đốt lửa thiêng liêng đức kính mến cháy trong lòng ông thánh Augutinô, và nên như cột lửa dẫn đàng cho Hội thánh, thì chúng tôi xin Đức Chúa Trời ban cho chúng tôi được cứ chính đàng ông thánh này đã dẫn cho chúng tôi được theo, khi sống ở đời này cho ngày sau được về quê thật Đức Chúa Trời đã hứa cho chúng tôi. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-giuse",
-    "title": "Kinh Ông Thánh Giuse",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-giuse/",
-    "isPopular": false,
-    "content": "Lạy ơn ông thánh Giuse, chúng con khốn khó chạy đến cùng Người, chúng con đã cầu xin cùng Đức Bà là bạn rất thánh Người cứu giúp, thì chúng con lại lấy lòng trông cậy kêu van Người cầu bầu cho chúng con nữa. Chúng con sấp mình xuống xin vì Đức Nữ Đồng Trinh chẳng mắc tội tổ tông truyền, sinh đẻ Chúa Trời. Người đã yêu đang cùng vì Đức Chúa Giêsu Kitô , Người đã yêu dấu như cha yêu con mọn vậy, mà Người ghé mặt nhân lành thương xem chúng con, là kẻ Đức Chúa Giêsu đã lấy máu mình mà chuộc. Lại xin Người dùng quyền thế đỡ vực chúng con đang lúc túng ngặt. Lạy ông thánh Giuse là Đấng rất sớm lo khéo liệu , xưa đã coi sóc Đức Chúa Giêsu cùng Đức Bà, xin gìn giữ những kẻ Đức Chúa Giêsu đã chọn làm tông giống Người. Cha rất thương chớ để chúng con lây phải những sự dị đoan sai lạc cùng làm hư hại người ta, như ôn dịch thần khí. Đấng rất mạnh hãy cứu chữa chúng con, xin Người ngự trên trời, lấy lòng nhân từ phù hộ chúng con thắng được ma quỷ. Xưa người đã chữa Đức Chúa Giêsu khỏi chết thế nào, thì rày lại cứu Hội Thánh ChúaTrời khỏi mọi chước kẻ thù cùng sự khốn khó thể ấy. Lại xin Người hằng che chở mọi người chúng con liên mãi, để cho chúng con noi gương bắt chước, cậy nhờ Người phù hộ mà được giữ đạo nên, ăn mày chết lành, và được hưởng phúc thanh nhàn trên Thiên Đàng vô cùng. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-giuse-bau-cu",
-    "title": "Kinh Ông Thánh Giuse Bầu Cử",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-giuse-bau-cu/",
-    "isPopular": false,
-    "content": "Lạy ơn Ông Thánh Giuse. Chúng con chạy đến cùng Người, trong cơn gian nan chúng con mắc phải. Chúng con đã kêu van cùng Rất Thánh Đức Bà là Đấng đã làm Bạn cùng Người, phù hộ gìn giữ chúng con, thì chúng con cũng lấy lòng trông cậy cho vững vàng, mà xin Ông Thánh Giuse bầu cử cho chúng con như vậy.\n\nChúng con xin vì nhân đức kính mến, mà Người làm Bạn cùng Rất Thánh Đồng Trinh là Mẹ Chúa Trời, và là Đấng chẳng mắc phải tội tổ tông truyền, cùng vì lòng thương Người đã ẵm lấy Đức Chúa Giêsu, thì chúng con xin Ông Thánh Giuse ghé mặt lại mà thương đến Hội Thánh, là phần sản nghiệp Đức Chúa Giêsu đã lấy Máu Thánh mình mà chuộc. Lại xin Người dùng sức mạnh thiêng liêng và quyền phép Người, mà giúp đỡ những sự chúng con còn thiếu thốn.\n\nLạy Đấng đã coi sóc Đức Chúa Giêsu cùng Đức Bà cho cẩn thận, thì chúng con xin Người bênh vực con cái Đức Chúa Giêsu đã chọn. Lạy Cha rất thương yêu! Chúng con xin Người cất mọi sự dối trá cùng mọi tội lỗi, cho chúng con khỏi mắc phải những sự ấy. Lạy Đấng rất mạnh đang ở trên trời hay gìn giữ chúng con, xin Người dủ lòng thương mà che chở chúng con đang khi chiến trận cùng kẻ thù tối tăm là các ma quỉ. Như xưa Người đã gìn giữ Đức Chúa Giêsu cho khỏi cơn hiểm nghèo thế nào, thì rầy chúng con cũng xin Người cứu chữa lấy Hội Thánh, cho khỏi các mưu kế giặc thù, và các sự gian nan khốn khó như vậy, cùng xin Người hằng bầu cử cho chúng con được bắt chước Người, và trông cậy vì quyền thế Người, cho được giữ đạo cho trọn, cùng được chết lành, và được hưởng phúc vô cùng trên thiên đàng. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-hieronimo",
-    "title": "Kinh Ông Thánh Hieronimô",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-hieronimo/",
-    "isPopular": false,
-    "content": "Chúng tôi lạy ơn ông thánh Hieronimô, cùng ông thánh Valentinô Giám mục và các bạn tử vì đạo, xưa đã chịu khó nhọc làm sáng danh Đức Chúa Trời cùng cứu giúp linh hồn người ta, và chịu chết đổ máu mình ra vì Đức Chúa Giêsu, thì chúng tôi xin các Đấng cầu bầu cho chúng tôi được giữ đạo thánh Đức Chúa Trời cho nên, cùng xin cho các thầy cả giảng đạo trong nước Việt Nam này được thêm lòng kính mến  Đức Chúa Trời và thương yêu linh hồn người ta; lại xin các Đấng bầu cử cho cả và nước Việt Nam hằng được bằng an, và cho đạo thánh Đức Chúa Trời một ngày một rộng sáng ra, cho hết mọi người được biết, cùng tin cậy kính mến, và làm tôi tá Đức Chúa Trời ở đời này, cho ngày sau được lên thiên đàng hưởng phúc thanh nhàn vui vẻ vô cùng. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-inaxu",
-    "title": "Kinh Ông Thánh Inaxu",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-inaxu/",
-    "isPopular": false,
-    "content": "Lạy ơn ông thánh Inaxu xưa đã chê bỏ thế gian cùng các sự thuộc về nó, cho nên đã được trận cả, cùng tích nhiều của thiêng liêng lời nói việc làm ở trên trời.\n\nChúng tôi xin ông thánh Inaxu cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Trời xưa đã chọn ông thánh Inaxu lập dòng trong Hội thánh cho danh Đức Chúa Trời sáng ra mọi nơi thiên hạ, thì chúng tôi xin Đức Chúa Trời thương đến chúng tôi là kẻ yếu đuối được chịu ơn Người cầu cho chúng tôi đang khi đánh giặc thiêng liêng ở thế gian này, và bắt chước Người cho đáng hưởng phúc vui vẻ ở trên trời. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-mattheu",
-    "title": "Kinh Ông Thánh Mátthêu",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-mattheu/",
-    "isPopular": false,
-    "content": "Kính lạy Thánh Mátthêu vinh hiển, ngài đã được gọi từ người thu thuế để trở nên người tông đồ nhiệt thành của Chúa Giêsu. Xin cầu cho chúng con chớ có lòng ham mê của cải đời này, và sống đời sống liêm khiết. Xin cầu cho chúng con biết chia sẻ của cải với người nghèo khó, vì những gì chúng con làm cho một trong những người anh em bé mọn là làm cho Chúa, và xin cầu cho chúng con được ơn thấy Chúa Giêsu đang sống trong Giáo hội của Ngài, và làm theo lời Người dạy trong đời sống của chúng con trên trần gian, để chúng con mai ngày sẽ được sống đời đời với Người trên thiên đàng. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-phanxico-xavier",
-    "title": "Kinh Ông Thánh Phanxicô Xavier",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-phanxico-xavier/",
-    "isPopular": false,
-    "content": "Chúng con lạy Chúa là Đấng xưa đã chọn thánh Phanxicô Xavier đi đến Phương Đông này giảng rao soi sáng muôn dân được biết đường rỗi linh hồn, cùng mở đường cho nhiều linh mục bắt chước gương người mà tiếp việc giảng truyền đạo Chúa trong các xứ miền Đông này.\n\nChúng con là kẻ ngây muội xưa nay chẳng có công gì đáng được ơn trọng ấy đó là cho chúng con biết được đạo thánh Chúa là đường công chính làm cho chúng con được mọi sự lành đời sau.\n\nChúng con cảm tạ Chúa cùng trông cậy vì công nghiệp thánh Phanxicô Xavier cho đạo thánh Chúa một ngày một lan rộng ra, cùng phá tan hết mọi bè rối và các kẻ thù nghịch Hội Thánh.  Lại xin cho hàng đạo đức được mọi sự lành bình an mà coi sóc linh hồn chúng con; cùng xin cho giáo dân được một lòng tin bến vững, hầu đáng được ngày sau hưởng phúc Thiên đàng đời đời chẳng cùng.  Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-phaolo",
-    "title": "Kinh Ông Thánh Phaolô",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-phaolo/",
-    "isPopular": false,
-    "content": "Kính lạy thánh Phaolô là tông đồ cả Đức Chúa Giêsu, đã giảng rao sự thật của đạo Đức Chúa Trời trước mặt thiên hạ, thì chúng con xin người cầu bàu cho chúng con đang lúc còn ở giữa kẻ thù dưới thế gian này.\n\nChúng con xin thánh Phaolô cầu cho chúng con.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy Chúa là Đấng xưa đã chọn thánh Phaolô đi giảng rao dạy dỗ người ta biết đàng chính thật mà lên Thiên-đàng, thì chúng con xin Chúa ban cho chúng con được vâng giữ những lời các đấng chăn chiên dạy dỗ chúng con, cho chúng con được dõi theo đường chính thật mà lên Thiên-đàng. Vì Đức Giêsu Kitô là Chúa chúng con.  Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-phero",
-    "title": "Kinh Ông Thánh Phêrô",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-phero/",
-    "isPopular": false,
-    "content": "### Kinh Cầu Cùng Thánh Phêrô\n\nKính lạy Thánh Phêrô là tông đồ cả của Chúa Giêsu, là đầu cùng là cột cái Hội Thánh, là thầy dạy mọi sự thật.  Chúa Giêsu đã phó các con chiên cho người coi sóc, đã đặt người cầm giềng mối các giáo dân, đã ban cho người chìa khóa Nước Thiên Đàng.\n\nChúng con vui mừng vì thánh Phêrô đã được chức cao quyền trọng như vậy, chúng con xin chọn người làm quan thày, cậy người coi sóc gìn giữ những con mọn này cho khỏi miệng sói rừng là ma quỉ.  Lại xin cho những ai lạc đàng được biết chính nẻo là đạo thánh  mà tin, cùng giữ cho vững bền; đến ngày sau qua khỏi đời này xin thánh Phêrô mở cửa Thiên-đàng cho chúng con được hiệp lại một nhà một nước, mà thờ phụng chầu chực Chúa tạo thành muôn vật, hằng vui sống, hằng trị đời đời chẳng cùng.  Amen.\n\n### Kinh Ông Thánh Phêrô Tử Vì Đạo\n\nLạy ơn ông thánh Phêrô tử vì đạo là sự sáng dòng Kẻ giảng cùng là đấng đồng trinh sạch sẽ, chúng tôi xin Người lấy lòng nhân lành thương giúp chúng tôi đang khi đi đàng thế gian này.\n\nChúng tôi xin ông thánh Phêrô cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nChúng tôi xin Đức Chúa Trời có phép vô cùng, cho chúng tôi được lòng sốt mến mà bắt chước ông thánh Phêrô tử vì đạo đã làm cho đạo thánh Đức Chúa Trời được rộng sáng ra. Vì Đức Chúa Giêsu hằng sống hằng trị đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-thomaso",
-    "title": "Kinh Ông Thánh Thômasô",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-thomaso/",
-    "isPopular": false,
-    "content": "### Kinh I:\n\nChúng tôi ngợi khen Đức Chúa Giêsu là Chúa thiên đàng, đã chọn ông thánh Thômasô làm sáng Hội thánh, cho thiên hạ được ơn thông biết những lẽ về đạo thật.\n\nÔng thánh Thômasô cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nChúng tôi phải cầu xin lạy ơn Đức Chúa Trời đã làm cho Hội thánh được sáng láng bởi ông thánh Thômasô tiến sĩ, những cách lạ mà dạy dỗ, cũng làm gương mọi phúc đức thì chúng tôi xin cùng Đức Chúa Trời cho chúng tôi trí khôn sáng láng cho đưọc thông biết những lẽ Người đã dạy, cùng bắt chước những việc Người đã làm. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen.\n\n### Kinh II:\n\nLạy ông thánh Thômasô rất thanh sạch, là cây gậy trắng tốt Đức Chúa Trời đã chọn. Người đã giữ lấy áo Đức Chúa Trời ban khi chịu phép Rửa tội cách thanh sạch chẳng có nhọ gỉ bao giờ; lại được ơn hai Thiên thần thắt dây mà ăn ở khi còn sống ở đời này như thiên thần vậy. Tôi  xin Người cầu bầu cho tôi trước mặt Đức Chúa Giêsu là con chiên thanh tịnh, và trước mặt Đức Bà Maria là Nữ Vương các kẻ đồng trinh, để cho tôi là kẻ mang dấu người đã thắng trận xác thịt, được chịu lấy ơn sạch sẽ như Người, cùng được bắt chước Người khi tôi còn sống ở đời này, cho đáng ngày sau được chịu triều thiên trên trời ở giữa các Thiên thần làm một cùng Người là Đấng mạnh mẽ bênh vực sự sạch sẽ trong mình tôi.\n\nÔng thánh Thômasô cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy Đức Chúa Trời đã đoái thương lấy dây phép (hay là ảnh) ông thánh Thômasô mà gìn giữ chúng tôi đang khi chiến trận rất khó cho được giữ mình sạch sẽ, thì chúng tôi xin Đức Chúa Trời ban ơn trên trời, là cho Người giúp đỡ chúng tôi thắng trận cùng giặc dơ dáy, là kẻ thù linh hồn và xác chúng tôi, cho đáng ngày sau được đội triều thiên hoa huệ về đức sạch sẽ đời đời, và được phúc thanh nhàn ở giữa những cơ đội thanh sạch các Thiên thần. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen.\n\n### Kinh III:\n\nLạy ông thánh Thômasô, quan thầy các nhà trường, xin người cầu bầu cùng Đức Chúa Trời ban cho chúng tôi được đức tin mạnh mẽ, đức yêu dấu sốt sắng, cách ăn ở rất thanh sạch, sự thông thái thật. Vì Đức Chúa Giêsu là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-toma",
-    "title": "Kinh Ông Thánh Tôma",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-toma/",
-    "isPopular": false,
-    "content": "Chúng tôi lạy ơn ông thánh Tôma, xưa đã nghe thấy lời Đức Chúa Giêsu phán rằng: Tôma bởi đã xem thấy Thầy thì mới tin, phúc trọng những kẻ chẳng thấy mà có lòng tin.\n\nChúng tôi xin ông thánh Tôma cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nChúng tôi xin Đức Chúa Trời ban ơn cho chúng tôi được lòng kính mừng ông thánh Tôma tông đồ Đức Chúa Giêsu, cùng xin Người hằng gìn giữ chúng tôi cho có lòng kính mến Đức Chúa Trời cho nên, và bắt chước Người mà tin thật mọi sự đạo thánh Đức Chúa Trời. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-vincente",
-    "title": "Kinh Ông Thánh Vincente",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-vincente/",
-    "isPopular": false,
-    "content": "Lạy ơn ông thánh Vincente là tông đồ rất vinh hiển, là Đấng hay làm nhiều phép lạ, là Thiên thần mới về sách Apôcalypsi, là Đấng rất yêu dấu hay bầu chữa chúng tôi.\n\nChúng tôi xin Người dủ thương nhận lời khiêm nhường chúng tôi cầu xin cùng Người, và làm cho những ơn Đức Chúa Trời đổ xuống trên mình chúng tôi cho nhiều. Chúng tôi xin Người nhân vì lửa sốt mến hằng đốt lòng Người mà làm cho Cha Cả muôn loài thương xót tha tội chúng tôi, và ban đức tin rất chắc chắn và lòng hằng vững vàng làm việc lành phúc đức cho đến cùng, để chúng tôi nên giáo hữu tốt lành sốt sắng, đáng ăn mày ơn Người bầu cử phù giúp chúng tôi.\n\nChúng tôi lại xin Người phù hộ chúng tôi phần xác cho khỏi những sự bệnh nạn, giữ ruộng vườn chúng tôi cho khỏi những mưa đá bão táp cùng trừ cất mọi sự gian nguy kẻo làm hại chúng tôi nữa. Chúng tôi được ơn Người phù hộ phần hồn phần xác như làm vậy, thì hằng sẽ giữ lòng sốt sắng kính mến Người, đoạn có ngày chúng tôi sẽ họp mặt với Người trên thiên đàng mà ngợi khen Đức Chúa Trời mãi mãi đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-ong-thanh-dominico",
-    "title": "Kinh Ông Thánh Đôminicô",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-ong-thanh-dominico/",
-    "isPopular": false,
-    "content": "Ở sự trông cậy lạ lùng, Cha đã ban cho những kẻ thương khóc Cha đang lúc mong sinh thì, vì bấy giờ Cha đã hứa sau khi qua đời, Cha sẽ làm ích cho các anh em. Lạy Cha, xin hãy giữ lời đã trối mà cầu giúp chúng con. Cha đã giãi sáng ra vì làm nhiều phép lạ dường ấy, mà chữa đã những kẻ phải liệt phần xác, thì xin Cha phù giúp chúng con cho được ơn Chúa Kitô mà chữa đã tật nguyền linh hồn chúng con.\n\nLạy Cha, xin hãy giữ lời đã trối mà cầu giúp chúng con.\n\nSánh danh Đức Chúa Cha và Đức Chúa Con và Đức Chúa Thánh Thần. Như đã có trước vô cùng, và bây giờ và hằng có và đời đời chẳng cùng.\n\nLạy Cha, xin hãy giữ lời đã trối mà cầu giúp chúng con.\nLạy Thánh Cha Đôminicô xin cầu cho chúng con.\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLỜI NGUYỆN:\n\nLạy Chúa, là Đấng đã đoái thương soi sáng Hội Thánh Chúa bởi công nghiệp cùng những lời dạy dỗ ông thánh Đôminicô là Hiển tu Chúa và là Cha chúng tôi thì xin Chúa vì lời Người cầu bầu mà ban cho hội thánh được sự phù hộ đời này, và hằng tấn tới thêm nhiều ích lợi thiêng liêng. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-an-nan-thong-hoi",
-    "title": "Kinh Ăn Năn Thống Hối",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-an-nan-thong-hoi/",
-    "isPopular": false,
-    "content": "*(Cầu cho các linh hồn đang hấp hối)*\n\nLạy Chúa Giêsu của con, xin Chúa dủ lòng Từ Bi Nhân Hậu hàng tỷ tỷ và hàng triệu triệu lần. Lạy Chúa Giêsu của con, xin dủ Lòng Từ Bi Nhân Hậu thương xót từng mỗi một linh hồn trong cơn hấp hối cho đến ngày tận thế, hàng tỷ tỷ và hàng triệu triệu lần.\n\nChúng con xin dâng lên Cha trên trời Máu Châu Báu và những Giọt Lệ Máu của Chúa Giêsu cho mỗi người trong cơn hấp hối cho đến ngày tận thế, và che phủ linh hồn ấy với Máu Qúy Báu và Trái Tim Vô Nhiễm của Đức Mẹ Maria cùng với những lệ máu của Người, để kẻ thù xảo trá không còn có thể nắm giữ họ nữa.\n\nLạy Thiên Chúa tốt lành và Nhân Hậu của con, Chúa đã cho con sinh ra trong thế gian này để chịu đau khổ cho Chúa và cho các kẻ tội lỗi. Xin Chúa nhận sự đau khổ của con cho sáng ngời Thánh Danh và Vinh Quang của Đức Chúa Cha, cho việc cứu độ của linh hồn con và linh hồn của các người cầu xin ơn này. Lạy Chúa, xin Chúa lắng nghe lời con kêu cầu vào Lòng Từ Bi Nhân Hậu của Chúa, sẽ lan tràn trên con, và trên tất cả mọi người trong thiên hạ.\n\nLạy Chúa Giêsu xin Chúa hãy đến ngự trong lòng con để an ủi các người buồn phiền, chữa lành các bệnh nhân, cứu vớt các kẻ hấp hối và làm nhẹ bớt các hình phạt cho các linh hồn được chúc lành nơi luyện ngục. Xin Chúa hãy đuổi ra xa con các tà thần xấu xa, các thiên thần phản loạn, và các linh hồn hay cám dỗ. Xin Chúa Thánh Thần cho ánh sáng của Chúa đến trong tâm hồn con và cho tất cả những ai cầu xin ơn này, đều được soi sáng bởi Ánh Sáng Thiên Chúa.\n\nLạy Đức Chúa Cha, Đức Chúa Con, và Đức Chúa Thánh Thần, là Tình Yêu cứu độ ở đời này, con sẽ được ơn tha thứ và đời sau sẽ được ơn sống lại.\n\nChúc tụng Chúa Giêsu (3 lần).\nNào ta tiến lên đi cùng Đức Mẹ Maria, Mẹ chúng ta và Thập Giá (3 lần)."
-  },
-  {
-    "id": "kinh-an-nan-toi",
-    "title": "Kinh Ăn Năn Tội",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-an-nan-toi/",
-    "isPopular": true,
-    "content": "Lạy Chúa con,\nChúa là Đấng trọn tốt trọn lành vô cùng.\nChúa đã dựng nên con,\nvà cho Con Chúa ra đời chịu nạn chịu chết vì con,\nmà con đã cả lòng phản nghịch lỗi nghĩa cùng Chúa,\nthì con lo buồn đau đớn,\ncùng chê ghét mọi tội con trên hết mọi sự;\ncon dốc lòng chừa cải,\nvà nhờ ơn Chúa thì con sẽ lánh xa dịp tội,\ncùng làm việc đền tội cho xứng. Amen."
-  },
-  {
-    "id": "kinh-dau-phuc-duc-chua-moi-ngay",
-    "title": "Kinh Đầu Phục Đức Chúa Mỗi Ngày",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-dau-phuc-duc-chua-moi-ngay/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu Kitô, con tin vững vàng, Chúa là Con Đức Chúa Cha, xuống thế làm người. Con yếu đuối, xin Chúa cứu con. Con tội lỗi, xin Chúa tha tội cho con. Có người làm mất lòng con, xin Chúa chúc lành cho họ.\n\nNhân danh Chúa, con từ bỏ đam mê tật xấu. Nhân danh Chúa, con từ bỏ tà thần. Hôm nay, con đón nhận Chúa vào lòng con, làm Chúa con, làm Đấng Cứu Độ con, và là Thiên Chúa của con.\n\nCon tin vững vàng vào lời Chúa hứa, là sai Chúa Thánh Thần đến cùng chúng con, từ nơi Thiên Chúa Cha hằng sống. Xin Chúa dìm con trong Chúa Thánh Thần. Xin Chúa dìm con trong biển lửa yêu mến ấy. Xin Chúa xức dầu Thánh Thần trên con cho con đón nhận lấy những ân huệ, và những đặc sủng cần thiết, cho con được cùng với Chúa, lo công việc Chúa Cha, trong Hội Thánh và trong thế giới.\n\nCon cám ơn Chúa Giêsu khấng ban ơn ấy cho con. Lời Chúa nói là sự thật, con hoàn toàn tin tưởng vào Chúa.  Vinh danh Thiên Chúa Cha, hằng có và hằng sống. Vinh danh muôn đời cho Chúa Giêsu. Amen. Alleluia! Ngợi khen Chúa! Tạ ơn Chúa muôn đời!"
-  },
-  {
-    "id": "kinh-den-ta-trai-tim-chua-giesu",
-    "title": "Kinh Đền Tạ Trái Tim Chúa Giêsu",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/kinh-den-ta-trai-tim-chua-giesu/",
-    "isPopular": false,
-    "content": "Lạy Ðức Chúa Giêsu rất nhân lành, Chúa đã yêu dấu loài người quá bội, mà loài người vô tình tệ bạc, lại còn khinh mạn dể duôi, nay chúng con sấp mình xuống trước bàn thờ Chúa, hết lòng thờ phượng cung kính cho được đền vì những sự vô nhân bất nghĩa khắp thiên hạ hằng làm sỉ nhục trái tim Chúa hay thương dường ấy.\n\nSong le chúng con nhớ lại, xưa nay chúng con cũng đã lỗi nghĩa cùng Chúa như vậy, thì chúng con hết lòng ăn năn đau đớn, xin Chúa thương xót thứ tha; chúng con sẵn lòng đền tội chúng con cùng xin đền tội những kẻ lạc xa đàng rỗi, hoặc bởi cố tình chẳng tin phục nhận biết Chúa là Ðấng chăn chiên dẫn đàng chính thật, hoặc khinh dể những điều đã khấn nguyện khi chịu Phép Rửa Tội mà dẫy bỏ giới răn Chúa là ách êm ái dịu dàng.\n\nBấy nhiêu tội đáng khóc lóc đau đớn dường ấy, thì chúng con quyết chí đền hết thay thảy; lại dốc lòng đền riêng những tội này: như cách ăn ở buông tuồng mất nết, những thói tục xấu xa làm dịp cho kẻ hãy còn thanh sạch mất lòng khiết tịnh. Tội bỏ chẳng giữ các ngày lễ, sự nói lộng ngôn phạm đến Chúa cùng các Thánh; những điều sỉ nhục bỉ báng đấng thay mặt Chúa cùng các đấng làm thầy; những điều ơ hờ khinh dể, cùng những tội gớm ghê phạm đến chính phép Bí Tích mến yêu. Sau hết, chúng con xin đền tội chung các nước thiên hạ hằng chống cưỡng chẳng nhận quyền, cùng chẳng vâng phục lời Hội Thánh Chúa truyền dạy. Chớ gì chúng con được đổ máu ra mà rửa sạch bấy nhiêu tội ấy! Ít là chúng con xin dâng công đền tội xưa Chúa đã dâng cho Ðức Chúa Cha trên cây thánh giá, mà rầy còn dâng trên bàn thờ mọi ngày; lại xin dâng công nghiệp Ðức Mẹ đồng trinh và các thánh cùng các kẻ lành, cho được đền vì những sự vô phép mất lòng Chúa.\n\nChúng con thật lòng hứa cùng Chúa từ rầy về sau, nhờơn Chúa giúp thì chúng con sẽ giữ đức tin vững vàng ăn ở thanh sạch giữ luật Phúc Âm cho trọn, nhất là luật mến Chúa yêu người, cho được bù lại những tội ấy; lại hết sức ngăn ngừa kẻo người ta còn phạm đến Chúa, cùng khuyên dụ cho nhiều người trở lại theo chân Chúa.\n\nLạy Ðức Chúa Giêsu cực khoan cực nhân, chúng con cậy vì lời Ðức Nữ Ðồng Trinh Maria, đã đồng công chuộc tội cầu bầu, xin Chúa nhận lễ đền tội chúng con thật lòng kính dâng mà tạ Chúa, cùng xin ban cho chúng con được ơn bền đỗ, giữ lòng trung tín lo việc bổn phận làm tôi Chúa cho đến trọn đời. Cho ngày sau chúng con hết thảy được về quê thật là nơi Chúa hằng sống hằng trị cùng Ðức Chúa Cha và Ðức Chúa Thánh Thần đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-den-ta-trai-tim-duc-me",
-    "title": "Kinh Đền Tạ Trái Tim Đức Mẹ",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/kinh-den-ta-trai-tim-duc-me/",
-    "isPopular": false,
-    "content": "Lạy Thánh Nữ Đồng Trinh Maria là Mẹ Chúa Trời, và là Nữ Vương các Thiên Thần cùng cả và loài người ta. Chúng con cám đội ơn Chúa Ba Ngôi cực Thánh rất đáng thờ phượng cung kính, đã ban cho Mẹ những ơn riêng vinh hiển. Chúng con tin hết thảy các điều Hội Thánh dạy tin về những sự cao sang, quyền phép, lòng lành và nhân đức Đức Mẹ. Nhất là chúng con tin kính Mẹ tự thưở dựng thai chẳng hề mắc tội tổ tông; Mẹ chịu thai cùng sinh dưỡng Chúa Giêsu mà còn trọn đời Đồng Trinh sạch sẽ. Mẹ Là Đấng rất mực thánh thiện và đã vượt trên cả loài người cùng các Thiên Thần, vì Mẹ được đầy dẫy mọi ơn và hằng trung tín dùng ơn nghĩa Chúa. Mẹ đã đáng gọi là Đấng đồng công cứu chuộc loài người, vì Mẹ đã thông phần trong việc cứu thế. Mẹ là Đấng giữ kho cùng là cửa Thiên đàng, vì Mẹ đứng ban phát mọi ơn Chúa. Sau hết, Mẹ được phong quyền Nữ Vương trời đất, Mẹ là Hoàng Hậu, là Nữ Vương các Thiên Thần cùng cả loài người ta nữa.\n\nChúng con ái mộ cao rao Mẹ là Đấng toàn năng bởi lời Mẹ xin cùng Chúa, và Mẹ chỉ dùng quyền phép ấy để cứu rỗi linh hồn người ta, cùng yên ủi kẻ âu lo khốn khổ, vì Mẹ hằng cứu giúp mọi kẻ cầu xin Mẹ, và nhiều khi Mẹ cũng tiếp cứu cả nhưng kẻ chưa kêu đến Mẹ nữa.\n\nÔi! Lạy Mẹ thông ơn Thiên Chúa, bầu chữa kẻ có tội và phù hộ các giáo hữu! Xin Mẹ đoái nhận lời khiêm nhường chúng con dâng lên cảm tạ Mẹ vì muôn ơn lành Mẹ bầu lĩnh cho cả và Hội Thánh cũng các giáo hữu. Chúng con xin dâng trót lòng chúng con để cảm tạ Mẹ vì hết mọi ơn Mẹ ban. Lạy Nữ Vương cùng là Mẹ hay thương xót, xin Mẹ thứ tha các điều chúng con bội bạ cùng Mẹ. Chúng con xin đoan hứa từ nay, nhờ ơn Chúa giúp, chúng con sẽ hết sức tôn kính, yêu mến và bắt chước Mẹ hơn trước.\n\nLạy Mẹ Rất tốt lành êm ái, xin Mẹ thứ tha những lời nói hoặc chữ viết xúc phạm đến Mẹ. Xin Me thứ tha những tội bất kính tượng ảnh thánh Mẹ. Xin Mẹ thứ tha những điều xỉ nhục, bôị bạc làm cho Trái Tim Mẹ phải đau đớn. Xin Mẹ tha thứ cho những kẻ dâng mình cho Mẹ cách riêng đã cả lòng bất trung cùng ơn nghĩa Chúa.\n\nChớ gì chúng con được hợp cùng các Thiên Thần, các Thánh và các kẻ lành hằng ngợi khen Mẹ ở trên trời dưới đất mà đền tạ những tội gớm ghê ấy cho cân xứng.\n\nXin Mẹ đoái thương chứng nhận lòng chúng con mến Mẹ. Xin Mẹ hãy tỏ ra Mẹ là Mẹ thật chúng con, và làm cho chúng con đáng gọi và được nên con thật Đức Mẹ Amen.\n\n(Đọc ngày thứ bảy đầu tháng được một ơn Đại Xá)"
-  },
-  {
-    "id": "kinh-doi-on",
-    "title": "Kinh Đội Ơn",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-doi-on/",
-    "isPopular": false,
-    "content": "Lạy Chúa con, con đội ơn Chúa vì những ơn lành Chúa đã ban cho con xưa nay, nhất là đã dựng nên con, và cho Con Chúa chịu chết mà cứu chuộc con, lại chọn lấy con làm con Hội Thánh nữa. Amen."
-  },
-  {
-    "id": "kinh-duc-chua-thanh-than",
-    "title": "Kinh Đức Chúa Thánh Thần",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-duc-chua-thanh-than/",
-    "isPopular": false,
-    "content": "Chúng con lạy ơn Đức Chúa Thánh Thần thiêng liêng sáng láng vô cùng, chúng con xin Đức Chúa Thánh Thần xuống đầy lòng chúng con, là kẻ tin cậy Đức Chúa Trời, và đốt lửa kính mến Đức Chúa Trời trong lòng chúng con; chúng con xin Đức Chúa Trời cho Đức Chúa Thánh Thần xuống.\n\nSửa lại mọi sự trong ngoài chúng con.\n\nChúng con cầu cùng Đức Chúa Trời, xưa đã cho Đức Chúa Thánh Thần xuống soi lòng dạy dỗ các Thánh Tông Đồ, thì rày chúng con cũng xin Đức Chúa Trời cho Đức Chúa Thánh Thần lại xuống an ủi dạy dỗ chúng con làm những việc lành, vì công nghiệp vô cùng Đức Chúa Giêsu Kitô là Chúa chúng con. Amen."
-  },
-  {
-    "id": "kinh-duc-thanh-thien-than",
-    "title": "Kinh Đức Thánh Thiên Thần",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-duc-thanh-thien-than/",
-    "isPopular": false,
-    "content": "Con thân lạy Đức Thánh Thiên Thần, tính thiêng liêng sáng láng, con cám ơn Đức Thánh Thiên Thần giữ con từ thủa mớí sinh đến nay cho khỏi tay quỷ. Đức Thánh Thiên Thần là thầy con, mở lòng cho con biết được đạo thánh Đức Chúa Trời đất. Vì vậy con cầu cùng Đức Thánh Thiên Thần giữ con ban ngày, xem con ban đêm, cho đến trọn đời, kẻo ma quỷ dữ cám dỗ được con. Con lạy Đức Thánh Thiên Thần khấn nguyện cho con được thông minh sáng láng, giữ mười điều răn, chừa mọi sự dữ, đến khi con lâm chung, xin cầu cùng Đức Chúa Trời cho linh hồn con được lên ở cùng Đức Chúa Trời và Thánh Thiên Thần hằng sống vui vẻ đời đời chẳng cùng. Amen."
-  },
-  {
-    "id": "kinh-duc-thanh-thien-than-gabriel",
-    "title": "Kinh Đức Thánh Thiên Thần Gabriel",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-duc-thanh-thien-than-gabriel/",
-    "isPopular": false,
-    "content": "Lạy ơn Đức thánh Gabriel Tổng lảnh Thiên thần, xưa đã hiện xuống chào mừng Rất thánh Đồng trinh Maria rằng: Kính mừng Maria đấy ơn phúc, Đức Chúa Trời ở cùng Bà. Chúng tôi xin Đức thánh Gabriel cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Trời lòng lành vô cùng đã chọn Đức thánh Gabriel Tổng lãnh Thiên thần truyền tin rất mầu nhiệm Đức Chúa Con ra đời chuộc tội cho cả loài người ta, thì chúng tôi xin Đức Chúa Trời thương đến chúng tôi là kẻ kính mừng Đức thánh Gabriel, cho được ăn mày ơn Người phù hộ cầu bầu cho chúng tôi trước mặt Đức Chúa Trời. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "kinh-duc-thanh-thien-than-raphae",
-    "title": "Kinh Đức Thánh Thiên Thần Raphae",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/kinh-duc-thanh-thien-than-raphae/",
-    "isPopular": false,
-    "content": "Lạy ơn Đức Thánh Raphae là quan tướng rất mạnh bạo, là Đấng Thiên thần rất sáng láng, chúng tôi xin Người thương nhớ đến chúng tôi là kẻ yếu đuối mọi đàng.\n\nChúng tôi xin Đức thánh Raphae cầu cho chúng tôi.\n\nĐáng chịu lấy những sự Chúa Kitô đã hứa.\n\nLạy ơn Đức Chúa Trời có phép vô cùng xưa đã sai Đức Thánh Raphae Tổng lành Thiên thần gìn giữ ông Tôbia, thì rầy chúng tôi cũng xin Chúa tôi thương đến chúng tôi là tôi tá Chúa tôi được chịu ơn Người gìn giữ chúng tôi. Vì Đức Chúa Giêsu Kitô là Chúa chúng tôi. Amen."
-  },
-  {
-    "id": "loi-chao-kinh-duc-me",
-    "title": "Lời Chào Kính Đức Mẹ",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/loi-chao-kinh-duc-me/",
-    "isPopular": false,
-    "content": "Ôi Maria! Con kính chào Mẹ là Bông Huệ trắng của Ba Ngôi Thiên Chúa đời đời hân hoan, vinh hiển. Ôi Maria! Con kính chào Mẹ là Bông Hồng chiếu sáng giữa vườn Thượng Uyển Thiên Cung huyền nhiệm. Mẹ là Đấng mà Thiên Chúa muốn được sinh ra bởi Mẹ, và Vua trên Trời muốn được nuôi dưỡng bằng chính Giòng Sữa của Mẹ. Xin Mẹ nuôi dưỡng hồn xác con và tất cả những người thân yêu của con bằng nguồn ân sủng tràn đầy của Thiên Chúa. Amen."
-  },
-  {
-    "id": "kinh-loi-nguyen-ban-mai-xin-7-on-chua-thanh-than",
-    "title": "Lời Nguyện Ban Mai Xin 7 Ơn Chúa Thánh Thần",
-    "category": "hang-ngay",
-    "url": "https://www.conggiao.org/kinh-loi-nguyen-ban-mai-xin-7-on-chua-thanh-than/",
-    "isPopular": false,
-    "content": "Lời nguyện:\nCùng với Mẹ Maria, con nài xin Chúa hãy đổ đầy Thánh Thần Chúa xuống trên con để Người hướng dẫn con trong ngày hôm nay và suốt cả đời con. Xin Chúa cho con luôn được sống trong ơn Thánh Chúa, luôn bước đi trong đường tình yêu và chân lý, đường cứu rỗi và toàn thiện.\n\nChúa Nhật: Xin Chúa ban cho con ơn KHÔN NGOAN của Thánh Thần Chúa, để con biết tìm Chúa trước tiên, và biết nhìn mọi việc với cái nhìn đầy yêu thương Chúa.\n\nThứ Hai: Xin Chúa ban cho con ơn THÔNG MINH của Thánh Thần Chúa, để con cảm biết các chân lý đức tin tự đáy lòng, sống theo chân lý ấy và biết cách truyền đạt các chân lý ấy cho tha nhân.\n\nThứ Ba: Xin Chúa ban cho con ơn BIẾT LO LIỆU của Thánh Thần Chúa, để con biết xếp đặt ngày giờ và công việc đúng theo thánh ý và chương trình yêu thương của Chúa.\n\nThứ Tư: Xin Chúa ban cho con ơn SỨC MẠNH của Thánh Thần Chúa, để con đủ nhẫn nại chịu đựng những khó khăn thử thách trong cuộc sống, đủ nghị lực và can trường chu toàn những bổn phận Chúa giao phó.\n\nThứ Năm: Xin Chúa ban cho con ơn HIỂU BIẾT của Thánh Thần Chúa, để con biết nhìn thấy Chúa nơi mọi người, mọi vật, mọi biến cố trong cuộc đời để quy hướng tất cả về Chúa và biết thoát ly mọi sự để được tự do yêu mến Chúa.\n\nThứ Sáu: Xin Chúa ban cho con ơn ĐẠO ĐỨC của Thánh Thần Chúa để con luôn sống với Chúa trong tình con thảo và sống với mọi người bằng tình huynh đệ chân thành.\n\nThứ Bảy: Xin Chúa ban cho con ơn KÍNH SỢ Chúa của Thánh Thần Chúa, để con luôn biết sống trong sự hiện diện đầy quyền năng và tình thương của Chúa và thà chết chẳng thà phạm tội mất lòng Chúa."
-  },
-  {
-    "id": "kinh-loi-nguyen-chua-lanh-noi-tam",
-    "title": "Lời Nguyện Chữa Lành Nội Tâm",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-loi-nguyen-chua-lanh-noi-tam/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, Ngài đã đến để chữa lành những trái tim thương tích và phiền muộn..\n\nCon xin Chúa chữa lành những đau khổ đã gây sự lo lắng trong tim con;\n\nCon xin Chúa chữa lành, cách đặc biệt, những ai là nguyên nhân đã gây nên nó.\n\nCon xin Chúa đi vào đời sống của con và chữa lành con những thương tổn trong tâm hồn mà đã gây hại con trong những năm đầu đời và từ những vết thương đó đã gây hại suốt cuộc đời con.\n\nLạy Chúa Giêsu, Ngài biết những gánh nặng của con.\n\nCon xin đặt chúng trong trái tim của Chúa.\n\nCon cầu xin Chúa, bởi những công trạng của vết thương rộng mở trong trái tim Ngài, để chữa lành tất cả những vết thương đang ở trong con. Xin chữa lành những đau đớn trong tâm trí của con để những gì đã xãy ra đến con không còn gây đau đớn và thống khổ, với đầy sự lo lắng.\n\nLạy Chúa, xin chữa lành tất cả những vết thương mà đã gây ra những sự dữ đâm sâu trong đời sống con.\n\nCon muốn tha thứ tất cả những ai đã làm hại con\n\nXin nhìn đến những vết thương nội tâm mà đã làm con không thể nào tha thứ.\n\nNgài đã đến để xóa đi những tâm hồn đau khổ, xin chữa lành trái tim của con đây.\n\nLạy Chúa Giêsu, xin chữa lành những vết thương sâu kín đã gây ra bệnh tật thân xác con.\n\nCon xin dâng lên Chúa trái tim con.\n\nChúa ơi, xin nhận lấy, tẩy sạch nó và cho con tình yêu của trái tim cực thánh của Ngài.\n\nXin giúp cho con được hiền lành và khiêm nhường.\n\nLạy Chúa, xin chữa lành con sự đau khổ, gây ra do cái chết của những người thân yêu, đang đè nặng trên con.\n\nXin ban cho con được có lại sự bình an và hạnh phúc trong sự nhận thức rằng Chúa là Ðấng đã sống lại và là sự sống.\n\nXin làm cho con là chứng nhân thật sự cho sự Phục Sinh, sự chiến thắng trên tội lỗi và sự chết, và sự hiện diện sống động của Ngài giữa chúng con. Amen."
-  },
-  {
-    "id": "kinh-loi-nguyen-giai-thoat-su-du",
-    "title": "Lời Nguyện Giải Thoát Sự Dữ",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-loi-nguyen-giai-thoat-su-du/",
-    "isPopular": false,
-    "content": "Lạy Thiên Chúa của con, Ngài là đấng quyền năng, là Ðức Chúa, là Chúa Cha.\n\nCon cầu xin Ngài qua sự cầu bàu và trợ giúp của các Tổng Lãnh Thiên Thần Micae, Raphael, và Gabriel cho sự giải thoát của (anh, chị, em) chúng con đang bị nô lệ bởi ma quỷ.\n\nTất cả các Thánh trên Thiên đàng, xin đến giúp chúng con.\n\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con khỏi bị lo lắng, buồn sầu và những ám ảnh.\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con khỏi bị sự căm ghét, gian dâm, đố kỵ.\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con những ý tưởng ganh tị, giận dữ, và sự chết chóc.\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con những ý tưởng tự sát và phá thai.\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con khỏi mọi tính dục tội lỗi.\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con khỏi bị tan vỡ trong gia đình, và tránh những tình bạn có hại.\n• Lạy Chúa, chúng con cầu xin Ngài giải thoát chúng con khỏi bị ảnh hưởng bởi mọi lời thần chú, điều gây hại, phép phù thủy, và do mọi sự huyền bí.\nLạy Chúa, Chúa đã nói “Ta ban cho con bình an. Ta cho con bình an của Ta”. Xin ban cho con qua sự cầu bàu của Ðức Trinh Nữ Maria, để chúng con được giải thoát từ mọi lời ma quỷ và luôn hưởng bình an của Chúa. Trong Danh Chúa Giêsu Kitô. Amen."
-  },
-  {
-    "id": "kinh-loi-nguyen-giai-thoat-ta-khi",
-    "title": "Lời Nguyện Giải Thoát Tà Khí",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-loi-nguyen-giai-thoat-ta-khi/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu,\n\nÔi Giêsu, Ðấng Cứu Ðộ chúng con, là Vua, là Thiên Chúa và là tất cả của con.\n\nChúa đã cứu chuộc chúng con bằng sự hy sinh trên Thập Giá, và đã đánh bại quyền năng của Satan.\n\nCon cầu xin Chúa giải thoát con khỏi mọi sự dữ và mọi ảnh hưởng của sự dữ.\nCon cầu xin trong danh của Chúa,\nCon cầu xin vì những vết thương của Chúa,\nCon cầu xin vì Máu của Chúa,\nCon cầu xin vì Thánh Giá của Chúa,\nCon cầu xin Ngài qua sự cầu bàu của Mẹ Maria, Mẹ Vô Nhiễm Nguyên Tội và Sầu Bi.\n\nXin Máu và Nước chảy ra từ cạnh sườn của Chúa rửa con để con được thanh sạch, giải thoát con, và chữa lành con. Amen."
-  },
-  {
-    "id": "loi-nguyen-truoc-khi-ngu",
-    "title": "Lời Nguyện Trước Khi Ngủ",
-    "category": "cac-kinh-khac",
-    "url": "https://www.conggiao.org/loi-nguyen-truoc-khi-ngu/",
-    "isPopular": false,
-    "content": "Lạy Cha, giấc ngủ bình an, xin Cha ban cho con. Trong vòng tay Cha yêu xin ôm trọn lấy con. Xin cho con được tựa đầu bên ngực Giêsu trọn giấc ngủ. Xin cho đôi cánh của Thánh Thần phủ lấp hồn xác con.\n\nHiệp với lời hát của Mẹ Maria dịu dàng, êm ái. Thân xác con an giấc, nhưng hồn con ca ngợi Chúa tận mây xanh. Cùng với các thiên thần, con vui ca nhảy múa. Sống trong cung điện Ngài là điềm mộng giấc ngủ của con. Vì mỗi giây phút được gần kề tôn nhan Chúa, là mỗi giây phút được sống trong ân điển của Ngài.\n\nGiờ đây, tâm hồn con tha thiết van nài khuôn mặt Cha nhân từ, khả ái, xin cho con một lần chiêm ngưỡng. Lòng Cha đầy khoan dung thánh thiện, xin cho con được bái lạy tôn vinh. Amen."
-  },
-  {
-    "id": "kinh-loi-nguyen-tru-moi-ta-luc",
-    "title": "Lời Nguyện Trừ Mọi Tà Lực",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/kinh-loi-nguyen-tru-moi-ta-luc/",
-    "isPopular": false,
-    "content": "Lạy Thần Khí của Thiên Chúa Cha, Chúa Con, và Chúa Thánh Thần, Ba Ngôi cực thánh, Ðức Mẹ Ðồng Trinh Vô Nhiễm Nguyên Tội, các Thiên Thần, các Tổng Lãnh Thiên Thần, và các Thánh trên Thiên đàng, xin hãy xuống trên con.\n\nXin thanh tẩy con, lạy Chúa, hãy nung đúc con, đổ đầy trong con chính Ngài, xin hãy dùng con.\n\nXin xua đuổi những tà lực khỏi con, tiêu diệt và đánh bại chúng, để con được lành mạnh và làm những việc tốt lành.\n\nXin xua đuổi khỏi con những lời bùa chú, phù phép, ma thuật, điều xấu, bó buộc, nguyền rủa, và nhãn tà; những ảnh hưởng, đàn áp, chiếm hữu của ma quỷ; tất cả những gì là sự dữ, tội lỗi, ganh tị, xảo trá; những bịnh tật về thân xác, tâm lý, phẩm hạnh, tâm linh, và bất cứ những gì đến từ ma quỷ.\n\nXin hãy đốt cháy tất cả những tà lực này trong hỏa ngục, để chúng không còn bao giờ đến với con hoặc bất cứ vật gì trên toàn thế giới.\n\nTa ra lệnh tất cả các quyền lực đang quấy nhiễu ta, bằng sức mạnh của Thiên Chúa toàn năng, trong danh của Chúa Giêsu Kitô, Đấng Cứu Ðộ, qua sự cầu bàu của Ðức Mẹ Ðồng Trinh Vô Nhiễm Nguyên Tội, chúng bay hãy rời khỏi ta mãi mãi, và phải bị giam vào lửa hỏa ngục muôn đời, nơi chúng bay sẽ bị trói buộc do Tổng Lãnh Thiên Thần Micae, Gabriel, và Raphae, các Thiên Thần bổn mạng, và nơi đó chúng bay sẽ bị đè bẹp dưới gót chân của Ðức Mẹ Ðồng Trinh Vô Nhiễm Nguyên Tội. Amen."
-  },
-  {
-    "id": "loi-nguyen-de-giai-quyet-nhung-lo-lang",
-    "title": "Lời Nguyện Để Giải Quyết Những Lo Lắng",
-    "category": "long-thuong-xot",
-    "url": "https://www.conggiao.org/loi-nguyen-de-giai-quyet-nhung-lo-lang/",
-    "isPopular": false,
-    "content": "Lạy Chúa Giêsu, con xin dâng lên Chúa tất cả những lo lắng của con trong sứ vụ này với lòng tín thác rằng vấn đề này giờ đây là của Chúa để Chúa giải quyết mọi sự thể theo Thánh Ý của Ngài. Amen."
-  },
-  {
-    "id": "phuc-that-tam-moi",
-    "title": "Phúc Thật Tám Mối",
-    "category": "giao-ly-bon-kinh",
-    "url": "https://www.conggiao.org/phuc-that-tam-moi/",
-    "isPopular": true,
-    "content": "Phúc Thật Tám Mối:\n\n• Thứ nhất: Ai có lòng khó khăn, ấy là phúc thật, vì chưng Nước Đức Chúa Trời là của mình vậy.\n• Thứ hai: Ai hiền lành, ấy là phúc thật, vì chưng sẽ được đất Đức Chúa Trời làm của mình vậy.\n• Thứ ba: Ai khóc lóc, ấy là phúc thật, vì chưng sẽ được an ủi vậy.\n• Thứ bốn: Ai khao khát đức công chính, ấy là phúc thật, vì chưng sẽ được no đủ vậy.\n• Thứ năm: Ai biết thương xót người, ấy là phúc thật, vì chưng mình sẽ được thương xót vậy.\n• Thứ sản: Ai có lòng trong sạch, ấy là phúc thật, vì chưng sẽ được thấy mặt Đức Chúa Trời vậy.\n• Thứ bảy: Ai làm cho người hòa thuận, ấy là phúc thật, vì chưng sẽ được gọi là con Đức Chúa Trời vậy.\n• Thứ tám: Ai chịu khốn khó vì đạo công chính, ấy là phúc thật, vì chưng Nước Đức Chúa Trời là của mình vậy."
-  },
-  {
-    "id": "trang-hat-tong-lanh-thien-than-micae",
-    "title": "Tràng Hạt Tổng Lãnh Thiên Thần Micae",
-    "category": "thanh-giuse-cac-thanh",
-    "url": "https://www.conggiao.org/trang-hat-tong-lanh-thien-than-micae/",
-    "isPopular": false,
-    "content": "Lạy Chúa, xin tới trợ giúp con. Xin mau mau tới cứu giúp con.\n\n*Đọc 1 Kinh Lạy Cha & 3 Kinh Kính Mừng sau mỗi lời nguyện.*\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các Thiên Thần Sêraphim, xin cho chúng con được xứng đáng bừng cháy lửa bác ái trọn hảo. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT Kêrubim, xin đoái thương ban ơn cho chúng con lìa bỏ con đường sự dữ để đi vào đường trọn hảo Chúa Kitô. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT Đế Vị, xin Chúa đổ vào tim chúng con một tinh thần khiêm nhường chân thật. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT Quyền lực, xin Chúa ban ơn cho chúng con cai quản giác quan và chế ngự dục vọng chúng con. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT Quyền Thế, xin Chúa đoái thương che chở linh hồn chúng con chống lại cạm bẫy và cám dỗ ma qủy. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT Nhân Đức, xin Chúa gìn giữ chúng con khỏi sự dữ và đừng để chúng con sa chước cám dỗ. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và TT Vương Vị, xin Chúa đổ vào linh hồn chúng con một tinh thần vâng phục chân thật. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT Tổng Lãnh, xin Chúa ban cho chúng con ơn bền đỗ trong đức tin và các việc lành, để chúng con xứng đ áng hưởng hạnh phúc Thiên Đàng. Amen.\n\nLạy Chúa, xin vì sự cầu bầu của TLTT Micae và các TT, xin Chúa ban ơn cho chúng con được các Ngài che chở khi sống và dẫn đưa chúng con về sự vinh hiển muôn đời. Amen.\n\nLạy Hoàng Tử Thánh Micae vinh hiển, chủ soái và Tư lệnh các TT thiên quốc, là đấng bảo vệ các linh hồn, là đấng đã dẹp tan các thần phản loạn, là công bộc tại dinh thự Thiên Vương và là đấng dắt chúng con rất đáng ngợi khen. Ngài đã chiếu sáng vì sự tuyệt hảo và nhân đức siêu phàm, xin đoái thương giải thoát chúng con khỏi mọi sự dữ. Chúng con hướng về Ngài với lòng trông cậy. Xin Ngài giúp chúng con bằng sự bao bọc âu yếm của Ngài, cho chúng con được phụng thờ Chúa mỗi ngày một chung thủy hơn.\n\nLạy Thánh Micae vinh hiển, Hoàng Tử Giáo Hội Chúa Giêsu Kitô, xin cầu cho chúng con đáng chịu lấy những điều Chúa Kytô đã hứa.\n\nLạy Chúa Toàn Năng Hằng Hữu, Chúa dã vì lòng Nhân Ái phi thường và vì lòng Chúa thương xót khát khao mọi người chúng con được rỗi, Chúa đã phong cho đệ nhất Tổng Lãnh vinh hiển Thánh Micae, là Hoàng Tử Giáo Hội Chúa, chúng con nài xin Chúa cho chúng con đáng được giải thoát khỏi mọi kẻ thù chúng con, để không một kẻ thù nào vây hãm chúng con khi lâm chung, và cho chúng con được TLTT Micae dẫn đưa chúng con ra trước Tôn Nhan Oai Nghi Chúa. Chúng con xin vì công nghiệp Chúa Giêsu Kytô, Chúa chúng con. Amen"
-  },
-  {
-    "id": "tuan-cuu-nhat-khan-duc-me-la-vang",
-    "title": "Tuần Cửu Nhật Khấn Đức Mẹ La Vang",
-    "category": "duc-me",
-    "url": "https://www.conggiao.org/tuan-cuu-nhat-khan-duc-me-la-vang/",
-    "isPopular": false,
-    "content": "Đọc thêm 1 kinh Lạy Cha, 1 kinh Kính Mừng, 1 kinh Hãy Nhớ và 3 lần: Lạy Đức Mẹ La Vang, cầu cho chúng con.\n\nNgày Thứ Nhất\nLạy Đức Mẹ La Vang, con hết lòng tin cậy vững vàng: Mẹ đầy lòng nhân từ, Mẹ thương hết mọi người như con cái Mẹ vậy.  Muốn chứng tỏ lòng Mẹ nhân lành hay thương xót, Mẹ đã chọn thành nọ xứ kia trong các nứơc thiên hạ, làm nơi riêng của Mẹ, để ban bố mọi ơn cho những kẻ đến cầu khẩn cùng Mẹ.  Tuy nước Việt Nam này nhỏ hẹp, số giáo dân còn ít ỏi, song Mẹ rất nhân từ khoan hậu, đã khấn chọn chốn La Vang làm chốn riêng Mẹ, để ban phát mọi ơn phước cho con cái Việt Nam được nhờ.\n\nÔi! Một sự đầy đủ làm cho con nức lòng trông cậy vững vàng, Mẹ sẽ thương con, sẽ nhận lời con, và sẽ ban ơn lành theo ý con cầu khẩn cùng Mẹ.  Xin Mẹ cho con được thấu hiểu lòng Mẹ thương con rất chí thiết ngần nào. Con xưng thật: Trừ ra Đức Chúa Trời và mạch sự thương vô cùng, thì chẳng có ai thương con bằng Mẹ. Xin Mẹ ban ơn cho con được lòng triều mến Mẹ cho tận tình con thảo.\n\nLạy Đức Mẹ La Vang, con hết lòng trông cậy chạy đến khẩn cầu cùng Mẹ một ơn riêng trong tuần cửu nhật này. Xin Mẹ giúp con được thêm lòng trông cậy vững vàng, được biết đàng cầu nguyện gắn bó, cho đáng Mẹ nhận lời con kêu xin.  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Hai\nLạy Đức Mẹ La Vang, khắp nước này nhiều nơi phồn thịnh, nhiều chỗ thắng cảnh, song Mẹ chẳng chọn, mà chọn chốn La Vang, là nơi rừng núi thanh u tĩnh mịch, chẳng khác nào Mẹ tỏ ý cho con được biết rằng:  Muốn cho Mẹ nhận lời con cầu nguyện, con phải lánh xa sự xôn xao trần tục, sự kiêu hãnh phô trương thói đời, và phải ở cùng Mẹ tận tình thiết ái, phải thở than cùng Mẹ cho thân mật thâm trầm, khác nào như tìm đến khẩn cầu cùng Mẹ nơi thanh vắng, bày tỏ riêng cùng Mẹ mọi nỗi lo âu, mọi cơn túng ngặt, xứng tình con thảo, trông cậy Mẹ lành.\n\nÔi! Muôn vàn thánh Nam Nữ xưa nay hằng ở tận tình chí thiết cùng Mẹ là ngần nào, và bởi đó đã được Mẹ thương yêu, cùng xuống muôn ơn lành là thế nào.  Con xưng thật Mẹ cũng thương con vô ngần, bởi lòng thương ấy, Mẹ muốn cho con lấy hết tình con thảo mà tin cậy trìu mến Mẹ, và chạy đến cùng Mẹ mọi lúc gian nan. Song Mẹ biết rõ lòng con ơ hờ lãnh đạm với Mẹ là ngần nào! Cúi xin Mẹ ban ơn cho con được lòng trìu mến cậy trông Mẹ luôn, để con càng ở  tận tình tận nghĩa với Mẹ bao nhiêu, thì được nhờ các ơn Mẹ bấy nhiêu.\n\nLạy Đức Mẹ La Vang, là Mẹ rất nhân từ lân ái, con tin thật Mẹ sẵn lòng nghe lời con khẩn nguyện, và ban cho con được ơn con xin cùng Mẹ trong tuần này.  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Ba\nLạy Đức Mẹ La Vang, xưa giáo hữu nước này phải cơn bắt bớ chém giết tàn hại, nhiều kẻ trốn đến ẩn náu nơi rừng núi La Vang, đêm ngày áy náy lo buồn sợ hãi, kêu đến cùng Mẹ.  Mẹ đã động tình thương xót, hiện đến an ủi cứu giúp mọi ngừơi phần hồn phần xác, và chữa lành mọi cơn đau ốm bệnh hoạn. Sự ấy đã nên tang chứng rõ ràng: lòng Mẹ rất nhân từ lân ái hay thương là thế nào. Ôi! Chớ chi con được lòng sốt sắn cậy trông kêu đến cùng Mẹ như những người thuở ấy! Chớ chi con được phước Mẹ đến viếng thăm con, an ủi con và ban cho con ơn xin cùng Mẹ bây giờ.\n\nLạy Đức Mẹ La Vang là Đấng hay an ủi kẻ âu lo, là Mẹ hằng phù hộ các giáo hữu, kìa ma quỉ, thế gian, xác thịt cùng muôn vàn sự khốn khó tai nạn phần xác phần hồn, đang vây phủ con tứ bề. Ôi! Con hết lòng cậy trông chạy đến cùng Mẹ.  Con tin thật: Mẹ cũng thương con như đã thương những người thuở ấy. Mẹ sẵn lòng ban ơn cho con như đã rộng tay ban mọi ơn phứơc cho những kẻ ấy.\n\nÔi! Con hết lòng nài xin ơn Mẹ. Xưa nay chưa từng nghe ai chạy đến kêu xin cùng Mẹ, mà Mẹ từ rày chẳng nhận lời.  Lạy Mẹ r ất bao dung, lạy Nữ Vương rất vinh hiển, lạy Mẹ Đức Chúa Trời, xin Mẹ chớ từ bỏ con, một xin rủ lòng thương mà nhận lời con kêu xin.  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Tư\nLạy Đức Mẹ La Vang, từ ngày Mẹ hiện đến cùng chọn La Vang làm chốn riêng Mẹ cho đến nay, Mẹ đã ban phát vô số ơn lành cho mọi kẻ đến cầu xin với Mẹ, bất luận kẻ giáo người lương. Hễ ai thật lòng kêu xin thì Mẹ sẵn lòng giúp đỡ, chẳng những là các kẻ đến cầu khẩn tại La Vang, mà lại những người vì xa xôi, vì ốm liệt, hoặc vì ngăn trở nào khác mà chẳng đến được, chỉ một lòng trông cậy kêu đến Mẹ La Vang, thảy đều được nhờ ơn Đức Mẹ cứu chữa.\n\nÔi! Có lẽ nào một mình con vô phước mà chẳng nhờ ơn Mẹ sao? Mẹ thấy ai mắc vòng lao lý gian truân, Mẹ liền động tình thương xót, có lẽ nào Mẹ thấy con đang khốn khó kêu van, mà Mẹ đành xua rảy sao?\n\nLạy Đức Mẹ La Vang, con xưng thật, vốn con ơ hờ, nguội lạnh, tội tình khốn khổ, chẳng đáng cho Mẹ thương đến. Song, lạy Mẹ từ bi nhân hậu, con dám thưa cùng Mẹ rằng: Ai đáng cho Mẹ đem lòng thương xót hơn, chẳng phải là kẻ khốn nạn hơn sao? Lại thương kẻ chẳng đáng thương, thì lòng thương ấy càng rạng vẻ.\n\nÔi! Sự con chẳng đáng thương đã không làm cho con nan chí ngã lòng, lại càng cho con thêm lòng trông cậy sẽ được ơn Mẹ thương đoái mà thôi. Xin Mẹ hãy làm cho thế gian bỡ ngỡ, cho thần thánh hoan hô khen ngợi là hôm nay Mẹ Đức Chúa Trời cao sang vinh hiển, đã đoái thương nhận lời kẻ mọn hèn này kêu xin.  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Năm\nLạy Đức Mẹ La Vang, xưa nay từ Nam chí Bắc, nhờ ơn Mẹ, biết bao nhiêu người nguội lạnh đã nên sốt sắng, bao nhiêu người sa đàng tội lỗi được ơn trở lại, bao nhiêu người bối rối lo âu phần hồn, buồn phiền việc gia đạo, hoặc lo sợ nỗi sinh nhai, đã được ơn Mẹ gỡ rối, ủi an, giúp đỡ, nhiều kẻ không còn cầu xin đến Mẹ thì được ơn Mẹ gỡ rối, ủi an giúp đỡ.  Nhiều kẻ không con cầu xin đến Mẹ thì đã được nhu ý sở cầu. Nhiều kẻ đau ốm bệnh hoạn đã được mạnh, cùng muôn vàn ơn khác kể chẳng xiết.\n\nÔi! Con xưng thật: Mẹ rất có thần thế trước tòa Chúa. Vì dầu các thánh xưa nay về đàng nhân đức, về nẻo trọn lành, còn kém xa Mẹ muôn trùng mà cũng được thế lớn trứơc tòa Chúa, làm được nhiều phép lạ, chuyển cầu được nhiều ơn cho kẻ khác nhờ. Huống chi Mẹ rất trọn lành, chí thánh, đẹp lòng Chúa mọi đàng, ắt quyền thế Mẹ lớn lao dường nào! Con tin thật Chúa đã phú giao mọi ơn Chúa trong tay Mẹ, Mẹ muốn phân phát cho ai, khi nào, những ơn nào, thì mặc theo ý Mẹ. Muôn ơn lành Mẹ ban xuống xưa nay tại chốn La Vang, đủ làm chứng sự ấy, lại tỏ bày cho con được biết, Mẹ có lòng thương xót con cái Việt Nam là ngần nào!\n\nLạy Đức Mẹ La Vang, là đấng cầm quyền phân phát mọi ơn Chúa, nay con hết lòng trông cậy chạy đến cầu khẩn cùng Mẹ: Con ngửa mặt giơ tay lên cầu cứu cùng Mẹ. Lạy Mẹ rất nhân từ lân ái, dứơi Đức Chúa Trởi, con chỉ trông cậy một mình Mẹ, nếu Mẹ từ bỏ con, thì con biết chạy đến cùng ai?  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Sáu\nLạy Đức Mẹ La Vang, tên La Vang đã lẫy lừng khắp cả nước này, cùng vang dội nhiều nơi xa lạ.  Đức Mẹ La Vang!  ấy thật là tên rất êm ái dịu ngọt, có sức an ủi kẻ lo âu, khêu gợi lòng trông cậy, và nhóm lên ngọn lửa yêu mến nóng cháy. Vừa nghe đến Đức Mẹ La Vang thì lòng ai nấy vui mừng hớn hở như nhìn thấy trứơc mặt một Mẹ rất nhân lành, khoan hậu, một Mẹ đầy sự yêu thương chí thiết, một Mẹ quyền thế vô song, một Mẹ hay làm phép lạ cứu giúp mọi người.\n\nCon tin thật Chúa đã nắn đúc lòng Mẹ đầy tình thương xót, khi thấy ai mắc vòng khốn khó gian truân. Xưa khi Mẹ còn sống ở đời, Mẹ đã từng thấy mọi nỗi gian nan khốn khó, Mẹ đã động tình thương xót, đã thi ân giúp đỡ cứu vớt mọi người.  Nay Mẹ ở trên trời, hưởng muôn phần vinh thanh nhàn, xin Mẹ đoái đến con đang lâm lụy giữa chốn trần ai khổ nạn.\n\nLạy Mẹ rất đáng mến thương, nếu con chẳng trông cậy Mẹ, thì biết trông cậy vào ai? Như con nít kia đòi mẹ nó, nó càng thấy mẹ nó xua nó ra, nó càng khóc la tràn vào lòng mẹ nó, và sau hết, Mẹ sẽ ẵm con vào lòng, tỏ tình thương yêu chí thiết. Lạy Đức Mẹ, con cũng một lòng trông cậy như vậy. Càng thấy Mẹ như từ rảy lời con kêu van, thì con càng gắn bó xin nài và tin chắc cuối cùng Mẹ sẽ thương xót nhận lời con.\n\nLạy Đức Mẹ La Vang xin chớ để cho con trông cậy Mẹ ra luống công vô ích. Maria! Mẹ nhân lành, xin Mẹ thương con cùng.  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Bảy\nLạy Đức Mẹ La Vang, Mẹ đã tỏ lòng thương yêu chí thiết mà chọn chốn La Vang, để ban bố mọi ơn lành cho con nhà Việt Nam, chẳng từ bỏ ai.  Những cỏ cây, đá gạch, nước suối ở quanh đền thành La Vang là những vật hèn, song bởi lòng Mẹ thương yêu con cái, nhiều phen Mẹ đã thông cho các vật ấy một sức thần diệu, chữa lành các tật nguyền bệnh hoạn. ấy là Mẹ có ý cho con hiểu biết rằng: các vật hèn dưới chân Mẹ, có chút hơi hưởng thuộc về Mẹ, mà còn được sức nhiệm mầu như vậy, thì chính Mẹ là Mẹ Đức Chúa Trời, là Nữ Vương trên trời dưới đất, Mẹ có quyền phép lạ lùng biết là ngần nào!\n\nÔi! Mẹ cao sang khôn ví, Mẹ quyền thế vô ngần! Dưới Đức Chúa Trời chẳng có ai oai quyền phép tắc cho bằng Mẹ, Mẹ muốn thế nào thì nên thế ấy. Sự ấy càng thối thúc con trông cậy Mẹ. Con xin hiệp cùng thần thánh trên trời và mọi người lành dưới thế, mà chúc tụng ngợi khen, hát mừng quyền phép Mẹ.\n\nLạy Đức Mẹ La Vang, con hết lòng trông cậy chạy đến xin nhờ quyền thế phép tắc Mẹ.  Người mẹ kia thấy đứa con nào ốm yếu đau thương, hoặc lâm phải rủi ro tai nạn, thì động lòng thương xót, an ủi, săn sóc nó hơn các con khác. Huống thay Đức Mẹ là Mẹ rất nhân từ khoan hậu, có lòng thương con hơn mẹ thế gian thương con mình bội phần, nay Mẹ thấy con ưu sầu cất tiếng kêu van đến Mẹ, lẽ nào Mẹ chẳng chạnh lòng thương đoái con sao? Con tin thật! Mẹ đã nghe tiếng con kêu xin, Mẹ đã ngó nhìn con cách thống thiết, Mẹ đang sẵn sàng ban ơn xuống cho con.  Ôi Maria! Ôi Mẹ nhân lành, con trông cậy một mình Mẹ.  Nhân danh Đức Chúa Giêsu là con yêu dấu Mẹ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen.\n\nNgày Thứ Tám\nLạy Đức Mẹ La Vang, xin Mẹ hãy chứng tỏ: Mẹ đã chọn La Vang làm chốn riêng Mẹ để ban bố mọi ơn phứơc, Mẹ có lòng thương yêu con cái Nứơc này cách riêng, và Mẹ chẳng hề từ bỏ những ai trông cậy khẩn cầu Mẹ bao giờ.  Lạy Mẹ, nếu Mẹ chẳng ban ơn cho con, ắt con có lẽ nghi ngờ rằng: Mẹ đã bỏ chốn La Vang, Mẹ chẳng còn nhận lời kẻ chạy đến kêu xin cùng Mẹ.\n\nÔi! Có lẽ nào Mẹ để cho con và ai nấy nghi ngờ thế ấy sao? Có lẽ nào Mẹ để cho danh tiếng Đức Mẹ La Vang đã từng lẫy lừng xưa nay, rày ra như chẳng còn linh ứng nữa sao? Có lẽ nào Mẹ đành để cho con phải thẹn thùng xấu hổ, vì đã trông cậy Mẹ uổng công vô ích sao?  Xưa bà ngoại giáo Cananite chạy theo Đức Chúa Giêsu, đã mấy lần kêu van nài xin Đức Chúa Giêsu thương, chữa con mình cho lành, song Đức Chúa Giêsu dường như chẳng thèm ngó lại, và sau hết đã chối hẳn không làm phép lạ cho kẻ ngoại giáo. Bấy giờ bà ấy thưa rằng: Đã hay Chúa dành để các ơn lạ cho con cái Chúa là dân Do Thái, phần con là kẻ ngoại giáo, chẳng đáng nhờ ơn Chúa, song lạy Chúa, loài hèn súc vật cũng nhờ được hột cơm rơi dưới bàn chủ nó. Đức Giêsu liền dừng chân đứng lại, khen đức tin bà ấy và phán rằng: Bởi bà có lòng tin làm vậy, thì Ta ban cho con bà được lành đã.\n\nÔi! Lạy Đức Mẹ La Vang, dầu cho con là kẻ phàm hèn tội lỗi, chẳng đáng cho Mẹ thương đến như các con trung hiếu, song lạy Mẹ rất nhân từ, con dám xin cùng Mẹ cho con được nhờ hột cơm rơi, nhờ chút phước dư Mẹ. Ôi! Chớ chi con được nghe lời Mẹ phán cùng con như Chúa đã phán xưa cùng bà Cananite rằng: Bởi con có lòng tin cậy Mẹ, thì Mẹ ban cho con như ý con xin. Ôi! Lạy Mẹ dấu yêu, con tin lòng Mẹ, con trông cậy Mẹ, xin Mẹ phán một lời, thì con sẽ được vui mừng thỏa chí.\n\nNgày Thứ Chín\nLạy Đức Mẹ La Vang, hôm nay là ngày cuối tuần cửu nhật, con hết lòng gắn bó nài xin Mẹ và kêu đến lòng nhân từ Mẹ, xin Mẹ ban cho con ơn con xin cùng Mẹ.\n\nÔi! Mẹ thấy rõ lòng con trông cậy Mẹ là ngần nào! Mẹ muốn giúp con thì chẳng có khó gì. Xin Mẹ hãy phán một lời thì con sẽ thỏa lòng ao ứơc. Con trông cậy một mình Mẹ, nếu Mẹ làm lơ ngoảnh mặt thì con sẽ ngã lòng trông cậy biết chạy đến cùng ai, nhờ ai chuyển cầu cho con được nữa.\n\nMaria, Mẹ ơi! Con tràn vào lòng Mẹ. Lạy Đức Mẹ La Vang là chính sự trông cậy lòng con.  Mấy ngày này, mỗi lần con chạy đến cùng Mẹ thì lòng con đầy sự trông cậy vững vng, sẽ được ơn Mẹ ủi an nhận lời. Có lẽ nào hôm nay cuối tuần cửu nhật, Mẹ đành để con ra về buồn phiền hổ thẹn vì chẳng được Mẹ thương đoái nhận lời sao? Mẹ ơi! Nỡ nào Mẹ chối bỏ lời con cho đành sao?\n\nLạy Đức Mẹ La Vang, con tin thật Mẹ đang ngóai nhìn con cách dấu yêu chí thiết, tỏ vẻ vui lòng vì thấy con có lòng tin cậy Mẹ như con hiếu thảo vậy.  Con chắc Mẹ đã nhận lời con khẩn nguyện. Mẹ sẽ ban cho con ơn con kêu xin cùng Mẹ, hay là ơn nào khác Mẹ biết cần kíp cho con hơn, hữu ích hơn, và qúy trọng hơn.\n\nLạy Mẹ, lòng con khấp khởi, nửa mừng nửa sợ.  Mừng vì biết Mẹ đầy lòng thương xót, biết Mẹ quyền thế vô song, biết lời con cầu nguyện đã thấu đến toà Mẹ.  Song con lại sợ lòng con yếu đuối, chưa tin cậy lòng nhân từ Mẹ, phép tắc Mẹ cho đủ, chưa cầu nguyện cho tận tình tha thiết.  Lạy Mẹ, xin Mẹ chớ chấp sự con yếu đuối lỗi lầm, và xin Mẹ ban ơn cho con được thêm lòng trìu mến, cậy trông Mẹ, sốt sắng khẩn cầu cùng Mẹ cho đến mãn đời.  Lạy Mẹ dấu yêu, lạy Mẹ nhân lành, lạy Mẹ La Vang, con h ết lòng nài xin cùng Mẹ một lần nữa: Xin Mẹ ban cho con ơn con xin cùng Mẹ bây giờ. Ôi! Con níu lấy Mẹ, chẳng muốn buông ra, cho đến khi Mẹ chúc lành xuống phứơc cho con.\n\nNhân danh Đức Chúa Giêsu là Con yêu dấu Mẹ, cậy vì lòng Mẹ kính mến Đức Chúa Giêsu, cậy vì các sự thương khó Mẹ đã chịu, cậy vì lòng Mẹ hay thương xót vô ngần, nhân danh Mẹ là Mẹ La Vang hay làm phép lạ, xin Mẹ khấn nhận lời con khẩn nguyện. Amen."
+  // =========================================================================
+  // 1. CÁC KINH CĂN BẢN & HẰNG NGÀY
+  // =========================================================================
+  {
+    id: 'dau-thanh-gia',
+    title: 'Dấu Thánh Giá',
+    latinTitle: 'Signum Crucis',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Nhân danh Cha, và Con, và Thánh Thần.
+Amen.`
+  },
+  {
+    id: 'kinh-lay-cha',
+    title: 'Kinh Lạy Cha',
+    latinTitle: 'Pater Noster',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Lạy Cha chúng con ở trên trời,
+chúng con nguyện danh Cha cả sáng,
+nước Cha trị đến,
+ý Cha thể hiện dưới đất cũng như trên trời.
+
+Xin Cha cho chúng con hôm nay lương thực hằng ngày,
+và tha nợ chúng con,
+như chúng con cũng tha kẻ có nợ chúng con,
+xin chớ để chúng con sa chước cám dỗ,
+nhưng cứu chúng con cho khỏi sự dữ.
+Amen.`
+  },
+  {
+    id: 'kinh-kinh-mung',
+    title: 'Kinh Kính Mừng',
+    latinTitle: 'Ave Maria',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Kính mừng Maria đầy ơn phúc, Đức Chúa Trời ở cùng Bà,
+Bà có phúc lạ hơn mọi người nữ,
+và Giêsu Con lòng Bà gồm phúc lạ.
+
+Thánh Maria Đức Mẹ Chúa Trời,
+cầu cho chúng con là kẻ có tội,
+khi này và trong giờ lâm tử.
+Amen.`
+  },
+  {
+    id: 'kinh-sang-danh',
+    title: 'Kinh Sáng Danh',
+    latinTitle: 'Gloria Patri',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Sáng danh Đức Chúa Cha, và Đức Chúa Con, và Đức Chúa Thánh Thần.
+Như đã có trước vô cùng, và bây giờ, và hằng có, và đời đời chẳng cùng.
+Amen.`
+  },
+  {
+    id: 'kinh-tin-kinh',
+    title: 'Kinh Tin Kính (Các Tông Đồ)',
+    latinTitle: 'Symbolum Apostolicum',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Tôi tin kính Đức Chúa Trời là Cha phép tắc vô cùng dựng nên trời đất.
+
+Tôi tin kính Đức Chúa Giêsu Kitô là Con Một Đức Chúa Cha cùng là Chúa chúng tôi; bởi phép Đức Chúa Thánh Thần mà Người xuống thai, sinh bởi Bà Maria đồng trinh: chịu nạn đời quan Phongxiô Philatô, chịu đóng đinh trên cây Thánh Giá, chết và táng xác; xuống ngục tổ tông, ngày thứ ba bởi trong kẻ chết mà sống lại; lên trời ngự bên hữu Đức Chúa Cha phép tắc vô cùng; ngày sau bởi trời lại xuống phán xét kẻ sống và kẻ chết.
+
+Tôi tin kính Đức Chúa Thánh Thần.
+Tôi tin có Hội Thánh hằng có ở khắp thế này, các thánh thông công.
+Tôi tin phép tha tội.
+Tôi tin xác loài người ngày sau sống lại.
+Tôi tin hằng sống vậy.
+Amen.`
+  },
+  {
+    id: 'kinh-an-nan-toi',
+    title: 'Kinh Ăn Năn Tội',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Lạy Chúa con, Chúa là Đấng trọn tốt trọn lành vô cùng. Chúa đã dựng nên con, và cho Con Chúa ra đời chịu nạn chịu chết vì con, mà con đã cả lòng phản nghịch lỗi nghĩa cùng Chúa, thì con lo buồn đau đớn, cùng chê ghét mọi tội con trên hết mọi sự.
+
+Con dốc lòng chừa cải, và nhờ ơn Chúa thì con sẽ lánh xa dịp tội, cùng làm việc đền tội cho xứng.
+Amen.`
+  },
+  {
+    id: 'kinh-chua-thanh-than',
+    title: 'Kinh Cầu Xin Chúa Thánh Thần',
+    latinTitle: 'Veni Sancte Spiritus',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Chúng con lạy ơn Đức Chúa Thánh Thần thiêng liêng sáng láng vô cùng. Chúng con xin Đức Chúa Thánh Thần xuống đầy lòng chúng con, là kẻ tin cậy Đức Chúa Trời, và đốt lửa kính mến Đức Chúa Trời trong lòng chúng con. Chúng con xin Đức Chúa Trời cho Đức Chúa Thánh Thần xuống.
+
+*Thưa:* Sửa lại mọi sự trong ngoài chúng con.
+
+Chúng con cầu cùng Đức Chúa Trời, xưa đã cho Đức Chúa Thánh Thần xuống soi lòng dạy dỗ các Thánh Tông Đồ, thì rầy chúng con cũng xin Đức Chúa Trời cho Đức Chúa Thánh Thần lại xuống, an ủi dạy dỗ chúng con làm những việc lành, vì công nghiệp Đức Chúa Giêsu Kitô là Chúa chúng con.
+Amen.`
+  },
+  {
+    id: 'kinh-tin-cay-men',
+    title: 'Kinh Tin – Cậy – Mến',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `### Kinh Tin:
+Lạy Chúa con, con tin thật có một Đức Chúa Trời là Đấng thưởng phạt vô cùng. Con lại tin thật Đức Chúa Trời có Ba Ngôi, mà Ngôi Thứ Hai đã xuống thế làm người, chịu nạn chịu chết mà chuộc tội cho thiên hạ. Bấy nhiêu điều ấy cùng các điều Hội Thánh dạy thì con tin vững vàng, vì Chúa là Đấng thông biết và chân thật vô cùng đã phán truyền cho Hội Thánh. Amen.
+
+### Kinh Cậy:
+Lạy Chúa con, con trông cậy vững vàng, vì công nghiệp Đức Chúa Giêsu, thì Chúa sẽ ban ơn cho con giữ đạo nên ở đời này, cho ngày sau được lên thiên đàng, xem thấy mặt Đức Chúa Trời hưởng phúc đời đời, vì Chúa là Đấng phép tắc và lòng lành vô cùng đã phán hứa, sự ấy chẳng có lẽ nào sai được. Amen.
+
+### Kinh Kính Mến:
+Lạy Chúa con, con kính mến Chúa hết lòng hết sức, trên hết mọi sự, vì Chúa là Đấng trọn tốt trọn lành vô cùng, lại vì Chúa thì con thương yêu người ta như mình con vậy. Amen.`
+  },
+  {
+    id: 'kinh-sang-dang-ngay',
+    title: 'Kinh Dâng Ngày (Kinh Buổi Sáng)',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Lạy Trái Tim Cực Thánh Đức Chúa Giêsu, con nhờ Trái Tim Vô Nhiễm Đức Mẹ Maria, mà dâng lên Chúa mọi lời con cầu nguyện, mọi việc con làm, mọi sự khó nhọc con chịu trong ngày hôm nay, để đền vì tội lỗi con và cầu nguyện theo mọi ý Chúa.
+
+Cách riêng con xin dâng mọi việc hôm nay để cầu nguyện theo ý Đức Thánh Cha đang hướng tới trong tháng này.
+Amen.`
+  },
+  {
+    id: 'kinh-pho-dang-dem',
+    title: 'Kinh Phó Dâng (Kinh Buổi Tối)',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Lạy Chúa, con phó linh hồn và xác con ở tay Chúa. Khi con thức cũng như khi con ngủ, xin Chúa gìn giữ con cho khỏi mọi sự dữ, và gìn giữ linh hồn con khỏi sa chước cám dỗ.
+
+Lạy Thánh Thiên Thần Bản Mệnh, xin gìn giữ con đêm nay cho được an lành, để sáng mai thức dậy con được ngợi khen và phụng sự Chúa.
+Amen.`
+  },
+  {
+    id: 'kinh-truoc-va-sau-khi-an',
+    title: 'Kinh Trước & Sau Khi Ăn',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `### Trước khi ăn:
+Lạy Chúa, xin chúc lành cho chúng con và của ăn này, mà chúng con sắp nhận lãnh do lòng từ bi Chúa, nhờ Đức Kitô Chúa chúng con.
+Amen.
+
+### Sau khi ăn:
+Lạy Thiên Chúa toàn năng, chúng con cảm tạ Chúa vì mọi ơn lành Chúa đã ban cho chúng con, Đấng hằng sống và hiển trị muôn đời.
+Amen.`
+  },
+  {
+    id: 'kinh-cam-on',
+    title: 'Kinh Cám Ơn',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Người ta ai nấy đều phải cảm tạ ơn Đức Chúa Trời đã dựng nên mình, lại gìn giữ mình hằng ngày, cùng ban muôn vàn ơn lành phần hồn phần xác.
+
+Lạy Chúa, con cảm tạ Chúa đã gìn giữ con trong ngày hôm nay, xin Chúa thương tha thứ những thiếu sót lỗi lầm con đã phạm, và ban ơn cho con được trung thành phụng sự Chúa cho đến trọn đời.
+Amen.`
+  },
+  {
+    id: 'kinh-trong-cay',
+    title: 'Kinh Trông Cậy',
+    latinTitle: 'Sub Tuum Praesidium',
+    category: 'hang-ngay',
+    isPopular: true,
+    content: `Chúng con trông cậy rất thánh Đức Mẹ Chúa Trời, xin chớ chê chớ bỏ lời chúng con nguyện, trong cơn gian nan thiếu thốn, Đức Nữ Đồng Trinh hiển vinh sáng láng.
+
+*Thưa:* Hằng chữa chúng con cho khỏi mọi sự dữ. Amen.
+
+• Lạy Rất Thánh Trái Tim Đức Chúa Giêsu. *(Thương xót chúng con)*
+• Lạy Trái Tim Cực Thanh Cực Tịnh Rất Thánh Đức Bà Maria. *(Cầu cho chúng con)*
+• Lạy Ông Thánh Giuse là bạn thanh sạch Đức Bà Maria trọn đời đồng trinh. *(Cầu cho chúng con)*
+• Các Thánh Tử Đạo Nước Việt Nam. *(Cầu cho chúng con)*
+• Nữ Vương Ban Sự Bình An. *(Cầu cho chúng con)*`
+  },
+
+  // =========================================================================
+  // 2. KINH ĐỨC MẸ & TRÀNG HẠT MÂN CÔI
+  // =========================================================================
+  {
+    id: 'chuoi-man-coi-tong-quat',
+    title: 'Hướng Dẫn Lần Chuỗi Mân Côi',
+    category: 'duc-me',
+    isPopular: true,
+    content: `Tràng Hạt Mân Côi là lời kinh tuyệt hảo kết hợp giữa lời kinh chúc tụng Thiên Chúa và suy niệm các mầu nhiệm Cứu Độ của Chúa Giêsu cùng Mẹ Maria.
+
+### Trình tự lần hạt mỗi chục:
+1. Đọc tên Mầu Nhiệm và xin ơn hoa quả của mầu nhiệm đó.
+2. Đọc **1 Kinh Lạy Cha**.
+3. Đọc **10 Kinh Kính Mừng**.
+4. Đọc **1 Kinh Sáng Danh**.
+5. Đọc **Lời nguyện Fatima**:
+*“Lạy Chúa Giêsu, xin tha tội cho chúng con, xin cứu chúng con khỏi sa hỏa ngục, xin đem các linh hồn lên Thiên Đàng, nhất là những linh hồn cần đến lòng Chúa thương xót hơn.”*
+
+### Phân chia các Mùa trong tuần:
+• **Năm Sự Vui:** Thứ Hai & Thứ Bảy.
+• **Năm Sự Sáng:** Thứ Năm.
+• **Năm Sự Thương:** Thứ Ba & Thứ Sáu.
+• **Năm Sự Mừng:** Chúa Nhật & Thứ Tư.`
+  },
+  {
+    id: 'ngam-5-su-vui',
+    title: 'Ngắm Năm Sự Vui (Thứ Hai & Thứ Bảy)',
+    category: 'duc-me',
+    isPopular: true,
+    content: `• **Thứ nhất thì ngắm:** Đức Bà chịu thai. Ta hãy xin cho được ở khiêm nhường. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ hai thì ngắm:** Đức Bà đi viếng Bà Thánh Isave. Ta hãy xin cho được lòng yêu người. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ ba thì ngắm:** Đức Bà sinh Đức Chúa Giêsu nơi máng cỏ. Ta hãy xin cho được lòng khó khăn. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ bốn thì ngắm:** Đức Bà dâng Đức Chúa Giêsu trong Đền Thánh. Ta hãy xin cho được vâng lời chịu lụy. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ năm thì ngắm:** Đức Bà tìm được Đức Chúa Giêsu trong Đền Thánh. Ta hãy xin cho được giữ nghĩa cùng Chúa luôn. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*`
+  },
+  {
+    id: 'ngam-5-su-sang',
+    title: 'Ngắm Năm Sự Sáng (Thứ Năm)',
+    category: 'duc-me',
+    isPopular: true,
+    content: `• **Thứ nhất thì ngắm:** Đức Chúa Giêsu chịu phép Rửa tại sông Giođan. Ta hãy xin cho được sống xứng đáng là con cái Chúa. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ hai thì ngắm:** Đức Chúa Giêsu dự tiệc cưới Cana. Ta hãy xin cho được vững tin vào quyền năng của Chúa và vâng nghe lời Mẹ. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ ba thì ngắm:** Đức Chúa Giêsu rao giảng Nước Trời và kêu gọi sám hối. Ta hãy xin cho được hoán cải tâm hồn và đón nhận Tin Mừng. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ bốn thì ngắm:** Đức Chúa Giêsu biến hình trên núi Tabôrê. Ta hãy xin cho được biến đổi nhờ chiêm ngắm vinh quang Chúa. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ năm thì ngắm:** Đức Chúa Giêsu lập Bí Tích Thánh Thể. Ta hãy xin cho được sốt sắng kết hiệp với Chúa Giêsu Thánh Thể. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*`
+  },
+  {
+    id: 'ngam-5-su-thuong',
+    title: 'Ngắm Năm Sự Thương (Thứ Ba & Thứ Sáu)',
+    category: 'duc-me',
+    isPopular: true,
+    content: `• **Thứ nhất thì ngắm:** Đức Chúa Giêsu lo buồn đổ mồ hôi máu trong vườn Cây Dầu. Ta hãy xin cho được ăn năn tội nên. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ hai thì ngắm:** Đức Chúa Giêsu chịu đánh đòn nơi cột đá. Ta hãy xin cho được hãm mình chịu khó bằng lòng. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ ba thì ngắm:** Đức Chúa Giêsu chịu đội mão gai. Ta hãy xin cho được chịu mọi sự sỉ nhục vì Chúa. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ bốn thì ngắm:** Đức Chúa Giêsu vác cây Thánh Giá lên núi Canvê. Ta hãy xin cho được vác Thánh Giá theo chân Chúa. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ năm thì ngắm:** Đức Chúa Giêsu chịu đóng đinh và sinh thì trên cây Thánh Giá. Ta hãy xin cho được đóng đinh tính xác thịt vào Thánh Giá Chúa. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*`
+  },
+  {
+    id: 'ngam-5-su-mung',
+    title: 'Ngắm Năm Sự Mừng (Chúa Nhật & Thứ Tư)',
+    category: 'duc-me',
+    isPopular: true,
+    content: `• **Thứ nhất thì ngắm:** Đức Chúa Giêsu sống lại từ cõi chết. Ta hãy xin cho được sống lại thật về phần linh hồn. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ hai thì ngắm:** Đức Chúa Giêsu lên trời vinh hiển. Ta hãy xin cho được ái mộ những sự trên trời. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ ba thì ngắm:** Đức Chúa Thánh Thần hiện xuống trên các Tông Đồ. Ta hãy xin cho được đầy dẫy ơn Đức Chúa Thánh Thần. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ bốn thì ngắm:** Đức Chúa Trời cho Đức Mẹ lên trời cả hồn và xác. Ta hãy xin cho được chết lành trong tay Đức Mẹ. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*
+• **Thứ năm thì ngắm:** Đức Chúa Trời thưởng Đức Mẹ trên trời làm Nữ Vương trời đất. Ta hãy xin cho được thưởng cùng Đức Mẹ trên nước Thiên Đàng. *(1 Lạy Cha, 10 Kính Mừng, 1 Sáng Danh)*`
+  },
+  {
+    id: 'kinh-lay-nu-vuong',
+    title: 'Kinh Lạy Nữ Vương',
+    latinTitle: 'Salve Regina',
+    category: 'duc-me',
+    isPopular: true,
+    content: `Lạy Nữ Vương, Mẹ nhân lành, làm cho chúng con được sống, được vui, được cậy, thân lạy Mẹ!
+
+Chúng con, con cháu E-và ở chốn khách đày kêu đến Mẹ, chúng con ở nơi khóc lóc than thở kêu khẩn Mẹ thương. Hỡi ôi! Bà là Chúa bầu chúng con, xin ghé mắt thương xem chúng con. Đến sau khỏi đày, xin cho chúng con được thấy Đức Chúa Giêsu con lòng Bà gồm phúc lạ.
+
+Ôi khoan thay, nhân thay, dịu thay, Thánh Maria trọn đời đồng trinh.
+Amen.`
+  },
+  {
+    id: 'kinh-hay-nho',
+    title: 'Kinh Hãy Nhớ',
+    latinTitle: 'Memorare',
+    category: 'duc-me',
+    isPopular: true,
+    content: `Lạy Thánh Nữ Đồng Trinh Maria, là Mẹ rất nhân từ, xin hãy nhớ xưa nay chưa từng nghe có người nào chạy đến cùng Đức Mẹ, xin bầu chữa cứu giúp, mà Đức Mẹ từ bỏ chẳng nhậm lời.
+
+Nhân vì sự ấy, con lấy lòng trông cậy than van chạy đến sấp mình dưới chân Đức Mẹ, là Nữ Hoàng các Thánh Đồng Trinh, xin Mẹ đoái đến con là kẻ tội lỗi. Lạy Mẹ là Mẹ Chúa Cứu Thế, xin chớ chê bỏ lời con kêu van, một dủ lòng thương và nhậm lời con cùng.
+Amen.`
+  },
+  {
+    id: 'kinh-truyen-tin',
+    title: 'Kinh Truyền Tin (Kinh Angelus)',
+    latinTitle: 'Angelus Domini',
+    category: 'duc-me',
+    isPopular: true,
+    content: `X: Đức Chúa Trời sai Thánh Thiên Thần truyền tin cho Rất Thánh Đức Bà Maria.
+Đ: Và Rất Thánh Đức Bà chịu thai bởi phép Đức Chúa Thánh Thần.
+*(1 Kinh Kính Mừng)*
+
+X: Này tôi là tôi tá Đức Chúa Trời.
+Đ: Tôi xin vâng như lời Thánh Thiên Thần truyền.
+*(1 Kinh Kính Mừng)*
+
+X: Chốc ấy Ngôi Thứ Hai xuống thế làm người.
+Đ: Và ở cùng chúng con.
+*(1 Kinh Kính Mừng)*
+
+X: Lạy Rất Thánh Đức Mẹ Chúa Trời, xin cầu cho chúng con.
+Đ: Đáng chịu lấy những sự Chúa Kitô đã hứa.
+
+**Lời Nguyện:**
+Lạy Chúa, chúng con xin Chúa ban ơn xuống trong linh hồn chúng con, là kẻ đã nhờ lời Thánh Thiên Thần truyền, mà biết thật Đức Chúa Giêsu Kitô là Con Chúa đã xuống thế làm người, thì xin vì công nghiệp Người chịu nạn chịu chết trên cây Thánh Giá, cho chúng con ngày sau được sống lại vinh hiển, cũng vì Đức Chúa Giêsu Kitô là Chúa chúng con.
+Amen.`
+  },
+  {
+    id: 'kinh-duc-me-la-vang',
+    title: 'Kinh Đức Mẹ La Vang',
+    category: 'duc-me',
+    isPopular: true,
+    content: `Lạy Đức Mẹ La Vang, Mẹ là Mẹ Thiên Chúa và là Mẹ chúng con. Xưa kia Mẹ đã hiện ra nơi rừng lá La Vang để an ủi, nâng đỡ con cái Mẹ trong cơn bách hại gian truân.
+
+Nay chúng con hiệp lòng dâng lên Mẹ quê hương Việt Nam, Giáo phận và gia đình chúng con. Xin Mẹ thương gìn giữ đức tin của chúng con luôn kiên trung vững vàng, gia đình hòa thuận yêu thương, và ban cho đất nước chúng con được thái bình thịnh vượng.
+Amen.`
+  },
+
+  // =========================================================================
+  // 3. THÁNH GIUSE & CÁC THÁNH
+  // =========================================================================
+  {
+    id: 'kinh-thanh-giuse',
+    title: 'Kinh Cầu Cùng Thánh Cả Giuse',
+    category: 'thanh-giuse-cac-thanh',
+    isPopular: true,
+    content: `Lạy Thánh Giuse xưa nay chưa từng nghe có người nào chạy đến cùng Người, xin bầu chữa cứu giúp mà Người từ bỏ chẳng nhậm lời.
+
+Nhân vì sự ấy, con lấy lòng trông cậy bền đỗ mà chạy đến cùng Người, là Đấng giữ gìn Chúa Cứu Thế và là Đấng chở che Hội Thánh. Xin Người thương nhận lời chúng con khẩn nguyện, và hằng gìn giữ chúng con trong mọi lúc gian nan thử thách.
+Amen.`
+  },
+  {
+    id: 'kinh-cac-thanh-tu-dao-vn',
+    title: 'Kinh Các Thánh Tử Đạo Việt Nam',
+    category: 'thanh-giuse-cac-thanh',
+    isPopular: true,
+    content: `Lạy các Thánh Tử Đạo Việt Nam, là những bậc tiền nhân anh dũng đã đổ máu đào để minh chứng cho đức tin sắt son vào Chúa Kitô.
+
+Các Ngài đã thà chịu trăm nghìn cực hình và cái chết đớn đau, chứ không chịu chối Chúa và lìa xa Giáo Hội. Xin các Ngài cầu bầu cùng Chúa cho con cháu hôm nay luôn can đảm sống đạo, giữ vững đức tin, nhiệt thành mến Chúa yêu người, và làm chứng cho Tin Mừng giữa lòng thế giới.
+Amen.`
+  },
+  {
+    id: 'kinh-tong-lanh-thien-than-micae',
+    title: 'Kinh Thánh Tổng Lãnh Thiên Thần Micae',
+    latinTitle: 'Sancte Michael Archangele',
+    category: 'thanh-giuse-cac-thanh',
+    isPopular: true,
+    content: `Lạy Thánh Tổng Lãnh Thiên Thần Micae, xin hộ thủ chúng con trong chốn chiến trường, bảo vệ chúng con khỏi mưu ma chước quỷ hãm hại.
+
+Chúng con khiêm tốn nài xin Thiên Chúa xua đuổi chúng, và lạy Người, là Tướng Lãnh đạo binh thiên quốc, xin dùng quyền năng Thiên Chúa mà giáng phạt Satan cùng bè lũ tà thần đang dong duổi khắp trần gian nhằm làm hại các linh hồn, xin tống xéo chúng xuống hỏa ngục.
+Amen.`
+  },
+  {
+    id: 'kinh-hoa-binh',
+    title: 'Kinh Hòa Bình (Thánh Phanxicô Assisi)',
+    category: 'thanh-giuse-cac-thanh',
+    isPopular: true,
+    content: `Lạy Chúa từ nhân, xin chứa chấp con như khí cụ bình an của Chúa:
+• Để con đem yêu thương vào nơi oán thù,
+• Đem thứ tha vào nơi lăng nhục,
+• Đem an hòa vào nơi tranh chấp,
+• Đem chân lý vào chốn lỗi lầm.
+
+• Để con đem đức tin vào nơi nghi nan,
+• Chiếu trông cậy vào nơi thất vọng,
+• Để con dọi ánh sáng vào nơi tối tăm,
+• Đem niềm vui đến chốn u sầu.
+
+Lạy Chúa xin hãy dạy con:
+• Tìm an ủi người hơn được người ủi an,
+• Tìm hiểu biết người hơn được người hiểu biết,
+• Tìm yêu mến người hơn được người mến yêu.
+
+Bởi vì:
+Chính khi hiến thân là khi được nhận lãnh,
+chính lúc quên mình là lúc gặp lại bản thân,
+chính khi thứ tha là khi được tha thứ,
+chính lúc chết đi là khi vui sống muôn đời.
+Amen.`
+  },
+  {
+    id: 'kinh-thien-than-ban-menh',
+    title: 'Kinh Thiên Thần Bản Mệnh',
+    latinTitle: 'Angele Dei',
+    category: 'thanh-giuse-cac-thanh',
+    isPopular: true,
+    content: `Lạy Thiên Thần của Thiên Chúa, là Đấng bảo trợ yêu dấu của con, Đấng mà lòng nhân lành Chúa đã giao phó con cho Người gìn giữ:
+
+Xin soi sáng, gìn giữ, hướng dẫn và cai quản con trong ngày hôm nay.
+Amen.`
+  },
+
+  // =========================================================================
+  // 4. THÁNH THỂ & LÒNG THƯƠNG XÓT
+  // =========================================================================
+  {
+    id: 'chuoi-long-thuong-xot',
+    title: 'Kinh Lòng Thương Xót Chúa (Chuỗi 3 Giờ Chiều)',
+    category: 'thanh-the-thuong-xot',
+    isPopular: true,
+    content: `### Giờ Lòng Thương Xót (3 Giờ Chiều):
+“Lạy Chúa Giêsu, Chúa đã trút hơi thở cuối cùng, nhưng nguồn mạch sự sống đã tuôn trào cho các linh hồn, và đại dương lòng thương xót đã mở ra cho toàn thế giới. Ôi nguồn mạch sự sống, lòng thương xót khôn lường của Thiên Chúa, xin bao phủ toàn thế giới và tuôn đổ hết trên chúng con.”
+
+“Ôi Máu và Nước tuôn trào từ Thánh Tâm Chúa Giêsu như nguồn mạch lòng thương xót chúng con, con trông cậy nơi Ngài!” *(3 lần)*
+
+### Hướng dẫn lần chuỗi Lòng Thương Xót:
+1. Đọc **1 Kinh Lạy Cha**, **1 Kinh Kính Mừng**, **1 Kinh Tin Kính**.
+2. **Mỗi hạt lớn:**
+*“Lạy Cha Hằng Hữu, con xin dâng lên Cha: Mình và Máu, Linh Hồn và Thần Tính của Con Rất Yêu Dấu Cha, là Đức Giêsu Kitô, Chúa chúng con, để đền vì tội lỗi chúng con và toàn thế giới.”*
+3. **Mỗi hạt nhỏ (10 lần):**
+*“Vì cuộc Tử Nạn đau thương của Chúa Giêsu Kitô, xin Cha thương xót chúng con và toàn thế giới.”*
+4. **Kết thúc chuỗi (3 lần):**
+*“Lạy Đấng Chí Thánh, là Thiên Chúa Toàn Năng Hằng Sống, xin thương xót chúng con và toàn thế giới.”*`
+  },
+  {
+    id: 'kinh-ruoc-le-thieng-lieng',
+    title: 'Kinh Rước Lễ Thiêng Liêng',
+    category: 'thanh-the-thuong-xot',
+    isPopular: true,
+    content: `Lạy Đức Chúa Giêsu, con tin thật Chúa ngự trong Bí Tích Mình Thánh. Con yêu mến Chúa trên hết mọi sự, cùng ước ao rước Chúa vào linh hồn con.
+
+Nhưng vì bây giờ con không thể rước Mình Thánh Chúa cách bí tích được, thì xin Chúa ngự vào linh hồn con cách thiêng liêng.
+
+Con xin nghênh đón Chúa như Chúa đã ngự vào lòng con thật, cùng kết hiệp trọn vẹn với Chúa. Xin Chúa chớ để con lìa xa Chúa bao giờ.
+Amen.`
+  },
+  {
+    id: 'kinh-vieng-thanh-the',
+    title: 'Kinh Thờ Lạy & Viếng Thánh Thể',
+    latinTitle: 'Tantum Ergo',
+    category: 'thanh-the-thuong-xot',
+    isPopular: true,
+    content: `Lạy Chúa Giêsu Thánh Thể, con sấp mình thờ lạy Chúa đang hiện diện thực sự trong Phép Bí Tích Cực Thánh này.
+
+Chúa là Tình Yêu ngàn đời, là Bánh Hằng Sống từ trời xuống nuôi dưỡng linh hồn chúng con. Xin cho lòng con luôn khao khát kết hiệp cùng Chúa, xin đốt lên trong tim con ngọn lửa mến yêu nồng nàn để con sống xứng đáng với tình thương bao la của Ngài.
+Amen.`
+  },
+
+  // =========================================================================
+  // 5. 14 ĐÀNG THÁNH GIÁ
+  // =========================================================================
+  {
+    id: '14-chang-dang-thanh-gia',
+    title: '14 Chặng Đàng Thánh Giá Chúa Giêsu',
+    category: 'dang-thanh-gia',
+    isPopular: true,
+    content: `*(Mỗi chặng: Quỳ - xướng: Chúng con thờ lạy và ngợi khen Chúa Kitô / Vì Chúa đã dùng Thánh Giá Chúa mà chuộc tội cho thiên hạ)*
+
+• **Nơi Thứ Nhất:** Quan Philatô luận giết Đức Chúa Giêsu. *(Xin cho con ăn năn đền tội)*
+• **Nơi Thứ Hai:** Đức Chúa Giêsu vác Thánh Giá. *(Xin cho con bằng lòng chịu sự khó theo chân Chúa)*
+• **Nơi Thứ Ba:** Đức Chúa Giêsu ngã xuống đất lần thứ nhất. *(Xin gìn giữ con chớ để sa phạm tội lỗi)*
+• **Nơi Thứ Bốn:** Đức Mẹ gặp Đức Chúa Giêsu vác Thánh Giá. *(Xin cho con được lòng ăn năn đau đớn)*
+• **Nơi Thứ Năm:** Ông Simon vác đỡ Thánh Giá Chúa. *(Xin giúp sức cho con biết gánh vác đỡ gánh nặng tha nhân)*
+• **Nơi Thứ Sáu:** Bà Veronica trao khăn lau mặt Chúa. *(Xin in hình tượng Chúa vào lòng con)*
+• **Nơi Thứ Bảy:** Đức Chúa Giêsu ngã xuống đất lần thứ hai. *(Xin cho con giữ lòng vững vàng đi đàng nhân đức)*
+• **Nơi Thứ Tám:** Đức Chúa Giêsu an ủi con cái thành Giêrusalem. *(Xin an ủi linh hồn con trong cơn hoạn nạn)*
+• **Nơi Thứ Chín:** Đức Chúa Giêsu ngã xuống đất lần thứ ba. *(Xin Chúa gìn giữ con cho đến phút sau hết)*
+• **Nơi Thứ Mười:** Quân dữ lột áo Đức Chúa Giêsu. *(Xin gìn giữ con khỏi mọi chước cám dỗ xác thịt)*
+• **Nơi Thứ Mười Một:** Quân dữ đóng đinh Đức Chúa Giêsu. *(Xin đóng đinh tính xác thịt con vào Thánh Giá Chúa)*
+• **Nơi Thứ Mười Hai:** Đức Chúa Giêsu sinh thì trên Thánh Giá. *(Xin cho con được phó linh hồn trong tay Chúa khi lâm chung)*
+• **Nơi Thứ Mười Ba:** Tháo xác Đức Chúa Giêsu phó tay Đức Mẹ. *(Xin gỡ con cho khỏi mọi vết nhơ tội lỗi)*
+• **Nơi Thứ Mười Bốn:** Táng xác Đức Chúa Giêsu trong mồ đá. *(Xin ban cho con lòng trong sạch để rước Mình Thánh Chúa)*`
+  },
+
+  // =========================================================================
+  // 6. GIÁO LÝ CỐT LÕI & ĐIỀU RĂN
+  // =========================================================================
+  {
+    id: '10-dieu-ran',
+    title: 'Mười Điều Răn Đức Chúa Trời',
+    category: 'giao-ly-dieu-ran',
+    isPopular: true,
+    content: `Đạo Đức Chúa Trời có Mười Điều Răn:
+
+• **Thứ nhất:** Thờ phượng một Đức Chúa Trời và kính mến Người trên hết mọi sự.
+• **Thứ hai:** Chớ kêu tên Đức Chúa Trời vô cớ.
+• **Thứ ba:** Giữ ngày Chúa Nhật.
+• **Thứ bốn:** Thảo kính cha mẹ.
+• **Thứ năm:** Chớ giết người.
+• **Thứ sáu:** Chớ làm sự dâm dục.
+• **Thứ bảy:** Chớ lấy của người.
+• **Thứ tám:** Chớ làm chứng dối.
+• **Thứ chín:** Chớ muốn vợ chồng người.
+• **Thứ mười:** Chớ tham của người.
+
+*Mười điều răn ấy tóm về hai điều này mà chớ:*
+**Trước kính mến một Đức Chúa Trời trên hết mọi sự, sau lại yêu người như mình ta vậy. Amen.**`
+  },
+  {
+    id: '6-dieu-ran-hoi-thanh',
+    title: 'Sáu Điều Răn Hội Thánh',
+    category: 'giao-ly-dieu-ran',
+    isPopular: true,
+    content: `Hội Thánh có Sáu Điều Răn:
+
+• **Thứ nhất:** Dâng lễ ngày Chúa Nhật cùng các ngày lễ buộc.
+• **Thứ hai:** Chớ làm việc xác ngày Chúa Nhật cùng các ngày lễ buộc.
+• **Thứ ba:** Xưng tội trong một năm ít là một lần.
+• **Thứ bốn:** Rước Mình Thánh Chúa trong Mùa Phục Sinh.
+• **Thứ năm:** Giữ chay và kiêng thịt những ngày Hội Thánh dạy.
+• **Thứ sáu:** Đóng góp tài chính để giúp đỡ nhu cầu của Hội Thánh.`
+  },
+  {
+    id: '8-moi-phuc-that',
+    title: 'Tám Mối Phúc Thật (Hiến Chương Nước Trời)',
+    category: 'giao-ly-dieu-ran',
+    isPopular: true,
+    content: `• **Thứ nhất:** Phúc cho ai có tinh thần nghèo khó, vì Nước Trời là của họ.
+• **Thứ hai:** Phúc cho ai hiền lành, vì họ sẽ được Đất Hứa làm gia nghiệp.
+• **Thứ ba:** Phúc cho ai sầu khổ, vì họ sẽ được Thiên Chúa ủi an.
+• **Thứ bốn:** Phúc cho ai khao khát nên người công chính, vì họ sẽ được Thiên Chúa cho thỏa lòng.
+• **Thứ năm:** Phúc cho ai biết xót thương người, vì họ sẽ được Thiên Chúa xót thương.
+• **Thứ sáu:** Phúc cho ai có tâm hồn trong sạch, vì họ sẽ được nhìn ngắm Thiên Chúa.
+• **Thứ bảy:** Phúc cho ai xây dựng hòa bình, vì họ sẽ được gọi là con Thiên Chúa.
+• **Thứ tám:** Phúc cho ai bị bách hại vì sống công chính, vì Nước Trời là của họ.`
+  },
+  {
+    id: '14-moi-thuong-nguoi',
+    title: 'Mười Bốn Mối Thương Người',
+    category: 'giao-ly-dieu-ran',
+    isPopular: true,
+    content: `### Thương xác bảy mối:
+1. Cho kẻ đói ăn.
+2. Cho kẻ khát uống.
+3. Cho kẻ rách rưới ăn mặc.
+4. Viếng kẻ liệt cùng kẻ tù rạc.
+5. Cho khách đỗ nhà.
+6. Chuộc kẻ làm tôi.
+7. Chôn xác kẻ chết.
+
+### Thương linh hồn bảy mối:
+1. Lấy lời lành mà khuyên người.
+2. Mở dạy kẻ mê muội.
+3. Yên ủi kẻ âu lo.
+4. Răn bảo kẻ có tội.
+5. Tha kẻ dể ta.
+6. Nhịn kẻ mất lòng ta.
+7. Cầu cho kẻ sống và kẻ chết.`
+  },
+
+  // =========================================================================
+  // 7. GIA ĐÌNH & CÁC LINH HỒN
+  // =========================================================================
+  {
+    id: 'kinh-cau-cho-gia-dinh',
+    title: 'Kinh Cầu Cho Gia Đình',
+    category: 'gia-dinh-linh-hon',
+    isPopular: true,
+    content: `Lạy Chúa, Chúa đã tạo dựng loài người có nam có nữ, và lập nên bí tích Hôn Phối để thánh hóa tình yêu gia đình.
+
+Chúng con xin dâng gia đình chúng con cho Thánh Tâm Chúa và Trái Tim Vô Nhiễm Mẹ Maria. Xin Chúa ban cho cha mẹ được tràn đầy ơn khôn ngoan, nhẫn nại và yêu thương; ban cho con cái thảo hiền ngoan ngoãn, biết vâng lời và siêng năng học hành. Xin gìn giữ gia đình chúng con luôn hiệp nhất, bình an và trung thành giữ đạo Chúa cho đến cùng.
+Amen.`
+  },
+  {
+    id: 'kinh-cau-cho-cha-me',
+    title: 'Kinh Cầu Cho Cha Mẹ',
+    category: 'gia-dinh-linh-hon',
+    isPopular: true,
+    content: `Lạy Chúa Giêsu, khi còn ở trần gian, Chúa đã hằng hiếu thảo vâng lời Mẹ Maria và Thánh Cả Giuse nơi mái nhà Nadarét.
+
+Chúng con xin Chúa ban muôn ơn lành hồn xác cho cha mẹ chúng con. Xin cho cha mẹ được sức khỏe dồi dào, an vui thanh thản trong tuổi già. Xin dạy chúng con luôn biết hiếu thảo, phụng dưỡng, vâng lời và đem lại niềm vui cho cha mẹ, để đền đáp công ơn sinh thành dưỡng dục tựa biển trời.
+Amen.`
+  },
+  {
+    id: 'kinh-cau-cho-on-goi',
+    title: 'Kinh Cầu Cho Ơn Gọi Linh Mục & Tu Sĩ',
+    category: 'gia-dinh-linh-hon',
+    isPopular: true,
+    content: `Lạy Chúa Giêsu là Mục Tử Nhân Lành, Chúa đã phán: “Lúa chín đầy đồng mà thợ gặt lại ít”.
+
+Chúng con tha thiết nài xin Chúa sai thêm nhiều tâm hồn quảng đại dấn thân vào cánh đồng truyền giáo. Xin Chúa ban cho các linh mục và tu sĩ luôn trung thành với sứ mạng, đầy lòng nhiệt thành và bác ái thánh thiện, để dẫn đưa muôn người về với Chúa.
+Amen.`
+  },
+  {
+    id: 'kinh-vuc-sau',
+    title: 'Kinh Vực Sâu (Cầu Cho Các Linh Hồn)',
+    latinTitle: 'De Profundis',
+    category: 'gia-dinh-linh-hon',
+    isPopular: true,
+    content: `Lạy Chúa, con ở dưới vực sâu kêu lên Chúa, xin Chúa hãy thương nhậm lời con, hãy lắng tai nghe tiếng con cầu xin.
+
+Nếu Chúa chấp tội nào ai rỗi được? Bởi vì Chúa hằng có lòng lành, cùng vì lời Chúa phán hứa, con đã trông cậy Chúa. Linh hồn con cậy vì lời hứa ấy, thì đã trông cậy Chúa.
+
+Từ ánh bình minh cho đến đêm tối, dân Israel hãy trông cậy Chúa; vì Chúa rất nhân từ, cùng giàu ơn cứu chuộc, và Người sẽ chuộc hết mọi tội lỗi dân Israel.
+
+Lạy Chúa, xin cho các linh hồn được nghỉ ngơi đời đời, và cho ánh sáng ngàn thu chiếu soi trên các linh hồn ấy.
+Amen.`
   }
 ];

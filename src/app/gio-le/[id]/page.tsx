@@ -24,13 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const weekdayStr = item.weekdayMass && item.weekdayMass.length > 0 ? item.weekdayMass.join(', ') : 'Đang cập nhật';
 
   const title = `Giờ Lễ ${item.parish} - Giáo phận ${dioceseName} | Tra Cứu Giờ Lễ Toàn Quốc`;
-  const description = `⏰ Chúa Nhật: ${sundayStr} | Ngày thường: ${weekdayStr}. 📍 Địa chỉ: ${item.address || 'Đang cập nhật'}. Tra cứu giờ lễ và chỉ đường GPS chính xác.`;
+  const description = `Chúa Nhật: ${sundayStr} | Ngày thường: ${weekdayStr}. Địa chỉ: ${item.address || 'Đang cập nhật'}. Tra cứu giờ lễ và chỉ đường GPS chính xác.`;
 
   return {
     title,
     description,
     openGraph: {
-      title: `⛪ Giờ Lễ ${item.parish} - GP ${dioceseName}`,
+      title: `Giờ Lễ ${item.parish} - GP ${dioceseName}`,
       description,
       url: `/gio-le/${id}`,
       siteName: 'Tra Cứu Giờ Lễ Toàn Quốc - Xứ Đoàn Các Thánh Tử Đạo Việt Nam',
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `⛪ Giờ Lễ ${item.parish} - GP ${dioceseName}`,
+      title: `Giờ Lễ ${item.parish} - GP ${dioceseName}`,
       description,
       images: ['/logo.jpg']
     }

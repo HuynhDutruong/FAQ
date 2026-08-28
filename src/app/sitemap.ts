@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { ALL_DIOCESES } from '@/lib/dioceses';
 import { PRAYERS } from '@/lib/prayersData';
-import { ALL_BOOKS } from '@/lib/library';
+import { BIBLE_BOOKS } from '@/lib/bible';
 
 const BASE_URL = 'https://chanhtoa.tnttgiaophanmytho.online';
 
@@ -17,10 +17,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/thu-vien`,
+      url: `${BASE_URL}/kinh-thanh`,
       lastModified: currentDate,
       changeFrequency: 'daily',
-      priority: 0.95,
+      priority: 0.98,
     },
     {
       url: `${BASE_URL}/gioi-thieu`,
@@ -48,21 +48,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ];
 
-  // Library Book Pages & Chapters
-  const bookRoutes: MetadataRoute.Sitemap = ALL_BOOKS.flatMap(b => [
-    {
-      url: `${BASE_URL}/thu-vien/${b.id}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    ...b.chapters.map(c => ({
-      url: `${BASE_URL}/thu-vien/${b.id}/${c.id}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.85,
-    }))
-  ]);
+  // 73 Bible Books Routes
+  const bibleRoutes: MetadataRoute.Sitemap = BIBLE_BOOKS.map(b => ({
+    url: `${BASE_URL}/kinh-thanh/${b.id}/1`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
 
   // Popular Prayers Subroutes
   const popularPrayers = PRAYERS.filter(p => p.isPopular).slice(0, 30).map(p => ({
@@ -80,5 +72,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...bookRoutes, ...dioceseRoutes, ...popularPrayers];
+  return [...staticRoutes, ...bibleRoutes, ...dioceseRoutes, ...popularPrayers];
 }

@@ -293,18 +293,22 @@ export default function FacebookFeed({
       alignItems: 'center',
       gap: '8px',
       overflowX: 'auto',
-      paddingBottom: '4px',
-      scrollbarWidth: 'none'
+      whiteSpace: 'nowrap',
+      paddingBottom: '6px',
+      scrollbarWidth: 'none',
+      WebkitOverflowScrolling: 'touch'
     }}>
       <button
         type="button"
         onClick={() => handleTabChange('all')}
         style={{
-          padding: '7px 15px',
+          padding: '8px 14px',
           borderRadius: '20px',
           fontSize: '0.84rem',
           fontWeight: 700,
           cursor: 'pointer',
+          whiteSpace: 'nowrap',
+          flexShrink: 0,
           border: `1px solid ${filterTab === 'all' ? 'var(--color-red)' : 'var(--color-border-subtle)'}`,
           backgroundColor: filterTab === 'all' ? 'var(--color-red)' : 'var(--color-card-bg)',
           color: filterTab === 'all' ? '#FFFFFF' : 'var(--color-dark)',
@@ -331,11 +335,13 @@ export default function FacebookFeed({
         type="button"
         onClick={() => handleTabChange('notice')}
         style={{
-          padding: '7px 15px',
+          padding: '8px 14px',
           borderRadius: '20px',
           fontSize: '0.84rem',
           fontWeight: 700,
           cursor: 'pointer',
+          whiteSpace: 'nowrap',
+          flexShrink: 0,
           border: `1px solid ${filterTab === 'notice' ? '#DC2626' : 'rgba(220, 38, 38, 0.35)'}`,
           backgroundColor: filterTab === 'notice' ? '#DC2626' : 'rgba(220, 38, 38, 0.06)',
           color: filterTab === 'notice' ? '#FFFFFF' : '#DC2626',
@@ -363,11 +369,13 @@ export default function FacebookFeed({
         type="button"
         onClick={() => handleTabChange('news')}
         style={{
-          padding: '7px 15px',
+          padding: '8px 14px',
           borderRadius: '20px',
           fontSize: '0.84rem',
           fontWeight: 700,
           cursor: 'pointer',
+          whiteSpace: 'nowrap',
+          flexShrink: 0,
           border: `1px solid ${filterTab === 'news' ? 'var(--color-red)' : 'var(--color-border-subtle)'}`,
           backgroundColor: filterTab === 'news' ? 'var(--color-red)' : 'var(--color-card-bg)',
           color: filterTab === 'news' ? '#FFFFFF' : 'var(--color-dark)',
@@ -378,6 +386,7 @@ export default function FacebookFeed({
           transition: 'all 0.15s ease'
         }}
       >
+        <Flame size={14} />
         <span>{t.tabActivities || 'Sinh Hoạt & Tin Tức'}</span>
         <span style={{
           fontSize: '0.72rem',
@@ -418,7 +427,7 @@ export default function FacebookFeed({
     <div id={feedId} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
       {renderTabs()}
       
-      {/* 1. GPU-ACCELERATED HERO SLIDER (60FPS - KHÔNG GIẬT LAG) */}
+      {/* 1. GPU-ACCELERATED HERO SLIDER (60FPS - ZERO SUB-PIXEL BLEED) */}
       {featuredPosts.length > 0 && showHero && (
         <div
           onMouseEnter={() => setIsPaused(true)}
@@ -431,7 +440,7 @@ export default function FacebookFeed({
             overflow: 'hidden',
             backgroundColor: 'var(--color-card-bg)',
             border: '1px solid var(--color-border-subtle)',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06)'
+            boxShadow: '0 2px 10px rgba(0,0,0,0.04)'
           }}
           className="news-lead-hover"
         >
@@ -439,9 +448,9 @@ export default function FacebookFeed({
           <div style={{ position: 'relative', overflow: 'hidden', width: '100%' }}>
             <div style={{
               display: 'flex',
-              width: `${featuredPosts.length * 100}%`,
-              transform: `translate3d(-${(slideIndex * 100) / featuredPosts.length}%, 0, 0)`,
-              transition: 'transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
+              width: '100%',
+              transform: `translate3d(-${slideIndex * 100}%, 0, 0)`,
+              transition: 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)',
               willChange: 'transform'
             }}>
               {featuredPosts.map((post) => {
@@ -450,8 +459,12 @@ export default function FacebookFeed({
                   <div
                     key={post.id}
                     style={{
-                      width: `${100 / featuredPosts.length}%`,
-                      flexShrink: 0,
+                      flex: '0 0 100%',
+                      width: '100%',
+                      maxWidth: '100%',
+                      minWidth: '100%',
+                      boxSizing: 'border-box',
+                      overflow: 'hidden',
                       display: 'flex',
                       flexDirection: 'column'
                     }}
@@ -461,17 +474,49 @@ export default function FacebookFeed({
                       style={{
                         display: 'block',
                         textDecoration: 'none',
-                        color: 'inherit'
+                        color: 'inherit',
+                        width: '100%'
                       }}
                     >
-                      {/* Khung ảnh — có video thì phát ngay tại đây */}
-                      <PostThumb post={post} height="clamp(200px, 36vw, 320px)" eager />
+                      {/* Khung ảnh 16:9 chuẩn mực, không méo hay viền đen */}
+                      <div style={{ width: '100%', aspectRatio: '16 / 9', position: 'relative', overflow: 'hidden', backgroundColor: '#1E293B' }}>
+                        <PostThumb post={post} height="100%" eager />
+                      </div>
 
                       {/* Content Info */}
-                      <div style={{ padding: '16px 18px' }}>
+                      <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        {/* Meta row: Date + Likes + Comments + Badges */}
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          flexWrap: 'wrap',
+                          gap: '6px',
+                          fontSize: '0.72rem',
+                          color: 'var(--color-subtle)'
+                        }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                              <Calendar size={12} />
+                              {formatDate(post.created_time)}
+                            </span>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', color: '#E11D48', fontWeight: 600 }}>
+                              <Heart size={12} fill="#E11D48" />
+                              {post.likesCount}
+                            </span>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                              <MessageCircle size={12} />
+                              {post.commentsCount}
+                            </span>
+                          </div>
+
+                          <MediaChips post={post} />
+                        </div>
+
+                        {/* Title */}
                         <h3 style={{
-                          margin: '0 0 8px',
-                          fontSize: 'clamp(1.05rem, 2.4vw, 1.3rem)',
+                          margin: 0,
+                          fontSize: 'clamp(0.95rem, 3.2vw, 1.18rem)',
                           fontWeight: 800,
                           color: 'var(--color-dark)',
                           lineHeight: 1.35,
@@ -483,12 +528,13 @@ export default function FacebookFeed({
                           {title}
                         </h3>
 
+                        {/* Excerpt */}
                         {excerpt && (
                           <p style={{
-                            margin: '0 0 10px',
-                            fontSize: '0.86rem',
+                            margin: 0,
+                            fontSize: '0.8rem',
                             color: 'var(--color-subtle)',
-                            lineHeight: 1.55,
+                            lineHeight: 1.45,
                             display: '-webkit-box',
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical',
@@ -498,40 +544,31 @@ export default function FacebookFeed({
                           </p>
                         )}
 
+                        {/* Action buttons row */}
                         <div style={{
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           flexWrap: 'wrap',
-                          gap: '8px',
-                          paddingTop: '8px',
+                          gap: '6px',
+                          marginTop: '4px',
+                          paddingTop: '6px',
                           borderTop: '1px solid var(--color-border-subtle)'
                         }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.78rem', color: 'var(--color-subtle)' }}>
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                              <Calendar size={13} />
-                              {formatDate(post.created_time)}
-                            </span>
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', color: '#E11D48', fontWeight: 600 }}>
-                              <Heart size={13} fill="#E11D48" />
-                              {post.likesCount}
-                            </span>
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                              <MessageCircle size={13} />
-                              {post.commentsCount}
-                            </span>
-                          </div>
-
-                          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                            <MediaChips post={post} />
-                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-nav-active-text)' }}>
-                              {t.newsReadMore || 'Đọc bài'}
-                              <ArrowRight size={13} />
-                            </span>
-                          </div>
+                          <LinkButtons links={post.links} compact />
+                          <span style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            fontSize: '0.78rem',
+                            fontWeight: 700,
+                            color: 'var(--color-nav-active-text)',
+                            marginLeft: 'auto'
+                          }}>
+                            {t.newsReadMore || 'Đọc bài'}
+                            <ArrowRight size={12} />
+                          </span>
                         </div>
-
-                        <LinkButtons links={post.links} compact />
                       </div>
                     </Link>
                   </div>
@@ -543,8 +580,8 @@ export default function FacebookFeed({
           {/* Badge Nổi Bật & Slide Counter */}
           <div style={{
             position: 'absolute',
-            top: '12px',
-            left: '12px',
+            top: '10px',
+            left: '10px',
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
@@ -556,30 +593,30 @@ export default function FacebookFeed({
               backdropFilter: 'blur(4px)',
               WebkitBackdropFilter: 'blur(4px)',
               color: '#FFFFFF',
-              fontSize: '0.72rem',
+              fontSize: '0.68rem',
               fontWeight: 800,
-              padding: '4px 10px',
+              padding: '3px 8px',
               borderRadius: '20px',
-              letterSpacing: '0.04em',
+              letterSpacing: '0.03em',
               textTransform: 'uppercase',
               display: 'flex',
               alignItems: 'center',
               gap: '4px',
               boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
             }}>
-              <Flame size={12} />
+              <Flame size={11} />
               <span>{t.newsFeatured || 'Nổi Bật'}</span>
             </div>
 
             {featuredPosts.length > 1 && (
               <div style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backgroundColor: 'rgba(0, 0, 0, 0.65)',
                 backdropFilter: 'blur(4px)',
                 WebkitBackdropFilter: 'blur(4px)',
                 color: '#FFFFFF',
-                fontSize: '0.68rem',
+                fontSize: '0.66rem',
                 fontWeight: 700,
-                padding: '3px 8px',
+                padding: '2px 7px',
                 borderRadius: '12px'
               }}>
                 {slideIndex + 1}/{featuredPosts.length}
@@ -600,11 +637,11 @@ export default function FacebookFeed({
                 aria-label="Bài trước"
                 style={{
                   position: 'absolute',
-                  left: '10px',
-                  top: 'clamp(90px, 16vw, 150px)',
+                  left: '8px',
+                  top: 'clamp(70px, 14vw, 130px)',
                   transform: 'translateY(-50%)',
-                  width: '34px',
-                  height: '34px',
+                  width: '30px',
+                  height: '30px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(0, 0, 0, 0.55)',
                   backdropFilter: 'blur(4px)',
@@ -619,7 +656,7 @@ export default function FacebookFeed({
                   transition: 'all 0.15s ease'
                 }}
               >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={18} />
               </button>
 
               <button
@@ -632,11 +669,11 @@ export default function FacebookFeed({
                 aria-label="Bài tiếp theo"
                 style={{
                   position: 'absolute',
-                  right: '10px',
-                  top: 'clamp(90px, 16vw, 150px)',
+                  right: '8px',
+                  top: 'clamp(70px, 14vw, 130px)',
                   transform: 'translateY(-50%)',
-                  width: '34px',
-                  height: '34px',
+                  width: '30px',
+                  height: '30px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(0, 0, 0, 0.55)',
                   backdropFilter: 'blur(4px)',
@@ -651,16 +688,16 @@ export default function FacebookFeed({
                   transition: 'all 0.15s ease'
                 }}
               >
-                <ChevronRight size={20} />
+                <ChevronRight size={18} />
               </button>
             </>
           )}
         </div>
       )}
 
-      {/* 2. 2-COLUMN HIGHLIGHT GRID (Page 1 only) */}
+      {/* 2. 2-COLUMN HIGHLIGHT GRID (Page 1 only - High Density 2-Col on Mobile) */}
       {gridCards.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+        <div className="fb-highlight-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>
           {gridCards.map(post => {
             const { title, excerpt } = getPostContent(post);
             return (
@@ -675,38 +712,38 @@ export default function FacebookFeed({
                   overflow: 'hidden',
                   backgroundColor: 'var(--color-card-bg)',
                   border: '1px solid var(--color-border-subtle)',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.03)',
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                 }}
                 className="news-card-hover"
               >
-                <PostThumb post={post} height="160px" imgClassName="news-card-img" />
-                <div style={{ padding: '14px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <PostThumb post={post} height="120px" imgClassName="news-card-img" />
+                <div style={{ padding: '10px 12px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     {isNoticePost(post) && (
                       <span style={{
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '4px',
-                        padding: '2px 8px',
+                        gap: '3px',
+                        padding: '1px 6px',
                         borderRadius: '4px',
                         backgroundColor: 'rgba(220, 38, 38, 0.1)',
                         color: 'var(--color-red)',
-                        fontSize: '0.7rem',
+                        fontSize: '0.66rem',
                         fontWeight: 800,
                         textTransform: 'uppercase',
-                        marginBottom: '6px'
+                        marginBottom: '4px'
                       }}>
-                        <Megaphone size={11} />
+                        <Megaphone size={10} />
                         <span>Thông Báo</span>
                       </span>
                     )}
                     <h4 style={{
-                      margin: '0 0 6px',
-                      fontSize: '0.96rem',
+                      margin: '0 0 4px',
+                      fontSize: '0.88rem',
                       fontWeight: 800,
                       color: 'var(--color-dark)',
-                      lineHeight: 1.4,
+                      lineHeight: 1.35,
                       display: '-webkit-box',
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: 'vertical',
@@ -714,29 +751,13 @@ export default function FacebookFeed({
                     }} className="news-card-title">
                       {title}
                     </h4>
-                    {excerpt && (
-                      <p style={{
-                        margin: 0,
-                        fontSize: '0.82rem',
-                        color: 'var(--color-subtle)',
-                        lineHeight: 1.5,
-                        display: '-webkit-box',
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden'
-                      }}>
-                        {excerpt}
-                      </p>
-                    )}
                   </div>
 
-                  <MediaChips post={post} />
-
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--color-subtle)', marginTop: '12px', paddingTop: '8px', borderTop: '1px solid var(--color-border-subtle)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--color-subtle)', marginTop: '8px', paddingTop: '6px', borderTop: '1px solid var(--color-border-subtle)' }}>
                     <span>{formatDate(post.created_time)}</span>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      <span style={{ color: '#E11D48', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Heart size={13} strokeWidth={2.2} /> {post.likesCount}</span>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><MessageCircle size={13} strokeWidth={2.2} /> {post.commentsCount}</span>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <span style={{ color: '#E11D48', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '3px' }}><Heart size={12} strokeWidth={2.2} /> {post.likesCount}</span>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}><MessageCircle size={12} strokeWidth={2.2} /> {post.commentsCount}</span>
                     </div>
                   </div>
                 </div>
@@ -746,8 +767,8 @@ export default function FacebookFeed({
         </div>
       )}
 
-      {/* 3. ELEGANT LIST ROWS */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      {/* 3. ELEGANT HIGH-DENSITY LIST ROWS */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         {listRows.map(post => {
           const { title, excerpt } = getPostContent(post);
           return (
@@ -757,89 +778,83 @@ export default function FacebookFeed({
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '14px',
-                padding: '12px',
+                gap: '10px',
+                padding: '8px 10px',
                 borderRadius: '10px',
                 textDecoration: 'none',
                 backgroundColor: 'var(--color-card-bg)',
                 border: '1px solid var(--color-border-subtle)',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
-                transition: 'all 0.2s ease'
+                boxShadow: '0 1px 2px rgba(0,0,0,0.02)',
+                transition: 'all 0.15s ease'
               }}
               className="news-row-card"
             >
               {/* Thumbnail Container */}
-              <div style={{ flexShrink: 0, width: '120px' }} className="news-row-thumb-box">
-                <PostThumb post={post} height="84px" radius="8px" imgClassName="news-row-img" />
+              <div style={{ flexShrink: 0, width: '84px' }} className="news-row-thumb-box">
+                <PostThumb post={post} height="64px" radius="6px" imgClassName="news-row-img" />
               </div>
 
               {/* Text Info */}
-              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
                   {isNoticePost(post) && (
                     <span style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '3px',
-                      padding: '1px 6px',
+                      padding: '1px 5px',
                       borderRadius: '4px',
                       backgroundColor: 'rgba(220, 38, 38, 0.1)',
                       color: 'var(--color-red)',
-                      fontSize: '0.68rem',
+                      fontSize: '0.64rem',
                       fontWeight: 800,
-                      textTransform: 'uppercase',
-                      flexShrink: 0
+                      textTransform: 'uppercase'
                     }}>
-                      <Megaphone size={10} />
-                      <span>Thông Báo</span>
+                      <Megaphone size={9} />
+                      <span>TB</span>
                     </span>
                   )}
-                  <h4 style={{
-                    margin: 0,
-                    fontSize: '0.94rem',
-                    fontWeight: 700,
-                    color: 'var(--color-dark)',
-                    lineHeight: 1.4,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    transition: 'color 0.15s ease'
-                  }} className="news-row-title">
-                    {title}
-                  </h4>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--color-subtle)' }}>
+                    {formatDate(post.created_time)}
+                  </span>
                 </div>
 
-                {excerpt && (
-                  <p style={{
-                    margin: 0,
-                    fontSize: '0.8rem',
-                    color: 'var(--color-subtle)',
-                    lineHeight: 1.45,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 1,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}>
-                    {excerpt}
-                  </p>
-                )}
+                <h4 style={{
+                  margin: 0,
+                  fontSize: '0.86rem',
+                  fontWeight: 700,
+                  color: 'var(--color-dark)',
+                  lineHeight: 1.35,
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
+                }} className="news-row-title">
+                  {title}
+                </h4>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.74rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
-                  <span>{formatDate(post.created_time)}</span>
-                  <span>•</span>
-                  <span style={{ color: '#E11D48', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '4px' }}><Heart size={13} strokeWidth={2.2} /> {post.likesCount}</span>
-                  <span>•</span>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}><MessageCircle size={13} strokeWidth={2.2} /> {post.commentsCount}</span>
-                  <MediaChips post={post} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.7rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', color: '#E11D48', fontWeight: 600 }}>
+                    <Heart size={11} fill="#E11D48" /> {post.likesCount}
+                  </span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+                    <MessageCircle size={11} /> {post.commentsCount}
+                  </span>
                 </div>
-
-                <LinkButtons links={post.links} compact />
               </div>
             </Link>
           );
         })}
       </div>
+
+      <style jsx global>{`
+        @media (max-width: 640px) {
+          .fb-highlight-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px !important;
+          }
+        }
+      `}</style>
 
       {/* 4. PAGINATION CONTROLS ("- 1 2 3 -") */}
       {totalPages > 1 && (

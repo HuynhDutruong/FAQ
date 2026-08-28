@@ -93,6 +93,17 @@ export function getNearestDiocese(userLat: number, userLng: number): { diocese: 
   return { diocese: nearest, distanceKm: minDistance };
 }
 
+/** Lấy danh sách các Giáo phận lân cận gần nhất với toạ độ GPS của người dùng */
+export function getNearbyDioceses(userLat: number, userLng: number, maxCount = 3): { diocese: string; distanceKm: number }[] {
+  const sorted = Object.entries(DIOCESE_COORDINATES)
+    .map(([name, coord]) => ({
+      diocese: name,
+      distanceKm: calculateDistance(userLat, userLng, coord.lat, coord.lng)
+    }))
+    .sort((a, b) => a.distanceKm - b.distanceKm);
+  return sorted.slice(0, maxCount);
+}
+
 /**
  * Trang web chính thức của 27 giáo phận. Đã kiểm tra bằng HTTP thực tế;
  * bốn trang Hà Nội / Huế / Đà Nẵng / Long Xuyên trả 403-406 do chặn bot,

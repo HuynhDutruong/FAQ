@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <main style={{ flex: 1, padding: '20px 16px 48px' }}>
+    <main style={{ flex: 1, padding: '12px 8px 48px' }} className="mobile-edge-container">
       <div style={{ width: '100%', maxWidth: '1060px', margin: '0 auto' }} className="home-grid">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
           
