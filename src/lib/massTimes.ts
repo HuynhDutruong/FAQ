@@ -90,6 +90,18 @@ export const createMass = (data: Omit<MassTime, 'id'>) => addDoc(massCol, data);
 export const updateMass = (id: string, data: Partial<MassTime>) => updateDoc(doc(massCol, id), data);
 export const deleteMass = (id: string) => deleteDoc(doc(massCol, id));
 
+/** Lấy thông tin chi tiết 1 nhà thờ theo ID */
+export async function getMassTimeById(id: string): Promise<MassTime | null> {
+  try {
+    const snap = await getDoc(doc(massCol, id));
+    if (!snap.exists()) return null;
+    return { ...(snap.data() as Omit<MassTime, 'id'>), id: snap.id };
+  } catch (err) {
+    console.error('Error fetching mass time by id:', err);
+    return null;
+  }
+}
+
 /** Gửi yêu cầu phản hồi / đóng góp từ người dùng công khai. */
 export async function submitMassTimeFeedback(
   data: Omit<MassTimeFeedback, 'id' | 'status' | 'createdAt' | 'reviewedAt' | 'reviewedBy'>

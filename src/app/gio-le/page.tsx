@@ -224,20 +224,22 @@ export default function MassTimesPage() {
   };
 
   const handleShare = async (item: MassTime) => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://xudoancacthanhtudaovietnam.web.app';
+    const shareUrl = `${origin}/gio-le/${item.id}`;
     const text = `⛪ ${item.parish} - ${item.diocese ? dioceseLabel(item.diocese) : ''}
 📍 Địa chỉ: ${item.address || 'Đang cập nhật'}
-⏰ Giờ lễ Chúa Nhật: ${item.sundayMass?.join(', ') || 'Chưa có thông tin'}
+⏰ Chúa Nhật: ${item.sundayMass?.join(', ') || 'Chưa có thông tin'}
 ⏰ Ngày thường: ${item.weekdayMass?.join(', ') || 'Chưa có thông tin'}
 
-Tra cứu thêm giờ lễ 3.300+ nhà thờ toàn quốc tại:
-${window.location.origin}/gio-le`;
+Xem chi tiết và chỉ đường tại:
+${shareUrl}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
           title: `Giờ Lễ ${item.parish}`,
           text: text,
-          url: `${window.location.origin}/gio-le`
+          url: shareUrl
         });
         return;
       } catch {
@@ -246,8 +248,8 @@ ${window.location.origin}/gio-le`;
     }
 
     try {
-      await navigator.clipboard.writeText(text);
-      showToast(' Đã sao chép thông tin giờ lễ vào bộ nhớ tạm!');
+      await navigator.clipboard.writeText(shareUrl);
+      showToast('📋 Đã sao chép liên kết chia sẻ vào bộ nhớ tạm!');
     } catch {
       showToast('Không thể sao chép tự động.');
     }
