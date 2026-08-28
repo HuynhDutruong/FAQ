@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 const locales = ['vi', 'en', 'zh', 'fr', 'es', 'ja', 'ko', 'ru', 'de', 'pt', 'it', 'ar', 'hi'];
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   
   // Bỏ qua các file tĩnh, api, hình ảnh
@@ -40,5 +40,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|logo\\.jpg|.*\\.png|.*\\.jpg).*)']
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|logo\\.jpg|.*\\.png|.*\\.jpg|.*\\.json).*)']
 };
