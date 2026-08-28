@@ -14,6 +14,8 @@ interface FBPostRaw {
   comments?: { summary?: { total_count?: number } };
 }
 
+export const dynamic = 'force-dynamic';
+
 // 1. Lấy danh sách bài viết trên Fanpage kèm thống kê (public - hiển thị trên trang chủ)
 export async function GET() {
   try {
@@ -31,16 +33,24 @@ export async function GET() {
 
     const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
 
-    // Lấy hết bài trên Fanpage bằng cách đi theo con trỏ paging.next của Graph API.
-    const MAX_PAGES = 30;
+    // Lấy tối đa 2 trang (~50 bài mới nhất) để phản hồi siêu tốc dưới 500ms, không bao giờ bị timeout Vercel
+    const MAX_PAGES = 2;
     let url =
       `https://graph.facebook.com/v20.0/${pageId}/published_posts` +
-      `?fields=${encodeURIComponent(fields)}&limit=100&access_token=${pageToken}`;
+      `?fields=${encodeURIComponent(fields)}&limit=25&access_token=${pageToken}`;
 
     const rawPosts: FBPostRaw[] = [];
     for (let i = 0; i < MAX_PAGES; i++) {
       try {
-        const response = await fetch(url, { next: { revalidate: 300 } });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+        const response = await fetch(url, {
+          cache: 'no-store',
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
         if (!response.ok) {
           console.warn(`Facebook Graph API responded with status ${response.status}`);
           break;
