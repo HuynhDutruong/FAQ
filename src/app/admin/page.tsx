@@ -37,8 +37,10 @@ export default function AdminDashboard() {
   const handleFacebookLogin = () => {
     setFbLoading(true);
     const appId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
-    const redirectUri = encodeURIComponent('http://localhost:3000/api/facebook/callback');
-    const scope = 'pages_show_list,pages_manage_posts,pages_read_engagement';
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000';
+    const redirectUri = encodeURIComponent(`${origin}/api/facebook/callback`);
+    // Standard permissions for Facebook Login & Page read
+    const scope = 'public_profile,pages_show_list,pages_read_engagement';
     
     // Chuyển hướng trình duyệt sang trang uỷ quyền của Facebook (Server-side flow)
     window.location.href = `https://www.facebook.com/v20.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUri}&scope=${scope}`;

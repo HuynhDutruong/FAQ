@@ -15,11 +15,12 @@ export async function GET(request: Request) {
 
   const appId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID;
   const appSecret = process.env.FACEBOOK_APP_SECRET;
-  const redirectUri = 'http://localhost:3000/api/facebook/callback';
+  const url = new URL(request.url);
+  const redirectUri = `${url.origin}/api/facebook/callback`;
 
   try {
     // 1. Đổi Code lấy User Access Token
-    const tokenResponse = await fetch(`https://graph.facebook.com/v20.0/oauth/access_token?client_id=${appId}&redirect_uri=${redirectUri}&client_secret=${appSecret}&code=${code}`);
+    const tokenResponse = await fetch(`https://graph.facebook.com/v20.0/oauth/access_token?client_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}&client_secret=${appSecret}&code=${code}`);
     const tokenData = await tokenResponse.json();
 
     if (tokenData.error) {
