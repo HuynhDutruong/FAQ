@@ -13,7 +13,9 @@ import {
   MessageSquare,
   ThumbsUp,
   X,
-  Sparkles
+  Sparkles,
+  Key,
+  HelpCircle
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -67,6 +69,13 @@ export default function FacebookAdmin() {
   const [postLink, setPostLink] = useState('');
   const [posting, setPosting] = useState(false);
   const [toastMsg, setToastMsg] = useState<{ success: boolean; text: string } | null>(null);
+
+  // Manual Token Form
+  const [manualPageId, setManualPageId] = useState('');
+  const [manualPageToken, setManualPageToken] = useState('');
+  const [manualPageName, setManualPageName] = useState('');
+  const [savingManual, setSavingManual] = useState(false);
+  const [showManualForm, setShowManualForm] = useState(false);
 
   // Edit Post Modal
   const [editingPost, setEditingPost] = useState<FBPost | null>(null);
@@ -130,6 +139,44 @@ export default function FacebookAdmin() {
     const scope = 'public_profile,pages_show_list,pages_read_engagement';
 
     window.location.href = `https://www.facebook.com/v20.0/dialog/oauth?client_id=${appId}&redirect_uri=${redirectUri}&scope=${scope}`;
+  };
+
+  // Cấu hình thủ công Page Token
+  const handleSaveManualToken = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!manualPageId.trim() || !manualPageToken.trim()) {
+      alert('Vui lòng nhập Page ID và Page Access Token.');
+      return;
+    }
+
+    setSavingManual(true);
+    try {
+      const res = await fetch('/api/facebook/connect-token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pageId: manualPageId.trim(),
+          pageToken: manualPageToken.trim(),
+          pageName: manualPageName.trim() || undefined
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Không thể kết nối');
+
+      showToast(` Kết nối thành công với Fanpage: ${data.pageName}!`);
+      setShowManualForm(false);
+      setManualPageId('');
+      setManualPageToken('');
+      setManualPageName('');
+      fetchPosts();
+
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Lỗi kết nối';
+      alert(msg);
+    } finally {
+      setSavingManual(false);
+    }
   };
 
   const handleSwitchPage = async (page: FacebookPage) => {
@@ -448,32 +495,136 @@ export default function FacebookAdmin() {
               backgroundColor: '#F9FAFB',
               border: '1px solid #E5E7EB',
               borderRadius: '12px',
-              textAlign: 'center'
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px'
             }}>
-              <p style={{ color: '#4B5563', marginBottom: '16px', fontSize: '0.92rem' }}>
-                Hệ thống chưa kết nối với Fanpage nào. Nhấn nút bên dưới để cấp quyền quản trị Fanpage.
-              </p>
-              <button
-                onClick={handleFacebookLogin}
-                disabled={fbLoading}
-                style={{
-                  padding: '12px 24px',
-                  backgroundColor: '#1877F2',
-                  color: 'white',
-                  borderRadius: '10px',
-                  border: 'none',
-                  fontSize: '0.95rem',
-                  fontWeight: 700,
-                  cursor: fbLoading ? 'wait' : 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)'
-                }}
-              >
-                {fbLoading ? <Loader2 size={18} className="spin" /> : <Share2 size={18} />}
-                Đăng nhập & Kết nối Fanpage Facebook
-              </button>
+              {/* Cách 1: Đăng nhập Facebook tự động */}
+              <div style={{ textAlign: 'center', paddingBottom: '16px', borderBottom: '1px dashed #D1D5DB' }}>
+                <p style={{ color: '#374151', marginBottom: '14px', fontSize: '0.92rem', fontWeight: 600 }}>
+                  Cách 1: Đăng nhập trực tiếp tài khoản Facebook quản trị Fanpage
+                </p>
+                <button
+                  onClick={handleFacebookLogin}
+                  disabled={fbLoading}
+                  style={{
+                    padding: '12px 24px',
+                    backgroundColor: '#1877F2',
+                    color: 'white',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    cursor: fbLoading ? 'wait' : 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)'
+                  }}
+                >
+                  {fbLoading ? <Loader2 size={18} className="spin" /> : <Share2 size={18} />}
+                  Đăng nhập & Kết nối Fanpage Facebook
+                </button>
+              </div>
+
+              {/* Cách 2: Nhập trực tiếp Page Token & Page ID */}
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#1F2937', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <Key size={16} color="#D97706" />
+                    <span>Cách 2: Cấu hình nhanh bằng Page ID & Page Access Token</span>
+                  </div>
+                  <button
+                    onClick={() => setShowManualForm(!showManualForm)}
+                    style={{
+                      fontSize: '0.82rem', color: '#2563EB', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer'
+                    }}
+                  >
+                    {showManualForm ? 'Ẩn form nhập' : 'Hiển thị form nhập'}
+                  </button>
+                </div>
+
+                {showManualForm && (
+                  <form onSubmit={handleSaveManualToken} style={{
+                    display: 'flex', flexDirection: 'column', gap: '12px',
+                    backgroundColor: 'white', padding: '16px', borderRadius: '12px', border: '1px solid #E5E7EB'
+                  }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
+                        Facebook Page ID (*):
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="VD: 1029384756..."
+                        value={manualPageId}
+                        onChange={(e) => setManualPageId(e.target.value)}
+                        style={{
+                          width: '100%', padding: '9px 12px', borderRadius: '8px',
+                          border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none', boxSizing: 'border-box'
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
+                        Page Access Token (*):
+                      </label>
+                      <input
+                        type="password"
+                        required
+                        placeholder="Dán mã Page Access Token (EAA...)..."
+                        value={manualPageToken}
+                        onChange={(e) => setManualPageToken(e.target.value)}
+                        style={{
+                          width: '100%', padding: '9px 12px', borderRadius: '8px',
+                          border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none', boxSizing: 'border-box'
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, color: '#374151', marginBottom: '4px' }}>
+                        Tên Fanpage (Tuỳ chọn):
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="VD: Xứ Đoàn Các Thánh Tử Đạo Việt Nam..."
+                        value={manualPageName}
+                        onChange={(e) => setManualPageName(e.target.value)}
+                        style={{
+                          width: '100%', padding: '9px 12px', borderRadius: '8px',
+                          border: '1px solid #D1D5DB', fontSize: '0.88rem', outline: 'none', boxSizing: 'border-box'
+                        }}
+                      />
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '6px' }}>
+                      <a
+                        href="https://developers.facebook.com/tools/explorer/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ fontSize: '0.78rem', color: '#2563EB', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                      >
+                        <HelpCircle size={13} /> Lấy Page Token từ Graph API Explorer
+                      </a>
+
+                      <button
+                        type="submit"
+                        disabled={savingManual}
+                        style={{
+                          padding: '9px 18px', backgroundColor: '#059669', color: 'white',
+                          borderRadius: '8px', border: 'none', fontWeight: 700, fontSize: '0.88rem',
+                          cursor: savingManual ? 'wait' : 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px'
+                        }}
+                      >
+                        {savingManual ? <Loader2 size={15} className="spin" /> : <Key size={15} />}
+                        Lưu & Kết nối Fanpage ngay
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
             </div>
           )}
         </div>

@@ -51,7 +51,17 @@ export async function GET(request: Request) {
     }
 
     const pages: FacebookPageItem[] = pagesData.data || [];
-    const firstPage = pages[0] || null;
+
+    if (pages.length === 0) {
+      // Lưu lại User Token để người dùng có thể chọn manual nếu muốn
+      await setDoc(doc(db, 'settings', 'facebook'), {
+        userToken: userAccessToken,
+        lastAttempt: new Date().toISOString()
+      }, { merge: true });
+      return NextResponse.redirect(new URL('/admin?tab=facebook&error=no_pages_found', request.url));
+    }
+
+    const firstPage = pages[0];
 
     // 3. Lưu thông tin Fanpage và Token vào Firestore
     await setDoc(doc(db, 'settings', 'facebook'), {
@@ -64,9 +74,9 @@ export async function GET(request: Request) {
         category: p.category || '',
         access_token: p.access_token
       })),
-      selectedPageId: firstPage?.id || '',
-      selectedPageName: firstPage?.name || '',
-      selectedPageToken: firstPage?.access_token || ''
+      selectedPageId: firstPage.id,
+      selectedPageName: firstPage.name,
+      selectedPageToken: firstPage.access_token
     }, { merge: true });
 
     return NextResponse.redirect(new URL('/admin?tab=facebook&facebook_success=true', request.url));
