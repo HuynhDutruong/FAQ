@@ -34,19 +34,19 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://chanhtoa.tnttgiaophanmytho.online'),
   title: {
-    default: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho | Tra Cứu Giờ Lễ, Kinh Nguyện & Giáo Lý",
+    default: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Mỹ Tho",
     template: "%s | Xứ Đoàn Các Thánh Tử Đạo Việt Nam"
   },
-  description: "Cổng thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho. Tra cứu giờ lễ 27 giáo phận toàn quốc, 216 bản kinh Công giáo, vấn đáp giáo lý và tin tức sinh hoạt giới trẻ.",
+  description: "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho. Cập nhật tin tức hoạt động Thiếu Nhi Thánh Thể, thông báo phụng vụ xứ đoàn, Lời Chúa mỗi ngày, kinh nguyện và đời sống đức tin.",
   keywords: [
-    "xứ đoàn các thánh tử đạo việt nam", "giáo xứ chánh tòa mỹ tho", "giáo phận mỹ tho",
-    "tntt giáo phận mỹ tho", "tntt mỹ tho", "tổng liên đoàn tntt vn", "đức cha phêrô nguyễn văn khảm",
-    "giờ lễ chánh tòa mỹ tho", "tra cứu giờ lễ", "216 kinh công giáo", "vấn đáp giáo lý",
-    "đức giáo hoàng lêô xiv", "tòa thánh vatican", "hội đồng giám mục việt nam", "hdgmvn"
+    "xứ đoàn các thánh tử đạo việt nam", "xứ đoàn chánh tòa mỹ tho", "thiếu nhi thánh thể mỹ tho",
+    "tntt giáo phận mỹ tho", "tntt mỹ tho", "giáo xứ chánh tòa mỹ tho", "giáo phận mỹ tho",
+    "tổng liên đoàn tntt vn", "đức cha phêrô nguyễn văn khảm", "lời chúa hôm nay",
+    "sinh hoạt xứ đoàn", "huynh trưởng mỹ tho", "phụng vụ chánh tòa"
   ],
   authors: [{ name: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam", url: "https://chanhtoa.tnttgiaophanmytho.online" }],
   creator: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam",
-  publisher: "Giáo Xứ Chánh Tòa Mỹ Tho",
+  publisher: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Mỹ Tho",
   alternates: {
     canonical: 'https://chanhtoa.tnttgiaophanmytho.online',
   },
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     url: "https://chanhtoa.tnttgiaophanmytho.online",
     siteName: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho",
     title: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Mỹ Tho",
-    description: "Cổng thông tin tra cứu giờ lễ 27 giáo phận toàn quốc, 216 kinh nguyện Công giáo, vấn đáp giáo lý và sinh hoạt phong trào Thiếu Nhi Thánh Thể.",
+    description: "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho. Nơi chia sẻ tin tức sinh hoạt, đào tạo Huynh trưởng - Đoàn sinh và học hỏi Lời Chúa.",
     images: [
       {
         url: "/logo.jpg",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho",
-    description: "Tra cứu nhanh giờ lễ 3.300+ nhà thờ trên toàn quốc, 216 kinh nguyện Công giáo và sinh hoạt Xứ Đoàn.",
+    description: "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho.",
     images: ["/logo.jpg"]
   },
   icons: {
@@ -89,11 +89,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": "https://chanhtoa.tnttgiaophanmytho.online/#organization",
+        "name": "Xứ Đoàn Các Thánh Tử Đạo Việt Nam",
+        "alternateName": "Xứ Đoàn TNTT Các Thánh Tử Đạo Việt Nam Chánh Tòa Mỹ Tho",
+        "url": "https://chanhtoa.tnttgiaophanmytho.online",
+        "logo": "https://chanhtoa.tnttgiaophanmytho.online/logo.jpg",
+        "email": "notification2411.huynhdutruong@gmail.com",
+        "parentOrganization": {
+          "@type": "CatholicChurch",
+          "name": "Giáo Xứ Chánh Tòa Mỹ Tho",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "32 Hùng Vương, Phường 7",
+            "addressLocality": "TP. Mỹ Tho",
+            "addressRegion": "Tiền Giang",
+            "addressCountry": "VN"
+          }
+        }
+      },
+      {
         "@type": "WebSite",
         "@id": "https://chanhtoa.tnttgiaophanmytho.online/#website",
-        "name": "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho",
+        "name": "Trang Thông Tin Xứ Đoàn Các Thánh Tử Đạo Việt Nam",
         "url": "https://chanhtoa.tnttgiaophanmytho.online",
-        "description": "Cổng thông tin tra cứu giờ lễ 27 giáo phận toàn quốc, 216 kinh nguyện Công giáo và giải đáp giáo lý.",
+        "description": "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Mỹ Tho.",
         "publisher": {
           "@id": "https://chanhtoa.tnttgiaophanmytho.online/#organization"
         },
@@ -105,35 +125,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           },
           "query-input": "required name=search_term_string"
         }
-      },
-      {
-        "@type": "CatholicChurch",
-        "@id": "https://chanhtoa.tnttgiaophanmytho.online/#church",
-        "name": "Nhà Thờ Chánh Tòa Mỹ Tho",
-        "alternateName": "Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho",
-        "url": "https://chanhtoa.tnttgiaophanmytho.online",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "32 Hùng Vương, Phường 7",
-          "addressLocality": "TP. Mỹ Tho",
-          "addressRegion": "Tiền Giang",
-          "addressCountry": "VN"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 10.3548,
-          "longitude": 106.3639
-        },
-        "telephone": "",
-        "email": "notification2411.huynhdutruong@gmail.com",
-        "openingHours": [
-          "Mo-Sa 05:00-06:00",
-          "Mo-Sa 17:30-18:30",
-          "Su 05:30-06:30",
-          "Su 07:00-08:00",
-          "Su 16:00-17:00",
-          "Su 18:00-19:00"
-        ]
       }
     ]
   };

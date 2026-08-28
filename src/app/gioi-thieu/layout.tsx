@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Giới Thiệu Xứ Đoàn CTTĐVN, Lịch Sử Chánh Tòa Mỹ Tho & Tòa Thánh Vatican',
-  description: 'Tìm hiểu lịch sử Giáo xứ Chánh Tòa & Giáo phận Mỹ Tho, Đức Thánh Cha Lêô XIV (Leo XIV), Tòa Thánh Vatican, Hội Đồng Giám Mục Việt Nam (HĐGMVN), 5 vị Giám mục và kiến trúc Gothic 53m x 17m.',
+  title: 'Giới Thiệu Xứ Đoàn Các Thánh Tử Đạo Việt Nam & Giáo Xứ Chánh Tòa Mỹ Tho',
+  description: 'Giới thiệu về Xứ Đoàn Các Thánh Tử Đạo Việt Nam (Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho), lịch sử họ đạo Chánh Tòa từ năm 1906, 5 vị Giám mục, Tòa Thánh Vatican & Đức Giáo Hoàng Lêô XIV, Giáo Hội Việt Nam.',
   alternates: {
     canonical: 'https://chanhtoa.tnttgiaophanmytho.online/gioi-thieu',
   },
   openGraph: {
-    title: 'Giới Thiệu Xứ Đoàn CTTĐVN & Lịch Sử Giáo Phận Mỹ Tho',
-    description: 'Lịch sử Giáo phận Mỹ Tho, Đức Giáo Hoàng Lêô XIV, Tòa Thánh Vatican, HĐGMVN, 5 vị Giám mục và Kiến trúc Nhà thờ Chánh Tòa.',
+    title: 'Giới Thiệu Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho',
+    description: 'Tìm hiểu về Xứ Đoàn Các Thánh Tử Đạo Việt Nam, lịch sử Giáo xứ Chánh Tòa & Giáo phận Mỹ Tho, Đức Thánh Cha Lêô XIV, Tòa Thánh Vatican và HĐGMVN.',
     url: 'https://chanhtoa.tnttgiaophanmytho.online/gioi-thieu',
     type: 'website',
     images: [
@@ -16,14 +16,14 @@ export const metadata: Metadata = {
         url: '/images/nhatho1.jpg',
         width: 1200,
         height: 630,
-        alt: 'Mặt tiền Nhà Thờ Chánh Tòa Mỹ Tho',
+        alt: 'Nhà Thờ Chánh Tòa Mỹ Tho',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Giới Thiệu Xứ Đoàn CTTĐVN & Lịch Sử Giáo Phận Mỹ Tho',
-    description: 'Lịch sử Giáo phận Mỹ Tho, Đức Giáo Hoàng Lêô XIV, Tòa Thánh Vatican, HĐGMVN và Kiến trúc Nhà thờ Chánh Tòa.',
+    title: 'Giới Thiệu Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho',
+    description: 'Giới thiệu về Xứ Đoàn Các Thánh Tử Đạo Việt Nam và Giáo Xứ Chánh Tòa Mỹ Tho.',
     images: ['/images/nhatho1.jpg'],
   },
 };
