@@ -1,12 +1,19 @@
 import { NextResponse } from 'next/server';
 
-// Danh sách các email Host / Admin mặc định
-const PRIMARY_HOST_EMAILS = [
-  'notification2411.huynhdutruong@gmail.com',
-  'hugowishpax@gmail.com',
-];
+// Danh sách các email Host / Admin mặc định (ưu tiên biến môi trường)
+const PRIMARY_HOST_EMAILS = (
+  process.env.ADMIN_EMAILS ||
+  process.env.PRIMARY_HOST_EMAIL ||
+  'notification2411.huynhdutruong@gmail.com,hugowishpax@gmail.com'
+)
+  .split(',')
+  .map(e => e.trim().toLowerCase())
+  .filter(Boolean);
 
-const FIREBASE_API_KEY = 'AIzaSyADDC3-1BYxJX5hs-ofxUmM9lHiXbmk3zo';
+const FIREBASE_API_KEY =
+  process.env.NEXT_PUBLIC_FIREBASE_API_KEY ||
+  process.env.FIREBASE_API_KEY ||
+  'AIzaSyADDC3-1BYxJX5hs-ofxUmM9lHiXbmk3zo';
 
 export class AuthError extends Error {
   status: number;
