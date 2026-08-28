@@ -7,6 +7,9 @@ const RATINGS = 'ratings';
 const STATS_DOC = ['stats', 'site'] as const;
 const VN_TZ = 'Asia/Ho_Chi_Minh';
 
+// Watermark in RAM to guarantee monotonic non-decreasing visits even across temporary Firestore lags
+let inMemoryMaxVisits = 0;
+
 async function statsRef() {
   const { adminDb } = await import('@/lib/firebaseAdmin');
   return adminDb().collection(STATS_DOC[0]).doc(STATS_DOC[1]);
@@ -37,9 +40,17 @@ function recentDates(days: number, from: string) {
 function summarise(data: Record<string, unknown> | undefined) {
   const count = Number(data?.ratingCount || 0);
   const sum = Number(data?.ratingSum || 0);
+  
+  // visitsSeed: số mồi do quản trị đặt cho giai đoạn trước khi có bộ đếm
+  const computedVisits = Number(data?.visits || 0) + Number(data?.visitsSeed || 0);
+  const storedMax = Number(data?.maxVisitsEver || 0);
+  
+  // Logic cốt lõi: Lượt truy cập chỉ đứng yên hoặc tăng lên, TUYỆT ĐỐI KHÔNG BAO GIỜ GIẢM
+  const guaranteedVisits = Math.max(computedVisits, storedMax, inMemoryMaxVisits);
+  inMemoryMaxVisits = guaranteedVisits;
+
   return {
-    // visitsSeed: số mồi do quản trị đặt cho giai đoạn trước khi có bộ đếm
-    visits: Number(data?.visits || 0) + Number(data?.visitsSeed || 0),
+    visits: guaranteedVisits,
     count,
     average: count > 0 ? Math.round((sum / count) * 10) / 10 : 0,
     stars: (data?.stars as Record<string, number>) || {}
@@ -99,10 +110,13 @@ export async function GET(request: Request) {
     const { date, hour } = vnNow();
     const dayRef = ref.collection('days').doc(date);
 
-    // ponytail: đếm theo phiên trình duyệt, đủ dùng cho trang giáo xứ; cần chính xác hơn thì chặn theo IP
+    // Ghi nhận lượt truy cập (chỉ tăng lên)
     if (searchParams.get('visit') === '1') {
       await Promise.all([
-        ref.set({ visits: FieldValue.increment(1) }, { merge: true }),
+        ref.set({
+          visits: FieldValue.increment(1),
+          maxVisitsEver: Math.max(inMemoryMaxVisits + 1, 1)
+        }, { merge: true }),
         dayRef.set({ date, total: FieldValue.increment(1), [`h${hour}`]: FieldValue.increment(1) }, { merge: true })
       ]);
     }
@@ -115,20 +129,15 @@ export async function GET(request: Request) {
     });
   } catch (err) {
     console.warn('Không đọc được số liệu đánh giá:', err);
-    // Mã lỗi thô để chẩn đoán cấu hình trên máy chủ, không lộ nội dung khoá
-    const msg = err instanceof Error ? err.message : String(err);
-    const reason = /Thiếu biến môi trường/.test(msg)
-      ? 'missing-env'
-      : /JSON|Unexpected token|base64/i.test(msg)
-        ? 'bad-key-format'
-        : /PERMISSION_DENIED|permission/i.test(msg)
-          ? 'firestore-permission'
-          : /NOT_FOUND|does not exist|5 NOT_FOUND/i.test(msg)
-            ? 'firestore-missing'
-            : /credential|private_key|invalid_grant|PEM/i.test(msg)
-              ? 'bad-credential'
-              : 'unknown';
-    return NextResponse.json({ visits: 0, count: 0, average: 0, stars: {}, unavailable: true, reason });
+    // Trả về watermark lớn nhất đã biết, không trả về 0 để tránh sụt giảm lượt truy cập
+    return NextResponse.json({
+      visits: inMemoryMaxVisits,
+      count: 0,
+      average: 0,
+      stars: {},
+      unavailable: inMemoryMaxVisits === 0,
+      reason: 'firestore-fallback'
+    });
   }
 }
 
@@ -175,7 +184,7 @@ export async function POST(request: Request) {
   }
 }
 
-// 3. Quản trị đặt số lượt truy cập mồi (giai đoạn trước khi có bộ đếm)
+// 3. Quản trị đặt số lượt truy cập mồi (chỉ được tăng hoặc giữ nguyên, không được làm giảm tổng lượt)
 export async function PATCH(request: Request) {
   const { withAdmin } = await import('@/lib/serverAuth');
   return withAdmin(async (req: Request) => {
@@ -186,7 +195,17 @@ export async function PATCH(request: Request) {
     }
 
     const ref = await statsRef();
-    await ref.set({ visitsSeed: Math.round(seed) }, { merge: true });
+    const snapBefore = await ref.get();
+    const currentData = snapBefore.data();
+    const newVisits = Number(currentData?.visits || 0) + Math.round(seed);
+    const newMax = Math.max(newVisits, inMemoryMaxVisits, Number(currentData?.maxVisitsEver || 0));
+
+    await ref.set({
+      visitsSeed: Math.round(seed),
+      maxVisitsEver: newMax
+    }, { merge: true });
+
+    inMemoryMaxVisits = newMax;
     const snap = await ref.get();
     return NextResponse.json({ success: true, ...summarise(snap.data()) });
   })(request);

@@ -18,6 +18,7 @@ interface Stats {
 
 const VISIT_KEY = 'site_visit_counted';
 const RATED_KEY = 'site_rated_stars';
+const MAX_RECORDED_VISITS_KEY = 'catholic_max_visits_recorded_v1';
 
 /** Pháo hoa mừng khi gửi đánh giá xong. */
 function celebrate() {
@@ -34,7 +35,20 @@ function celebrate() {
 
 export default function RatingWidget() {
   const { t, lang } = useLanguage();
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useState<Stats | null>(() => {
+    // Khởi tạo ngay từ localStorage để tránh bị tụt về 0 hoặc giật số
+    if (typeof window !== 'undefined') {
+      try {
+        const savedMax = parseInt(localStorage.getItem(MAX_RECORDED_VISITS_KEY) || '0', 10);
+        if (savedMax > 0) {
+          return { visits: savedMax, count: 0, average: 0, stars: {} };
+        }
+      } catch {
+        // noop
+      }
+    }
+    return null;
+  });
   const [picked, setPicked] = useState(0);
   const [hover, setHover] = useState(0);
   const [comment, setComment] = useState('');
@@ -48,13 +62,26 @@ export default function RatingWidget() {
       firstVisit = !sessionStorage.getItem(VISIT_KEY);
       if (firstVisit) sessionStorage.setItem(VISIT_KEY, '1');
     } catch {
-      // Trình duyệt chặn storage thì bỏ qua, chỉ mất lượt đếm
+      // Trình duyệt chặn storage thì bỏ qua
     }
 
     fetch(`/api/danh-gia${firstVisit ? '?visit=1' : ''}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data: Stats) => {
-        setStats(data);
+        let guaranteedVisits = Number(data.visits || 0);
+        try {
+          const prevMax = parseInt(localStorage.getItem(MAX_RECORDED_VISITS_KEY) || '0', 10);
+          // Lượt truy cập CHỈ ĐƯỢC ĐỨNG YÊN HOẶC TĂNG, TUYỆT ĐỐI KHÔNG GIẢM
+          guaranteedVisits = Math.max(prevMax, guaranteedVisits);
+          if (guaranteedVisits > prevMax) {
+            localStorage.setItem(MAX_RECORDED_VISITS_KEY, String(guaranteedVisits));
+          }
+        } catch {
+          // noop
+        }
+
+        setStats({ ...data, visits: guaranteedVisits });
+
         try {
           const rated = localStorage.getItem(RATED_KEY);
           if (rated) setDone(Number(rated));
@@ -62,12 +89,25 @@ export default function RatingWidget() {
           // Bỏ qua
         }
       })
-      .catch(() => setStats({ visits: 0, count: 0, average: 0, stars: {} }));
+      .catch(() => {
+        // Khi lỗi mạng, giữ nguyên số lượt lớn nhất đã biết, TUYỆT ĐỐI KHÔNG reset về 0
+        setStats((prev) => {
+          const fallbackMax = typeof window !== 'undefined'
+            ? parseInt(localStorage.getItem(MAX_RECORDED_VISITS_KEY) || '0', 10)
+            : 0;
+          return {
+            visits: Math.max(prev?.visits || 0, fallbackMax),
+            count: prev?.count || 0,
+            average: prev?.average || 0,
+            stars: prev?.stars || {}
+          };
+        });
+      });
   }, []);
 
   const needComment = picked > 0 && picked < 3;
 
-  if (stats?.unavailable) return null;
+  if (stats?.unavailable && (!stats.visits || stats.visits === 0)) return null;
 
   const submit = async () => {
     if (!picked || sending) return;
@@ -87,10 +127,15 @@ export default function RatingWidget() {
         return;
       }
 
-      setStats(data);
+      // Giữ nguyên tính chất không giảm của lượt truy cập
+      const prevVisits = stats?.visits || 0;
+      const finalVisits = Math.max(prevVisits, Number(data.visits || 0));
+      setStats({ ...data, visits: finalVisits });
       setDone(picked);
+
       try {
         localStorage.setItem(RATED_KEY, String(picked));
+        localStorage.setItem(MAX_RECORDED_VISITS_KEY, String(finalVisits));
       } catch {
         // Bỏ qua
       }
@@ -103,30 +148,36 @@ export default function RatingWidget() {
   };
 
   return (
-    <section style={{
-      backgroundColor: 'var(--color-card-bg)',
-      border: '1px solid var(--color-border-subtle)',
-      borderRadius: '10px',
-      padding: '18px 20px',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
-    }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        borderBottom: '1px solid var(--color-border-subtle)',
-        paddingBottom: '10px',
-        marginBottom: '14px'
-      }}>
+    <section
+      style={{
+        backgroundColor: 'var(--color-card-bg)',
+        border: '1px solid var(--color-border-subtle)',
+        borderRadius: '10px',
+        padding: '18px 20px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.03)'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          borderBottom: '1px solid var(--color-border-subtle)',
+          paddingBottom: '10px',
+          marginBottom: '14px'
+        }}
+      >
         <MessageSquareHeart size={17} style={{ color: 'var(--color-red)' }} />
-        <h2 style={{
-          margin: 0,
-          fontSize: '1.05rem',
-          fontWeight: 800,
-          color: 'var(--color-red)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.04em'
-        }}>
+        <h2
+          style={{
+            margin: 0,
+            fontSize: '1.05rem',
+            fontWeight: 800,
+            color: 'var(--color-red)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.04em'
+          }}
+        >
           {t.ratingWidgetTitle || 'Cảm Nhận Của Bạn'}
         </h2>
       </div>
@@ -135,7 +186,7 @@ export default function RatingWidget() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '16px' }}>
         <div className="stat-tile">
           <div className="stat-value">
-            {stats ? stats.visits.toLocaleString('vi-VN') : '—'}
+            {stats && stats.visits > 0 ? stats.visits.toLocaleString('vi-VN') : '—'}
           </div>
           <div className="stat-label">
             <Eye size={12} /> {t.ratingVisits || 'Lượt truy cập'}
@@ -150,7 +201,7 @@ export default function RatingWidget() {
           <div className="stat-label">
             {stats && stats.count > 0
               ? `${stats.count} ${t.ratingCountLabel || 'lượt đánh giá'}`
-              : (t.ratingBeFirst || 'Hãy là người đầu tiên')}
+              : t.ratingBeFirst || 'Hãy là người đầu tiên'}
           </div>
         </div>
       </div>
@@ -159,11 +210,14 @@ export default function RatingWidget() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0F766E', fontWeight: 700, fontSize: '0.88rem' }}>
             <CheckCircle2 size={18} />
-            <span>{(t.ratingThanks || 'Cảm ơn bạn đã đánh giá {n} sao!').replace('{n}', String(done))}</span>
+            <span>{(t.ratingThanks || 'Cảm ơn bạn đã đánh giá!').replace('{n}', String(done))}</span>
           </div>
 
-          {/* Đánh giá bên Fanpage phải do chính người dùng đăng, Facebook không cho ghi qua API */}
-          {done >= 4 && stats?.fbReviewUrl && (
+          <div style={{ fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>
+            Đóng góp của bạn giúp chúng tôi phục vụ cộng đoàn tốt hơn mỗi ngày.
+          </div>
+
+          {stats?.fbReviewUrl && (
             <a
               href={stats.fbReviewUrl}
               target="_blank"
@@ -173,97 +227,115 @@ export default function RatingWidget() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '6px',
+                marginTop: '4px',
                 padding: '8px 12px',
-                borderRadius: '8px',
-                border: '1px solid var(--color-border-subtle)',
-                backgroundColor: 'var(--color-btn-subtle-bg)',
+                borderRadius: '6px',
+                border: '1px solid #1877F2',
                 color: '#1877F2',
-                fontSize: '0.82rem',
+                fontSize: '0.8rem',
                 fontWeight: 700,
-                textDecoration: 'none'
+                textDecoration: 'none',
+                backgroundColor: 'rgba(24, 119, 242, 0.05)'
               }}
             >
-              <ThumbsUp size={14} /> {t.ratingShareFb || 'Đánh giá Fanpage trên Facebook'}
+              <ThumbsUp size={14} />
+              <span>{t.ratingShareFb || 'Đánh giá Fanpage trên Facebook'}</span>
             </a>
           )}
         </div>
       ) : (
-        <>
-          <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-dark)', marginBottom: '8px' }}>
-            {t.ratingAsk || 'Bạn thấy trang này thế nào?'}
+        <div>
+          <div style={{ fontSize: '0.82rem', color: 'var(--color-subtle)', marginBottom: '8px' }}>
+            {t.ratingAsk || 'Xin cho biết mức độ hài lòng của bạn về website:'}
           </div>
 
-          <div style={{ display: 'flex', gap: '4px', marginBottom: '10px' }} onMouseLeave={() => setHover(0)}>
-            {[1, 2, 3, 4, 5].map(star => (
+          {/* 5 ngôi sao */}
+          <div style={{ display: 'flex', gap: '6px', marginBottom: '12px' }}>
+            {[1, 2, 3, 4, 5].map((star) => {
+              const active = (hover || picked) >= star;
+              return (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => setPicked(star)}
+                  onMouseEnter={() => setHover(star)}
+                  onMouseLeave={() => setHover(0)}
+                  aria-label={`${star} sao`}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: '4px',
+                    cursor: 'pointer',
+                    transform: active ? 'scale(1.15)' : 'scale(1)',
+                    transition: 'transform 0.12s ease'
+                  }}
+                >
+                  <Star
+                    size={26}
+                    fill={active ? '#F4B400' : 'none'}
+                    color={active ? '#F4B400' : 'var(--color-border-subtle)'}
+                    strokeWidth={active ? 0 : 1.5}
+                  />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Ô góp ý khi người dùng chọn 1-2 sao hoặc tuỳ chọn */}
+          {picked > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '12px' }}>
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder={t.ratingCommentPlaceholder || 'Xin góp ý để chúng tôi cải thiện...'}
+                rows={2}
+                maxLength={800}
+                style={{
+                  width: '100%',
+                  padding: '8px 10px',
+                  borderRadius: '6px',
+                  border: '1px solid var(--color-border-subtle)',
+                  fontSize: '0.82rem',
+                  fontFamily: 'inherit',
+                  resize: 'vertical',
+                  backgroundColor: 'var(--color-input-bg)',
+                  color: 'var(--color-dark)',
+                  boxSizing: 'border-box'
+                }}
+              />
+
+              {error && (
+                <div style={{ fontSize: '0.78rem', color: '#B91C1C', fontWeight: 600 }}>
+                  {error}
+                </div>
+              )}
+
               <button
-                key={star}
                 type="button"
-                aria-label={`${star} sao`}
-                onClick={() => { setPicked(star); setError(null); }}
-                onMouseEnter={() => setHover(star)}
-                className="star-btn"
+                onClick={submit}
+                disabled={sending || (needComment && comment.trim().length < 10)}
+                style={{
+                  alignSelf: 'flex-start',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: 'var(--color-red)',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '8px 14px',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  cursor: sending || (needComment && comment.trim().length < 10) ? 'not-allowed' : 'pointer',
+                  opacity: sending || (needComment && comment.trim().length < 10) ? 0.6 : 1
+                }}
               >
-                <Star
-                  size={26}
-                  fill={(hover || picked) >= star ? '#F4B400' : 'transparent'}
-                  color={(hover || picked) >= star ? '#F4B400' : 'var(--color-subtle)'}
-                  strokeWidth={1.8}
-                />
+                {sending ? <Loader2 size={14} className="spin" /> : null}
+                <span>{t.ratingSubmitText || 'Gửi Đánh Giá'}</span>
               </button>
-            ))}
-          </div>
-
-          {/* Dưới 3 sao thì hỏi ngay điều chưa hài lòng */}
-          {needComment && (
-            <textarea
-              value={comment}
-              onChange={e => setComment(e.target.value)}
-              maxLength={800}
-              rows={3}
-              placeholder={t.ratingCommentPlaceholder || 'Điều gì làm bạn chưa hài lòng? Xin cho chúng tôi biết để sửa...'}
-              style={{
-                width: '100%',
-                padding: '10px',
-                marginBottom: '10px',
-                borderRadius: '8px',
-                border: '1px solid var(--color-border-subtle)',
-                backgroundColor: 'var(--color-input-bg)',
-                color: 'var(--color-dark)',
-                fontSize: '0.85rem',
-                fontFamily: 'inherit',
-                resize: 'vertical'
-              }}
-            />
+            </div>
           )}
-
-          {error && (
-            <div style={{ fontSize: '0.8rem', color: '#B91C1C', marginBottom: '8px' }}>{error}</div>
-          )}
-
-          <button
-            type="button"
-            onClick={submit}
-            disabled={!picked || sending}
-            style={{
-              width: '100%',
-              padding: '9px 14px',
-              borderRadius: '8px',
-              border: 'none',
-              backgroundColor: picked ? 'var(--color-red)' : 'var(--color-btn-subtle-bg)',
-              color: picked ? '#FFFFFF' : 'var(--color-subtle)',
-              fontSize: '0.85rem',
-              fontWeight: 800,
-              cursor: picked && !sending ? 'pointer' : 'not-allowed',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '6px'
-            }}
-          >
-            {sending && <Loader2 size={14} className="spin" />}
-            {t.ratingSubmitText || 'Gửi Đánh Giá'}
-          </button>
-        </>
+        </div>
       )}
     </section>
   );
