@@ -115,7 +115,20 @@ export async function GET(request: Request) {
     });
   } catch (err) {
     console.warn('Không đọc được số liệu đánh giá:', err);
-    return NextResponse.json({ visits: 0, count: 0, average: 0, stars: {}, unavailable: true });
+    // Mã lỗi thô để chẩn đoán cấu hình trên máy chủ, không lộ nội dung khoá
+    const msg = err instanceof Error ? err.message : String(err);
+    const reason = /Thiếu biến môi trường/.test(msg)
+      ? 'missing-env'
+      : /JSON|Unexpected token|base64/i.test(msg)
+        ? 'bad-key-format'
+        : /PERMISSION_DENIED|permission/i.test(msg)
+          ? 'firestore-permission'
+          : /NOT_FOUND|does not exist|5 NOT_FOUND/i.test(msg)
+            ? 'firestore-missing'
+            : /credential|private_key|invalid_grant|PEM/i.test(msg)
+              ? 'bad-credential'
+              : 'unknown';
+    return NextResponse.json({ visits: 0, count: 0, average: 0, stars: {}, unavailable: true, reason });
   }
 }
 
