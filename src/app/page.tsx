@@ -132,11 +132,35 @@ export default function Home() {
           fontSize: 'clamp(1rem, 3vw, 1.4rem)',
           fontWeight: '600',
           color: 'var(--color-yellow)',
-          marginBottom: '20px',
+          marginBottom: '16px',
           textTransform: 'uppercase'
         }}>
           {t.subtitle}
         </h2>
+
+        <button
+          onClick={() => router.push('/gio-le')}
+          className="liquid-glass"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '7px 16px',
+            borderRadius: '999px',
+            marginBottom: '20px',
+            fontSize: '0.85rem',
+            fontWeight: 700,
+            color: 'var(--color-red)',
+            border: '1px solid rgba(211, 47, 47, 0.25)',
+            boxShadow: '0 4px 12px rgba(211, 47, 47, 0.08)',
+            cursor: 'pointer'
+          }}
+        >
+          <Clock size={15} />
+          <span>Tra cứu 3.300+ Nhà Thờ & Giờ Lễ Toàn Quốc</span>
+          <span style={{ fontSize: '0.72rem', backgroundColor: 'var(--color-red)', color: 'white', padding: '1px 7px', borderRadius: '999px', fontWeight: 800 }}>MỚI</span>
+        </button>
+
         <p style={{ 
           color: 'var(--color-dark)', 
           opacity: 0.8, 

@@ -17,7 +17,7 @@ const inter = Inter({
 
 const notoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
-  subsets: ["latin"], // next/font automatically handles Chinese subsets for Noto Sans SC
+  subsets: ["latin"],
   weight: ['400', '500', '700', '900']
 });
 
@@ -26,16 +26,73 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: '#D32F2F'
 };
 
 export const metadata: Metadata = {
-  title: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam",
-  description: "Hệ thống Vấn đáp và Phản hồi dành cho Xứ Đoàn Các Thánh Tử Đạo Việt Nam.",
+  metadataBase: new URL('https://xudoancacthanhtudaovietnam.web.app'),
+  title: {
+    default: "Tra Cứu Giờ Lễ Toàn Quốc & Vấn Đáp Công Giáo | Xứ Đoàn CTTĐVN",
+    template: "%s | Xứ Đoàn Các Thánh Tử Đạo Việt Nam"
+  },
+  description: "Cổng thông tin tra cứu giờ lễ hơn 3.300 nhà thờ thuộc 27 giáo phận toàn quốc, chỉ đường Google Maps, tìm nhà thờ gần nhất và gửi câu hỏi vấn đáp Công giáo trực tuyến.",
+  keywords: [
+    "giờ lễ", "tra cứu giờ lễ", "giờ thánh lễ", "nhà thờ công giáo", "giờ lễ chúa nhật",
+    "tìm nhà thờ gần đây", "27 giáo phận việt nam", "giáo xứ sài gòn", "giáo phận mỹ tho",
+    "vấn đáp công giáo", "xứ đoàn các thánh tử đạo việt nam"
+  ],
+  authors: [{ name: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam" }],
+  creator: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam",
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    url: "/",
+    siteName: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam",
+    title: "Tra Cứu Giờ Lễ Toàn Quốc & Vấn Đáp Công Giáo",
+    description: "Tra cứu giờ lễ hơn 3.300 nhà thờ thuộc 27 giáo phận tại Việt Nam, chỉ đường GPS và gửi thắc mắc đức tin Công giáo.",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 600,
+        height: 600,
+        alt: "Logo Xứ Đoàn Các Thánh Tử Đạo Việt Nam"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tra Cứu Giờ Lễ Toàn Quốc & Vấn Đáp Công Giáo",
+    description: "Tra cứu nhanh giờ lễ 3.300+ nhà thờ trên toàn quốc, chỉ đường Google Maps và gửi phản hồi, vấn đáp.",
+    images: ["/logo.jpg"]
+  },
+  icons: {
+    icon: "/logo.jpg",
+    apple: "/logo.jpg"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Tra Cứu Giờ Lễ Toàn Quốc - Xứ Đoàn CTTĐVN",
+    "url": "https://xudoancacthanhtudaovietnam.web.app",
+    "description": "Tra cứu giờ lễ hơn 3.300 nhà thờ thuộc 27 giáo phận tại Việt Nam.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://xudoancacthanhtudaovietnam.web.app/gio-le?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
-    <html lang="en" className={`${beVietnamPro.variable} ${inter.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
+    <html lang="vi" className={`${beVietnamPro.variable} ${inter.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <LanguageProvider>
           {children}
