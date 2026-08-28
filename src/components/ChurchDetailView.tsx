@@ -33,7 +33,7 @@ export default function ChurchDetailView({ item }: { item: MassTime }) {
   }, []);
 
   const handleShare = async () => {
-    const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://xudoancacthanhtudaovietnam.web.app/gio-le/${item.id}`;
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://chanhtoa.tnttgiaophanmytho.online/gio-le/${item.id}`;
     const text = `⛪ ${item.parish} - ${item.diocese ? dioceseLabel(item.diocese) : ''}
 📍 Địa chỉ: ${item.address || 'Đang cập nhật'}
 ⏰ Chúa Nhật: ${item.sundayMass?.join(', ') || 'Chưa có thông tin'}
