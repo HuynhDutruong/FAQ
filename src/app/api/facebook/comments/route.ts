@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { getFacebookCredentials } from '@/lib/facebookHelper';
 
 interface FBCommentRaw {
   id: string;
@@ -11,25 +10,10 @@ interface FBCommentRaw {
   comments?: { data?: FBCommentRaw[] };
 }
 
-async function getPageCredentials() {
-  const fbDoc = await getDoc(doc(db, 'settings', 'facebook'));
-  if (!fbDoc.exists() || !fbDoc.data()?.connected) {
-    throw new Error('Chưa kết nối Fanpage Facebook.');
-  }
-  const data = fbDoc.data();
-  if (!data?.selectedPageToken) {
-    throw new Error('Không tìm thấy Page Access Token.');
-  }
-  return {
-    pageToken: data.selectedPageToken as string,
-    pageName: data.selectedPageName as string
-  };
-}
-
 // 1. Lấy danh sách bình luận của 1 bài viết
 export async function GET(request: Request) {
   try {
-    const { pageToken } = await getPageCredentials();
+    const { pageToken } = await getFacebookCredentials();
     const { searchParams } = new URL(request.url);
     const postId = searchParams.get('postId');
 
@@ -61,7 +45,7 @@ export async function GET(request: Request) {
 // 2. Gửi bình luận hoặc trả lời bình luận (Reply) dưới danh nghĩa Fanpage
 export async function POST(request: Request) {
   try {
-    const { pageToken } = await getPageCredentials();
+    const { pageToken } = await getFacebookCredentials();
     const body = await request.json();
     const { targetId, message } = body; // targetId có thể là postId hoặc commentId
 

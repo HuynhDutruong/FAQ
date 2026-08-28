@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { getFacebookCredentials } from '@/lib/facebookHelper';
 
 export async function POST(request: Request) {
   try {
@@ -11,21 +10,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Nội dung bài viết không được để trống' }, { status: 400 });
     }
 
-    // 1. Lấy Token của Fanpage đã lưu trong Firestore
-    const fbDoc = await getDoc(doc(db, 'settings', 'facebook'));
-    if (!fbDoc.exists() || !fbDoc.data()?.connected) {
-      return NextResponse.json({ error: 'Chưa kết nối Fanpage Facebook. Vui lòng kết nối trước.' }, { status: 400 });
-    }
+    const { pageId, pageToken, pageName } = await getFacebookCredentials();
 
-    const data = fbDoc.data();
-    const pageId = data.selectedPageId;
-    const pageToken = data.selectedPageToken;
-
-    if (!pageId || !pageToken) {
-      return NextResponse.json({ error: 'Không tìm thấy thông tin Page ID hoặc Page Token.' }, { status: 400 });
-    }
-
-    // 2. Gửi bài đăng lên Fanpage qua Meta Graph API
+    // Gửi bài đăng lên Fanpage qua Meta Graph API
     const formData = new URLSearchParams();
     formData.append('message', message.trim());
     formData.append('access_token', pageToken);
@@ -48,7 +35,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       postId: postResult.id,
-      pageName: data.selectedPageName
+      pageName
     });
 
   } catch (err: unknown) {

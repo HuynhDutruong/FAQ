@@ -112,15 +112,38 @@ export default function FacebookAdmin() {
   }, []);
 
   useEffect(() => {
+    // 1. Kiểm tra trạng thái tự động từ ENV hoặc Firestore qua API
+    const checkStatus = async () => {
+      try {
+        const res = await fetch('/api/facebook/status');
+        const data = await res.json();
+        if (data.connected && data.pageId) {
+          setFbSettings(prev => ({
+            connected: true,
+            selectedPageId: data.pageId,
+            selectedPageName: data.pageName || 'Fanpage Xứ Đoàn',
+            selectedPageToken: '',
+            pages: prev?.pages || []
+          }));
+          fetchPosts();
+        }
+      } catch (e) {
+        console.warn('Cannot check facebook status:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkStatus();
+
+    // 2. Lắng nghe thay đổi thời gian thực trong Firestore
     const unsubscribe = onSnapshot(doc(db, 'settings', 'facebook'), (snap) => {
       if (snap.exists()) {
         const data = snap.data() as FacebookSettings;
-        setFbSettings(data);
         if (data.connected && data.selectedPageId) {
+          setFbSettings(data);
           fetchPosts();
         }
-      } else {
-        setFbSettings(null);
       }
       setLoading(false);
     }, (err) => {

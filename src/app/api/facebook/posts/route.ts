@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { getFacebookCredentials } from '@/lib/facebookHelper';
 
 interface FBPostRaw {
   id: string;
@@ -14,26 +13,10 @@ interface FBPostRaw {
   comments?: { summary?: { total_count?: number } };
 }
 
-async function getPageCredentials() {
-  const fbDoc = await getDoc(doc(db, 'settings', 'facebook'));
-  if (!fbDoc.exists() || !fbDoc.data()?.connected) {
-    throw new Error('Chưa kết nối Fanpage Facebook. Vui lòng kết nối trước.');
-  }
-  const data = fbDoc.data();
-  if (!data?.selectedPageId || !data?.selectedPageToken) {
-    throw new Error('Không tìm thấy thông tin Page ID hoặc Page Access Token.');
-  }
-  return {
-    pageId: data.selectedPageId as string,
-    pageToken: data.selectedPageToken as string,
-    pageName: data.selectedPageName as string
-  };
-}
-
 // 1. Lấy danh sách bài viết trên Fanpage kèm thống kê
 export async function GET() {
   try {
-    const { pageId, pageToken } = await getPageCredentials();
+    const { pageId, pageToken } = await getFacebookCredentials();
 
     const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0).as(likes),comments.summary(total_count).limit(0).as(comments)';
     const response = await fetch(
@@ -70,7 +53,7 @@ export async function GET() {
 // 2. Chỉnh sửa nội dung bài viết
 export async function PATCH(request: Request) {
   try {
-    const { pageToken } = await getPageCredentials();
+    const { pageToken } = await getFacebookCredentials();
     const body = await request.json();
     const { postId, message } = body;
 
@@ -105,7 +88,7 @@ export async function PATCH(request: Request) {
 // 3. Xoá bài viết trên Fanpage
 export async function DELETE(request: Request) {
   try {
-    const { pageToken } = await getPageCredentials();
+    const { pageToken } = await getFacebookCredentials();
     const { searchParams } = new URL(request.url);
     const postId = searchParams.get('postId');
 
