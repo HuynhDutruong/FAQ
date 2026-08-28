@@ -101,9 +101,43 @@ export default function FacebookFeed() {
   const [translatedMap, setTranslatedMap] = useState<Record<string, { title: string; excerpt: string }>>({});
 
   useEffect(() => {
+    // 1. Tải trước từ cache cục bộ (nếu có) để giao diện tức thì
+    try {
+      const cached = localStorage.getItem('fb_feed_cache');
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (Array.isArray(parsed.posts) && parsed.posts.length > 0) {
+          setPosts(parsed.posts);
+          setLoading(false);
+        }
+      }
+    } catch {
+      // Bỏ qua lỗi parse cache
+    }
+
+    // 2. Gọi API máy chủ an toàn
     fetch('/api/facebook/posts')
-      .then(res => res.json())
-      .then(data => { if (data.posts) setPosts(data.posts); })
+      .then(async res => {
+        if (!res.ok) {
+          console.warn(`Fetch FB posts returned status: ${res.status}`);
+          return { success: true, posts: [] };
+        }
+        try {
+          return await res.json();
+        } catch {
+          return { success: true, posts: [] };
+        }
+      })
+      .then(data => {
+        if (data && Array.isArray(data.posts) && data.posts.length > 0) {
+          setPosts(data.posts);
+          try {
+            localStorage.setItem('fb_feed_cache', JSON.stringify({ posts: data.posts, savedAt: Date.now() }));
+          } catch {
+            // Quota
+          }
+        }
+      })
       .catch(err => console.error('Error fetching Facebook posts:', err))
       .finally(() => setLoading(false));
   }, []);

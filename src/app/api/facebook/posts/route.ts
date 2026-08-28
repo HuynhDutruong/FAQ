@@ -16,51 +16,68 @@ interface FBPostRaw {
 
 // 1. Lấy danh sách bài viết trên Fanpage kèm thống kê (public - hiển thị trên trang chủ)
 export async function GET() {
-  let pageId: string, pageToken: string;
   try {
-    ({ pageId, pageToken } = await getFacebookCredentials());
-  } catch {
-    return NextResponse.json({ success: true, posts: [] });
-  }
-
-  const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
-
-  // Lấy hết bài trên Fanpage bằng cách đi theo con trỏ paging.next của Graph API.
-  // ponytail: chặn ở 30 trang (~3.000 bài) để một Fanpage rất cũ không làm treo request.
-  const MAX_PAGES = 30;
-  let url =
-    `https://graph.facebook.com/v20.0/${pageId}/published_posts` +
-    `?fields=${encodeURIComponent(fields)}&limit=100&access_token=${pageToken}`;
-
-  const rawPosts: FBPostRaw[] = [];
-  for (let i = 0; i < MAX_PAGES; i++) {
-    const response = await fetch(url, { next: { revalidate: 300 } });
-    const data = await response.json();
-
-    if (data.error) {
-      console.error('FB Get Posts Error:', data.error);
-      // Đã lấy được một phần thì trả phần đó còn hơn trả lỗi trắng trang.
-      if (rawPosts.length > 0) break;
-      return NextResponse.json({ error: data.error.message }, { status: 400 });
+    let pageId: string, pageToken: string;
+    try {
+      ({ pageId, pageToken } = await getFacebookCredentials());
+    } catch (credErr) {
+      console.warn('Facebook credentials not configured or env missing:', credErr);
+      return NextResponse.json({ success: true, posts: [] });
     }
 
-    rawPosts.push(...(data.data || []));
-    if (!data.paging?.next) break;
-    url = data.paging.next;
+    if (!pageId || !pageToken) {
+      return NextResponse.json({ success: true, posts: [] });
+    }
+
+    const fields = 'id,message,story,created_time,full_picture,permalink_url,shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)';
+
+    // Lấy hết bài trên Fanpage bằng cách đi theo con trỏ paging.next của Graph API.
+    const MAX_PAGES = 30;
+    let url =
+      `https://graph.facebook.com/v20.0/${pageId}/published_posts` +
+      `?fields=${encodeURIComponent(fields)}&limit=100&access_token=${pageToken}`;
+
+    const rawPosts: FBPostRaw[] = [];
+    for (let i = 0; i < MAX_PAGES; i++) {
+      try {
+        const response = await fetch(url, { next: { revalidate: 300 } });
+        if (!response.ok) {
+          console.warn(`Facebook Graph API responded with status ${response.status}`);
+          break;
+        }
+        const data = await response.json();
+
+        if (data.error) {
+          console.error('FB Get Posts Error:', data.error);
+          if (rawPosts.length > 0) break;
+          return NextResponse.json({ success: true, posts: [], error: data.error.message });
+        }
+
+        rawPosts.push(...(data.data || []));
+        if (!data.paging?.next) break;
+        url = data.paging.next;
+      } catch (fetchErr) {
+        console.error('Error fetching Facebook page chunk:', fetchErr);
+        break;
+      }
+    }
+
+    const posts = rawPosts.map((p) => ({
+      id: p.id,
+      message: p.message || p.story || '(Không có văn bản)',
+      created_time: p.created_time,
+      full_picture: p.full_picture || null,
+      permalink_url: p.permalink_url || `https://facebook.com/${p.id}`,
+      likesCount: p.reactions?.summary?.total_count || 0,
+      commentsCount: p.comments?.summary?.total_count || 0,
+      sharesCount: p.shares?.count || 0
+    }));
+
+    return NextResponse.json({ success: true, posts });
+  } catch (err: any) {
+    console.error('Fatal error in /api/facebook/posts:', err);
+    return NextResponse.json({ success: true, posts: [], error: err?.message || 'Server error' });
   }
-
-  const posts = rawPosts.map((p) => ({
-    id: p.id,
-    message: p.message || p.story || '(Không có văn bản)',
-    created_time: p.created_time,
-    full_picture: p.full_picture || null,
-    permalink_url: p.permalink_url || `https://facebook.com/${p.id}`,
-    likesCount: p.reactions?.summary?.total_count || 0,
-    commentsCount: p.comments?.summary?.total_count || 0,
-    sharesCount: p.shares?.count || 0
-  }));
-
-  return NextResponse.json({ success: true, posts });
 }
 
 // 2. Chỉnh sửa nội dung bài viết
