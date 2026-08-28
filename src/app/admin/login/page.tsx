@@ -78,12 +78,19 @@ export default function LoginPage() {
         boxShadow: '0 20px 40px rgba(0, 0, 0, 0.12)'
       }}>
         <div style={{
-          width: '54px', height: '54px', borderRadius: '50%',
-          backgroundColor: 'rgba(211, 47, 47, 0.1)', color: 'var(--color-red)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          margin: '0 auto 16px'
+          position: 'relative',
+          width: '64px',
+          height: '64px',
+          borderRadius: '50%',
+          backgroundColor: '#FFFFFF',
+          boxShadow: '0 4px 16px rgba(255, 69, 58, 0.25), 0 0 0 2.5px rgba(251, 192, 45, 0.65)',
+          padding: '4px',
+          margin: '0 auto 16px',
+          overflow: 'hidden'
         }}>
-          <LogIn size={26} />
+          <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
+            <Image src="/logo.jpg" alt="Logo Xứ Đoàn" fill sizes="64px" style={{ objectFit: 'contain' }} priority />
+          </div>
         </div>
 
         <h1 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '6px', color: 'var(--color-dark)' }}>

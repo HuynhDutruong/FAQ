@@ -311,8 +311,20 @@ ${window.location.origin}/gio-le`;
             <ArrowLeft size={18} />
           </Link>
 
-          <div style={{ position: 'relative', width: '32px', height: '32px', mixBlendMode: 'multiply', flexShrink: 0 }}>
-            <Image src="/logo.jpg" alt="Logo" fill sizes="32px" style={{ objectFit: 'contain' }} priority />
+          <div style={{
+            position: 'relative',
+            width: '38px',
+            height: '38px',
+            borderRadius: '50%',
+            backgroundColor: '#FFFFFF',
+            boxShadow: '0 2px 8px rgba(255, 69, 58, 0.25), 0 0 0 2px rgba(251, 192, 45, 0.6)',
+            padding: '2px',
+            overflow: 'hidden',
+            flexShrink: 0
+          }}>
+            <div style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
+              <Image src="/logo.jpg" alt="Logo Xứ Đoàn" fill sizes="38px" style={{ objectFit: 'contain' }} priority />
+            </div>
           </div>
 
           <div style={{ minWidth: 0, flex: 1 }}>
