@@ -594,19 +594,19 @@ export default function ArticleDetailView({
                 <div
                   key={i}
                   style={{
-                    marginTop: '24px',
-                    paddingTop: '16px',
+                    marginTop: '16px',
+                    paddingTop: '10px',
                     borderTop: '1px dashed var(--color-border)',
-                    fontSize: '0.9rem',
+                    fontSize: '0.78rem',
                     fontStyle: 'italic',
                     color: 'var(--color-text-muted)',
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '6px'
+                    gap: '4px'
                   }}
                 >
-                  <Sparkles size={15} style={{ color: 'var(--color-primary)' }} />
-                  {b.text}
+                  <Sparkles size={12} style={{ color: 'var(--color-primary)', opacity: 0.8 }} />
+                  <span>{b.text}</span>
                 </div>
               );
             }
@@ -614,7 +614,7 @@ export default function ArticleDetailView({
               <p
                 key={i}
                 style={{
-                  marginBottom: '16px',
+                  marginBottom: '14px',
                   whiteSpace: 'pre-wrap'
                 }}
               >
@@ -627,24 +627,24 @@ export default function ArticleDetailView({
           {post.links && post.links.length > 0 && (
             <div
               style={{
-                marginTop: '24px',
-                padding: '16px',
+                marginTop: '16px',
+                padding: '10px 14px',
                 backgroundColor: 'var(--color-bg-secondary)',
-                borderRadius: '12px',
+                borderRadius: '8px',
                 border: '1px solid var(--color-border)'
               }}
             >
               <div
                 style={{
-                  fontSize: '0.875rem',
+                  fontSize: '0.76rem',
                   fontWeight: 700,
-                  marginBottom: '10px',
-                  color: 'var(--color-text)'
+                  marginBottom: '6px',
+                  color: 'var(--color-text-muted)'
                 }}
               >
-                Liên kết đính kèm trong bài viết:
+                Nguồn & Liên kết đính kèm:
               </div>
-              <LinkButtons links={post.links} />
+              <LinkButtons links={post.links} compact />
             </div>
           )}
         </div>

@@ -294,10 +294,10 @@ export default function FacebookFeed({
     <div style={{
       display: 'flex',
       alignItems: 'center',
-      gap: '8px',
+      gap: '6px',
       overflowX: 'auto',
       whiteSpace: 'nowrap',
-      paddingBottom: '6px',
+      paddingBottom: '4px',
       scrollbarWidth: 'none',
       WebkitOverflowScrolling: 'touch'
     }}>
@@ -305,9 +305,9 @@ export default function FacebookFeed({
         type="button"
         onClick={() => handleTabChange('all')}
         style={{
-          padding: '8px 14px',
-          borderRadius: '20px',
-          fontSize: '0.84rem',
+          padding: '6px 12px',
+          borderRadius: '16px',
+          fontSize: '0.8rem',
           fontWeight: 700,
           cursor: 'pointer',
           whiteSpace: 'nowrap',
@@ -317,16 +317,16 @@ export default function FacebookFeed({
           color: filterTab === 'all' ? '#FFFFFF' : 'var(--color-dark)',
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '6px',
-          boxShadow: filterTab === 'all' ? '0 2px 6px rgba(211,47,47,0.25)' : '0 1px 2px rgba(0,0,0,0.03)',
+          gap: '5px',
+          boxShadow: filterTab === 'all' ? '0 2px 6px rgba(211,47,47,0.25)' : 'none',
           transition: 'all 0.15s ease'
         }}
       >
-        <span>{t.tabAllPosts || 'Tất Cả Bài Viết'}</span>
+        <span>{t.tabAllPosts || 'Tất Cả'}</span>
         <span style={{
-          fontSize: '0.72rem',
-          padding: '1px 6px',
-          borderRadius: '10px',
+          fontSize: '0.68rem',
+          padding: '1px 5px',
+          borderRadius: '8px',
           backgroundColor: filterTab === 'all' ? 'rgba(255,255,255,0.25)' : 'var(--color-btn-subtle-bg)',
           color: 'inherit'
         }}>
@@ -338,9 +338,9 @@ export default function FacebookFeed({
         type="button"
         onClick={() => handleTabChange('notice')}
         style={{
-          padding: '8px 14px',
-          borderRadius: '20px',
-          fontSize: '0.84rem',
+          padding: '6px 12px',
+          borderRadius: '16px',
+          fontSize: '0.8rem',
           fontWeight: 700,
           cursor: 'pointer',
           whiteSpace: 'nowrap',
@@ -350,17 +350,17 @@ export default function FacebookFeed({
           color: filterTab === 'notice' ? '#FFFFFF' : '#DC2626',
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '6px',
+          gap: '5px',
           boxShadow: filterTab === 'notice' ? '0 2px 6px rgba(220,38,38,0.25)' : 'none',
           transition: 'all 0.15s ease'
         }}
       >
-        <Megaphone size={14} />
+        <Megaphone size={12} />
         <span>{t.tabNotices || 'Thông Báo'}</span>
         <span style={{
-          fontSize: '0.72rem',
-          padding: '1px 6px',
-          borderRadius: '10px',
+          fontSize: '0.68rem',
+          padding: '1px 5px',
+          borderRadius: '8px',
           backgroundColor: filterTab === 'notice' ? 'rgba(255,255,255,0.25)' : 'rgba(220, 38, 38, 0.15)',
           color: 'inherit'
         }}>
@@ -372,9 +372,9 @@ export default function FacebookFeed({
         type="button"
         onClick={() => handleTabChange('news')}
         style={{
-          padding: '8px 14px',
-          borderRadius: '20px',
-          fontSize: '0.84rem',
+          padding: '6px 12px',
+          borderRadius: '16px',
+          fontSize: '0.8rem',
           fontWeight: 700,
           cursor: 'pointer',
           whiteSpace: 'nowrap',
@@ -384,17 +384,17 @@ export default function FacebookFeed({
           color: filterTab === 'news' ? '#FFFFFF' : 'var(--color-dark)',
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '6px',
-          boxShadow: filterTab === 'news' ? '0 2px 6px rgba(211,47,47,0.25)' : '0 1px 2px rgba(0,0,0,0.03)',
+          gap: '5px',
+          boxShadow: filterTab === 'news' ? '0 2px 6px rgba(211,47,47,0.25)' : 'none',
           transition: 'all 0.15s ease'
         }}
       >
-        <Flame size={14} />
-        <span>{t.tabActivities || 'Sinh Hoạt & Tin Tức'}</span>
+        <Flame size={12} />
+        <span>{t.tabActivities || 'Tin Tức'}</span>
         <span style={{
-          fontSize: '0.72rem',
-          padding: '1px 6px',
-          borderRadius: '10px',
+          fontSize: '0.68rem',
+          padding: '1px 5px',
+          borderRadius: '8px',
           backgroundColor: filterTab === 'news' ? 'rgba(255,255,255,0.25)' : 'var(--color-btn-subtle-bg)',
           color: 'inherit'
         }}>
@@ -407,9 +407,9 @@ export default function FacebookFeed({
         onClick={() => setSubmissionOpen(true)}
         style={{
           marginLeft: 'auto',
-          padding: '7px 14px',
-          borderRadius: '20px',
-          fontSize: '0.82rem',
+          padding: '5px 10px',
+          borderRadius: '16px',
+          fontSize: '0.76rem',
           fontWeight: 700,
           cursor: 'pointer',
           whiteSpace: 'nowrap',
@@ -419,12 +419,12 @@ export default function FacebookFeed({
           color: 'var(--color-red)',
           display: 'inline-flex',
           alignItems: 'center',
-          gap: '6px',
+          gap: '4px',
           transition: 'all 0.15s ease'
         }}
       >
-        <FilePlus size={14} />
-        <span>Đóng Góp Bài Viết</span>
+        <FilePlus size={13} />
+        <span>Đóng Góp</span>
       </button>
     </div>
   );
@@ -507,8 +507,10 @@ export default function FacebookFeed({
                       }}
                     >
                       {/* Khung ảnh 16:9 chuẩn mực, không méo hay viền đen */}
-                      <div style={{ width: '100%', aspectRatio: '16 / 9', position: 'relative', overflow: 'hidden', backgroundColor: '#1E293B' }}>
-                        <PostThumb post={post} height="100%" eager />
+                      <div style={{ width: '100%', aspectRatio: '16 / 9', position: 'relative', overflow: 'hidden', backgroundColor: 'var(--color-input-bg)' }}>
+                        <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+                          <PostThumb post={post} height="100%" eager />
+                        </div>
                       </div>
 
                       {/* Content Info */}

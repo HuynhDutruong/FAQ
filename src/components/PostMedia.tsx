@@ -55,7 +55,7 @@ export function PostThumb({
     height: height || '100%',
     overflow: 'hidden',
     borderRadius: radius,
-    backgroundColor: playing ? '#000' : '#1E293B'
+    backgroundColor: playing ? '#000' : 'var(--color-input-bg)'
   };
 
   if (playing && player) {
@@ -134,12 +134,12 @@ export function PostThumb({
 const CHIP: CSSProperties = {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '4px',
-  fontSize: '0.7rem',
-  fontWeight: 800,
-  padding: '2px 8px',
-  borderRadius: '20px',
-  letterSpacing: '0.02em'
+  gap: '3px',
+  fontSize: '0.64rem',
+  fontWeight: 700,
+  padding: '1px 6px',
+  borderRadius: '4px',
+  letterSpacing: '0.01em'
 };
 
 /** Nhãn nhanh cho biết bài có video, YouTube hay liên kết trực tuyến. */
@@ -149,26 +149,26 @@ export function MediaChips({ post }: { post: MediaPost }) {
 
   if (post.youtube.length)
     chips.push(
-      <span key="yt" style={{ ...CHIP, backgroundColor: 'rgba(225,29,72,0.12)', color: '#E11D48' }}>
-        <MonitorPlay size={12} /> YouTube
+      <span key="yt" style={{ ...CHIP, backgroundColor: 'rgba(225,29,72,0.1)', color: '#E11D48' }}>
+        <MonitorPlay size={10} /> YouTube
       </span>
     );
   else if (post.video || post.videoEmbed)
     chips.push(
-      <span key="vid" style={{ ...CHIP, backgroundColor: 'rgba(37,99,235,0.12)', color: '#2563EB' }}>
-        <Video size={12} /> Video
+      <span key="vid" style={{ ...CHIP, backgroundColor: 'rgba(37,99,235,0.1)', color: '#2563EB' }}>
+        <Video size={10} /> Video
       </span>
     );
 
   if (post.links.length)
     chips.push(
-      <span key="link" style={{ ...CHIP, backgroundColor: 'rgba(15,118,110,0.12)', color: '#0F766E' }}>
-        <Radio size={12} /> {t.liveStream || 'Trực tuyến'}
+      <span key="link" style={{ ...CHIP, backgroundColor: 'rgba(15,118,110,0.1)', color: '#0F766E' }}>
+        <Radio size={10} /> {t.liveStream || 'Trực tuyến'}
       </span>
     );
 
   if (!chips.length) return null;
-  return <span style={{ display: 'inline-flex', gap: '6px', flexWrap: 'wrap' }}>{chips}</span>;
+  return <span style={{ display: 'inline-flex', gap: '4px', flexWrap: 'wrap', alignItems: 'center' }}>{chips}</span>;
 }
 
 /**
@@ -179,7 +179,7 @@ export function LinkButtons({ links, compact }: { links: MediaPost['links']; com
   const { t } = useLanguage();
   if (!links.length) return null;
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: compact ? '6px' : '12px' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: compact ? '4px' : '8px' }}>
       {links.map(l => (
         <button
           key={l.url}
@@ -189,20 +189,20 @@ export function LinkButtons({ links, compact }: { links: MediaPost['links']; com
           style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '6px',
-            padding: compact ? '5px 10px' : '8px 14px',
-            borderRadius: '8px',
+            gap: '4px',
+            padding: compact ? '3px 7px' : '4px 9px',
+            borderRadius: '4px',
             border: '1px solid var(--color-border-subtle)',
-            backgroundColor: 'var(--color-card-bg)',
+            backgroundColor: 'var(--color-input-bg)',
             color: 'var(--color-nav-active-text)',
-            fontSize: compact ? '0.74rem' : '0.84rem',
-            fontWeight: 700,
+            fontSize: compact ? '0.68rem' : '0.74rem',
+            fontWeight: 600,
             cursor: 'pointer'
           }}
           className="post-link-btn"
         >
-          <ExternalLink size={compact ? 12 : 14} />
-          {l.label?.includes('Trang tin') ? (t.catholicNews || l.label) : l.label}
+          <ExternalLink size={compact ? 10 : 12} />
+          <span>{l.label?.includes('Trang tin') ? (t.catholicNews || l.label) : l.label}</span>
         </button>
       ))}
     </div>
