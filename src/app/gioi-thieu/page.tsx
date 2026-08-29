@@ -429,7 +429,7 @@ export default function GioiThieuPage() {
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem' }}>
-            <Globe size={14} color="#D4AF37" />
+            <Globe size={14} color="var(--color-red)" />
             <span>Bách khoa toàn thư Công Giáo</span>
           </div>
         </div>
@@ -457,7 +457,7 @@ export default function GioiThieuPage() {
           {/* Article Title */}
           <h1
             style={{
-              fontSize: '2.2rem',
+              fontSize: '2.1rem',
               fontWeight: 800,
               fontFamily: 'serif',
               margin: '0 0 8px',
@@ -482,14 +482,14 @@ export default function GioiThieuPage() {
           </div>
 
           {/* Dẫn nhập tổng quan (Lead Paragraph) */}
-          <p style={{ fontSize: '0.98rem', lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
+          <p style={{ fontSize: '0.96rem', lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
             <strong>Nhà thờ chính tòa Mỹ Tho</strong> (tên hiệu đầy đủ: <em>Nhà thờ chính tòa Đức Mẹ Vô Nhiễm Nguyên Tội</em>) là
             ngôi nhà thờ mẹ và là trung tâm hiệp thông phụng vụ của <strong>Giáo phận Mỹ Tho</strong>, tọa lạc tại số 32 đại lộ
             Hùng Vương, phường 7, thành phố Mỹ Tho, tỉnh Tiền Giang, thuộc Giáo tỉnh Sài Gòn, Việt Nam. Đây là trung tâm đầu não
             chăm sóc đời sống đức tin cho hơn 130.000 tín hữu Công giáo trên địa bàn ba tỉnh Tiền Giang, Long An và Đồng Tháp.
           </p>
 
-          <p style={{ fontSize: '0.98rem', lineHeight: 1.75, margin: '0 0 20px', textAlign: 'justify' }}>
+          <p style={{ fontSize: '0.96rem', lineHeight: 1.75, margin: '0 0 20px', textAlign: 'justify' }}>
             Ngôi thánh đường hiện nay được khởi công xây dựng vào ngày 11 tháng 8 năm 1906 bởi linh mục Régnier (cố Gẫm)
             và hoàn thành vào năm 1910 theo phong cách kiến trúc Phục Hưng (Renaissance) phối hợp các thức vòm Romanesque
             uy nghiêm. Ngày 24 tháng 11 năm 1960, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến <em>Venerabilium Nostrorum</em>{' '}
@@ -503,13 +503,13 @@ export default function GioiThieuPage() {
             style={{
               backgroundColor: 'var(--color-card-bg)',
               border: '1px solid var(--color-border-subtle)',
-              borderRadius: '10px',
+              borderRadius: '12px',
               padding: '16px 20px',
-              margin: '24px 0 32px',
+              margin: '20px 0 28px',
               display: 'inline-block',
               minWidth: '300px',
               maxWidth: '100%',
-              boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
+              boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
             }}
           >
             <div
@@ -658,7 +658,7 @@ export default function GioiThieuPage() {
           <section id="vatican-popes" style={{ marginBottom: '40px' }}>
             <h2
               style={{
-                fontSize: '1.45rem',
+                fontSize: '1.4rem',
                 fontWeight: 800,
                 color: 'var(--color-dark)',
                 borderBottom: '1px solid var(--color-border-subtle)',
@@ -669,10 +669,10 @@ export default function GioiThieuPage() {
               1. Tòa Thánh Vatican, Đức Thánh Cha Lêô XIV &amp; 267 Vị Giáo Hoàng
             </h2>
 
-            <h3 id="vatican-gioi-thieu" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+            <h3 id="vatican-gioi-thieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               1.1. Thành quốc Vatican &amp; Vương Cung Thánh Đường Thánh Phêrô
             </h3>
-            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               <strong>Tòa Thánh Vatican</strong> (tiếng Latinh: <em>Sancta Sedes</em>) và <strong>Thành quốc Vatican</strong> (<em>Status Civitatis Vaticanae</em>)
               là trung tâm đầu não tối cao của Giáo hội Công giáo Rôma toàn cầu. Được thiết lập độc lập theo Hiệp ước Lateranô (1929),
               đây là quốc gia có chủ quyền nhỏ nhất thế giới (diện tích 0,49 km²) nằm trọn trong lòng thủ đô Rôma, Ý.
@@ -684,7 +684,7 @@ export default function GioiThieuPage() {
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
                 gap: '14px',
-                margin: '20px 0'
+                margin: '18px 0'
               }}
             >
               <div
@@ -694,14 +694,14 @@ export default function GioiThieuPage() {
                   borderRadius: '12px',
                   padding: '10px',
                   cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
                 }}
                 onClick={() => setLightboxImage({ src: '/images/vatican_st_peter.jpg', caption: 'Quảng trường và Vương cung thánh đường Thánh Phêrô (Vatican) nhìn từ trên cao.' })}
               >
                 <div style={{ position: 'relative', width: '100%', height: '160px', borderRadius: '8px', overflow: 'hidden', marginBottom: '8px' }}>
                   <Image src="/images/vatican_st_peter.jpg" alt="Vương cung thánh đường Thánh Phêrô" fill sizes="260px" style={{ objectFit: 'cover' }} />
                 </div>
-                <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                   Vương Cung Thánh Đường Thánh Phêrô
                 </div>
                 <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
@@ -716,14 +716,14 @@ export default function GioiThieuPage() {
                   borderRadius: '12px',
                   padding: '10px',
                   cursor: 'pointer',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
                 }}
                 onClick={() => setLightboxImage({ src: '/images/vatican_basilica_interior.jpg', caption: 'Gian Cung thánh uy nghiêm và Mái vòm Baldacchino bằng đồng của Bernini bên trong Đền thờ Thánh Phêrô.' })}
               >
                 <div style={{ position: 'relative', width: '100%', height: '160px', borderRadius: '8px', overflow: 'hidden', marginBottom: '8px' }}>
                   <Image src="/images/vatican_basilica_interior.jpg" alt="Bên trong Đền thờ Thánh Phêrô" fill sizes="260px" style={{ objectFit: 'cover' }} />
                 </div>
-                <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                   Bên trong Đền Thờ Thánh Phêrô
                 </div>
                 <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
@@ -732,14 +732,14 @@ export default function GioiThieuPage() {
               </div>
             </div>
 
-            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Trọng tâm của Vatican là <strong>Vương cung thánh đường Thánh Phêrô</strong> (<em>Basilica Sancti Petri</em>) — ngôi thánh đường
               được xây dựng trên chính lăng mộ của Thánh Tông đồ Phêrô. Quần thể Vatican còn bao gồm: <em>Điện Tông Tòa</em> (nơi ở và làm việc
               của Đức Giáo hoàng), <em>Nhà nguyện Sistine</em> (nơi diễn ra Mật viện Hồng Y bầu chọn Giáo hoàng mới và lưu giữ bích họa bất hủ
               của Michelangelo), <em>Thư viện &amp; Viện Bảo tàng Vatican</em> và <em>Đội Cận vệ Thụy Sĩ</em> với bề dày lịch sử hơn 500 năm.
             </p>
 
-            <h3 id="vatican-dtc-leo-xiv" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '24px 0 8px' }}>
+            <h3 id="vatican-dtc-leo-xiv" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '24px 0 8px' }}>
               1.2. Đức Thánh Cha đương kim Lêô XIV (Leo XIV)
             </h3>
 
@@ -747,13 +747,13 @@ export default function GioiThieuPage() {
             <div
               style={{
                 float: 'right',
-                width: '280px',
+                width: '270px',
                 margin: '8px 0 16px 20px',
                 padding: '8px',
                 backgroundColor: 'var(--color-card-bg)',
                 border: '1px solid var(--color-border-subtle)',
-                borderRadius: '8px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
+                borderRadius: '12px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
               }}
               className="wiki-thumb"
             >
@@ -761,11 +761,11 @@ export default function GioiThieuPage() {
                 style={{
                   position: 'relative',
                   width: '100%',
-                  height: '320px',
+                  height: '310px',
                   cursor: 'pointer',
-                  borderRadius: '6px',
+                  borderRadius: '8px',
                   overflow: 'hidden',
-                  backgroundColor: '#0F0C08'
+                  backgroundColor: 'var(--color-input-bg)'
                 }}
                 onClick={() => setSelectedBio(POPE_LEO_XIV_BIO)}
               >
@@ -773,7 +773,7 @@ export default function GioiThieuPage() {
                   src="/images/pope_leo_xiv.jpg"
                   alt="Đức Giáo hoàng Lêô XIV"
                   fill
-                  sizes="280px"
+                  sizes="270px"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
                 />
                 <div
@@ -782,11 +782,11 @@ export default function GioiThieuPage() {
                     bottom: '8px',
                     right: '8px',
                     backgroundColor: 'rgba(0,0,0,0.75)',
-                    color: '#FDE68A',
+                    color: '#FFF',
                     padding: '3px 8px',
                     borderRadius: '6px',
                     fontSize: '0.7rem',
-                    fontWeight: 800,
+                    fontWeight: 700,
                     display: 'flex',
                     alignItems: 'center',
                     gap: '4px'
@@ -800,14 +800,14 @@ export default function GioiThieuPage() {
               </div>
             </div>
 
-            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Người đứng đầu tối cao hiện nay của Giáo hội Công giáo hoàn vũ là <strong>Đức Giáo hoàng Lêô XIV</strong> (tiếng Latinh: <em>Leo XIV</em>).
               Ngài là vị Giáo hoàng thứ 267 trong dòng lịch sử tông truyền liên tục từ Thánh Tông đồ Phêrô. Chọn tông hiệu Lêô XIV, Ngài tiếp nối
               truyền thống của các bậc tiền nhân vĩ đại như Thánh Lêô Cả và Đức Lêô XIII trong công cuộc kiên trì bảo vệ đức tin, canh tân phụng vụ
               và thắt chặt tình huynh đệ Kitô giáo.
             </p>
 
-            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 18px' }}>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 18px' }}>
               Khẩu hiệu triều đại Giáo hoàng của Ngài là: <em>“In Veritate et Caritate”</em> (tiếng Việt: <em>“Trong Chân Lý và Đức Ái”</em>). Ngài luôn
               dành sự quan tâm mục tử sâu sắc cho các cộng đoàn đức tin địa phương, tăng cường sự hiệp thông bền vững với Giáo hội tại Việt Nam và
               toàn thể Giáo phận Mỹ Tho.
@@ -816,8 +816,8 @@ export default function GioiThieuPage() {
             {/* BĂNG CHUYỀN CHÂN DUNG 267 VỊ GIÁO HOÀNG CHẠY LIÊN TỤC */}
             <div id="vatican-267-giao-hoang" style={{ marginTop: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <Crown size={20} color="#D4AF37" />
-                <h3 style={{ margin: 0, fontSize: '1.18rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                <Crown size={18} color="var(--color-red)" />
+                <h3 style={{ margin: 0, fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                   1.3. Biên Niên Sử 267 Vị Giáo Hoàng Đã Trị Vì Từ Thánh Phêrô Đến Nay
                 </h3>
               </div>
@@ -837,7 +837,7 @@ export default function GioiThieuPage() {
           <section id="lich-su" style={{ marginBottom: '36px' }}>
             <h2
               style={{
-                fontSize: '1.45rem',
+                fontSize: '1.4rem',
                 fontWeight: 800,
                 color: 'var(--color-dark)',
                 borderBottom: '1px solid var(--color-border-subtle)',
@@ -852,25 +852,25 @@ export default function GioiThieuPage() {
             <div
               style={{
                 float: 'right',
-                width: '300px',
+                width: '290px',
                 margin: '8px 0 16px 20px',
                 padding: '8px',
                 backgroundColor: 'var(--color-card-bg)',
                 border: '1px solid var(--color-border-subtle)',
-                borderRadius: '8px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
+                borderRadius: '12px',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
               }}
               className="wiki-thumb"
             >
               <div
-                style={{ position: 'relative', width: '100%', height: '190px', cursor: 'pointer', borderRadius: '6px', overflow: 'hidden' }}
+                style={{ position: 'relative', width: '100%', height: '185px', cursor: 'pointer', borderRadius: '8px', overflow: 'hidden' }}
                 onClick={() => setLightboxImage({ src: '/images/nhatho2.jpg', caption: 'Toàn cảnh ngôi thánh đường Chánh Tòa Mỹ Tho cổ kính xây dựng năm 1906.' })}
               >
                 <Image
                   src="/images/nhatho2.jpg"
                   alt="Nhà thờ Chánh Tòa Mỹ Tho xưa"
                   fill
-                  sizes="300px"
+                  sizes="290px"
                   style={{ objectFit: 'cover' }}
                 />
               </div>
@@ -879,7 +879,7 @@ export default function GioiThieuPage() {
               </div>
             </div>
 
-            <h3 id="lich-su-so-khai" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+            <h3 id="lich-su-so-khai" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               2.1. Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -893,7 +893,7 @@ export default function GioiThieuPage() {
               giáo ngày càng tăng của giáo dân địa phương.
             </p>
 
-            <h3 id="lich-su-xay-dung" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+            <h3 id="lich-su-xay-dung" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               2.2. Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -904,7 +904,7 @@ export default function GioiThieuPage() {
               1910.
             </p>
 
-            <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+            <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               2.3. Tông hiến Venerabilium Nostrorum &amp; Nâng lên Chính Tòa (1960)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -917,8 +917,8 @@ export default function GioiThieuPage() {
             {/* Trích dẫn văn kiện giáo hội */}
             <div
               style={{
-                backgroundColor: 'rgba(212, 175, 55, 0.08)',
-                borderLeft: '4px solid #D4AF37',
+                backgroundColor: 'rgba(153, 27, 27, 0.04)',
+                borderLeft: '3.5px solid var(--color-red)',
                 padding: '14px 18px',
                 borderRadius: '0 10px 10px 0',
                 margin: '18px 0',
@@ -927,7 +927,7 @@ export default function GioiThieuPage() {
                 color: 'var(--color-dark)'
               }}
             >
-              <Quote size={16} color="#D4AF37" style={{ verticalAlign: '-3px', marginRight: '6px' }} />
+              <Quote size={16} color="var(--color-red)" style={{ verticalAlign: '-3px', marginRight: '6px' }} />
               &ldquo;Nguyện xin Thiên Chúa làm cho Giáo phận Mỹ Tho trở nên muối men của tình yêu thương và ánh sáng Phúc Âm
               giữa lòng đồng bằng sông Cửu Long trù phú.&rdquo;
               <div style={{ textAlign: 'right', fontSize: '0.78rem', fontStyle: 'normal', color: 'var(--color-subtle)', marginTop: '4px', fontWeight: 700 }}>
@@ -935,7 +935,7 @@ export default function GioiThieuPage() {
               </div>
             </div>
 
-            <h3 id="lich-su-cung-hien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+            <h3 id="lich-su-cung-hien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               2.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -956,7 +956,7 @@ export default function GioiThieuPage() {
           <section id="kien-truc" style={{ marginBottom: '36px' }}>
             <h2
               style={{
-                fontSize: '1.45rem',
+                fontSize: '1.4rem',
                 fontWeight: 800,
                 color: 'var(--color-dark)',
                 borderBottom: '1px solid var(--color-border-subtle)',
@@ -986,7 +986,7 @@ export default function GioiThieuPage() {
                   style={{
                     backgroundColor: 'var(--color-card-bg)',
                     border: '1px solid var(--color-border-subtle)',
-                    borderRadius: '8px',
+                    borderRadius: '10px',
                     padding: '8px',
                     boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
                     cursor: 'pointer'
@@ -1004,7 +1004,7 @@ export default function GioiThieuPage() {
               ))}
             </div>
 
-            <h3 id="kien-truc-mat-tien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+            <h3 id="kien-truc-mat-tien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               3.1. Mặt tiền Phục Hưng và Tháp chuông 24 mét
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -1014,7 +1014,7 @@ export default function GioiThieuPage() {
               bộ chuông đồng đúc cổ truyền mang âm sắc trầm hùng ngân vang khắp trung tâm thành phố Mỹ Tho mỗi dịp lễ trọng.
             </p>
 
-            <h3 id="kien-truc-cung-thanh" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+            <h3 id="kien-truc-cung-thanh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               3.2. Gian Cung Thánh &amp; Mái vòm Romanesque
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -1024,7 +1024,7 @@ export default function GioiThieuPage() {
               khí trang nghiêm, thánh thiện.
             </p>
 
-            <h3 id="kien-truc-khuon-vien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+            <h3 id="kien-truc-khuon-vien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               3.3. Đài Đức Mẹ Lộ Đức &amp; 14 Đàng Thánh Giá
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
@@ -1040,7 +1040,7 @@ export default function GioiThieuPage() {
           <section id="giao-phan" style={{ marginBottom: '36px' }}>
             <h2
               style={{
-                fontSize: '1.45rem',
+                fontSize: '1.4rem',
                 fontWeight: 800,
                 color: 'var(--color-dark)',
                 borderBottom: '1px solid var(--color-border-subtle)',
@@ -1064,13 +1064,14 @@ export default function GioiThieuPage() {
                 style={{
                   backgroundColor: 'var(--color-card-bg)',
                   border: '1px solid var(--color-border-subtle)',
-                  borderRadius: '10px',
+                  borderRadius: '12px',
                   padding: '10px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
                 }}
                 onClick={() => setLightboxImage({ src: '/images/linh_muc_doan_my_tho.jpg', caption: 'Linh mục đoàn Giáo phận Mỹ Tho cùng Đức Giám mục trong Thánh lễ Truyền Dầu.' })}
               >
-                <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '6px', overflow: 'hidden', marginBottom: '6px' }}>
+                <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '8px', overflow: 'hidden', marginBottom: '6px' }}>
                   <Image src="/images/linh_muc_doan_my_tho.jpg" alt="Linh Mục Đoàn Mỹ Tho" fill sizes="240px" style={{ objectFit: 'cover' }} />
                 </div>
                 <div style={{ fontWeight: 800, fontSize: '0.84rem', color: 'var(--color-dark)' }}>Linh Mục Đoàn Giáo Phận Mỹ Tho</div>
@@ -1081,13 +1082,14 @@ export default function GioiThieuPage() {
                 style={{
                   backgroundColor: 'var(--color-card-bg)',
                   border: '1px solid var(--color-border-subtle)',
-                  borderRadius: '10px',
+                  borderRadius: '12px',
                   padding: '10px',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
                 }}
                 onClick={() => setLightboxImage({ src: '/images/thanh_le_dong_te_my_tho.jpg', caption: 'Thánh lễ đồng tế đại triều tại Cung thánh Nhà thờ Chính Tòa Mỹ Tho.' })}
               >
-                <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '6px', overflow: 'hidden', marginBottom: '6px' }}>
+                <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '8px', overflow: 'hidden', marginBottom: '6px' }}>
                   <Image src="/images/thanh_le_dong_te_my_tho.jpg" alt="Thánh Lễ Đồng Tế" fill sizes="240px" style={{ objectFit: 'cover' }} />
                 </div>
                 <div style={{ fontWeight: 800, fontSize: '0.84rem', color: 'var(--color-dark)' }}>Thánh Lễ Đại Triều Tại Chánh Tòa</div>
@@ -1100,19 +1102,19 @@ export default function GioiThieuPage() {
             </p>
 
             {/* DANH SÁCH GIÁM MỤC VỚI KHUNG ẢNH ĐỨNG CHUẨN KHÔNG BỊ CẮT ĐẦU */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {BISHOPS_EXTENDED_DATA.map((b) => (
                 <div
                   key={b.id}
                   onClick={() => setSelectedBio(b)}
                   style={{
                     display: 'flex',
-                    gap: '18px',
-                    padding: '16px 20px',
-                    borderRadius: '14px',
+                    gap: '16px',
+                    padding: '16px',
+                    borderRadius: '12px',
                     backgroundColor: 'var(--color-card-bg)',
-                    border: '1.5px solid var(--color-border-subtle)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                    border: '1px solid var(--color-border-subtle)',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
                     alignItems: 'center',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
@@ -1123,40 +1125,40 @@ export default function GioiThieuPage() {
                   {/* Khung ảnh chân dung dọc (Aspect Ratio 3:4) - Luôn hiển thị trọn vẹn đầu & khuôn mặt */}
                   <div
                     style={{
-                      width: '90px',
-                      height: '115px',
-                      borderRadius: '10px',
+                      width: '85px',
+                      height: '110px',
+                      borderRadius: '8px',
                       overflow: 'hidden',
                       position: 'relative',
                       flexShrink: 0,
-                      border: '2px solid #D4AF37',
-                      backgroundColor: '#15100B',
-                      boxShadow: '0 3px 10px rgba(0,0,0,0.2)'
+                      border: '1.5px solid #B45309',
+                      backgroundColor: 'var(--color-input-bg)',
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                     }}
                   >
                     <Image
                       src={b.image}
                       alt={b.name}
                       fill
-                      sizes="90px"
+                      sizes="85px"
                       style={{ objectFit: 'cover', objectPosition: 'top center' }}
                     />
                   </div>
 
                   <div style={{ flex: 1, minWidth: '220px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
-                      <h4 style={{ margin: 0, fontSize: '1.08rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                      <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                         {b.name}
                       </h4>
                       <span
                         style={{
-                          fontSize: '0.74rem',
+                          fontSize: '0.72rem',
                           fontWeight: 800,
-                          backgroundColor: 'rgba(212, 175, 55, 0.15)',
-                          color: '#B45309',
+                          backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                          color: 'var(--color-red)',
                           padding: '2px 10px',
-                          borderRadius: '6px',
-                          border: '1px solid rgba(212, 175, 55, 0.35)'
+                          borderRadius: '20px',
+                          border: '1px solid rgba(153, 27, 27, 0.15)'
                         }}
                       >
                         {b.period}
@@ -1201,7 +1203,7 @@ export default function GioiThieuPage() {
           <section id="xu-doan" style={{ marginBottom: '36px' }}>
             <h2
               style={{
-                fontSize: '1.45rem',
+                fontSize: '1.4rem',
                 fontWeight: 800,
                 color: 'var(--color-dark)',
                 borderBottom: '1px solid var(--color-border-subtle)',
@@ -1212,7 +1214,7 @@ export default function GioiThieuPage() {
               5. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
             </h2>
 
-            <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+            <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               5.1. Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -1242,12 +1244,12 @@ export default function GioiThieuPage() {
                   style={{
                     padding: '12px',
                     borderRadius: '10px',
-                    backgroundColor: 'rgba(220, 38, 38, 0.05)',
-                    border: '1px solid rgba(220, 38, 38, 0.2)',
+                    backgroundColor: 'rgba(153, 27, 27, 0.04)',
+                    border: '1px solid var(--color-border-subtle)',
                     textAlign: 'center'
                   }}
                 >
-                  <div style={{ fontWeight: 900, color: '#DC2626', fontSize: '0.88rem', marginBottom: '4px' }}>
+                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.86rem', marginBottom: '4px' }}>
                     {idx + 1}. {k.title}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>{k.desc}</div>
@@ -1255,7 +1257,7 @@ export default function GioiThieuPage() {
               ))}
             </div>
 
-            <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+            <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               5.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -1282,15 +1284,15 @@ export default function GioiThieuPage() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <div
                       style={{
-                        width: '18px',
-                        height: '18px',
+                        width: '16px',
+                        height: '16px',
                         borderRadius: '4px',
                         backgroundColor: r.mainColor,
                         border: `2px solid ${r.borderColor}`
                       }}
                     />
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--color-dark)' }}>
+                      <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--color-dark)' }}>
                         {r.name}
                       </div>
                       <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)' }}>
@@ -1313,7 +1315,7 @@ export default function GioiThieuPage() {
           <section id="phung-vu" style={{ marginBottom: '36px' }}>
             <h2
               style={{
-                fontSize: '1.45rem',
+                fontSize: '1.4rem',
                 fontWeight: 800,
                 color: 'var(--color-dark)',
                 borderBottom: '1px solid var(--color-border-subtle)',
@@ -1334,36 +1336,36 @@ export default function GioiThieuPage() {
                 border: '1px solid var(--color-border-subtle)',
                 borderRadius: '12px',
                 padding: '16px 20px',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+                boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
               }}
             >
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
                 <div>
-                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.92rem', marginBottom: '6px' }}>
+                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem', marginBottom: '6px' }}>
                     CÁC NGÀY TRONG TUẦN
                   </div>
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                     • Thánh lễ Sáng: <strong>05:00</strong>
                   </div>
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                     • Thánh lễ Chiều: <strong>17:30</strong>
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.92rem', marginBottom: '6px' }}>
+                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem', marginBottom: '6px' }}>
                     CHÚA NHẬT (NGÀY CỦA CHÚA)
                   </div>
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                     • Lễ I: <strong>05:30</strong> (Thánh lễ sáng sớm)
                   </div>
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                     • Lễ II: <strong>07:00</strong> (Lễ dành cho Thiếu nhi &amp; Giới trẻ)
                   </div>
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                     • Lễ III: <strong>16:00</strong> (Lễ chiều)
                   </div>
-                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                     • Lễ IV: <strong>18:00</strong> (Lễ chiều tối)
                   </div>
                 </div>
@@ -1389,7 +1391,7 @@ export default function GioiThieuPage() {
               7. CHÚ THÍCH & TÀI LIỆU THAM KHẢO
               ===================================================================== */}
           <section id="tai-lieu" style={{ marginTop: '40px', borderTop: '1px solid var(--color-border-subtle)', paddingTop: '20px' }}>
-            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 10px' }}>
+            <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 10px' }}>
               7. Chú thích &amp; Tài liệu tham khảo
             </h3>
             <ol style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.6, paddingLeft: '20px' }}>
@@ -1420,13 +1422,13 @@ export default function GioiThieuPage() {
             ======================================================================= */}
         <aside
           style={{
-            width: '340px',
+            width: '330px',
             flexShrink: 0,
             backgroundColor: 'var(--color-card-bg)',
-            border: '1.5px solid var(--color-border-subtle)',
+            border: '1px solid var(--color-border-subtle)',
             borderRadius: '12px',
             overflow: 'hidden',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
             fontSize: '0.84rem'
           }}
           className="wiki-infobox"
@@ -1434,13 +1436,13 @@ export default function GioiThieuPage() {
           {/* Infobox Header */}
           <div
             style={{
-              backgroundColor: '#8B0000',
+              backgroundColor: 'var(--color-red)',
               color: '#FFFFFF',
               padding: '12px 14px',
               textAlign: 'center',
               fontWeight: 800,
-              fontSize: '1rem',
-              letterSpacing: '0.5px'
+              fontSize: '0.98rem',
+              letterSpacing: '0.3px'
             }}
           >
             Nhà thờ chính tòa Mỹ Tho
@@ -1448,7 +1450,7 @@ export default function GioiThieuPage() {
 
           <div
             style={{
-              backgroundColor: 'rgba(139, 0, 0, 0.08)',
+              backgroundColor: 'rgba(153, 27, 27, 0.05)',
               color: 'var(--color-dark)',
               padding: '4px 8px',
               textAlign: 'center',
@@ -1461,15 +1463,15 @@ export default function GioiThieuPage() {
           </div>
 
           {/* Infobox Main Image */}
-          <div style={{ padding: '8px', textAlign: 'center', backgroundColor: '#000000' }}>
+          <div style={{ padding: '8px', textAlign: 'center', backgroundColor: 'var(--color-input-bg)' }}>
             <div
               style={{
                 position: 'relative',
                 width: '100%',
-                height: '210px',
+                height: '200px',
                 cursor: 'pointer',
                 overflow: 'hidden',
-                borderRadius: '4px'
+                borderRadius: '6px'
               }}
               onClick={() => setLightboxImage({ src: '/images/nhatho1.jpg', caption: 'Mặt tiền Nhà thờ Chánh Tòa Mỹ Tho' })}
             >
@@ -1477,11 +1479,11 @@ export default function GioiThieuPage() {
                 src="/images/nhatho1.jpg"
                 alt="Nhà thờ Chính Tòa Mỹ Tho"
                 fill
-                sizes="340px"
+                sizes="330px"
                 style={{ objectFit: 'cover' }}
               />
             </div>
-            <div style={{ fontSize: '0.72rem', color: '#CBD5E1', marginTop: '6px', fontStyle: 'italic' }}>
+            <div style={{ fontSize: '0.72rem', color: 'var(--color-subtle)', marginTop: '6px', fontStyle: 'italic' }}>
               Mặt tiền thánh đường nhìn từ đường Hùng Vương
             </div>
           </div>
@@ -1494,12 +1496,14 @@ export default function GioiThieuPage() {
                 <td
                   colSpan={2}
                   style={{
-                    backgroundColor: '#8B0000',
-                    color: '#FFFFFF',
+                    backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                    color: 'var(--color-red)',
                     padding: '6px 10px',
                     textAlign: 'center',
                     fontWeight: 800,
-                    fontSize: '0.82rem'
+                    fontSize: '0.8rem',
+                    borderTop: '1px solid var(--color-border-subtle)',
+                    borderBottom: '1px solid var(--color-border-subtle)'
                   }}
                 >
                   Giáo triều &amp; Tòa Thánh Vatican
@@ -1555,12 +1559,14 @@ export default function GioiThieuPage() {
                 <td
                   colSpan={2}
                   style={{
-                    backgroundColor: '#8B0000',
-                    color: '#FFFFFF',
+                    backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                    color: 'var(--color-red)',
                     padding: '6px 10px',
                     textAlign: 'center',
                     fontWeight: 800,
-                    fontSize: '0.82rem'
+                    fontSize: '0.8rem',
+                    borderTop: '1px solid var(--color-border-subtle)',
+                    borderBottom: '1px solid var(--color-border-subtle)'
                   }}
                 >
                   Vị trí &amp; Địa hạt
@@ -1686,12 +1692,14 @@ export default function GioiThieuPage() {
                 <td
                   colSpan={2}
                   style={{
-                    backgroundColor: '#8B0000',
-                    color: '#FFFFFF',
+                    backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                    color: 'var(--color-red)',
                     padding: '6px 10px',
                     textAlign: 'center',
                     fontWeight: 800,
-                    fontSize: '0.82rem'
+                    fontSize: '0.8rem',
+                    borderTop: '1px solid var(--color-border-subtle)',
+                    borderBottom: '1px solid var(--color-border-subtle)'
                   }}
                 >
                   Thông tin kiến trúc
@@ -1817,12 +1825,14 @@ export default function GioiThieuPage() {
                 <td
                   colSpan={2}
                   style={{
-                    backgroundColor: '#8B0000',
-                    color: '#FFFFFF',
+                    backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                    color: 'var(--color-red)',
                     padding: '6px 10px',
                     textAlign: 'center',
                     fontWeight: 800,
-                    fontSize: '0.82rem'
+                    fontSize: '0.8rem',
+                    borderTop: '1px solid var(--color-border-subtle)',
+                    borderBottom: '1px solid var(--color-border-subtle)'
                   }}
                 >
                   Ban Chăm sóc Mục vụ
@@ -1906,7 +1916,7 @@ export default function GioiThieuPage() {
             inset: 0,
             zIndex: 100015,
             backgroundColor: 'rgba(5, 3, 2, 0.85)',
-            backdropFilter: 'blur(10px)',
+            backdropFilter: 'blur(8px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1918,12 +1928,12 @@ export default function GioiThieuPage() {
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '680px',
+              maxWidth: '660px',
               maxHeight: '90vh',
               backgroundColor: 'var(--color-card-bg)',
-              borderRadius: '20px',
-              border: '1.5px solid rgba(212, 175, 55, 0.5)',
-              boxShadow: '0 25px 70px rgba(0,0,0,0.7)',
+              borderRadius: '16px',
+              border: '1px solid var(--color-border-subtle)',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
               overflowY: 'auto',
               display: 'flex',
               flexDirection: 'column',
@@ -1938,11 +1948,11 @@ export default function GioiThieuPage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                backgroundColor: 'rgba(139, 0, 0, 0.06)'
+                backgroundColor: 'rgba(153, 27, 27, 0.04)'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Crown size={18} color="#D4AF37" />
+                <Crown size={18} color="var(--color-red)" />
                 <div>
                   <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-red)' }}>
                     TIỂU SỬ HÀNG GIÁO PHẨM CÔNG GIÁO
@@ -1975,28 +1985,28 @@ export default function GioiThieuPage() {
                 {/* Ảnh chân dung đầy đủ không bị cắt đầu */}
                 <div
                   style={{
-                    width: '120px',
-                    height: '160px',
-                    borderRadius: '12px',
+                    width: '110px',
+                    height: '150px',
+                    borderRadius: '10px',
                     overflow: 'hidden',
                     position: 'relative',
                     flexShrink: 0,
-                    border: '2px solid #D4AF37',
-                    backgroundColor: '#1E1710',
-                    boxShadow: '0 4px 14px rgba(0,0,0,0.25)'
+                    border: '1.5px solid #B45309',
+                    backgroundColor: 'var(--color-input-bg)',
+                    boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
                   }}
                 >
                   <Image
                     src={selectedBio.image}
                     alt={selectedBio.name}
                     fill
-                    sizes="120px"
+                    sizes="110px"
                     style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
                 </div>
 
                 <div style={{ flex: 1, minWidth: '240px' }}>
-                  <h3 style={{ margin: '0 0 4px', fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                  <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                     {selectedBio.name}
                   </h3>
                   <div style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--color-red)', marginBottom: '4px' }}>
@@ -2010,8 +2020,8 @@ export default function GioiThieuPage() {
                     style={{
                       padding: '8px 12px',
                       borderRadius: '8px',
-                      backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                      border: '1px solid rgba(212, 175, 55, 0.3)',
+                      backgroundColor: 'rgba(153, 27, 27, 0.04)',
+                      border: '1px solid var(--color-border-subtle)',
                       fontSize: '0.82rem',
                       fontStyle: 'italic',
                       color: 'var(--color-dark)'
@@ -2031,7 +2041,7 @@ export default function GioiThieuPage() {
               <div
                 style={{
                   backgroundColor: 'var(--color-input-bg)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   padding: '12px 16px',
                   marginBottom: '20px',
                   fontSize: '0.82rem',
@@ -2063,7 +2073,7 @@ export default function GioiThieuPage() {
 
               {/* Quá trình phục vụ theo thời gian (Timeline) */}
               <div style={{ marginBottom: '20px' }}>
-                <h4 style={{ margin: '0 0 12px', fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                <h4 style={{ margin: '0 0 12px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
                   Quá trình tu học &amp; Sứ vụ mục tử
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -2072,7 +2082,7 @@ export default function GioiThieuPage() {
                       key={i}
                       style={{
                         padding: '10px 14px',
-                        borderRadius: '10px',
+                        borderRadius: '8px',
                         borderLeft: '3.5px solid var(--color-red)',
                         backgroundColor: 'var(--color-card-bg)',
                         border: '1px solid var(--color-border-subtle)',
@@ -2097,7 +2107,7 @@ export default function GioiThieuPage() {
 
               {/* Dấu ấn và di sản */}
               <div>
-                <h4 style={{ margin: '0 0 8px', fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
                   Dấu ấn lịch sử &amp; Di sản để lại
                 </h4>
                 <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)' }}>
@@ -2130,7 +2140,7 @@ export default function GioiThieuPage() {
                   color: '#FFF',
                   border: 'none',
                   fontWeight: 700,
-                  fontSize: '0.85rem',
+                  fontSize: '0.84rem',
                   cursor: 'pointer'
                 }}
               >
@@ -2235,9 +2245,9 @@ export default function GioiThieuPage() {
         }
 
         .bishop-card-hover:hover {
-          border-color: #D4AF37 !important;
+          border-color: #B45309 !important;
           transform: translateY(-2px);
-          box-shadow: 0 6px 18px rgba(212, 175, 55, 0.15) !important;
+          box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
         }
       `}</style>
     </div>
