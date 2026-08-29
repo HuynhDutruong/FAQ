@@ -447,10 +447,16 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *  - Sorel (IRFA 0869, bút tích "Sorel, Coch. Occid."), Moulins (IRFA 1056),
  *    Rénier (IRFA 1502, bút tích "Rénier, Cochinchine occid."),
  *    Bar (IRFA 2241, ảnh chụp cuối đời tại Mỹ Tho).
- *  - Guillou (0682), Lizé (0792), Marc-Dassa (0657): IRFA KHÔNG có ảnh
- *    (đường dẫn ảnh trả về 404).
- *  - Bốn cha sở Việt Nam: không có ảnh trên Internet, cần xin từ văn phòng
- *    giáo xứ. Mục thiếu ảnh để trống `image` và hiện ô "Chưa có ảnh tư liệu".
+ *  - Nguyễn Khoa Học: ảnh lấy từ trang "Các đời Cha xứ" của gxhanhthongtay.net
+ *    (tên file gốc c.micaenguyenkhoahoc.jpg, chú thích "Cha Micae NGUYỄN KHOA
+ *    HỌC, (1968-1974)").
+ *  - Guillou (0682), Lizé (0792), Marc-Dassa (0657): IRFA KHÔNG có ảnh —
+ *    trang hồ sơ chỉ có empty_thumbnail, đường dẫn ảnh trả về 404. Cả ba mất
+ *    rất sớm (1866, 1887, 1870) nên nhiều khả năng chưa từng được chụp ảnh.
+ *  - Nguyễn Minh Chiếu, Nguyễn Văn Niềm, Nguyễn Văn Chúc, Hồ Bản Chánh: đã
+ *    tra giaophanmytho.net, vietcatholic.net và tìm kiếm chung, không có ảnh
+ *    trên Internet. Cần xin từ văn phòng giáo xứ.
+ *  Mục thiếu ảnh để trống `image` và hiện ô "Chưa có ảnh tư liệu".
  *
  * CÒN TỒN, CẦN ĐỐI CHIẾU SỔ SÁCH HỌ ĐẠO:
  *  - Mốc 1948 (Cha Nguyễn Minh Chiếu nhận sở) và 1975 (Cha Nguyễn Văn Chúc
@@ -849,7 +855,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-khoa-hoc',
-    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa; bài Giáo xứ Bình Tạo cho biết Cha Phêrô Niềm kế nhiệm năm 1965) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974)',
+    image: '/images/cha_nguyen_khoa_hoc.jpg',
+    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa; bài Giáo xứ Bình Tạo cho biết Cha Phêrô Niềm kế nhiệm năm 1965) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974; ảnh chân dung lấy từ trang Các đời Cha xứ của giáo xứ này)',
     name: 'Lm. Micae Nguyễn Khoa Học',
     saintName: 'Thánh Micae Tổng lãnh Thiên thần',
     role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1965)',
@@ -937,8 +944,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-van-chuc',
-    source: 'giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995, tức trong nhiệm kỳ) + tư liệu giáo xứ (nhiệm kỳ 1975 – 1999; giai đoạn 1975 – 1992 có các cha phó cùng phụ trách)',
-    tableNote: 'Nhận xứ ngay trước biến cố tháng 4/1975; cùng các cha phó Phêrô Trần Xuân Lộc và Đôminicô Lê Văn Bền duy trì thánh lễ và ổn định đời sống đức tin qua giai đoạn biến động nhất. Đầu năm 1975 ngài cùng giáo dân mua một căn nhà lá làm nhà nguyện, đặt nền móng cho Họ đạo Tân Long. Năm 1995 ngài chủ trì xây tháp chuông tách rời khỏi thánh đường — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
+    source: 'giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995, tức trong nhiệm kỳ; bài Gx. Tân Long: "Từ năm 1975 đến 1992, các cha thuộc Giáo xứ Chánh Tòa phụ trách gồm có: cha Giuse Nguyễn Văn Chúc, cha Phêrô Trần Xuân Lộc, và cha Đôminicô Lê Văn Bền") + tư liệu giáo xứ (nhiệm kỳ tại Chánh Tòa 1975 – 1999)',
+    tableNote: 'Nhận xứ ngay trước biến cố tháng 4/1975, giữ vững sinh hoạt phụng vụ qua giai đoạn biến động nhất. Đầu năm 1975 ngài cùng giáo dân mua một căn nhà lá làm nhà nguyện, đặt nền móng cho Họ đạo Tân Long; từ 1975 đến 1992 ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền — đều thuộc Giáo xứ Chánh Tòa — phụ trách họ đạo Tân Long. Năm 1995 ngài chủ trì xây tháp chuông tách rời khỏi thánh đường: đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
     role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 1999)',
@@ -950,7 +957,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '1975 – 1992',
         title: 'Giữ vững đức tin qua giai đoạn biến động',
-        content: 'Nhận xứ ngay trước biến cố tháng 4/1975, ngài cùng các cha phó Phêrô Trần Xuân Lộc và Đôminicô Lê Văn Bền kiên trì ở lại, duy trì các thánh lễ và ổn định đời sống tinh thần cho giáo dân giữa bối cảnh xã hội đổi thay sâu sắc.'
+        content: 'Nhận xứ ngay trước biến cố tháng 4/1975, ngài kiên trì ở lại, duy trì các thánh lễ và ổn định đời sống tinh thần cho giáo dân giữa bối cảnh xã hội đổi thay sâu sắc. Cùng thời gian này, ngài và Cha Phêrô Trần Xuân Lộc, Cha Đôminicô Lê Văn Bền — đều thuộc Giáo xứ Chánh Tòa — phụ trách họ đạo Tân Long cho đến năm 1992.'
       },
       {
         time: 'đầu 1975',
