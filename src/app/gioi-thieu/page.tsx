@@ -141,12 +141,12 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     saintName: 'Thánh Giuse (Joseph)',
     role: 'Giám mục Tiên khởi Giáo phận Mỹ Tho',
     period: '1960 – 1989 (29 năm Giám mục)',
-    birth: '01/10/1908 tại Cái Nhum, Chợ Lách, Vĩnh Long',
+    birth: '01/10/1908 tại Ngũ Hiệp, huyện Cai Lậy, tỉnh Tiền Giang',
     death: '24/02/1989 tại Tòa Giám Mục Mỹ Tho (Hưởng thọ 81 tuổi)',
     origin: 'Cái Nhum, Vĩnh Long',
-    motto: '“Phần rỗi linh hồn là luật tối thượng”',
+    motto: '“Phần rỗi trong Thánh Giá”',
     mottoLatin: 'Salus Animarum Suprema Lex',
-    priestOrdination: '21/09/1928 tại Nhà thờ Đức Bà Sài Gòn',
+    priestOrdination: '21/09/1935',
     bishopConsecration: '22/01/1961 tại Nhà thờ Đức Bà Sài Gòn',
     consecrator: 'Đức Tổng Giám Mục Phêrô Máctinô Ngô Đình Thục (Chủ phong)',
     image: '/images/bishop_1_tran_van_thien.jpg',
@@ -186,13 +186,13 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     saintName: 'Thánh Anrê Tông Đồ (Andrew)',
     role: 'Giám mục Chính tòa thứ II Giáo phận Mỹ Tho',
     period: '1989 – 1999 (Kế vị từ 1989, Giám mục Phó từ 1975)',
-    birth: '24/02/1922 tại Thới Lai, Cần Thơ',
-    death: '16/03/2006 tại Tòa Giám Mục Mỹ Tho (Hưởng thọ 84 tuổi)',
+    birth: '22/02/1922 tại Thạnh Mỹ, Gia Định (Sài Gòn)',
+    death: '16/03/2006 tại TP. Hồ Chí Minh (Hưởng thọ 84 tuổi)',
     origin: 'Thới Lai, Cần Thơ',
     motto: '“Vui mừng trong Thánh Giá Chúa Kitô”',
     mottoLatin: 'Crux Spes Unica',
-    priestOrdination: '29/03/1953 tại Sài Gòn',
-    bishopConsecration: '26/10/1975 tại Nhà thờ Chính Tòa Mỹ Tho',
+    priestOrdination: '29/03/1952',
+    bishopConsecration: '10/06/1975 (Giám mục phó Mỹ Tho); kế vị Giám mục chánh tòa 24/02/1989; nghỉ hưu 15/04/1999',
     consecrator: 'Đức Cha Giuse Trần Văn Thiện (Chủ phong)',
     image: '/images/bishop_nguyen_van_nam.jpg',
     shortDesc: 'Coi sóc giáo phận trong giai đoạn đất nước Đổi Mới. Ngài hết lòng củng cố sự hiệp thông, chăm lo đời sống thiêng liêng cho bà con giáo dân và xây dựng tình bác ái huynh đệ khắp các giáo xứ vùng sông nước miền Tây.',
@@ -279,7 +279,7 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     motto: '“Chúa là nguồn vui của con”',
     mottoLatin: 'Dominus Lux Mea (Tv 27,1)',
     priestOrdination: '17/12/1970 tại Nhà thờ Chính Tòa Đà Lạt',
-    bishopConsecration: '02/06/1999 tại Nhà thờ Chính Tòa Đà Lạt',
+    bishopConsecration: '20/05/1999 tại Nhà thờ Chính Tòa Đà Lạt (bổ nhiệm 26/03/1999, nhận giáo phận 27/05/1999)',
     consecrator: 'Đức Tổng Giám mục Gioan Baotixita Phạm Minh Mẫn (Chủ phong)',
     image: '/images/bishop_4_bui_van_doc.jpg',
     shortDesc: 'Thời kỳ Ngài coi sóc ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, Trung tâm Mục vụ khang trang, cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa Năm Thánh 2000 và truyền giáo mạnh mẽ tại Đồng Tháp Mười.',
@@ -400,6 +400,10 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  * Cha sở họ đạo Chánh Tòa Mỹ Tho qua các thời kỳ.
  *
  * NGUỒN ĐÃ ĐỐI CHIẾU (tra cứu 2026-08):
+ *  - "Giáo phận Mỹ Tho: Lịch sử Khai Sinh Giáo Phận" (giaophanmytho.net,
+ *    tài liệu chính thức GP Mỹ Tho soạn 03/2009 cho Kỷ Yếu Năm Thánh 2010
+ *    của HĐGMVN) — nguồn có thẩm quyền nhất về niên hiệu Đức Cha, thông số
+ *    nhà thờ và các mốc cung hiến / trùng tu.
  *  - IRFA / Hội Thừa Sai Paris — irfa.paris/missionnaire/<mã>-<họ>-<tên>/
  *    Đã rà toàn bộ 32 hồ sơ thừa sai MEP có nhắc tới "Mytho".
  *  - Gallica / Thư viện Quốc gia Pháp (BNF)
@@ -669,7 +673,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '1958',
         title: 'Di dời chuông lớn lên tháp Nam',
-        content: 'Tổ chức đại công trình kỹ thuật đưa quả chuông đồng cổ kính lên đỉnh tháp chuông phía Nam của nhà thờ.'
+        content: 'Tháp chuông đầu tiên vốn dựng bên hông nữ của nhà thờ. Năm 1958 ngài tổ chức công trình dời quả chuông đồng cổ kính lên tháp cao bên nam.'
       }
     ],
     milestones: [
@@ -712,14 +716,14 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-van-chuc',
-    tableNote: 'Coi sóc họ đạo hơn hai thập kỷ sau 1975; ngày 16/02/1995 cho xây tháp chuông độc lập tách rời nhằm bảo tồn kết cấu ngôi thánh đường cổ.',
+    tableNote: 'Coi sóc họ đạo hơn hai thập kỷ sau 1975; cho xây tháp chuông tách rời khỏi nhà thờ để tiếng chuông không gây rung chấn ngôi thánh đường cổ — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
     role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 1998)',
     period: '1975 – 1998',
     death: '14/12/1999 tại Tiền Giang',
     origin: 'Giáo phận Mỹ Tho',
-    shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc vĩ đại nhất của ngài là công trình xây dựng Tháp chuông độc lập cao 24 mét tách rời (1995) để bảo tồn kết cấu vòm thánh đường cổ kính.',
+    shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc lớn nhất của ngài là tháp chuông tách rời hẳn khỏi nhà thờ (1995): vì lo tiếng chuông rung chấn làm hư hại ngôi thánh đường xây từ 1906, ngài cho dựng một tháp chuông riêng — Đức Cha Anrê Nguyễn Văn Nam đặt viên đá đầu tiên ngày 16/02/1995, công trình khánh thành sau hơn 9 tháng vào ngày 30/11/1995.',
     chronology: [
       {
         time: '1975 – 1985',
@@ -728,8 +732,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       },
       {
         time: '1995',
-        title: 'Xây dựng Tháp chuông độc lập cao 24m',
-        content: 'Để tránh rung chấn làm nứt vòm và tường gạch cổ của nhà thờ xây từ năm 1906, ngài quyết định xây dựng tháp chuông tách rời cao 24m kiên cố - trở thành biểu tượng độc đáo của Chánh Tòa Mỹ Tho.'
+        title: 'Xây dựng Tháp chuông tách rời (16/02 – 30/11/1995)',
+        content: 'Để tránh rung chấn làm hư hại vòm và tường gạch cổ của nhà thờ xây từ năm 1906, ngài cho dựng một tháp chuông tách hẳn khỏi thánh đường. Đức Cha Anrê Nguyễn Văn Nam đặt viên đá đầu tiên ngày 16/02/1995; sau hơn 9 tháng thi công, tháp chuông mới được khánh thành ngày 30/11/1995 và trở thành biểu tượng của Chánh Tòa Mỹ Tho.'
       },
       {
         time: '1998 – 1999',
@@ -738,14 +742,14 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       }
     ],
     milestones: [
-      'Chủ trì xây dựng Tháp chuông độc lập cao 24 mét tách rời (1995) bảo vệ ngôi thánh đường cổ.',
+      'Chủ trì xây dựng tháp chuông tách rời khỏi nhà thờ (đặt viên đá 16/02/1995, khánh thành 30/11/1995) để bảo vệ ngôi thánh đường cổ.',
       'Mục tử nhân ái gìn giữ sự bình an và đức tin kiên trung của Giáo xứ Chánh Tòa suốt hơn 20 năm.',
       'Thành lập họ đạo Tân Long và chăm lo đời sống người nghèo khó.'
     ]
   },
   {
     id: 'cha-ha-van-xung',
-    tableNote: 'Cha sở đương nhiệm kiêm Linh mục Trưởng Hạt Giáo hạt Mỹ Tho; chủ trì Đại trùng tu Bách Chu Niên (2006 – 2007), xây Nhà Mục vụ Giáo xứ (2020) và Lễ đài Đức Mẹ.',
+    tableNote: 'Cha sở đương nhiệm kiêm Linh mục Trưởng Hạt Giáo hạt Mỹ Tho; chủ trì đợt trùng tu 100 năm (khởi công 14/06/2006, lễ tạ ơn khai mạc Năm Thánh 21/05/2007), xây Nhà Mục vụ Giáo xứ (2020) và Lễ đài Đức Mẹ.',
     name: 'Linh mục Giacôbê Hà Văn Xung',
     saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
     role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho',
@@ -765,7 +769,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: 'Mục tử Chánh xứ',
         title: 'Cha Sở Nhà thờ Chánh Tòa Mỹ Tho',
-        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận Mỹ Tho. Ngài đã chủ trì công trình Đại trùng tu Bách Chu Niên (2006 – 2007) nhân dịp 100 năm xây dựng ngôi thánh đường, nới rộng hai cánh nhà thờ, cải tạo tháp chuông kiên cố, khánh thành tòa Nhà Mục vụ Giáo xứ (2020) và công trình Lễ đài Đức Mẹ.'
+        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận Mỹ Tho. Ngài đã xin ý kiến Đức Giám mục để trùng tu và nới rộng nhà thờ nhân 100 năm xây dựng: lễ khởi công ngày 14/06/2006, gồm thay mái ngói, nới rộng hai bên hông, xây lại phòng thánh, cải tạo tháp chuông và đặt 14 chặng Đàng Thánh Giá quanh nhà thờ. Sau 9 tháng thi công, ngày 21/05/2007 Đức Giám mục dâng lễ tạ ơn và khai mạc Năm Thánh mừng 100 năm. Ngài còn khánh thành Nhà Mục vụ Giáo xứ (2020) và công trình Lễ đài Đức Mẹ.'
       },
       {
         time: 'Sứ vụ Mục vụ',
@@ -1114,7 +1118,7 @@ export default function GioiThieuPage() {
                   <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
                     <li>
                       <a href="#kien-truc-mat-tien" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Mặt tiền Phục Hưng và Tháp chuông 24 mét
+                        Mặt tiền Phục Hưng và Tháp chuông tách rời
                       </a>
                     </li>
                     <li>
@@ -1613,9 +1617,9 @@ export default function GioiThieuPage() {
               2.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              Nhân dịp Đại Năm Thánh 2000, Đức Tổng Giám mục Phaolô Bùi Văn Đọc đã long trọng cử hành <strong>Lễ Cung Hiến
-              Nhà thờ Chính Tòa Mỹ Tho</strong> và nhận ngày Lễ Đức Mẹ Hồn Xác Lên Trời (15 tháng 8) làm Bổn mạng thứ hai của
-              nhà thờ.
+              Nhân dịp Đại Năm Thánh 2000, ngày <strong>21/01/2000</strong>, Đức Giám mục Giáo phận Phaolô Bùi Văn Đọc đã
+              long trọng cử hành <strong>Lễ Cung Hiến Nhà thờ Chánh Tòa Mỹ Tho</strong> và chọn ngày Lễ Đức Mẹ Hồn Xác
+              Lên Trời (15 tháng 8) làm lễ Bổn mạng thứ hai của nhà thờ.
             </p>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
               Đến năm 2006, đánh dấu kỷ niệm 100 năm ngày khởi công xây dựng,{' '}
@@ -1639,8 +1643,11 @@ export default function GioiThieuPage() {
               >
                 Linh mục Chánh xứ Giacôbê Hà Văn Xung
               </button>{' '}
-              (Linh mục Trưởng Hạt Giáo hạt Mỹ Tho) đã thực hiện đợt đại trùng tu toàn diện: gia cố nền móng, xây dựng tháp chuông độc lập cao 24m, nới rộng gian Cung
-              Thánh, lát đá cẩm thạch và kiến thiết vườn hoa 14 Đàng Thánh Giá bao quanh khuôn viên thánh đường.
+              (Linh mục Trưởng Hạt Giáo hạt Mỹ Tho) đã xin ý kiến Đức Giám mục để trùng tu và nới rộng nhà thờ. Lễ khởi
+              công được cử hành ngày <strong>14/06/2006</strong>, gồm thay mái ngói, nới rộng hai bên hông nhà thờ, xây
+              lại phòng thánh, cải tạo tháp chuông và đặt 14 chặng Đàng Thánh Giá xung quanh nhà thờ. Sau 9 tháng thi
+              công, ngày <strong>21/05/2007</strong> Đức Giám mục Giáo phận đã dâng lễ tạ ơn và khai mạc Năm Thánh mừng
+              kỷ niệm 100 năm xây dựng ngôi thánh đường.
             </p>
 
             {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
@@ -1765,13 +1772,16 @@ export default function GioiThieuPage() {
             </div>
 
             <h3 id="kien-truc-mat-tien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-              3.1. Mặt tiền Phục Hưng và Tháp chuông 24 mét
+              3.1. Mặt tiền Phục Hưng và Tháp chuông tách rời
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              Nhà thờ mang phong cách kiến trúc Phục Hưng (Renaissance) uy nghiêm với chiều dài 53 mét, chiều rộng 17 mét và
-              chiều cao nóc giáo đường đạt 16 mét. Mặt tiền nhà thờ được chia thành 3 nhịp cân xứng với các cột thức Corinthian
-              được đắp nổi hoa văn tinh tế. Tháp chuông kiên cố cao 24 mét được đặt tách biệt bên hông thánh đường, lưu giữ
-              bộ chuông đồng đúc cổ truyền mang âm sắc trầm hùng ngân vang khắp trung tâm thành phố Mỹ Tho mỗi dịp lễ trọng.
+              Nhà thờ mang phong cách kiến trúc Phục Hưng (Renaissance) uy nghiêm, theo số liệu của Giáo phận Mỹ Tho:
+              chiều cao 24 mét, chiều dài 53 mét, chiều rộng hơn 17 mét, gồm một gian chính và hai gian phụ hai bên.
+              Kết cấu chính xây theo lối cột tròn chống đỡ, mái vòm trang trí nhiều hoa văn họa tiết tinh xảo; mặt tiền
+              chia thành 3 nhịp cân xứng. Tháp chuông đầu tiên vốn dựng bên hông nữ; năm 1958 Cha sở Phaolô Nguyễn Minh
+              Chiếu cho dời chuông lên tháp cao bên nam. Đến năm 1995, vì lo tiếng chuông rung chấn làm hư hại ngôi
+              thánh đường cổ, Cha sở Giuse Nguyễn Văn Chúc cho xây một tháp chuông khác tách rời hẳn khỏi nhà thờ —
+              chính là tháp chuông hiện nay.
             </p>
 
             <h3 id="kien-truc-cung-thanh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
@@ -2553,7 +2563,7 @@ export default function GioiThieuPage() {
                     backgroundColor: 'var(--color-input-bg)'
                   }}
                 >
-                  Chiều cao tháp
+                  Chiều cao nhà thờ
                 </th>
                 <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
                   24 mét
