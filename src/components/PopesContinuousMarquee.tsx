@@ -1,54 +1,71 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { ALL_POPES, PopeRecord } from '@/lib/vatican/popes';
-import { Crown, Sparkles, Search, Pause, Play, Eye, X, Globe, Church, Calendar, MapPin, Award, BookOpen } from 'lucide-react';
+import { Sparkles, X, Calendar, MapPin, Award } from 'lucide-react';
+
+/**
+ * Biểu tượng Logo Giáo Hoàng / Tòa Thánh Vatican (2D Flat Vector SVG):
+ * Hai Chìa Khóa Nước Trời của Thánh Phêrô đan chéo cùng Thánh Giá Tông Tòa / Mũ Ba Tầng.
+ */
+function PapalLogo({ size = 22, color = 'var(--color-red)' }: { size?: number; color?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
+    >
+      {/* Thánh Giá Tông Tòa Giáo Hoàng */}
+      <path d="M12 2v7" />
+      <path d="M9 4.5h6" />
+      <path d="M10 6.5h4" />
+      {/* Hai Chìa Khóa Nước Trời Thánh Phêrô đan chéo */}
+      <path d="M6.5 17.5L17.5 6.5" />
+      <path d="M17.5 17.5L6.5 6.5" />
+      {/* Tay cầm chìa khóa hình tròn */}
+      <circle cx="5.5" cy="18.5" r="2.2" />
+      <circle cx="18.5" cy="18.5" r="2.2" />
+      {/* Răng chìa khóa */}
+      <path d="M16 8l2-2" />
+      <path d="M17.5 9.5l1.5-1.5" />
+      <path d="M8 8L6 6" />
+      <path d="M6.5 9.5L5 8" />
+    </svg>
+  );
+}
 
 export default function PopesContinuousMarquee() {
   const [selectedPope, setSelectedPope] = useState<PopeRecord | null>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
 
-  const filteredPopes = useMemo(() => {
-    if (!searchQuery.trim()) return ALL_POPES;
-    const q = searchQuery.toLowerCase().trim();
-    return ALL_POPES.filter(
-      (p) =>
-        p.nameVi.toLowerCase().includes(q) ||
-        p.nameLatin.toLowerCase().includes(q) ||
-        p.reign.toLowerCase().includes(q) ||
-        (p.notes && p.notes.toLowerCase().includes(q)) ||
-        (p.birthPlace && p.birthPlace.toLowerCase().includes(q)) ||
-        p.num.toString() === q
-    );
-  }, [searchQuery]);
-
-  // Duplicate for seamless infinite loop if not filtering
-  const marqueeList = useMemo(() => {
-    if (searchQuery.trim()) return filteredPopes;
-    return [...ALL_POPES, ...ALL_POPES];
-  }, [searchQuery, filteredPopes]);
+  // Duplicate for continuous seamless infinite loop
+  const marqueeList = [...ALL_POPES, ...ALL_POPES];
 
   return (
     <div
       style={{
-        margin: '28px 0',
+        margin: '24px 0 32px',
         backgroundColor: 'var(--color-card-bg)',
-        borderRadius: '12px',
+        borderRadius: '14px',
         border: '1px solid var(--color-border-subtle)',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
         overflow: 'hidden',
         position: 'relative'
       }}
     >
-      {/* Header Bar đồng bộ chuẩn phong cách Bách Khoa */}
+      {/* Header Bar Tinh Gọn, Bố Cục Thông Minh */}
       <div
         style={{
-          padding: '14px 18px',
+          padding: '14px 20px',
           borderBottom: '1px solid var(--color-border-subtle)',
-          backgroundColor: 'rgba(153, 27, 27, 0.04)',
+          backgroundColor: 'rgba(153, 27, 27, 0.03)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -56,84 +73,57 @@ export default function PopesContinuousMarquee() {
           gap: '12px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {/* Title + Logo Giáo Hoàng */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div
             style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '8px',
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
               backgroundColor: 'rgba(153, 27, 27, 0.08)',
               border: '1px solid rgba(153, 27, 27, 0.2)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--color-red)'
+              flexShrink: 0
             }}
           >
-            <Crown size={18} />
+            <PapalLogo size={22} color="var(--color-red)" />
           </div>
+
           <div>
-            <div style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-              Biên niên sử 267 Vị Giáo Hoàng (Từ Thánh Phêrô đến Đức Lêô XIV)
+            <div style={{ fontSize: '1.02rem', fontWeight: 800, color: 'var(--color-dark)', lineHeight: 1.3 }}>
+              Biên Niên Sử 267 Vị Giáo Hoàng (Từ Thánh Phêrô Đến Đức Lêô XIV)
             </div>
-            <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)' }}>
-              Chân dung đầy đủ 267 Vị Giáo Hoàng • Danh xưng tiếng Việt • Tông hiệu tiếng Latinh • Dấu mốc lịch sử
+            <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+              Danh xưng tiếng Việt • Tông hiệu chính thức tiếng Latinh • Dấu mốc lịch sử
             </div>
           </div>
         </div>
 
-        {/* Search & Pause Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div
+        {/* Badge Thông Tin & Chế Độ Tự Động */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span
             style={{
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center'
-            }}
-          >
-            <Search size={14} color="var(--color-subtle)" style={{ position: 'absolute', left: '10px' }} />
-            <input
-              type="text"
-              placeholder="Tìm Giáo Hoàng (tên, Latinh, năm, dấu ấn)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                padding: '6px 12px 6px 30px',
-                borderRadius: '8px',
-                border: '1px solid var(--color-border-subtle)',
-                backgroundColor: 'var(--color-input-bg)',
-                color: 'var(--color-dark)',
-                fontSize: '0.78rem',
-                width: '210px',
-                outline: 'none'
-              }}
-            />
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setIsPaused(!isPaused)}
-            style={{
-              display: 'flex',
+              fontSize: '0.74rem',
+              fontWeight: 800,
+              backgroundColor: 'rgba(153, 27, 27, 0.08)',
+              color: 'var(--color-red)',
+              padding: '4px 12px',
+              borderRadius: '20px',
+              border: '1px solid rgba(153, 27, 27, 0.15)',
+              display: 'inline-flex',
               alignItems: 'center',
-              gap: '4px',
-              padding: '6px 12px',
-              borderRadius: '8px',
-              border: '1px solid var(--color-border-subtle)',
-              backgroundColor: isPaused ? 'rgba(153, 27, 27, 0.1)' : 'var(--color-input-bg)',
-              color: isPaused ? 'var(--color-red)' : 'var(--color-dark)',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              cursor: 'pointer'
+              gap: '5px'
             }}
           >
-            {isPaused ? <Play size={12} /> : <Pause size={12} />}
-            <span>{isPaused ? 'Chạy tiếp' : 'Tạm dừng'}</span>
-          </button>
+            <Sparkles size={12} />
+            <span>267 Triều Đại Tông Truyền</span>
+          </span>
         </div>
       </div>
 
-      {/* Marquee Track Container */}
+      {/* Marquee Track Tự Động Chạy (Auto Continuous Scroll) */}
       <div
         style={{
           padding: '20px 0',
@@ -141,19 +131,15 @@ export default function PopesContinuousMarquee() {
           overflow: 'hidden',
           backgroundColor: 'var(--color-card-bg)'
         }}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => {
-          if (!searchQuery) setIsPaused(false);
-        }}
       >
-        {/* Left & Right Gradient fade masks */}
+        {/* Gradient Fade Masks Hai Bên */}
         <div
           style={{
             position: 'absolute',
             top: 0,
             bottom: 0,
             left: 0,
-            width: '40px',
+            width: '45px',
             background: 'linear-gradient(to right, var(--color-card-bg) 0%, transparent 100%)',
             zIndex: 10,
             pointerEvents: 'none'
@@ -165,7 +151,7 @@ export default function PopesContinuousMarquee() {
             top: 0,
             bottom: 0,
             right: 0,
-            width: '40px',
+            width: '45px',
             background: 'linear-gradient(to left, var(--color-card-bg) 0%, transparent 100%)',
             zIndex: 10,
             pointerEvents: 'none'
@@ -173,7 +159,7 @@ export default function PopesContinuousMarquee() {
         />
 
         <div
-          className={`popes-marquee-track ${isPaused || searchQuery ? 'paused' : ''}`}
+          className="popes-marquee-track"
           style={{
             display: 'flex',
             gap: '14px',
@@ -189,7 +175,7 @@ export default function PopesContinuousMarquee() {
                 flexShrink: 0,
                 width: '165px',
                 padding: '14px 10px',
-                borderRadius: '10px',
+                borderRadius: '12px',
                 backgroundColor: 'var(--color-input-bg)',
                 border: '1px solid var(--color-border-subtle)',
                 display: 'flex',
@@ -206,8 +192,8 @@ export default function PopesContinuousMarquee() {
               {/* Huy Hiệu Tròn Chân Dung Của Từng Vị Giáo Hoàng */}
               <div
                 style={{
-                  width: '78px',
-                  height: '78px',
+                  width: '80px',
+                  height: '80px',
                   borderRadius: '50%',
                   border: '2px solid #B45309',
                   backgroundColor: 'var(--color-card-bg)',
@@ -225,7 +211,7 @@ export default function PopesContinuousMarquee() {
                     src={`/images/popes/pope_${pope.num}.jpg`}
                     alt={pope.nameVi}
                     fill
-                    sizes="78px"
+                    sizes="80px"
                     style={{ objectFit: 'cover', objectPosition: 'top center' }}
                     onError={() => setFailedImages((prev) => ({ ...prev, [pope.num]: true }))}
                   />
@@ -239,7 +225,7 @@ export default function PopesContinuousMarquee() {
                       color: 'var(--color-dark)'
                     }}
                   >
-                    <Crown size={22} color="#B45309" />
+                    <PapalLogo size={24} color="#B45309" />
                     <span style={{ fontSize: '0.64rem', fontWeight: 800, marginTop: '2px', color: 'var(--color-subtle)' }}>
                       #{pope.num}
                     </span>
@@ -308,10 +294,10 @@ export default function PopesContinuousMarquee() {
         </div>
       </div>
 
-      {/* Footer Info */}
+      {/* Footer Info Tinh Gọn */}
       <div
         style={{
-          padding: '10px 18px',
+          padding: '9px 18px',
           borderTop: '1px solid var(--color-border-subtle)',
           backgroundColor: 'rgba(153, 27, 27, 0.02)',
           display: 'flex',
@@ -323,10 +309,10 @@ export default function PopesContinuousMarquee() {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Sparkles size={13} color="var(--color-red)" />
-          <span>Nhấn vào bất kỳ vị nào để xem chân dung sắc nét và toàn bộ dấu mốc lịch sử</span>
+          <span>Tự động cuộn liên tục • Nhấn vào từng vị để xem tiểu sử &amp; dấu ấn lịch sử</span>
         </div>
         <div style={{ fontWeight: 700, color: 'var(--color-dark)' }}>
-          Tổng cộng: 267 Triều Đại Giáo Hoàng
+          Toàn bộ 267 Vị Giáo Hoàng
         </div>
       </div>
 
@@ -407,7 +393,7 @@ export default function PopesContinuousMarquee() {
                   />
                 ) : (
                   <div style={{ textAlign: 'center' }}>
-                    <Crown size={34} color="#B45309" />
+                    <PapalLogo size={36} color="#B45309" />
                     <div style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-dark)', marginTop: '2px' }}>
                       #{selectedPope.num}
                     </div>
@@ -469,7 +455,7 @@ export default function PopesContinuousMarquee() {
               )}
             </div>
 
-            {/* Dấu mốc & Di sản Lịch sử nổi bật (Nếu có hiển thị chi tiết, nếu không có để trống tinh tế) */}
+            {/* Dấu mốc & Di sản Lịch sử nổi bật (Chỉ hiển thị khi có thông tin, không có thì ẩn gọn gàng) */}
             {selectedPope.notes && (
               <div
                 style={{
@@ -523,17 +509,17 @@ export default function PopesContinuousMarquee() {
         }
 
         .popes-marquee-track {
-          animation: popesMarqueeScroll 290s linear infinite;
+          animation: popesMarqueeScroll 280s linear infinite;
         }
 
-        .popes-marquee-track.paused {
+        .popes-marquee-track:hover {
           animation-play-state: paused !important;
         }
 
         .pope-medallion-card:hover {
           transform: translateY(-2px);
           border-color: #B45309 !important;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+          box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
         }
       `}</style>
     </div>

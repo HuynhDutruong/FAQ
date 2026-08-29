@@ -29,7 +29,6 @@ import {
   Flame,
   CheckCircle2,
   X,
-  Crown,
   Eye,
   FileText
 } from 'lucide-react';
@@ -816,7 +815,7 @@ export default function GioiThieuPage() {
             {/* BĂNG CHUYỀN CHÂN DUNG 267 VỊ GIÁO HOÀNG CHẠY LIÊN TỤC */}
             <div id="vatican-267-giao-hoang" style={{ marginTop: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <Crown size={18} color="var(--color-red)" />
+                <Church size={18} color="var(--color-red)" />
                 <h3 style={{ margin: 0, fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                   1.3. Biên Niên Sử 267 Vị Giáo Hoàng Đã Trị Vì Từ Thánh Phêrô Đến Nay
                 </h3>
@@ -1952,7 +1951,7 @@ export default function GioiThieuPage() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Crown size={18} color="var(--color-red)" />
+                <Cross size={18} color="var(--color-red)" />
                 <div>
                   <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-red)' }}>
                     TIỂU SỬ HÀNG GIÁO PHẨM CÔNG GIÁO
