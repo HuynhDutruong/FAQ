@@ -1,1524 +1,1398 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowLeft,
   MapPin,
-  ChevronRight,
-  ChevronLeft,
-  X,
-  Flame,
-  Users,
-  Heart,
-  BookOpen,
-  Compass,
-  Award,
-  Sparkles,
-  ShieldCheck,
-  Sun,
-  Target,
-  Clock,
-  CheckCircle2,
   Church,
-  Globe,
-  Cross,
   Calendar,
   Layers,
+  BookOpen,
+  Users,
   Info,
-  Maximize2
+  Maximize2,
+  ExternalLink,
+  ChevronRight,
+  ChevronDown,
+  Quote,
+  ShieldCheck,
+  Search,
+  Globe,
+  Award,
+  Clock,
+  Cross,
+  Sparkles,
+  Heart,
+  Flame,
+  CheckCircle2,
+  X
 } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-const BISHOPS = [
+interface BishopRecord {
+  name: string;
+  role: string;
+  motto: string;
+  period: string;
+  desc: string;
+  image: string;
+}
+
+const BISHOPS_DATA: BishopRecord[] = [
   {
     name: 'Đức Cha Giuse Trần Văn Thiện',
-    role: 'Giám mục Tiên khởi (1960 – 1989)',
-    motto: '“Phần rỗi linh hồn là luật tối thượng”',
-    desc: 'Được Tòa Thánh bổ nhiệm làm Giám mục Tiên khởi ngày 24/11/1960 khi Giáo phận Mỹ Tho vừa được thành lập theo Tông hiến Venerabilium Nostrorum. Ngài có công lao to lớn trong việc đặt nền móng cơ sở hạ tầng, thành lập Tiểu Chủng viện Gioan XXIII, quy tụ linh mục đoàn và kiến thiết giáo phận trong những năm tháng đầu tiên đầy gian khó.',
-    years: '1960 – 1989',
+    role: 'Giám mục Tiên khởi Giáo phận Mỹ Tho',
+    motto: '“Phần rỗi linh hồn là luật tối thượng” (Salus Animarum Suprema Lex)',
+    period: '1960 – 1989',
+    desc: 'Được Đức Thánh Cha Gioan XXIII bổ nhiệm làm Giám mục Tiên khởi ngày 24/11/1960 khi Giáo phận Mỹ Tho vừa được thành lập theo Tông hiến Venerabilium Nostrorum. Ngài có công lao to lớn trong việc đặt nền móng cơ sở hạ tầng, thành lập Tiểu Chủng viện Gioan XXIII, quy tụ linh mục đoàn và kiến thiết giáo phận trong những năm tháng đầu tiên đầy gian khó.',
     image: '/images/bishop_1_tran_van_thien.jpg'
   },
   {
     name: 'Đức Cha Anrê Nguyễn Văn Nam',
-    role: 'Giám mục Chính tòa thứ II (1989 – 1999)',
+    role: 'Giám mục Chính tòa thứ II',
     motto: '“Vui mừng trong Thánh Giá Chúa Kitô”',
+    period: '1989 – 1999',
     desc: 'Coi sóc giáo phận trong giai đoạn chuyển mình của đất nước. Ngài hết lòng củng cố sự hiệp thông, chăm lo đời sống thiêng liêng cho bà con giáo dân và xây dựng tình bác ái huynh đệ khắp các giáo xứ vùng sông nước Tiền Giang, Long An và Đồng Tháp.',
-    years: '1989 – 1999',
     image: '/images/bishop_nguyen_van_nam.jpg'
   },
   {
     name: 'Đức Hồng Y Gioan Baotixita Phạm Minh Mẫn',
     role: 'Giám mục Phó Giáo phận Mỹ Tho (1993 – 1998)',
-    motto: '“Như Thầy yêu thương”',
-    desc: 'Trong 5 năm phục vụ với cương vị Giám mục Phó, Ngài đồng hành đắc lực với Đức Cha Anrê trong công tác đào tạo chủng sinh, linh mục và xây dựng các chương trình mục vụ bác ái, trước khi được Tòa Thánh tấn phong Tổng Giám mục Tổng Giáo phận Sài Gòn và phong tước Hồng Y.',
-    years: '1993 – 1998',
+    motto: '“Như Thầy yêu thương” (Sicut Dilexi Vos)',
+    period: '1993 – 1998',
+    desc: 'Trong 5 năm phục vụ với cương vị Giám mục Phó, Ngài đồng hành đắc lực với Đức Cha Anrê trong công tác đào tạo chủng sinh, linh mục và xây dựng các chương trình mục vụ bác ái, trước khi được Tòa Thánh tấn phong Tổng Giám mục Tổng Giáo phận Sài Gòn và thăng tước Hồng Y.',
     image: '/images/bishop_3_pham_minh_man.jpg'
   },
   {
     name: 'Đức Tổng Giám Mục Phaolô Bùi Văn Đọc',
-    role: 'Giám mục Chính tòa thứ III (1999 – 2013)',
-    motto: '“Chúa là nguồn vui của con”',
-    desc: 'Thời kỳ Ngài coi sóc đã ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, thiết lập Trung tâm Mục vụ khang trang, cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa vào Năm Thánh 2000 và thúc đẩy mạnh mẽ công cuộc loan báo Tin Mừng tại vùng sâu Đồng Tháp Mười.',
-    years: '1999 – 2013',
+    role: 'Giám mục Chính tòa thứ III',
+    motto: '“Chúa là nguồn vui của con” (Dominus Lux Mea)',
+    period: '1999 – 2013',
+    desc: 'Thời kỳ Ngài coi sóc ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, thiết lập Trung tâm Mục vụ khang trang, long trọng cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa vào Năm Thánh 2000 và thúc đẩy mạnh mẽ công cuộc loan báo Tin Mừng tại vùng sâu Đồng Tháp Mười.',
     image: '/images/bishop_4_bui_van_doc.jpg'
   },
   {
     name: 'Đức Cha Phêrô Nguyễn Văn Khảm',
-    role: 'Giám mục Chính tòa đương nhiệm (2014 – nay)',
+    role: 'Giám mục Chính tòa đương nhiệm',
     motto: '“Hãy theo Thầy” (Sequere Me)',
-    desc: 'Được Đức Giáo hoàng bổ nhiệm làm Giám mục Chính tòa Mỹ Tho vào ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng đường hướng mục vụ phụng vụ, đào tạo đức tin giáo dân và chăm lo ơn gọi linh mục, tu sĩ toàn giáo phận.',
-    years: '2014 – nay',
+    period: '2014 – nay',
+    desc: 'Được Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho vào ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng đường hướng mục vụ phụng vụ, đào tạo đức tin giáo dân và chăm lo ơn gọi linh mục, tu sĩ toàn giáo phận.',
     image: '/images/bishop_5_nguyen_van_kham.jpg'
   }
 ];
 
-const DIOCESES_3_PROVINCES = [
-  {
-    province: 'Giáo tỉnh Hà Nội (Bắc Bộ)',
-    count: '11 Giáo phận',
-    list: 'Tổng Giáo phận Hà Nội, Bắc Ninh, Bùi Chu, Hải Phòng, Hà Tĩnh, Hưng Hóa, Lạng Sơn & Cao Bằng, Phát Diệm, Thái Bình, Thanh Hóa, Vinh.'
-  },
-  {
-    province: 'Giáo tỉnh Huế (Trung Bộ & Tây Nguyên)',
-    count: '6 Giáo phận',
-    list: 'Tổng Giáo phận Huế, Ban Mê Thuột, Đà Nẵng, Kon Tum, Nha Trang, Quy Nhơn.'
-  },
-  {
-    province: 'Giáo tỉnh Sài Gòn (Nam Bộ)',
-    count: '10 Giáo phận',
-    list: 'Tổng Giáo phận Sài Gòn - TP.HCM, Bà Rịa, Cần Thơ, Đà Lạt, Long Xuyên, Mỹ Tho, Phan Thiết, Phú Cường, Vĩnh Long, Xuân Lộc.'
-  }
-];
-
-const MILESTONES = [
-  {
-    year: 'Thế kỷ XVII - XIX',
-    title: 'Gieo mầm hạt giống Tin Mừng',
-    desc: 'Các vị thừa sai Dòng Phanxicô và Hội Thừa sai Paris (MEP) đặt chân đến vùng đất Mỹ Tho, lập họ đạo đầu tiên dâng kính Thánh Phanxicô Xaviê.'
-  },
-  {
-    year: '1866',
-    title: 'Nhà thờ Vĩnh Tường (Thánh Tâm)',
-    desc: 'Đức Giám mục Miche cho xây dựng nhà thờ Vĩnh Tường theo lối kiến trúc Hy Lạp - Rôma thời Phục Hưng để đáp ứng nhu cầu tôn giáo ngày càng tăng của giáo dân.'
-  },
-  {
-    year: '11/08/1906',
-    title: 'Khởi công ngôi Thánh Đường hiện nay',
-    desc: 'Linh mục Régnier (cố Gẫm) bắt đầu xây dựng ngôi nhà thờ thứ ba bên đại lộ Bourdais (nay là đường Hùng Vương) và hoàn thành vào năm 1910.'
-  },
-  {
-    year: '24/11/1960',
-    title: 'Thành lập Giáo phận Mỹ Tho',
-    desc: 'Thánh Giáo hoàng Gioan XXIII ban hành Sắc chỉ Venerabilium Nostrorum thiết lập Hàng Giáo phẩm Việt Nam và Giáo phận Mỹ Tho, nâng nhà thờ lên hàng Nhà thờ Chánh Tòa với tước hiệu Đức Mẹ Vô Nhiễm Nguyên Tội.'
-  },
-  {
-    year: 'Năm Thánh 2000',
-    title: 'Cung Hiến Nhà thờ Chánh Tòa',
-    desc: 'Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa và nhận Lễ Đức Mẹ Hồn Xác Lên Trời (15/08) làm Bổn mạng thứ hai.'
-  },
-  {
-    year: '2006',
-    title: 'Đại trùng tu Kỷ niệm 100 năm',
-    desc: 'Cha sở Giacôbê Hà Văn Xung tiến hành đại trùng tu: nới rộng cung thánh, lợp lại mái ngói, nâng cấp tháp chuông độc lập và thiết lập 14 Đàng Thánh Giá quanh khuôn viên.'
-  }
-];
-
-// Khăn Quàng Thiếu Nhi Thánh Thể Việt Nam
-const TNTT_SCARVES = [
+const TNTT_RANKS = [
   {
     id: 'au-nhi',
     name: 'Khăn Ngành Ấu Nhi (Chiên Con)',
     age: '4 – 9 tuổi',
     motto: 'Vâng Lời',
-    colorName: 'Màu Xanh Lá Mạ',
+    colorName: 'Xanh Lá Mạ (Viền Vàng)',
     mainColor: '#16A34A',
     borderColor: '#FBBF24',
-    crossColor: '#FBBF24',
-    symbolism: 'Màu của chồi non xanh tươi, tượng trưng cho tâm hồn đơn sơ, ngây thơ, luôn biết lắng nghe và vâng lời cha mẹ như Chúa Giêsu thời thơ ấu tại Nadarét.',
-    badgeLabel: 'ẤU NHI'
+    symbolism: 'Màu của chồi non xanh biếc, tượng trưng cho tâm hồn đơn sơ, trong trắng, luôn biết lắng nghe và vâng phục cha mẹ như Chúa Giêsu thời thơ ấu tại Nadarét.'
   },
   {
     id: 'thieu-nhi',
     name: 'Khăn Ngành Thiếu Nhi',
     age: '10 – 12 tuổi',
     motto: 'Hy Sinh',
-    colorName: 'Màu Xanh Dương (Viền Vàng)',
+    colorName: 'Xanh Dương Đậm (Viền Vàng)',
     mainColor: '#1D4ED8',
     borderColor: '#FBBF24',
-    crossColor: '#FBBF24',
-    symbolism: 'Màu xanh dương của bầu trời bao la và biển rộng, viền vàng của ánh sáng. Tượng trưng cho tâm hồn trong trắng, tinh thần vui tươi, cởi mở và sẵn sàng hy sinh vì tha nhân.',
-    badgeLabel: 'THIẾU NHI'
+    symbolism: 'Màu của bầu trời bao la và biển cả. Tượng trưng cho tâm hồn cởi mở, lòng trung thực, tinh thần vui tươi và sẵn sàng hy sinh phục vụ bạn bè, gia đình.'
   },
   {
     id: 'nghia-si',
     name: 'Khăn Ngành Nghĩa Sĩ',
     age: '13 – 15 tuổi',
     motto: 'Chinh Phục',
-    colorName: 'Màu Vàng Tươi (Viền Đỏ)',
-    mainColor: '#FACC15',
+    colorName: 'Vàng Nghệ (Viền Đỏ)',
+    mainColor: '#D97706',
     borderColor: '#DC2626',
-    crossColor: '#DC2626',
-    textColor: '#991B1B',
-    symbolism: 'Màu vàng tươi của ánh bình minh rực rỡ và mùa gặt lúa chín, viền màu đỏ của lửa nhiệt huyết. Tượng trưng cho ý chí kiên định, lòng dũng cảm chinh phục thử thách và làm chứng cho Chân Lý.',
-    badgeLabel: 'NGHĨA SĨ'
+    symbolism: 'Màu của bình minh rực rỡ và lúa chín trĩu hạt. Tượng trưng cho độ tuổi trưởng thành đức tin, khao khát dấn thân, chinh phục lý tưởng yêu thương của Phúc Âm.'
   },
   {
     id: 'hiep-si',
     name: 'Khăn Ngành Hiệp Sĩ',
-    age: '16 – 18 tuổi',
+    age: '16 – 17 tuổi',
     motto: 'Dấn Thân',
     colorName: 'Màu Nâu Đất (Viền Vàng)',
     mainColor: '#78350F',
     borderColor: '#FBBF24',
-    crossColor: '#FBBF24',
-    symbolism: 'Màu của đất mẹ phì nhiêu, viền vàng của ánh sáng. Biểu thị đức tính khiêm tốn, bền bỉ, kiên nhẫn và tinh thần dấn thân phục vụ Giáo xứ và xã hội.',
-    badgeLabel: 'HIỆP SĨ'
+    symbolism: 'Màu của mảnh đất màu mỡ phù sa sông Tiền. Tượng trưng cho tinh thần vững chãi, khiêm tốn, sẵn sàng đem sức trẻ và tài năng gieo rắc Tin Mừng giữa đời.'
   },
   {
     id: 'huynh-truong',
-    name: 'Khăn Huynh Trưởng & Dự Trưởng',
-    age: 'Từ 18 tuổi',
+    name: 'Khăn Huynh Trưởng',
+    age: 'Từ 18 tuổi trở lên',
     motto: 'Phụng Sự',
-    colorName: 'Màu Đỏ Tươi (Viền Vàng)',
-    mainColor: '#B71C1C',
+    colorName: 'Đỏ Thắm (Viền Vàng)',
+    mainColor: '#DC2626',
     borderColor: '#FBBF24',
-    crossColor: '#FBBF24',
-    symbolism: 'Màu đỏ của Máu Thánh Tử Đạo và Lửa Thánh Thần, viền vàng của vinh quang Nước Chúa. Biểu trưng cho lòng mến nồng nàn, tinh thần lãnh đạo đầy tinh thần phục vụ và hy sinh vô vị lợi.',
-    badgeLabel: 'HUYNH TRƯỞNG'
-  },
-  {
-    id: 'tro-ta',
-    name: 'Khăn Trợ Tá (Phụ Huynh & Cố Vấn)',
-    age: 'Phụ huynh & Ân nhân',
-    motto: 'Nhiệt Thành',
-    colorName: 'Màu Đỏ Tươi (Viền Trắng)',
-    mainColor: '#B71C1C',
-    borderColor: '#FFFFFF',
-    crossColor: '#FFFFFF',
-    symbolism: 'Màu đỏ nhiệt thành của tình yêu thương gia đình, viền trắng của lòng vị tha trong sáng, luôn đồng hành nâng đỡ phong trào về mọi mặt.',
-    badgeLabel: 'TRỢ TÁ'
-  },
-  {
-    id: 'tuyen-uy',
-    name: 'Khăn Tuyên Úy & Trợ Úy',
-    age: 'Linh mục & Tu sĩ',
-    motto: 'Tận Tụy',
-    colorName: 'Màu Trắng (Viền Vàng)',
-    mainColor: '#FFFFFF',
-    borderColor: '#D97706',
-    crossColor: '#D97706',
-    textColor: '#1E293B',
-    symbolism: 'Màu trắng tinh tuyền của Chúa Kitô Linh Mục và Bánh Thánh Thể, viền vàng của vương quyền mục tử. Đại diện Chúa Kitô chăm sóc và nuôi dưỡng đoàn chiên.',
-    badgeLabel: 'TUYÊN ÚY'
+    symbolism: 'Màu máu Tử Đạo và Lửa Thánh Thể. Tượng trưng cho lòng nhiệt huyết tông đồ, đức ái hy sinh vô điều kiện để hướng dẫn các em đoàn sinh đến với Chúa Kitô.'
   }
-];
-
-// SVG Icon mô phỏng Khăn Quàng TNTT chuẩn mực
-function ScarfVisualBadge({
-  mainColor,
-  borderColor,
-  crossColor,
-  size = 56
-}: {
-  mainColor: string;
-  borderColor: string;
-  crossColor: string;
-  size?: number;
-}) {
-  return (
-    <svg width={size} height={size * 0.85} viewBox="0 0 100 85" fill="none" style={{ filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.15))' }}>
-      {/* Thân khăn tam giác */}
-      <polygon points="10,10 90,10 50,78" fill={mainColor} stroke={borderColor} strokeWidth="6" strokeLinejoin="round" />
-      {/* Thánh Giá biểu tượng sau lưng khăn */}
-      <rect x="46" y="24" width="8" height="24" rx="2" fill={crossColor} />
-      <rect x="38" y="30" width="24" height="8" rx="2" fill={crossColor} />
-    </svg>
-  );
-}
-
-interface RealPhoto {
-  src: string;
-  title: string;
-  desc: string;
-  category: 'cathedral' | 'vatican' | 'liturgy' | 'community';
-  categoryLabel: string;
-  source: string;
-}
-
-const REAL_GALLERY_IMAGES: RealPhoto[] = [
-  // 1. Giáo Xứ Chánh Tòa Mỹ Tho
-  {
-    src: '/images/nhatho1.jpg',
-    title: 'Mặt Tiền Nhà Thờ Chánh Tòa Mỹ Tho',
-    desc: 'Kiến trúc Gothic - Rôma Phục Hưng uy nghiêm với tháp chuông cao vút tại trung tâm số 32 đường Hùng Vương, TP. Mỹ Tho.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo xứ Chánh Tòa'
-  },
-  {
-    src: '/images/nhatho2.jpg',
-    title: 'Toàn Cảnh Thánh Đường Chánh Tòa (Góc Nghiêng)',
-    desc: 'Toàn cảnh ngôi Thánh Đường cổ kính hơn 115 năm tuổi rợp bóng mát cây xanh bên bờ sông Tiền hiền hòa.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo phận Mỹ Tho'
-  },
-  {
-    src: '/images/nhatho_thanh_le.jpg',
-    title: 'Cung Thánh & Bàn Thờ Tôn Nghiêm',
-    desc: 'Không gian cung thánh trang nghiêm, nơi Đức Giám Mục Giáo phận và các Linh mục cử hành các đại lễ phụng vụ trọng thể.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo xứ Chánh Tòa'
-  },
-  {
-    src: '/images/nhatho3.jpg',
-    title: 'Khung Vòm Kiến Trúc Gothic - Phục Hưng',
-    desc: 'Hệ thống cửa sổ vòm cuốn cùng các bức tranh kính màu nghệ thuật diễn tả cuộc đời Chúa Giêsu và Mẹ Maria.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo xứ Chánh Tòa'
-  },
-  {
-    src: '/images/nhatho4.jpg',
-    title: 'Khuôn Viên & Tháp Chuông Nhà Thờ Chánh Tòa',
-    desc: 'Tháp chuông độc lập cao 24m ngân vang từng hồi chuông trầm bổng báo hiệu giờ lễ và kinh nguyện cho toàn thành phố.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo xứ Chánh Tòa'
-  },
-  {
-    src: '/images/nhatho_dai_duc_me.jpg',
-    title: 'Đài Đức Mẹ Trong Khuôn Viên Chánh Tòa',
-    desc: 'Nơi cộng đoàn giáo dân và khách hành hương đến dâng hoa, đọc kinh Mân Côi và khấn xin cùng Mẹ Maria.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo xứ Chánh Tòa'
-  },
-  {
-    src: '/images/nhatho_bung_binh.jpg',
-    title: 'Ngã Ba Hùng Vương Trước Cổng Nhà Thờ',
-    desc: 'Vị trí đắc địa tại giao lộ trung tâm thành phố Mỹ Tho, biểu tượng văn hóa tôn giáo trăm năm của địa phương.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Tư liệu Giáo xứ Chánh Tòa'
-  },
-  {
-    src: '/images/nhatho_mat_tien_vintage.jpg',
-    title: 'Tư Liệu Ảnh Cổ Nhà Thờ Chánh Tòa (Thế Kỷ XX)',
-    desc: 'Hình ảnh tư liệu lịch sử quý giá ghi lại diện mạo Nhà Thờ Chánh Tòa qua các giai đoạn thăng trầm của lịch sử.',
-    category: 'cathedral',
-    categoryLabel: 'Chánh Tòa Mỹ Tho',
-    source: 'Lưu trữ Giáo phận Mỹ Tho'
-  },
-
-  // 2. Phụng Vụ & Thánh Lễ
-  {
-    src: '/images/thanh_le_dong_te_my_tho.jpg',
-    title: 'Đại Lễ Đồng Tế Linh Mục Đoàn Tại Cung Thánh',
-    desc: 'Đức Cha Phêrô Nguyễn Văn Khảm cùng linh mục đoàn toàn giáo phận dâng Thánh lễ Tạ ơn và Truyền Dầu.',
-    category: 'liturgy',
-    categoryLabel: 'Phụng Vụ & Thánh Lễ',
-    source: 'giaophanmytho.net'
-  },
-  {
-    src: '/images/ruoc_le_cung_thanh.jpg',
-    title: 'Nghi Thức Rước Lễ Phụng Vụ Trang Nghiêm',
-    desc: 'Nghi thức phụng vụ Lời Chúa và Thánh Thể diễn ra sốt sắng theo quy chuẩn Phụng vụ Tòa Thánh.',
-    category: 'liturgy',
-    categoryLabel: 'Phụng Vụ & Thánh Lễ',
-    source: 'giaophanmytho.net'
-  },
-  {
-    src: '/images/duc_cha_giang_thuyet.jpg',
-    title: 'Đức Giám Mục Chủ Tế & Giảng Thuyết',
-    desc: 'Đức Cha Phêrô Nguyễn Văn Khảm chia sẻ Lời Chúa, nuôi dưỡng đức tin cho cộng đoàn phụng vụ.',
-    category: 'liturgy',
-    categoryLabel: 'Phụng Vụ & Thánh Lễ',
-    source: 'giaophanmytho.net'
-  },
-
-  // 3. Sinh Hoạt Cộng Đoàn & TNTT
-  {
-    src: '/images/hiep_thong_giao_dan.jpg',
-    title: 'Cộng Đoàn Hiệp Thông & Đời Sống Đức Tin',
-    desc: 'Bà con giáo dân, huynh trưởng và thiếu nhi các hội đoàn tề tựu tham dự các sự kiện mục vụ và học hỏi giáo lý.',
-    category: 'community',
-    categoryLabel: 'Sinh Hoạt Giáo Xứ',
-    source: 'Tư liệu Giáo phận Mỹ Tho'
-  },
-  {
-    src: '/images/chuc_mung_giam_muc.jpg',
-    title: 'Cộng Đoàn Chúc Mừng Đức Giám Mục',
-    desc: 'Đại diện các hội đoàn và thiếu nhi trong giáo xứ chúc mừng Đức Cha nhân dịp đại lễ bổn mạng.',
-    category: 'community',
-    categoryLabel: 'Sinh Hoạt Giáo Xứ',
-    source: 'giaophanmytho.net'
-  },
-  {
-    src: '/images/ca_doan_phung_vu.jpg',
-    title: 'Ca Đoàn Phụng Vụ Thánh Ca Chánh Tòa',
-    desc: 'Ca đoàn cất cao lời ca tiếng hát du dương dâng lên Thiên Chúa và Mẹ Maria trong các Thánh Lễ.',
-    category: 'community',
-    categoryLabel: 'Sinh Hoạt Giáo Xứ',
-    source: 'Ca đoàn Chánh Tòa Mỹ Tho'
-  },
-  {
-    src: '/images/cong_doan_phung_vu.jpg',
-    title: 'Cộng Đoàn Dân Chúa Hiệp Thông Sốt Sắng',
-    desc: 'Đông đảo quý tu sĩ nam nữ, chủng sinh và bà con giáo dân tham dự thánh lễ tạ ơn Thiên Chúa.',
-    category: 'community',
-    categoryLabel: 'Sinh Hoạt Giáo Xứ',
-    source: 'giaophanmytho.net'
-  },
-  {
-    src: '/images/linh_muc_doan_my_tho.jpg',
-    title: 'Linh Mục Đoàn Giáo Phận Mỹ Tho',
-    desc: 'Quý Cha trong linh mục đoàn toàn giáo phận tề tựu trong tinh thần hiệp thông huynh đệ.',
-    category: 'community',
-    categoryLabel: 'Sinh Hoạt Giáo Xứ',
-    source: 'giaophanmytho.net'
-  },
-
-  // 4. Tòa Thánh & Giáo Hội
-  {
-    src: '/images/vatican_st_peter.jpg',
-    title: 'Đền Thờ & Quảng Trường Thánh Phêrô',
-    desc: 'Trung tâm tối cao của Tòa Thánh Vatican và Giáo Hội Công Giáo hoàn vũ tại Rôma.',
-    category: 'vatican',
-    categoryLabel: 'Tòa Thánh Vatican',
-    source: 'Vatican News'
-  },
-  {
-    src: '/images/pope_leo_xiv.jpg',
-    title: 'Đức Thánh Cha Lêô XIV',
-    desc: 'Giáo hoàng thứ 267 của Giáo Hội Công Giáo Rôma (Tựu nhiệm: 08/05/2025).',
-    category: 'vatican',
-    categoryLabel: 'Tòa Thánh Vatican',
-    source: 'Tư liệu Tòa Thánh'
-  },
-  {
-    src: '/images/hdgmvn_banner.jpg',
-    title: 'Huy Hiệu Hội Đồng Giám Mục Việt Nam',
-    desc: 'HĐGMVN là cơ quan lãnh đạo mục vụ tối cao của 27 Giáo phận trên toàn lãnh thổ Việt Nam.',
-    category: 'vatican',
-    categoryLabel: 'Giáo Hội Việt Nam',
-    source: 'HĐGMVN (hdgmvietnam.com)'
-  }
-];
-
-const SECTIONS = [
-  { id: 'vatican', label: 'Tòa Thánh Vatican', icon: Globe },
-  { id: 'vietnam', label: 'Giáo Hội Việt Nam', icon: Cross },
-  { id: 'diocese', label: 'Giáo Phận Mỹ Tho', icon: ShieldCheck },
-  { id: 'bishops', label: '5 Đời Giám Mục', icon: Award },
-  { id: 'cathedral', label: 'Chánh Tòa Mỹ Tho', icon: Church },
-  { id: 'tntt', label: 'Khăn Quàng TNTT', icon: Flame },
-  { id: 'gallery', label: 'Thư Viện Ảnh (18)', icon: Layers }
 ];
 
 export default function GioiThieuPage() {
-  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
-  const [galleryFilter, setGalleryFilter] = useState<'all' | 'cathedral' | 'liturgy' | 'community' | 'vatican'>('all');
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const filteredGallery = REAL_GALLERY_IMAGES.filter((p) => {
-    if (galleryFilter === 'all') return true;
-    return p.category === galleryFilter;
-  });
-
-  const handlePrevPhoto = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (selectedPhotoIndex === null) return;
-    setSelectedPhotoIndex((selectedPhotoIndex - 1 + REAL_GALLERY_IMAGES.length) % REAL_GALLERY_IMAGES.length);
-  };
-
-  const handleNextPhoto = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (selectedPhotoIndex === null) return;
-    setSelectedPhotoIndex((selectedPhotoIndex + 1) % REAL_GALLERY_IMAGES.length);
-  };
+  const { t } = useLanguage();
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; caption: string } | null>(null);
+  const [tocOpen, setTocOpen] = useState(true);
 
   return (
-    <main
+    <div
       style={{
+        backgroundColor: 'var(--background)',
+        color: 'var(--color-dark)',
         minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        background: 'var(--color-bg)',
-        color: 'var(--color-dark)'
+        paddingBottom: '80px'
       }}
     >
-      {/* ========================================================================= */}
-      {/* 1. HERO HEADER */}
-      {/* ========================================================================= */}
-      <header
-        style={{
-          position: 'relative',
-          backgroundImage:
-            'linear-gradient(180deg, rgba(15, 8, 8, 0.82) 0%, rgba(45, 15, 15, 0.70) 50%, rgba(15, 8, 8, 0.92) 100%), url("/images/jesus_antique_banner.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 22%',
-          color: '#FFFFFF',
-          padding: '20px 14px 26px',
-          borderBottom: '1px solid rgba(217, 119, 6, 0.35)',
-          boxShadow: 'inset 0 -12px 28px rgba(0,0,0,0.5)'
-        }}
-      >
-        <div style={{ maxWidth: '960px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
-          {/* Breadcrumb row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-            <Link
-              href="/"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '34px',
-                height: '34px',
-                borderRadius: '50%',
-                background: 'rgba(0, 0, 0, 0.5)',
-                color: '#FFFFFF',
-                border: '1px solid rgba(253, 230, 138, 0.3)',
-                backdropFilter: 'blur(6px)',
-                textDecoration: 'none',
-                flexShrink: 0
-              }}
-              title="Về Trang Chủ"
-            >
-              <ArrowLeft size={16} />
-            </Link>
-
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontSize: '0.78rem',
-                color: '#FDE68A',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis'
-              }}
-            >
-              <Link href="/" style={{ color: '#FDE68A', textDecoration: 'none', opacity: 0.9 }}>
-                Trang chủ
-              </Link>
-              <span>/</span>
-              <span style={{ fontWeight: 700, color: '#FFFFFF' }}>Lược Sử &amp; Giới Thiệu</span>
-            </div>
-          </div>
-
-          <div>
-            <div
-              style={{
-                fontSize: '0.7rem',
-                fontWeight: 800,
-                color: '#FDE68A',
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-                marginBottom: '3px'
-              }}
-            >
-              GIÁO HỘI HOÀN VŨ • VIỆT NAM • GIÁO PHẬN MỸ THO • TNTT
-            </div>
-            <h1
-              style={{
-                fontSize: 'clamp(1.25rem, 4.2vw, 1.85rem)',
-                fontWeight: 900,
-                textTransform: 'uppercase',
-                margin: 0,
-                color: '#FFFFFF',
-                lineHeight: 1.25,
-                textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)'
-              }}
-            >
-              Lược Sử Giáo Hội &amp; Chánh Tòa Mỹ Tho
-            </h1>
-            <p
-              style={{
-                margin: '6px 0 0',
-                fontSize: '0.84rem',
-                color: '#E2E8F0',
-                lineHeight: 1.45,
-                maxWidth: '760px',
-                opacity: 0.95
-              }}
-            >
-              Hành trình dòng lịch sử đức tin sống động từ Tòa Thánh Vatican, Giáo Hội Công Giáo Việt Nam, Giáo phận Mỹ Tho đến Ngôi Thánh Đường Mẹ Chánh Tòa Đức Mẹ Vô Nhiễm Nguyên Tội.
-            </p>
-          </div>
-        </div>
-      </header>
-
-      {/* ========================================================================= */}
-      {/* 2. NAVIGATION PILLS (STICKY) */}
-      {/* ========================================================================= */}
+      {/* =========================================================================
+          TOP BREADCRUMB & HEADER
+          ========================================================================= */}
       <div
         style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 30,
-          backgroundColor: 'var(--color-card-bg)',
           borderBottom: '1px solid var(--color-border-subtle)',
-          padding: '8px 12px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+          backgroundColor: 'var(--color-card-bg)',
+          padding: '12px 20px'
         }}
       >
         <div
           style={{
-            maxWidth: '960px',
+            maxWidth: '1200px',
             margin: '0 auto',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
-            overflowX: 'auto',
-            scrollbarWidth: 'none'
+            justifyContent: 'space-between',
+            fontSize: '0.82rem',
+            color: 'var(--color-subtle)'
           }}
         >
-          {SECTIONS.map((sec) => {
-            const Icon = sec.icon;
-            return (
-              <button
-                key={sec.id}
-                type="button"
-                onClick={() => scrollToSection(sec.id)}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: '20px',
-                  border: '1px solid var(--color-border-subtle)',
-                  backgroundColor: 'var(--color-input-bg)',
-                  color: 'var(--color-dark)',
-                  fontSize: '0.76rem',
-                  fontWeight: 700,
-                  whiteSpace: 'nowrap',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <Icon size={13} color="var(--color-red)" />
-                <span>{sec.label}</span>
-              </button>
-            );
-          })}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Link
+              href="/"
+              style={{
+                color: 'var(--color-red)',
+                fontWeight: 700,
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+            >
+              <ArrowLeft size={14} /> Trang Chủ
+            </Link>
+            <span>/</span>
+            <span>Tài Liệu Bách Khoa</span>
+            <span>/</span>
+            <span style={{ color: 'var(--color-dark)', fontWeight: 700 }}>Nhà Thờ Chính Tòa Mỹ Tho</span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem' }}>
+            <Globe size={14} color="#D4AF37" />
+            <span>Bách khoa toàn thư Công Giáo</span>
+          </div>
         </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* 3. MAIN CONTENT BODY */}
-      {/* ========================================================================= */}
+      {/* =========================================================================
+          MAIN CONTAINER (WIKIPEDIA LAYOUT: ARTICLE BODY + INFOBOX)
+          ========================================================================= */}
       <div
         style={{
-          maxWidth: '960px',
+          maxWidth: '1200px',
           margin: '0 auto',
-          padding: '20px 14px 64px',
+          padding: '24px 20px',
           display: 'flex',
-          flexDirection: 'column',
-          gap: '24px',
-          width: '100%'
+          gap: '32px',
+          alignItems: 'flex-start',
+          boxSizing: 'border-box'
         }}
+        className="wiki-container"
       >
-        {/* ========================================================================= */}
-        {/* PHẦN 1: TÒA THÁNH VATICAN */}
-        {/* ========================================================================= */}
-        <section
-          id="vatican"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-            TRUNG TÂM GIÁO HỘI TOÀN CẦU
-          </div>
-          <h2 style={{ margin: '0 0 14px', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-            1. Tòa Thánh Vatican &amp; Đức Giáo Hoàng
-          </h2>
+        {/* =======================================================================
+            CỘT TRÁI: NỘI DUNG CHÍNH (MAIN ARTICLE CONTENT)
+            ======================================================================= */}
+        <article style={{ flex: 1, minWidth: 0 }}>
+          {/* Article Title */}
+          <h1
+            style={{
+              fontSize: '2.1rem',
+              fontWeight: 800,
+              fontFamily: 'serif',
+              margin: '0 0 8px',
+              color: 'var(--color-dark)',
+              borderBottom: '1.5px solid var(--color-border-subtle)',
+              paddingBottom: '10px',
+              lineHeight: 1.2
+            }}
+          >
+            Nhà thờ chính tòa Mỹ Tho
+          </h1>
 
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '16px',
-              alignItems: 'start'
+              fontSize: '0.86rem',
+              color: 'var(--color-subtle)',
+              fontStyle: 'italic',
+              marginBottom: '18px'
             }}
           >
-            {/* Ảnh St. Peter */}
+            Bách khoa toàn thư Công Giáo — Giáo Xứ Chánh Tòa &amp; Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
+          </div>
+
+          {/* Dẫn nhập tổng quan (Lead Paragraph) */}
+          <p style={{ fontSize: '0.98rem', lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
+            <strong>Nhà thờ chính tòa Mỹ Tho</strong> (tên hiệu chính thức: <em>Nhà thờ Đức Mẹ Vô Nhiễm Nguyên Tội</em>) là
+            nhà thờ chính tòa của <strong>Giáo phận Mỹ Tho</strong>, tọa lạc tại số 32 đại lộ Hùng Vương, phường 7, thành
+            phố Mỹ Tho, tỉnh Tiền Giang, Việt Nam. Đây là trung tâm phụng vụ, đời sống đức tin và mục vụ trọng yếu của
+            cộng đoàn Công giáo thuộc ba tỉnh Tiền Giang, Long An và Đồng Tháp thuộc Giáo tỉnh Sài Gòn.
+          </p>
+
+          <p style={{ fontSize: '0.98rem', lineHeight: 1.75, margin: '0 0 20px', textAlign: 'justify' }}>
+            Ngôi thánh đường hiện nay được khởi công xây dựng vào ngày 11 tháng 8 năm 1906 bởi linh mục Régnier (cố Gẫm)
+            và hoàn thành vào năm 1910 theo phong cách kiến trúc Phục Hưng (Renaissance) kết hợp các vòm cuốn Hy Lạp -
+            Rôma cổ điển. Ngày 24 tháng 11 năm 1960, cùng với sắc chỉ thiết lập Hàng Giáo phẩm Việt Nam của Thánh Giáo hoàng
+            Gioan XXIII, ngôi thánh đường chính thức được tôn phong làm <strong>Nhà thờ Chính Tòa</strong> của Giáo phận Mỹ
+            Tho.
+          </p>
+
+          {/* =====================================================================
+              MỤC LỤC BÁCH KHOA (TABLE OF CONTENTS)
+              ===================================================================== */}
+          <div
+            style={{
+              backgroundColor: 'var(--color-card-bg)',
+              border: '1px solid var(--color-border-subtle)',
+              borderRadius: '10px',
+              padding: '16px 20px',
+              margin: '24px 0 32px',
+              display: 'inline-block',
+              minWidth: '280px',
+              maxWidth: '100%',
+              boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
+            }}
+          >
             <div
               style={{
-                position: 'relative',
-                width: '100%',
-                aspectRatio: '16/10',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                backgroundColor: 'var(--color-input-bg)',
-                border: '1px solid var(--color-border-subtle)'
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                fontWeight: 800,
+                fontSize: '0.92rem',
+                borderBottom: tocOpen ? '1px solid var(--color-border-subtle)' : 'none',
+                paddingBottom: tocOpen ? '8px' : '0',
+                marginBottom: tocOpen ? '10px' : '0'
+              }}
+              onClick={() => setTocOpen(!tocOpen)}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <BookOpen size={16} color="var(--color-red)" />
+                <span>Mục lục nội dung</span>
+              </div>
+              <span style={{ fontSize: '0.75rem', color: 'var(--color-red)' }}>
+                [{tocOpen ? 'ẩn' : 'hiện'}]
+              </span>
+            </div>
+
+            {tocOpen && (
+              <ol
+                style={{
+                  margin: 0,
+                  paddingLeft: '22px',
+                  fontSize: '0.88rem',
+                  lineHeight: 1.8,
+                  color: 'var(--color-red)'
+                }}
+              >
+                <li>
+                  <a href="#lich-su" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Lịch sử hình thành và phát triển
+                  </a>
+                  <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
+                    <li>
+                      <a href="#lich-su-so-khai" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#lich-su-xay-dung" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#lich-su-chinh-toa" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Thành lập Giáo phận &amp; Nâng lên hàng Chính Tòa (1960)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#lich-su-cung-hien" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <a href="#kien-truc" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Kiến trúc &amp; Nghệ thuật Thánh
+                  </a>
+                  <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
+                    <li>
+                      <a href="#kien-truc-mat-tien" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Mặt tiền và tháp chuông vươn cao
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#kien-truc-cung-thanh" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Gian Cung Thánh &amp; Mái vòm Romanesque
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#kien-truc-khuon-vien" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Đài Đức Mẹ &amp; 14 Đàng Thánh Giá
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <a href="#giam-muc" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Các Đời Giám Mục Giáo Phận Mỹ Tho
+                  </a>
+                </li>
+                <li>
+                  <a href="#xu-doan" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
+                  </a>
+                  <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
+                    <li>
+                      <a href="#xu-doan-ton-chi" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#xu-doan-khan-quang" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
+                      </a>
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  <a href="#phung-vu" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Giờ Thánh Lễ &amp; Mục Vụ
+                  </a>
+                </li>
+                <li>
+                  <a href="#tai-lieu" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Chú thích &amp; Tài liệu tham khảo
+                  </a>
+                </li>
+              </ol>
+            )}
+          </div>
+
+          {/* =====================================================================
+              1. LỊCH SỬ HÌNH THÀNH & PHÁT TRIỂN
+              ===================================================================== */}
+          <section id="lich-su" style={{ marginBottom: '36px' }}>
+            <h2
+              style={{
+                fontSize: '1.45rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                paddingBottom: '6px',
+                marginTop: '32px'
               }}
             >
-              <Image
-                src="/images/vatican_st_peter.jpg"
-                alt="Quảng trường & Đền thờ Thánh Phêrô Vatican"
-                fill
-                sizes="(max-width: 768px) 100vw, 450px"
-                style={{ objectFit: 'cover' }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)'
-                }}
-              />
-              <div style={{ position: 'absolute', bottom: '10px', left: '12px', right: '12px', color: '#FFFFFF', fontSize: '0.8rem', fontWeight: 800 }}>
-                Vương Cung Thánh Đường Thánh Phêrô (Rôma)
-              </div>
-            </div>
+              1. Lịch sử hình thành và phát triển
+            </h2>
 
-            {/* Bài viết */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem', lineHeight: 1.7, color: 'var(--color-dark)' }}>
-              <p style={{ margin: 0 }}>
-                <strong>Thành quốc Vatican</strong> (Stato della Città del Vaticano) là quốc gia độc lập nhỏ nhất thế giới tọa lạc tại Rôma (Ý), là trung tâm đầu não thiêng liêng của hơn <strong>1,38 tỷ tín hữu Công giáo</strong> trên toàn địa cầu.
-              </p>
-              <p style={{ margin: 0 }}>
-                <strong>Vị thế Đức Thánh Cha:</strong> Đức Giáo hoàng là Giám mục Rôma, Đấng kế vị Thánh Phêrô Tông Đồ, là Thủ lãnh hữu hình của Hội Thánh hoàn vũ và là Cha chung của toàn thể Dân Chúa.
-              </p>
-              <div
-                style={{
-                  padding: '10px 12px',
-                  borderRadius: '10px',
-                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                  borderLeft: '3px solid #D4AF37',
-                  fontSize: '0.8rem',
-                  lineHeight: 1.5
-                }}
-              >
-                <div style={{ fontWeight: 800, color: '#B45309', marginBottom: '2px' }}>Đức Thánh Cha Lêô XIV (Leo XIV)</div>
-                <div>Vị Giáo hoàng thứ 267 của Giáo Hội Công Giáo Rôma (Tựu nhiệm: 08/05/2025).</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* PHẦN 2: GIÁO HỘI CÔNG GIÁO VIỆT NAM */}
-        {/* ========================================================================= */}
-        <section
-          id="vietnam"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-            HÀNG GIÁO PHẨM VIỆT NAM
-          </div>
-          <h2 style={{ margin: '0 0 14px', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-            2. Giáo Hội Công Giáo Việt Nam &amp; 3 Giáo Tỉnh
-          </h2>
-
-          <div style={{ fontSize: '0.86rem', lineHeight: 1.7, color: 'var(--color-dark)', marginBottom: '14px' }}>
-            Hạt giống Tin Mừng được gieo vào đất Việt từ thế kỷ XVI (năm 1533). Ngày <strong>24/11/1960</strong>, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến <em>Venerabilium Nostrorum</em> chính thức thiết lập <strong>Hàng Giáo phẩm Việt Nam</strong> với 3 Giáo tỉnh gồm 27 Giáo phận:
-          </div>
-
-          {/* 3 Giáo Tỉnh Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px' }}>
-            {DIOCESES_3_PROVINCES.map((prov, idx) => (
-              <div
-                key={idx}
-                style={{
-                  padding: '12px',
-                  borderRadius: '12px',
-                  backgroundColor: 'var(--color-input-bg)',
-                  border: '1px solid var(--color-border-subtle)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '6px'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
-                  <span style={{ fontSize: '0.86rem', fontWeight: 900, color: 'var(--color-red)' }}>
-                    {prov.province}
-                  </span>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, padding: '2px 8px', borderRadius: '10px', backgroundColor: 'rgba(183, 28, 28, 0.1)', color: 'var(--color-red)' }}>
-                    {prov.count}
-                  </span>
-                </div>
-                <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--color-dark)', lineHeight: 1.5 }}>
-                  {prov.list}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* PHẦN 3: GIÁO PHẬN MỸ THO */}
-        {/* ========================================================================= */}
-        <section
-          id="diocese"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-            GIÁO PHẬN ĐỊA PHƯƠNG
-          </div>
-          <h2 style={{ margin: '0 0 14px', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-            3. Giáo Phận Mỹ Tho (Thành lập 1960)
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem', lineHeight: 1.7, color: 'var(--color-dark)' }}>
-            <p style={{ margin: 0 }}>
-              <strong>Địa bàn mục vụ:</strong> Giáo phận Mỹ Tho trải dài trên địa bàn 3 tỉnh Tây Nam Bộ: <strong>Tiền Giang, Long An</strong> và 2/3 tỉnh <strong>Đồng Tháp</strong>, với diện tích tự nhiên khoảng 9.262 km².
-            </p>
-            <p style={{ margin: 0 }}>
-              <strong>Tổ chức hạt mục vụ:</strong> Toàn giáo phận hiện được chia thành <strong>6 Giáo hạt</strong>: Hạt Mỹ Tho, Hạt Cái Bè, Hạt Tân An, Hạt Đức Hòa, Hạt Thạnh Hóa và Hạt Cao Lãnh, quy tụ hơn 110 giáo xứ và hơn 130.000 tín hữu.
-            </p>
-            <p style={{ margin: 0 }}>
-              <strong>Bổn mạng Giáo phận:</strong> Thánh Giuse Bạn Trăm Năm Đức Maria (kính ngày 19/03).
-            </p>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* PHẦN 4: 5 ĐỜI GIÁM MỤC */}
-        {/* ========================================================================= */}
-        <section
-          id="bishops"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-            CÁC VỊ CHỦ CHĂN GIÁO PHẬN
-          </div>
-          <h2 style={{ margin: '0 0 14px', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-            4. Năm Đời Giám Mục Giáo Phận Mỹ Tho (1960 – Nay)
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {BISHOPS.map((b, idx) => (
-              <div
-                key={idx}
-                style={{
-                  display: 'flex',
-                  gap: '12px',
-                  padding: '12px',
-                  borderRadius: '12px',
-                  backgroundColor: 'var(--color-input-bg)',
-                  border: '1px solid var(--color-border-subtle)',
-                  alignItems: 'center',
-                  flexWrap: 'wrap'
-                }}
-              >
-                {/* Bishop Portrait Image (FULL COVER, NO BLACK LETTERBOX) */}
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '88px',
-                    height: '115px',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    flexShrink: 0,
-                    backgroundColor: 'var(--color-bg)',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
-                  }}
-                >
-                  <Image
-                    src={b.image}
-                    alt={b.name}
-                    fill
-                    sizes="88px"
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-
-                <div style={{ flex: 1, minWidth: '220px', display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                  <div style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-red)', textTransform: 'uppercase' }}>
-                    {b.role}
-                  </div>
-                  <h3 style={{ margin: 0, fontSize: '0.96rem', fontWeight: 900, color: 'var(--color-dark)' }}>
-                    {b.name}
-                  </h3>
-                  <div style={{ fontSize: '0.76rem', fontWeight: 700, color: '#B45309', fontStyle: 'italic', marginBottom: '2px' }}>
-                    Khẩu hiệu: {b.motto}
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--color-dark)', lineHeight: 1.45 }}>
-                    {b.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* PHẦN 5: NHÀ THỜ CHÁNH TÒA MỸ THO (ALBUM ĐẶC SẮC) */}
-        {/* ========================================================================= */}
-        <section
-          id="cathedral"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-            NGÔI THÁNH ĐƯỜNG MẸ CỦA GIÁO PHẬN
-          </div>
-          <h2 style={{ margin: '0 0 14px', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-            5. Nhà Thờ Chánh Tòa Đức Mẹ Vô Nhiễm Nguyên Tội Mỹ Tho
-          </h2>
-
-          {/* Ảnh lớn mặt tiền thánh đường (FULL COVER) */}
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              aspectRatio: '16/9',
-              borderRadius: '14px',
-              overflow: 'hidden',
-              marginBottom: '16px',
-              backgroundColor: 'var(--color-bg)',
-              boxShadow: '0 4px 14px rgba(0,0,0,0.08)'
-            }}
-          >
-            <Image
-              src="/images/nhatho1.jpg"
-              alt="Nhà Thờ Chánh Tòa Mỹ Tho"
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 900px"
-              style={{ objectFit: 'cover' }}
-            />
+            {/* Minh họa ảnh nổi bên phải chuẩn Wikipedia */}
             <div
               style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%)'
+                float: 'right',
+                width: '300px',
+                margin: '8px 0 16px 20px',
+                padding: '8px',
+                backgroundColor: 'var(--color-card-bg)',
+                border: '1px solid var(--color-border-subtle)',
+                borderRadius: '8px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
               }}
-            />
-            <div style={{ position: 'absolute', bottom: '12px', left: '14px', right: '14px', color: '#FFFFFF' }}>
-              <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#FDE68A', textTransform: 'uppercase' }}>
-                TRUNG TÂM PHỤNG VỤ &amp; HÀNH HƯƠNG TRĂM NĂM
+              className="wiki-thumb"
+            >
+              <div
+                style={{ position: 'relative', width: '100%', height: '190px', cursor: 'pointer', borderRadius: '6px', overflow: 'hidden' }}
+                onClick={() => setLightboxImage({ src: '/images/nhatho2.jpg', caption: 'Toàn cảnh ngôi thánh đường Chánh Tòa Mỹ Tho cổ kính xây dựng năm 1906.' })}
+              >
+                <Image
+                  src="/images/nhatho2.jpg"
+                  alt="Nhà thờ Chánh Tòa Mỹ Tho xưa"
+                  fill
+                  sizes="300px"
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
-              <div style={{ fontSize: 'clamp(1.05rem, 3vw, 1.35rem)', fontWeight: 900 }}>
-                Nhà Thờ Chánh Tòa Mỹ Tho (Khởi công 1906 – Hoàn thành 1910)
+              <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '6px', lineHeight: 1.4 }}>
+                Toàn cảnh ngôi thánh đường Chánh Tòa Mỹ Tho cổ kính xây dựng năm 1906.
               </div>
             </div>
-          </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem', lineHeight: 1.7, color: 'var(--color-dark)', marginBottom: '16px' }}>
-            <p style={{ margin: 0 }}>
-              <strong>Vị trí tọa lạc:</strong> Số 32 đường Hùng Vương, phường 7, thành phố Mỹ Tho, tỉnh Tiền Giang. Đây là ngôi thánh đường thứ ba của họ đạo Mỹ Tho, do Linh mục Régnier (cố Gẫm) khởi công xây dựng vào ngày <strong>11 tháng 8 năm 1906</strong> và hoàn thành vào năm 1910.
+            <h3 id="lich-su-so-khai" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+              1.1. Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Hạt giống Tin Mừng được gieo vãi tại vùng đất Mỹ Tho từ rất sớm vào thế kỷ XVII nhờ bước chân truyền giáo của
+              các vị thừa sai Dòng Phanxicô và Hội Thừa sai Paris (MEP). Họ đạo đầu tiên dâng kính Thánh Phanxicô Xaviê được
+              hình thành tại họ Điều Hòa.
             </p>
-            <p style={{ margin: 0 }}>
-              <strong>Kiến trúc nghệ thuật:</strong> Xây dựng theo phong cách kiến trúc Gothic - Rôma Phục Hưng với chiều dài 53m, rộng hơn 17m và tháp chuông cao 24m. Cung thánh được thiết kế trang nghiêm với hàng cột trụ vững chãi, hệ thống cửa vòm cuốn và các bức tranh kính màu tái hiện cuộc đời Chúa Cứu Thế.
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Đến năm 1866, Đức Giám mục Dominique Miche (đại diện Tông tòa Tây Đàng Trong) cho xây dựng ngôi nhà thờ
+              Vĩnh Tường (tước hiệu Thánh Tâm Chúa Giêsu) tại vị trí gần chợ Cũ Mỹ Tho nhằm đáp ứng nhu cầu sinh hoạt tôn
+              giáo ngày càng tăng của giáo dân địa phương.
             </p>
-            <p style={{ margin: 0 }}>
-              <strong>Bổn mạng thánh đường:</strong> Lễ Đức Mẹ Vô Nhiễm Nguyên Tội (kính ngày 08/12) và Lễ Đức Mẹ Hồn Xác Lên Trời (kính ngày 15/08).
-            </p>
-          </div>
 
-          {/* Bộ sưu tập hình ảnh Chánh Tòa Mỹ Tho */}
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--color-red)', marginBottom: '8px' }}>
-              📸 Bộ Sưu Tập Ảnh Thực Tế Giáo Xứ Chánh Tòa:
+            <h3 id="lich-su-xay-dung" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+              1.2. Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Nhận thấy ngôi nhà thờ cũ đã xuống cấp và diện tích chật hẹp, ngày 11 tháng 8 năm 1906, Linh mục Régnier (thường
+              được bà con giáo dân gọi thân mật là <em>cố Gẫm</em>) đã chính thức đặt viên đá đầu tiên khởi công xây dựng
+              ngôi thánh đường thứ ba tại đại lộ Bourdais (nay là số 32 đường Hùng Vương). Sau 4 năm thi công kiên cố với vật
+              liệu gạch ngói chuyển trực tiếp từ Pháp và thợ lành nghề miền Nam, nhà thờ được khánh thành trọng thể vào năm
+              1910.
+            </p>
+
+            <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+              1.3. Thành lập Giáo phận &amp; Nâng lên hàng Chính Tòa (1960)
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Ngày 24 tháng 11 năm 1960, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến lịch sử <em>Venerabilium Nostrorum</em>{' '}
+              thiết lập Hàng Giáo phẩm Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> (tách ra từ Giáo phận
+              Sài Gòn). Nhà thờ Mỹ Tho được chọn làm Nhà thờ Chính Tòa của tân giáo phận dưới quyền coi sóc của Đức Giám
+              mục Tiên khởi Giuse Trần Văn Thiện.
+            </p>
+
+            {/* Trích dẫn văn kiện giáo hội */}
+            <div
+              style={{
+                backgroundColor: 'rgba(212, 175, 55, 0.08)',
+                borderLeft: '4px solid #D4AF37',
+                padding: '14px 18px',
+                borderRadius: '0 10px 10px 0',
+                margin: '18px 0',
+                fontSize: '0.9rem',
+                fontStyle: 'italic',
+                color: 'var(--color-dark)'
+              }}
+            >
+              <Quote size={16} color="#D4AF37" style={{ verticalAlign: '-3px', marginRight: '6px' }} />
+              &ldquo;Nguyện xin Thiên Chúa làm cho Giáo phận Mỹ Tho trở nên muối men của tình yêu thương và ánh sáng Phúc Âm
+              giữa lòng đồng bằng sông Cửu Long trù phú.&rdquo;
+              <div style={{ textAlign: 'right', fontSize: '0.78rem', fontStyle: 'normal', color: 'var(--color-subtle)', marginTop: '4px', fontWeight: 700 }}>
+                — Trích Sắc chỉ Tông hiến Venerabilium Nostrorum (24/11/1960)
+              </div>
             </div>
+
+            <h3 id="lich-su-cung-hien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+              1.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Nhân dịp Đại Năm Thánh 2000, Đức Tổng Giám mục Phaolô Bùi Văn Đọc đã long trọng cử hành <strong>Lễ Cung Hiến
+              Nhà thờ Chính Tòa Mỹ Tho</strong> và nhận ngày Lễ Đức Mẹ Hồn Xác Lên Trời (15 tháng 8) làm Bổn mạng thứ hai của
+              nhà thờ.
+            </p>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
+              Đến năm 2006, đánh dấu kỷ niệm 100 năm ngày khởi công xây dựng, Linh mục Chánh xứ Giacôbê Hà Văn Xung đã thực
+              hiện đợt đại trùng tu toàn diện: gia cố nền móng, xây dựng tháp chuông độc lập cao 24m, nới rộng gian Cung
+              Thánh, lát đá cẩm thạch và kiến thiết vườn hoa 14 Đàng Thánh Giá bao quanh khuôn viên thánh đường.
+            </p>
+          </section>
+
+          {/* =====================================================================
+              2. KIẾN TRÚC & NGHỆ THUẬT THÁNH
+              ===================================================================== */}
+          <section id="kien-truc" style={{ marginBottom: '36px' }}>
+            <h2
+              style={{
+                fontSize: '1.45rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                paddingBottom: '6px',
+                marginTop: '32px'
+              }}
+            >
+              2. Kiến trúc &amp; Nghệ thuật Thánh
+            </h2>
+
+            {/* Gallery ảnh kiến trúc */}
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
-                gap: '8px'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '12px',
+                margin: '18px 0'
               }}
             >
               {[
-                { src: '/images/nhatho1.jpg', title: 'Mặt Tiền Nhà Thờ Chánh Tòa' },
-                { src: '/images/nhatho_thanh_le.jpg', title: 'Cung Thánh Trang Nghiêm' },
-                { src: '/images/nhatho2.jpg', title: 'Toàn Cảnh Góc Nghiêng' },
-                { src: '/images/nhatho3.jpg', title: 'Khung Vòm Cổ Kính' },
-                { src: '/images/nhatho4.jpg', title: 'Tháp Chuông 24m' },
-                { src: '/images/nhatho_dai_duc_me.jpg', title: 'Đài Đức Mẹ' },
-                { src: '/images/hiep_thong_giao_dan.jpg', title: 'Cộng Đoàn Hiệp Thông' },
-                { src: '/images/chuc_mung_giam_muc.jpg', title: 'Chúc Mừng Đức Giám Mục' },
-                { src: '/images/ca_doan_phung_vu.jpg', title: 'Ca Đoàn Thánh Ca' },
-                { src: '/images/thanh_le_dong_te_my_tho.jpg', title: 'Đại Lễ Đồng Tế' },
-                { src: '/images/nhatho_bung_binh.jpg', title: 'Ngã Ba Hùng Vương' },
-                { src: '/images/nhatho_mat_tien_vintage.jpg', title: 'Tư Liệu Ảnh Cổ 1910' }
-              ].map((img, i) => (
+                { src: '/images/nhatho1.jpg', title: 'Mặt tiền Phục Hưng', desc: 'Kiến trúc cột trụ đối xứng hài hòa' },
+                { src: '/images/nhatho3.jpg', title: 'Gian Thánh Cung', desc: 'Vòm Romanesque & Bàn thờ cẩm thạch' },
+                { src: '/images/nhatho_dai_duc_me.jpg', title: 'Đài Đức Mẹ Lộ Đức', desc: 'Khuôn viên linh thiêng cầu nguyện' }
+              ].map((img, idx) => (
                 <div
-                  key={i}
-                  onClick={() => {
-                    const foundIdx = REAL_GALLERY_IMAGES.findIndex((p) => p.src === img.src);
-                    if (foundIdx !== -1) setSelectedPhotoIndex(foundIdx);
-                  }}
+                  key={idx}
                   style={{
-                    position: 'relative',
-                    aspectRatio: '4/3',
+                    backgroundColor: 'var(--color-card-bg)',
+                    border: '1px solid var(--color-border-subtle)',
                     borderRadius: '8px',
-                    overflow: 'hidden',
-                    cursor: 'pointer',
-                    backgroundColor: 'var(--color-bg)',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.06)'
+                    padding: '8px',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
+                    cursor: 'pointer'
                   }}
+                  onClick={() => setLightboxImage({ src: img.src, caption: `${img.title} — ${img.desc}` })}
                 >
-                  <Image
-                    src={img.src}
-                    alt={img.title}
-                    fill
-                    sizes="150px"
-                    style={{ objectFit: 'cover' }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)'
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '4px',
-                      left: '6px',
-                      right: '6px',
-                      fontSize: '0.66rem',
-                      fontWeight: 800,
-                      color: '#FFFFFF',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}
-                  >
+                  <div style={{ position: 'relative', width: '100%', height: '140px', borderRadius: '6px', overflow: 'hidden' }}>
+                    <Image src={img.src} alt={img.title} fill sizes="240px" style={{ objectFit: 'cover' }} />
+                  </div>
+                  <div style={{ fontWeight: 800, fontSize: '0.84rem', marginTop: '6px', color: 'var(--color-dark)' }}>
                     {img.title}
                   </div>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)' }}>{img.desc}</div>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Dòng thời gian mốc son */}
-          <div style={{ marginTop: '16px' }}>
-            <h3 style={{ margin: '0 0 10px', fontSize: '0.96rem', fontWeight: 900, color: 'var(--color-red)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Clock size={16} />
-              <span>Dòng Thời Gian Các Mốc Son Lịch Sử</span>
+            <h3 id="kien-truc-mat-tien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+              2.1. Mặt tiền và tháp chuông vươn cao
             </h3>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {MILESTONES.map((m, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    padding: '10px 12px',
-                    borderRadius: '10px',
-                    backgroundColor: 'var(--color-input-bg)',
-                    border: '1px solid var(--color-border-subtle)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '2px'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px' }}>
-                    <span style={{ fontSize: '0.76rem', fontWeight: 900, color: 'var(--color-red)' }}>
-                      {m.year}
-                    </span>
-                    <span style={{ fontSize: '0.84rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-                      {m.title}
-                    </span>
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--color-text-subtle)', lineHeight: 1.45 }}>
-                    {m.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* PHẦN 6: PHONG TRÀO THIẾU NHI THÁNH THỂ (BẢNG KHĂN QUÀNG ĐẦY ĐỦ) */}
-        {/* ========================================================================= */}
-        <section
-          id="tntt"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '4px' }}>
-            PHONG TRÀO THIẾU NHI THÁNH THỂ VIỆT NAM
-          </div>
-          <h2 style={{ margin: '0 0 14px', fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-            6. Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho
-          </h2>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem', lineHeight: 1.7, color: 'var(--color-dark)', marginBottom: '16px' }}>
-            <p style={{ margin: 0 }}>
-              Phong trào <strong>Thiếu Nhi Thánh Thể (TNTT)</strong> là đoàn thể Công giáo tiến hành đào luyện thiếu nhi về phương diện tự nhiên và siêu nhiên, lấy <strong>Chúa Giêsu Thánh Thể</strong> làm Trung Tâm, nguồn sống và lý tưởng để hướng dẫn các em nên người Kitô hữu hoàn thiện.
-            </p>
-            <p style={{ margin: 0 }}>
-              <strong>Tôn chỉ hoạt động:</strong> Sống Lời Chúa và kết hợp mật thiết với Chúa Giêsu Thánh Thể qua 4 khẩu hiệu cốt lõi: <strong>Cầu Nguyện – Rước Lễ – Hy Sinh – Làm Tông Đồ</strong>.
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Nhà thờ mang phong cách kiến trúc Phục Hưng (Renaissance) uy nghiêm với chiều dài 53 mét, chiều rộng 17 mét và
+              chiều cao nóc giáo đường đạt 16 mét. Mặt tiền nhà thờ được chia thành 3 nhịp cân xứng với các cột thức Corinthian
+              được đắp nổi hoa văn tinh tế. Tháp chuông kiên cố cao 24 mét được đặt tách biệt bên hông thánh đường, lưu giữ
+              bộ chuông đồng đúc cổ truyền mang âm sắc trầm hùng ngân vang khắp trung tâm thành phố Mỹ Tho mỗi dịp lễ trọng.
             </p>
 
-            {/* 4 Khẩu Hiệu Box */}
-            <div
+            <h3 id="kien-truc-cung-thanh" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+              2.2. Gian Cung Thánh &amp; Mái vòm Romanesque
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Bên trong thánh đường được thiết kế theo hình dạng Thánh Giá La-tinh gồm gian chính (nave) rộng rãi và hai gian
+              phụ (aisles) phân cách bằng hai hàng cột đỡ vòm cung Romanesque liên hoàn. Trần giáo đường uốn cong kiểu vòm
+              bán nguyệt dát viền vàng kim, kết hợp hệ thống cửa sổ kính màu thu nhận ánh sáng tự nhiên dịu nhẹ tạo nên bầu
+              khí trang nghiêm, thánh thiện.
+            </p>
+
+            <h3 id="kien-truc-khuon-vien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+              2.3. Đài Đức Mẹ &amp; 14 Đàng Thánh Giá
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
+              Khuôn viên nhà thờ có diện tích rộng thoáng rợp bóng cây xanh. Phía bên phải là Đài Đức Mẹ Lộ Đức đá tự nhiên —
+              nơi giáo dân và khách hành hương tề tựu lần hạt Mân Côi mỗi ngày. Chạy dọc bờ tường khuôn viên là 14 bức phù
+              điêu Đàng Thánh Giá bằng đồng tái hiện cuộc khổ nạn của Chúa Giêsu Kitô trên đồi Can-vê.
+            </p>
+          </section>
+
+          {/* =====================================================================
+              3. CÁC ĐỜI GIÁM MỤC GIÁO PHẬN MỸ THO
+              ===================================================================== */}
+          <section id="giam-muc" style={{ marginBottom: '36px' }}>
+            <h2
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '6px',
-                marginTop: '4px'
+                fontSize: '1.45rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                paddingBottom: '6px',
+                marginTop: '32px'
               }}
             >
-              {[
-                { label: 'CẦU NGUYỆN', desc: 'Gắn bó với Chúa qua lời kinh' },
-                { label: 'RƯỚC LỄ', desc: 'Kết hợp cùng Chúa Giêsu Thánh Thể' },
-                { label: 'HY SINH', desc: 'Vượt qua tính ích kỷ vì tha nhân' },
-                { label: 'LÀM TÔNG ĐỒ', desc: 'Loan truyền Tin Mừng bằng đời sống' }
-              ].map((k, idx) => (
+              3. Các Đời Giám Mục Giáo Phận Mỹ Tho
+            </h2>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 18px' }}>
+              Từ ngày thành lập năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua 5 đời Giám mục coi sóc Chính tòa và Giám mục Phó:
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {BISHOPS_DATA.map((b, idx) => (
                 <div
                   key={idx}
                   style={{
-                    padding: '8px 10px',
-                    borderRadius: '8px',
-                    backgroundColor: 'rgba(183, 28, 28, 0.08)',
-                    border: '1px solid rgba(183, 28, 28, 0.2)'
-                  }}
-                >
-                  <div style={{ fontSize: '0.78rem', fontWeight: 900, color: 'var(--color-red)' }}>
-                    {idx + 1}. {k.label}
-                  </div>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--color-dark)', marginTop: '2px', lineHeight: 1.3 }}>
-                    {k.desc}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ========================================================================= */}
-          {/* CÁC MÀU KHĂN QUÀNG THIẾU NHI THÁNH THỂ VIỆT NAM */}
-          {/* ========================================================================= */}
-          <div style={{ marginTop: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '12px' }}>
-              <Flame size={16} color="var(--color-red)" />
-              <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 900, color: 'var(--color-dark)' }}>
-                Ý Nghĩa Màu Khăn Quàng Các Ngành &amp; Đẳng Cấp TNTT
-              </h3>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '10px' }}>
-              {TNTT_SCARVES.map((sc) => (
-                <div
-                  key={sc.id}
-                  style={{
-                    padding: '12px 14px',
-                    borderRadius: '12px',
-                    backgroundColor: 'var(--color-input-bg)',
-                    border: '1px solid var(--color-border-subtle)',
                     display: 'flex',
-                    gap: '12px',
-                    alignItems: 'center'
+                    gap: '16px',
+                    padding: '16px',
+                    borderRadius: '12px',
+                    backgroundColor: 'var(--color-card-bg)',
+                    border: '1px solid var(--color-border-subtle)',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.02)',
+                    alignItems: 'center',
+                    flexWrap: 'wrap'
                   }}
                 >
-                  {/* Visual Khăn Quàng Tam Giác SVG */}
-                  <div style={{ flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                    <ScarfVisualBadge
-                      mainColor={sc.mainColor}
-                      borderColor={sc.borderColor}
-                      crossColor={sc.crossColor}
-                      size={52}
-                    />
-                    <span
-                      style={{
-                        fontSize: '0.62rem',
-                        fontWeight: 900,
-                        padding: '1px 6px',
-                        borderRadius: '4px',
-                        backgroundColor: sc.mainColor,
-                        color: sc.textColor || '#FFFFFF',
-                        border: `1px solid ${sc.borderColor}`
-                      }}
-                    >
-                      {sc.badgeLabel}
-                    </span>
+                  <div
+                    style={{
+                      width: '72px',
+                      height: '72px',
+                      borderRadius: '50%',
+                      overflow: 'hidden',
+                      position: 'relative',
+                      flexShrink: 0,
+                      border: '2px solid #D4AF37',
+                      backgroundColor: '#1E1710'
+                    }}
+                  >
+                    <Image src={b.image} alt={b.name} fill sizes="72px" style={{ objectFit: 'cover' }} />
                   </div>
 
-                  {/* Chi tiết ý nghĩa */}
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '6px', marginBottom: '2px' }}>
-                      <span style={{ fontSize: '0.84rem', fontWeight: 900, color: sc.mainColor === '#FFFFFF' ? '#B45309' : sc.mainColor }}>
-                        {sc.name}
-                      </span>
+                  <div style={{ flex: 1, minWidth: '240px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
+                      <h4 style={{ margin: 0, fontSize: '1.02rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                        {b.name}
+                      </h4>
                       <span
                         style={{
-                          fontSize: '0.66rem',
+                          fontSize: '0.74rem',
                           fontWeight: 800,
-                          padding: '1px 6px',
-                          borderRadius: '6px',
                           backgroundColor: 'rgba(212, 175, 55, 0.15)',
-                          color: '#B45309'
+                          color: '#B45309',
+                          padding: '2px 8px',
+                          borderRadius: '6px',
+                          border: '1px solid rgba(212, 175, 55, 0.3)'
                         }}
                       >
-                        {sc.motto}
+                        {b.period}
                       </span>
                     </div>
 
-                    <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '3px' }}>
-                      Độ tuổi: <strong style={{ color: 'var(--color-red)' }}>{sc.age}</strong> • Khăn: {sc.colorName}
+                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-red)', margin: '2px 0 4px' }}>
+                      {b.role}
                     </div>
 
-                    <p style={{ margin: 0, fontSize: '0.74rem', color: 'var(--color-text-subtle)', lineHeight: 1.4 }}>
-                      {sc.symbolism}
+                    <div style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', marginBottom: '6px' }}>
+                      Khẩu hiệu mục tử: <strong style={{ color: 'var(--color-dark)' }}>{b.motto}</strong>
+                    </div>
+
+                    <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.5, textAlign: 'justify' }}>
+                      {b.desc}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ========================================================================= */}
-        {/* PHẦN 7: THƯ VIỆN ẢNH THỰC TẾ (18 ẢNH CHẤT LƯỢNG CAO) */}
-        {/* ========================================================================= */}
-        <section
-          id="gallery"
-          style={{
-            backgroundColor: 'var(--color-card-bg)',
-            borderRadius: '16px',
-            border: '1px solid var(--color-border-subtle)',
-            padding: '16px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-            scrollMarginTop: '60px'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
-            <div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#B45309', textTransform: 'uppercase', marginBottom: '2px' }}>
-                TƯ LIỆU HÌNH ẢNH TOÀN DIỆN
-              </div>
-              <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 900, color: 'var(--color-dark)' }}>
-                7. Thư Viện Ảnh Lịch Sử &amp; Phụng Vụ ({REAL_GALLERY_IMAGES.length} Ảnh)
-              </h2>
-            </div>
+          {/* =====================================================================
+              4. XỨ ĐOÀN CÁC THÁNH TỬ ĐẠO VIỆT NAM (TNTT)
+              ===================================================================== */}
+          <section id="xu-doan" style={{ marginBottom: '36px' }}>
+            <h2
+              style={{
+                fontSize: '1.45rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                paddingBottom: '6px',
+                marginTop: '32px'
+              }}
+            >
+              4. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
+            </h2>
 
-            {/* Filter Tabs */}
-            <div style={{ display: 'flex', gap: '4px', overflowX: 'auto', scrollbarWidth: 'none' }}>
+            <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+              4.1. Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              <strong>Xứ Đoàn Các Thánh Tử Đạo Việt Nam</strong> trực thuộc Giáo xứ Chánh Tòa Mỹ Tho là đoàn thể tông đồ
+              hướng dẫn thanh thiếu nhi và giới trẻ theo tôn chỉ của <em>Phong trào Thiếu Nhi Thánh Thể Việt Nam</em>. Mục đích
+              của Xứ Đoàn là giáo dục thanh thiếu niên về cả hai phương diện: <strong>Tự nhiên</strong> (trở thành công dân
+              tốt cho xã hội) và <strong>Siêu nhiên</strong> (trở thành Kitô hữu đích thực, yêu mến Chúa Giêsu Thánh Thể).
+            </p>
+
+            {/* 4 Khẩu hiệu TNTT */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '10px',
+                margin: '16px 0'
+              }}
+            >
               {[
-                { id: 'all', label: 'Tất Cả' },
-                { id: 'cathedral', label: 'Chánh Tòa (9)' },
-                { id: 'liturgy', label: 'Phụng Vụ (3)' },
-                { id: 'community', label: 'Sinh Hoạt (4)' },
-                { id: 'vatican', label: 'Tòa Thánh (3)' }
-              ].map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  onClick={() => setGalleryFilter(f.id as any)}
+                { title: 'CẦU NGUYỆN', desc: 'Nuôi dưỡng đời sống kết hiệp mật thiết với Chúa Giêsu Thánh Thể mỗi ngày.' },
+                { title: 'RƯỚC LỄ', desc: 'Tham dự Thánh lễ sốt sắng và rước Mình Máu Thánh Chúa để được biến đổi.' },
+                { title: 'HY SINH', desc: 'Vui vẻ chấp nhận gian khó, biết từ bỏ ý riêng và quảng đại vì tha nhân.' },
+                { title: 'LÀM TÔNG ĐỒ', desc: 'Làm chứng cho Tin Mừng bằng đời sống gương mẫu, bác ái và yêu thương.' }
+              ].map((k, idx) => (
+                <div
+                  key={idx}
                   style={{
-                    padding: '4px 10px',
-                    borderRadius: '12px',
-                    border: '1px solid',
-                    borderColor: galleryFilter === f.id ? 'var(--color-red)' : 'var(--color-border-subtle)',
-                    backgroundColor: galleryFilter === f.id ? 'var(--color-red)' : 'var(--color-input-bg)',
-                    color: galleryFilter === f.id ? '#FFFFFF' : 'var(--color-dark)',
-                    fontSize: '0.72rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    whiteSpace: 'nowrap'
+                    padding: '12px',
+                    borderRadius: '10px',
+                    backgroundColor: 'rgba(220, 38, 38, 0.05)',
+                    border: '1px solid rgba(220, 38, 38, 0.2)',
+                    textAlign: 'center'
                   }}
                 >
-                  {f.label}
-                </button>
+                  <div style={{ fontWeight: 900, color: '#DC2626', fontSize: '0.88rem', marginBottom: '4px' }}>
+                    {idx + 1}. {k.title}
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.4 }}>{k.desc}</div>
+                </div>
               ))}
             </div>
-          </div>
 
-          {/* Gallery Grid (FULL COVER, NO BLACK LETTERBOXING) */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
-              gap: '8px'
-            }}
-          >
-            {filteredGallery.map((photo, idx) => (
-              <div
-                key={idx}
-                onClick={() => {
-                  const actualIdx = REAL_GALLERY_IMAGES.findIndex((p) => p.src === photo.src);
-                  setSelectedPhotoIndex(actualIdx);
-                }}
-                style={{
-                  position: 'relative',
-                  borderRadius: '10px',
-                  overflow: 'hidden',
-                  backgroundColor: 'var(--color-bg)',
-                  aspectRatio: '4/3',
-                  cursor: 'pointer',
-                  border: '1px solid var(--color-border-subtle)',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.03)'
-                }}
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.title}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
-                  style={{ objectFit: 'cover' }}
-                />
+            <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
+              4.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Khăn quàng TNTT là biểu tượng của tinh thần dâng hiến và trách nhiệm tông đồ. Dưới đây là bảng phân cấp các
+              ngành trong Xứ Đoàn:
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {TNTT_RANKS.map((r) => (
                 <div
+                  key={r.id}
                   style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)'
-                  }}
-                />
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '6px',
-                    left: '8px',
-                    right: '8px'
+                    padding: '12px 16px',
+                    borderRadius: '10px',
+                    backgroundColor: 'var(--color-card-bg)',
+                    border: '1px solid var(--color-border-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '8px'
                   }}
                 >
-                  <span
-                    style={{
-                      fontSize: '0.58rem',
-                      fontWeight: 800,
-                      padding: '1px 5px',
-                      borderRadius: '4px',
-                      backgroundColor: 'rgba(183, 28, 28, 0.85)',
-                      color: '#FFFFFF'
-                    }}
-                  >
-                    {photo.categoryLabel}
-                  </span>
-                  <div
-                    style={{
-                      fontSize: '0.74rem',
-                      fontWeight: 800,
-                      color: '#FFFFFF',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      marginTop: '2px'
-                    }}
-                  >
-                    {photo.title}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div
+                      style={{
+                        width: '18px',
+                        height: '18px',
+                        borderRadius: '4px',
+                        backgroundColor: r.mainColor,
+                        border: `2px solid ${r.borderColor}`
+                      }}
+                    />
+                    <div>
+                      <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--color-dark)' }}>
+                        {r.name}
+                      </div>
+                      <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)' }}>
+                        Độ tuổi: <strong>{r.age}</strong> • Khẩu hiệu: <strong>{r.motto}</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', flex: 1, minWidth: '220px', textAlign: 'right' }}>
+                    {r.symbolism}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* =====================================================================
+              5. GIỜ PHỤNG VỤ & MỤC VỤ
+              ===================================================================== */}
+          <section id="phung-vu" style={{ marginBottom: '36px' }}>
+            <h2
+              style={{
+                fontSize: '1.45rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                paddingBottom: '6px',
+                marginTop: '32px'
+              }}
+            >
+              5. Giờ Thánh Lễ &amp; Lịch Mục Vụ
+            </h2>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 14px' }}>
+              Giờ phụng vụ tại Nhà Thờ Chính Tòa Mỹ Tho được cử hành đều đặn mỗi ngày (dữ liệu được đồng bộ trực tiếp từ cơ
+              sở dữ liệu Giáo phận):
+            </p>
+
+            <div
+              style={{
+                backgroundColor: 'var(--color-card-bg)',
+                border: '1px solid var(--color-border-subtle)',
+                borderRadius: '12px',
+                padding: '16px 20px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.02)'
+              }}
+            >
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+                <div>
+                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.92rem', marginBottom: '6px' }}>
+                    📅 CÁC NGÀY TRONG TUẦN
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                    • Thánh lễ Sáng: <strong>05:00</strong>
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                    • Thánh lễ Chiều: <strong>17:30</strong>
+                  </div>
+                </div>
+
+                <div>
+                  <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.92rem', marginBottom: '6px' }}>
+                    ⛪ CHÚA NHẬT (NGÀY CỦA CHÚA)
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                    • Lễ I: <strong>05:30</strong> (Thánh lễ sáng sớm)
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                    • Lễ II: <strong>07:00</strong> (Lễ dành cho Thiếu nhi &amp; Giới trẻ)
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                    • Lễ III: <strong>16:00</strong> (Lễ chiều)
+                  </div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                    • Lễ IV: <strong>18:00</strong> (Lễ chiều tối)
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
 
-      {/* ========================================================================= */}
-      {/* 4. LIGHTBOX MODAL (FULL COVER IMAGE, NO BLACK BORDERS) */}
-      {/* ========================================================================= */}
-      {selectedPhotoIndex !== null && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 100005,
-            backgroundColor: 'rgba(0, 0, 0, 0.88)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px'
-          }}
-          onClick={() => setSelectedPhotoIndex(null)}
-        >
-          <div
-            style={{
-              position: 'relative',
-              maxWidth: '680px',
-              width: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              backgroundColor: 'var(--color-card-bg)',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              border: '1px solid var(--color-border-subtle)',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Top Bar */}
-            <div
-              style={{
-                padding: '12px 16px',
-                borderBottom: '1px solid var(--color-border-subtle)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                backgroundColor: 'var(--color-card-bg)'
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span
-                  style={{
-                    fontSize: '0.68rem',
-                    fontWeight: 800,
-                    padding: '2px 8px',
-                    borderRadius: '6px',
-                    backgroundColor: 'rgba(183, 28, 28, 0.1)',
-                    color: 'var(--color-red)'
-                  }}
-                >
-                  {REAL_GALLERY_IMAGES[selectedPhotoIndex].categoryLabel}
-                </span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', fontWeight: 600 }}>
-                  ({selectedPhotoIndex + 1} / {REAL_GALLERY_IMAGES.length})
-                </span>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setSelectedPhotoIndex(null)}
+              <div
                 style={{
-                  background: 'var(--color-input-bg)',
-                  border: '1px solid var(--color-border-subtle)',
-                  color: 'var(--color-dark)',
-                  borderRadius: '50%',
-                  width: '28px',
-                  height: '28px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
+                  marginTop: '14px',
+                  paddingTop: '10px',
+                  borderTop: '1px dashed var(--color-border-subtle)',
+                  fontSize: '0.8rem',
+                  fontStyle: 'italic',
+                  color: 'var(--color-subtle)'
                 }}
               >
-                <X size={15} />
-              </button>
+                🕊️ Bí tích Hòa Giải (Giải tội): Trước và sau tất cả các Thánh lễ trong tuần hoặc liên hệ trực tiếp văn phòng
+                nhà xứ.
+              </div>
             </div>
+          </section>
 
-            {/* Photo Container (FULL BLEED COVER) */}
+          {/* =====================================================================
+              6. CHÚ THÍCH & TÀI LIỆU THAM KHẢO
+              ===================================================================== */}
+          <section id="tai-lieu" style={{ marginTop: '40px', borderTop: '1px solid var(--color-border-subtle)', paddingTop: '20px' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 10px' }}>
+              6. Chú thích &amp; Tài liệu tham khảo
+            </h3>
+            <ol style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.6, paddingLeft: '20px' }}>
+              <li>
+                Tòa Giám Mục Mỹ Tho, <em>Kỷ yếu 50 năm thành lập Giáo phận Mỹ Tho (1960 – 2010)</em>, Nhà xuất bản Tôn Giáo,
+                2010.
+              </li>
+              <li>
+                Hội Đồng Giám Mục Việt Nam, <em>Niên Giám Giáo Hội Công Giáo Việt Nam 2022</em>, NXB Tôn Giáo, 2022.
+              </li>
+              <li>
+                Ban Truyền Thông Giáo Phận Mỹ Tho, <em>Lược sử Giáo xứ Chánh Tòa Mỹ Tho</em>, Cổng thông tin điện tử Giáo
+                phận.
+              </li>
+              <li>
+                Tổng Liên Đoàn Thiếu Nhi Thánh Thể Việt Nam, <em>Quy chế &amp; Nội quy Phong trào TNTT</em>, Ban Đào tạo
+                Huynh Trưởng.
+              </li>
+            </ol>
+          </section>
+        </article>
+
+        {/* =======================================================================
+            CỘT PHẢI: INFOBOX BÁCH KHOA CHUẨN WIKIPEDIA (SIDEBAR INFOBOX)
+            ======================================================================= */}
+        <aside
+          style={{
+            width: '340px',
+            flexShrink: 0,
+            backgroundColor: 'var(--color-card-bg)',
+            border: '1.5px solid var(--color-border-subtle)',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            fontSize: '0.84rem'
+          }}
+          className="wiki-infobox"
+        >
+          {/* Infobox Header */}
+          <div
+            style={{
+              backgroundColor: '#8B0000',
+              color: '#FFFFFF',
+              padding: '12px 14px',
+              textAlign: 'center',
+              fontWeight: 800,
+              fontSize: '1rem',
+              letterSpacing: '0.5px'
+            }}
+          >
+            Nhà thờ chính tòa Mỹ Tho
+          </div>
+
+          <div
+            style={{
+              backgroundColor: 'rgba(139, 0, 0, 0.08)',
+              color: 'var(--color-dark)',
+              padding: '4px 8px',
+              textAlign: 'center',
+              fontSize: '0.74rem',
+              fontStyle: 'italic',
+              borderBottom: '1px solid var(--color-border-subtle)'
+            }}
+          >
+            Nhà thờ Đức Mẹ Vô Nhiễm Nguyên Tội
+          </div>
+
+          {/* Infobox Main Image */}
+          <div style={{ padding: '8px', textAlign: 'center', backgroundColor: '#000000' }}>
             <div
               style={{
                 position: 'relative',
                 width: '100%',
-                aspectRatio: '16/10',
-                maxHeight: '60vh',
+                height: '210px',
+                cursor: 'pointer',
                 overflow: 'hidden',
-                backgroundColor: 'var(--color-bg)'
+                borderRadius: '4px'
               }}
+              onClick={() => setLightboxImage({ src: '/images/nhatho1.jpg', caption: 'Mặt tiền Nhà thờ Chánh Tòa Mỹ Tho' })}
             >
               <Image
-                src={REAL_GALLERY_IMAGES[selectedPhotoIndex].src}
-                alt={REAL_GALLERY_IMAGES[selectedPhotoIndex].title}
+                src="/images/nhatho1.jpg"
+                alt="Nhà thờ Chính Tòa Mỹ Tho"
                 fill
-                sizes="(max-width: 768px) 100vw, 680px"
+                sizes="340px"
                 style={{ objectFit: 'cover' }}
               />
-
-              {/* Prev / Next controls */}
-              <button
-                type="button"
-                onClick={handlePrevPhoto}
-                style={{
-                  position: 'absolute',
-                  left: '10px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(0,0,0,0.6)',
-                  color: '#FFFFFF',
-                  border: '1px solid rgba(255,255,255,0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              <button
-                type="button"
-                onClick={handleNextPhoto}
-                style={{
-                  position: 'absolute',
-                  right: '10px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(0,0,0,0.6)',
-                  color: '#FFFFFF',
-                  border: '1px solid rgba(255,255,255,0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
-              >
-                <ChevronRight size={20} />
-              </button>
             </div>
+            <div style={{ fontSize: '0.72rem', color: '#CBD5E1', marginTop: '6px', fontStyle: 'italic' }}>
+              Mặt tiền thánh đường nhìn từ đường Hùng Vương
+            </div>
+          </div>
 
-            {/* Caption */}
+          {/* Infobox Table Rows */}
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <tbody>
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    width: '38%',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Tọa độ
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  10°21′25″B 106°21′45″Đ
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Địa chỉ
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  32 Hùng Vương, Phường 7, TP. Mỹ Tho, Tiền Giang, Việt Nam
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Giáo hội
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Giáo hội Công giáo Rôma
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Giáo tỉnh
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Giáo tỉnh Sài Gòn
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Giáo phận
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Giáo phận Mỹ Tho
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Bổn mạng
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Đức Mẹ Vô Nhiễm Nguyên Tội (8/12) &amp; Đức Mẹ Hồn Xác Lên Trời (15/8)
+                </td>
+              </tr>
+
+              {/* Sub-header Kiến trúc */}
+              <tr>
+                <td
+                  colSpan={2}
+                  style={{
+                    backgroundColor: '#8B0000',
+                    color: '#FFFFFF',
+                    padding: '6px 10px',
+                    textAlign: 'center',
+                    fontWeight: 800,
+                    fontSize: '0.82rem'
+                  }}
+                >
+                  Thông tin kiến trúc
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Khởi công
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  11 tháng 8 năm 1906
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Hoàn thành
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Năm 1910
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Cung hiến
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Năm Thánh 2000
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Phong cách
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Phục hưng (Renaissance) &amp; Romanesque
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Kích thước
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Dài 53 m, rộng 17 m, cao 16 m
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Chiều cao tháp
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  24 mét
+                </td>
+              </tr>
+
+              {/* Sub-header Quản xứ */}
+              <tr>
+                <td
+                  colSpan={2}
+                  style={{
+                    backgroundColor: '#8B0000',
+                    color: '#FFFFFF',
+                    padding: '6px 10px',
+                    textAlign: 'center',
+                    fontWeight: 800,
+                    fontSize: '0.82rem'
+                  }}
+                >
+                  Ban Chăm sóc Mục vụ
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Giám mục Chính tòa
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)', fontWeight: 700 }}>
+                  Đức Cha Phêrô Nguyễn Văn Khảm
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Linh mục Chánh xứ
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Lm. Giacôbê Hà Văn Xung
+                </td>
+              </tr>
+
+              <tr>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Đoàn thể nòng cốt
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </aside>
+      </div>
+
+      {/* =========================================================================
+          LIGHTBOX MODAL XEM ẢNH PHÓNG TO
+          ========================================================================= */}
+      {lightboxImage && (
+        <div
+          onClick={() => setLightboxImage(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 100010,
+            backgroundColor: 'rgba(0,0,0,0.92)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+        >
+          <button
+            onClick={() => setLightboxImage(null)}
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              border: 'none',
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              color: '#FFF',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <X size={24} />
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: '900px',
+              width: '100%',
+              maxHeight: '80vh',
+              position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
+            }}
+          >
+            <div style={{ position: 'relative', width: '100%', height: '65vh' }}>
+              <Image
+                src={lightboxImage.src}
+                alt="Phóng to"
+                fill
+                sizes="900px"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
             <div
               style={{
-                padding: '14px 16px',
-                backgroundColor: 'var(--color-card-bg)',
-                borderTop: '1px solid var(--color-border-subtle)'
+                color: '#FFF',
+                marginTop: '12px',
+                textAlign: 'center',
+                fontSize: '0.9rem',
+                fontStyle: 'italic'
               }}
             >
-              <div style={{ fontSize: '0.98rem', fontWeight: 900, color: 'var(--color-dark)', marginBottom: '4px' }}>
-                {REAL_GALLERY_IMAGES[selectedPhotoIndex].title}
-              </div>
-              <div style={{ fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.5 }}>
-                {REAL_GALLERY_IMAGES[selectedPhotoIndex].desc}
-              </div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--color-subtle)', marginTop: '6px', fontStyle: 'italic' }}>
-                Nguồn ảnh: {REAL_GALLERY_IMAGES[selectedPhotoIndex].source}
-              </div>
+              {lightboxImage.caption}
             </div>
           </div>
         </div>
       )}
-    </main>
+
+      {/* Responsive Style */}
+      <style jsx global>{`
+        @media (max-width: 860px) {
+          .wiki-container {
+            flex-direction: column-reverse !important;
+          }
+          .wiki-infobox {
+            width: 100% !important;
+            margin-bottom: 24px !important;
+          }
+          .wiki-thumb {
+            float: none !important;
+            width: 100% !important;
+            margin: 14px 0 !important;
+          }
+        }
+      `}</style>
+    </div>
   );
 }
