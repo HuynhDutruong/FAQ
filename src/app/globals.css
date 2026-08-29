@@ -1975,3 +1975,12 @@ body {
   outline-offset: 2px;
   border-radius: 3px;
 }
+
+.pastor-source {
+  margin-top: 5px;
+  font-size: 0.72rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-subtle);
+  opacity: 0.85;
+}

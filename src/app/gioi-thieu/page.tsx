@@ -128,6 +128,8 @@ export interface DetailedBioRecord {
   image?: string;
   /** Một dòng dấu ấn mục vụ, hiển thị ở bảng niên biểu cha sở. */
   tableNote?: string;
+  /** Xuất xứ thông tin, hiện dưới cột dấu ấn để người đọc tự thẩm định. */
+  source?: string;
   shortDesc: string;
   chronology: { time: string; title: string; content: string }[];
   milestones: string[];
@@ -397,64 +399,70 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
 };
 
 /**
- * Cha sở họ đạo Chánh Tòa Mỹ Tho qua các thời kỳ.
+ * Cha sở họ đạo / Nhà thờ Chánh Tòa Mỹ Tho qua các thời kỳ.
+ *
+ * QUY TẮC: mỗi mục phải kèm trường `source` nói rõ thông tin lấy từ đâu.
+ * Không đưa tên vào danh sách nếu không có nguồn — thà để "Chưa cập nhật".
  *
  * NGUỒN ĐÃ ĐỐI CHIẾU (tra cứu 2026-08):
  *  - IRFA / Hội Thừa Sai Paris — irfa.paris/missionnaire/<mã>-<họ>-<tên>/
  *    Đã rà toàn bộ 32 hồ sơ thừa sai MEP có nhắc "Mytho".
  *  - "Lịch sử Khai Sinh Giáo Phận" và "Tổ chức Giáo phận" (giaophanmytho.net,
  *    tài liệu chính thức GP Mỹ Tho soạn 03/2009 cho Kỷ Yếu Năm Thánh 2010).
+ *  - gxhanhthongtay.net (danh sách các đời cha xứ Hạnh Thông Tây).
  *  - Gallica/BNF, Wikipedia tiếng Việt, cgvdt.vn, hdgmvietnam.com.
  *
- * CHUỖI THỪA SAI PHÁP dựng lại từ hồ sơ IRFA (mỗi mắt xích được xác nhận
- * chéo bởi hồ sơ của người kế nhiệm):
+ * CHUỖI THỪA SAI PHÁP dựng lại từ hồ sơ IRFA — mỗi mắt xích được xác nhận
+ * chéo bởi hồ sơ của người kế nhiệm:
  *    Guillou (1861–1865) → [trống 1865–1870] → Sorel (1870–1872, khởi công
  *    nhà thờ Vĩnh Tường) → Moulins (1873–1899, hoàn tất nhà thờ Vĩnh Tường,
  *    27 năm) → Rénier (1899–1922, xây Nhà thờ Chánh Tòa hiện nay) →
  *    Bar (khoảng 1922–1948, mất tại nhiệm sở).
- *  Hồ sơ Rénier ghi rõ ngài được cử về "thay M. Moulins, người đã ở Mytho
- *  25 năm và được gọi về làm cha sở nhà thờ chánh tòa Sài Gòn"; hồ sơ Moulins
- *  ghi ngài "hoàn tất ngôi nhà thờ do Sorel khởi công".
+ *  Hồ sơ Rénier: "Mgr Mossard l'envoyait à Mytho remplacer M. Moulins, qui
+ *  était appelé à la cathédrale de Saïgon... M. Moulins était à Mytho depuis
+ *  25 ans". Hồ sơ Moulins: ngài "hoàn tất ngôi nhà thờ do Sorel khởi công".
+ *
+ * PHÂN BIỆT HAI DANH XƯNG "TIÊN KHỞI" (không mâu thuẫn nhau):
+ *  - Cha Guillou: cha sở tiên khởi của HỌ ĐẠO Mỹ Tho (1861).
+ *  - Cha Nguyễn Khoa Học: cha sở tiên khởi của NHÀ THỜ CHÁNH TÒA — nhà thờ
+ *    chỉ được nâng lên hàng chánh tòa cuối năm 1960. Cha Nguyễn Minh Chiếu
+ *    là vị cha sở cuối cùng khi nơi đây còn là giáo xứ thuộc GP Sài Gòn.
+ *  Mốc 1960–1968 của Cha Nguyễn Khoa Học xác định được nhờ gxhanhthongtay.net
+ *  ghi ngài làm cha sở Hạnh Thông Tây 1968–1974 (kế nhiệm Cha Anrê Nguyễn
+ *  Văn Đại 1961–1968).
  *
  * ĐÃ GỠ KHỎI DANH SÁCH:
- *  - Eugène FARON (IRFA 1189): KHÔNG phải cha sở. Hồ sơ ghi ngài là
- *    "aumônier de l'hôpital militaire" và là confrère được gửi đến giúp cha
- *    sở Moulins năm 1874; khi trở lại năm 1882 ngài "s'occupa principalement
- *    de l'hôpital militaire et de l'hôpital indigène de Vinh-tuong".
- *    Ảnh /images/cha_faron.jpg vẫn giữ trong repo nếu muốn nêu ngài ở mục
- *    khác (ví dụ tuyên úy quân y viện Mỹ Tho).
+ *  - Eugène FARON (IRFA 1189): KHÔNG phải cha sở mà là "aumônier de l'hôpital
+ *    militaire", confrère được gửi đến giúp cha sở Moulins từ 1874.
  *  - Charles-Émile BOUILLEVAUX (IRFA 0573): chỉ ở Sài Gòn/Chợ Quán
- *    (1849–1855, 1866–1873), chưa từng làm cha sở Mỹ Tho. Ảnh
- *    /images/cha_bouillevaux.jpg vẫn giữ trong repo.
+ *    (1849–1855, 1866–1873), chưa từng làm cha sở Mỹ Tho.
+ *  - GB. HUỲNH KIM DO: không tìm được trong bất kỳ nguồn công khai nào, kể
+ *    cả danh sách linh mục đoàn GP Mỹ Tho 2009.
+ *  Ảnh cha_faron.jpg và cha_bouillevaux.jpg vẫn giữ trong repo (đúng người,
+ *  chỉ là đặt sai chỗ) nếu muốn nêu các ngài ở mục khác.
  *
  * ẢNH CHÂN DUNG (ảnh lưu trữ thật, đã tải về public/images/):
  *  - Sorel (IRFA 0869, bút tích "Sorel, Coch. Occid."), Moulins (IRFA 1056),
  *    Rénier (IRFA 1502, bút tích "Rénier, Cochinchine occid."),
- *    Bar (IRFA 2241, ảnh chụp tại chỗ cuối đời ở Mỹ Tho).
+ *    Bar (IRFA 2241, ảnh chụp cuối đời tại Mỹ Tho).
  *  - Guillou: IRFA 0682 KHÔNG có ảnh (đường dẫn ảnh trả về 404).
- *  - Bốn cha sở Việt Nam: không có ảnh trên Internet, cần xin từ văn phòng
+ *  - Ba cha sở Việt Nam: không có ảnh trên Internet, cần xin từ văn phòng
  *    giáo xứ. Mục thiếu ảnh để trống `image` và hiện ô "Chưa có ảnh tư liệu".
  *
  * CÒN TỒN, CẦN ĐỐI CHIẾU SỔ SÁCH HỌ ĐẠO:
- *  - Trống 1865–1870 và 1948–1956.
- *  - Cha Michel Nguyễn Khoa Học: giaophanmytho.net xác nhận ngài là "cha sở
- *    tiên khởi của Nhà Thờ Chánh Toà" và đảm trách xây Tòa Giám Mục, Nhà
- *    Tĩnh Tâm, Nghênh Đài Đức Mẹ, Nhà Cha Sở — nhưng không cho biết niên hiệu.
- *  - Cha GB. Huỳnh Kim Do: không có nguồn công khai nào. Niên hiệu "1958–1975"
- *    trước đây mâu thuẫn với việc Cha Nguyễn Khoa Học là cha sở tiên khởi Nhà
- *    thờ Chánh Tòa từ 1960, nên đã đổi thành "chưa xác định".
- *  - Cha Giuse Nguyễn Văn Chúc: hai phiên bản mâu thuẫn về mốc bắt đầu
- *    (1975 hoặc 1998), đều không kiểm chứng được. Mốc chắc chắn: ngài là cha
- *    sở năm 1995 khi xây tháp chuông, và Cha Hà Văn Xung nhận sở năm 2006.
- *  - Có tư liệu nêu Cha Giacôbê Nguyễn Văn Mẫn và Đức Cha Anrê Nguyễn Văn Nam
- *    từng coi sóc Chánh Tòa thập niên 1970–1990; chưa tìm được nguồn xác nhận
- *    (tiểu sử Đức Cha Nam ghi ngài ở Lương Hòa Hạ cho đến 1975).
+ *  - Trống 1865–1870 và 1968–1975.
+ *  - Mốc 1948 (Cha Nguyễn Minh Chiếu nhận sở) và 1975 (Cha Nguyễn Văn Chúc
+ *    nhận sở) theo tư liệu giáo xứ, chưa có nguồn công khai xác nhận.
+ *  - Tư liệu giáo xứ nêu giai đoạn 1975–1992 Cha Nguyễn Văn Chúc cùng Cha
+ *    Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền phụ trách giáo xứ; hai
+ *    tên sau chưa tìm được nguồn công khai nên chưa lập mục riêng.
  *  - cgvdt.vn: giai đoạn 1866–1960 họ đạo trải qua hơn 80 linh mục, nên đây
- *    chỉ là niên biểu các vị tiêu biểu.
+ *    chỉ là niên biểu các vị chánh sở tiêu biểu.
  */
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-marc-guillou',
+    source: 'Hồ sơ lưu trữ IRFA 0682',
     tableNote: 'Cha sở tiên khởi. Cộng đoàn Công giáo Mỹ Tho hình thành năm 1861 khi giáo dân các tỉnh miền Tây về đây lánh nạn bách hại; ngài quy tụ và dựng ngôi nhà thờ đầu tiên kính Thánh Phanxicô Xaviê.',
     name: 'Lm. Jean-Marie Guillou (MEP)',
     saintName: 'Thánh Gioan Maria (Jean-Marie)',
@@ -500,6 +508,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-sorel',
+    source: 'Hồ sơ lưu trữ IRFA 0869',
     name: 'Lm. Constant-Joseph Sorel (MEP)',
     saintName: 'Thánh Giuse',
     role: 'Linh mục Chánh sở Họ đạo Mỹ Tho • Khởi công Nhà thờ Vĩnh Tường (1870 – 1872)',
@@ -541,6 +550,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-moulins',
+    source: 'Hồ sơ lưu trữ IRFA 1056',
     name: 'Lm. Pierre-Henri Moulins (MEP)',
     saintName: 'Thánh Phêrô Tông Đồ',
     role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (1873 – 1899), sau là Chánh sở Nhà thờ Chánh Tòa Sài Gòn',
@@ -583,6 +593,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-regnier-co-gam',
+    source: 'Hồ sơ lưu trữ IRFA 1502',
     tableNote: 'Đặt viên đá đầu tiên ngày 11/08/1906 và khánh thành năm 1910 ngôi Nhà thờ Chánh Tòa hiện nay; xây trường của các Sư huynh Lasan, nội trú các Nữ tu Thánh Phaolô, nhà thờ Ngũ Hiệp.',
     name: 'Lm. Jean-Marie Rénier (Cố Gẫm - MEP)',
     saintName: 'Thánh Gioan Maria (Jean-Marie)',
@@ -636,6 +647,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-bar-co-bach',
+    source: 'Hồ sơ lưu trữ IRFA 2241',
     tableNote: 'Đón Đệ tử các Sư huynh Lasan (1929); năm 1930 trường Sư huynh có 400 học sinh, trường Nữ tu Thánh Phaolô 300 nữ sinh; lập ba họ đạo Bàn Hạn, Thược, Phú Vang (1933). Qua đời ngay tại nhiệm sở.',
     name: 'Lm. Henri Bar (Cố Bạch - MEP)',
     saintName: 'Thánh Giuse (tên rửa tội: Henri Edmond Joseph)',
@@ -688,14 +700,20 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-minh-chieu',
-    tableNote: 'Linh mục Việt Nam đầu tiên làm cha sở họ đạo; năm 1958 cho dời quả chuông lớn lên tháp cao phía Nam.',
+    source: 'giaophanmytho.net (xác nhận ngài là cha sở năm 1958); niên hiệu 1948 – 1960 theo tư liệu giáo xứ',
+    tableNote: 'Kế nhiệm Cha Henri Bar, và là vị cha sở cuối cùng coi sóc Mỹ Tho khi nơi đây còn là một giáo xứ thuộc Giáo phận Sài Gòn. Năm 1958 cho dời quả chuông từ tháp bên hông nữ lên tháp cao bên nam.',
     name: 'Lm. Phaolô Nguyễn Minh Chiếu',
     saintName: 'Thánh Phaolô Tông Đồ',
-    role: 'Linh mục Việt Nam Tiên khởi làm Chánh xứ Họ đạo Mỹ Tho (1956 – 1958)',
-    period: '1956 – 1958',
+    role: 'Linh mục Chánh xứ Họ đạo Mỹ Tho (1948 – 1960)',
+    period: '1948 – 1960',
     origin: 'Giáo phận Sài Gòn / Giáo hạt Mỹ Tho',
-    shortDesc: 'Vị linh mục Việt Nam bản xứ đầu tiên chính thức đảm nhận cương vị Cha sở Chánh xứ Họ đạo Mỹ Tho. Ngài có công củng cố Ban Quới Chức người Việt, kiện toàn tổ chức giáo xứ và thực hiện công trình lịch sử di dời quả chuông lớn của nhà thờ lên tháp cao phía Nam vào năm 1958.',
+    shortDesc: 'Kế nhiệm Cha Henri Bar sau khi ngài qua đời ngay tại nhiệm sở năm 1948. Ngài coi sóc họ đạo suốt hơn một thập kỷ và là vị cha sở cuối cùng của Mỹ Tho khi nơi đây còn là một giáo xứ thuộc Giáo phận Sài Gòn — trước khi Tòa Thánh thành lập Giáo phận Mỹ Tho năm 1960 và nhà thờ được nâng lên hàng Chánh Tòa. Dấu ấn còn lại đến nay là công trình dời quả chuông lớn từ tháp bên hông nữ lên tháp cao bên nam vào năm 1958.',
     chronology: [
+      {
+        time: '1948',
+        title: 'Kế nhiệm Cha Henri Bar',
+        content: 'Nhận coi sóc họ đạo Mỹ Tho sau khi Cha Henri Bar (Cố Bạch) qua đời ngay tại nhiệm sở ngày 19/03/1948.'
+      },
       {
         time: '1956',
         title: 'Chính thức nhậm chức Cha sở người Việt đầu tiên',
@@ -705,6 +723,11 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         time: '1957',
         title: 'Kiện toàn sổ sách & Ban Quới Chức',
         content: 'Tổ chức lại các khu họ nhánh và đào tạo giáo lý phụng vụ.'
+      },
+      {
+        time: '1960',
+        title: 'Chuyển giao khi Giáo phận Mỹ Tho được thành lập',
+        content: 'Cuối năm 1960 Tòa Thánh thành lập Giáo phận Mỹ Tho và nâng nhà thờ họ đạo lên hàng Nhà thờ Chánh Tòa với tước hiệu Đức Mẹ Vô Nhiễm Nguyên Tội. Ngài là vị cha sở cuối cùng của họ đạo dưới danh nghĩa một giáo xứ thuộc Giáo phận Sài Gòn, trước khi Cha Micae Nguyễn Khoa Học trở thành cha sở tiên khởi của Nhà thờ Chánh Tòa.'
       },
       {
         time: '1958',
@@ -720,12 +743,13 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-khoa-hoc',
-    name: 'Lm. Michel Nguyễn Khoa Học',
+    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974, xác định mốc rời Mỹ Tho)',
+    name: 'Lm. Micae Nguyễn Khoa Học',
     saintName: 'Thánh Micae Tổng lãnh Thiên thần',
-    role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (từ năm 1960)',
-    period: 'từ 1960',
+    role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1968)',
+    period: '1960 – 1968',
     origin: 'Giáo phận Mỹ Tho',
-    tableNote: 'Cha sở tiên khởi của Nhà thờ Chánh Tòa sau khi giáo phận được thành lập (1960). Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong khuôn viên cạnh nhà thờ.',
+    tableNote: 'Cha sở tiên khởi của Nhà thờ Chánh Tòa sau khi giáo phận được thành lập (1960). Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong khuôn viên cạnh nhà thờ; thành lập Trường Tiểu học Thánh Giuse tại giáo xứ. Cuối năm 1968 thuyên chuyển về Giáo xứ Hạnh Thông Tây (Sài Gòn).',
     shortDesc: 'Khi Giáo phận Mỹ Tho được thành lập năm 1960, giáo phận chưa có Tòa Giám Mục; Đức Cha Giuse Trần Văn Thiện phải tạm trú tại một ngôi nhà trên đường Lê Lợi, đối diện Bưu điện Mỹ Tho. Là cha sở tiên khởi của Nhà thờ Chánh Tòa, ngài đảm trách xây dựng cả cụm công trình trong khuôn viên cạnh nhà thờ — Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở — vẫn còn đến ngày nay. Chỉ sau khi Tòa Giám Mục hoàn thành, Đức Cha Giuse mới chính thức về thường trú.',
     chronology: [
       {
@@ -737,56 +761,42 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         time: 'sau 1960',
         title: 'Xây dựng cụm công trình Tòa Giám Mục',
         content: 'Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong cùng khuôn viên cạnh Nhà thờ Chánh Tòa. Nhờ đó Đức Giám mục tiên khởi mới có nơi ở và làm việc chính thức của giáo phận.'
+      },
+      {
+        time: 'thập niên 1960',
+        title: 'Thành lập Trường Tiểu học Thánh Giuse',
+        content: 'Thành lập Trường Tiểu học Thánh Giuse ngay tại giáo xứ Chánh Tòa, mở rộng công cuộc giáo dục cho con em trong họ đạo.'
+      },
+      {
+        time: 'cuối 1968',
+        title: 'Thuyên chuyển về Giáo xứ Hạnh Thông Tây',
+        content: 'Cuối năm 1968 ngài rời Mỹ Tho, về làm Chánh sở Giáo xứ Hạnh Thông Tây (Gò Vấp, Sài Gòn) và phục vụ tại đó cho đến năm 1974, kế nhiệm Cha Anrê Nguyễn Văn Đại. Giai đoạn này ngài lo trùng tu thánh đường sau những thiệt hại của chiến cuộc.'
       }
     ],
     milestones: [
-      'Linh mục Chánh sở tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (từ năm 1960).',
-      'Đảm trách xây dựng Tòa Giám Mục Mỹ Tho đầu tiên, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở.'
-    ]
-  },
-  {
-    id: 'cha-huynh-kim-do',
-    tableNote: 'Niên hiệu chưa xác định được qua nguồn công khai — cần đối chiếu sổ sách họ đạo.',
-    name: 'Lm. Gioan Baotixita Huỳnh Kim Do',
-    saintName: 'Thánh Gioan Baotixita (John the Baptist)',
-    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (niên hiệu chưa xác định)',
-    period: 'chưa xác định',
-    origin: 'Giáo phận Mỹ Tho',
-    shortDesc: 'Cha sở thời kỳ lịch sử bản lề khi Giáo phận Mỹ Tho được chính thức thành lập ngày 24/11/1960. Ngài đã chuẩn bị cơ sở vật chất và nghi lễ để đón nhận sắc phong Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm, phục vụ đắc lực bên cạnh Đức Giám mục Tiên khởi Giuse Trần Văn Thiện.',
-    chronology: [
-      {
-        time: '1958 – 1960',
-        title: 'Chuẩn bị thành lập Giáo phận mới',
-        content: 'Cải tạo gian Cung Thánh, trang hoàng ngai tòa Giám mục và chuẩn bị cơ sở hạ tầng Tòa Giám Mục.'
-      },
-      {
-        time: '1960',
-        title: 'Đón nhận Tông hiến Venerabilium Nostrorum',
-        content: 'Ngày 24/11/1960, Đức Thánh Cha Gioan XXIII nâng Nhà thờ Mỹ Tho thành Nhà thờ Chính Tòa của Giáo phận mới.'
-      },
-      {
-        time: '1961 – 1975',
-        title: 'Mở rộng hoạt động tông đồ giáo dân',
-        content: 'Phát triển phong trào Legio Mariae, Huynh đoàn Đa Minh và dạy giáo lý cho thiếu nhi.'
-      }
-    ],
-    milestones: [
-      'Cha sở đương nhiệm khi Họ đạo Mỹ Tho được nâng lên hàng Nhà thờ Chính Tòa (1960).',
-      'Đồng hành cùng Đức Cha Tiên khởi Giuse Trần Văn Thiện kiến thiết giáo phận buổi sơ khai.',
-      'Xây dựng phong trào tông đồ giáo dân và hội đoàn đức tin lớn mạnh.'
+      'Linh mục Chánh sở tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1968).',
+      'Đảm trách xây dựng Tòa Giám Mục Mỹ Tho đầu tiên, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở.',
+      'Thành lập Trường Tiểu học Thánh Giuse tại giáo xứ Chánh Tòa.',
+      'Chánh sở Giáo xứ Hạnh Thông Tây, Gò Vấp (1968 – 1974).'
     ]
   },
   {
     id: 'cha-nguyen-van-chuc',
-    tableNote: 'Coi sóc họ đạo hơn hai thập kỷ sau 1975; cho xây tháp chuông tách rời khỏi nhà thờ để tiếng chuông không gây rung chấn ngôi thánh đường cổ — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
+    source: 'giaophanmytho.net (xác nhận ngài là cha sở năm 1995); mốc 1975 theo tư liệu giáo xứ',
+    tableNote: 'Theo tư liệu giáo xứ, từ 1975 đến 1992 ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền phụ trách giáo xứ. Cho xây tháp chuông tách rời khỏi nhà thờ để tiếng chuông không gây rung chấn ngôi thánh đường cổ — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
-    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (đến năm 2006)',
-    period: '… – 2006',
+    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 2006)',
+    period: '1975 – 2006',
     death: '14/12/1999 tại Tiền Giang',
     origin: 'Giáo phận Mỹ Tho',
     shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc lớn nhất của ngài là tháp chuông tách rời hẳn khỏi nhà thờ (1995): vì lo tiếng chuông rung chấn làm hư hại ngôi thánh đường xây từ 1906, ngài cho dựng một tháp chuông riêng — Đức Cha Anrê Nguyễn Văn Nam đặt viên đá đầu tiên ngày 16/02/1995, công trình khánh thành sau hơn 9 tháng vào ngày 30/11/1995.',
     chronology: [
+      {
+        time: '1975 – 1992',
+        title: 'Cùng phụ trách giáo xứ thời kỳ khó khăn',
+        content: 'Theo tư liệu giáo xứ, trong giai đoạn này ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền chia nhau phụ trách Giáo xứ Chánh Tòa, giữ vững đời sống đức tin và các sinh hoạt phụng vụ của cộng đoàn.'
+      },
       {
         time: '1975 – 1985',
         title: 'Dẫn dắt họ đạo qua thời kỳ gian nan',
@@ -811,6 +821,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-ha-van-xung',
+    source: 'giaophanmytho.net (trùng tu 2006 và danh sách linh mục đoàn 2009)',
     tableNote: 'Cha sở đương nhiệm kiêm Linh mục Trưởng Hạt Giáo hạt Mỹ Tho; chủ trì đợt trùng tu 100 năm (khởi công 14/06/2006, lễ tạ ơn khai mạc Năm Thánh 21/05/2007), xây Nhà Mục vụ Giáo xứ (2020) và Lễ đài Đức Mẹ.',
     name: 'Linh mục Giacôbê Hà Văn Xung',
     saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
@@ -857,6 +868,7 @@ export interface PastorTimelineRow {
   bioId?: string;
   name?: string;
   note?: string;
+  source?: string;
   sortKey?: number;
 }
 
@@ -867,7 +879,7 @@ export interface PastorTimelineRow {
  */
 const PASTOR_GAPS: PastorTimelineRow[] = [
   { period: '1865 – 1870' },
-  { period: '1948 – 1956' }
+  { period: '1968 – 1975' }
 ];
 
 /** Năm bắt đầu của một mốc thời gian, dùng để xếp bảng theo đúng niên đại. */
@@ -891,6 +903,7 @@ export const PASTOR_TIMELINE: PastorTimelineRow[] = [
       bioId: p.id,
       name: p.name,
       note: p.tableNote,
+      source: p.source,
       sortKey: (y ?? lastKnownYear) + i / 1000
     };
   }),
@@ -1779,6 +1792,9 @@ export default function GioiThieuPage() {
                         <td style={{ color: bio ? 'var(--color-dark)' : 'var(--color-subtle)' }}>
                           {row.note ?? (
                             <em>Chưa cập nhật — còn thiếu tư liệu về giai đoạn này.</em>
+                          )}
+                          {row.source && (
+                            <div className="pastor-source">Nguồn: {row.source}</div>
                           )}
                         </td>
                       </tr>
