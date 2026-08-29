@@ -282,42 +282,36 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     id: 'cha-ha-van-xung',
     name: 'Linh mục Giacôbê Hà Văn Xung',
     saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
-    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho • Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Nguyên Giám đốc Caritas Giáo phận',
-    period: '2006 – nay (Tại Giáo xứ Chánh Tòa)',
-    birth: 'Năm 1958',
+    role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho',
+    period: 'Hiện tại',
+    birth: 'Giáo phận Mỹ Tho',
     origin: 'Giáo phận Mỹ Tho',
-    motto: '“Yêu thương và Phục vụ người nghèo khó”',
-    mottoLatin: 'Caritas Christi Urget Nos (2 Cr 5,14)',
-    priestOrdination: '1992 tại Đại Chủng viện Thánh Giuse Sài Gòn (Khóa I)',
+    motto: '“Tôi tớ trung tín phục vụ Dân Chúa”',
+    mottoLatin: 'In Caritate et Ministerio',
     image: '/images/cha_so_ha_van_xung.jpg',
-    shortDesc: 'Hơn 30 năm tận tụy trong đời sống dâng hiến. Hiện ngài đảm nhiệm trọng trách Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho và Cha Sở Nhà thờ Chánh Tòa. Cha là người trực tiếp khởi xướng công trình đại trùng tu bách chu niên Nhà thờ Chánh Tòa Mỹ Tho (2006 – 2007), xây dựng Nhà Mục vụ Giáo xứ (2020), sáng lập Nhà dưỡng lão tình thương Thanh Bình và tận tâm phục vụ người nghèo.',
+    shortDesc: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho kiêm Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho. Ngài luôn đồng hành chặt chẽ cùng Đức Giám mục Giáo phận, điều phối sứ vụ mục tử liên xứ trong giáo hạt, chăm lo đời sống thiêng liêng cho cộng đoàn Chánh Tòa và dẫn dắt các phong trào hội đoàn giáo dân.',
     chronology: [
       {
-        time: '1992',
-        title: 'Thụ phong Linh mục Khóa I',
-        content: 'Thụ phong linh mục thuộc Khóa I Đại Chủng viện Thánh Giuse Sài Gòn sau năm 1975, dấn thân nhiệt thành thi hành sứ vụ mục vụ tại các cộng đoàn đức tin Giáo phận Mỹ Tho.'
+        time: 'Trọng trách Giáo Hạt',
+        title: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho',
+        content: 'Được Đức Giám mục Giáo phận tín nhiệm giao phó trọng trách Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho. Ngài chịu trách nhiệm điều phối công tác mục vụ giữa các giáo xứ trong hạt, chủ tọa các phiên họp linh mục hạt, tổ chức các cuộc hành hương Năm Thánh, đại lễ liên xứ và gắn kết sự hiệp thông với Tòa Giám mục.'
       },
       {
-        time: '2005 – nay',
-        title: 'Cha Sở Giáo xứ Chánh Tòa Mỹ Tho',
-        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận. Năm 2006 (nhân dịp kỷ niệm 100 năm xây dựng 1906–2006), ngài khởi sự công trình đại trùng tu nhà thờ, mở rộng 2 cánh nhà thờ, cải tạo tháp chuông kiên cố và hoàn thành năm 2007. Năm 2020, ngài khánh thành tòa Nhà Mục vụ Giáo xứ bề thế phục vụ giáo lý và sinh hoạt giới trẻ.'
+        time: 'Mục tử Chánh xứ',
+        title: 'Cha Sở Nhà thờ Chánh Tòa Mỹ Tho',
+        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận Mỹ Tho. Ngài đã chủ trì công trình Đại trùng tu Bách Chu Niên (2006 – 2007) nhân dịp 100 năm xây dựng ngôi thánh đường, nới rộng hai cánh nhà thờ, cải tạo tháp chuông kiên cố, khánh thành tòa Nhà Mục vụ Giáo xứ (2020) và công trình Lễ đài Đức Mẹ.'
       },
       {
-        time: 'Nhiều nhiệm kỳ',
-        title: 'Giám đốc Caritas Giáo phận Mỹ Tho',
-        content: 'Phụ trách Ủy ban Bác ái Xã hội Caritas Giáo phận Mỹ Tho, sáng lập Nhà dưỡng lão tình thương Thanh Bình (Chợ Gạo, Tiền Giang) nuôi dưỡng các cụ già neo đơn, duy trì thường niên Ngày Thế giới Người nghèo với các phần quà và bữa cơm tình thương.'
-      },
-      {
-        time: 'Hiện tại',
-        title: 'Tổng Linh hướng & Mục tử Bác ái',
-        content: 'Tổng Linh hướng Hội Các Bà Mẹ Công Giáo Giáo phận Mỹ Tho, chăm sóc mục vụ cho bệnh nhân, người cao tuổi, đồng hành với giới trẻ và Thiếu Nhi Thánh Thể xứ đoàn Chánh Tòa.'
+        time: 'Sứ vụ Mục vụ',
+        title: 'Cử hành Phụng vụ & Đồng hành Đoàn thể',
+        content: 'Chủ tế và đồng tế trong các thánh lễ đại triều của Giáo phận, cử hành các bí tích, giải tội, xức dầu bệnh nhân, chăm sóc người cao tuổi, và linh hướng cho các đoàn thể nòng cốt như Xứ Đoàn Thiếu Nhi Thánh Thể Các Thánh Tử Đạo Việt Nam, Huynh Trưởng và Hội Các Bà Mẹ Công Giáo.'
       }
     ],
     milestones: [
-      'Đại trùng tu và mở rộng Nhà thờ Chánh Tòa Mỹ Tho nhân dịp 100 năm xây dựng (1906 – 2006).',
-      'Xây dựng Tòa Nhà Mục Vụ Giáo xứ Chánh Tòa khang trang phục vụ giáo lý và sinh hoạt cộng đoàn.',
-      'Sáng lập và vận hành Nhà dưỡng lão tình thương Thanh Bình cưu mang các cụ già neo đơn, khó khăn.',
-      'Mục tử nhân ái, nhiệt thành với người nghèo và đồng hành cùng mọi thành phần Dân Chúa.'
+      'Linh mục Trưởng Hạt Giáo hạt Mỹ Tho, điều phối và gắn kết các linh mục cùng các cộng đoàn giáo xứ trong hạt.',
+      'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, ngôi Thánh đường Mẹ của Giáo phận.',
+      'Chủ trì công trình Đại trùng tu Bách Chu Niên Nhà thờ Chánh Tòa (2006 – 2007) và xây dựng Nhà Mục vụ Giáo xứ (2020).',
+      'Mục tử tận tụy trong việc cử hành bí tích, chăm sóc mục vụ bệnh nhân và nâng đỡ các đoàn thể đức tin.'
     ]
   }
 ];
