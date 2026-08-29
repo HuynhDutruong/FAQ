@@ -455,11 +455,16 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  * CÒN TỒN, CẦN ĐỐI CHIẾU SỔ SÁCH HỌ ĐẠO:
  *  - Mốc 1948 (Cha Nguyễn Minh Chiếu nhận sở) và 1975 (Cha Nguyễn Văn Chúc
  *    nhận sở) theo tư liệu giáo xứ, chưa có nguồn công khai xác nhận.
- *  - Cha Phêrô NGUYỄN VĨNH SANG (1999 – 2005): theo tư liệu giáo xứ, chưa
- *    tìm được nguồn công khai nào, kể cả danh sách linh mục đoàn GP Mỹ Tho
- *    2009. Cần đối chiếu sổ sách họ đạo.
+ *  - Cha Phêrô HỒ BẢN CHÁNH (1999 – 2005): nhiệm kỳ tại Chánh Tòa theo tư
+ *    liệu giáo xứ, chưa có nguồn công khai xác nhận trực tiếp. Nhưng nhân
+ *    vật thì đã xác minh được: danh sách GP Mỹ Tho 2009 ghi ngài là Tổng
+ *    Đại Diện Giáo phận kiêm Phó Chủ tịch Hội đồng Mục vụ; bài trên
+ *    giaophanmytho.net (03/2011) gọi ngài là "nguyên Tổng Đại Diện", sau
+ *    coi sóc Giáo xứ Thủ Ngữ.
+ *    (Bản trước đây ghi nhầm là "Cha Phêrô Nguyễn Vĩnh Sang" — tên này
+ *    không có trong bất kỳ nguồn nào, kể cả danh sách linh mục đoàn 2009.)
  *  - Chuỗi 1975 – nay khớp nhau ở mọi mốc kiểm chứng được: Cha Chúc xây
- *    tháp chuông 1995 trong nhiệm kỳ (1975–1999); Cha Vĩnh Sang coi sóc
+ *    tháp chuông 1995 trong nhiệm kỳ (1975–1999); Cha Hồ Bản Chánh coi sóc
  *    dịp Lễ Cung hiến 21/01/2000; Cha Xung ở Tòa Giám mục 1999–2005 (thụ
  *    phong 27/06/1992, phó biệt cư Tân Phước 2 năm, du học Pháp từ 1994,
  *    về TGM 1999 làm thư ký Đức Cha Phaolô Bùi Văn Đọc, sáu năm sau nhận
@@ -976,15 +981,15 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ]
   },
   {
-    id: 'cha-nguyen-vinh-sang',
-    name: 'Lm. Phêrô Nguyễn Vĩnh Sang',
+    id: 'cha-ho-ban-chanh',
+    name: 'Lm. Phêrô Hồ Bản Chánh',
     saintName: 'Thánh Phêrô Tông Đồ',
-    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1999 – 2005)',
+    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1999 – 2005), sau là Tổng Đại Diện Giáo phận',
     period: '1999 – 2005',
     origin: 'Giáo phận Mỹ Tho',
-    source: 'Tư liệu giáo xứ — chưa tìm được nguồn công khai để đối chiếu (không có trong danh sách linh mục đoàn GP Mỹ Tho 2009)',
-    tableNote: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc, coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — dịp Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000.',
-    shortDesc: 'Được bổ nhiệm làm Cha sở Nhà thờ Chánh Tòa Mỹ Tho năm 1999, kế nhiệm Cha Giuse Nguyễn Văn Chúc. Ngài coi sóc họ đạo qua thời kỳ Đại Năm Thánh 2000, giai đoạn ngôi thánh đường được Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung hiến ngày 21/01/2000 và nhận Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai. Năm 2005 ngài chuyển giao giáo xứ cho Cha Giacôbê Hà Văn Xung.',
+    source: 'Tư liệu giáo xứ (nhiệm kỳ 1999 – 2005 tại Chánh Tòa). Đã xác nhận được: danh sách GP Mỹ Tho 2009 ghi ngài là Tổng Đại Diện Giáo phận; giaophanmytho.net (03/2011) gọi ngài là "nguyên Tổng Đại Diện", sau coi sóc Giáo xứ Thủ Ngữ.',
+    tableNote: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc, coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — dịp Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000. Về sau ngài được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho.',
+    shortDesc: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc năm 1999, ngài coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — giai đoạn ngôi thánh đường được Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung hiến ngày 21/01/2000 và nhận Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai. Năm 2005 ngài chuyển giao giáo xứ cho Cha Giacôbê Hà Văn Xung. Về sau ngài được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho, rồi xin thôi chức và về coi sóc Giáo xứ Thủ Ngữ.',
     chronology: [
       {
         time: '1999',
@@ -1000,11 +1005,17 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         time: '2005',
         title: 'Chuyển giao sứ vụ',
         content: 'Trao lại quyền chánh sở cho Cha Giacôbê Hà Văn Xung.'
+      },
+      {
+        time: 'sau 2005',
+        title: 'Tổng Đại Diện Giáo phận Mỹ Tho',
+        content: 'Được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho, đồng thời là Phó Chủ tịch Hội đồng Mục vụ Giáo phận. Đến năm 2011 ngài xin thôi chức Tổng Đại Diện và về coi sóc Giáo xứ Thủ Ngữ.'
       }
     ],
     milestones: [
       'Chánh sở Nhà thờ Chánh Tòa Mỹ Tho 1999 – 2005.',
-      'Coi sóc họ đạo trong dịp Lễ Cung hiến Nhà thờ Chánh Tòa, Đại Năm Thánh 2000.'
+      'Coi sóc họ đạo trong dịp Lễ Cung hiến Nhà thờ Chánh Tòa, Đại Năm Thánh 2000.',
+      'Tổng Đại Diện Giáo phận Mỹ Tho.'
     ]
   },
   {
@@ -1041,7 +1052,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '2005',
         title: 'Nhận coi sóc Giáo xứ Chánh Tòa',
-        content: 'Sáu năm sau khi về Tòa Giám mục, ngài được trao phó trông coi giáo xứ Chánh Tòa, kế nhiệm Cha Phêrô Nguyễn Vĩnh Sang, và gắn bó với "nhà thờ mẹ" của giáo phận từ đó đến nay.'
+        content: 'Sáu năm sau khi về Tòa Giám mục, ngài được trao phó trông coi giáo xứ Chánh Tòa, kế nhiệm Cha Phêrô Hồ Bản Chánh, và gắn bó với "nhà thờ mẹ" của giáo phận từ đó đến nay.'
       },
       {
         time: '2009',
