@@ -455,12 +455,15 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  * CÒN TỒN, CẦN ĐỐI CHIẾU SỔ SÁCH HỌ ĐẠO:
  *  - Mốc 1948 (Cha Nguyễn Minh Chiếu nhận sở) và 1975 (Cha Nguyễn Văn Chúc
  *    nhận sở) theo tư liệu giáo xứ, chưa có nguồn công khai xác nhận.
- *  - Mốc chuyển giao Chúc -> Xung khoảng 2005, suy ra từ tiểu sử Cha Xung:
- *    thụ phong 27/06/1992, phó biệt cư Tân Phước hai năm, du học Pháp từ
- *    1994, về Tòa Giám mục năm 1999 làm thư ký Đức Cha Phaolô Bùi Văn Đọc,
- *    "sáu năm sau" được trao giáo xứ Chánh Tòa. Mốc này khớp với việc tài
- *    liệu GP Mỹ Tho ghi Cha Chúc cho xây tháp chuông năm 1995 và Cha Xung
- *    khởi công trùng tu 14/06/2006.
+ *  - Cha Phêrô NGUYỄN VĨNH SANG (1999 – 2005): theo tư liệu giáo xứ, chưa
+ *    tìm được nguồn công khai nào, kể cả danh sách linh mục đoàn GP Mỹ Tho
+ *    2009. Cần đối chiếu sổ sách họ đạo.
+ *  - Chuỗi 1975 – nay khớp nhau ở mọi mốc kiểm chứng được: Cha Chúc xây
+ *    tháp chuông 1995 trong nhiệm kỳ (1975–1999); Cha Vĩnh Sang coi sóc
+ *    dịp Lễ Cung hiến 21/01/2000; Cha Xung ở Tòa Giám mục 1999–2005 (thụ
+ *    phong 27/06/1992, phó biệt cư Tân Phước 2 năm, du học Pháp từ 1994,
+ *    về TGM 1999 làm thư ký Đức Cha Phaolô Bùi Văn Đọc, sáu năm sau nhận
+ *    Chánh Tòa) rồi khởi công trùng tu 14/06/2006.
  *  - Năm Cha Bar nhận sở (~1922) không có trong hồ sơ IRFA; suy ra vì ngài
  *    kế nhiệm Cha Rénier, mốc có ngày tháng sớm nhất tại Mỹ Tho là 1929.
  *  - Tư liệu giáo xứ nêu giai đoạn 1975–1992 Cha Nguyễn Văn Chúc cùng Cha
@@ -929,12 +932,12 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-van-chuc',
-    source: 'giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995) + tư liệu giáo xứ (nhận sở đầu 1975; giai đoạn 1975 – 1992 có các cha phó cùng phụ trách). Mốc kết thúc suy ra từ việc Cha Hà Văn Xung nhận giáo xứ khoảng năm 2005.',
+    source: 'giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995, tức trong nhiệm kỳ) + tư liệu giáo xứ (nhiệm kỳ 1975 – 1999; giai đoạn 1975 – 1992 có các cha phó cùng phụ trách)',
     tableNote: 'Nhận xứ ngay trước biến cố tháng 4/1975; cùng các cha phó Phêrô Trần Xuân Lộc và Đôminicô Lê Văn Bền duy trì thánh lễ và ổn định đời sống đức tin qua giai đoạn biến động nhất. Đầu năm 1975 ngài cùng giáo dân mua một căn nhà lá làm nhà nguyện, đặt nền móng cho Họ đạo Tân Long. Năm 1995 ngài chủ trì xây tháp chuông tách rời khỏi thánh đường — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
-    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – khoảng 2005)',
-    period: '1975 – khoảng 2005',
+    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 1999)',
+    period: '1975 – 1999',
     death: '14/12/1999 tại Tiền Giang',
     origin: 'Giáo phận Mỹ Tho',
     shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc lớn nhất của ngài là tháp chuông tách rời hẳn khỏi nhà thờ (1995): vì lo tiếng chuông rung chấn làm hư hại ngôi thánh đường xây từ 1906, ngài cho dựng một tháp chuông riêng — Đức Cha Anrê Nguyễn Văn Nam đặt viên đá đầu tiên ngày 16/02/1995, công trình khánh thành sau hơn 9 tháng vào ngày 30/11/1995.',
@@ -973,6 +976,38 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ]
   },
   {
+    id: 'cha-nguyen-vinh-sang',
+    name: 'Lm. Phêrô Nguyễn Vĩnh Sang',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1999 – 2005)',
+    period: '1999 – 2005',
+    origin: 'Giáo phận Mỹ Tho',
+    source: 'Tư liệu giáo xứ — chưa tìm được nguồn công khai để đối chiếu (không có trong danh sách linh mục đoàn GP Mỹ Tho 2009)',
+    tableNote: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc, coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — dịp Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000.',
+    shortDesc: 'Được bổ nhiệm làm Cha sở Nhà thờ Chánh Tòa Mỹ Tho năm 1999, kế nhiệm Cha Giuse Nguyễn Văn Chúc. Ngài coi sóc họ đạo qua thời kỳ Đại Năm Thánh 2000, giai đoạn ngôi thánh đường được Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung hiến ngày 21/01/2000 và nhận Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai. Năm 2005 ngài chuyển giao giáo xứ cho Cha Giacôbê Hà Văn Xung.',
+    chronology: [
+      {
+        time: '1999',
+        title: 'Nhận Nhà thờ Chánh Tòa',
+        content: 'Được bổ nhiệm làm Cha sở Nhà thờ Chánh Tòa Mỹ Tho sau khi Cha Giuse Nguyễn Văn Chúc mãn nhiệm.'
+      },
+      {
+        time: '2000',
+        title: 'Đại Năm Thánh & Lễ Cung hiến',
+        content: 'Coi sóc họ đạo trong dịp Đại Năm Thánh 2000. Ngày 21/01/2000 Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa Mỹ Tho và chọn Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai của nhà thờ.'
+      },
+      {
+        time: '2005',
+        title: 'Chuyển giao sứ vụ',
+        content: 'Trao lại quyền chánh sở cho Cha Giacôbê Hà Văn Xung.'
+      }
+    ],
+    milestones: [
+      'Chánh sở Nhà thờ Chánh Tòa Mỹ Tho 1999 – 2005.',
+      'Coi sóc họ đạo trong dịp Lễ Cung hiến Nhà thờ Chánh Tòa, Đại Năm Thánh 2000.'
+    ]
+  },
+  {
     id: 'cha-ha-van-xung',
     priestOrdination: 'Thụ phong Linh mục ngày 27/06/1992',
     source: 'Tư liệu giáo xứ (thụ phong 27/06/1992; về Tòa Giám mục năm 1999, sáu năm sau được trao giáo xứ Chánh Tòa) + giaophanmytho.net (chủ trì trùng tu khởi công 14/06/2006; danh sách linh mục đoàn 2009 ghi ngài ở Chánh Tòa)',
@@ -980,7 +1015,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     name: 'Linh mục Giacôbê Hà Văn Xung',
     saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
     role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho',
-    period: 'khoảng 2005 – nay',
+    period: '2005 – nay',
     birth: 'Giáo phận Mỹ Tho',
     origin: 'Giáo phận Mỹ Tho',
     motto: '“Tôi tớ trung tín phục vụ Dân Chúa”',
@@ -999,14 +1034,14 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Được bề trên cử đi du học tại Pháp, chuyên ngành mục vụ giáo lý.'
       },
       {
-        time: '1999 – khoảng 2005',
+        time: '1999 – 2005',
         title: 'Thư ký Đức Giám mục & Đặc trách Giáo lý Giáo phận',
         content: 'Về công tác tại Tòa Giám mục Giáo phận Mỹ Tho, làm thư ký cho Đức Cha Phaolô Bùi Văn Đọc và đặc trách các hoạt động giáo lý trong toàn giáo phận.'
       },
       {
-        time: 'khoảng 2005',
+        time: '2005',
         title: 'Nhận coi sóc Giáo xứ Chánh Tòa',
-        content: 'Sáu năm sau khi về Tòa Giám mục, ngài được trao phó trông coi giáo xứ Chánh Tòa và gắn bó với "nhà thờ mẹ" của giáo phận từ đó đến nay.'
+        content: 'Sáu năm sau khi về Tòa Giám mục, ngài được trao phó trông coi giáo xứ Chánh Tòa, kế nhiệm Cha Phêrô Nguyễn Vĩnh Sang, và gắn bó với "nhà thờ mẹ" của giáo phận từ đó đến nay.'
       },
       {
         time: '2009',
