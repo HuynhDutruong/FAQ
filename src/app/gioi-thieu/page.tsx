@@ -561,7 +561,7 @@ export default function GioiThieuPage() {
                     </li>
                     <li>
                       <a href="#vatican-267-giao-hoang" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Biên niên sử 267 Vị Giáo Hoàng (Chạy liên tục &amp; Tên Latinh)
+                        Biên niên sử Các Giáo Triều Roma (267 Vị Giáo Hoàng)
                       </a>
                     </li>
                   </ol>
@@ -813,19 +813,15 @@ export default function GioiThieuPage() {
             </p>
 
             {/* BĂNG CHUYỀN CHÂN DUNG 267 VỊ GIÁO HOÀNG CHẠY LIÊN TỤC */}
-            <div id="vatican-267-giao-hoang" style={{ marginTop: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <div id="vatican-267-giao-hoang" style={{ marginTop: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
                 <Church size={18} color="var(--color-red)" />
                 <h3 style={{ margin: 0, fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-                  1.3. Biên Niên Sử 267 Vị Giáo Hoàng Đã Trị Vì Từ Thánh Phêrô Đến Nay
+                  1.3. Dòng Lịch Sử Tông Truyền Của Các Giáo Triều Roma
                 </h3>
               </div>
-              <p style={{ fontSize: '0.9rem', color: 'var(--color-subtle)', margin: '0 0 12px' }}>
-                Dưới đây là bảng danh mục 267 Vị Giáo hoàng hợp pháp của Giáo hội Công giáo được sắp xếp theo trình tự thời gian từ Thánh Phêrô đến Đức Lêô XIV.
-                Băng chuyền chạy liên tục từ trái sang phải với huy hiệu tròn, hiển thị đầy đủ tên tiếng Việt, tên chính thức tiếng Latinh và niên hiệu trị vì:
-              </p>
 
-              {/* Component Marquee liên tục */}
+              {/* Component Marquee Hoàng Gia */}
               <PopesContinuousMarquee />
             </div>
           </section>
