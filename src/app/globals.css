@@ -1103,11 +1103,13 @@ button {
 
   /* Tin tức: Lead Hero card trên mobile */
   .news-lead-hover {
-    border-radius: 8px !important;
+    border-radius: 10px !important;
   }
 
   .news-lead-hover img {
-    height: 160px !important;
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
   }
 
   /* Tin tức: Dòng tin tức rút gọn trên mobile */

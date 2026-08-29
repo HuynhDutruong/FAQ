@@ -396,7 +396,7 @@ export default function ArticleDetailView({
 
         {/* Media Section: High-Res Photo Gallery / Full-Image Banner */}
         {post.images && post.images.length > 0 && (
-          <div style={{ backgroundColor: '#0B0F19', padding: '12px' }}>
+          <div style={{ backgroundColor: 'var(--color-bg-secondary)', padding: '12px' }}>
             {post.images.length === 1 ? (
               <div
                 style={{
@@ -404,7 +404,8 @@ export default function ArticleDetailView({
                   borderRadius: '12px',
                   overflow: 'hidden',
                   cursor: 'zoom-in',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  backgroundColor: 'var(--color-card-bg)'
                 }}
                 onClick={() => setLightbox(post.images[0])}
               >
@@ -412,8 +413,8 @@ export default function ArticleDetailView({
                   src={post.images[0]}
                   alt={title}
                   style={{
-                    maxWidth: '100%',
-                    maxHeight: '620px',
+                    width: '100%',
+                    maxHeight: '640px',
                     height: 'auto',
                     objectFit: 'contain',
                     display: 'block',
@@ -461,7 +462,7 @@ export default function ArticleDetailView({
                         borderRadius: '8px',
                         overflow: 'hidden',
                         cursor: 'zoom-in',
-                        backgroundColor: '#1E293B'
+                        backgroundColor: 'var(--color-card-bg)'
                       }}
                     >
                       <img
@@ -481,7 +482,7 @@ export default function ArticleDetailView({
                   style={{
                     textAlign: 'center',
                     paddingTop: '8px',
-                    color: '#94A3B8',
+                    color: 'var(--color-text-muted)',
                     fontSize: '0.75rem'
                   }}
                 >
