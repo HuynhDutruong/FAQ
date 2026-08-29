@@ -358,7 +358,7 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-marc-guillou',
-    name: 'Lm. Marc Guillou (MEP)',
+    name: 'Lm. Jean-Marie Guillou (MEP)',
     saintName: 'Thánh Marcô Tông Đồ (Mark)',
     role: 'Linh mục Quản xứ Tiên khởi Họ đạo Mỹ Tho (1860 – 1866)',
     period: '1860 – 1866',
@@ -398,7 +398,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     death: '06/01/1913 tại Montier-en-Der, Pháp (Hưởng thọ 90 tuổi)',
     origin: 'Hội Thừa Sai Paris (MEP)',
     image: '/images/cha_bouillevaux.jpg',
-    shortDesc: 'Nhà truyền giáo và nhà khảo cứu lỗi lạc thuộc Hội Thừa Sai Paris (người phương Tây đầu tiên khám phá Angkor năm 1850). Về Nam Kỳ, ngài cùng Đức Giám mục Miche xây dựng ngôi nhà thờ thứ hai của Mỹ Tho là Nhà thờ Vĩnh Tường dâng kính Thánh Tâm Chúa Giêsu (1866), phát triển họ đạo trong suốt 40 năm.',
+    shortDesc: 'Nhà truyền giáo và nhà khảo cứu lỗi lạc thuộc Hội Thừa Sai Paris (người phương Tây đầu tiên khám phá Angkor năm 1850). Về Nam Kỳ, ngài cùng Đức Giám mục Miche xây dựng ngôi nhà thờ thứ hai của Mỹ Tho là Nhà thờ Vĩnh Tường dâng kính Thánh Tâm Chúa Giêsu (1866), phát triển họ đạo trong suốt 40 năm (Ảnh tư liệu chụp năm 1884).',
     chronology: [
       {
         time: '1848',

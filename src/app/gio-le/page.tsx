@@ -121,7 +121,10 @@ export default function GioLePage() {
   const [activeDiocese, setActiveDiocese] = useState<string>('Mỹ Tho');
 
   // Filters
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return new URLSearchParams(window.location.search).get('q')?.trim() ?? '';
+  });
   const [radiusFilter, setRadiusFilter] = useState<'nearest' | '5km' | '15km' | '30km' | 'all'>('nearest');
   const [timeOfDayFilter, setTimeOfDayFilter] = useState<'all' | 'morning' | 'evening'>('all');
   const [dioceseModalOpen, setDioceseModalOpen] = useState(false);

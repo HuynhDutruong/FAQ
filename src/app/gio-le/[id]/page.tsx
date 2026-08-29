@@ -4,6 +4,20 @@ import { getMassTimeById } from '@/lib/massTimes';
 import { dioceseLabel } from '@/lib/dioceses';
 import ChurchDetailView from '@/components/ChurchDetailView';
 
+const BASE_URL = 'https://chanhtoa.tnttgiaophanmytho.online';
+
+/** "05:30" -> mục openingHoursSpecification kéo dài 1 giờ cho một thánh lễ. */
+function massSlots(days: string[], times: string[] = []) {
+  return times
+    .filter((t) => /^\d{1,2}:\d{2}$/.test(t.trim()))
+    .map((t) => {
+      const [h, m] = t.trim().split(':').map(Number);
+      const opens = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      const closes = `${String((h + 1) % 24).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      return { '@type': 'OpeningHoursSpecification', dayOfWeek: days, opens, closes };
+    });
+}
+
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -29,26 +43,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
+    alternates: { canonical: `${BASE_URL}/gio-le/${id}` },
     openGraph: {
       title: `Giờ Lễ ${item.parish} - GP ${dioceseName}`,
       description,
-      url: `/gio-le/${id}`,
+      url: `${BASE_URL}/gio-le/${id}`,
       siteName: 'Tra Cứu Giờ Lễ Toàn Quốc - Xứ Đoàn Các Thánh Tử Đạo Việt Nam',
-      images: [
-        {
-          url: '/logo.jpg',
-          width: 600,
-          height: 600,
-          alt: `Logo Xứ Đoàn - Giờ Lễ ${item.parish}`
-        }
-      ],
       type: 'website'
     },
     twitter: {
       card: 'summary_large_image',
       title: `Giờ Lễ ${item.parish} - GP ${dioceseName}`,
-      description,
-      images: ['/logo.jpg']
+      description
     }
   };
 }
@@ -61,5 +67,53 @@ export default async function ChurchDetailPage({ params }: Props) {
     notFound();
   }
 
-  return <ChurchDetailView item={item} />;
+  const dioceseName = item.diocese ? dioceseLabel(item.diocese) : 'Việt Nam';
+
+  // CatholicChurch + giờ lễ dạng openingHoursSpecification: đây là tín hiệu
+  // Google dùng để xếp hạng truy vấn "giờ lễ <tên nhà thờ>" và hiển thị trên Maps.
+  const churchLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CatholicChurch',
+    '@id': `${BASE_URL}/gio-le/${id}#church`,
+    name: item.parish,
+    url: `${BASE_URL}/gio-le/${id}`,
+    ...(item.address
+      ? {
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: item.address,
+            addressRegion: item.province || undefined,
+            addressCountry: 'VN'
+          }
+        }
+      : {}),
+    ...(typeof item.lat === 'number' && typeof item.lng === 'number'
+      ? { geo: { '@type': 'GeoCoordinates', latitude: item.lat, longitude: item.lng } }
+      : {}),
+    containedInPlace: { '@type': 'AdministrativeArea', name: `Giáo phận ${dioceseName}` },
+    isPartOf: { '@id': `${BASE_URL}/#website` },
+    openingHoursSpecification: [
+      ...massSlots(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], item.weekdayMass),
+      ...massSlots(['Saturday'], item.saturdayMass),
+      ...massSlots(['Sunday'], item.sundayMass)
+    ]
+  };
+
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Trang chủ', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Tra cứu giờ lễ', item: `${BASE_URL}/gio-le` },
+      { '@type': 'ListItem', position: 3, name: item.parish, item: `${BASE_URL}/gio-le/${id}` }
+    ]
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(churchLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <ChurchDetailView item={item} />
+    </>
+  );
 }
