@@ -98,118 +98,40 @@ export default function PopesContinuousMarquee() {
             key={`${pope.num}-${idx}`}
             onClick={() => setSelectedPope(pope)}
             className="pope-stream-item"
-            style={{
-              flexShrink: 0,
-              width: '140px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              cursor: 'pointer',
-              userSelect: 'none'
-            }}
           >
             {/* Huy Hiệu Chân Dung Tròn Lớn Với Viền Hoàng Kim Cao Cấp */}
-            <div
-              className="pope-avatar-ring"
-              style={{
-                width: '96px',
-                height: '96px',
-                borderRadius: '50%',
-                border: '3px solid #D97706',
-                boxShadow: '0 6px 20px rgba(217, 119, 6, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1)',
-                position: 'relative',
-                overflow: 'hidden',
-                backgroundColor: 'var(--color-input-bg)',
-                marginBottom: '10px'
-              }}
-            >
+            <div className="pope-avatar-ring">
               {!failedImages[pope.num] ? (
-                <Image
-                  src={`/images/popes/pope_${pope.num}.jpg`}
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={`/images/popes/thumb/pope_${pope.num}.webp`}
                   alt={pope.nameVi}
-                  fill
-                  sizes="96px"
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  width={96}
+                  height={96}
+                  loading="lazy"
+                  decoding="async"
+                  className="pope-avatar-img"
                   onError={() => setFailedImages((prev) => ({ ...prev, [pope.num]: true }))}
                 />
               ) : (
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--color-dark)'
-                  }}
-                >
+                <div className="pope-avatar-fallback">
                   <PapalLogo size={28} color="#B45309" />
-                  <span style={{ fontSize: '0.68rem', fontWeight: 800, marginTop: '2px', color: 'var(--color-subtle)' }}>
-                    #{pope.num}
-                  </span>
+                  <span>#{pope.num}</span>
                 </div>
               )}
             </div>
 
             {/* Thứ tự Giáo Triều */}
-            <span
-              style={{
-                fontSize: '0.66rem',
-                fontWeight: 800,
-                color: 'var(--color-red)',
-                backgroundColor: 'rgba(153, 27, 27, 0.08)',
-                padding: '2px 9px',
-                borderRadius: '12px',
-                border: '1px solid rgba(153, 27, 27, 0.18)',
-                marginBottom: '6px',
-                letterSpacing: '0.02em'
-              }}
-            >
-              Giáo Triều {pope.num}
-            </span>
+            <span className="pope-order-badge">Giáo Triều {pope.num}</span>
 
             {/* Tên tiếng Việt */}
-            <div
-              style={{
-                fontSize: '0.88rem',
-                fontWeight: 800,
-                color: 'var(--color-dark)',
-                lineHeight: 1.25,
-                minHeight: '2.2em',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              {pope.nameVi}
-            </div>
+            <div className="pope-name-vi">{pope.nameVi}</div>
 
             {/* Tên Latinh chính thức */}
-            <div
-              style={{
-                fontSize: '0.74rem',
-                fontWeight: 700,
-                fontStyle: 'italic',
-                color: '#B45309',
-                marginTop: '2px'
-              }}
-            >
-              {pope.nameLatin}
-            </div>
+            <div className="pope-name-latin">{pope.nameLatin}</div>
 
             {/* Niên hiệu trị vì */}
-            <div
-              style={{
-                fontSize: '0.7rem',
-                color: 'var(--color-subtle)',
-                marginTop: '3px',
-                fontWeight: 600
-              }}
-            >
-              {pope.reign}
-            </div>
+            <div className="pope-reign">{pope.reign}</div>
           </div>
         ))}
       </div>
@@ -414,11 +336,90 @@ export default function PopesContinuousMarquee() {
         }
 
         .pope-stream-item {
+          flex-shrink: 0;
+          width: 140px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+          user-select: none;
           transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .pope-avatar-ring {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+          border: 3px solid #D97706;
+          box-shadow: 0 6px 20px rgba(217, 119, 6, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1);
+          position: relative;
+          overflow: hidden;
+          background-color: var(--color-input-bg);
+          margin-bottom: 10px;
           transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .pope-avatar-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+        }
+
+        .pope-avatar-fallback {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: var(--color-dark);
+        }
+
+        .pope-avatar-fallback span {
+          font-size: 0.68rem;
+          font-weight: 800;
+          margin-top: 2px;
+          color: var(--color-subtle);
+        }
+
+        .pope-order-badge {
+          font-size: 0.66rem;
+          font-weight: 800;
+          color: var(--color-red);
+          background-color: rgba(153, 27, 27, 0.08);
+          padding: 2px 9px;
+          border-radius: 12px;
+          border: 1px solid rgba(153, 27, 27, 0.18);
+          margin-bottom: 6px;
+          letter-spacing: 0.02em;
+        }
+
+        .pope-name-vi {
+          font-size: 0.88rem;
+          font-weight: 800;
+          color: var(--color-dark);
+          line-height: 1.25;
+          min-height: 2.2em;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .pope-name-latin {
+          font-size: 0.74rem;
+          font-weight: 700;
+          font-style: italic;
+          color: #B45309;
+          margin-top: 2px;
+        }
+
+        .pope-reign {
+          font-size: 0.7rem;
+          color: var(--color-subtle);
+          margin-top: 3px;
+          font-weight: 600;
         }
 
         .pope-stream-item:hover {
