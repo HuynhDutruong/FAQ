@@ -397,42 +397,71 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
 /**
  * Cha sở họ đạo Chánh Tòa Mỹ Tho qua các thời kỳ.
  *
- * TÌNH TRẠNG ẢNH TƯ LIỆU (đã tra kho lưu trữ, 2026-08):
- *  - Bouillevaux: có ảnh thật, nguồn Gallica/BNF (Société de Géographie,
- *    P. n°1416). Hồ sơ IRFA 0573.
- *  - Guillou: hồ sơ IRFA 0682 ghi rõ KHÔNG có chân dung lưu trữ.
- *  - Régnier, Nguyễn Minh Chiếu, Huỳnh Kim Do, Nguyễn Văn Chúc: không tìm
- *    được chân dung ở bất kỳ nguồn công khai nào.
- * Các mục thiếu ảnh để trống trường `image` và hiện ô "Chưa có ảnh tư liệu".
+ * NGUỒN ĐÃ ĐỐI CHIẾU (tra cứu 2026-08):
+ *  - IRFA / Hội Thừa Sai Paris: irfa.paris/missionnaire/<mã>-<họ>-<tên>/
+ *  - Gallica / Thư viện Quốc gia Pháp (BNF)
+ *  - Wikipedia tiếng Việt "Nhà thờ chính tòa Mỹ Tho", giaophanmytho.net,
+ *    cgvdt.vn, hdgmvietnam.com
+ *
+ * ẢNH CHÂN DUNG:
+ *  - Bouillevaux: ảnh thật, Gallica/BNF (Société de Géographie, P. n°1416).
+ *    Hồ sơ IRFA 0573 có thêm một ảnh toàn thân, cùng một người.
+ *  - Rénier ("Cố Gẫm"): ảnh thật, IRFA 1502, bút tích gốc trên ảnh ghi
+ *    "Rénier, Cochinchine occid." — đúng địa phận bao gồm Mỹ Tho.
+ *  - Guillou: IRFA 0682 KHÔNG có ảnh (đường dẫn ảnh trả về 404).
+ *  - Nguyễn Minh Chiếu, Huỳnh Kim Do, Nguyễn Văn Chúc: không có ảnh trên
+ *    Internet. Ảnh các vị này nhiều khả năng chỉ còn trong kho tư liệu của
+ *    chính giáo xứ — cần xin từ văn phòng giáo xứ, không tra mạng được.
+ * Mục nào thiếu ảnh thì để trống `image` và hiện ô "Chưa có ảnh tư liệu".
  * KHÔNG mượn ảnh nhà thờ hay ảnh người khác để lấp chỗ trống.
  *
  * CẢNH BÁO ĐỘ CHÍNH XÁC — cần đối chiếu sổ sách họ đạo:
- *  - "Lm. Joseph-Marie Bachelard (Cố Bạch), 1910–1956": không xác minh được.
- *    Thừa sai MEP duy nhất mang họ Bachelard là Étienne Bachelard (1860–1921),
- *    phục vụ tại Ấn Độ (Ootacamund, Palghat), an táng 01/1926. Wikipedia
- *    tiếng Việt về nhà thờ chính tòa Mỹ Tho không nhắc tên này.
- *  - Guillou: IRFA ghi ngài coi sóc Mi-tho năm 1861 và 1864 (xen kẽ Cai-mong
- *    1863, chuyển Thủ Dầu Một 1865, mất tại Sài Gòn 16/03/1866), không phải
- *    liên tục 1860–1866.
- *  - Bouillevaux: IRFA ghi nhiệm sở Sài Gòn / Chợ Quán (1849–1855, 1866–1873),
- *    không ghi nhận 40 năm tại Mỹ Tho đến 1906.
- * Đã xác nhận: Régnier khởi công nhà thờ 11/08/1906, hoàn thành 1910;
- * Nguyễn Minh Chiếu dời chuông 1958; Nguyễn Văn Chúc xây tháp chuông 16/02/1995.
+ *  - "Lm. Joseph-Marie Bachelard (Cố Bạch), 1910–1956": KHÔNG XÁC MINH ĐƯỢC.
+ *    (a) Thừa sai MEP duy nhất mang họ Bachelard là Étienne Bachelard
+ *        (1860–1921), phục vụ tại Ấn Độ (Ootacamund, Palghat), an táng 01/1926.
+ *    (b) IRFA ghi Cha Rénier làm chánh sở Mỹ Tho liên tục 1899–1922, nên
+ *        không có chỗ cho một cha sở khác trong giai đoạn 1910–1922.
+ *    (c) Các công trình mà mục này ghi (mời Nữ tu Thánh Phaolô, mở trường,
+ *        nhà nuôi trẻ mồ côi) chính là công của Cha Rénier theo hồ sơ IRFA.
+ *    Nhiều khả năng đây là mục trùng lặp/gán nhầm công của Cha Rénier.
+ *
+ * ĐÃ SỬA THEO NGUỒN:
+ *  - "Lucien-Louis Régnier 1906–1910" -> Jean-Marie Rénier (1853–1922),
+ *    chánh sở Mỹ Tho 1899–1922 (IRFA 1502).
+ *  - Guillou "1860–1866" -> 1861–1865 (IRFA 0682: Mỹ Tho 1861, Cái Mơn 1863,
+ *    trở lại Mỹ Tho 1864, Thủ Dầu Một 1865, mất tại Sài Gòn 16/03/1866).
+ *    giaophanmytho.net cũng xác nhận trước 1861 chưa có cộng đoàn tại Mỹ Tho.
+ *
+ * CÒN TỒN: mục Bouillevaux ghi "quản xứ Vĩnh Tường 1866–1906" nhưng IRFA 0573
+ * chỉ ghi nhiệm sở Sài Gòn / Chợ Quán (1849–1855, 1866–1873). Cần kiểm chứng.
  */
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-marc-guillou',
     name: 'Lm. Jean-Marie Guillou (MEP)',
-    saintName: 'Thánh Marcô Tông Đồ (Mark)',
-    role: 'Linh mục Quản xứ Tiên khởi Họ đạo Mỹ Tho (1860 – 1866)',
-    period: '1860 – 1866',
-    origin: 'Hội Thừa Sai Paris (Missions Étrangères de Paris - MEP)',
+    saintName: 'Thánh Gioan Maria (Jean-Marie)',
+    role: 'Linh mục Quản xứ Tiên khởi Họ đạo Mỹ Tho (1861 – 1865)',
+    period: '1861 – 1865',
+    birth: '22/10/1828 tại Prat, Giáo phận Saint-Brieuc, Pháp',
+    death: '16/03/1866 tại Sài Gòn (Hưởng dương 37 tuổi), an táng tại Lăng Cha Cả',
+    priestOrdination: 'Thụ phong Linh mục ngày 17/12/1853',
+    origin: 'Hội Thừa Sai Paris (Missions Étrangères de Paris - MEP) — Hồ sơ lưu trữ IRFA số 0682',
     shortDesc: 'Vị mục tử đầu tiên đến coi sóc cộng đoàn Công giáo Mỹ Tho thời kỳ sơ khai sau biến cố phân sáp và cuộc tử đạo của Cha Thánh Phêrô Nguyễn Văn Lựu (1861). Ngài có công quy tụ giáo dân, thiết lập các sổ sách bí tích đầu tiên và dựng ngôi nhà nguyện đầu tiên kính Thánh Phanxicô Xaviê tại đồn Mỹ Tho.',
     chronology: [
       {
-        time: '1860',
-        title: 'Đến Mỹ Tho thừa sai',
-        content: 'Được bề trên Hội Thừa Sai Paris (MEP) cử đến vùng đất Mỹ Tho để quy tụ và chăm sóc mục vụ cho cộng đoàn tín hữu.'
+        time: '1856 – 1860',
+        title: 'Thừa sai vùng người Stiêng',
+        content: 'Lên đường sang Đàng Trong ngày 23/01/1856 giữa thời kỳ bách hại; truyền giáo cho người Stiêng và đồng sáng lập cộng đoàn Bro-lam.'
+      },
+      {
+        time: '1861',
+        title: 'Coi sóc địa hạt Mỹ Tho',
+        content: 'Được cử làm bề trên địa hạt Mỹ Tho, đúng năm nhiều giáo dân từ các tỉnh miền Tây chạy về Mỹ Tho lánh nạn bách hại và hình thành cộng đoàn Công giáo đầu tiên tại đây.'
+      },
+      {
+        time: '1863 – 1864',
+        title: 'Cái Mơn rồi trở lại Mỹ Tho',
+        content: 'Chuyển sang coi sóc địa hạt Cái Mơn năm 1863; năm 1864 được đặt làm Phó Đại diện Tông tòa và trở lại Mỹ Tho.'
       },
       {
         time: '1861',
@@ -440,15 +469,15 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Đồng hành nâng đỡ đức tin cho giáo dân trong giai đoạn bách hại; ghi nhận và tôn kính cuộc tử đạo của Cha Thánh Phêrô Nguyễn Văn Lựu tại Mỹ Tho (07/04/1861).'
       },
       {
-        time: '1862 – 1866',
-        title: 'Xây dựng nhà thờ đầu tiên (Thánh Phanxicô Xaviê)',
-        content: 'Dựng ngôi nhà thờ đầu tiên bằng vật liệu kiên cố và khởi sự việc ghi chép sổ Rửa Tội, Hôn Phối đầu tiên của Họ đạo Mỹ Tho.'
+        time: '1865 – 1866',
+        title: 'Thủ Dầu Một & Những ngày cuối',
+        content: 'Được điều về Thủ Dầu Một năm 1865. Ngài qua đời tại Sài Gòn ngày 16/03/1866 khi mới 37 tuổi và được an táng tại Lăng Cha Cả.'
       }
     ],
     milestones: [
-      'Vị mục tử tiên khởi của Họ đạo Mỹ Tho (1860 – 1866).',
-      'Xây dựng ngôi nhà thờ đầu tiên (Nhà thờ Thánh Phanxicô Xaviê).',
-      'Thiết lập các cuốn sổ Bí tích đầu tiên đặt nền móng cho họ đạo.'
+      'Vị mục tử tiên khởi của Họ đạo Mỹ Tho, coi sóc địa hạt từ năm 1861.',
+      'Đồng sáng lập cộng đoàn Kitô hữu Bro-lam giữa người Stiêng.',
+      'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (1864).'
     ]
   },
   {
@@ -487,33 +516,54 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-regnier-co-gam',
-    name: 'Lm. Lucien-Louis Régnier (Cố Gẫm - MEP)',
-    saintName: 'Thánh Lucien',
-    role: 'Linh mục Chánh xứ Kiến thiết Nhà thờ Chánh Tòa Mỹ Tho (1906 – 1910)',
-    period: '1906 – 1910',
-    origin: 'Hội Thừa Sai Paris (MEP)',
-    shortDesc: 'Vị linh mục kiến thiết có công đức vĩ đại trong lịch sử Giáo phận Mỹ Tho. Ngày 11/08/1906, Cha Régnier (dân địa phương kính yêu gọi là Cố Gẫm) đã long trọng đặt viên đá đầu tiên và chỉ huy xây dựng ngôi Nhà thờ thứ ba trên đại lộ Bourdais (nay là đại lộ Hùng Vương), hoàn thành năm 1910 - chính là ngôi Nhà thờ Chánh Tòa nguy nga hiện nay.',
+    name: 'Lm. Jean-Marie Rénier (Cố Gẫm - MEP)',
+    saintName: 'Thánh Gioan Maria (Jean-Marie)',
+    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho • Người kiến thiết Nhà thờ Chánh Tòa (1899 – 1922)',
+    period: '1899 – 1922',
+    birth: '29/10/1853 tại Challain-la-Potherie, Giáo phận Angers, Pháp',
+    death: '24/04/1922 tại Sài Gòn (Hưởng thọ 68 tuổi, 41 năm truyền giáo)',
+    priestOrdination: 'Thụ phong Linh mục ngày 23/12/1876',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 1502',
+    shortDesc: 'Vị chánh sở coi sóc họ đạo Mỹ Tho suốt hơn hai mươi năm và là người kiến thiết ngôi Nhà thờ Chánh Tòa hiện nay. Ngày 11/08/1906 ngài đặt viên đá đầu tiên trên đại lộ Bourdais (nay là đại lộ Hùng Vương), hoàn thành năm 1910. Ngài còn mở trường học do các Sư huynh Lasan điều hành, nội trú do các Nữ tu Thánh Phaolô đảm trách, xây nhà thờ Ngũ Hiệp và tái thiết nguyện đường Thánh Anna. Kho lưu trữ MEP ghi lại ngài là "một mục tử thông minh, tận tụy, không mệt mỏi", dáng cao lớn, tóc bạc, tính tình vui vẻ hiếu khách, có uy tín đạo đức lớn trong cả tỉnh.',
+    image: '/images/cha_renier_co_gam.jpg',
     chronology: [
+      {
+        time: '1876 – 1881',
+        title: 'Thụ phong & Lên đường Thừa sai',
+        content: 'Thụ phong linh mục ngày 23/12/1876 tại Pháp; lên đường sang Giáo phận Tây Đàng Trong (Cochinchine occidentale) ngày 26/10/1881.'
+      },
+      {
+        time: '1881 – 1899',
+        title: 'Các nhiệm sở đầu tiên',
+        content: 'Phụ tá tại Mặc Bắc (1881 – 1883), coi sóc Đá Trắng (1883 – 1887), Biên Hòa (1887 – 1889) rồi Chợ Đũi (1891 – 1899) trước khi về Mỹ Tho.'
+      },
+      {
+        time: '1899',
+        title: 'Về nhận họ đạo Mỹ Tho',
+        content: 'Được bổ nhiệm chánh sở họ đạo Mỹ Tho, khởi đầu hơn hai thập kỷ gắn bó cho đến khi qua đời.'
+      },
       {
         time: '1906',
         title: 'Đặt viên đá đầu tiên (11/08/1906)',
-        content: 'Khởi công công trình thế kỷ trên khu đất sình lầy đại lộ Bourdais; ngài trực tiếp tính toán kết cấu móng vững chắc chịu lực cho vòm Phục Hưng đồ sộ.'
-      },
-      {
-        time: '1906 – 1910',
-        title: '4 năm kiên trì thi công',
-        content: 'Giám sát việc xây dựng gian chính, 2 gian phụ, hệ thống cột trụ tròn Hy Lạp - La Mã và lắp đặt các khung cửa sổ hoa văn cổ kính.'
+        content: 'Khởi công ngôi nhà thờ thứ ba trên khu đất sình lầy đại lộ Bourdais, thay cho Nhà thờ Vĩnh Tường đã chật hẹp.'
       },
       {
         time: '1910',
         title: 'Khánh thành ngôi Thánh đường',
-        content: 'Tổ chức lễ khánh thành trọng thể ngôi nhà thờ kiên cố bề thế bậc nhất tỉnh Mỹ Tho lúc bấy giờ.'
+        content: 'Hoàn thành ngôi nhà thờ bề thế bậc nhất tỉnh Mỹ Tho lúc bấy giờ — chính là Nhà thờ Chánh Tòa hiện nay.'
+      },
+      {
+        time: '1910 – 1922',
+        title: 'Giáo dục & Bác ái',
+        content: 'Mở trường học do các Sư huynh Lasan điều hành và nội trú do các Nữ tu Thánh Phaolô đảm trách; xây nhà thờ Ngũ Hiệp và tái thiết nguyện đường Thánh Anna. Ngài qua đời tại Sài Gòn ngày 24/04/1922.'
       }
     ],
     milestones: [
+      'Chánh sở họ đạo Mỹ Tho suốt 23 năm (1899 – 1922).',
       'Khởi công (11/08/1906) và hoàn thành (1910) ngôi Nhà thờ Chánh Tòa Mỹ Tho hiện hữu.',
-      'Kiến tạo tác phẩm nghệ thuật kiến trúc Roman - Phục Hưng kinh điển tại Nam Bộ.',
-      'Vị chủ chăn tận tụy được giáo dân Nam Bộ kính trọng gọi là "Cố Gẫm".'
+      'Mở trường học của các Sư huynh Lasan và nội trú của các Nữ tu Thánh Phaolô tại Mỹ Tho.',
+      'Xây nhà thờ Ngũ Hiệp và tái thiết nguyện đường Thánh Anna.',
+      'Vị chủ chăn được giáo dân kính trọng gọi là "Cố Gẫm".'
     ]
   },
   {
