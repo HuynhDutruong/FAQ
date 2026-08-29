@@ -45,251 +45,176 @@ export default function PopesContinuousMarquee() {
   const [selectedPope, setSelectedPope] = useState<PopeRecord | null>(null);
   const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
 
-  // Nhân bản mảng để cuộn vô tận mượt mà
+  // Nhân bản mảng để cuộn liên tục vô tận mượt mà
   const marqueeList = [...ALL_POPES, ...ALL_POPES];
 
   return (
     <div
       style={{
-        margin: '20px 0 28px',
-        backgroundColor: 'var(--color-card-bg)',
-        borderRadius: '14px',
-        border: '1px solid var(--color-border-subtle)',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+        margin: '20px 0 36px',
+        position: 'relative',
         overflow: 'hidden',
-        position: 'relative'
+        width: '100%'
       }}
     >
-      {/* Thanh Tiêu Đề Hoàng Gia Trang Trọng, Gọn Gàng & Không Trùng Lặp */}
+      {/* Gradient Fade Masks Hai Bên Tạo Chiều Sâu */}
       <div
         style={{
-          padding: '12px 18px',
-          borderBottom: '1px solid var(--color-border-subtle)',
-          backgroundColor: 'rgba(153, 27, 27, 0.03)',
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          width: '60px',
+          background: 'linear-gradient(to right, var(--color-bg) 0%, transparent 100%)',
+          zIndex: 10,
+          pointerEvents: 'none'
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          width: '60px',
+          background: 'linear-gradient(to left, var(--color-bg) 0%, transparent 100%)',
+          zIndex: 10,
+          pointerEvents: 'none'
+        }}
+      />
+
+      {/* Dải Băng Chuyền Chân Dung 267 Giáo Triều Chạy Trực Tiếp (Không Dùng Khung Card) */}
+      <div
+        className="popes-stream-track"
+        style={{
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '12px'
+          gap: '24px',
+          width: 'max-content',
+          padding: '16px 20px 24px'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        {marqueeList.map((pope, idx) => (
           <div
+            key={`${pope.num}-${idx}`}
+            onClick={() => setSelectedPope(pope)}
+            className="pope-stream-item"
             style={{
-              width: '32px',
-              height: '32px',
-              borderRadius: '8px',
-              backgroundColor: 'rgba(153, 27, 27, 0.08)',
-              border: '1px solid rgba(153, 27, 27, 0.2)',
+              flexShrink: 0,
+              width: '140px',
               display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0
+              textAlign: 'center',
+              cursor: 'pointer',
+              userSelect: 'none'
             }}
           >
-            <PapalLogo size={19} color="var(--color-red)" />
-          </div>
-          <h4
-            style={{
-              margin: 0,
-              fontSize: '0.98rem',
-              fontWeight: 800,
-              color: 'var(--color-dark)',
-              letterSpacing: '-0.01em'
-            }}
-          >
-            Biên Niên Sử Các Giáo Triều (Từ Thánh Phêrô Đến Đức Lêô XIV)
-          </h4>
-        </div>
-
-        <span
-          style={{
-            fontSize: '0.72rem',
-            fontWeight: 800,
-            backgroundColor: 'rgba(153, 27, 27, 0.08)',
-            color: 'var(--color-red)',
-            padding: '3px 10px',
-            borderRadius: '20px',
-            border: '1px solid rgba(153, 27, 27, 0.15)',
-            whiteSpace: 'nowrap',
-            flexShrink: 0
-          }}
-        >
-          267 Giáo Triều
-        </span>
-      </div>
-
-      {/* Marquee Track Tự Động Cuộn Mượt Mà (Auto Continuous Scroll) */}
-      <div
-        style={{
-          padding: '18px 0',
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundColor: 'var(--color-card-bg)'
-        }}
-      >
-        {/* Gradient Fade Masks Hai Bên */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            width: '40px',
-            background: 'linear-gradient(to right, var(--color-card-bg) 0%, transparent 100%)',
-            zIndex: 10,
-            pointerEvents: 'none'
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            width: '40px',
-            background: 'linear-gradient(to left, var(--color-card-bg) 0%, transparent 100%)',
-            zIndex: 10,
-            pointerEvents: 'none'
-          }}
-        />
-
-        <div
-          className="popes-marquee-track"
-          style={{
-            display: 'flex',
-            gap: '14px',
-            width: 'max-content',
-            padding: '0 16px'
-          }}
-        >
-          {marqueeList.map((pope, idx) => (
+            {/* Huy Hiệu Chân Dung Tròn Lớn Với Viền Hoàng Kim Cao Cấp */}
             <div
-              key={`${pope.num}-${idx}`}
-              onClick={() => setSelectedPope(pope)}
+              className="pope-avatar-ring"
               style={{
-                flexShrink: 0,
-                width: '160px',
-                padding: '12px 8px',
-                borderRadius: '10px',
+                width: '96px',
+                height: '96px',
+                borderRadius: '50%',
+                border: '3px solid #D97706',
+                boxShadow: '0 6px 20px rgba(217, 119, 6, 0.22), 0 2px 8px rgba(0, 0, 0, 0.1)',
+                position: 'relative',
+                overflow: 'hidden',
                 backgroundColor: 'var(--color-input-bg)',
-                border: '1px solid var(--color-border-subtle)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
-                position: 'relative'
+                marginBottom: '10px'
               }}
-              className="pope-medallion-card"
             >
-              {/* Huy Hiệu Tròn Chân Dung */}
-              <div
-                style={{
-                  width: '76px',
-                  height: '76px',
-                  borderRadius: '50%',
-                  border: '2px solid #B45309',
-                  backgroundColor: 'var(--color-card-bg)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '8px',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}
-              >
-                {!failedImages[pope.num] ? (
-                  <Image
-                    src={`/images/popes/pope_${pope.num}.jpg`}
-                    alt={pope.nameVi}
-                    fill
-                    sizes="76px"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                    onError={() => setFailedImages((prev) => ({ ...prev, [pope.num]: true }))}
-                  />
-                ) : (
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'var(--color-dark)'
-                    }}
-                  >
-                    <PapalLogo size={22} color="#B45309" />
-                    <span style={{ fontSize: '0.62rem', fontWeight: 800, marginTop: '2px', color: 'var(--color-subtle)' }}>
-                      #{pope.num}
-                    </span>
-                  </div>
-                )}
-              </div>
-
-              {/* Danh xưng chuẩn Giáo Triều */}
-              <span
-                style={{
-                  fontSize: '0.64rem',
-                  fontWeight: 800,
-                  backgroundColor: 'rgba(153, 27, 27, 0.08)',
-                  color: 'var(--color-red)',
-                  padding: '2px 7px',
-                  borderRadius: '20px',
-                  border: '1px solid rgba(153, 27, 27, 0.15)',
-                  marginBottom: '5px'
-                }}
-              >
-                Giáo Triều thứ {pope.num}
-              </span>
-
-              {/* Tên tiếng Việt */}
-              <div
-                style={{
-                  fontSize: '0.82rem',
-                  fontWeight: 800,
-                  color: 'var(--color-dark)',
-                  lineHeight: 1.25,
-                  minHeight: '2.1em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                {pope.nameVi}
-              </div>
-
-              {/* Tên Latinh chính thức */}
-              <div
-                style={{
-                  fontSize: '0.72rem',
-                  fontWeight: 600,
-                  fontStyle: 'italic',
-                  color: '#B45309',
-                  marginTop: '1px'
-                }}
-              >
-                {pope.nameLatin}
-              </div>
-
-              {/* Niên hiệu trị vì */}
-              <div
-                style={{
-                  fontSize: '0.66rem',
-                  color: 'var(--color-subtle)',
-                  marginTop: '3px',
-                  fontWeight: 600
-                }}
-              >
-                {pope.reign}
-              </div>
+              {!failedImages[pope.num] ? (
+                <Image
+                  src={`/images/popes/pope_${pope.num}.jpg`}
+                  alt={pope.nameVi}
+                  fill
+                  sizes="96px"
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  onError={() => setFailedImages((prev) => ({ ...prev, [pope.num]: true }))}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--color-dark)'
+                  }}
+                >
+                  <PapalLogo size={28} color="#B45309" />
+                  <span style={{ fontSize: '0.68rem', fontWeight: 800, marginTop: '2px', color: 'var(--color-subtle)' }}>
+                    #{pope.num}
+                  </span>
+                </div>
+              )}
             </div>
-          ))}
-        </div>
+
+            {/* Thứ tự Giáo Triều */}
+            <span
+              style={{
+                fontSize: '0.66rem',
+                fontWeight: 800,
+                color: 'var(--color-red)',
+                backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                padding: '2px 9px',
+                borderRadius: '12px',
+                border: '1px solid rgba(153, 27, 27, 0.18)',
+                marginBottom: '6px',
+                letterSpacing: '0.02em'
+              }}
+            >
+              Giáo Triều {pope.num}
+            </span>
+
+            {/* Tên tiếng Việt */}
+            <div
+              style={{
+                fontSize: '0.88rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                lineHeight: 1.25,
+                minHeight: '2.2em',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              {pope.nameVi}
+            </div>
+
+            {/* Tên Latinh chính thức */}
+            <div
+              style={{
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                fontStyle: 'italic',
+                color: '#B45309',
+                marginTop: '2px'
+              }}
+            >
+              {pope.nameLatin}
+            </div>
+
+            {/* Niên hiệu trị vì */}
+            <div
+              style={{
+                fontSize: '0.7rem',
+                color: 'var(--color-subtle)',
+                marginTop: '3px',
+                fontWeight: 600
+              }}
+            >
+              {pope.reign}
+            </div>
+          </div>
+        ))}
       </div>
 
-      {/* Modal Popup Chi Tiết Giáo Triều & Dấu Mốc Lịch Sử */}
+      {/* Modal Chi Tiết Giáo Triều & Dấu Mốc Lịch Sử */}
       {selectedPope && (
         <div
           onClick={() => setSelectedPope(null)}
@@ -313,10 +238,10 @@ export default function PopesContinuousMarquee() {
               maxHeight: '90vh',
               overflowY: 'auto',
               backgroundColor: 'var(--color-card-bg)',
-              borderRadius: '16px',
+              borderRadius: '18px',
               border: '1.5px solid var(--color-border-subtle)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-              padding: '24px',
+              boxShadow: '0 25px 70px rgba(0,0,0,0.55)',
+              padding: '26px',
               color: 'var(--color-dark)',
               position: 'relative'
             }}
@@ -334,20 +259,19 @@ export default function PopesContinuousMarquee() {
                 padding: '4px'
               }}
             >
-              <X size={20} />
+              <X size={22} />
             </button>
 
             {/* Profile Header */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '16px' }}>
-              {/* Medallion Avatar */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '18px' }}>
               <div
                 style={{
-                  width: '106px',
-                  height: '106px',
+                  width: '116px',
+                  height: '116px',
                   borderRadius: '50%',
-                  border: '3px solid #B45309',
-                  marginBottom: '10px',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                  border: '3.5px solid #D97706',
+                  marginBottom: '12px',
+                  boxShadow: '0 8px 24px rgba(217, 119, 6, 0.3)',
                   overflow: 'hidden',
                   backgroundColor: 'var(--color-input-bg)',
                   position: 'relative',
@@ -361,13 +285,13 @@ export default function PopesContinuousMarquee() {
                     src={`/images/popes/pope_${selectedPope.num}.jpg`}
                     alt={selectedPope.nameVi}
                     fill
-                    sizes="106px"
+                    sizes="116px"
                     style={{ objectFit: 'cover', objectPosition: 'top center' }}
                   />
                 ) : (
                   <div style={{ textAlign: 'center' }}>
-                    <PapalLogo size={32} color="#B45309" />
-                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--color-dark)', marginTop: '2px' }}>
+                    <PapalLogo size={36} color="#B45309" />
+                    <div style={{ fontSize: '0.76rem', fontWeight: 800, color: 'var(--color-dark)', marginTop: '2px' }}>
                       #{selectedPope.num}
                     </div>
                   </div>
@@ -376,11 +300,11 @@ export default function PopesContinuousMarquee() {
 
               <span
                 style={{
-                  fontSize: '0.72rem',
+                  fontSize: '0.74rem',
                   fontWeight: 800,
                   backgroundColor: 'rgba(153, 27, 27, 0.08)',
                   color: 'var(--color-red)',
-                  padding: '3px 12px',
+                  padding: '3px 14px',
                   borderRadius: '20px',
                   border: '1px solid rgba(153, 27, 27, 0.2)'
                 }}
@@ -388,11 +312,11 @@ export default function PopesContinuousMarquee() {
                 GIÁO TRIỀU THỨ {selectedPope.num}
               </span>
 
-              <h3 style={{ margin: '8px 0 2px', fontSize: '1.3rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+              <h3 style={{ margin: '8px 0 2px', fontSize: '1.35rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                 {selectedPope.nameVi}
               </h3>
 
-              <div style={{ fontSize: '0.92rem', fontStyle: 'italic', color: '#B45309', fontWeight: 700 }}>
+              <div style={{ fontSize: '0.94rem', fontStyle: 'italic', color: '#B45309', fontWeight: 700 }}>
                 Nomina Latina: {selectedPope.nameLatin}
               </div>
             </div>
@@ -401,18 +325,18 @@ export default function PopesContinuousMarquee() {
             <div
               style={{
                 backgroundColor: 'var(--color-input-bg)',
-                borderRadius: '10px',
+                borderRadius: '12px',
                 padding: '12px 16px',
                 border: '1px solid var(--color-border-subtle)',
-                fontSize: '0.84rem',
+                fontSize: '0.86rem',
                 marginBottom: '16px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '6px'
+                gap: '7px'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Calendar size={14} color="var(--color-red)" />
+                <Calendar size={15} color="var(--color-red)" />
                 <span>
                   <strong style={{ color: 'var(--color-dark)' }}>Niên hiệu Giáo Triều:</strong> {selectedPope.reign}
                 </span>
@@ -420,7 +344,7 @@ export default function PopesContinuousMarquee() {
 
               {selectedPope.birthPlace && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <MapPin size={14} color="#B45309" />
+                  <MapPin size={15} color="#B45309" />
                   <span>
                     <strong style={{ color: 'var(--color-dark)' }}>Quê quán:</strong> {selectedPope.birthPlace}
                   </span>
@@ -428,23 +352,23 @@ export default function PopesContinuousMarquee() {
               )}
             </div>
 
-            {/* Dấu mốc & Di sản Lịch sử nổi bật (Chỉ hiển thị khi có thông tin, không có thì để trống tinh tế) */}
+            {/* Dấu ấn Lịch sử Giáo Triều */}
             {selectedPope.notes && (
               <div
                 style={{
                   backgroundColor: 'rgba(153, 27, 27, 0.04)',
-                  borderRadius: '10px',
+                  borderRadius: '12px',
                   padding: '14px 16px',
                   border: '1px solid var(--color-border-subtle)',
-                  borderLeft: '3.5px solid var(--color-red)',
-                  marginBottom: '18px'
+                  borderLeft: '4px solid var(--color-red)',
+                  marginBottom: '20px'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-red)', marginBottom: '6px' }}>
-                  <Award size={15} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-red)', marginBottom: '6px' }}>
+                  <Award size={16} />
                   <span>Dấu ấn Lịch sử Giáo Triều:</span>
                 </div>
-                <p style={{ margin: 0, fontSize: '0.83rem', color: 'var(--color-dark)', lineHeight: 1.6, textAlign: 'justify' }}>
+                <p style={{ margin: 0, fontSize: '0.84rem', color: 'var(--color-dark)', lineHeight: 1.6, textAlign: 'justify' }}>
                   {selectedPope.notes}
                 </p>
               </div>
@@ -454,13 +378,13 @@ export default function PopesContinuousMarquee() {
               onClick={() => setSelectedPope(null)}
               style={{
                 width: '100%',
-                padding: '10px',
-                borderRadius: '8px',
+                padding: '11px',
+                borderRadius: '10px',
                 backgroundColor: 'var(--color-red)',
                 color: '#FFF',
                 border: 'none',
                 fontWeight: 700,
-                fontSize: '0.84rem',
+                fontSize: '0.86rem',
                 cursor: 'pointer'
               }}
             >
@@ -470,9 +394,9 @@ export default function PopesContinuousMarquee() {
         </div>
       )}
 
-      {/* Marquee Animation Styles */}
+      {/* Marquee Animation & Hover Glow Effects */}
       <style jsx global>{`
-        @keyframes popesMarqueeScroll {
+        @keyframes popesStreamScroll {
           0% {
             transform: translateX(0);
           }
@@ -481,18 +405,30 @@ export default function PopesContinuousMarquee() {
           }
         }
 
-        .popes-marquee-track {
-          animation: popesMarqueeScroll 280s linear infinite;
+        .popes-stream-track {
+          animation: popesStreamScroll 260s linear infinite;
         }
 
-        .popes-marquee-track:hover {
+        .popes-stream-track:hover {
           animation-play-state: paused !important;
         }
 
-        .pope-medallion-card:hover {
-          transform: translateY(-2px);
-          border-color: #B45309 !important;
-          box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
+        .pope-stream-item {
+          transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .pope-avatar-ring {
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .pope-stream-item:hover {
+          transform: translateY(-8px);
+        }
+
+        .pope-stream-item:hover .pope-avatar-ring {
+          transform: scale(1.1);
+          border-color: #F59E0B !important;
+          box-shadow: 0 10px 28px rgba(245, 158, 11, 0.4), 0 2px 10px rgba(0, 0, 0, 0.2) !important;
         }
       `}</style>
     </div>

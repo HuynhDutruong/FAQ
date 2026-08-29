@@ -813,15 +813,20 @@ export default function GioiThieuPage() {
             </p>
 
             {/* BĂNG CHUYỀN CHÂN DUNG 267 VỊ GIÁO HOÀNG CHẠY LIÊN TỤC */}
-            <div id="vatican-267-giao-hoang" style={{ marginTop: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                <Church size={18} color="var(--color-red)" />
-                <h3 style={{ margin: 0, fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-                  1.3. Dòng Lịch Sử Tông Truyền Của Các Giáo Triều Roma
-                </h3>
+            <div id="vatican-267-giao-hoang" style={{ marginTop: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Church size={19} color="var(--color-red)" />
+                  <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                    1.3. Biên Niên Sử Các Giáo Triều (Từ Thánh Phêrô Đến Đức Lêô XIV)
+                  </h3>
+                </div>
+                <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-red)', backgroundColor: 'rgba(153, 27, 27, 0.08)', padding: '3px 10px', borderRadius: '16px', border: '1px solid rgba(153, 27, 27, 0.15)' }}>
+                  267 Giáo Triều Tông Truyền
+                </span>
               </div>
 
-              {/* Component Marquee Hoàng Gia */}
+              {/* Component Marquee Hoàng Gia Chạy Trực Tiếp */}
               <PopesContinuousMarquee />
             </div>
           </section>
