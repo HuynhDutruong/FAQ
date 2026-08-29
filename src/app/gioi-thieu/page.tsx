@@ -398,42 +398,54 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  * Cha sở họ đạo Chánh Tòa Mỹ Tho qua các thời kỳ.
  *
  * NGUỒN ĐÃ ĐỐI CHIẾU (tra cứu 2026-08):
- *  - IRFA / Hội Thừa Sai Paris: irfa.paris/missionnaire/<mã>-<họ>-<tên>/
+ *  - IRFA / Hội Thừa Sai Paris — irfa.paris/missionnaire/<mã>-<họ>-<tên>/
+ *    Đã rà toàn bộ 32 hồ sơ thừa sai MEP có nhắc tới "Mytho".
  *  - Gallica / Thư viện Quốc gia Pháp (BNF)
  *  - Wikipedia tiếng Việt "Nhà thờ chính tòa Mỹ Tho", giaophanmytho.net,
- *    cgvdt.vn, hdgmvietnam.com
+ *    cgvdt.vn (Công giáo và Dân tộc), hdgmvietnam.com
+ *
+ * ĐÃ SỬA LẠI THEO HỒ SƠ LƯU TRỮ:
+ *  - "Lucien-Louis Régnier 1906–1910" -> Jean-Marie RÉNIER (IRFA 1502),
+ *    1853–1922, chánh sở Mỹ Tho 1899–1922. Ảnh có bút tích gốc
+ *    "Rénier, Cochinchine occid.".
+ *  - "Joseph-Marie Bachelard (Cố Bạch) 1910–1956" -> Henri BAR (IRFA 2241),
+ *    1870–1948, mất ngay tại Mỹ Tho ngày 19/03/1948. Mục cũ không xác minh
+ *    được: thừa sai MEP duy nhất họ Bachelard là Étienne Bachelard
+ *    (1860–1921) phục vụ tại Ấn Độ. "Cố Bạch" là phiên âm của BAR, và tên
+ *    rửa tội của ngài có chữ Joseph — khớp với saintName "Thánh Giuse"
+ *    của mục cũ; ngài qua đời đúng ngày lễ Thánh Giuse.
+ *  - "Charles-Émile Bouillevaux, quản xứ Vĩnh Tường Mỹ Tho 1866–1906"
+ *    -> Eugène FARON (IRFA 1189), 1845–1895, Mỹ Tho 1874 rồi 1882–1895,
+ *    người tái thiết nguyện đường Vĩnh Tường. IRFA 0573 ghi Bouillevaux
+ *    chỉ ở Sài Gòn / Chợ Quán (1849–1855, 1866–1873) rồi về Pháp — chưa
+ *    từng làm cha sở Mỹ Tho. Ảnh cũ /images/cha_bouillevaux.jpg vẫn giữ
+ *    trong repo (đúng người, nguồn Gallica) nếu muốn dùng cho mục khác.
+ *  - Guillou "1860–1866" -> 1861–1865 (IRFA 0682). giaophanmytho.net xác
+ *    nhận trước 1861 chưa có cộng đoàn Công giáo tại Mỹ Tho.
  *
  * ẢNH CHÂN DUNG:
- *  - Bouillevaux: ảnh thật, Gallica/BNF (Société de Géographie, P. n°1416).
- *    Hồ sơ IRFA 0573 có thêm một ảnh toàn thân, cùng một người.
- *  - Rénier ("Cố Gẫm"): ảnh thật, IRFA 1502, bút tích gốc trên ảnh ghi
- *    "Rénier, Cochinchine occid." — đúng địa phận bao gồm Mỹ Tho.
+ *  - Faron (IRFA 1189), Rénier (IRFA 1502), Bar (IRFA 2241): ảnh lưu trữ
+ *    thật, đã tải về public/images/.
  *  - Guillou: IRFA 0682 KHÔNG có ảnh (đường dẫn ảnh trả về 404).
  *  - Nguyễn Minh Chiếu, Huỳnh Kim Do, Nguyễn Văn Chúc: không có ảnh trên
  *    Internet. Ảnh các vị này nhiều khả năng chỉ còn trong kho tư liệu của
- *    chính giáo xứ — cần xin từ văn phòng giáo xứ, không tra mạng được.
+ *    chính giáo xứ — cần xin từ văn phòng giáo xứ.
  * Mục nào thiếu ảnh thì để trống `image` và hiện ô "Chưa có ảnh tư liệu".
  * KHÔNG mượn ảnh nhà thờ hay ảnh người khác để lấp chỗ trống.
  *
- * CẢNH BÁO ĐỘ CHÍNH XÁC — cần đối chiếu sổ sách họ đạo:
- *  - "Lm. Joseph-Marie Bachelard (Cố Bạch), 1910–1956": KHÔNG XÁC MINH ĐƯỢC.
- *    (a) Thừa sai MEP duy nhất mang họ Bachelard là Étienne Bachelard
- *        (1860–1921), phục vụ tại Ấn Độ (Ootacamund, Palghat), an táng 01/1926.
- *    (b) IRFA ghi Cha Rénier làm chánh sở Mỹ Tho liên tục 1899–1922, nên
- *        không có chỗ cho một cha sở khác trong giai đoạn 1910–1922.
- *    (c) Các công trình mà mục này ghi (mời Nữ tu Thánh Phaolô, mở trường,
- *        nhà nuôi trẻ mồ côi) chính là công của Cha Rénier theo hồ sơ IRFA.
- *    Nhiều khả năng đây là mục trùng lặp/gán nhầm công của Cha Rénier.
- *
- * ĐÃ SỬA THEO NGUỒN:
- *  - "Lucien-Louis Régnier 1906–1910" -> Jean-Marie Rénier (1853–1922),
- *    chánh sở Mỹ Tho 1899–1922 (IRFA 1502).
- *  - Guillou "1860–1866" -> 1861–1865 (IRFA 0682: Mỹ Tho 1861, Cái Mơn 1863,
- *    trở lại Mỹ Tho 1864, Thủ Dầu Một 1865, mất tại Sài Gòn 16/03/1866).
- *    giaophanmytho.net cũng xác nhận trước 1861 chưa có cộng đoàn tại Mỹ Tho.
- *
- * CÒN TỒN: mục Bouillevaux ghi "quản xứ Vĩnh Tường 1866–1906" nhưng IRFA 0573
- * chỉ ghi nhiệm sở Sài Gòn / Chợ Quán (1849–1855, 1866–1873). Cần kiểm chứng.
+ * CÒN TỒN, CẦN ĐỐI CHIẾU SỔ SÁCH HỌ ĐẠO:
+ *  - Khoảng trống 1865–1882 và 1895–1899 chưa rõ ai coi sóc. cgvdt.vn cho
+ *    biết từ 1866 đến 1960 họ đạo trải qua hơn 80 linh mục, nên danh sách
+ *    này chỉ là các vị tiêu biểu, không phải danh sách đầy đủ.
+ *  - Khoảng trống 1948–1956: Cha Bar mất 03/1948 nhưng mục kế tiếp
+ *    (Nguyễn Minh Chiếu) ghi bắt đầu 1956.
+ *  - Năm nhận nhiệm sở Mỹ Tho của Cha Bar không có trong hồ sơ IRFA; suy
+ *    ra khoảng 1922 vì ngài kế nhiệm Cha Rénier, mốc có ngày tháng sớm
+ *    nhất tại Mỹ Tho là 1929.
+ *  - Niên hiệu của ba cha sở Việt Nam (1956–1958, 1958–1975, 1975–1998)
+ *    không kiểm chứng được qua nguồn công khai. Đã xác nhận độc lập:
+ *    Nguyễn Minh Chiếu dời chuông 1958; Nguyễn Văn Chúc xây tháp chuông
+ *    16/02/1995 (Wikipedia tiếng Việt).
  */
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
@@ -481,37 +493,48 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ]
   },
   {
-    id: 'cha-bouillevaux',
-    name: 'Lm. Charles-Émile Bouillevaux (MEP)',
-    saintName: 'Thánh Charles (Carôlô)',
-    role: 'Linh mục Thừa sai MEP • Quản xứ Họ đạo Vĩnh Tường Mỹ Tho (1866 – 1906)',
-    period: '1866 – 1906',
-    birth: '01/04/1823 tại Montier-en-Der (Haute-Marne), Pháp',
-    death: '06/01/1913 tại Montier-en-Der, Pháp (Hưởng thọ 90 tuổi)',
-    origin: 'Hội Thừa Sai Paris (MEP)',
-    image: '/images/cha_bouillevaux.jpg',
-    shortDesc: 'Nhà truyền giáo và nhà khảo cứu lỗi lạc thuộc Hội Thừa Sai Paris (người phương Tây đầu tiên khám phá Angkor năm 1850). Về Nam Kỳ, ngài cùng Đức Giám mục Miche xây dựng ngôi nhà thờ thứ hai của Mỹ Tho là Nhà thờ Vĩnh Tường dâng kính Thánh Tâm Chúa Giêsu (1866), phát triển họ đạo trong suốt 40 năm (Ảnh tư liệu chụp năm 1884).',
+    id: 'cha-faron',
+    name: 'Lm. Eugène Faron (MEP)',
+    saintName: 'Thánh Eugène',
+    role: 'Linh mục Coi sóc Họ đạo Mỹ Tho & Vĩnh Tường (1882 – 1895)',
+    period: '1882 – 1895',
+    birth: '09/08/1845 tại Gruey-lès-Surance, Giáo phận Saint-Dié, Pháp',
+    death: '20/06/1895 tại Mỹ Tho',
+    priestOrdination: 'Thụ phong Linh mục ngày 11/06/1870',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 1189',
+    image: '/images/cha_faron.jpg',
+    shortDesc: 'Vị thừa sai gắn bó với Mỹ Tho ngay từ ngày đặt chân tới Đàng Trong năm 1874 với tư cách tuyên úy quân y viện. Sau các nhiệm sở Vĩnh Long và Thủ Dầu Một, ngài trở lại Mỹ Tho năm 1882 và ở lại cho đến khi qua đời. Ngài coi sóc quân y viện cùng bệnh viện bản xứ Vĩnh Tường và cho tái thiết nguyện đường Vĩnh Tường. Kho lưu trữ MEP ghi lại ngài có "tính tình hiền hậu dễ mến, tấm lòng quảng đại".',
     chronology: [
       {
-        time: '1848',
-        title: 'Thụ phong Linh mục & Lên đường Thừa sai',
-        content: 'Thụ phong linh mục ngày 17/06/1848 và lên tàu sang truyền giáo tại Giáo phận Tây Đàng Trong (Cochinchine).'
+        time: '1870 – 1874',
+        title: 'Linh mục Giáo phận & Tuyên úy quân đội',
+        content: 'Thụ phong ngày 11/06/1870, làm phó xứ nhà thờ Đức Bà ở Bar-le-Duc ba năm và tuyên úy quân đội trong chiến tranh Pháp – Phổ 1870 – 1871. Vào Chủng viện Thừa Sai Paris ngày 11/07/1873, lên đường sang Tây Đàng Trong ngày 01/07/1874.'
       },
       {
-        time: '1850',
-        title: 'Khảo cứu quần thể Angkor',
-        content: 'Ghi chép công trình khảo cứu lịch sử đầu tiên của phương Tây về khu đền cổ Angkor.'
+        time: '1874 – 1881',
+        title: 'Những năm đầu tại Nam Kỳ',
+        content: 'Khởi đầu tại Mỹ Tho với vai trò tuyên úy quân y viện; học tiếng Việt tại Cái Mơn năm 1876; lần lượt coi sóc Vĩnh Long (1877) rồi Thủ Dầu Một (1881).'
       },
       {
-        time: '1866',
-        title: 'Khởi công Nhà thờ Vĩnh Tường (Thánh Tâm)',
-        content: 'Cùng Đức Giám mục Miche đặt viên đá và hoàn thành ngôi nhà thờ thứ hai tại họ đạo Mỹ Tho, quy tụ đông đảo tân tòng và mở rộng các họ đạo nhánh vùng Chợ Cũ, Bến Chùa.'
+        time: '1882',
+        title: 'Trở lại Mỹ Tho',
+        content: 'Quay về Mỹ Tho và ở lại đây suốt phần đời còn lại, phụ trách quân y viện cùng bệnh viện bản xứ Vĩnh Tường do các Nữ tu Thánh Phaolô đảm nhiệm.'
+      },
+      {
+        time: '1882 – 1894',
+        title: 'Tái thiết nguyện đường Vĩnh Tường',
+        content: 'Cho xây dựng lại nguyện đường của khu Vĩnh Tường (Thượng Mỹ Tho) — ngôi nguyện đường gắn với nhà thờ Vĩnh Tường mà Đức cha Colombert đã thánh hiến năm 1876.'
+      },
+      {
+        time: '1894 – 1895',
+        title: 'Những ngày cuối',
+        content: 'Sức khỏe suy giảm từ năm 1894; ngài qua đời tại Mỹ Tho ngày 20/06/1895.'
       }
     ],
     milestones: [
-      'Chủ trì xây dựng ngôi nhà thờ thứ hai (Nhà thờ Vĩnh Tường - Thánh Tâm Chúa Giêsu, 1866).',
-      'Mở rộng địa bàn mục vụ khắp vùng Tiền Giang và củng cố đức tin cho giáo dân.',
-      'Học giả, nhà khảo cứu uyên bác của Hội Thừa Sai Paris (MEP).'
+      'Gắn bó với Mỹ Tho từ 1874 và coi sóc họ đạo liên tục từ 1882 đến khi qua đời năm 1895.',
+      'Tuyên úy quân y viện Mỹ Tho và bệnh viện bản xứ Vĩnh Tường.',
+      'Tái thiết nguyện đường Vĩnh Tường.'
     ]
   },
   {
@@ -567,34 +590,54 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ]
   },
   {
-    id: 'cha-bachelard-co-bach',
-    name: 'Lm. Joseph-Marie Bachelard (Cố Bạch - MEP)',
-    saintName: 'Thánh Giuse',
-    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (1910 – 1956)',
-    period: '1910 – 1956',
-    origin: 'Hội Thừa Sai Paris (MEP)',
-    shortDesc: 'Coi sóc họ đạo Mỹ Tho trong suốt hơn 4 thập kỷ đầy thăng trầm lịch sử. Cha đã mời Dòng Nữ tu Thánh Phaolô thành Chartres (Saint Paul de Chartres) về giúp họ đạo, mở trường tư thục Công giáo, cô nhi viện, đào tạo Ban Quới Chức và gìn giữ ngọn lửa đức tin qua hai cuộc Thế chiến.',
+    id: 'cha-bar-co-bach',
+    name: 'Lm. Henri Bar (Cố Bạch - MEP)',
+    saintName: 'Thánh Giuse (tên rửa tội: Henri Edmond Joseph)',
+    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (khoảng 1922 – 1948)',
+    period: 'khoảng 1922 – 1948',
+    birth: '29/04/1870 tại Flines-lez-Raches, Giáo phận Cambrai, Pháp',
+    death: '19/03/1948 tại Mỹ Tho, đúng ngày lễ Thánh Giuse bổn mạng (hưởng thọ 78 tuổi, 52 năm truyền giáo)',
+    priestOrdination: 'Thụ phong Linh mục ngày 28/06/1896',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 2241',
+    image: '/images/cha_bar_co_bach.jpg',
+    shortDesc: 'Kế nhiệm Cha Rénier, ngài gắn bó với họ đạo Mỹ Tho cho đến hơi thở cuối cùng và là vị kỳ cựu nhất của địa phận khi qua đời. Kho lưu trữ MEP mô tả ngài là "một thừa sai khiêm nhường, làm việc trong thinh lặng và kín đáo". Năm 1929 ngài đón nhóm Đệ tử các Sư huynh Lasan, nhường một phần nhà xứ làm chỗ ở; đến 1930 trường của các Sư huynh nuôi dạy 400 học sinh và các Nữ tu Thánh Phaolô 300 nữ sinh. Năm 1933 ngài ghi nhận 642 lượt rửa tội và lập ba họ đạo mới. Ngài qua đời vì ung thư vòm họng sau khi lãnh Bí tích Xức Dầu trước mặt cộng đoàn và ngỏ lời từ biệt lần cuối.',
     chronology: [
       {
-        time: '1910 – 1920',
-        title: 'Thiết lập hệ thống giáo dục & bác ái',
-        content: 'Xây dựng trường học họ đạo, mở cơ sở bác ái nuôi dạy trẻ mồ côi cùng các Nữ tu Thánh Phaolô.'
+        time: '1896 – 1899',
+        title: 'Thụ phong & Sang Đàng Trong',
+        content: 'Thụ phong linh mục ngày 28/06/1896, lên đường sang Giáo phận Tây Đàng Trong ngày 26/08/1896. Dạy triết học tại Đại Chủng viện Sài Gòn và làm tuyên úy Dòng Kín Carmel năm 1899.'
       },
       {
-        time: '1920 – 1945',
-        title: 'Phát triển Ban Quới Chức & Hội Đoàn',
-        content: 'Đào tạo thế hệ Ban Hành Giáo nòng cốt người Việt, kiện toàn sổ bộ giáo xứ.'
+        time: 'trước 1922',
+        title: 'Địa hạt Bái Xan',
+        content: 'Phục vụ tại họ đạo và địa hạt Bái Xan, một trong những cộng đoàn Kitô hữu lâu đời nhất vùng ruộng vườn Nam Bộ.'
       },
       {
-        time: '1945 – 1956',
-        title: 'Gìn giữ họ đạo thời kỳ kháng chiến',
-        content: 'Duy trì các thánh lễ liên tục và bảo vệ cơ sở vật chất thánh đường nguyên vẹn.'
+        time: '1929 – 1930',
+        title: 'Đón các Sư huynh Lasan & mở rộng trường học',
+        content: 'Đón nhóm Đệ tử các Sư huynh Lasan về Mỹ Tho, nhường một phần nhà xứ làm nơi ở. Đến năm 1930, trường của các Sư huynh đón 400 học sinh và các Nữ tu Thánh Phaolô đón 300 nữ sinh.'
+      },
+      {
+        time: '1933',
+        title: 'Mùa gặt đức tin & lập họ đạo mới',
+        content: 'Ghi nhận 642 lượt rửa tội trong địa hạt; lập ba họ đạo mới Bàn Hạn, Thược và Phú Vang — họ Phú Vang được trao cho Cha Tôma Kỳ coi sóc.'
+      },
+      {
+        time: '1941 – 1945',
+        title: 'Che chở giáo dân thời loạn lạc',
+        content: 'Cùng Cha Ad. Keller đón nhận giáo dân chạy nạn trong thời kỳ biến động; chứng kiến tại chỗ giai đoạn kết thúc chiếm đóng của quân đội Nhật và những xáo trộn sau đó.'
+      },
+      {
+        time: '19/03/1948',
+        title: 'Qua đời giữa lòng họ đạo',
+        content: 'Sau thời gian dài chống chọi ung thư vòm họng, ngài lãnh Bí tích Xức Dầu trước mặt cộng đoàn, xin lỗi vì những điều có thể đã làm phiền lòng giáo dân và khuyên họ trung thành với bổn phận Kitô hữu. Ngài qua đời ngay tại Mỹ Tho đúng ngày lễ Thánh Giuse.'
       }
     ],
     milestones: [
-      'Mục tử phục vụ lâu năm nhất thời kỳ Thừa Sai (hơn 40 năm coi sóc Họ đạo).',
-      'Thành lập trường học Công giáo và cơ sở từ thiện xã hội tại Mỹ Tho.',
-      'Đào tạo và chuyển giao nền tảng tổ chức họ đạo vững mạnh cho hàng giáo sĩ bản xứ.'
+      'Chánh sở họ đạo Mỹ Tho khoảng một phần tư thế kỷ, qua đời ngay tại nhiệm sở (1948).',
+      'Đón các Sư huynh Lasan về Mỹ Tho (1929); đến 1930 trường Sư huynh có 400 học sinh, trường Nữ tu Thánh Phaolô 300 nữ sinh.',
+      'Lập ba họ đạo mới Bàn Hạn, Thược và Phú Vang (1933).',
+      'Che chở giáo dân chạy nạn trong thời kỳ loạn lạc 1941 – 1945.'
     ]
   },
   {
