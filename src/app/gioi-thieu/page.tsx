@@ -15,6 +15,7 @@ import {
   Maximize2,
   ExternalLink,
   ChevronRight,
+  ChevronLeft,
   ChevronDown,
   Quote,
   ShieldCheck,
@@ -28,61 +29,300 @@ import {
   Flame,
   CheckCircle2,
   X,
-  Crown
+  Crown,
+  Eye
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-interface BishopRecord {
+export interface DetailedBioRecord {
+  id: string;
   name: string;
+  saintName: string;
   role: string;
-  motto: string;
   period: string;
-  desc: string;
+  birth: string;
+  death?: string;
+  origin: string;
+  motto: string;
+  mottoLatin?: string;
+  priestOrdination: string;
+  bishopConsecration: string;
+  consecrator?: string;
   image: string;
+  shortDesc: string;
+  chronology: { time: string; title: string; content: string }[];
+  milestones: string[];
+  quotes?: string;
 }
 
-const BISHOPS_DATA: BishopRecord[] = [
+const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
+    id: 'duc-cha-tran-van-thien',
     name: 'Đức Cha Giuse Trần Văn Thiện',
+    saintName: 'Thánh Giuse (Joseph)',
     role: 'Giám mục Tiên khởi Giáo phận Mỹ Tho',
-    motto: '“Phần rỗi linh hồn là luật tối thượng” (Salus Animarum Suprema Lex)',
-    period: '1960 – 1989',
-    desc: 'Được Đức Thánh Cha Gioan XXIII bổ nhiệm làm Giám mục Tiên khởi ngày 24/11/1960 khi Giáo phận Mỹ Tho vừa được thành lập theo Tông hiến Venerabilium Nostrorum. Ngài có công lao to lớn trong việc đặt nền móng cơ sở hạ tầng, thành lập Tiểu Chủng viện Gioan XXIII, quy tụ linh mục đoàn và kiến thiết giáo phận trong những năm tháng đầu tiên đầy gian khó.',
-    image: '/images/bishop_1_tran_van_thien.jpg'
+    period: '1960 – 1989 (29 năm Giám mục)',
+    birth: '01/10/1908 tại Cái Nhum, Chợ Lách, Vĩnh Long',
+    death: '24/02/1989 tại Tòa Giám Mục Mỹ Tho (Hưởng thọ 81 tuổi)',
+    origin: 'Cái Nhum, Vĩnh Long',
+    motto: '“Phần rỗi linh hồn là luật tối thượng”',
+    mottoLatin: 'Salus Animarum Suprema Lex',
+    priestOrdination: '21/09/1928 tại Nhà thờ Đức Bà Sài Gòn',
+    bishopConsecration: '22/01/1961 tại Nhà thờ Đức Bà Sài Gòn',
+    consecrator: 'Đức Tổng Giám Mục Phêrô Máctinô Ngô Đình Thục (Chủ phong)',
+    image: '/images/bishop_1_tran_van_thien.jpg',
+    shortDesc: 'Được Thánh Giáo hoàng Gioan XXIII bổ nhiệm làm Giám mục Tiên khởi ngày 24/11/1960. Ngài đặt nền móng cơ sở hạ tầng, thành lập Tiểu Chủng viện Gioan XXIII, quy tụ linh mục đoàn và kiến thiết giáo phận trong thời kỳ sơ khai đầy gian khó.',
+    chronology: [
+      {
+        time: '1908 – 1928',
+        title: 'Tu học và thụ phong Linh mục',
+        content: 'Sinh trưởng trong một gia đình đạo đức tại Cái Nhum. Ngài gia nhập Tiểu Chủng viện Sài Gòn từ nhỏ, sau đó tiếp tục học triết học và thần học tại Đại Chủng viện Thánh Giuse Sài Gòn. Thụ phong linh mục ngày 21/09/1928 khi mới 20 tuổi (được Tòa Thánh chuẩn miễn tuổi).'
+      },
+      {
+        time: '1928 – 1960',
+        title: 'Mục vụ truyền giáo và Giáo sư Chủng viện',
+        content: 'Phục vụ tại các họ đạo miền Tây Nam Bộ, làm giáo sư Chủng viện Sài Gòn, đào tạo nhiều thế hệ linh mục ưu tú cho Giáo hội Việt Nam.'
+      },
+      {
+        time: '24/11/1960',
+        title: 'Bổ nhiệm Giám mục Tiên khởi Mỹ Tho',
+        content: 'Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến Venerabilium Nostrorum thiết lập Giáo phận Mỹ Tho và bổ nhiệm Linh mục Giuse Trần Văn Thiện làm Giám mục Tiên khởi coi sóc tân giáo phận gồm 3 tỉnh Tiền Giang, Long An và Đồng Tháp.'
+      },
+      {
+        time: '1961 – 1989',
+        title: '29 năm kiên cường lèo lái Giáo phận',
+        content: 'Thành lập Tiểu Chủng viện Gioan XXIII tại Mỹ Tho, thiết lập Dòng Nữ Tu Mến Thánh Giá Mỹ Tho, Dòng Con Đức Mẹ và hiệp nhất đoàn chiên vượt qua giai đoạn chiến tranh và thời kỳ khó khăn sau năm 1975.'
+      }
+    ],
+    milestones: [
+      'Sáng lập Tiểu Chủng viện Gioan XXIII Mỹ Tho.',
+      'Thành lập và định hướng linh đạo Dòng Mến Thánh Giá Mỹ Tho.',
+      'Phân chia 6 giáo hạt và quy hoạch mạng lưới các giáo xứ nông thôn.',
+      'Giữ vững đức tin và phụng vụ thánh thiện cho cộng đoàn trong suốt 29 năm biến động lịch sử.'
+    ]
   },
   {
+    id: 'duc-cha-nguyen-van-nam',
     name: 'Đức Cha Anrê Nguyễn Văn Nam',
+    saintName: 'Thánh Anrê Tông Đồ (Andrew)',
     role: 'Giám mục Chính tòa thứ II Giáo phận Mỹ Tho',
-    motto: '“Vui mừng trong Thánh Giá Chúa Kitô” (Crux Spes Unica)',
-    period: '1989 – 1999',
-    desc: 'Coi sóc giáo phận trong giai đoạn chuyển mình của đất nước. Ngài hết lòng củng cố sự hiệp thông, chăm lo đời sống thiêng liêng cho bà con giáo dân và xây dựng tình bác ái huynh đệ khắp các giáo xứ vùng sông nước Tiền Giang, Long An và Đồng Tháp.',
-    image: '/images/bishop_nguyen_van_nam.jpg'
+    period: '1989 – 1999 (Kế vị từ 1989, Giám mục Phó từ 1975)',
+    birth: '24/02/1922 tại Thới Lai, Cần Thơ',
+    death: '16/03/2006 tại Tòa Giám Mục Mỹ Tho (Hưởng thọ 84 tuổi)',
+    origin: 'Thới Lai, Cần Thơ',
+    motto: '“Vui mừng trong Thánh Giá Chúa Kitô”',
+    mottoLatin: 'Crux Spes Unica',
+    priestOrdination: '29/03/1953 tại Sài Gòn',
+    bishopConsecration: '26/10/1975 tại Nhà thờ Chính Tòa Mỹ Tho',
+    consecrator: 'Đức Cha Giuse Trần Văn Thiện (Chủ phong)',
+    image: '/images/bishop_nguyen_van_nam.jpg',
+    shortDesc: 'Coi sóc giáo phận trong giai đoạn đất nước Đổi Mới. Ngài hết lòng củng cố sự hiệp thông, chăm lo đời sống thiêng liêng cho bà con giáo dân và xây dựng tình bác ái huynh đệ khắp các giáo xứ vùng sông nước miền Tây.',
+    chronology: [
+      {
+        time: '1922 – 1953',
+        title: 'Tu học và thụ phong Linh mục',
+        content: 'Tu học tại Tiểu Chủng viện Cù Lao Giêng và Đại Chủng viện Thánh Giuse Sài Gòn. Thụ phong linh mục ngày 29/03/1953.'
+      },
+      {
+        time: '24/07/1975',
+        title: 'Bổ nhiệm Giám mục Phó Mỹ Tho',
+        content: 'Đức Giáo hoàng Phaolô VI bổ nhiệm ngài làm Giám mục Phó Giáo phận Mỹ Tho với quyền kế vị để trợ giúp Đức Cha Giuse Trần Văn Thiện.'
+      },
+      {
+        time: '1989 – 1999',
+        title: 'Kế vị Giám mục Chính tòa Mỹ Tho',
+        content: 'Kế vị chính thức ngày 24/02/1989. Ngài củng cố tinh thần hiệp nhất, mở lại các lớp huấn giáo đào tạo ơn gọi linh mục, tu sĩ và chăm lo cho các giáo điểm nghèo vùng sâu Đồng Tháp Mười.'
+      },
+      {
+        time: '1999 – 2006',
+        title: 'Nghỉ hưu và cầu nguyện',
+        content: 'Trao quyền coi sóc cho Đức Cha Phaolô Bùi Văn Đọc vào năm 1999, ngài sống đời cầu nguyện âm thầm và an nghỉ trong Chúa ngày 16/03/2006.'
+      }
+    ],
+    milestones: [
+      'Gắn kết sự hiệp thông bền chặt giữa giáo sĩ và giáo dân sau năm 1975.',
+      'Khôi phục các khóa tĩnh tâm, đào tạo tu sĩ và tái thiết cơ sở tôn giáo.',
+      'Gương mẫu đời sống mục tử khó nghèo, hiền hòa và đầy tình phụ tử.'
+    ]
   },
   {
+    id: 'duc-hong-y-pham-minh-man',
     name: 'Đức Hồng Y Gioan Baotixita Phạm Minh Mẫn',
-    role: 'Giám mục Phó Giáo phận Mỹ Tho (1993 – 1998)',
-    motto: '“Như Thầy yêu thương” (Sicut Dilexi Vos)',
-    period: '1993 – 1998',
-    desc: 'Trong 5 năm phục vụ với cương vị Giám mục Phó, Ngài đồng hành đắc lực với Đức Cha Anrê trong công tác đào tạo chủng sinh, linh mục và xây dựng các chương trình mục vụ bác ái, trước khi được Tòa Thánh tấn phong Tổng Giám mục Tổng Giáo phận Sài Gòn và thăng tước Hồng Y.',
-    image: '/images/bishop_3_pham_minh_man.jpg'
+    saintName: 'Thánh Gioan Baotixita (John the Baptist)',
+    role: 'Giám mục Phó Giáo phận Mỹ Tho (1993 – 1998) • Nguyên Tổng Giám Mục TGP Sài Gòn',
+    period: '1993 – 1998 (Tại Mỹ Tho)',
+    birth: '05/03/1934 tại Hòa Thành, Cà Mau',
+    origin: 'Cà Mau',
+    motto: '“Như Thầy yêu thương”',
+    mottoLatin: 'Sicut Dilexi Vos (Ga 13,34)',
+    priestOrdination: '25/05/1965 tại Nhà thờ Lớn Cần Thơ',
+    bishopConsecration: '11/08/1993 tại Cần Thơ',
+    consecrator: 'Đức Giám mục Emmanuel Lê Phong Thuận (Chủ phong)',
+    image: '/images/bishop_3_pham_minh_man.jpg',
+    shortDesc: 'Trong 5 năm phục vụ với cương vị Giám mục Phó Giáo phận Mỹ Tho, Ngài phụ trách công tác đào tạo chủng sinh, linh mục và xây dựng các chương trình bác ái Caritas trước khi được Tòa Thánh tấn phong Tổng Giám mục TGP Sài Gòn và thăng tước Hồng Y.',
+    chronology: [
+      {
+        time: '1934 – 1965',
+        title: 'Thời niên thiếu và tu nghiệp quốc tế',
+        content: 'Tu học tại Tiểu Chủng viện Cù Lao Giêng, Chủng viện Nam Vang (Campuchia) và Đại học Loyola (Hoa Kỳ) chuyên ngành Sư phạm Giáo dục. Thụ phong linh mục ngày 25/05/1965.'
+      },
+      {
+        time: '1993 – 1998',
+        title: 'Giám mục Phó Giáo phận Mỹ Tho',
+        content: 'Đức Giáo hoàng Gioan Phaolô II bổ nhiệm làm Giám mục Phó Mỹ Tho. Ngài đẩy mạnh công tác đào tạo thần học, phụ trách Giám đốc Đại Chủng viện Thánh Quý (Cần Thơ) và xây dựng mạng lưới bác ái xã hội.'
+      },
+      {
+        time: '1998 – 2014',
+        title: 'Tổng Giám Mục Tổng Giáo Phận Sài Gòn - TP.HCM',
+        content: 'Chính thức nhậm chức Tổng Giám mục TGP Sài Gòn ngày 01/03/1998, lãnh đạo giáo phận lớn nhất cả nước trong giai đoạn hội nhập quốc tế.'
+      },
+      {
+        time: '21/10/2003',
+        title: 'Thăng tước Hồng Y Đẳng Linh Mục',
+        content: 'Đức Thánh Cha Gioan Phaolô II vinh thăng ngài làm Hồng Y tước hiệu San Giustino, trở thành vị Hồng Y thứ 5 trong lịch sử Giáo hội Công giáo Việt Nam.'
+      }
+    ],
+    milestones: [
+      'Đặt nền tảng sư phạm thần học hiện đại cho Đại Chủng viện Thánh Quý.',
+      'Xây dựng các nhịp cầu đối thoại văn hóa, giáo dục và bác ái giữa Giáo hội và Xã hội.',
+      'Vị Hồng Y đầy lòng nhân ái, luôn kiên trì sống theo châm ngôn “Như Thầy yêu thương”.'
+    ]
   },
   {
+    id: 'duc-tgm-bui-van-doc',
     name: 'Đức Tổng Giám Mục Phaolô Bùi Văn Đọc',
-    role: 'Giám mục Chính tòa thứ III Giáo phận Mỹ Tho',
-    motto: '“Chúa là nguồn vui của con” (Dominus Lux Mea)',
-    period: '1999 – 2013',
-    desc: 'Thời kỳ Ngài coi sóc ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, thiết lập Trung tâm Mục vụ khang trang, long trọng cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa vào Năm Thánh 2000 và thúc đẩy mạnh mẽ công cuộc loan báo Tin Mừng tại vùng sâu Đồng Tháp Mười.',
-    image: '/images/bishop_4_bui_van_doc.jpg'
+    saintName: 'Thánh Phaolô Tông Đồ (Paul)',
+    role: 'Giám mục Chính tòa thứ III Giáo phận Mỹ Tho (1999 – 2013) • Nguyên Chủ tịch HĐGMVN',
+    period: '1999 – 2013 (Tại Mỹ Tho)',
+    birth: '11/11/1944 tại Đà Lạt, Lâm Đồng',
+    death: '06/03/2018 tại Rôma, Vatican (Hưởng thọ 74 tuổi)',
+    origin: 'Đà Lạt (Gốc Quảng Bình)',
+    motto: '“Chúa là nguồn vui của con”',
+    mottoLatin: 'Dominus Lux Mea (Tv 27,1)',
+    priestOrdination: '17/12/1970 tại Nhà thờ Chính Tòa Đà Lạt',
+    bishopConsecration: '02/06/1999 tại Nhà thờ Chính Tòa Đà Lạt',
+    consecrator: 'Đức Tổng Giám mục Gioan Baotixita Phạm Minh Mẫn (Chủ phong)',
+    image: '/images/bishop_4_bui_van_doc.jpg',
+    shortDesc: 'Thời kỳ Ngài coi sóc ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, Trung tâm Mục vụ khang trang, cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa Năm Thánh 2000 và truyền giáo mạnh mẽ tại Đồng Tháp Mười.',
+    chronology: [
+      {
+        time: '1944 – 1970',
+        title: 'Tu học thần học tại Rôma (Đại học Urbaniana)',
+        content: 'Theo học tại Tiểu Chủng viện Thánh Giuse Sài Gòn và được cử sang Rôma du học tại Đại học Giáo hoàng Urbaniana, đạt thủ khoa Thần học Triết học. Thụ phong linh mục ngày 17/12/1970.'
+      },
+      {
+        time: '1975 – 1999',
+        title: 'Giám đốc Đại Chủng viện Minh Hòa Đà Lạt',
+        content: 'Chuyên gia thần học hàng đầu, giáo sư tín lý tại các Đại Chủng viện Sài Gòn, Huế, Hà Nội và Giám đốc Chủng viện Minh Hòa.'
+      },
+      {
+        time: '1999 – 2013',
+        title: '14 năm Giám mục Chính tòa Giáo phận Mỹ Tho',
+        content: 'Chính thức nhậm chức ngày 26/03/1999. Ngài xây dựng Tòa Giám mục mới, thiết lập Trung tâm Mục vụ, cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa Năm Thánh 2000 và thành lập hàng loạt giáo xứ tại vùng Đồng Tháp Mười.'
+      },
+      {
+        time: '2013 – 2018',
+        title: 'Tổng Giám Mục Sài Gòn & Chủ tịch Hội Đồng Giám Mục',
+        content: 'Đức Thánh Cha Phanxicô bổ nhiệm làm Tổng Giám mục TGP Sài Gòn và giữ trọng trách Chủ tịch HĐGMVN nhiệm kỳ 2013 – 2016.'
+      }
+    ],
+    milestones: [
+      'Xây dựng Tòa Giám Mục và Trung tâm Mục vụ Giáo phận Mỹ Tho bề thế.',
+      'Cung hiến Nhà thờ Chính Tòa Mỹ Tho vào Năm Thánh 2000.',
+      'Khai phá và gieo mầm Tin Mừng trên toàn vùng trũng Đồng Tháp Mười.',
+      'Nhà thần học lỗi lạc với phong thái mục tử hân hoan, vui tươi đầy bình an.'
+    ]
   },
   {
+    id: 'duc-cha-nguyen-van-kham',
     name: 'Đức Cha Phêrô Nguyễn Văn Khảm',
-    role: 'Giám mục Chính tòa đương nhiệm (từ 2014)',
-    motto: '“Hãy theo Thầy” (Sequere Me)',
+    saintName: 'Thánh Phêrô Tông Đồ (Peter)',
+    role: 'Giám mục Chính tòa đương nhiệm Giáo phận Mỹ Tho (từ 2014)',
     period: '2014 – nay',
-    desc: 'Được Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho vào ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng đường hướng mục vụ phụng vụ, đào tạo đức tin giáo dân và chăm lo ơn gọi linh mục, tu sĩ toàn giáo phận.',
-    image: '/images/bishop_5_nguyen_van_kham.jpg'
+    birth: '02/10/1952 tại Hà Đông, Hà Nội',
+    origin: 'Hà Đông (Hà Nội)',
+    motto: '“Hãy theo Thầy”',
+    mottoLatin: 'Sequere Me (Ga 21,22)',
+    priestOrdination: '28/02/1980 tại Sài Gòn',
+    bishopConsecration: '15/11/2008 tại Nhà thờ Đức Bà Sài Gòn',
+    consecrator: 'Đức Hồng Y Gioan Baotixita Phạm Minh Mẫn (Chủ phong)',
+    image: '/images/bishop_5_nguyen_van_kham.jpg',
+    shortDesc: 'Được Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng phụng vụ, đào tạo giáo dân và chăm lo ơn gọi toàn giáo phận.',
+    chronology: [
+      {
+        time: '1952 – 1980',
+        title: 'Tu học và thụ phong Linh mục',
+        content: 'Tu học tại Tiểu Chủng viện Thánh Giuse Sài Gòn và Đại Chủng viện Thánh Giuse. Thụ phong linh mục ngày 28/02/1980.'
+      },
+      {
+        time: '2000 – 2004',
+        title: 'Tiến sĩ Thần học Mục vụ tại Hoa Kỳ (CUA)',
+        content: 'Du học tại Đại học Công giáo Hoa Kỳ (Catholic University of America) tại Washington D.C., bảo vệ xuất sắc luận án Tiến sĩ Thần học Mục vụ.'
+      },
+      {
+        time: '2008 – 2014',
+        title: 'Giám mục Phụ tá Tổng Giáo Phận Sài Gòn',
+        content: 'Đức Giáo hoàng Bênêđictô XVI bổ nhiệm làm Giám mục Phụ tá Sài Gòn tước hiệu Troyna, Giám đốc Trung tâm Mục vụ TGP Sài Gòn.'
+      },
+      {
+        time: '26/07/2014 – nay',
+        title: 'Giám mục Chính tòa Giáo phận Mỹ Tho',
+        content: 'Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho. Ngài kiêm nhiệm Tổng Thư ký HĐGMVN (2016 – 2022) và được Tòa Thánh bổ nhiệm làm Thành viên Bộ Truyền Thông Vatican (Dicastery for Communication) từ năm 2019.'
+      }
+    ],
+    milestones: [
+      'Định hình nền tảng mục vụ phụng vụ và loan báo Tin Mừng sâu sắc cho Giáo phận.',
+      'Thúc đẩy phong trào Thiếu Nhi Thánh Thể, Huynh Trưởng và Giới trẻ phát triển mạnh mẽ.',
+      'Thành viên Bộ Truyền Thông Tòa Thánh Vatican đại diện cho Giáo hội Việt Nam.',
+      'Nhà thuyết giảng thần học và Huấn giáo Kinh Thánh uyên bác hàng đầu Việt Nam.'
+    ]
   }
 ];
+
+const POPE_FRANCIS_BIO: DetailedBioRecord = {
+  id: 'duc-thanh-cha-phanxico',
+  name: 'Đức Giáo Hoàng Phanxicô (Pope Francis)',
+  saintName: 'Thánh Phanxicô thành Assisi (Franciscus)',
+  role: 'Vị Giáo hoàng thứ 266 của Giáo hội Công giáo Hoàn Vũ',
+  period: '13/03/2013 – nay',
+  birth: '17/12/1936 tại Flores, Buenos Aires, Argentina',
+  origin: 'Buenos Aires, Argentina (Gốc Ý)',
+  motto: '“Cảm thương và tuyển chọn”',
+  mottoLatin: 'Miserando atque eligendo',
+  priestOrdination: '13/12/1969 tại San Miguel, Argentina',
+  bishopConsecration: '27/06/1992 tại Buenos Aires',
+  consecrator: 'Đức Hồng Y Antonio Quarracino (Chủ phong)',
+  image: '/images/pope_francis.jpg',
+  shortDesc: 'Jorge Mario Bergoglio, S.J. — Vị Giáo hoàng đầu tiên thuộc Dòng Tên, vị Giáo hoàng đầu tiên đến từ châu Mỹ Latinh và là vị Giáo hoàng tiên phong mang tinh thần khó nghèo, đối thoại và hòa bình.',
+  chronology: [
+    {
+      time: '1936 – 1969',
+      title: 'Tu nghiệp Hóa học & Gia nhập Dòng Tên',
+      content: 'Tốt nghiệp kỹ thuật viên hóa học trước khi gia nhập Tập viện Dòng Tên (Dòng Chúa Giêsu) năm 1958. Thụ phong linh mục ngày 13/12/1969.'
+    },
+    {
+      time: '1973 – 1979',
+      title: 'Giám tỉnh Dòng Tên tại Argentina',
+      content: 'Lãnh đạo Tỉnh dòng Tên Argentina trong giai đoạn đầy thử thách, tận tụy đào tạo các linh mục trẻ và phục vụ người nghèo nơi các khu ổ chuột.'
+    },
+    {
+      time: '1998 – 2013',
+      title: 'Tổng Giám Mục Buenos Aires & Hồng Y',
+      content: 'Tổng Giám mục Buenos Aires, được Đức Thánh Cha Gioan Phaolô II vinh thăng Hồng Y năm 2001. Ngài nổi tiếng với lối sống thanh bần, đi lại bằng xe buýt công cộng và nấu ăn giản dị.'
+    },
+    {
+      time: '13/03/2013 – nay',
+      title: 'Đắc cử Giáo hoàng thứ 266',
+      content: 'Đắc cử Giáo hoàng tại Mật viện Hồng Y năm 2013. Ngài ban hành các Thông điệp mang tính thời đại: Evangelii Gaudium (2013), Laudato si’ (2015), Fratelli tutti (2020) và Tông hiến cải tổ Praedicate Evangelium (2022).'
+    }
+  ],
+  milestones: [
+    'Thúc đẩy đường hướng mục vụ hướng ra các vùng ngoại vi của sự nghèo khổ.',
+    'Thông điệp Laudato si’ lịch sử về bảo vệ môi trường và ngôi nhà chung.',
+    'Thỏa thuận lịch sử Quy chế Đại diện Thường trú của Tòa Thánh tại Việt Nam (2023).',
+    'Cổ võ tinh thần Hiệp Hành (Synodality): Hiệp thông - Tham gia - Sứ vụ.'
+  ]
+};
 
 const TNTT_RANKS = [
   {
@@ -140,6 +380,7 @@ const TNTT_RANKS = [
 export default function GioiThieuPage() {
   const { t } = useLanguage();
   const [lightboxImage, setLightboxImage] = useState<{ src: string; caption: string } | null>(null);
+  const [selectedBio, setSelectedBio] = useState<DetailedBioRecord | null>(null);
   const [tocOpen, setTocOpen] = useState(true);
 
   return (
@@ -365,7 +606,7 @@ export default function GioiThieuPage() {
                 </li>
                 <li>
                   <a href="#giao-phan" style={{ color: 'inherit', textDecoration: 'none' }}>
-                    Cơ cấu Giáo phận &amp; Các Đời Giám Mục Mỹ Tho
+                    Cơ cấu Giáo phận &amp; Các Đời Giám Mục Mỹ Tho (Tiểu Sử Chi Tiết)
                   </a>
                 </li>
                 <li>
@@ -416,7 +657,7 @@ export default function GioiThieuPage() {
               1. Đức Thánh Cha đương kim &amp; Tòa Thánh Vatican
             </h2>
 
-            {/* Thumbnail chân dung Đức Giáo hoàng Phanxicô */}
+            {/* Thumbnail chân dung Đức Giáo hoàng Phanxicô - Bố cục dọc không bị cắt đầu */}
             <div
               style={{
                 float: 'right',
@@ -431,16 +672,42 @@ export default function GioiThieuPage() {
               className="wiki-thumb"
             >
               <div
-                style={{ position: 'relative', width: '100%', height: '260px', cursor: 'pointer', borderRadius: '6px', overflow: 'hidden' }}
-                onClick={() => setLightboxImage({ src: '/images/pope_francis.jpg', caption: 'Đức Thánh Cha Phanxicô (Pope Francis) — Vị Giáo hoàng thứ 266 của Giáo hội Công giáo Rôma.' })}
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: '320px',
+                  cursor: 'pointer',
+                  borderRadius: '6px',
+                  overflow: 'hidden',
+                  backgroundColor: '#0F0C08'
+                }}
+                onClick={() => setSelectedBio(POPE_FRANCIS_BIO)}
               >
                 <Image
                   src="/images/pope_francis.jpg"
                   alt="Đức Giáo hoàng Phanxicô"
                   fill
                   sizes="280px"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
                 />
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '8px',
+                    right: '8px',
+                    backgroundColor: 'rgba(0,0,0,0.75)',
+                    color: '#FDE68A',
+                    padding: '3px 8px',
+                    borderRadius: '6px',
+                    fontSize: '0.7rem',
+                    fontWeight: 800,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px'
+                  }}
+                >
+                  <Eye size={12} /> Xem tiểu sử
+                </div>
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '6px', lineHeight: 1.4 }}>
                 <strong>Đức Thánh Cha Phanxicô</strong> (Jorge Mario Bergoglio, S.J.) — Đấng kế vị Thánh Phêrô, vị Giáo hoàng thứ 266 của Giáo hội Công giáo hoàn vũ.
@@ -727,7 +994,7 @@ export default function GioiThieuPage() {
           </section>
 
           {/* =====================================================================
-              4. CƠ CẤU GIÁO PHẬN & CÁC ĐỜI GIÁM MỤC MỸ THO
+              4. CƠ CẤU GIÁO PHẬN & CÁC ĐỜI GIÁM MỤC MỸ THO (TIỂU SỬ CHI TIẾT)
               ===================================================================== */}
           <section id="giao-phan" style={{ marginBottom: '36px' }}>
             <h2
@@ -788,43 +1055,56 @@ export default function GioiThieuPage() {
             </div>
 
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 18px', textAlign: 'justify' }}>
-              Từ ngày thành lập năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua 5 đời Giám mục coi sóc Chính tòa và Giám mục Phó:
+              Từ ngày thành lập năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua 5 đời Giám mục coi sóc. <em>(Nhấp vào từng vị để xem toàn văn tiểu sử &amp; dấu ấn mục vụ)</em>:
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {BISHOPS_DATA.map((b, idx) => (
+            {/* DANH SÁCH GIÁM MỤC VỚI KHUNG ẢNH ĐỨNG CHUẨN KHÔNG BỊ CẮT ĐẦU */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {BISHOPS_EXTENDED_DATA.map((b) => (
                 <div
-                  key={idx}
+                  key={b.id}
+                  onClick={() => setSelectedBio(b)}
                   style={{
                     display: 'flex',
-                    gap: '16px',
-                    padding: '16px',
-                    borderRadius: '12px',
+                    gap: '18px',
+                    padding: '16px 20px',
+                    borderRadius: '14px',
                     backgroundColor: 'var(--color-card-bg)',
-                    border: '1px solid var(--color-border-subtle)',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.02)',
+                    border: '1.5px solid var(--color-border-subtle)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
                     alignItems: 'center',
-                    flexWrap: 'wrap'
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    position: 'relative'
                   }}
+                  className="bishop-card-hover"
                 >
+                  {/* Khung ảnh chân dung dọc (Aspect Ratio 3:4) - Luôn hiển thị trọn vẹn đầu & khuôn mặt */}
                   <div
                     style={{
-                      width: '76px',
-                      height: '76px',
-                      borderRadius: '50%',
+                      width: '90px',
+                      height: '115px',
+                      borderRadius: '10px',
                       overflow: 'hidden',
                       position: 'relative',
                       flexShrink: 0,
                       border: '2px solid #D4AF37',
-                      backgroundColor: '#1E1710'
+                      backgroundColor: '#15100B',
+                      boxShadow: '0 3px 10px rgba(0,0,0,0.2)'
                     }}
                   >
-                    <Image src={b.image} alt={b.name} fill sizes="76px" style={{ objectFit: 'cover' }} />
+                    <Image
+                      src={b.image}
+                      alt={b.name}
+                      fill
+                      sizes="90px"
+                      style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                    />
                   </div>
 
-                  <div style={{ flex: 1, minWidth: '240px' }}>
+                  <div style={{ flex: 1, minWidth: '220px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
-                      <h4 style={{ margin: 0, fontSize: '1.02rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                      <h4 style={{ margin: 0, fontSize: '1.08rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                         {b.name}
                       </h4>
                       <span
@@ -833,26 +1113,41 @@ export default function GioiThieuPage() {
                           fontWeight: 800,
                           backgroundColor: 'rgba(212, 175, 55, 0.15)',
                           color: '#B45309',
-                          padding: '2px 8px',
+                          padding: '2px 10px',
                           borderRadius: '6px',
-                          border: '1px solid rgba(212, 175, 55, 0.3)'
+                          border: '1px solid rgba(212, 175, 55, 0.35)'
                         }}
                       >
                         {b.period}
                       </span>
                     </div>
 
-                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-red)', margin: '2px 0 4px' }}>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--color-red)', margin: '3px 0 4px' }}>
                       {b.role}
                     </div>
 
-                    <div style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', marginBottom: '6px' }}>
-                      Khẩu hiệu mục tử: <strong style={{ color: 'var(--color-dark)' }}>{b.motto}</strong>
+                    <div style={{ fontSize: '0.8rem', fontStyle: 'italic', color: 'var(--color-subtle)', marginBottom: '6px' }}>
+                      Khẩu hiệu: <strong style={{ color: 'var(--color-dark)' }}>{b.motto}</strong>
                     </div>
 
-                    <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.5, textAlign: 'justify' }}>
-                      {b.desc}
+                    <p style={{ margin: 0, fontSize: '0.84rem', color: 'var(--color-subtle)', lineHeight: 1.5, textAlign: 'justify' }}>
+                      {b.shortDesc}
                     </p>
+
+                    <div
+                      style={{
+                        marginTop: '8px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontSize: '0.76rem',
+                        fontWeight: 800,
+                        color: 'var(--color-red)'
+                      }}
+                    >
+                      <Eye size={13} />
+                      <span>Xem toàn văn tiểu sử &amp; quá trình phục vụ ➔</span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -1186,7 +1481,12 @@ export default function GioiThieuPage() {
                   Đức Thánh Cha
                 </th>
                 <td style={{ padding: '8px 10px', color: 'var(--color-dark)', fontWeight: 800 }}>
-                  Đức Giáo hoàng Phanxicô (từ 2013)
+                  <span
+                    onClick={() => setSelectedBio(POPE_FRANCIS_BIO)}
+                    style={{ color: 'var(--color-red)', cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    Đức Giáo hoàng Phanxicô
+                  </span>
                 </td>
               </tr>
 
@@ -1503,7 +1803,12 @@ export default function GioiThieuPage() {
                   Giám mục Chính tòa
                 </th>
                 <td style={{ padding: '8px 10px', color: 'var(--color-dark)', fontWeight: 700 }}>
-                  Đức Cha Phêrô Nguyễn Văn Khảm
+                  <span
+                    onClick={() => setSelectedBio(BISHOPS_EXTENDED_DATA[4])}
+                    style={{ color: 'var(--color-red)', cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    Đức Cha Phêrô Nguyễn Văn Khảm
+                  </span>
                 </td>
               </tr>
 
@@ -1548,6 +1853,252 @@ export default function GioiThieuPage() {
           </table>
         </aside>
       </div>
+
+      {/* =========================================================================
+          MODAL TIỂU SỬ CHI TIẾT BÁCH KHOA KHI NHẤP VÀO TỪNG VỊ GIÁM MỤC / GIÁO HOÀNG
+          ========================================================================= */}
+      {selectedBio && (
+        <div
+          onClick={() => setSelectedBio(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 100015,
+            backgroundColor: 'rgba(5, 3, 2, 0.85)',
+            backdropFilter: 'blur(10px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            animation: 'fadeIn 0.2s ease-out'
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: '100%',
+              maxWidth: '680px',
+              maxHeight: '90vh',
+              backgroundColor: 'var(--color-card-bg)',
+              borderRadius: '20px',
+              border: '1.5px solid rgba(212, 175, 55, 0.5)',
+              boxShadow: '0 25px 70px rgba(0,0,0,0.7)',
+              overflowY: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              position: 'relative'
+            }}
+          >
+            {/* Top Modal Header */}
+            <div
+              style={{
+                padding: '16px 20px',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: 'rgba(139, 0, 0, 0.06)'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Crown size={18} color="#D4AF37" />
+                <div>
+                  <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                    TIỂU SỬ HÀNG GIÁO PHẨM CÔNG GIÁO
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--color-subtle)' }}>
+                    Tài liệu Bách khoa toàn thư Giáo phận Mỹ Tho
+                  </div>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setSelectedBio(null)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--color-dark)',
+                  cursor: 'pointer',
+                  padding: '4px'
+                }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div style={{ padding: '20px' }}>
+              {/* Header profile */}
+              <div style={{ display: 'flex', gap: '18px', alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: '20px' }}>
+                {/* Ảnh chân dung đầy đủ không bị cắt đầu */}
+                <div
+                  style={{
+                    width: '120px',
+                    height: '160px',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    flexShrink: 0,
+                    border: '2px solid #D4AF37',
+                    backgroundColor: '#1E1710',
+                    boxShadow: '0 4px 14px rgba(0,0,0,0.25)'
+                  }}
+                >
+                  <Image
+                    src={selectedBio.image}
+                    alt={selectedBio.name}
+                    fill
+                    sizes="120px"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  />
+                </div>
+
+                <div style={{ flex: 1, minWidth: '240px' }}>
+                  <h3 style={{ margin: '0 0 4px', fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                    {selectedBio.name}
+                  </h3>
+                  <div style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--color-red)', marginBottom: '4px' }}>
+                    {selectedBio.role}
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginBottom: '8px' }}>
+                    Tên Thánh: <strong>{selectedBio.saintName}</strong> • {selectedBio.period}
+                  </div>
+
+                  <div
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '8px',
+                      backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                      border: '1px solid rgba(212, 175, 55, 0.3)',
+                      fontSize: '0.82rem',
+                      fontStyle: 'italic',
+                      color: 'var(--color-dark)'
+                    }}
+                  >
+                    Khẩu hiệu: <strong>{selectedBio.motto}</strong>
+                    {selectedBio.mottoLatin && (
+                      <span style={{ display: 'block', fontSize: '0.74rem', color: '#B45309' }}>
+                        ({selectedBio.mottoLatin})
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Thông tin trích ngang dạng bảng */}
+              <div
+                style={{
+                  backgroundColor: 'var(--color-input-bg)',
+                  borderRadius: '12px',
+                  padding: '12px 16px',
+                  marginBottom: '20px',
+                  fontSize: '0.82rem',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                  gap: '8px 16px'
+                }}
+              >
+                <div>
+                  <strong>Sinh ngày:</strong> {selectedBio.birth}
+                </div>
+                {selectedBio.death && (
+                  <div>
+                    <strong>Qua đời:</strong> {selectedBio.death}
+                  </div>
+                )}
+                <div>
+                  <strong>Thụ phong Linh mục:</strong> {selectedBio.priestOrdination}
+                </div>
+                <div>
+                  <strong>Tấn phong Giám mục:</strong> {selectedBio.bishopConsecration}
+                </div>
+                {selectedBio.consecrator && (
+                  <div style={{ gridColumn: '1 / -1' }}>
+                    <strong>Giám mục Chủ phong:</strong> {selectedBio.consecrator}
+                  </div>
+                )}
+              </div>
+
+              {/* Quá trình phục vụ theo thời gian (Timeline) */}
+              <div style={{ marginBottom: '20px' }}>
+                <h4 style={{ margin: '0 0 12px', fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                  ⏳ Quá trình tu học &amp; Sứ vụ mục tử
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {selectedBio.chronology.map((c, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        padding: '10px 14px',
+                        borderRadius: '10px',
+                        borderLeft: '3.5px solid var(--color-red)',
+                        backgroundColor: 'var(--color-card-bg)',
+                        border: '1px solid var(--color-border-subtle)',
+                        borderLeftWidth: '3.5px'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+                        <span style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
+                          {c.title}
+                        </span>
+                        <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                          {c.time}
+                        </span>
+                      </div>
+                      <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--color-subtle)', lineHeight: 1.5, textAlign: 'justify' }}>
+                        {c.content}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dấu ấn và di sản */}
+              <div>
+                <h4 style={{ margin: '0 0 8px', fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                  ⭐ Dấu ấn lịch sử &amp; Di sản để lại
+                </h4>
+                <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)' }}>
+                  {selectedBio.milestones.map((m, i) => (
+                    <li key={i} style={{ marginBottom: '4px' }}>
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Bottom Modal Close */}
+            <div
+              style={{
+                padding: '12px 20px',
+                borderTop: '1px solid var(--color-border-subtle)',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                backgroundColor: 'var(--color-input-bg)'
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedBio(null)}
+                style={{
+                  padding: '8px 20px',
+                  borderRadius: '8px',
+                  backgroundColor: 'var(--color-red)',
+                  color: '#FFF',
+                  border: 'none',
+                  fontWeight: 700,
+                  fontSize: '0.85rem',
+                  cursor: 'pointer'
+                }}
+              >
+                Đóng Cửa Sổ
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* =========================================================================
           LIGHTBOX MODAL XEM ẢNH PHÓNG TO
@@ -1640,6 +2191,12 @@ export default function GioiThieuPage() {
             width: 100% !important;
             margin: 14px 0 !important;
           }
+        }
+
+        .bishop-card-hover:hover {
+          border-color: #D4AF37 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 18px rgba(212, 175, 55, 0.15) !important;
         }
       `}</style>
     </div>
