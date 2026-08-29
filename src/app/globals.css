@@ -1157,12 +1157,20 @@ button {
     margin-top: 4px !important;
   }
 
-  /* Phân trang: Phím bấm ngón tay chuẩn công thái học */
+  /* Phân trang: Nhỏ gọn, thanh lịch trên Mobile */
   .pager-btn {
-    min-height: 38px !important;
-    min-width: 38px !important;
-    font-size: 0.82rem !important;
-    border-radius: 8px !important;
+    min-height: 28px !important;
+    min-width: 28px !important;
+    height: 28px !important;
+    padding: 0 8px !important;
+    font-size: 0.74rem !important;
+    border-radius: 6px !important;
+  }
+
+  .pager-num-btn {
+    min-width: 28px !important;
+    width: 28px !important;
+    padding: 0 !important;
   }
 
   /* Lịch phụng vụ Widget trên Mobile */
@@ -1860,5 +1868,22 @@ body {
   border-color: rgba(220, 38, 38, 0.4);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
+
+/* ========================================================================= */
+/* MOBILE BOTTOM NAVIGATION BAR & SAFE-AREA PADDING */
+/* ========================================================================= */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .chat-bubble-btn {
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+    right: 16px !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+}
+
 
 

@@ -1,7 +1,15 @@
 'use client';
-import { useEffect, useState } from 'react';
+
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/AuthContext';
+import {
+  useAuth,
+  isSuperAdminRole,
+  hasPhungVuRole,
+  hasGiaoLyFaqRole,
+  hasTruyenThongRole,
+  ADMIN_ROLES_CONFIG
+} from '@/lib/AuthContext';
 import PostSubmissionsAdmin from '@/components/PostSubmissionsAdmin';
 import PostIntelDashboard from '@/components/PostIntelDashboard';
 import { useFacebookPosts } from '@/lib/useFacebookPosts';
@@ -21,7 +29,10 @@ import {
   User as UserIcon,
   Users,
   FileText,
-  TrendingUp
+  TrendingUp,
+  BookOpen,
+  ShieldCheck,
+  Sparkles
 } from 'lucide-react';
 
 import Image from 'next/image';
@@ -31,6 +42,7 @@ import UnifiedMassManagement from '@/components/UnifiedMassManagement';
 import AdminUsersManagement from '@/components/AdminUsersManagement';
 import FacebookAdmin from '@/components/FacebookAdmin';
 import RatingsAdmin from '@/components/RatingsAdmin';
+import PrayerAndFaqAdmin from '@/components/PrayerAndFaqAdmin';
 
 interface Submission {
   id: string;
@@ -45,15 +57,25 @@ interface Submission {
 }
 
 type TabType =
-  | 'giole'
   | 'quanly_admin'
-  | 'facebook'
+  | 'giole'
+  | 'kinhnguyen_vandap'
   | 'donggop_baiviet'
+  | 'facebook'
   | 'thongke_truyenthong'
   | 'faq'
   | 'feedback'
   | 'danhgia'
   | 'history';
+
+interface NavItemConfig {
+  key: TabType;
+  label: string;
+  icon: React.ElementType;
+  badge?: number;
+  committee: string;
+  visible: boolean;
+}
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
@@ -62,22 +84,110 @@ export default function AdminDashboard() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<TabType>(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const tabParam = params.get('tab');
-      const fbSuccess = params.get('facebook_success');
-      if (tabParam === 'facebook' || fbSuccess === 'true') {
-        return 'facebook';
-      }
-      if (tabParam === 'donggop_baiviet') return 'donggop_baiviet';
-      if (tabParam === 'thongke_truyenthong') return 'thongke_truyenthong';
-    }
-    return 'giole';
-  });
+
   const [pendingFeedbackCount, setPendingFeedbackCount] = useState(0);
   const [pendingUserCount, setPendingUserCount] = useState(0);
   const [pendingSubmissionsCount, setPendingSubmissionsCount] = useState(0);
+
+  // Role checking
+  const isSuperAdmin = isSuperAdminRole(role);
+  const hasPhungVu = hasPhungVuRole(role);
+  const hasGiaoLyFaq = hasGiaoLyFaqRole(role);
+  const hasTruyenThong = hasTruyenThongRole(role);
+
+  // Tab configurations grouped by committee
+  const allNavItems: NavItemConfig[] = useMemo(() => [
+    // 1. TỔNG QUẢN TRỊ
+    {
+      key: 'quanly_admin',
+      label: 'Quản Lý Admin & Phân Quyền',
+      icon: Users,
+      badge: pendingUserCount,
+      committee: 'Tổng Quản Trị',
+      visible: isSuperAdmin
+    },
+    // 2. BAN PHỤNG VỤ
+    {
+      key: 'giole',
+      label: 'Quản Lý Giờ Lễ & Phụng Vụ',
+      icon: Church,
+      badge: pendingFeedbackCount,
+      committee: 'Ban Phụng Vụ',
+      visible: hasPhungVu
+    },
+    // 3. BAN GIÁO LÝ & GIẢI ĐÁP
+    {
+      key: 'kinhnguyen_vandap',
+      label: 'Kinh Nguyện & Vấn Đáp (CRUD)',
+      icon: BookOpen,
+      committee: 'Ban Mục Vụ Giáo Lý',
+      visible: hasGiaoLyFaq
+    },
+    {
+      key: 'faq',
+      label: 'Hộp Thư Vấn Đáp Đức Tin',
+      icon: HelpCircle,
+      committee: 'Ban Mục Vụ Giáo Lý',
+      visible: hasGiaoLyFaq
+    },
+    {
+      key: 'feedback',
+      label: 'Ý Kiến Phản Hồi Cộng Đoàn',
+      icon: MessageSquare,
+      committee: 'Ban Mục Vụ Giáo Lý',
+      visible: hasGiaoLyFaq
+    },
+    {
+      key: 'danhgia',
+      label: 'Đánh Giá & Nhận Xét',
+      icon: Star,
+      committee: 'Ban Mục Vụ Giáo Lý',
+      visible: hasGiaoLyFaq
+    },
+    // 4. BAN TRUYỀN THÔNG
+    {
+      key: 'donggop_baiviet',
+      label: 'Kiểm Duyệt Bài Viết',
+      icon: FileText,
+      badge: pendingSubmissionsCount,
+      committee: 'Ban Truyền Thông',
+      visible: hasTruyenThong
+    },
+    {
+      key: 'facebook',
+      label: 'Fanpage Facebook',
+      icon: Share2,
+      committee: 'Ban Truyền Thông',
+      visible: hasTruyenThong
+    },
+    {
+      key: 'thongke_truyenthong',
+      label: 'Thống Kê & Hiệu Quả',
+      icon: TrendingUp,
+      committee: 'Ban Truyền Thông',
+      visible: hasTruyenThong
+    }
+  ], [isSuperAdmin, hasPhungVu, hasGiaoLyFaq, hasTruyenThong, pendingUserCount, pendingFeedbackCount, pendingSubmissionsCount]);
+
+  const visibleNavItems = useMemo(() => allNavItems.filter((i) => i.visible), [allNavItems]);
+
+  const [activeTab, setActiveTab] = useState<TabType>('giole');
+
+  // Initial tab detection or fallback
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab') as TabType;
+      if (tabParam && visibleNavItems.some((i) => i.key === tabParam)) {
+        setActiveTab(tabParam);
+        return;
+      }
+    }
+
+    if (visibleNavItems.length > 0 && !visibleNavItems.some((i) => i.key === activeTab)) {
+      setActiveTab(visibleNavItems[0].key);
+    }
+  }, [visibleNavItems, activeTab]);
 
   useEffect(() => {
     if (!loading && (!user || !role)) {
@@ -88,39 +198,55 @@ export default function AdminDashboard() {
     if (user && role) {
       // Fetch submissions
       const q = query(collection(db, 'submissions'), orderBy('createdAt', 'desc'));
-      const unsubscribeSubmissions = onSnapshot(q, (snapshot) => {
-        const data = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Submission));
-        setSubmissions(data);
-        setDataLoading(false);
-      }, (err) => {
-        console.error("Error fetching data:", err);
-        setError(err.message);
-        setDataLoading(false);
-      });
+      const unsubscribeSubmissions = onSnapshot(
+        q,
+        (snapshot) => {
+          const data = snapshot.docs.map((d) => ({ id: d.id, ...d.data() } as Submission));
+          setSubmissions(data);
+          setDataLoading(false);
+        },
+        (err) => {
+          console.error('Error fetching data:', err);
+          setError(err.message);
+          setDataLoading(false);
+        }
+      );
 
       // Listen to pending mass time feedbacks count
       const qFeedback = query(collection(db, 'massTimeFeedback'), where('status', '==', 'pending'));
-      const unsubscribeFeedback = onSnapshot(qFeedback, (snapshot) => {
-        setPendingFeedbackCount(snapshot.size);
-      }, (err) => {
-        console.error("Error counting pending feedback:", err);
-      });
+      const unsubscribeFeedback = onSnapshot(
+        qFeedback,
+        (snapshot) => {
+          setPendingFeedbackCount(snapshot.size);
+        },
+        (err) => {
+          console.error('Error counting pending feedback:', err);
+        }
+      );
 
       // Listen to pending admin user requests count
       const qUsers = query(collection(db, 'users'), where('status', '==', 'pending'));
-      const unsubscribeUsers = onSnapshot(qUsers, (snapshot) => {
-        setPendingUserCount(snapshot.size);
-      }, (err) => {
-        console.error("Error counting pending users:", err);
-      });
+      const unsubscribeUsers = onSnapshot(
+        qUsers,
+        (snapshot) => {
+          setPendingUserCount(snapshot.size);
+        },
+        (err) => {
+          console.error('Error counting pending users:', err);
+        }
+      );
 
       // Listen to pending post submissions count
       const qSubmissions = query(collection(db, 'postSubmissions'), where('status', '==', 'pending'));
-      const unsubscribePostSubmissions = onSnapshot(qSubmissions, (snapshot) => {
-        setPendingSubmissionsCount(snapshot.size);
-      }, (err) => {
-        console.error("Error counting pending post submissions:", err);
-      });
+      const unsubscribePostSubmissions = onSnapshot(
+        qSubmissions,
+        (snapshot) => {
+          setPendingSubmissionsCount(snapshot.size);
+        },
+        (err) => {
+          console.error('Error counting pending post submissions:', err);
+        }
+      );
 
       return () => {
         unsubscribeSubmissions();
@@ -144,75 +270,79 @@ export default function AdminDashboard() {
 
   if (loading || !user || !role) {
     return (
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh',
-        color: 'var(--color-dark)', gap: '10px'
-      }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          minHeight: '100vh',
+          color: 'var(--color-dark)',
+          gap: '10px'
+        }}
+      >
         Đang tải bảng điều khiển Admin...
       </div>
     );
   }
 
-  const navItems = [
-    { key: 'giole' as TabType, label: 'Quản Lý Giờ Lễ', icon: Church, badge: pendingFeedbackCount },
-    { key: 'quanly_admin' as TabType, label: 'Quản Lý Admin', icon: Users, badge: pendingUserCount },
-    { key: 'donggop_baiviet' as TabType, label: 'Bài Viết Đóng Góp', icon: FileText, badge: pendingSubmissionsCount },
-    { key: 'facebook' as TabType, label: 'Fanpage Facebook', icon: Share2 },
-    { key: 'thongke_truyenthong' as TabType, label: 'Thống Kê & SEO', icon: TrendingUp },
-    { key: 'faq' as TabType, label: 'Hộp Thư Vấn Đáp', icon: HelpCircle },
-    { key: 'feedback' as TabType, label: 'Ý Kiến Phản Hồi', icon: MessageSquare },
-    { key: 'danhgia' as TabType, label: 'Đánh Giá & Lượt Truy Cập', icon: Star },
-    { key: 'history' as TabType, label: 'Lịch Sử Thao Tác', icon: Clock }
-  ];
-
-  const currentTabObj = navItems.find(n => n.key === activeTab) || navItems[0];
+  const roleKey = role === 'host' ? 'super_admin' : role === 'admin' ? 'phung_vu' : role;
+  const currentRoleCfg = ADMIN_ROLES_CONFIG[roleKey] || ADMIN_ROLES_CONFIG.phung_vu;
+  const currentTabObj = visibleNavItems.find((n) => n.key === activeTab) || visibleNavItems[0];
 
   return (
-    <div className="admin-container" style={{
-      display: 'flex',
-      minHeight: '100vh',
-      backgroundColor: 'var(--background)',
-      color: 'var(--color-dark)'
-    }}>
-
+    <div
+      className="admin-container"
+      style={{
+        display: 'flex',
+        minHeight: '100vh',
+        backgroundColor: 'var(--background)',
+        color: 'var(--color-dark)'
+      }}
+    >
       {/* =========================================================================
           LEFT SIDEBAR (CỐ ĐỊNH TRÊN DESKTOP & TABLET)
           ========================================================================= */}
-      <aside className="admin-sidebar" style={{
-        width: '270px',
-        flexShrink: 0,
-        backgroundColor: 'var(--color-card-bg)',
-        borderRight: '1px solid var(--color-border-subtle)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        position: 'sticky',
-        top: 0,
-        height: '100vh',
-        zIndex: 50,
-        backdropFilter: 'blur(24px)'
-      }}>
+      <aside
+        className="admin-sidebar"
+        style={{
+          width: '280px',
+          flexShrink: 0,
+          backgroundColor: 'var(--color-card-bg)',
+          borderRight: '1px solid var(--color-border-subtle)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          zIndex: 50,
+          backdropFilter: 'blur(24px)'
+        }}
+      >
         {/* Top: Logo & Nav items */}
         <div style={{ display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
-          
           {/* Brand Header */}
-          <div style={{
-            padding: '24px 20px 18px',
-            borderBottom: '1px solid var(--color-border-subtle)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
-            <div style={{
-              position: 'relative',
-              width: '42px',
-              height: '42px',
-              borderRadius: '50%',
-              backgroundColor: 'white',
-              boxShadow: '0 4px 12px rgba(255, 69, 58, 0.2), 0 0 0 2px rgba(251, 192, 45, 0.6)',
-              padding: '3px',
-              flexShrink: 0
-            }}>
+          <div
+            style={{
+              padding: '24px 20px 18px',
+              borderBottom: '1px solid var(--color-border-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}
+          >
+            <div
+              style={{
+                position: 'relative',
+                width: '42px',
+                height: '42px',
+                borderRadius: '50%',
+                backgroundColor: 'white',
+                boxShadow: '0 4px 12px rgba(255, 69, 58, 0.2), 0 0 0 2px rgba(251, 192, 45, 0.6)',
+                padding: '3px',
+                flexShrink: 0
+              }}
+            >
               <div style={{ position: 'relative', width: '100%', height: '100%' }}>
                 <Image
                   src="/logo.jpg"
@@ -225,15 +355,17 @@ export default function AdminDashboard() {
             </div>
 
             <div>
-              <h2 style={{
-                fontSize: '0.95rem',
-                fontWeight: 900,
-                color: 'var(--color-red)',
-                margin: 0,
-                lineHeight: 1.2,
-                textTransform: 'uppercase',
-                letterSpacing: '0.4px'
-              }}>
+              <h2
+                style={{
+                  fontSize: '0.92rem',
+                  fontWeight: 900,
+                  color: 'var(--color-red)',
+                  margin: 0,
+                  lineHeight: 1.2,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.4px'
+                }}
+              >
                 Bảng Quản Trị
               </h2>
               <span style={{ fontSize: '0.74rem', color: 'var(--color-subtle)', fontWeight: 600 }}>
@@ -242,20 +374,30 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          {/* Navigation Menu */}
-          <nav style={{ padding: '16px 12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div style={{
-              fontSize: '0.72rem',
-              fontWeight: 800,
-              color: 'var(--color-subtle)',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              padding: '6px 10px 8px'
-            }}>
-              Menu Quản Trị
+          {/* User Role Badge in Sidebar */}
+          <div style={{ padding: '12px 16px 4px' }}>
+            <div
+              style={{
+                padding: '8px 12px',
+                borderRadius: '10px',
+                backgroundColor: currentRoleCfg.badgeBg,
+                border: `1px solid ${currentRoleCfg.badgeBorder}`,
+                color: currentRoleCfg.badgeColor,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '0.78rem',
+                fontWeight: 800
+              }}
+            >
+              {isSuperAdmin ? <Crown size={15} /> : <ShieldCheck size={15} />}
+              <span>{currentRoleCfg.shortLabel}</span>
             </div>
+          </div>
 
-            {navItems.map((item) => {
+          {/* Navigation Menu Grouped */}
+          <nav style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {visibleNavItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeTab === item.key;
               return (
@@ -267,34 +409,36 @@ export default function AdminDashboard() {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     width: '100%',
-                    padding: '11px 14px',
-                    borderRadius: '12px',
+                    padding: '10px 12px',
+                    borderRadius: '10px',
                     backgroundColor: isActive ? 'var(--color-red)' : 'transparent',
                     color: isActive ? 'white' : 'var(--color-dark)',
                     border: 'none',
                     fontWeight: isActive ? 800 : 600,
-                    fontSize: '0.88rem',
+                    fontSize: '0.84rem',
                     cursor: 'pointer',
                     transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                    boxShadow: isActive ? '0 4px 14px rgba(255, 69, 58, 0.35)' : 'none',
+                    boxShadow: isActive ? '0 4px 12px rgba(255, 69, 58, 0.3)' : 'none',
                     textAlign: 'left'
                   }}
                   className={!isActive ? 'admin-nav-item' : ''}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Icon size={18} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+                    <Icon size={16} />
                     <span>{item.label}</span>
                   </div>
 
                   {item.badge !== undefined && item.badge > 0 && (
-                    <span style={{
-                      backgroundColor: isActive ? 'white' : '#EF4444',
-                      color: isActive ? 'var(--color-red)' : 'white',
-                      padding: '2px 7px',
-                      borderRadius: '999px',
-                      fontSize: '0.72rem',
-                      fontWeight: 900
-                    }}>
+                    <span
+                      style={{
+                        backgroundColor: isActive ? 'white' : '#EF4444',
+                        color: isActive ? 'var(--color-red)' : 'white',
+                        padding: '2px 6px',
+                        borderRadius: '999px',
+                        fontSize: '0.7rem',
+                        fontWeight: 900
+                      }}
+                    >
                       {item.badge}
                     </span>
                   )}
@@ -305,46 +449,56 @@ export default function AdminDashboard() {
         </div>
 
         {/* Bottom: User Info & Log out */}
-        <div style={{
-          padding: '16px',
-          borderTop: '1px solid var(--color-border-subtle)',
-          backgroundColor: 'var(--color-input-bg)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '10px'
-        }}>
+        <div
+          style={{
+            padding: '14px 16px',
+            borderTop: '1px solid var(--color-border-subtle)',
+            backgroundColor: 'var(--color-input-bg)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '10px'
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
-            <div style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '50%',
-              backgroundColor: role === 'host' ? '#FEF3C7' : '#EEF2FF',
-              color: role === 'host' ? '#D97706' : '#4F46E5',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 800,
-              flexShrink: 0
-            }}>
-              {role === 'host' ? <Crown size={18} /> : <UserIcon size={18} />}
+            <div
+              style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                backgroundColor: currentRoleCfg.badgeBg,
+                color: currentRoleCfg.badgeColor,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 800,
+                flexShrink: 0
+              }}
+            >
+              {user.displayName ? user.displayName.charAt(0) : user.email?.charAt(0).toUpperCase()}
             </div>
 
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{
-                fontSize: '0.84rem',
-                fontWeight: 800,
-                color: 'var(--color-dark)',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis'
-              }}>
+              <div
+                style={{
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  color: 'var(--color-dark)',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}
+              >
                 {user.displayName || user.email}
               </div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--color-subtle)', textTransform: 'uppercase', fontWeight: 700 }}>
-                {role === 'host'
-                  ? <><Crown size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '4px' }} />Host Sáng Lập</>
-                  : <><Star size={12} strokeWidth={2.5} style={{ verticalAlign: '-2px', marginRight: '4px' }} />Admin</>}
+              <div
+                style={{
+                  fontSize: '0.7rem',
+                  color: currentRoleCfg.badgeColor,
+                  fontWeight: 800
+                }}
+              >
+                {currentRoleCfg.shortLabel}
               </div>
             </div>
           </div>
@@ -371,41 +525,55 @@ export default function AdminDashboard() {
       </aside>
 
       {/* =========================================================================
-          RIGHT CONTENT AREA (HIỂN THỊ UI/UX)
+          RIGHT CONTENT AREA
           ========================================================================= */}
-      <div className="admin-content-wrapper" style={{
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        minWidth: 0,
-        minHeight: '100vh'
-      }}>
-        
-        {/* Mobile Top Header (Chỉ hiện trên Mobile < 768px) */}
-        <div className="admin-mobile-header" style={{
-          padding: '12px 16px',
-          backgroundColor: 'var(--color-card-bg)',
-          borderBottom: '1px solid var(--color-border-subtle)',
-          display: 'none',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}>
+      <div
+        className="admin-content-wrapper"
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minWidth: 0,
+          minHeight: '100vh'
+        }}
+      >
+        {/* Mobile Top Header */}
+        <div
+          className="admin-mobile-header"
+          style={{
+            padding: '12px 16px',
+            backgroundColor: 'var(--color-card-bg)',
+            borderBottom: '1px solid var(--color-border-subtle)',
+            display: 'none',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{
-              width: '32px', height: '32px', borderRadius: '50%',
-              backgroundColor: 'white', position: 'relative', overflow: 'hidden', padding: '2px'
-            }}>
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                backgroundColor: 'white',
+                position: 'relative',
+                overflow: 'hidden',
+                padding: '2px'
+              }}
+            >
               <Image src="/logo.jpg" alt="Logo" fill sizes="32px" style={{ objectFit: 'contain', borderRadius: '50%' }} />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--color-red)' }}>
-              ADMIN PANEL
-            </span>
+            <div>
+              <span style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-red)' }}>
+                ADMIN
+              </span>
+              <span style={{ fontSize: '0.72rem', color: currentRoleCfg.badgeColor, marginLeft: '6px', fontWeight: 700 }}>
+                ({currentRoleCfg.shortLabel})
+              </span>
+            </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--color-dark)' }}>
-              {user.displayName?.split(' ')[0] || user.email?.split('@')[0]}
-            </span>
             <button
               onClick={signOut}
               style={{
@@ -424,16 +592,19 @@ export default function AdminDashboard() {
         </div>
 
         {/* Mobile Scrollable Tabs Bar */}
-        <div className="admin-mobile-tabs" style={{
-          display: 'none',
-          overflowX: 'auto',
-          padding: '10px 14px',
-          backgroundColor: 'var(--color-input-bg)',
-          borderBottom: '1px solid var(--color-border-subtle)',
-          gap: '8px',
-          whiteSpace: 'nowrap'
-        }}>
-          {navItems.map(item => {
+        <div
+          className="admin-mobile-tabs"
+          style={{
+            display: 'none',
+            overflowX: 'auto',
+            padding: '10px 14px',
+            backgroundColor: 'var(--color-input-bg)',
+            borderBottom: '1px solid var(--color-border-subtle)',
+            gap: '8px',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          {visibleNavItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.key;
             return (
@@ -446,7 +617,7 @@ export default function AdminDashboard() {
                   backgroundColor: isActive ? 'var(--color-red)' : 'var(--color-card-bg)',
                   color: isActive ? 'white' : 'var(--color-dark)',
                   border: '1px solid var(--color-border-subtle)',
-                  fontSize: '0.8rem',
+                  fontSize: '0.78rem',
                   fontWeight: isActive ? 800 : 600,
                   cursor: 'pointer',
                   display: 'inline-flex',
@@ -457,14 +628,16 @@ export default function AdminDashboard() {
                 <Icon size={14} />
                 <span>{item.label}</span>
                 {item.badge !== undefined && item.badge > 0 && (
-                  <span style={{
-                    backgroundColor: isActive ? 'white' : '#EF4444',
-                    color: isActive ? 'var(--color-red)' : 'white',
-                    padding: '1px 5px',
-                    borderRadius: '999px',
-                    fontSize: '0.68rem',
-                    fontWeight: 900
-                  }}>
+                  <span
+                    style={{
+                      backgroundColor: isActive ? 'white' : '#EF4444',
+                      color: isActive ? 'var(--color-red)' : 'white',
+                      padding: '1px 5px',
+                      borderRadius: '999px',
+                      fontSize: '0.66rem',
+                      fontWeight: 900
+                    }}
+                  >
                     {item.badge}
                   </span>
                 )}
@@ -473,144 +646,217 @@ export default function AdminDashboard() {
           })}
         </div>
 
-        {/* Top Breadcrumb / Title Bar on Desktop */}
-        <header className="admin-desktop-topbar" style={{
-          padding: '18px 36px',
-          borderBottom: '1px solid var(--color-border-subtle)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: 'var(--color-card-bg)',
-          backdropFilter: 'blur(16px)'
-        }}>
+        {/* Top Breadcrumb & Status Bar on Desktop */}
+        <header
+          className="admin-desktop-topbar"
+          style={{
+            padding: '16px 36px',
+            borderBottom: '1px solid var(--color-border-subtle)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            backgroundColor: 'var(--color-card-bg)',
+            backdropFilter: 'blur(16px)'
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', fontWeight: 600 }}>Quản Trị</span>
+            <span style={{ fontSize: '0.82rem', color: 'var(--color-subtle)', fontWeight: 600 }}>Quản Trị</span>
             <ChevronRight size={14} color="var(--color-subtle)" />
-            <h1 style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0 }}>
-              {currentTabObj.label}
+            <span style={{ fontSize: '0.82rem', color: currentRoleCfg.badgeColor, fontWeight: 700 }}>
+              {currentTabObj?.committee || 'Hệ thống'}
+            </span>
+            <ChevronRight size={14} color="var(--color-subtle)" />
+            <h1 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0 }}>
+              {currentTabObj?.label}
             </h1>
           </div>
 
-          <div style={{ fontSize: '0.82rem', color: 'var(--color-subtle)', fontWeight: 600 }}>
-            {new Date().toLocaleDateString('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' })}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div
+              style={{
+                padding: '4px 10px',
+                borderRadius: '8px',
+                backgroundColor: currentRoleCfg.badgeBg,
+                color: currentRoleCfg.badgeColor,
+                border: `1px solid ${currentRoleCfg.badgeBorder}`,
+                fontSize: '0.76rem',
+                fontWeight: 800
+              }}
+            >
+              {currentRoleCfg.label}
+            </div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--color-subtle)', fontWeight: 600 }}>
+              {new Date().toLocaleDateString('vi-VN', {
+                weekday: 'long',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+              })}
+            </div>
           </div>
         </header>
 
         {/* Main Content Body */}
-        <main style={{
-          flex: 1,
-          padding: '28px 36px',
-          maxWidth: '1300px',
-          width: '100%',
-          boxSizing: 'border-box'
-        }} className="admin-main-body">
+        <main
+          style={{
+            flex: 1,
+            padding: '24px 36px',
+            maxWidth: '1320px',
+            width: '100%',
+            boxSizing: 'border-box'
+          }}
+          className="admin-main-body"
+        >
           {error ? (
             <div style={{ padding: '24px', backgroundColor: '#FEE2E2', color: '#B91C1C', borderRadius: '12px' }}>
               <strong>Lỗi tải dữ liệu:</strong> {error}
             </div>
-          ) : activeTab === 'giole' ? (
-            <UnifiedMassManagement />
-          ) : activeTab === 'quanly_admin' ? (
+          ) : activeTab === 'quanly_admin' && isSuperAdmin ? (
             <AdminUsersManagement />
-          ) : activeTab === 'donggop_baiviet' ? (
+          ) : activeTab === 'giole' && hasPhungVu ? (
+            <UnifiedMassManagement />
+          ) : activeTab === 'kinhnguyen_vandap' && hasGiaoLyFaq ? (
+            <PrayerAndFaqAdmin />
+          ) : activeTab === 'donggop_baiviet' && hasTruyenThong ? (
             <PostSubmissionsAdmin />
-          ) : activeTab === 'facebook' ? (
+          ) : activeTab === 'facebook' && hasTruyenThong ? (
             <FacebookAdmin />
-          ) : activeTab === 'thongke_truyenthong' ? (
+          ) : activeTab === 'thongke_truyenthong' && hasTruyenThong ? (
             <PostIntelDashboard posts={fbPosts} />
-          ) : activeTab === 'danhgia' ? (
+          ) : activeTab === 'danhgia' && hasGiaoLyFaq ? (
             <RatingsAdmin />
-          ) : dataLoading ? (
-            <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280' }}>
-              Đang tải dữ liệu từ Firestore...
-            </div>
-          ) : activeTab === 'history' ? (
-            <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280', backgroundColor: 'var(--color-card-bg)', borderRadius: '16px', border: '1px solid var(--color-border-subtle)' }}>
-              <Clock size={48} style={{ margin: '0 auto 16px', opacity: 0.5 }} />
-              <h3 style={{ color: 'var(--color-dark)' }}>Lịch sử hoạt động</h3>
-              <p>Tính năng lưu vết thao tác (Audit Logs) đang được hoàn thiện...</p>
-            </div>
-          ) : submissions.filter(s => s.type === activeTab).length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px', color: '#6B7280', backgroundColor: 'var(--color-card-bg)', borderRadius: '16px', border: '1px solid var(--color-border-subtle)' }}>
-              Chưa có dữ liệu ở mục này.
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {submissions.filter(s => s.type === activeTab).map((sub) => (
-                <div key={sub.id} style={{
+          ) : (activeTab === 'faq' || activeTab === 'feedback') && hasGiaoLyFaq ? (
+            dataLoading ? (
+              <div style={{ textAlign: 'center', padding: '40px', color: 'var(--color-subtle)' }}>
+                Đang tải dữ liệu từ Firestore...
+              </div>
+            ) : submissions.filter((s) => s.type === activeTab).length === 0 ? (
+              <div
+                style={{
+                  textAlign: 'center',
+                  padding: '40px',
+                  color: 'var(--color-subtle)',
                   backgroundColor: 'var(--color-card-bg)',
-                  padding: '20px',
                   borderRadius: '16px',
-                  border: '1px solid var(--color-border-subtle)',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
-                  borderLeft: `4px solid ${sub.type === 'faq' ? '#4285F4' : '#F4B400'}`,
-                  opacity: sub.status === 'deleted' ? 0.5 : 1
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-                    <div>
-                      <span style={{ 
-                        padding: '4px 8px', 
-                        backgroundColor: sub.type === 'faq' ? '#E8F0FE' : '#FEF7E0',
-                        color: sub.type === 'faq' ? '#1967D2' : '#B08D00',
-                        borderRadius: '6px',
-                        fontSize: '0.78rem',
-                        fontWeight: 800,
-                        marginRight: '8px'
-                      }}>
-                        {sub.type === 'faq' ? 'VẤN ĐÁP' : 'PHẢN HỒI'}
-                      </span>
-                      <span style={{ fontWeight: 800, color: 'var(--color-dark)' }}>
-                        {sub.isAnonymous ? 'Người dùng Ẩn danh' : sub.fullName}
-                      </span>
-                    </div>
-                    <div style={{ color: 'var(--color-subtle)', fontSize: '0.82rem' }}>
-                      {sub.createdAt?.toDate().toLocaleString('vi-VN')}
-                    </div>
-                  </div>
-                  
-                  <div style={{ 
-                    color: 'var(--color-dark)', 
-                    backgroundColor: 'var(--color-input-bg)', 
-                    padding: '16px', 
-                    borderRadius: '10px',
-                    marginBottom: '16px',
-                    whiteSpace: 'pre-wrap',
-                    lineHeight: 1.5,
-                    fontSize: '0.92rem'
-                  }}>
-                    {sub.content}
-                  </div>
+                  border: '1px solid var(--color-border-subtle)'
+                }}
+              >
+                Chưa có dữ liệu ở mục này.
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {submissions
+                  .filter((s) => s.type === activeTab)
+                  .map((sub) => (
+                    <div
+                      key={sub.id}
+                      style={{
+                        backgroundColor: 'var(--color-card-bg)',
+                        padding: '20px',
+                        borderRadius: '16px',
+                        border: '1px solid var(--color-border-subtle)',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.03)',
+                        borderLeft: `4px solid ${sub.type === 'faq' ? '#4285F4' : '#F4B400'}`,
+                        opacity: sub.status === 'deleted' ? 0.5 : 1
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+                        <div>
+                          <span
+                            style={{
+                              padding: '4px 8px',
+                              backgroundColor: sub.type === 'faq' ? '#E8F0FE' : '#FEF7E0',
+                              color: sub.type === 'faq' ? '#1967D2' : '#B08D00',
+                              borderRadius: '6px',
+                              fontSize: '0.78rem',
+                              fontWeight: 800,
+                              marginRight: '8px'
+                            }}
+                          >
+                            {sub.type === 'faq' ? 'VẤN ĐÁP' : 'PHẢN HỒI'}
+                          </span>
+                          <span style={{ fontWeight: 800, color: 'var(--color-dark)' }}>
+                            {sub.isAnonymous ? 'Người dùng Ẩn danh' : sub.fullName}
+                          </span>
+                        </div>
+                        <div style={{ color: 'var(--color-subtle)', fontSize: '0.82rem' }}>
+                          {sub.createdAt?.toDate().toLocaleString('vi-VN')}
+                        </div>
+                      </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
-                      {sub.type === 'faq' && sub.phone && <div><Phone size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />{sub.phone}</div>}
-                      {sub.type === 'faq' && sub.email && <div><Mail size={13} strokeWidth={2} style={{ verticalAlign: '-2px', marginRight: '5px' }} />{sub.email}</div>}
+                      <div
+                        style={{
+                          color: 'var(--color-dark)',
+                          backgroundColor: 'var(--color-input-bg)',
+                          padding: '16px',
+                          borderRadius: '10px',
+                          marginBottom: '16px',
+                          whiteSpace: 'pre-wrap',
+                          lineHeight: 1.5,
+                          fontSize: '0.92rem'
+                        }}
+                      >
+                        {sub.content}
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--color-subtle)' }}>
+                          {sub.type === 'faq' && sub.phone && (
+                            <div>
+                              <Phone size={13} style={{ verticalAlign: '-2px', marginRight: '5px' }} />
+                              {sub.phone}
+                            </div>
+                          )}
+                          {sub.type === 'faq' && sub.email && (
+                            <div>
+                              <Mail size={13} style={{ verticalAlign: '-2px', marginRight: '5px' }} />
+                              {sub.email}
+                            </div>
+                          )}
+                        </div>
+                        <div style={{ display: 'flex', gap: '8px' }}>
+                          {sub.status !== 'deleted' && (
+                            <button
+                              onClick={() => handleDeleteSubmission(sub.id)}
+                              style={{
+                                padding: '6px 12px',
+                                backgroundColor: '#FEE2E2',
+                                color: '#B91C1C',
+                                border: 'none',
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                                fontSize: '0.82rem',
+                                fontWeight: 700,
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px'
+                              }}
+                            >
+                              <Trash2 size={14} /> Xoá
+                            </button>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', gap: '8px' }}>
-                      {sub.status !== 'deleted' && (
-                        <button
-                          onClick={() => handleDeleteSubmission(sub.id)}
-                          style={{
-                            padding: '6px 12px',
-                            backgroundColor: '#FEE2E2',
-                            color: '#B91C1C',
-                            border: 'none',
-                            borderRadius: '8px',
-                            cursor: 'pointer',
-                            fontSize: '0.82rem',
-                            fontWeight: 700,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                          }}
-                        >
-                          <Trash2 size={14} /> Xoá
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  ))}
+              </div>
+            )
+          ) : (
+            <div
+              style={{
+                textAlign: 'center',
+                padding: '50px 20px',
+                color: 'var(--color-subtle)',
+                backgroundColor: 'var(--color-card-bg)',
+                borderRadius: '16px',
+                border: '1px solid var(--color-border-subtle)'
+              }}
+            >
+              <ShieldCheck size={48} style={{ margin: '0 auto 16px', opacity: 0.5 }} />
+              <h3 style={{ color: 'var(--color-dark)', margin: '0 0 8px' }}>Giới Hạn Quyền Truy Cập</h3>
+              <p style={{ margin: 0, fontSize: '0.88rem' }}>
+                Tài khoản của bạn ({currentRoleCfg.shortLabel}) chỉ có quyền truy cập vào các chức năng được phân công.
+              </p>
             </div>
           )}
         </main>
@@ -622,7 +868,8 @@ export default function AdminDashboard() {
           .admin-sidebar {
             display: flex !important;
           }
-          .admin-mobile-header, .admin-mobile-tabs {
+          .admin-mobile-header,
+          .admin-mobile-tabs {
             display: none !important;
           }
           .admin-desktop-topbar {
@@ -656,7 +903,6 @@ export default function AdminDashboard() {
           color: var(--color-red) !important;
         }
       `}</style>
-
     </div>
   );
 }

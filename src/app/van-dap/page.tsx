@@ -24,8 +24,6 @@ import { removeAccents } from '@/lib/massTimes';
 import Modal from '@/components/Modal';
 import FAQForm from '@/components/FAQForm';
 import Rating from '@/components/Rating';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
 
 type Step = 'form' | 'rating' | 'success';
 
@@ -97,8 +95,14 @@ export default function VanDapPage() {
 
   const handleRatingSubmit = async (rating: number) => {
     try {
-      await addDoc(collection(db, 'ratings'), { rating, type: 'van_dap_faq', createdAt: serverTimestamp() });
-    } catch (err) { console.error(err); }
+      await fetch('/api/danh-gia', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ stars: rating, comment: 'Đánh giá chuyên mục Vấn đáp' })
+      });
+    } catch (err) {
+      console.error('Lỗi gửi đánh giá:', err);
+    }
     setStep('success');
     setTimeout(() => { setModalOpen(false); setStep('form'); }, 2500);
   };
@@ -133,9 +137,9 @@ export default function VanDapPage() {
       {/* Top Hero Banner */}
       <div style={{
         position: 'relative',
-        backgroundImage: 'linear-gradient(180deg, rgba(15, 8, 8, 0.75) 0%, rgba(45, 15, 15, 0.65) 50%, rgba(15, 8, 8, 0.88) 100%), url("/images/jesus_antique_banner.jpg")',
+        backgroundImage: 'linear-gradient(180deg, rgba(15, 8, 8, 0.82) 0%, rgba(45, 15, 15, 0.70) 50%, rgba(15, 8, 8, 0.92) 100%), url("/images/vatican_basilica_interior.jpg")',
         backgroundSize: 'cover',
-        backgroundPosition: 'center 22%',
+        backgroundPosition: 'center 40%',
         color: '#FFFFFF',
         padding: '32px 16px 36px',
         borderBottom: '1px solid rgba(217, 119, 6, 0.35)',
@@ -515,31 +519,32 @@ export default function VanDapPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
-            marginTop: '12px',
-            padding: '16px 0',
+            gap: '4px',
+            marginTop: '8px',
+            padding: '12px 0',
             flexWrap: 'wrap'
           }}>
             {/* Previous Button */}
             <button
               disabled={currentPage === 1}
+              className="pager-btn"
               onClick={() => handlePageChange(currentPage - 1)}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '4px',
-                padding: '8px 14px',
-                borderRadius: '8px',
+                gap: '3px',
+                padding: '4px 8px',
+                borderRadius: '6px',
                 border: '1px solid var(--color-border-subtle)',
                 backgroundColor: currentPage === 1 ? 'transparent' : 'var(--color-card-bg)',
                 color: currentPage === 1 ? 'var(--color-subtle)' : 'var(--color-dark)',
-                fontSize: '0.85rem',
+                fontSize: '0.74rem',
                 fontWeight: 700,
                 cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
                 opacity: currentPage === 1 ? 0.4 : 1
               }}
             >
-              <ChevronLeft size={16} />
+              <ChevronLeft size={12} />
               <span>Trước</span>
             </button>
 
@@ -548,17 +553,18 @@ export default function VanDapPage() {
               <button
                 key={num}
                 onClick={() => handlePageChange(num)}
+                className="pager-btn pager-num-btn"
                 style={{
-                  minWidth: '38px',
-                  height: '38px',
-                  borderRadius: '8px',
+                  minWidth: '28px',
+                  height: '28px',
+                  borderRadius: '6px',
                   border: currentPage === num ? 'none' : '1px solid var(--color-border-subtle)',
                   backgroundColor: currentPage === num ? '#B71C1C' : 'var(--color-card-bg)',
                   color: currentPage === num ? '#FFFFFF' : 'var(--color-dark)',
-                  fontSize: '0.9rem',
+                  fontSize: '0.76rem',
                   fontWeight: 800,
                   cursor: 'pointer',
-                  boxShadow: currentPage === num ? '0 2px 8px rgba(183, 28, 28, 0.3)' : 'none',
+                  boxShadow: currentPage === num ? '0 1px 4px rgba(183, 28, 28, 0.3)' : 'none',
                   transition: 'all 0.15s ease'
                 }}
               >
@@ -569,24 +575,25 @@ export default function VanDapPage() {
             {/* Next Button */}
             <button
               disabled={currentPage === totalPages}
+              className="pager-btn"
               onClick={() => handlePageChange(currentPage + 1)}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '4px',
-                padding: '8px 14px',
-                borderRadius: '8px',
+                gap: '3px',
+                padding: '4px 8px',
+                borderRadius: '6px',
                 border: '1px solid var(--color-border-subtle)',
                 backgroundColor: currentPage === totalPages ? 'transparent' : 'var(--color-card-bg)',
                 color: currentPage === totalPages ? 'var(--color-subtle)' : 'var(--color-dark)',
-                fontSize: '0.85rem',
+                fontSize: '0.74rem',
                 fontWeight: 700,
                 cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
                 opacity: currentPage === totalPages ? 0.4 : 1
               }}
             >
               <span>Sau</span>
-              <ChevronRight size={16} />
+              <ChevronRight size={12} />
             </button>
           </div>
         )}

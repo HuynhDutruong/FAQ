@@ -1,18 +1,58 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { DEFAULT_CHANH_TOA_INFO, MassTime } from '@/lib/massTimes';
 
 export default function Footer() {
   const pathname = usePathname();
   const { t } = useLanguage();
+  const [chanhToa, setChanhToa] = useState<MassTime>(DEFAULT_CHANH_TOA_INFO);
+
+  // Lắng nghe dữ liệu Giờ Lễ & Địa chỉ Nhà Thờ Chánh Tòa Mỹ Tho trực tiếp từ Firestore
+  useEffect(() => {
+    try {
+      const unsub = onSnapshot(doc(db, 'massTimes', 'mt-my-tho-chanh-toa'), (snap) => {
+        if (snap.exists()) {
+          const data = snap.data() as Omit<MassTime, 'id'>;
+          setChanhToa({
+            ...data,
+            id: snap.id
+          });
+        }
+      }, (error) => {
+        console.warn('Firestore snapshot error in Footer:', error);
+      });
+
+      return () => unsub();
+    } catch (e) {
+      console.warn('Error setting up Footer snapshot:', e);
+    }
+  }, []);
 
   // Hide footer on admin pages
   if (pathname?.startsWith('/admin')) {
     return null;
   }
+
+  // Format giờ lễ
+  const weekdayStr = chanhToa.weekdayMass && chanhToa.weekdayMass.length > 0
+    ? chanhToa.weekdayMass.join(' | ')
+    : '05:00 | 17:30';
+
+  const saturdayStr = chanhToa.saturdayMass && chanhToa.saturdayMass.length > 0
+    ? chanhToa.saturdayMass.join(' | ')
+    : null;
+
+  const sundayStr = chanhToa.sundayMass && chanhToa.sundayMass.length > 0
+    ? chanhToa.sundayMass.join(' | ')
+    : '05:30 | 07:00 | 16:00 | 18:00';
+
+  const addressStr = chanhToa.address || '32 Hùng Vương, Phường 7, TP. Mỹ Tho, Tiền Giang';
 
   return (
     <footer style={{
@@ -68,7 +108,7 @@ export default function Footer() {
               color: 'var(--color-muted)',
               lineHeight: 1.5
             }}>
-              <div>{t.footerAddress || '32 Hùng Vương, Phường 7, TP. Mỹ Tho, Tiền Giang'}</div>
+              <div>{addressStr}</div>
               <div>
                 <a
                   href="mailto:notification2411.huynhdutruong@gmail.com"
@@ -86,7 +126,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* CỘT 2: GIỜ THÁNH LỄ */}
+          {/* CỘT 2: GIỜ THÁNH LỄ (ĐỒNG BỘ CƠ SỞ DỮ LIỆU CHÁNH TÒA MỸ THO) */}
           <div>
             <div style={{
               fontSize: '0.92rem',
@@ -107,10 +147,15 @@ export default function Footer() {
               lineHeight: 1.5
             }}>
               <div>
-                <strong>{t.footerWeekday || 'Ngày thường'}:</strong> 05:00 | 17:30
+                <strong>{t.footerWeekday || 'Ngày thường'}:</strong> {weekdayStr}
               </div>
+              {saturdayStr && (
+                <div>
+                  <strong>Thứ Bảy:</strong> {saturdayStr}
+                </div>
+              )}
               <div>
-                <strong>{t.footerSunday || 'Chúa Nhật'}:</strong> 05:30 | 07:00 | 16:00 | 18:00
+                <strong>{t.footerSunday || 'Chúa Nhật'}:</strong> {sundayStr}
               </div>
               <div style={{ color: 'var(--color-subtle)', fontSize: '0.76rem', fontStyle: 'italic', marginTop: '2px' }}>
                 {t.footerConfession || 'Bí tích Giải tội: Trước và sau các Thánh lễ'}

@@ -1,7 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import { db } from '@/lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const inputStyle = {
@@ -53,24 +51,27 @@ export default function FAQForm({ onSuccess, onCancel }: { onSuccess: () => void
       return setError(t.errorContent);
     }
 
-    // TODO: Call AI Spelling check API here
-    
     try {
-      await addDoc(collection(db, 'submissions'), {
-        type: 'question',
-        isAnonymous,
-        fullName: isAnonymous ? '' : formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        content: formData.content,
-        status: 'new',
-        createdAt: serverTimestamp(),
-        deletedAt: null
+      const res = await fetch('/api/submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'question',
+          isAnonymous,
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          content: formData.content
+        })
       });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || t.errorSubmit);
+
       onSuccess();
-    } catch (err) {
-      console.error("Error adding document: ", err);
-      setError(t.errorSubmit);
+    } catch (err: any) {
+      console.error("Error submitting question:", err);
+      setError(err?.message || t.errorSubmit);
     }
   };
 

@@ -141,6 +141,7 @@ export default function SiteHeader() {
       {/* 2. RESPONSIVE LIQUID GLASS NAVIGATION BAR */}
       {/* ========================================================================= */}
       <nav
+        className="site-header-nav-bar"
         style={{
           width: '100%',
           backdropFilter: 'blur(20px) saturate(180%)',

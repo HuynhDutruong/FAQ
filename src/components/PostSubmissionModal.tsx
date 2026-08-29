@@ -8,14 +8,11 @@ import {
   Image as ImageIcon,
   Video,
   Link2,
-  Sparkles,
   CheckCircle2,
   AlertCircle,
-  HelpCircle,
   FileText,
   User,
-  Phone,
-  Tag
+  Phone
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
@@ -29,9 +26,9 @@ export default function PostSubmissionModal({
   const { t } = useLanguage();
   const [authorName, setAuthorName] = useState('');
   const [authorContact, setAuthorContact] = useState('');
-  const [authorRole, setAuthorRole] = useState('Đoàn sinh / Giáo dân');
+  const [authorRole, setAuthorRole] = useState('Đoàn sinh TNTT');
   const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('Sinh hoạt Giáo xứ');
+  const [category, setCategory] = useState('Sinh hoạt Xứ Đoàn TNTT');
   const [content, setContent] = useState('');
   const [mediaUrlInput, setMediaUrlInput] = useState('');
   const [mediaUrls, setMediaUrls] = useState<string[]>([]);
@@ -99,7 +96,7 @@ export default function PostSubmissionModal({
   const resetForm = () => {
     setAuthorName('');
     setAuthorContact('');
-    setAuthorRole('Đoàn sinh / Giáo dân');
+    setAuthorRole('Đoàn sinh TNTT');
     setTitle('');
     setContent('');
     setMediaUrls([]);
@@ -114,9 +111,10 @@ export default function PostSubmissionModal({
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 9999,
-        backgroundColor: 'rgba(15, 23, 42, 0.75)',
+        zIndex: 99999,
+        backgroundColor: 'rgba(0, 0, 0, 0.68)',
         backdropFilter: 'blur(6px)',
+        WebkitBackdropFilter: 'blur(6px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -128,27 +126,27 @@ export default function PostSubmissionModal({
         onClick={(e) => e.stopPropagation()}
         style={{
           width: '100%',
-          maxWidth: '680px',
+          maxWidth: '640px',
           maxHeight: '90vh',
-          backgroundColor: 'var(--color-surface)',
-          border: '1px solid var(--color-border)',
+          backgroundColor: 'var(--color-card-bg)',
+          border: '1px solid var(--color-border-subtle)',
           borderRadius: '16px',
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
-          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.25)',
+          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)',
           animation: 'fadeIn 0.2s ease-out'
         }}
       >
         {/* Header */}
         <div
           style={{
-            padding: '18px 20px',
-            borderBottom: '1px solid var(--color-border)',
+            padding: '16px 20px',
+            borderBottom: '1px solid var(--color-border-subtle)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            backgroundColor: 'var(--color-bg-secondary)'
+            backgroundColor: 'var(--color-input-bg)'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -158,7 +156,7 @@ export default function PostSubmissionModal({
                 height: '36px',
                 borderRadius: '10px',
                 backgroundColor: 'rgba(211, 47, 47, 0.12)',
-                color: 'var(--color-primary)',
+                color: 'var(--color-red)',
                 display: 'grid',
                 placeItems: 'center'
               }}
@@ -166,11 +164,11 @@ export default function PostSubmissionModal({
               <FileText size={20} />
             </div>
             <div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-text)', margin: 0 }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)', margin: 0 }}>
                 Đóng Góp Tin Tức & Bài Viết
               </h3>
-              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', margin: 0 }}>
-                Gửi bài viết, hình ảnh sinh hoạt để Ban Biên Tập duyệt đăng lên Website & Fanpage
+              <p style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', margin: 0 }}>
+                Gửi bài viết, ảnh sinh hoạt tới Ban Biên Tập
               </p>
             </div>
           </div>
@@ -180,10 +178,13 @@ export default function PostSubmissionModal({
             style={{
               background: 'none',
               border: 'none',
-              color: 'var(--color-text-muted)',
+              color: 'var(--color-subtle)',
               cursor: 'pointer',
               padding: '6px',
-              borderRadius: '8px'
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
             <X size={20} />
@@ -196,11 +197,11 @@ export default function PostSubmissionModal({
             <div style={{ textAlign: 'center', padding: '32px 16px' }}>
               <div
                 style={{
-                  width: '64px',
-                  height: '64px',
+                  width: '60px',
+                  height: '60px',
                   borderRadius: '50%',
-                  backgroundColor: '#ECFDF5',
-                  color: '#059669',
+                  backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                  color: '#10B981',
                   display: 'grid',
                   placeItems: 'center',
                   margin: '0 auto 16px auto'
@@ -208,24 +209,25 @@ export default function PostSubmissionModal({
               >
                 <CheckCircle2 size={36} />
               </div>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-text)', marginBottom: '8px' }}>
+              <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-dark)', marginBottom: '8px' }}>
                 Gửi Bài Viết Thành Công!
               </h4>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', maxWidth: '420px', margin: '0 auto 24px auto' }}>
-                Cảm ơn bạn đã đóng góp tin tức cho Xứ Đoàn. Ban Biên Tập sẽ xem xét, chuẩn hóa bài viết và đăng tải trong thời gian sớm nhất.
+              <p style={{ color: 'var(--color-subtle)', fontSize: '0.88rem', maxWidth: '420px', margin: '0 auto 24px auto', lineHeight: 1.5 }}>
+                Cảm ơn bạn đã đóng góp tin tức cho Xứ Đoàn. Ban Biên Tập sẽ xem xét, duyệt bài và đăng tải trong thời gian sớm nhất.
               </p>
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
                 <button
                   type="button"
                   onClick={resetForm}
                   style={{
-                    padding: '10px 18px',
+                    padding: '9px 18px',
                     borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    backgroundColor: 'var(--color-surface)',
-                    color: 'var(--color-text)',
+                    border: '1px solid var(--color-border-subtle)',
+                    backgroundColor: 'var(--color-input-bg)',
+                    color: 'var(--color-dark)',
                     fontWeight: 600,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontSize: '0.88rem'
                   }}
                 >
                   Gửi bài viết khác
@@ -234,13 +236,14 @@ export default function PostSubmissionModal({
                   type="button"
                   onClick={onClose}
                   style={{
-                    padding: '10px 20px',
+                    padding: '9px 20px',
                     borderRadius: '8px',
                     border: 'none',
-                    backgroundColor: 'var(--color-primary)',
+                    backgroundColor: 'var(--color-red)',
                     color: '#FFF',
                     fontWeight: 700,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontSize: '0.88rem'
                   }}
                 >
                   Hoàn tất
@@ -248,7 +251,7 @@ export default function PostSubmissionModal({
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {error && (
                 <div
                   style={{
@@ -270,8 +273,8 @@ export default function PostSubmissionModal({
               {/* Tác giả & Liên hệ */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
-                    Họ và tên của bạn <span style={{ color: 'var(--color-primary)' }}>*</span>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
+                    Họ và tên của bạn <span style={{ color: 'var(--color-red)' }}>*</span>
                   </label>
                   <div style={{ position: 'relative' }}>
                     <input
@@ -284,18 +287,19 @@ export default function PostSubmissionModal({
                         width: '100%',
                         padding: '10px 12px 10px 34px',
                         borderRadius: '8px',
-                        border: '1px solid var(--color-border)',
-                        backgroundColor: 'var(--color-bg-secondary)',
-                        color: 'var(--color-text)',
-                        fontSize: '0.9rem'
+                        border: '1px solid var(--color-input-border)',
+                        backgroundColor: 'var(--color-input-bg)',
+                        color: 'var(--color-input-text)',
+                        fontSize: '0.88rem',
+                        boxSizing: 'border-box'
                       }}
                     />
-                    <User size={16} style={{ position: 'absolute', left: '10px', top: '12px', color: 'var(--color-text-muted)' }} />
+                    <User size={16} style={{ position: 'absolute', left: '10px', top: '12px', color: 'var(--color-subtle)' }} />
                   </div>
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
                     Số điện thoại / Zalo / Email (nếu cần)
                   </label>
                   <div style={{ position: 'relative' }}>
@@ -308,13 +312,14 @@ export default function PostSubmissionModal({
                         width: '100%',
                         padding: '10px 12px 10px 34px',
                         borderRadius: '8px',
-                        border: '1px solid var(--color-border)',
-                        backgroundColor: 'var(--color-bg-secondary)',
-                        color: 'var(--color-text)',
-                        fontSize: '0.9rem'
+                        border: '1px solid var(--color-input-border)',
+                        backgroundColor: 'var(--color-input-bg)',
+                        color: 'var(--color-input-text)',
+                        fontSize: '0.88rem',
+                        boxSizing: 'border-box'
                       }}
                     />
-                    <Phone size={16} style={{ position: 'absolute', left: '10px', top: '12px', color: 'var(--color-text-muted)' }} />
+                    <Phone size={16} style={{ position: 'absolute', left: '10px', top: '12px', color: 'var(--color-subtle)' }} />
                   </div>
                 </div>
               </div>
@@ -322,7 +327,7 @@ export default function PostSubmissionModal({
               {/* Vai trò & Chuyên mục */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
                     Bạn là:
                   </label>
                   <select
@@ -332,10 +337,11 @@ export default function PostSubmissionModal({
                       width: '100%',
                       padding: '10px 12px',
                       borderRadius: '8px',
-                      border: '1px solid var(--color-border)',
-                      backgroundColor: 'var(--color-bg-secondary)',
-                      color: 'var(--color-text)',
-                      fontSize: '0.9rem'
+                      border: '1px solid var(--color-input-border)',
+                      backgroundColor: 'var(--color-input-bg)',
+                      color: 'var(--color-input-text)',
+                      fontSize: '0.88rem',
+                      boxSizing: 'border-box'
                     }}
                   >
                     <option value="Đoàn sinh TNTT">Đoàn sinh TNTT</option>
@@ -348,7 +354,7 @@ export default function PostSubmissionModal({
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
                     Chuyên mục:
                   </label>
                   <select
@@ -358,10 +364,11 @@ export default function PostSubmissionModal({
                       width: '100%',
                       padding: '10px 12px',
                       borderRadius: '8px',
-                      border: '1px solid var(--color-border)',
-                      backgroundColor: 'var(--color-bg-secondary)',
-                      color: 'var(--color-text)',
-                      fontSize: '0.9rem'
+                      border: '1px solid var(--color-input-border)',
+                      backgroundColor: 'var(--color-input-bg)',
+                      color: 'var(--color-input-text)',
+                      fontSize: '0.88rem',
+                      boxSizing: 'border-box'
                     }}
                   >
                     <option value="Sinh hoạt Xứ Đoàn TNTT">Sinh hoạt Xứ Đoàn TNTT</option>
@@ -376,32 +383,33 @@ export default function PostSubmissionModal({
 
               {/* Tiêu đề bài viết */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
-                  Tiêu đề bài viết <span style={{ color: 'var(--color-primary)' }}>*</span>
+                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
+                  Tiêu đề bài viết <span style={{ color: 'var(--color-red)' }}>*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Ví dụ: Thánh Lễ Khai Giảng Năm Học Giáo Lý 2026 - 2027"
+                  placeholder="Ví dụ: Thánh Lễ Khai Giảng Năm Học Giáo Lý Mới"
                   style={{
                     width: '100%',
                     padding: '10px 12px',
                     borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    backgroundColor: 'var(--color-bg-secondary)',
-                    color: 'var(--color-text)',
-                    fontSize: '0.95rem',
-                    fontWeight: 600
+                    border: '1px solid var(--color-input-border)',
+                    backgroundColor: 'var(--color-input-bg)',
+                    color: 'var(--color-input-text)',
+                    fontSize: '0.92rem',
+                    fontWeight: 600,
+                    boxSizing: 'border-box'
                   }}
                 />
               </div>
 
-              {/* Nội dung bài viết */}
+              {/* Nội dung chi tiết */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
-                  Nội dung chi tiết <span style={{ color: 'var(--color-primary)' }}>*</span>
+                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
+                  Nội dung chi tiết <span style={{ color: 'var(--color-red)' }}>*</span>
                 </label>
                 <textarea
                   required
@@ -413,19 +421,21 @@ export default function PostSubmissionModal({
                     width: '100%',
                     padding: '10px 12px',
                     borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    backgroundColor: 'var(--color-bg-secondary)',
-                    color: 'var(--color-text)',
-                    fontSize: '0.9rem',
-                    lineHeight: 1.6,
-                    resize: 'vertical'
+                    border: '1px solid var(--color-input-border)',
+                    backgroundColor: 'var(--color-input-bg)',
+                    color: 'var(--color-input-text)',
+                    fontSize: '0.88rem',
+                    lineHeight: 1.5,
+                    resize: 'vertical',
+                    boxSizing: 'border-box',
+                    fontFamily: 'inherit'
                   }}
                 />
               </div>
 
-              {/* Hình ảnh / Video / Link */}
+              {/* Link Hình ảnh / Video đính kèm */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
                   Đính kèm liên kết Hình ảnh / Video / Album (tuỳ chọn)
                 </label>
                 <div style={{ display: 'flex', gap: '8px' }}>
@@ -433,15 +443,21 @@ export default function PostSubmissionModal({
                     type="url"
                     value={mediaUrlInput}
                     onChange={(e) => setMediaUrlInput(e.target.value)}
-                    placeholder="Dán link ảnh Google Drive, YouTube, Facebook hoặc link ảnh công khai..."
+                    placeholder="Dán link ảnh Google Drive, YouTube, Facebook..."
                     style={{
                       flex: 1,
                       padding: '8px 12px',
                       borderRadius: '8px',
-                      border: '1px solid var(--color-border)',
-                      backgroundColor: 'var(--color-bg-secondary)',
-                      color: 'var(--color-text)',
+                      border: '1px solid var(--color-input-border)',
+                      backgroundColor: 'var(--color-input-bg)',
+                      color: 'var(--color-input-text)',
                       fontSize: '0.85rem'
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAddMedia();
+                      }
                     }}
                   />
                   <button
@@ -450,11 +466,13 @@ export default function PostSubmissionModal({
                     style={{
                       padding: '8px 14px',
                       borderRadius: '8px',
-                      border: '1px solid var(--color-border)',
-                      backgroundColor: 'var(--color-surface)',
+                      border: '1px solid var(--color-border-subtle)',
+                      backgroundColor: 'var(--color-input-bg)',
+                      color: 'var(--color-dark)',
                       fontWeight: 600,
                       cursor: 'pointer',
-                      fontSize: '0.85rem'
+                      fontSize: '0.82rem',
+                      whiteSpace: 'nowrap'
                     }}
                   >
                     + Thêm link
@@ -471,9 +489,11 @@ export default function PostSubmissionModal({
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           padding: '6px 10px',
-                          backgroundColor: 'var(--color-bg-secondary)',
+                          backgroundColor: 'var(--color-input-bg)',
+                          border: '1px solid var(--color-border-subtle)',
                           borderRadius: '6px',
-                          fontSize: '0.8rem'
+                          fontSize: '0.8rem',
+                          color: 'var(--color-dark)'
                         }}
                       >
                         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '85%' }}>
@@ -482,7 +502,7 @@ export default function PostSubmissionModal({
                         <button
                           type="button"
                           onClick={() => handleRemoveMedia(url)}
-                          style={{ border: 'none', background: 'none', color: '#EF4444', cursor: 'pointer' }}
+                          style={{ border: 'none', background: 'none', color: '#EF4444', cursor: 'pointer', padding: '2px' }}
                         >
                           <X size={14} />
                         </button>
@@ -494,39 +514,41 @@ export default function PostSubmissionModal({
 
               {/* Nguồn / Bản quyền */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontSize: '0.82rem', fontWeight: 700, marginBottom: '6px', color: 'var(--color-dark)' }}>
                   Nguồn tin tức / Tác giả hình ảnh (nếu có)
                 </label>
                 <input
                   type="text"
                   value={source}
                   onChange={(e) => setSource(e.target.value)}
-                  placeholder="Ví dụ: Ban Truyền Thông Xứ Đoàn / Ảnh: Anh Trưởng..."
+                  placeholder="Ví dụ: Ban Truyền Thông Xứ Đoàn / Ảnh: Huynh Trưởng..."
                   style={{
                     width: '100%',
                     padding: '8px 12px',
                     borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    backgroundColor: 'var(--color-bg-secondary)',
-                    color: 'var(--color-text)',
-                    fontSize: '0.85rem'
+                    border: '1px solid var(--color-input-border)',
+                    backgroundColor: 'var(--color-input-bg)',
+                    color: 'var(--color-input-text)',
+                    fontSize: '0.85rem',
+                    boxSizing: 'border-box'
                   }}
                 />
               </div>
 
               {/* Submit Buttons */}
-              <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '10px' }}>
+              <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end', marginTop: '10px', paddingTop: '10px', borderTop: '1px solid var(--color-border-subtle)' }}>
                 <button
                   type="button"
                   onClick={onClose}
                   style={{
-                    padding: '10px 18px',
+                    padding: '9px 16px',
                     borderRadius: '8px',
-                    border: '1px solid var(--color-border)',
-                    backgroundColor: 'transparent',
-                    color: 'var(--color-text)',
+                    border: '1px solid var(--color-border-subtle)',
+                    backgroundColor: 'var(--color-input-bg)',
+                    color: 'var(--color-dark)',
                     fontWeight: 600,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontSize: '0.88rem'
                   }}
                 >
                   Huỷ
@@ -538,13 +560,15 @@ export default function PostSubmissionModal({
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '8px',
-                    padding: '10px 24px',
+                    padding: '9px 22px',
                     borderRadius: '8px',
                     border: 'none',
-                    backgroundColor: 'var(--color-primary)',
+                    backgroundColor: 'var(--color-red)',
                     color: '#FFF',
                     fontWeight: 700,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontSize: '0.88rem',
+                    boxShadow: '0 2px 8px rgba(211, 47, 47, 0.3)'
                   }}
                 >
                   {loading ? <Loader2 size={16} className="spin" /> : <Send size={16} />}

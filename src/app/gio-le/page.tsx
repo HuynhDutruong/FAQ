@@ -271,7 +271,7 @@ export default function GioLePage() {
   const nearestDistance = useMemo(() => {
     if (!userLocation || allChurches.length === 0) return null;
     const first = allChurches.find((c) => typeof c._distance === 'number' && c._distance < Infinity);
-    return first ? Math.round(first._distance! * 10) / 10 : null;
+return first ? Math.round(first._distance! * 10) / 10 : null;
   }, [userLocation, allChurches]);
 
   return (
@@ -285,130 +285,154 @@ export default function GioLePage() {
       }}
     >
       {/* ========================================================================= */}
-      {/* 1. SLIM & COMPACT TOP HEADER BAR */}
+      {/* 1. HERO HEADER (UNIFIED SACRED BANNER) */}
       {/* ========================================================================= */}
       <header
         style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 40,
-          backgroundColor: 'var(--color-card-bg)',
-          borderBottom: '1px solid var(--color-border-subtle)',
-          boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
+          position: 'relative',
+          backgroundImage:
+            'linear-gradient(180deg, rgba(15, 8, 8, 0.82) 0%, rgba(45, 15, 15, 0.70) 50%, rgba(15, 8, 8, 0.92) 100%), url("/images/thanh_le_dong_te_my_tho.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 40%',
+          color: '#FFFFFF',
+          padding: '20px 14px 26px',
+          borderBottom: '1px solid rgba(217, 119, 6, 0.35)',
+          boxShadow: 'inset 0 -12px 28px rgba(0,0,0,0.5)'
         }}
       >
-        <div
-          style={{
-            maxWidth: '960px',
-            margin: '0 auto',
-            padding: '8px 10px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '8px'
-          }}
-        >
-          {/* Left: Back + Title */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 }}>
-            <Link
-              href="/"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--color-btn-subtle-bg)',
-                color: 'var(--color-dark)',
-                textDecoration: 'none',
-                flexShrink: 0
-              }}
-              title="Quay lại Trang Chủ"
-            >
-              <ArrowLeft size={16} />
-            </Link>
+        <div style={{ maxWidth: '960px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
+          {/* Breadcrumb row */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Link
+                href="/"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  background: 'rgba(0, 0, 0, 0.5)',
+                  color: '#FFFFFF',
+                  border: '1px solid rgba(253, 230, 138, 0.3)',
+                  backdropFilter: 'blur(6px)',
+                  textDecoration: 'none',
+                  flexShrink: 0
+                }}
+                title="Về Trang Chủ"
+              >
+                <ArrowLeft size={16} />
+              </Link>
 
-            <div style={{ minWidth: 0 }}>
               <div
                 style={{
-                  fontSize: '0.92rem',
-                  fontWeight: 900,
-                  color: 'var(--color-red)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '5px',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                <Church size={15} />
-                <span>TRA CỨU GIỜ LỄ</span>
-              </div>
-              <div
-                style={{
-                  fontSize: '0.68rem',
-                  color: 'var(--color-text-subtle)',
+                  gap: '6px',
+                  fontSize: '0.78rem',
+                  color: '#FDE68A',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis'
                 }}
               >
-                Tự động tìm nhà thờ gần vị trí của bạn
+                <Link href="/" style={{ color: '#FDE68A', textDecoration: 'none', opacity: 0.9 }}>
+                  Trang chủ
+                </Link>
+                <span>/</span>
+                <span style={{ fontWeight: 700, color: '#FFFFFF' }}>Tra Cứu Giờ Lễ</span>
               </div>
+            </div>
+
+            {/* Quick Actions (GPS & Đóng góp) */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <button
+                type="button"
+                onClick={() => autoDetectLocation()}
+                disabled={locating}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '6px 10px',
+                  borderRadius: '10px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                  color: '#FDE68A',
+                  border: '1px solid rgba(253, 230, 138, 0.3)',
+                  fontSize: '0.74rem',
+                  fontWeight: 800,
+                  cursor: 'pointer'
+                }}
+              >
+                {locating ? <Loader2 size={13} className="animate-spin" /> : <Navigation size={13} />}
+                <span>{locating ? 'Tìm...' : 'GPS'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedParishForEdit(null);
+                  setFeedbackOpen(true);
+                }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: '6px 10px',
+                  borderRadius: '10px',
+                  backgroundColor: '#B71C1C',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  fontSize: '0.74rem',
+                  fontWeight: 800,
+                  cursor: 'pointer'
+                }}
+              >
+                <PlusCircle size={13} />
+                <span>Đóng góp</span>
+              </button>
             </div>
           </div>
 
-          {/* Right: Compact Action Buttons (Single line, no wrap) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexShrink: 0 }}>
-            <button
-              type="button"
-              onClick={() => autoDetectLocation()}
-              disabled={locating}
+          <div>
+            <div
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px',
-                padding: '6px 9px',
-                borderRadius: '8px',
-                backgroundColor: locating ? 'var(--color-btn-subtle-bg)' : 'rgba(183, 28, 28, 0.08)',
-                color: 'var(--color-red)',
-                border: '1px solid rgba(183, 28, 28, 0.2)',
-                fontSize: '0.74rem',
+                fontSize: '0.7rem',
                 fontWeight: 800,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap'
+                color: '#FDE68A',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                marginBottom: '3px'
               }}
-              title="Tự động định vị lại GPS"
             >
-              {locating ? <Loader2 size={13} className="animate-spin" /> : <Navigation size={13} />}
-              <span>{locating ? 'Tìm...' : 'GPS'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setSelectedParishForEdit(null);
-                setFeedbackOpen(true);
-              }}
+              27 GIÁO PHẬN TOÀN QUỐC • ĐỊNH VỊ NHÀ THỜ GẦN NHẤT
+            </div>
+            <h1
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px',
-                padding: '6px 10px',
-                borderRadius: '8px',
-                backgroundColor: 'var(--color-red)',
+                fontSize: 'clamp(1.25rem, 4.2vw, 1.85rem)',
+                fontWeight: 900,
+                textTransform: 'uppercase',
+                margin: 0,
                 color: '#FFFFFF',
-                border: 'none',
-                fontSize: '0.74rem',
-                fontWeight: 800,
-                cursor: 'pointer',
-                boxShadow: '0 2px 5px rgba(183, 28, 28, 0.2)',
-                whiteSpace: 'nowrap'
+                lineHeight: 1.25,
+                textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)'
               }}
             >
-              <PlusCircle size={13} />
-              <span>Đóng góp</span>
-            </button>
+              Tra Cứu Giờ Lễ Toàn Quốc
+            </h1>
+            <p
+              style={{
+                margin: '6px 0 0',
+                fontSize: '0.84rem',
+                color: '#E2E8F0',
+                lineHeight: 1.45,
+                maxWidth: '760px',
+                opacity: 0.95
+              }}
+            >
+              Tự động định vị GPS tìm nhà thờ gần nhất và cập nhật lịch cử hành Thánh Lễ Chúa Nhật, ngày thường.
+            </p>
           </div>
         </div>
       </header>

@@ -5,6 +5,7 @@ import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import Footer from '@/components/Footer';
 import ChatBubble from '@/components/ChatBubble';
 import SiteHeader from '@/components/SiteHeader';
+import MobileBottomNav from '@/components/MobileBottomNav';
 import GoogleTranslateScript from '@/components/GoogleTranslateScript';
 
 const beVietnamPro = Be_Vietnam_Pro({
@@ -159,6 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <Footer />
           <ChatBubble />
+          <MobileBottomNav />
         </LanguageProvider>
       </body>
     </html>

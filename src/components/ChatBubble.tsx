@@ -25,6 +25,7 @@ export default function ChatBubble() {
       {/* Chat Bubble Button */}
       <button
         onClick={() => setIsOpen(true)}
+        className="chat-bubble-btn"
         style={{
           position: 'fixed',
           bottom: '24px',

@@ -52,6 +52,42 @@ const metaRef = doc(db, 'massTimesMeta', 'dioceses');
 
 export interface Bucket { name: string; count: number }
 
+/**
+ * Thông tin & Giờ lễ Nhà Thờ Chánh Tòa Mỹ Tho mặc định (đồng bộ Firestore).
+ */
+export const DEFAULT_CHANH_TOA_INFO: MassTime = {
+  id: 'mt-my-tho-chanh-toa',
+  parish: 'Giáo xứ Chánh Tòa',
+  diocese: 'Mỹ Tho',
+  deanery: 'Mỹ Tho',
+  province: 'Tiền Giang',
+  address: '32 Hùng Vương, Phường 7, TP. Mỹ Tho, Tiền Giang',
+  weekdayMass: ['05:00', '17:30'],
+  saturdayMass: [],
+  sundayMass: ['05:30', '07:00', '16:00', '18:00'],
+  source: 'GP Mỹ Tho'
+};
+
+/**
+ * Lấy thông tin & Giờ lễ Nhà Thờ Chánh Tòa Mỹ Tho từ Firestore.
+ */
+export async function getChanhToaMassInfo(): Promise<MassTime> {
+  try {
+    const snap = await getDoc(doc(massCol, 'mt-my-tho-chanh-toa'));
+    if (snap.exists()) {
+      return { ...(snap.data() as Omit<MassTime, 'id'>), id: snap.id };
+    }
+    const qSnap = await getDocs(query(massCol, where('parish', '==', 'Giáo xứ Chánh Tòa'), where('diocese', '==', 'Mỹ Tho')));
+    if (!qSnap.empty) {
+      const d = qSnap.docs[0];
+      return { ...(d.data() as Omit<MassTime, 'id'>), id: d.id };
+    }
+  } catch (err) {
+    console.error('Error fetching Chanh Toa mass info:', err);
+  }
+  return DEFAULT_CHANH_TOA_INFO;
+}
+
 /** Xoá dấu tiếng Việt để tìm kiếm không cần gõ dấu. Đ/đ không tách được bằng NFD nên xử lý riêng. */
 export const removeAccents = (str: string) =>
   str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/đ/g, 'd');

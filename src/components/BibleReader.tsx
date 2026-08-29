@@ -599,16 +599,14 @@ export default function BibleReader({ initialData }: BibleReaderProps) {
               boxShadow: '0 4px 16px rgba(0,0,0,0.06)'
             }}
           >
-            {/* Full Image Container */}
+            {/* Full Artwork Image Container (No dark letterboxing) */}
             <div
               style={{
                 width: '100%',
-                backgroundColor: '#0B0F19',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden',
-                maxHeight: '360px'
+                position: 'relative',
+                aspectRatio: '16 / 9',
+                backgroundColor: themeStyles.cardBg,
+                overflow: 'hidden'
               }}
             >
               <img
@@ -616,9 +614,8 @@ export default function BibleReader({ initialData }: BibleReaderProps) {
                 alt={artwork.title}
                 style={{
                   width: '100%',
-                  height: 'auto',
-                  maxHeight: '360px',
-                  objectFit: 'contain',
+                  height: '100%',
+                  objectFit: 'cover',
                   display: 'block'
                 }}
               />
@@ -868,7 +865,7 @@ export default function BibleReader({ initialData }: BibleReaderProps) {
             borderTop: `1px dashed ${themeStyles.border}`
           }}
         >
-          * Nguồn trích lục bản văn Kinh Thánh: augustino.net — Bản dịch Nhóm Phiên Dịch Các Giờ Kinh Phụng Vụ (KTCGKPV) &amp; Hội Đồng Giám Mục Việt Nam.
+          * Bản văn Lời Chúa & Kinh Thánh: Bản dịch Nhóm Phiên Dịch Các Giờ Kinh Phụng Vụ (KTCGKPV) & Hội Đồng Giám Mục Việt Nam.
         </div>
 
         {/* Bottom Navigation */}

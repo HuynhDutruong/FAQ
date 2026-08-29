@@ -892,9 +892,9 @@ export default function FacebookFeed({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '6px',
-          paddingTop: '12px',
-          marginTop: '6px',
+          gap: '4px',
+          paddingTop: '8px',
+          marginTop: '4px',
           flexWrap: 'wrap'
         }}>
           {/* Previous Button */}
@@ -905,41 +905,41 @@ export default function FacebookFeed({
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '4px',
-              padding: '7px 12px',
+              gap: '3px',
+              padding: '4px 8px',
               borderRadius: '6px',
               border: '1px solid var(--color-border-subtle)',
               backgroundColor: currentPage === 1 ? 'transparent' : 'var(--color-card-bg)',
               color: currentPage === 1 ? 'var(--color-subtle)' : 'var(--color-dark)',
-              fontSize: '0.82rem',
+              fontSize: '0.74rem',
               fontWeight: 700,
               cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
               opacity: currentPage === 1 ? 0.4 : 1
             }}
           >
-            <ChevronLeft size={15} />
+            <ChevronLeft size={12} />
             <span>{t.newsPrev || 'Trước'}</span>
           </button>
 
           {/* Number Buttons: 1 2 3 ... */}
           {pageNumbers(currentPage, totalPages).map((num, idx) => num === null ? (
-            <span key={`gap-${idx}`} style={{ padding: '0 2px', color: 'var(--color-subtle)', fontWeight: 700 }}>…</span>
+            <span key={`gap-${idx}`} style={{ padding: '0 2px', color: 'var(--color-subtle)', fontSize: '0.75rem', fontWeight: 700 }}>…</span>
           ) : (
             <button
               key={num}
               onClick={() => handlePageChange(num)}
-              className="pager-btn"
+              className="pager-btn pager-num-btn"
               style={{
-                minWidth: '34px',
-                height: '34px',
+                minWidth: '28px',
+                height: '28px',
                 borderRadius: '6px',
                 border: currentPage === num ? 'none' : '1px solid var(--color-border-subtle)',
                 backgroundColor: currentPage === num ? '#B71C1C' : 'var(--color-card-bg)',
                 color: currentPage === num ? '#FFFFFF' : 'var(--color-dark)',
-                fontSize: '0.85rem',
+                fontSize: '0.76rem',
                 fontWeight: 800,
                 cursor: 'pointer',
-                boxShadow: currentPage === num ? '0 2px 6px rgba(183, 28, 28, 0.3)' : 'none',
+                boxShadow: currentPage === num ? '0 1px 4px rgba(183, 28, 28, 0.3)' : 'none',
                 transition: 'all 0.15s ease'
               }}
             >
@@ -955,20 +955,20 @@ export default function FacebookFeed({
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '4px',
-              padding: '7px 12px',
+              gap: '3px',
+              padding: '4px 8px',
               borderRadius: '6px',
               border: '1px solid var(--color-border-subtle)',
               backgroundColor: currentPage === totalPages ? 'transparent' : 'var(--color-card-bg)',
               color: currentPage === totalPages ? 'var(--color-subtle)' : 'var(--color-dark)',
-              fontSize: '0.82rem',
+              fontSize: '0.74rem',
               fontWeight: 700,
               cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
               opacity: currentPage === totalPages ? 0.4 : 1
             }}
           >
             <span>{t.newsNext || 'Sau'}</span>
-            <ChevronRight size={15} />
+            <ChevronRight size={12} />
           </button>
         </div>
       )}

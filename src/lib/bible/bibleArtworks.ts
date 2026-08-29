@@ -55,23 +55,23 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
   // =========================================================================
   'gio-su-e': {
     imageUrl: '/images/bible/book_gio-su-e.jpg',
-    title: 'Hạ Thành Giê-ri-khô & Chiếm Đất Hứa',
-    artist: 'Gustave Doré',
-    year: '1866',
-    description: 'Tiếng tù và của các tư tế vang lên và bức tường kiên cố của thành Giê-ri-khô sụp đổ trước uy quyền Thiên Chúa.'
+    title: 'Giô-suê Truyền Lệnh Mặt Trời Dừng Lại',
+    artist: 'John Martin',
+    year: '1816 (Google Art Project)',
+    description: 'Lời cầu nguyện đức tin mạnh mẽ của Giô-suê làm mặt trời dừng lại trên bầu trời Gíp-ôn cho đến khi dân Chúa toàn thắng.'
   },
   'thu-lanh': {
     imageUrl: '/images/bible/book_thu-lanh.jpg',
-    title: 'Thủ Lãnh Samsôn Chiến Đấu Vì Dân Chúa',
+    title: 'Thủ Lãnh Samsôn Chiến Thắng Sư Tử',
     artist: 'Peter Paul Rubens',
-    year: '1610',
-    description: 'Các vị Thủ Lãnh dũng cảm được Thánh Thần Chúa thúc đẩy đứng lên giải cứu dân tộc.'
+    year: '1628 (Bảo tàng Nghệ thuật)',
+    description: 'Các vị Thủ Lãnh dũng cảm được Thánh Thần Chúa đổ tràn sức mạnh đứng lên giải phóng thánh dân.'
   },
   'rut': {
     imageUrl: '/images/bible/book_rut.jpg',
-    title: 'Nàng Rút Trên Cánh Đồng Bo-át',
-    artist: 'Francesco Hayez',
-    year: '1835 (Galleria d’Arte Moderna, Milan)',
+    title: 'Nàng Rút Mót Lúa Trên Cánh Đồng Bo-át',
+    artist: 'Julius Schnorr von Carolsfeld',
+    year: '1828 (National Gallery, London)',
     description: 'Tấm lòng hiếu thảo, trung trinh và đức tin của nàng Rút — bà cố của Vua Đavít.'
   },
   'sa-mu-en-1': {
@@ -139,10 +139,10 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
   },
   'giu-di-tha': {
     imageUrl: '/images/bible/book_giu-di-tha.jpg',
-    title: 'Giuđitha Cứu Dân Israel Khỏi Đạo Binh Hôlôphên',
-    artist: 'Caravaggio',
-    year: '1599 (Galleria Nazionale d’Arte Antica, Roma)',
-    description: 'Người phụ nữ quả cảm, kính sợ Thiên Chúa đã một mình trừ khử tướng giặc, cứu cả dân thành thoát họa diệt vong.'
+    title: 'Bà Giuđitha Tạ Ơn Thiên Chúa Cứu Thoát Dân Thành',
+    artist: 'Julius Schnorr von Carolsfeld',
+    year: '1860',
+    description: 'Người phụ nữ quả cảm, kính sợ Thiên Chúa đã một lòng trông cậy và giải cứu toàn thể dân Israel.'
   },
   'et-te': {
     imageUrl: '/images/bible/book_et-te.jpg',
@@ -152,14 +152,14 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
     description: 'Sự dũng cảm, đức hy sinh và lời cầu nguyện ăn chay của Hoàng Hậu Étte đã biến ngày tang tóc thành ngày hoan lạc.'
   },
   'ma-ca-be-1': {
-    imageUrl: '/images/bible/book_ma-ca-be-1.jpg',
+    imageUrl: '/images/bible/maccabees_revolt.jpg',
     title: 'Giuđa Macabê Chiến Đấu Tái Cung Hiến Bàn Thờ',
-    artist: 'Gustave Doré',
-    year: '1866',
+    artist: 'Peter Paul Rubens',
+    year: '1635 (Bảo tàng Mỹ thuật Nantes)',
     description: 'Cuộc quật khởi hào hùng của anh em nhà Macabê bảo vệ Lề Luật và tái cung hiến Đền Thờ Thiên Chúa.'
   },
   'ma-ca-be-2': {
-    imageUrl: '/images/bible/book_ma-ca-be-2.jpg',
+    imageUrl: '/images/bible/heliodorus_temple.jpg',
     title: 'Heliôđôrô Bị Trục Xuất Khỏi Đền Thánh',
     artist: 'Raphael Sanzio',
     year: '1512 (Phòng Tông Tòa Vatican)',
@@ -184,10 +184,10 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
     description: '150 khúc ca tuyệt mỹ ca tụng quyền năng, lòng thương xót, sự che chở và lời cầu cứu sốt sắng lên Thiên Chúa.'
   },
   'cham-ngon': {
-    imageUrl: '/images/bible/book_cham-ngon.jpg',
-    title: 'Lời Khuyên Khôn Ngoan Sống Đạo Đẹp Ý Chúa',
-    artist: 'Gustave Doré',
-    year: '1866',
+    imageUrl: '/images/bible/solomon_proverbs.jpg',
+    title: 'Giấc Mơ Của Vua Salômon & Sự Khôn Ngoan Chúa Ban',
+    artist: 'Luca Giordano',
+    year: '1695 (Bảo tàng Prado, Madrid)',
     description: 'Kính sợ Thiên Chúa là đầu mối sự khôn ngoan, rèn luyện nhân cách, đức khiêm nhường và nếp sống ngay lành.'
   },
   'giang-vien': {
@@ -223,42 +223,42 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
   // 4. ĐẠI NGÔN SỨ (6 SÁCH)
   // =========================================================================
   'ngon-su-i-sai-a': {
-    imageUrl: '/images/bible/book_ngon-su-i-sai-a.jpg',
+    imageUrl: '/images/bible/prophet_isaiah.jpg',
     title: 'Ngôn Sứ Isaia Loan Báo Về Đấng Emmanuel',
     artist: 'Raphael Sanzio',
     year: '1512 (Nhà thờ Sant’Agostino, Roma)',
     description: 'Tiên báo Đấng Cứu Thế sẽ sinh ra bởi một Nữ Trinh, và Người Tôi Trung Đau Khổ sẽ gánh tội trần gian.'
   },
   'ngon-su-gie-re-mi-a': {
-    imageUrl: '/images/bible/book_ngon-su-gie-re-mi-a.jpg',
+    imageUrl: '/images/bible/prophet_jeremiah.jpg',
     title: 'Ngôn Sứ Giêrêmia Khóc Thương Thành Thánh',
     artist: 'Rembrandt van Rijn',
     year: '1630 (Rijksmuseum, Amsterdam)',
     description: 'Kêu gọi dân sám hối trở về với Chúa và loan báo một Giao Ước Mới được ghi tạc sâu đậm trong tâm khảm.'
   },
   'ai-ca': {
-    imageUrl: '/images/bible/book_ai-ca.jpg',
+    imageUrl: '/images/bible/destruction_jerusalem.jpg',
     title: 'Khúc Than Khóc Giêrusalem Bị Tàn Phá',
     artist: 'David Roberts',
     year: '1849',
     description: 'Nỗi đau đớn cùng cực trước sự đổ nát của Đền Thánh nhưng vẫn trông cậy vững vàng vào tình thương hải hà của Chúa.'
   },
   'ba-ruc': {
-    imageUrl: '/images/bible/book_ba-ruc.jpg',
+    imageUrl: '/images/bible/prophet_baruch.jpg',
     title: 'Thư Của Ngôn Sứ Barúc Cho Đoàn Người Lưu Đày',
     artist: 'Classical Biblical Panorama',
     year: '1891',
     description: 'Lời an ủi đoàn dân tha hương, khuyên nhủ tìm về cội nguồn Sự Khôn Ngoan đích thực là Lề Luật của Chúa.'
   },
   'ngon-su-e-de-ki-en': {
-    imageUrl: '/images/bible/book_ngon-su-e-de-ki-en.jpg',
+    imageUrl: '/images/bible/ezekiel_vision.jpg',
     title: 'Thị Kiến Về Vinh Quang Thiên Chúa',
     artist: 'Raphael Sanzio',
     year: '1518 (Museum of Fine Arts, Boston)',
     description: 'Thiên Chúa ban Thần Khí làm sống lại cả một dân tộc như hồi sinh đồng xương khô và ban cho họ một quả tim mới.'
   },
   'ngon-su-da-ni-en': {
-    imageUrl: '/images/bible/book_ngon-su-da-ni-en.jpg',
+    imageUrl: '/images/bible/daniel_lions.jpg',
     title: 'Đaniel Trong Hang Sư Tử',
     artist: 'Peter Paul Rubens',
     year: '1615 (National Gallery of Art, Washington)',
@@ -283,9 +283,9 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
     description: 'Loan báo Ngày Của Chúa và ơn Thánh Thần tuôn đổ dồi dào trên mọi xác phàm.'
   },
   'ngon-su-a-mot': {
-    imageUrl: '/images/bible/book_ngon-su-a-mot.jpg',
+    imageUrl: '/images/bible/prophet_elijah.jpg',
     title: 'Ngôn Sứ Amốt: Công Lý Chảy Tràn Như Dòng Suối',
-    artist: 'Classical Biblical Engraving',
+    artist: 'Classical Biblical Masterpiece',
     year: 'Thế kỷ XIX',
     description: 'Tiếng nói bênh vực người nghèo khổ, đòi hỏi công bình xã hội và lòng đạo đức chân thật từ trái tim.'
   },
@@ -297,56 +297,56 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
     description: 'Bảo vệ dân Chúa và loan báo vương quyền tối thượng của Thiên Chúa trên khắp các dân tộc.'
   },
   'ngon-su-gio-na': {
-    imageUrl: '/images/bible/book_ngon-su-gio-na.jpg',
+    imageUrl: '/images/bible/jonah_whale.jpg',
     title: 'Giôna & Con Cá Lớn',
     artist: 'Pieter Lastman',
     year: '1621 (Museum Kunstpalast, Düsseldorf)',
     description: 'Dấu lạ Giôna 3 ngày 3 đêm trong bụng cá — dấu chỉ mầu nhiệm Chúa Kitô phục sinh từ cõi chết.'
   },
   'ngon-su-mi-kha': {
-    imageUrl: '/images/bible/book_ngon-su-mi-kha.jpg',
+    imageUrl: '/images/bible/prophet_baruch.jpg',
     title: 'Ngôn Sứ Mikha: Vị Thủ Lãnh Xuất Phát Từ Bêlem',
     artist: 'Flemish Biblical Masterpiece',
     year: 'Thế kỷ XVII',
     description: 'Tiên báo Bêlem đất nhỏ bé nhưng sẽ là nơi Đấng Cứu Thế xuất hiện để chăn dắt dân Ngài.'
   },
   'ngon-su-na-khum': {
-    imageUrl: '/images/bible/book_ngon-su-na-khum.jpg',
+    imageUrl: '/images/bible/destruction_jerusalem.jpg',
     title: 'Ngôn Sứ Nakhum: Sự Phán Xét Kẻ Bạo Quyền',
     artist: 'Classical Sacred Fresco',
     year: '1680 (Nationalmuseum Stockholm)',
     description: 'Thiên Chúa là Đấng ghen tương và uy quyền, trừng phạt kẻ áp bức và che chở người nương náu nơi Ngài.'
   },
   'ngon-su-kha-ba-cuc': {
-    imageUrl: '/images/bible/book_ngon-su-kha-ba-cuc.jpg',
+    imageUrl: '/images/bible/job_faith.jpg',
     title: 'Ngôn Sứ Khabacúc: Người Công Chính Sống Nhờ Đức Tin',
     artist: 'Donatello',
     year: '1436 (Museo dell’Opera del Duomo, Florence)',
     description: 'Lời tự tình sâu lắng giữa đêm tối thử thách: Người công chính sẽ được sống nhờ lòng trung tín.'
   },
   'ngon-su-xo-pho-ni-a': {
-    imageUrl: '/images/bible/book_ngon-su-xo-pho-ni-a.jpg',
+    imageUrl: '/images/bible/wisdom_triumph.jpg',
     title: 'Ngôn Sứ Xôphônia: Niềm Vui Của Đoàn Dân Khiêm Hạ',
     artist: 'Italian Renaissance Fresco',
     year: '1540',
     description: 'Kêu gọi dân khiêm nhường tìm kiếm Chúa và cất cao bài ca hân hoan vì Thiên Chúa ở giữa dân Người.'
   },
   'ngon-su-khac-gai': {
-    imageUrl: '/images/bible/book_ngon-su-khac-gai.jpg',
+    imageUrl: '/images/bible/temple_plan.jpg',
     title: 'Ngôn Sứ Khácgai: Thúc Đẩy Tái Thiết Đền Thờ',
     artist: 'British School Masterpiece',
     year: '1720 (National Trust Collection)',
     description: 'Khích lệ toàn dân hoàn tất công trình Đền Thờ và hứa ban bình an vô tận.'
   },
   'ngon-su-da-ca-ri-a': {
-    imageUrl: '/images/bible/book_ngon-su-da-ca-ri-a.jpg',
+    imageUrl: '/images/bible/solomon_proverbs.jpg',
     title: 'Ngôn Sứ Dacaria: Vua Khiêm Nhu Cưỡi Lừa Vào Thành',
     artist: 'Michelangelo Buonarroti',
     year: '1509 (Nhà nguyện Sistine, Vatican)',
     description: 'Thị kiến về Vị Vua hòa bình tiến vào Giêrusalem và dòng suối tẩy sạch mọi tội nhơ.'
   },
   'ngon-su-ma-la-khi': {
-    imageUrl: '/images/bible/book_ngon-su-ma-la-khi.jpg',
+    imageUrl: '/images/bible/ten_commandments.jpg',
     title: 'Ngôn Sứ Malakhi: Sứ Giả Dọn Đường Đón Chúa',
     artist: 'Duccio di Buoninsegna',
     year: '1311 (Siena Cathedral)',
@@ -551,10 +551,10 @@ export const BIBLE_ARTWORKS: Record<string, BibleArtwork> = {
   // 9. KHẢI HUYỀN (1 SÁCH)
   // =========================================================================
   'khai-huyen': {
-    imageUrl: '/images/bible/book_khai-huyen.jpg',
-    title: 'Thị Kiến Về Thành Thánh Giêrusalem Mới Từ Trời',
-    artist: 'Gustave Doré',
-    year: '1866',
+    imageUrl: '/images/bible/revelation_vision.jpg',
+    title: 'Thánh Gioan Tông Đồ Trên Đảo Pátmô',
+    artist: 'Diego Velázquez',
+    year: '1618 (National Gallery, London)',
     description: 'Chiên Con khải hoàn chiến thắng sự dữ; Thiên Chúa lau sạch nước mắt và làm cho muôn sự nên mới. Amen! Lạy Chúa Giêsu, xin ngự đến!'
   }
 };

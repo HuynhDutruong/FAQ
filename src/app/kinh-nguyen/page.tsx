@@ -337,9 +337,9 @@ export default function KinhNguyenPage() {
         style={{
           position: 'relative',
           backgroundImage:
-            'linear-gradient(180deg, rgba(15, 8, 8, 0.82) 0%, rgba(45, 15, 15, 0.70) 50%, rgba(15, 8, 8, 0.92) 100%), url("/images/jesus_antique_banner.jpg")',
+            'linear-gradient(180deg, rgba(15, 8, 8, 0.82) 0%, rgba(45, 15, 15, 0.70) 50%, rgba(15, 8, 8, 0.92) 100%), url("/images/bible/david_psalms.jpg")',
           backgroundSize: 'cover',
-          backgroundPosition: 'center 22%',
+          backgroundPosition: 'center 20%',
           color: '#FFFFFF',
           padding: '16px 12px 20px',
           borderBottom: '1px solid rgba(217, 119, 6, 0.35)',
