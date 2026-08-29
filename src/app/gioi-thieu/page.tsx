@@ -46,8 +46,8 @@ export interface DetailedBioRecord {
   origin: string;
   motto: string;
   mottoLatin?: string;
-  priestOrdination: string;
-  bishopConsecration: string;
+  priestOrdination?: string;
+  bishopConsecration?: string;
   consecrator?: string;
   image: string;
   shortDesc: string;
@@ -277,6 +277,48 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Thành viên Bộ Truyền Thông Tòa Thánh Vatican đại diện cho Giáo hội Việt Nam.',
       'Nhà thuyết giảng thần học và Huấn giáo Kinh Thánh uyên bác hàng đầu Việt Nam.'
     ]
+  },
+  {
+    id: 'cha-ha-van-xung',
+    name: 'Linh mục Giacôbê Hà Văn Xung',
+    saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
+    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho • Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Nguyên Giám đốc Caritas Giáo phận',
+    period: '2006 – nay (Tại Giáo xứ Chánh Tòa)',
+    birth: 'Năm 1958',
+    origin: 'Giáo phận Mỹ Tho',
+    motto: '“Yêu thương và Phục vụ người nghèo khó”',
+    mottoLatin: 'Caritas Christi Urget Nos (2 Cr 5,14)',
+    priestOrdination: '1992 tại Đại Chủng viện Thánh Giuse Sài Gòn (Khóa I)',
+    image: '/images/cha_so_ha_van_xung.jpg',
+    shortDesc: 'Hơn 30 năm tận tụy trong đời sống dâng hiến. Hiện ngài đảm nhiệm trọng trách Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho và Cha Sở Nhà thờ Chánh Tòa. Cha là người trực tiếp khởi xướng công trình đại trùng tu bách chu niên Nhà thờ Chánh Tòa Mỹ Tho (2006 – 2007), xây dựng Nhà Mục vụ Giáo xứ (2020), sáng lập Nhà dưỡng lão tình thương Thanh Bình và tận tâm phục vụ người nghèo.',
+    chronology: [
+      {
+        time: '1992',
+        title: 'Thụ phong Linh mục Khóa I',
+        content: 'Thụ phong linh mục thuộc Khóa I Đại Chủng viện Thánh Giuse Sài Gòn sau năm 1975, dấn thân nhiệt thành thi hành sứ vụ mục vụ tại các cộng đoàn đức tin Giáo phận Mỹ Tho.'
+      },
+      {
+        time: '2005 – nay',
+        title: 'Cha Sở Giáo xứ Chánh Tòa Mỹ Tho',
+        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận. Năm 2006 (nhân dịp kỷ niệm 100 năm xây dựng 1906–2006), ngài khởi sự công trình đại trùng tu nhà thờ, mở rộng 2 cánh nhà thờ, cải tạo tháp chuông kiên cố và hoàn thành năm 2007. Năm 2020, ngài khánh thành tòa Nhà Mục vụ Giáo xứ bề thế phục vụ giáo lý và sinh hoạt giới trẻ.'
+      },
+      {
+        time: 'Nhiều nhiệm kỳ',
+        title: 'Giám đốc Caritas Giáo phận Mỹ Tho',
+        content: 'Phụ trách Ủy ban Bác ái Xã hội Caritas Giáo phận Mỹ Tho, sáng lập Nhà dưỡng lão tình thương Thanh Bình (Chợ Gạo, Tiền Giang) nuôi dưỡng các cụ già neo đơn, duy trì thường niên Ngày Thế giới Người nghèo với các phần quà và bữa cơm tình thương.'
+      },
+      {
+        time: 'Hiện tại',
+        title: 'Tổng Linh hướng & Mục tử Bác ái',
+        content: 'Tổng Linh hướng Hội Các Bà Mẹ Công Giáo Giáo phận Mỹ Tho, chăm sóc mục vụ cho bệnh nhân, người cao tuổi, đồng hành với giới trẻ và Thiếu Nhi Thánh Thể xứ đoàn Chánh Tòa.'
+      }
+    ],
+    milestones: [
+      'Đại trùng tu và mở rộng Nhà thờ Chánh Tòa Mỹ Tho nhân dịp 100 năm xây dựng (1906 – 2006).',
+      'Xây dựng Tòa Nhà Mục Vụ Giáo xứ Chánh Tòa khang trang phục vụ giáo lý và sinh hoạt cộng đoàn.',
+      'Sáng lập và vận hành Nhà dưỡng lão tình thương Thanh Bình cưu mang các cụ già neo đơn, khó khăn.',
+      'Mục tử nhân ái, nhiệt thành với người nghèo và đồng hành cùng mọi thành phần Dân Chúa.'
+    ]
   }
 ];
 
@@ -317,6 +359,11 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
     'Thúc đẩy đối thoại hòa bình, bảo vệ gia đình và giới trẻ Kitô giáo.'
   ]
 };
+
+export const ALL_COMMUNITY_BIOS: DetailedBioRecord[] = [
+  ...BISHOPS_EXTENDED_DATA,
+  POPE_LEO_XIV_BIO
+];
 
 const TNTT_RANKS = [
   {
@@ -589,6 +636,11 @@ export default function GioiThieuPage() {
                     <li>
                       <a href="#lich-su-cung-hien" style={{ color: 'inherit', textDecoration: 'none' }}>
                         Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#nien-bieu-cha-so" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Niên biểu các Đời Linh mục Chánh Sở Nhà thờ Chánh Tòa (1860 – Nay)
                       </a>
                     </li>
                   </ol>
@@ -943,11 +995,136 @@ export default function GioiThieuPage() {
               Nhà thờ Chính Tòa Mỹ Tho</strong> và nhận ngày Lễ Đức Mẹ Hồn Xác Lên Trời (15 tháng 8) làm Bổn mạng thứ hai của
               nhà thờ.
             </p>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
-              Đến năm 2006, đánh dấu kỷ niệm 100 năm ngày khởi công xây dựng, Linh mục Chánh xứ Giacôbê Hà Văn Xung đã thực
-              hiện đợt đại trùng tu toàn diện: gia cố nền móng, xây dựng tháp chuông độc lập cao 24m, nới rộng gian Cung
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
+              Đến năm 2006, đánh dấu kỷ niệm 100 năm ngày khởi công xây dựng,{' '}
+              <button
+                type="button"
+                onClick={() => {
+                  const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-ha-van-xung');
+                  if (bio) setSelectedBio(bio);
+                }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  color: 'var(--color-red)',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  fontFamily: 'inherit'
+                }}
+              >
+                Linh mục Chánh xứ Giacôbê Hà Văn Xung
+              </button>{' '}
+              (Linh mục Trưởng Hạt Giáo hạt Mỹ Tho) đã thực hiện đợt đại trùng tu toàn diện: gia cố nền móng, xây dựng tháp chuông độc lập cao 24m, nới rộng gian Cung
               Thánh, lát đá cẩm thạch và kiến thiết vườn hoa 14 Đàng Thánh Giá bao quanh khuôn viên thánh đường.
             </p>
+
+            {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
+            <h3 id="nien-bieu-cha-so" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              2.5. Niên Biểu Các Đời Linh Mục Chánh Sở Nhà Thờ Chánh Tòa Mỹ Tho (1860 – Nay)
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px' }}>
+              Trải qua hơn 160 năm lịch sử tông truyền, Họ đạo Chánh Tòa Mỹ Tho đã được coi sóc và dẫn dắt bởi các thế hệ linh mục thừa sai Hội Thừa sai Paris (MEP) và các linh mục bản xứ tận tụy:
+            </p>
+
+            <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
+              <table
+                style={{
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  fontSize: '0.84rem',
+                  backgroundColor: 'var(--color-card-bg)',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--color-border-subtle)'
+                }}
+              >
+                <thead>
+                  <tr style={{ backgroundColor: 'rgba(153, 27, 27, 0.06)', borderBottom: '1px solid var(--color-border-subtle)', textAlign: 'left' }}>
+                    <th style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)', width: '50px' }}>STT</th>
+                    <th style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)', width: '120px' }}>Thời Gian</th>
+                    <th style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)' }}>Linh Mục Chánh Sở</th>
+                    <th style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)' }}>Dấu Ấn Mục Vụ &amp; Lịch Sử</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>1</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1860 – 1866</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Marc Guillou (MEP)</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Cha sở tiên khởi; quy tụ cộng đoàn tín hữu và dựng ngôi nhà thờ đầu tiên (Thánh Phanxicô Xaviê).</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>2</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1866 – 1906</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Jean-Marie Bouillevaux (MEP) &amp; các Cố Thừa Sai</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Thời kỳ xây dựng Nhà thờ Vĩnh Tường (Thánh Tâm Chúa Giêsu, 1866) và củng cố các họ đạo nhánh.</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>3</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1906 – 1910</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Louis-Eugène Régnier (Cố Gẫm - MEP)</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Đặt viên đá đầu tiên (11/08/1906) khởi công và hoàn tất xây dựng ngôi Nhà thờ Chánh Tòa hiện nay (khánh thành 1910).</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>4</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1910 – 1956</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Bachelard (Cố Bạch - MEP) &amp; Các Thừa Sai MEP</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Củng cố đời sống phụng vụ, đào tạo ban hành giáo và phát triển hội đoàn trong nửa đầu thế kỷ XX.</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>5</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1956 – 1958</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Phaolô Nguyễn Minh Chiếu</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Linh mục Việt Nam đầu tiên làm Chánh sở; di dời chuông lớn lên tháp cao phía Nam (1958).</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>6</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1958 – 1975</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. GB. Huỳnh Kim Do &amp; Các Linh mục Giáo phận</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Giai đoạn thành lập Giáo phận Mỹ Tho (1960), nâng thánh đường thành Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm.</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>7</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1975 – 2005</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Giuse Nguyễn Văn Chúc</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Coi sóc 30 năm; xây dựng tháp chuông độc lập cao 24m tách rời (1995) để bảo tồn ngôi thánh đường cổ.</td>
+                  </tr>
+                  <tr style={{ backgroundColor: 'rgba(153, 27, 27, 0.04)' }}>
+                    <td style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)' }}>8</td>
+                    <td style={{ padding: '10px 12px', color: 'var(--color-red)', fontWeight: 700 }}>2006 – nay</td>
+                    <td style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)' }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-ha-van-xung');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 800,
+                          fontSize: '0.86rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Giacôbê Hà Văn Xung (Hạt trưởng Mỹ Tho)
+                      </button>
+                    </td>
+                    <td style={{ padding: '10px 12px', color: 'var(--color-dark)', lineHeight: 1.5 }}>
+                      <strong>Cha sở đương nhiệm &amp; Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho</strong>; chủ trì Đại trùng tu Bách Chu Niên (2006–2007), xây dựng Nhà Mục vụ Giáo xứ 3 tầng (2020), Lễ đài Đức Mẹ, sáng lập Nhà dưỡng lão tình thương Thanh Bình và phát triển Caritas bác ái.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </section>
 
           {/* =====================================================================
@@ -1878,7 +2055,27 @@ export default function GioiThieuPage() {
                   Linh mục Chánh xứ
                 </th>
                 <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
-                  Lm. Giacôbê Hà Văn Xung
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-ha-van-xung');
+                      if (bio) setSelectedBio(bio);
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      color: 'var(--color-red)',
+                      fontWeight: 700,
+                      fontSize: '0.84rem',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      textDecoration: 'underline',
+                      fontFamily: 'inherit'
+                    }}
+                  >
+                    Lm. Giacôbê Hà Văn Xung (Hạt trưởng)
+                  </button>
                 </td>
               </tr>
 
@@ -2061,9 +2258,11 @@ export default function GioiThieuPage() {
                 <div>
                   <strong>Thụ phong Linh mục:</strong> {selectedBio.priestOrdination}
                 </div>
-                <div>
-                  <strong>Tấn phong Giám mục:</strong> {selectedBio.bishopConsecration}
-                </div>
+                {selectedBio.bishopConsecration && (
+                  <div>
+                    <strong>Tấn phong Giám mục:</strong> {selectedBio.bishopConsecration}
+                  </div>
+                )}
                 {selectedBio.consecrator && (
                   <div style={{ gridColumn: '1 / -1' }}>
                     <strong>Giám mục Chủ phong:</strong> {selectedBio.consecrator}
