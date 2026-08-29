@@ -36,6 +36,80 @@ import {
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
 
+/**
+ * Khung chân dung nhân vật. Nhiều cha sở thời sơ khai (1860–1956) không còn
+ * ảnh tư liệu nào trong kho lưu trữ MEP/IRFA; những trường hợp đó hiển thị ô
+ * trống có chú thích thay vì mượn ảnh nhà thờ làm ảnh chân dung.
+ */
+function PortraitFrame({
+  src,
+  name,
+  width,
+  height
+}: {
+  src?: string;
+  name: string;
+  width: number;
+  height: number;
+}) {
+  const frameStyle: React.CSSProperties = {
+    width: `${width}px`,
+    height: `${height}px`,
+    borderRadius: width > 100 ? '10px' : '8px',
+    overflow: 'hidden',
+    position: 'relative',
+    flexShrink: 0,
+    border: '1.5px solid #B45309',
+    backgroundColor: 'var(--color-input-bg)',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+  };
+
+  if (src) {
+    return (
+      <div style={frameStyle}>
+        <Image
+          src={src}
+          alt={`Chân dung ${name}`}
+          fill
+          sizes={`${width}px`}
+          style={{ objectFit: 'cover', objectPosition: 'top center' }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        ...frameStyle,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '6px',
+        padding: '6px',
+        textAlign: 'center',
+        backgroundColor: 'rgba(180, 83, 9, 0.06)'
+      }}
+      role="img"
+      aria-label={`Chưa có ảnh tư liệu của ${name}`}
+      title="Chưa tìm được ảnh tư liệu xác thực"
+    >
+      <Cross size={width > 100 ? 28 : 22} color="#B45309" strokeWidth={1.6} />
+      <span
+        style={{
+          fontSize: width > 100 ? '0.62rem' : '0.55rem',
+          fontWeight: 700,
+          lineHeight: 1.25,
+          color: 'var(--color-subtle)'
+        }}
+      >
+        Chưa có ảnh tư liệu
+      </span>
+    </div>
+  );
+}
+
 export interface DetailedBioRecord {
   id: string;
   name: string;
@@ -50,7 +124,8 @@ export interface DetailedBioRecord {
   priestOrdination?: string;
   bishopConsecration?: string;
   consecrator?: string;
-  image: string;
+  /** Bỏ trống khi không có ảnh tư liệu xác thực — KHÔNG dùng ảnh thay thế. */
+  image?: string;
   shortDesc: string;
   chronology: { time: string; title: string; content: string }[];
   milestones: string[];
@@ -278,42 +353,6 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Thành viên Bộ Truyền Thông Tòa Thánh Vatican đại diện cho Giáo hội Việt Nam.',
       'Nhà thuyết giảng thần học và Huấn giáo Kinh Thánh uyên bác hàng đầu Việt Nam.'
     ]
-  },
-  {
-    id: 'cha-ha-van-xung',
-    name: 'Linh mục Giacôbê Hà Văn Xung',
-    saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
-    role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho',
-    period: 'Hiện tại',
-    birth: 'Giáo phận Mỹ Tho',
-    origin: 'Giáo phận Mỹ Tho',
-    motto: '“Tôi tớ trung tín phục vụ Dân Chúa”',
-    mottoLatin: 'In Caritate et Ministerio',
-    image: '/images/cha_so_ha_van_xung.jpg',
-    shortDesc: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho kiêm Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho. Ngài luôn đồng hành chặt chẽ cùng Đức Giám mục Giáo phận, điều phối sứ vụ mục tử liên xứ trong giáo hạt, chăm lo đời sống thiêng liêng cho cộng đoàn Chánh Tòa và dẫn dắt các phong trào hội đoàn giáo dân.',
-    chronology: [
-      {
-        time: 'Trọng trách Giáo Hạt',
-        title: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho',
-        content: 'Được Đức Giám mục Giáo phận tín nhiệm giao phó trọng trách Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho. Ngài chịu trách nhiệm điều phối công tác mục vụ giữa các giáo xứ trong hạt, chủ tọa các phiên họp linh mục hạt, tổ chức các cuộc hành hương Năm Thánh, đại lễ liên xứ và gắn kết sự hiệp thông với Tòa Giám mục.'
-      },
-      {
-        time: 'Mục tử Chánh xứ',
-        title: 'Cha Sở Nhà thờ Chánh Tòa Mỹ Tho',
-        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận Mỹ Tho. Ngài đã chủ trì công trình Đại trùng tu Bách Chu Niên (2006 – 2007) nhân dịp 100 năm xây dựng ngôi thánh đường, nới rộng hai cánh nhà thờ, cải tạo tháp chuông kiên cố, khánh thành tòa Nhà Mục vụ Giáo xứ (2020) và công trình Lễ đài Đức Mẹ.'
-      },
-      {
-        time: 'Sứ vụ Mục vụ',
-        title: 'Cử hành Phụng vụ & Đồng hành Đoàn thể',
-        content: 'Chủ tế và đồng tế trong các thánh lễ đại triều của Giáo phận, cử hành các bí tích, giải tội, xức dầu bệnh nhân, chăm sóc người cao tuổi, và linh hướng cho các đoàn thể nòng cốt như Xứ Đoàn Thiếu Nhi Thánh Thể Các Thánh Tử Đạo Việt Nam, Huynh Trưởng và Hội Các Bà Mẹ Công Giáo.'
-      }
-    ],
-    milestones: [
-      'Linh mục Trưởng Hạt Giáo hạt Mỹ Tho, điều phối và gắn kết các linh mục cùng các cộng đoàn giáo xứ trong hạt.',
-      'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, ngôi Thánh đường Mẹ của Giáo phận.',
-      'Chủ trì công trình Đại trùng tu Bách Chu Niên Nhà thờ Chánh Tòa (2006 – 2007) và xây dựng Nhà Mục vụ Giáo xứ (2020).',
-      'Mục tử tận tụy trong việc cử hành bí tích, chăm sóc mục vụ bệnh nhân và nâng đỡ các đoàn thể đức tin.'
-    ]
   }
 ];
 
@@ -355,6 +394,31 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
   ]
 };
 
+/**
+ * Cha sở họ đạo Chánh Tòa Mỹ Tho qua các thời kỳ.
+ *
+ * TÌNH TRẠNG ẢNH TƯ LIỆU (đã tra kho lưu trữ, 2026-08):
+ *  - Bouillevaux: có ảnh thật, nguồn Gallica/BNF (Société de Géographie,
+ *    P. n°1416). Hồ sơ IRFA 0573.
+ *  - Guillou: hồ sơ IRFA 0682 ghi rõ KHÔNG có chân dung lưu trữ.
+ *  - Régnier, Nguyễn Minh Chiếu, Huỳnh Kim Do, Nguyễn Văn Chúc: không tìm
+ *    được chân dung ở bất kỳ nguồn công khai nào.
+ * Các mục thiếu ảnh để trống trường `image` và hiện ô "Chưa có ảnh tư liệu".
+ * KHÔNG mượn ảnh nhà thờ hay ảnh người khác để lấp chỗ trống.
+ *
+ * CẢNH BÁO ĐỘ CHÍNH XÁC — cần đối chiếu sổ sách họ đạo:
+ *  - "Lm. Joseph-Marie Bachelard (Cố Bạch), 1910–1956": không xác minh được.
+ *    Thừa sai MEP duy nhất mang họ Bachelard là Étienne Bachelard (1860–1921),
+ *    phục vụ tại Ấn Độ (Ootacamund, Palghat), an táng 01/1926. Wikipedia
+ *    tiếng Việt về nhà thờ chính tòa Mỹ Tho không nhắc tên này.
+ *  - Guillou: IRFA ghi ngài coi sóc Mi-tho năm 1861 và 1864 (xen kẽ Cai-mong
+ *    1863, chuyển Thủ Dầu Một 1865, mất tại Sài Gòn 16/03/1866), không phải
+ *    liên tục 1860–1866.
+ *  - Bouillevaux: IRFA ghi nhiệm sở Sài Gòn / Chợ Quán (1849–1855, 1866–1873),
+ *    không ghi nhận 40 năm tại Mỹ Tho đến 1906.
+ * Đã xác nhận: Régnier khởi công nhà thờ 11/08/1906, hoàn thành 1910;
+ * Nguyễn Minh Chiếu dời chuông 1958; Nguyễn Văn Chúc xây tháp chuông 16/02/1995.
+ */
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-marc-guillou',
@@ -363,7 +427,6 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     role: 'Linh mục Quản xứ Tiên khởi Họ đạo Mỹ Tho (1860 – 1866)',
     period: '1860 – 1866',
     origin: 'Hội Thừa Sai Paris (Missions Étrangères de Paris - MEP)',
-    image: '/images/nhatho1.jpg',
     shortDesc: 'Vị mục tử đầu tiên đến coi sóc cộng đoàn Công giáo Mỹ Tho thời kỳ sơ khai sau biến cố phân sáp và cuộc tử đạo của Cha Thánh Phêrô Nguyễn Văn Lựu (1861). Ngài có công quy tụ giáo dân, thiết lập các sổ sách bí tích đầu tiên và dựng ngôi nhà nguyện đầu tiên kính Thánh Phanxicô Xaviê tại đồn Mỹ Tho.',
     chronology: [
       {
@@ -429,7 +492,6 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     role: 'Linh mục Chánh xứ Kiến thiết Nhà thờ Chánh Tòa Mỹ Tho (1906 – 1910)',
     period: '1906 – 1910',
     origin: 'Hội Thừa Sai Paris (MEP)',
-    image: '/images/nhatho1.jpg',
     shortDesc: 'Vị linh mục kiến thiết có công đức vĩ đại trong lịch sử Giáo phận Mỹ Tho. Ngày 11/08/1906, Cha Régnier (dân địa phương kính yêu gọi là Cố Gẫm) đã long trọng đặt viên đá đầu tiên và chỉ huy xây dựng ngôi Nhà thờ thứ ba trên đại lộ Bourdais (nay là đại lộ Hùng Vương), hoàn thành năm 1910 - chính là ngôi Nhà thờ Chánh Tòa nguy nga hiện nay.',
     chronology: [
       {
@@ -461,7 +523,6 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (1910 – 1956)',
     period: '1910 – 1956',
     origin: 'Hội Thừa Sai Paris (MEP)',
-    image: '/images/nhatho3.jpg',
     shortDesc: 'Coi sóc họ đạo Mỹ Tho trong suốt hơn 4 thập kỷ đầy thăng trầm lịch sử. Cha đã mời Dòng Nữ tu Thánh Phaolô thành Chartres (Saint Paul de Chartres) về giúp họ đạo, mở trường tư thục Công giáo, cô nhi viện, đào tạo Ban Quới Chức và gìn giữ ngọn lửa đức tin qua hai cuộc Thế chiến.',
     chronology: [
       {
@@ -493,7 +554,6 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     role: 'Linh mục Việt Nam Tiên khởi làm Chánh xứ Họ đạo Mỹ Tho (1956 – 1958)',
     period: '1956 – 1958',
     origin: 'Giáo phận Sài Gòn / Giáo hạt Mỹ Tho',
-    image: '/images/nhatho_thapchuong.jpg',
     shortDesc: 'Vị linh mục Việt Nam bản xứ đầu tiên chính thức đảm nhận cương vị Cha sở Chánh xứ Họ đạo Mỹ Tho. Ngài có công củng cố Ban Quới Chức người Việt, kiện toàn tổ chức giáo xứ và thực hiện công trình lịch sử di dời quả chuông lớn của nhà thờ lên tháp cao phía Nam vào năm 1958.',
     chronology: [
       {
@@ -525,7 +585,6 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     role: 'Linh mục Chánh xứ Họ đạo Mỹ Tho thời kỳ Thành lập Giáo phận (1958 – 1975)',
     period: '1958 – 1975',
     origin: 'Giáo phận Mỹ Tho',
-    image: '/images/nhatho_thapchuong.jpg',
     shortDesc: 'Cha sở thời kỳ lịch sử bản lề khi Giáo phận Mỹ Tho được chính thức thành lập ngày 24/11/1960. Ngài đã chuẩn bị cơ sở vật chất và nghi lễ để đón nhận sắc phong Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm, phục vụ đắc lực bên cạnh Đức Giám mục Tiên khởi Giuse Trần Văn Thiện.',
     chronology: [
       {
@@ -558,7 +617,6 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     period: '1975 – 1998',
     death: '14/12/1999 tại Tiền Giang',
     origin: 'Giáo phận Mỹ Tho',
-    image: '/images/nhatho_thapchuong.jpg',
     shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc vĩ đại nhất của ngài là công trình xây dựng Tháp chuông độc lập cao 24 mét tách rời (1995) để bảo tồn kết cấu vòm thánh đường cổ kính.',
     chronology: [
       {
@@ -581,6 +639,42 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Chủ trì xây dựng Tháp chuông độc lập cao 24 mét tách rời (1995) bảo vệ ngôi thánh đường cổ.',
       'Mục tử nhân ái gìn giữ sự bình an và đức tin kiên trung của Giáo xứ Chánh Tòa suốt hơn 20 năm.',
       'Thành lập họ đạo Tân Long và chăm lo đời sống người nghèo khó.'
+    ]
+  },
+  {
+    id: 'cha-ha-van-xung',
+    name: 'Linh mục Giacôbê Hà Văn Xung',
+    saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
+    role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho',
+    period: 'Hiện tại',
+    birth: 'Giáo phận Mỹ Tho',
+    origin: 'Giáo phận Mỹ Tho',
+    motto: '“Tôi tớ trung tín phục vụ Dân Chúa”',
+    mottoLatin: 'In Caritate et Ministerio',
+    image: '/images/cha_so_ha_van_xung.jpg',
+    shortDesc: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho kiêm Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho. Ngài luôn đồng hành chặt chẽ cùng Đức Giám mục Giáo phận, điều phối sứ vụ mục tử liên xứ trong giáo hạt, chăm lo đời sống thiêng liêng cho cộng đoàn Chánh Tòa và dẫn dắt các phong trào hội đoàn giáo dân.',
+    chronology: [
+      {
+        time: 'Trọng trách Giáo Hạt',
+        title: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho',
+        content: 'Được Đức Giám mục Giáo phận tín nhiệm giao phó trọng trách Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho. Ngài chịu trách nhiệm điều phối công tác mục vụ giữa các giáo xứ trong hạt, chủ tọa các phiên họp linh mục hạt, tổ chức các cuộc hành hương Năm Thánh, đại lễ liên xứ và gắn kết sự hiệp thông với Tòa Giám mục.'
+      },
+      {
+        time: 'Mục tử Chánh xứ',
+        title: 'Cha Sở Nhà thờ Chánh Tòa Mỹ Tho',
+        content: 'Trực tiếp coi sóc ngôi Thánh đường Mẹ của Giáo phận Mỹ Tho. Ngài đã chủ trì công trình Đại trùng tu Bách Chu Niên (2006 – 2007) nhân dịp 100 năm xây dựng ngôi thánh đường, nới rộng hai cánh nhà thờ, cải tạo tháp chuông kiên cố, khánh thành tòa Nhà Mục vụ Giáo xứ (2020) và công trình Lễ đài Đức Mẹ.'
+      },
+      {
+        time: 'Sứ vụ Mục vụ',
+        title: 'Cử hành Phụng vụ & Đồng hành Đoàn thể',
+        content: 'Chủ tế và đồng tế trong các thánh lễ đại triều của Giáo phận, cử hành các bí tích, giải tội, xức dầu bệnh nhân, chăm sóc người cao tuổi, và linh hướng cho các đoàn thể nòng cốt như Xứ Đoàn Thiếu Nhi Thánh Thể Các Thánh Tử Đạo Việt Nam, Huynh Trưởng và Hội Các Bà Mẹ Công Giáo.'
+      }
+    ],
+    milestones: [
+      'Linh mục Trưởng Hạt Giáo hạt Mỹ Tho, điều phối và gắn kết các linh mục cùng các cộng đoàn giáo xứ trong hạt.',
+      'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, ngôi Thánh đường Mẹ của Giáo phận.',
+      'Chủ trì công trình Đại trùng tu Bách Chu Niên Nhà thờ Chánh Tòa (2006 – 2007) và xây dựng Nhà Mục vụ Giáo xứ (2020).',
+      'Mục tử tận tụy trong việc cử hành bí tích, chăm sóc mục vụ bệnh nhân và nâng đỡ các đoàn thể đức tin.'
     ]
   }
 ];
@@ -1839,28 +1933,8 @@ export default function GioiThieuPage() {
                   }}
                   className="bishop-card-hover"
                 >
-                  {/* Khung ảnh chân dung dọc (Aspect Ratio 3:4) - Luôn hiển thị trọn vẹn đầu & khuôn mặt */}
-                  <div
-                    style={{
-                      width: '85px',
-                      height: '110px',
-                      borderRadius: '8px',
-                      overflow: 'hidden',
-                      position: 'relative',
-                      flexShrink: 0,
-                      border: '1.5px solid #B45309',
-                      backgroundColor: 'var(--color-input-bg)',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-                    }}
-                  >
-                    <Image
-                      src={b.image}
-                      alt={b.name}
-                      fill
-                      sizes="85px"
-                      style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                    />
-                  </div>
+                  {/* Khung ảnh chân dung dọc (Aspect Ratio 3:4) */}
+                  <PortraitFrame src={b.image} name={b.name} width={85} height={110} />
 
                   <div style={{ flex: 1, minWidth: '220px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
@@ -2720,27 +2794,7 @@ export default function GioiThieuPage() {
               {/* Header profile */}
               <div style={{ display: 'flex', gap: '18px', alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: '20px' }}>
                 {/* Ảnh chân dung đầy đủ không bị cắt đầu */}
-                <div
-                  style={{
-                    width: '110px',
-                    height: '150px',
-                    borderRadius: '10px',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    flexShrink: 0,
-                    border: '1.5px solid #B45309',
-                    backgroundColor: 'var(--color-input-bg)',
-                    boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
-                  }}
-                >
-                  <Image
-                    src={selectedBio.image}
-                    alt={selectedBio.name}
-                    fill
-                    sizes="110px"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                </div>
+                <PortraitFrame src={selectedBio.image} name={selectedBio.name} width={110} height={150} />
 
                 <div style={{ flex: 1, minWidth: '240px' }}>
                   <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-dark)' }}>
