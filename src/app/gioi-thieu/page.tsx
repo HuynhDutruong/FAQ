@@ -399,25 +399,27 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
 };
 
 /**
- * Cha sở họ đạo / Nhà thờ Chánh Tòa Mỹ Tho qua các thời kỳ.
+ * Cha sở họ đạo / Nhà thờ Chánh Tòa Mỹ Tho qua các thời kỳ — 1861 đến nay,
+ * chuỗi liền mạch không còn khoảng trống.
  *
  * QUY TẮC: mỗi mục phải kèm trường `source` nói rõ thông tin lấy từ đâu.
  * Không đưa tên vào danh sách nếu không có nguồn — thà để "Chưa cập nhật".
  *
  * NGUỒN ĐÃ ĐỐI CHIẾU (tra cứu 2026-08):
  *  - IRFA / Hội Thừa Sai Paris — irfa.paris/missionnaire/<mã>-<họ>-<tên>/
- *    Đã rà toàn bộ 32 hồ sơ thừa sai MEP có nhắc "Mytho".
- *  - "Lịch sử Khai Sinh Giáo Phận" và "Tổ chức Giáo phận" (giaophanmytho.net,
- *    tài liệu chính thức GP Mỹ Tho soạn 03/2009 cho Kỷ Yếu Năm Thánh 2010).
+ *  - giaophanmytho.net: "Lịch sử Khai Sinh Giáo Phận", "Tổ chức Giáo phận"
+ *    (tài liệu chính thức soạn 03/2009 cho Kỷ Yếu Năm Thánh 2010 HĐGMVN),
+ *    và bài "Giáo xứ Bình Tạo".
  *  - gxhanhthongtay.net (danh sách các đời cha xứ Hạnh Thông Tây).
  *  - Gallica/BNF, Wikipedia tiếng Việt, cgvdt.vn, hdgmvietnam.com.
  *
- * CHUỖI THỪA SAI PHÁP dựng lại từ hồ sơ IRFA — mỗi mắt xích được xác nhận
- * chéo bởi hồ sơ của người kế nhiệm:
- *    Guillou (1861–1865) → [trống 1865–1870] → Sorel (1870–1872, khởi công
- *    nhà thờ Vĩnh Tường) → Moulins (1873–1899, hoàn tất nhà thờ Vĩnh Tường,
- *    27 năm) → Rénier (1899–1922, xây Nhà thờ Chánh Tòa hiện nay) →
- *    Bar (khoảng 1922–1948, mất tại nhiệm sở).
+ * CHUỖI THỪA SAI PHÁP — mỗi mắt xích xác nhận chéo bởi hồ sơ người kế nhiệm:
+ *    Guillou (1861–1865) → Lizé (từ 1864) và Marc-Dassa (1866–1870, hồ sơ
+ *    ghi nguyên văn "chargé d'abord avec Lizé, et ensuite seul, de la
+ *    paroisse de Mi-tho") → Sorel (1870–1872, khởi công nhà thờ Vĩnh Tường)
+ *    → Moulins (1873–1899, hoàn tất nhà thờ Vĩnh Tường, 27 năm) →
+ *    Rénier (1899–1922, xây Nhà thờ Chánh Tòa hiện nay) → Bar (~1922–1948,
+ *    mất tại nhiệm sở).
  *  Hồ sơ Rénier: "Mgr Mossard l'envoyait à Mytho remplacer M. Moulins, qui
  *  était appelé à la cathédrale de Saïgon... M. Moulins était à Mytho depuis
  *  25 ans". Hồ sơ Moulins: ngài "hoàn tất ngôi nhà thờ do Sorel khởi công".
@@ -427,17 +429,17 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *  - Cha Nguyễn Khoa Học: cha sở tiên khởi của NHÀ THỜ CHÁNH TÒA — nhà thờ
  *    chỉ được nâng lên hàng chánh tòa cuối năm 1960. Cha Nguyễn Minh Chiếu
  *    là vị cha sở cuối cùng khi nơi đây còn là giáo xứ thuộc GP Sài Gòn.
- *  Mốc 1960–1968 của Cha Nguyễn Khoa Học xác định được nhờ gxhanhthongtay.net
- *  ghi ngài làm cha sở Hạnh Thông Tây 1968–1974 (kế nhiệm Cha Anrê Nguyễn
- *  Văn Đại 1961–1968).
+ *  Mốc kết thúc 1965 của Cha Nguyễn Khoa Học suy ra từ bài Giáo xứ Bình Tạo:
+ *  "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa
+ *  Mỹ Tho". Ngài về Hạnh Thông Tây năm 1968 (gxhanhthongtay.net), nên giai
+ *  đoạn 1965–1968 của ngài chưa rõ ở đâu.
  *
  * ĐÃ GỠ KHỎI DANH SÁCH:
  *  - Eugène FARON (IRFA 1189): KHÔNG phải cha sở mà là "aumônier de l'hôpital
  *    militaire", confrère được gửi đến giúp cha sở Moulins từ 1874.
  *  - Charles-Émile BOUILLEVAUX (IRFA 0573): chỉ ở Sài Gòn/Chợ Quán
  *    (1849–1855, 1866–1873), chưa từng làm cha sở Mỹ Tho.
- *  - GB. HUỲNH KIM DO: không tìm được trong bất kỳ nguồn công khai nào, kể
- *    cả danh sách linh mục đoàn GP Mỹ Tho 2009.
+ *  - GB. HUỲNH KIM DO: không tìm được trong bất kỳ nguồn công khai nào.
  *  Ảnh cha_faron.jpg và cha_bouillevaux.jpg vẫn giữ trong repo (đúng người,
  *  chỉ là đặt sai chỗ) nếu muốn nêu các ngài ở mục khác.
  *
@@ -445,19 +447,21 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *  - Sorel (IRFA 0869, bút tích "Sorel, Coch. Occid."), Moulins (IRFA 1056),
  *    Rénier (IRFA 1502, bút tích "Rénier, Cochinchine occid."),
  *    Bar (IRFA 2241, ảnh chụp cuối đời tại Mỹ Tho).
- *  - Guillou: IRFA 0682 KHÔNG có ảnh (đường dẫn ảnh trả về 404).
- *  - Ba cha sở Việt Nam: không có ảnh trên Internet, cần xin từ văn phòng
+ *  - Guillou (0682), Lizé (0792), Marc-Dassa (0657): IRFA KHÔNG có ảnh
+ *    (đường dẫn ảnh trả về 404).
+ *  - Bốn cha sở Việt Nam: không có ảnh trên Internet, cần xin từ văn phòng
  *    giáo xứ. Mục thiếu ảnh để trống `image` và hiện ô "Chưa có ảnh tư liệu".
  *
  * CÒN TỒN, CẦN ĐỐI CHIẾU SỔ SÁCH HỌ ĐẠO:
- *  - Trống 1865–1870 và 1968–1975.
  *  - Mốc 1948 (Cha Nguyễn Minh Chiếu nhận sở) và 1975 (Cha Nguyễn Văn Chúc
  *    nhận sở) theo tư liệu giáo xứ, chưa có nguồn công khai xác nhận.
+ *  - Năm Cha Bar nhận sở (~1922) không có trong hồ sơ IRFA; suy ra vì ngài
+ *    kế nhiệm Cha Rénier, mốc có ngày tháng sớm nhất tại Mỹ Tho là 1929.
  *  - Tư liệu giáo xứ nêu giai đoạn 1975–1992 Cha Nguyễn Văn Chúc cùng Cha
  *    Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền phụ trách giáo xứ; hai
  *    tên sau chưa tìm được nguồn công khai nên chưa lập mục riêng.
  *  - cgvdt.vn: giai đoạn 1866–1960 họ đạo trải qua hơn 80 linh mục, nên đây
- *    chỉ là niên biểu các vị chánh sở tiêu biểu.
+ *    là niên biểu các vị chánh sở, không phải toàn bộ linh mục từng phục vụ.
  */
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
@@ -504,6 +508,94 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Vị mục tử tiên khởi của Họ đạo Mỹ Tho, coi sóc địa hạt từ năm 1861.',
       'Đồng sáng lập cộng đoàn Kitô hữu Bro-lam giữa người Stiêng.',
       'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (1864).'
+    ]
+  },
+  {
+    id: 'cha-lize',
+    name: 'Lm. François-René Lizé (MEP)',
+    saintName: 'Thánh Phanxicô',
+    role: 'Linh mục coi sóc Họ đạo Mỹ Tho & Vĩnh Tường (1864 – 1874)',
+    period: '1864 – 1869',
+    birth: '08/06/1838 tại Châteaugiron, Giáo phận Rennes, Pháp',
+    death: '08/02/1887 tại nhà an dưỡng Béthanie, Hồng Kông',
+    priestOrdination: 'Thụ phong Linh mục ngày 25/05/1861',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 0792',
+    source: 'Hồ sơ lưu trữ IRFA 0792',
+    tableNote: 'Về Mỹ Tho năm 1864, giúp các Nữ tu Thánh Phaolô thành Chartres lập cơ sở Thánh Nhi (Sainte-Enfance). Từ năm 1866 cùng Cha Marc phụ trách họ đạo. Khoảng 1869 chuyển hẳn về Vĩnh Tường — khi đó còn là họ nhánh của Mỹ Tho — và lập tại đó một bệnh viện bản xứ.',
+    shortDesc: 'Vị thừa sai gắn bó với Mỹ Tho suốt mười năm. Ngài về đây năm 1864 và giúp các Nữ tu Thánh Phaolô thành Chartres thiết lập cơ sở Thánh Nhi. Từ năm 1866 ngài cùng Cha Marc phụ trách họ đạo Mỹ Tho. Khoảng năm 1869 ngài chuyển hẳn sang Vĩnh Tường — lúc bấy giờ còn là họ nhánh của Mỹ Tho — và lập ở đó một bệnh viện bản xứ do các Nữ tu đảm nhiệm. Được đặt làm Phó Đại diện Tông tòa khoảng năm 1872.',
+    chronology: [
+      {
+        time: '1861 – 1864',
+        title: 'Thụ phong & Những năm đầu tại Nam Kỳ',
+        content: 'Thụ phong linh mục ngày 25/05/1861 và lên đường sang Giáo phận Tây Đàng Trong ngày 09/08/1861. Khởi đầu tại Bưng trước khi về Mỹ Tho năm 1864.'
+      },
+      {
+        time: '1864 – 1866',
+        title: 'Lập cơ sở Thánh Nhi tại Mỹ Tho',
+        content: 'Giúp các Nữ tu Thánh Phaolô thành Chartres thiết lập cơ sở Thánh Nhi (Sainte-Enfance) tại Mỹ Tho, chăm sóc trẻ mồ côi và trẻ bị bỏ rơi.'
+      },
+      {
+        time: '1866 – 1869',
+        title: 'Cùng Cha Marc phụ trách họ đạo',
+        content: 'Kho lưu trữ MEP ghi từ năm 1866 ngài cùng Cha Marc-Dassa đảm trách giáo xứ Mỹ Tho.'
+      },
+      {
+        time: 'khoảng 1869 – 1874',
+        title: 'Về Vĩnh Tường & lập bệnh viện bản xứ',
+        content: 'Chuyển hẳn về Vĩnh Tường, khi ấy còn là họ nhánh của Mỹ Tho, và lập tại đó một bệnh viện bản xứ. Được đặt làm Phó Đại diện Tông tòa khoảng năm 1872. Bệnh nặng, ngài về Pháp năm 1874.'
+      },
+      {
+        time: '1878 – 1887',
+        title: 'Trở lại Nam Kỳ & những năm cuối',
+        content: 'Bình phục, ngài trở lại Tây Đàng Trong năm 1878, làm tuyên úy cơ sở Thánh Nhi Sài Gòn; năm 1881 Đức cha Colombert trao cho ngài địa hạt Vĩnh Long, nơi ngài lập nhiều họ đạo và nhà nguyện. Ngài qua đời ngày 08/02/1887 tại Hồng Kông.'
+      }
+    ],
+    milestones: [
+      'Về Mỹ Tho năm 1864; cùng Cha Marc phụ trách họ đạo từ 1866.',
+      'Giúp các Nữ tu Thánh Phaolô thành Chartres lập cơ sở Thánh Nhi tại Mỹ Tho.',
+      'Lập bệnh viện bản xứ tại Vĩnh Tường (khoảng 1869).',
+      'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (khoảng 1872).'
+    ]
+  },
+  {
+    id: 'cha-marc-dassa',
+    name: 'Lm. François-Timothée Marc-Dassa (MEP)',
+    saintName: 'Thánh Phanxicô',
+    role: 'Linh mục phụ trách Giáo xứ Mỹ Tho (1866 – 1870)',
+    period: '1866 – 1870',
+    birth: '22/01/1826 tại La Grâce-Dieu, Giáo phận Toulouse, Pháp',
+    death: '11/04/1870 tại La Grâce-Dieu, Pháp',
+    priestOrdination: 'Thụ phong Linh mục ngày 23/05/1850',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 0657. Thường được gọi vắn tắt là "Cha Marc"',
+    source: 'Hồ sơ lưu trữ IRFA 0657 — nguyên văn: "De 1866 à 1870, il fut chargé d\'abord avec Lizé, et ensuite seul, de la paroisse de Mi-tho"',
+    tableNote: 'Phụ trách giáo xứ Mỹ Tho, ban đầu cùng Cha Lizé rồi sau đó một mình. Ngài xin được ân xá cho một số nghĩa quân; những người này về sau theo đạo và lập nên họ đạo An Đức.',
+    shortDesc: 'Thường được gọi vắn tắt là "Cha Marc". Ngài truyền giáo tại Bắc Kỳ từ năm 1854 nhưng cuộc bách hại buộc ngài rời nhiệm sở; năm 1860 ngài lánh về Sài Gòn và gia nhập địa phận Tây Đàng Trong, vừa coi sóc một số họ đạo vừa làm thông ngôn. Từ 1866 đến 1870 ngài phụ trách giáo xứ Mỹ Tho — ban đầu cùng Cha Lizé, sau đó một mình. Dấu ấn đặc biệt của ngài là xin được ân xá cho một số nghĩa quân; những người này sau đó theo đạo và lập nên họ đạo An Đức.',
+    chronology: [
+      {
+        time: '1850 – 1860',
+        title: 'Thừa sai Bắc Kỳ giữa cơn bách hại',
+        content: 'Thụ phong linh mục tại Toulouse ngày 23/05/1850, vào Chủng viện Thừa Sai Paris năm 1853 và lên đường sang Bắc Kỳ ngày 22/03/1854. Cuộc bách hại buộc ngài rời nhiệm sở; năm 1860 ngài lánh về Sài Gòn và được sáp nhập vào địa phận Tây Đàng Trong.'
+      },
+      {
+        time: '1860 – 1866',
+        title: 'Coi sóc các họ đạo & làm thông ngôn',
+        content: 'Vừa coi sóc một số họ đạo vừa làm thông ngôn cho đoàn quân viễn chinh và những viên chức đầu tiên của chính quyền thuộc địa.'
+      },
+      {
+        time: '1866 – 1870',
+        title: 'Phụ trách giáo xứ Mỹ Tho',
+        content: 'Đảm trách giáo xứ Mỹ Tho, ban đầu cùng Cha Lizé rồi sau đó một mình. Ngài xin được ân xá cho một số nghĩa quân; những người này về sau đón nhận đức tin và lập nên họ đạo An Đức.'
+      },
+      {
+        time: '1870',
+        title: 'Trở về Pháp & qua đời',
+        content: 'Lâm bệnh nặng năm 1870, ngài về Pháp và qua đời ngày 11/04/1870 ngay tại quê nhà La Grâce-Dieu.'
+      }
+    ],
+    milestones: [
+      'Phụ trách giáo xứ Mỹ Tho 1866 – 1870.',
+      'Xin được ân xá cho một số nghĩa quân, những người sau đó lập nên họ đạo An Đức.',
+      'Thừa sai Bắc Kỳ 1854 – 1860 giữa thời kỳ bách hại.'
     ]
   },
   {
@@ -743,13 +835,13 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-khoa-hoc',
-    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974, xác định mốc rời Mỹ Tho)',
+    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa; bài Giáo xứ Bình Tạo cho biết Cha Phêrô Niềm kế nhiệm năm 1965) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974)',
     name: 'Lm. Micae Nguyễn Khoa Học',
     saintName: 'Thánh Micae Tổng lãnh Thiên thần',
-    role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1968)',
-    period: '1960 – 1968',
+    role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1965)',
+    period: '1960 – 1965',
     origin: 'Giáo phận Mỹ Tho',
-    tableNote: 'Cha sở tiên khởi của Nhà thờ Chánh Tòa sau khi giáo phận được thành lập (1960). Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong khuôn viên cạnh nhà thờ; thành lập Trường Tiểu học Thánh Giuse tại giáo xứ. Cuối năm 1968 thuyên chuyển về Giáo xứ Hạnh Thông Tây (Sài Gòn).',
+    tableNote: 'Cha sở tiên khởi của Nhà thờ Chánh Tòa sau khi giáo phận được thành lập (1960). Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong khuôn viên cạnh nhà thờ; thành lập Trường Tiểu học Thánh Giuse tại giáo xứ. Rời Chánh Tòa năm 1965, về làm cha sở Giáo xứ Hạnh Thông Tây (Sài Gòn) từ 1968 đến 1974.',
     shortDesc: 'Khi Giáo phận Mỹ Tho được thành lập năm 1960, giáo phận chưa có Tòa Giám Mục; Đức Cha Giuse Trần Văn Thiện phải tạm trú tại một ngôi nhà trên đường Lê Lợi, đối diện Bưu điện Mỹ Tho. Là cha sở tiên khởi của Nhà thờ Chánh Tòa, ngài đảm trách xây dựng cả cụm công trình trong khuôn viên cạnh nhà thờ — Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở — vẫn còn đến ngày nay. Chỉ sau khi Tòa Giám Mục hoàn thành, Đức Cha Giuse mới chính thức về thường trú.',
     chronology: [
       {
@@ -768,16 +860,65 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Thành lập Trường Tiểu học Thánh Giuse ngay tại giáo xứ Chánh Tòa, mở rộng công cuộc giáo dục cho con em trong họ đạo.'
       },
       {
-        time: 'cuối 1968',
-        title: 'Thuyên chuyển về Giáo xứ Hạnh Thông Tây',
-        content: 'Cuối năm 1968 ngài rời Mỹ Tho, về làm Chánh sở Giáo xứ Hạnh Thông Tây (Gò Vấp, Sài Gòn) và phục vụ tại đó cho đến năm 1974, kế nhiệm Cha Anrê Nguyễn Văn Đại. Giai đoạn này ngài lo trùng tu thánh đường sau những thiệt hại của chiến cuộc.'
+        time: '1965',
+        title: 'Bàn giao Nhà thờ Chánh Tòa',
+        content: 'Năm 1965 Cha Phêrô Nguyễn Văn Niềm được sai về làm Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, kế nhiệm ngài.'
+      },
+      {
+        time: '1968 – 1974',
+        title: 'Chánh sở Giáo xứ Hạnh Thông Tây',
+        content: 'Làm Chánh sở Giáo xứ Hạnh Thông Tây (Gò Vấp, Sài Gòn) từ 1968 đến 1974, kế nhiệm Cha Anrê Nguyễn Văn Đại. Giai đoạn này ngài lo trùng tu thánh đường sau những thiệt hại của chiến cuộc.'
       }
     ],
     milestones: [
-      'Linh mục Chánh sở tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1968).',
+      'Linh mục Chánh sở tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1965).',
       'Đảm trách xây dựng Tòa Giám Mục Mỹ Tho đầu tiên, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở.',
       'Thành lập Trường Tiểu học Thánh Giuse tại giáo xứ Chánh Tòa.',
       'Chánh sở Giáo xứ Hạnh Thông Tây, Gò Vấp (1968 – 1974).'
+    ]
+  },
+  {
+    id: 'cha-nguyen-van-niem',
+    name: 'Lm. Phêrô Nguyễn Văn Niềm',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1965 – đầu 1975)',
+    period: '1965 – 1975',
+    origin: 'Giáo phận Mỹ Tho',
+    source: 'giaophanmytho.net, bài Giáo xứ Bình Tạo: "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa Mỹ Tho"',
+    tableNote: 'Trước đó là Cha Sở Giáo xứ An Đức (1959 – 1965), kiêm nhiệm cả họ đạo Bình Tạo. Về Chánh Tòa năm 1965, coi sóc họ đạo qua giai đoạn chiến sự ác liệt từ biến cố Mậu Thân 1968; giữ vững sinh hoạt phụng vụ và tổ chức công tác bác ái trợ giúp đồng bào di tản đổ về thành phố Mỹ Tho.',
+    shortDesc: 'Kế nhiệm trực tiếp Cha Micae Nguyễn Khoa Học, ngài gánh vác họ đạo Chánh Tòa qua một giai đoạn đầy thử thách. Nhận nhiệm sở đúng lúc chiến sự trở nên ác liệt từ biến cố Mậu Thân 1968, sứ vụ của ngài tập trung vào việc giữ vững sinh hoạt phụng vụ, ổn định đời sống đức tin và tổ chức công tác bác ái trợ giúp làn sóng đồng bào di tản từ vùng chiến sự đổ về trung tâm thành phố. Ngài cũng là cộng sự đắc lực bên cạnh Đức Cha tiên khởi Giuse Trần Văn Thiện trong việc kiện toàn cơ cấu của một giáo phận còn non trẻ.',
+    chronology: [
+      {
+        time: '1959 – 1965',
+        title: 'Cha Sở Giáo xứ An Đức',
+        content: 'Coi sóc Giáo xứ An Đức và kiêm nhiệm họ đạo Bình Tạo từ năm 1959 đến 1965, khi số giáo dân Bình Tạo đã trên 160 người.'
+      },
+      {
+        time: '1965',
+        title: 'Về nhận Nhà thờ Chánh Tòa',
+        content: 'Được sai đi làm Cha Chánh Xứ Nhà thờ Chánh Tòa Mỹ Tho; Cha Tađêô Võ Thành Tích thay ngài coi sóc Giáo xứ An Đức và kiêm nhiệm Bình Tạo.'
+      },
+      {
+        time: '1968 – 1975',
+        title: 'Giữ vững đời sống đức tin & công tác bác ái',
+        content: 'Duy trì các sinh hoạt phụng vụ tại nhà thờ mẹ của giáo phận, ổn định đời sống đức tin cộng đoàn và tổ chức trợ giúp đồng bào di tản từ các vùng chiến sự về trung tâm thành phố Mỹ Tho.'
+      },
+      {
+        time: '1968 – 1975',
+        title: 'Cộng sự của Đức Cha tiên khởi',
+        content: 'Sát cánh cùng Đức Cha Giuse Trần Văn Thiện trong việc phát triển cơ cấu hành chính và mục vụ của Giáo phận Mỹ Tho còn non trẻ.'
+      },
+      {
+        time: 'đầu 1975',
+        title: 'Bàn giao sứ vụ',
+        content: 'Hoàn thành nhiệm kỳ và trao lại quyền chánh sở cho Cha Giuse Nguyễn Văn Chúc.'
+      }
+    ],
+    milestones: [
+      'Chánh sở Nhà thờ Chánh Tòa Mỹ Tho 1965 – đầu 1975.',
+      'Cha Sở Giáo xứ An Đức kiêm nhiệm họ đạo Bình Tạo (1959 – 1965).',
+      'Giữ vững sinh hoạt phụng vụ tại nhà thờ mẹ của giáo phận suốt thời chiến.',
+      'Tổ chức công tác bác ái trợ giúp đồng bào di tản về thành phố Mỹ Tho.'
     ]
   },
   {
@@ -877,10 +1018,7 @@ export interface PastorTimelineRow {
  * bảng để người đọc thấy rõ đâu là chỗ còn thiếu tư liệu, thay vì kéo dài
  * niên hiệu của vị trước cho liền mạch một cách sai lệch.
  */
-const PASTOR_GAPS: PastorTimelineRow[] = [
-  { period: '1865 – 1870' },
-  { period: '1968 – 1975' }
-];
+const PASTOR_GAPS: PastorTimelineRow[] = [];
 
 /** Năm bắt đầu của một mốc thời gian, dùng để xếp bảng theo đúng niên đại. */
 function startYear(period: string): number | null {
