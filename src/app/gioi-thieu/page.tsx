@@ -41,10 +41,10 @@ export interface DetailedBioRecord {
   saintName: string;
   role: string;
   period: string;
-  birth: string;
+  birth?: string;
   death?: string;
   origin: string;
-  motto: string;
+  motto?: string;
   mottoLatin?: string;
   priestOrdination?: string;
   bishopConsecration?: string;
@@ -354,8 +354,239 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
   ]
 };
 
+export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
+  {
+    id: 'cha-marc-guillou',
+    name: 'Lm. Marc Guillou (MEP)',
+    saintName: 'Thánh Marcô Tông Đồ (Mark)',
+    role: 'Linh mục Quản xứ Tiên khởi Họ đạo Mỹ Tho (1860 – 1866)',
+    period: '1860 – 1866',
+    origin: 'Hội Thừa Sai Paris (Missions Étrangères de Paris - MEP)',
+    image: '/images/nhatho1.jpg',
+    shortDesc: 'Vị mục tử đầu tiên đến coi sóc cộng đoàn Công giáo Mỹ Tho thời kỳ sơ khai sau biến cố phân sáp và cuộc tử đạo của Cha Thánh Phêrô Nguyễn Văn Lựu (1861). Ngài có công quy tụ giáo dân, thiết lập các sổ sách bí tích đầu tiên và dựng ngôi nhà nguyện đầu tiên kính Thánh Phanxicô Xaviê tại đồn Mỹ Tho.',
+    chronology: [
+      {
+        time: '1860',
+        title: 'Đến Mỹ Tho thừa sai',
+        content: 'Được bề trên Hội Thừa Sai Paris (MEP) cử đến vùng đất Mỹ Tho để quy tụ và chăm sóc mục vụ cho cộng đoàn tín hữu.'
+      },
+      {
+        time: '1861',
+        title: 'Thời kỳ thử thách & Chứng nhân tử đạo',
+        content: 'Đồng hành nâng đỡ đức tin cho giáo dân trong giai đoạn bách hại; ghi nhận và tôn kính cuộc tử đạo của Cha Thánh Phêrô Nguyễn Văn Lựu tại Mỹ Tho (07/04/1861).'
+      },
+      {
+        time: '1862 – 1866',
+        title: 'Xây dựng nhà thờ đầu tiên (Thánh Phanxicô Xaviê)',
+        content: 'Dựng ngôi nhà thờ đầu tiên bằng vật liệu kiên cố và khởi sự việc ghi chép sổ Rửa Tội, Hôn Phối đầu tiên của Họ đạo Mỹ Tho.'
+      }
+    ],
+    milestones: [
+      'Vị mục tử tiên khởi của Họ đạo Mỹ Tho (1860 – 1866).',
+      'Xây dựng ngôi nhà thờ đầu tiên (Nhà thờ Thánh Phanxicô Xaviê).',
+      'Thiết lập các cuốn sổ Bí tích đầu tiên đặt nền móng cho họ đạo.'
+    ]
+  },
+  {
+    id: 'cha-bouillevaux',
+    name: 'Lm. Charles-Émile Bouillevaux (MEP)',
+    saintName: 'Thánh Charles (Carôlô)',
+    role: 'Linh mục Thừa sai MEP • Quản xứ Họ đạo Vĩnh Tường Mỹ Tho (1866 – 1906)',
+    period: '1866 – 1906',
+    birth: '01/04/1823 tại Montier-en-Der (Haute-Marne), Pháp',
+    death: '06/01/1913 tại Montier-en-Der, Pháp (Hưởng thọ 90 tuổi)',
+    origin: 'Hội Thừa Sai Paris (MEP)',
+    image: '/images/cha_bouillevaux.jpg',
+    shortDesc: 'Nhà truyền giáo và nhà khảo cứu lỗi lạc thuộc Hội Thừa Sai Paris (người phương Tây đầu tiên khám phá Angkor năm 1850). Về Nam Kỳ, ngài cùng Đức Giám mục Miche xây dựng ngôi nhà thờ thứ hai của Mỹ Tho là Nhà thờ Vĩnh Tường dâng kính Thánh Tâm Chúa Giêsu (1866), phát triển họ đạo trong suốt 40 năm.',
+    chronology: [
+      {
+        time: '1848',
+        title: 'Thụ phong Linh mục & Lên đường Thừa sai',
+        content: 'Thụ phong linh mục ngày 17/06/1848 và lên tàu sang truyền giáo tại Giáo phận Tây Đàng Trong (Cochinchine).'
+      },
+      {
+        time: '1850',
+        title: 'Khảo cứu quần thể Angkor',
+        content: 'Ghi chép công trình khảo cứu lịch sử đầu tiên của phương Tây về khu đền cổ Angkor.'
+      },
+      {
+        time: '1866',
+        title: 'Khởi công Nhà thờ Vĩnh Tường (Thánh Tâm)',
+        content: 'Cùng Đức Giám mục Miche đặt viên đá và hoàn thành ngôi nhà thờ thứ hai tại họ đạo Mỹ Tho, quy tụ đông đảo tân tòng và mở rộng các họ đạo nhánh vùng Chợ Cũ, Bến Chùa.'
+      }
+    ],
+    milestones: [
+      'Chủ trì xây dựng ngôi nhà thờ thứ hai (Nhà thờ Vĩnh Tường - Thánh Tâm Chúa Giêsu, 1866).',
+      'Mở rộng địa bàn mục vụ khắp vùng Tiền Giang và củng cố đức tin cho giáo dân.',
+      'Học giả, nhà khảo cứu uyên bác của Hội Thừa Sai Paris (MEP).'
+    ]
+  },
+  {
+    id: 'cha-regnier-co-gam',
+    name: 'Lm. Lucien-Louis Régnier (Cố Gẫm - MEP)',
+    saintName: 'Thánh Lucien',
+    role: 'Linh mục Chánh xứ Kiến thiết Nhà thờ Chánh Tòa Mỹ Tho (1906 – 1910)',
+    period: '1906 – 1910',
+    origin: 'Hội Thừa Sai Paris (MEP)',
+    image: '/images/nhatho1.jpg',
+    shortDesc: 'Vị linh mục kiến thiết có công đức vĩ đại trong lịch sử Giáo phận Mỹ Tho. Ngày 11/08/1906, Cha Régnier (dân địa phương kính yêu gọi là Cố Gẫm) đã long trọng đặt viên đá đầu tiên và chỉ huy xây dựng ngôi Nhà thờ thứ ba trên đại lộ Bourdais (nay là đại lộ Hùng Vương), hoàn thành năm 1910 - chính là ngôi Nhà thờ Chánh Tòa nguy nga hiện nay.',
+    chronology: [
+      {
+        time: '1906',
+        title: 'Đặt viên đá đầu tiên (11/08/1906)',
+        content: 'Khởi công công trình thế kỷ trên khu đất sình lầy đại lộ Bourdais; ngài trực tiếp tính toán kết cấu móng vững chắc chịu lực cho vòm Phục Hưng đồ sộ.'
+      },
+      {
+        time: '1906 – 1910',
+        title: '4 năm kiên trì thi công',
+        content: 'Giám sát việc xây dựng gian chính, 2 gian phụ, hệ thống cột trụ tròn Hy Lạp - La Mã và lắp đặt các khung cửa sổ hoa văn cổ kính.'
+      },
+      {
+        time: '1910',
+        title: 'Khánh thành ngôi Thánh đường',
+        content: 'Tổ chức lễ khánh thành trọng thể ngôi nhà thờ kiên cố bề thế bậc nhất tỉnh Mỹ Tho lúc bấy giờ.'
+      }
+    ],
+    milestones: [
+      'Khởi công (11/08/1906) và hoàn thành (1910) ngôi Nhà thờ Chánh Tòa Mỹ Tho hiện hữu.',
+      'Kiến tạo tác phẩm nghệ thuật kiến trúc Roman - Phục Hưng kinh điển tại Nam Bộ.',
+      'Vị chủ chăn tận tụy được giáo dân Nam Bộ kính trọng gọi là "Cố Gẫm".'
+    ]
+  },
+  {
+    id: 'cha-bachelard-co-bach',
+    name: 'Lm. Joseph-Marie Bachelard (Cố Bạch - MEP)',
+    saintName: 'Thánh Giuse',
+    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (1910 – 1956)',
+    period: '1910 – 1956',
+    origin: 'Hội Thừa Sai Paris (MEP)',
+    image: '/images/nhatho3.jpg',
+    shortDesc: 'Coi sóc họ đạo Mỹ Tho trong suốt hơn 4 thập kỷ đầy thăng trầm lịch sử. Cha đã mời Dòng Nữ tu Thánh Phaolô thành Chartres (Saint Paul de Chartres) về giúp họ đạo, mở trường tư thục Công giáo, cô nhi viện, đào tạo Ban Quới Chức và gìn giữ ngọn lửa đức tin qua hai cuộc Thế chiến.',
+    chronology: [
+      {
+        time: '1910 – 1920',
+        title: 'Thiết lập hệ thống giáo dục & bác ái',
+        content: 'Xây dựng trường học họ đạo, mở cơ sở bác ái nuôi dạy trẻ mồ côi cùng các Nữ tu Thánh Phaolô.'
+      },
+      {
+        time: '1920 – 1945',
+        title: 'Phát triển Ban Quới Chức & Hội Đoàn',
+        content: 'Đào tạo thế hệ Ban Hành Giáo nòng cốt người Việt, kiện toàn sổ bộ giáo xứ.'
+      },
+      {
+        time: '1945 – 1956',
+        title: 'Gìn giữ họ đạo thời kỳ kháng chiến',
+        content: 'Duy trì các thánh lễ liên tục và bảo vệ cơ sở vật chất thánh đường nguyên vẹn.'
+      }
+    ],
+    milestones: [
+      'Mục tử phục vụ lâu năm nhất thời kỳ Thừa Sai (hơn 40 năm coi sóc Họ đạo).',
+      'Thành lập trường học Công giáo và cơ sở từ thiện xã hội tại Mỹ Tho.',
+      'Đào tạo và chuyển giao nền tảng tổ chức họ đạo vững mạnh cho hàng giáo sĩ bản xứ.'
+    ]
+  },
+  {
+    id: 'cha-nguyen-minh-chieu',
+    name: 'Lm. Phaolô Nguyễn Minh Chiếu',
+    saintName: 'Thánh Phaolô Tông Đồ',
+    role: 'Linh mục Việt Nam Tiên khởi làm Chánh xứ Họ đạo Mỹ Tho (1956 – 1958)',
+    period: '1956 – 1958',
+    origin: 'Giáo phận Sài Gòn / Giáo hạt Mỹ Tho',
+    image: '/images/nhatho_thapchuong.jpg',
+    shortDesc: 'Vị linh mục Việt Nam bản xứ đầu tiên chính thức đảm nhận cương vị Cha sở Chánh xứ Họ đạo Mỹ Tho. Ngài có công củng cố Ban Quới Chức người Việt, kiện toàn tổ chức giáo xứ và thực hiện công trình lịch sử di dời quả chuông lớn của nhà thờ lên tháp cao phía Nam vào năm 1958.',
+    chronology: [
+      {
+        time: '1956',
+        title: 'Chính thức nhậm chức Cha sở người Việt đầu tiên',
+        content: 'Tiếp quản họ đạo từ các linh mục thừa sai Pháp MEP, mở ra kỷ nguyên tự quản của giáo sĩ bản xứ.'
+      },
+      {
+        time: '1957',
+        title: 'Kiện toàn sổ sách & Ban Quới Chức',
+        content: 'Tổ chức lại các khu họ nhánh và đào tạo giáo lý phụng vụ.'
+      },
+      {
+        time: '1958',
+        title: 'Di dời chuông lớn lên tháp Nam',
+        content: 'Tổ chức đại công trình kỹ thuật đưa quả chuông đồng cổ kính lên đỉnh tháp chuông phía Nam của nhà thờ.'
+      }
+    ],
+    milestones: [
+      'Linh mục người Việt Nam đầu tiên làm Chánh xứ Họ đạo Mỹ Tho (1956).',
+      'Chủ trì công trình di dời chuông nhà thờ lên tháp cao phía Nam (1958).',
+      'Đặt nền móng quản trị họ đạo bản xứ trước khi Giáo phận Mỹ Tho được thành lập.'
+    ]
+  },
+  {
+    id: 'cha-huynh-kim-do',
+    name: 'Lm. Gioan Baotixita Huỳnh Kim Do',
+    saintName: 'Thánh Gioan Baotixita (John the Baptist)',
+    role: 'Linh mục Chánh xứ Họ đạo Mỹ Tho thời kỳ Thành lập Giáo phận (1958 – 1975)',
+    period: '1958 – 1975',
+    origin: 'Giáo phận Mỹ Tho',
+    image: '/images/nhatho_thapchuong.jpg',
+    shortDesc: 'Cha sở thời kỳ lịch sử bản lề khi Giáo phận Mỹ Tho được chính thức thành lập ngày 24/11/1960. Ngài đã chuẩn bị cơ sở vật chất và nghi lễ để đón nhận sắc phong Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm, phục vụ đắc lực bên cạnh Đức Giám mục Tiên khởi Giuse Trần Văn Thiện.',
+    chronology: [
+      {
+        time: '1958 – 1960',
+        title: 'Chuẩn bị thành lập Giáo phận mới',
+        content: 'Cải tạo gian Cung Thánh, trang hoàng ngai tòa Giám mục và chuẩn bị cơ sở hạ tầng Tòa Giám Mục.'
+      },
+      {
+        time: '1960',
+        title: 'Đón nhận Tông hiến Venerabilium Nostrorum',
+        content: 'Ngày 24/11/1960, Đức Thánh Cha Gioan XXIII nâng Nhà thờ Mỹ Tho thành Nhà thờ Chính Tòa của Giáo phận mới.'
+      },
+      {
+        time: '1961 – 1975',
+        title: 'Mở rộng hoạt động tông đồ giáo dân',
+        content: 'Phát triển phong trào Legio Mariae, Huynh đoàn Đa Minh và dạy giáo lý cho thiếu nhi.'
+      }
+    ],
+    milestones: [
+      'Cha sở đương nhiệm khi Họ đạo Mỹ Tho được nâng lên hàng Nhà thờ Chính Tòa (1960).',
+      'Đồng hành cùng Đức Cha Tiên khởi Giuse Trần Văn Thiện kiến thiết giáo phận buổi sơ khai.',
+      'Xây dựng phong trào tông đồ giáo dân và hội đoàn đức tin lớn mạnh.'
+    ]
+  },
+  {
+    id: 'cha-nguyen-van-chuc',
+    name: 'Lm. Giuse Nguyễn Văn Chúc',
+    saintName: 'Thánh Giuse (Joseph)',
+    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 1998)',
+    period: '1975 – 1998',
+    death: '14/12/1999 tại Tiền Giang',
+    origin: 'Giáo phận Mỹ Tho',
+    image: '/images/nhatho_thapchuong.jpg',
+    shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc vĩ đại nhất của ngài là công trình xây dựng Tháp chuông độc lập cao 24 mét tách rời (1995) để bảo tồn kết cấu vòm thánh đường cổ kính.',
+    chronology: [
+      {
+        time: '1975 – 1985',
+        title: 'Dẫn dắt họ đạo qua thời kỳ gian nan',
+        content: 'Kiên trì dâng thánh lễ hằng ngày, giữ vững sự hiệp nhất trong cộng đoàn giáo xứ và duy trì các lớp giáo lý bí tích.'
+      },
+      {
+        time: '1995',
+        title: 'Xây dựng Tháp chuông độc lập cao 24m',
+        content: 'Để tránh rung chấn làm nứt vòm và tường gạch cổ của nhà thờ xây từ năm 1906, ngài quyết định xây dựng tháp chuông tách rời cao 24m kiên cố - trở thành biểu tượng độc đáo của Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: '1998 – 1999',
+        title: 'Phục vụ tại Bà Tồn và an nghỉ trong Chúa',
+        content: 'Tiếp tục dấn thân mục vụ tại Giáo xứ Bà Tồn cho đến khi được Chúa gọi về ngày 14/12/1999.'
+      }
+    ],
+    milestones: [
+      'Chủ trì xây dựng Tháp chuông độc lập cao 24 mét tách rời (1995) bảo vệ ngôi thánh đường cổ.',
+      'Mục tử nhân ái gìn giữ sự bình an và đức tin kiên trung của Giáo xứ Chánh Tòa suốt hơn 20 năm.',
+      'Thành lập họ đạo Tân Long và chăm lo đời sống người nghèo khó.'
+    ]
+  }
+];
+
 export const ALL_COMMUNITY_BIOS: DetailedBioRecord[] = [
   ...BISHOPS_EXTENDED_DATA,
+  ...PASTORS_EXTENDED_DATA,
   POPE_LEO_XIV_BIO
 ];
 
@@ -1047,44 +1278,198 @@ export default function GioiThieuPage() {
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>1</td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1860 – 1866</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Marc Guillou (MEP)</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-marc-guillou');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Marc Guillou (MEP)
+                      </button>
+                    </td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Cha sở tiên khởi; quy tụ cộng đoàn tín hữu và dựng ngôi nhà thờ đầu tiên (Thánh Phanxicô Xaviê).</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>2</td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1866 – 1906</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Jean-Marie Bouillevaux (MEP) &amp; các Cố Thừa Sai</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-bouillevaux');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Charles-Émile Bouillevaux (MEP)
+                      </button>
+                    </td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Thời kỳ xây dựng Nhà thờ Vĩnh Tường (Thánh Tâm Chúa Giêsu, 1866) và củng cố các họ đạo nhánh.</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>3</td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1906 – 1910</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Louis-Eugène Régnier (Cố Gẫm - MEP)</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-regnier-co-gam');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Lucien Régnier (Cố Gẫm - MEP)
+                      </button>
+                    </td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Đặt viên đá đầu tiên (11/08/1906) khởi công và hoàn tất xây dựng ngôi Nhà thờ Chánh Tòa hiện nay (khánh thành 1910).</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>4</td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1910 – 1956</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Bachelard (Cố Bạch - MEP) &amp; Các Thừa Sai MEP</td>
-                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Củng cố đời sống phụng vụ, đào tạo ban hành giáo và phát triển hội đoàn trong nửa đầu thế kỷ XX.</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-bachelard-co-bach');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Joseph-Marie Bachelard (Cố Bạch - MEP)
+                      </button>
+                    </td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Củng cố đời sống phụng vụ, mở trường học Công giáo và đào tạo Ban Quới Chức trong nửa đầu thế kỷ XX.</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>5</td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1956 – 1958</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Phaolô Nguyễn Minh Chiếu</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-nguyen-minh-chieu');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Phaolô Nguyễn Minh Chiếu
+                      </button>
+                    </td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Linh mục Việt Nam đầu tiên làm Chánh sở; di dời chuông lớn lên tháp cao phía Nam (1958).</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>6</td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1958 – 1975</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. GB. Huỳnh Kim Do &amp; Các Linh mục Giáo phận</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-huynh-kim-do');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Gioan Baotixita Huỳnh Kim Do
+                      </button>
+                    </td>
                     <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Giai đoạn thành lập Giáo phận Mỹ Tho (1960), nâng thánh đường thành Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm.</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                     <td style={{ padding: '9px 12px', fontWeight: 700 }}>7</td>
-                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1975 – 2005</td>
-                    <td style={{ padding: '9px 12px', fontWeight: 700, color: 'var(--color-dark)' }}>Lm. Giuse Nguyễn Văn Chúc</td>
-                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Coi sóc 30 năm; xây dựng tháp chuông độc lập cao 24m tách rời (1995) để bảo tồn ngôi thánh đường cổ.</td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-subtle)', fontWeight: 600 }}>1975 – 1998</td>
+                    <td style={{ padding: '9px 12px', fontWeight: 700 }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const bio = ALL_COMMUNITY_BIOS.find((b) => b.id === 'cha-nguyen-van-chuc');
+                          if (bio) setSelectedBio(bio);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          color: 'var(--color-red)',
+                          fontWeight: 700,
+                          fontSize: '0.84rem',
+                          cursor: 'pointer',
+                          textDecoration: 'underline',
+                          fontFamily: 'inherit',
+                          textAlign: 'left'
+                        }}
+                      >
+                        Lm. Giuse Nguyễn Văn Chúc
+                      </button>
+                    </td>
+                    <td style={{ padding: '9px 12px', color: 'var(--color-dark)' }}>Coi sóc hơn 20 năm; xây dựng tháp chuông độc lập cao 24m tách rời (1995) để bảo tồn ngôi thánh đường cổ.</td>
                   </tr>
                   <tr style={{ backgroundColor: 'rgba(153, 27, 27, 0.04)' }}>
                     <td style={{ padding: '10px 12px', fontWeight: 800, color: 'var(--color-red)' }}>8</td>
@@ -1113,7 +1498,7 @@ export default function GioiThieuPage() {
                       </button>
                     </td>
                     <td style={{ padding: '10px 12px', color: 'var(--color-dark)', lineHeight: 1.5 }}>
-                      <strong>Cha sở đương nhiệm &amp; Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho</strong>; chủ trì Đại trùng tu Bách Chu Niên (2006–2007), xây dựng Nhà Mục vụ Giáo xứ 3 tầng (2020), Lễ đài Đức Mẹ, sáng lập Nhà dưỡng lão tình thương Thanh Bình và phát triển Caritas bác ái.
+                      <strong>Cha sở đương nhiệm &amp; Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho</strong>; chủ trì Đại trùng tu Bách Chu Niên (2006–2007), xây dựng Nhà Mục vụ Giáo xứ 3 tầng (2020), Lễ đài Đức Mẹ và phát triển mục vụ giáo hạt.
                     </td>
                   </tr>
                 </tbody>
@@ -2207,24 +2592,26 @@ export default function GioiThieuPage() {
                     Tên Thánh: <strong>{selectedBio.saintName}</strong> • {selectedBio.period}
                   </div>
 
-                  <div
-                    style={{
-                      padding: '8px 12px',
-                      borderRadius: '8px',
-                      backgroundColor: 'rgba(153, 27, 27, 0.04)',
-                      border: '1px solid var(--color-border-subtle)',
-                      fontSize: '0.82rem',
-                      fontStyle: 'italic',
-                      color: 'var(--color-dark)'
-                    }}
-                  >
-                    Khẩu hiệu: <strong>{selectedBio.motto}</strong>
-                    {selectedBio.mottoLatin && (
-                      <span style={{ display: 'block', fontSize: '0.74rem', color: '#B45309' }}>
-                        ({selectedBio.mottoLatin})
-                      </span>
-                    )}
-                  </div>
+                  {selectedBio.motto && (
+                    <div
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        backgroundColor: 'rgba(153, 27, 27, 0.04)',
+                        border: '1px solid var(--color-border-subtle)',
+                        fontSize: '0.82rem',
+                        fontStyle: 'italic',
+                        color: 'var(--color-dark)'
+                      }}
+                    >
+                      Khẩu hiệu: <strong>{selectedBio.motto}</strong>
+                      {selectedBio.mottoLatin && (
+                        <span style={{ display: 'block', fontSize: '0.74rem', color: '#B45309' }}>
+                          ({selectedBio.mottoLatin})
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -2241,17 +2628,26 @@ export default function GioiThieuPage() {
                   gap: '8px 16px'
                 }}
               >
-                <div>
-                  <strong>Sinh ngày / Nơi sinh:</strong> {selectedBio.birth}
-                </div>
-                {selectedBio.death && (
+                {selectedBio.birth && (
                   <div>
-                    <strong>Qua đời:</strong> {selectedBio.death}
+                    <strong>Sinh ngày / Nơi sinh:</strong> {selectedBio.birth}
                   </div>
                 )}
-                <div>
-                  <strong>Thụ phong Linh mục:</strong> {selectedBio.priestOrdination}
-                </div>
+                {selectedBio.origin && (
+                  <div>
+                    <strong>Gốc / Tổ chức:</strong> {selectedBio.origin}
+                  </div>
+                )}
+                {selectedBio.death && (
+                  <div>
+                    <strong>Qua đời / An nghỉ:</strong> {selectedBio.death}
+                  </div>
+                )}
+                {selectedBio.priestOrdination && (
+                  <div>
+                    <strong>Thụ phong Linh mục:</strong> {selectedBio.priestOrdination}
+                  </div>
+                )}
                 {selectedBio.bishopConsecration && (
                   <div>
                     <strong>Tấn phong Giám mục:</strong> {selectedBio.bishopConsecration}
