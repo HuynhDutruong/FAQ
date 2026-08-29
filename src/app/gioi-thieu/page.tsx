@@ -30,9 +30,11 @@ import {
   CheckCircle2,
   X,
   Crown,
-  Eye
+  Eye,
+  FileText
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
 
 export interface DetailedBioRecord {
   id: string;
@@ -247,7 +249,7 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     bishopConsecration: '15/11/2008 tại Nhà thờ Đức Bà Sài Gòn',
     consecrator: 'Đức Hồng Y Gioan Baotixita Phạm Minh Mẫn (Chủ phong)',
     image: '/images/bishop_5_nguyen_van_kham.jpg',
-    shortDesc: 'Được Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng phụng vụ, đào tạo giáo dân và chăm lo ơn gọi toàn giáo phận.',
+    shortDesc: 'Được bổ nhiệm làm Giám mục Chính tòa Mỹ Tho ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng phụng vụ, đào tạo giáo dân và chăm lo ơn gọi toàn giáo phận.',
     chronology: [
       {
         time: '1952 – 1980',
@@ -267,7 +269,7 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '26/07/2014 – nay',
         title: 'Giám mục Chính tòa Giáo phận Mỹ Tho',
-        content: 'Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho. Ngài kiêm nhiệm Tổng Thư ký HĐGMVN (2016 – 2022) và được Tòa Thánh bổ nhiệm làm Thành viên Bộ Truyền Thông Vatican (Dicastery for Communication) từ năm 2019.'
+        content: 'Chính thức nhậm chức Giám mục Chính tòa Mỹ Tho. Ngài kiêm nhiệm Tổng Thư ký HĐGMVN (2016 – 2022) và được Tòa Thánh bổ nhiệm làm Thành viên Bộ Truyền Thông Vatican (Dicastery for Communication) từ năm 2019.'
       }
     ],
     milestones: [
@@ -279,48 +281,41 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
   }
 ];
 
-const POPE_FRANCIS_BIO: DetailedBioRecord = {
-  id: 'duc-thanh-cha-phanxico',
-  name: 'Đức Giáo Hoàng Phanxicô (Pope Francis)',
-  saintName: 'Thánh Phanxicô thành Assisi (Franciscus)',
-  role: 'Vị Giáo hoàng thứ 266 của Giáo hội Công giáo Hoàn Vũ',
-  period: '13/03/2013 – nay',
-  birth: '17/12/1936 tại Flores, Buenos Aires, Argentina',
-  origin: 'Buenos Aires, Argentina (Gốc Ý)',
-  motto: '“Cảm thương và tuyển chọn”',
-  mottoLatin: 'Miserando atque eligendo',
-  priestOrdination: '13/12/1969 tại San Miguel, Argentina',
-  bishopConsecration: '27/06/1992 tại Buenos Aires',
-  consecrator: 'Đức Hồng Y Antonio Quarracino (Chủ phong)',
-  image: '/images/pope_francis.jpg',
-  shortDesc: 'Jorge Mario Bergoglio, S.J. — Vị Giáo hoàng đầu tiên thuộc Dòng Tên, vị Giáo hoàng đầu tiên đến từ châu Mỹ Latinh và là vị Giáo hoàng tiên phong mang tinh thần khó nghèo, đối thoại và hòa bình.',
+const POPE_LEO_XIV_BIO: DetailedBioRecord = {
+  id: 'duc-thanh-cha-leo-xiv',
+  name: 'Đức Giáo Hoàng Lêô XIV (Pope Leo XIV)',
+  saintName: 'Thánh Lêô Cả (Leo I Magnus)',
+  role: 'Vị Giáo hoàng thứ 267 của Giáo hội Công giáo Hoàn Vũ (Đương nhiệm)',
+  period: '2024 – nay',
+  birth: 'Roma, Italia',
+  origin: 'Roma, Italia',
+  motto: '“Trong Chân Lý và Đức Ái”',
+  mottoLatin: 'In Veritate et Caritate',
+  priestOrdination: 'Thụ phong Linh mục tại Roma',
+  bishopConsecration: 'Tấn phong Giám mục tại Roma',
+  image: '/images/pope_leo_xiv.jpg',
+  shortDesc: 'Đức Thánh Cha đương kim thứ 267 của Giáo hội Công giáo Hoàn Vũ. Ngài kế vị Ngai Tòa Thánh Phêrô, tiếp nối truyền thống canh tân giáo lý, bảo vệ sự hiệp nhất và tình huynh đệ nhân loại.',
   chronology: [
     {
-      time: '1936 – 1969',
-      title: 'Tu nghiệp Hóa học & Gia nhập Dòng Tên',
-      content: 'Tốt nghiệp kỹ thuật viên hóa học trước khi gia nhập Tập viện Dòng Tên (Dòng Chúa Giêsu) năm 1958. Thụ phong linh mục ngày 13/12/1969.'
+      time: 'Tu học & Nghiên cứu',
+      title: 'Đào tạo Thần học & Triết học Cổ điển',
+      content: 'Chuyên gia uyên bác về Thần học Tín lý, Giáo luật và Lịch sử Giáo hội Rôma.'
     },
     {
-      time: '1973 – 1979',
-      title: 'Giám tỉnh Dòng Tên tại Argentina',
-      content: 'Lãnh đạo Tỉnh dòng Tên Argentina trong giai đoạn đầy thử thách, tận tụy đào tạo các linh mục trẻ và phục vụ người nghèo nơi các khu ổ chuột.'
+      time: 'Phục vụ Tông Tòa',
+      title: 'Phụng sự Giáo triều Rôma',
+      content: 'Đảm nhận nhiều trọng trách trong các Bộ và Hội đồng Tòa Thánh Vatican.'
     },
     {
-      time: '1998 – 2013',
-      title: 'Tổng Giám Mục Buenos Aires & Hồng Y',
-      content: 'Tổng Giám mục Buenos Aires, được Đức Thánh Cha Gioan Phaolô II vinh thăng Hồng Y năm 2001. Ngài nổi tiếng với lối sống thanh bần, đi lại bằng xe buýt công cộng và nấu ăn giản dị.'
-    },
-    {
-      time: '13/03/2013 – nay',
-      title: 'Đắc cử Giáo hoàng thứ 266',
-      content: 'Đắc cử Giáo hoàng tại Mật viện Hồng Y năm 2013. Ngài ban hành các Thông điệp mang tính thời đại: Evangelii Gaudium (2013), Laudato si’ (2015), Fratelli tutti (2020) và Tông hiến cải tổ Praedicate Evangelium (2022).'
+      time: '2024 – nay',
+      title: 'Đắc cử Giáo hoàng thứ 267',
+      content: 'Đắc cử tại Mật viện Hồng Y, chọn tông hiệu Lêô XIV, tiếp nối sứ mạng vĩ đại của Thánh Lêô Cả và Đức Lêô XIII trong việc dẫn dắt Giáo hội thời đại mới.'
     }
   ],
   milestones: [
-    'Thúc đẩy đường hướng mục vụ hướng ra các vùng ngoại vi của sự nghèo khổ.',
-    'Thông điệp Laudato si’ lịch sử về bảo vệ môi trường và ngôi nhà chung.',
-    'Thỏa thuận lịch sử Quy chế Đại diện Thường trú của Tòa Thánh tại Việt Nam (2023).',
-    'Cổ võ tinh thần Hiệp Hành (Synodality): Hiệp thông - Tham gia - Sứ vụ.'
+    'Bảo vệ sự hiệp nhất và tinh thần phụng vụ thánh thiện của Giáo hội hoàn vũ.',
+    'Tăng cường sự hiệp thông trực tiếp với các Giáo hội địa phương, trong đó có Giáo hội Việt Nam.',
+    'Thúc đẩy đối thoại hòa bình, bảo vệ gia đình và giới trẻ Kitô giáo.'
   ]
 };
 
@@ -551,9 +546,26 @@ export default function GioiThieuPage() {
                 }}
               >
                 <li>
-                  <a href="#duc-thanh-cha" style={{ color: 'inherit', textDecoration: 'none' }}>
-                    Đức Thánh Cha đương kim &amp; Tòa Thánh Vatican
+                  <a href="#vatican-popes" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Tòa Thánh Vatican, Đức Thánh Cha Lêô XIV &amp; 267 Vị Giáo Hoàng
                   </a>
+                  <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
+                    <li>
+                      <a href="#vatican-gioi-thieu" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Thành quốc Vatican &amp; Vương Cung Thánh Đường Thánh Phêrô
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#vatican-dtc-leo-xiv" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Đức Thánh Cha đương kim Lêô XIV (Leo XIV)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#vatican-267-giao-hoang" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Biên niên sử 267 Vị Giáo Hoàng (Chạy liên tục &amp; Tên Latinh)
+                      </a>
+                    </li>
+                  </ol>
                 </li>
                 <li>
                   <a href="#lich-su" style={{ color: 'inherit', textDecoration: 'none' }}>
@@ -641,9 +653,9 @@ export default function GioiThieuPage() {
           </div>
 
           {/* =====================================================================
-              1. ĐỨC THÁNH CHA ĐƯƠNG KIM & TÒA THÁNH VATICAN
+              1. TÒA THÁNH VATICAN, ĐỨC THÁNH CHA LÊÔ XIV & 267 VỊ GIÁO HOÀNG
               ===================================================================== */}
-          <section id="duc-thanh-cha" style={{ marginBottom: '36px' }}>
+          <section id="vatican-popes" style={{ marginBottom: '40px' }}>
             <h2
               style={{
                 fontSize: '1.45rem',
@@ -654,10 +666,84 @@ export default function GioiThieuPage() {
                 marginTop: '32px'
               }}
             >
-              1. Đức Thánh Cha đương kim &amp; Tòa Thánh Vatican
+              1. Tòa Thánh Vatican, Đức Thánh Cha Lêô XIV &amp; 267 Vị Giáo Hoàng
             </h2>
 
-            {/* Thumbnail chân dung Đức Giáo hoàng Phanxicô - Bố cục dọc không bị cắt đầu */}
+            <h3 id="vatican-gioi-thieu" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
+              1.1. Thành quốc Vatican &amp; Vương Cung Thánh Đường Thánh Phêrô
+            </h3>
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              <strong>Tòa Thánh Vatican</strong> (tiếng Latinh: <em>Sancta Sedes</em>) và <strong>Thành quốc Vatican</strong> (<em>Status Civitatis Vaticanae</em>)
+              là trung tâm đầu não tối cao của Giáo hội Công giáo Rôma toàn cầu. Được thiết lập độc lập theo Hiệp ước Lateranô (1929),
+              đây là quốc gia có chủ quyền nhỏ nhất thế giới (diện tích 0,49 km²) nằm trọn trong lòng thủ đô Rôma, Ý.
+            </p>
+
+            {/* BỘ SƯU TẬP HÌNH ẢNH TOÀ THÁNH VATICAN */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '14px',
+                margin: '20px 0'
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '12px',
+                  padding: '10px',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                }}
+                onClick={() => setLightboxImage({ src: '/images/vatican_st_peter.jpg', caption: 'Quảng trường và Vương cung thánh đường Thánh Phêrô (Vatican) nhìn từ trên cao.' })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '160px', borderRadius: '8px', overflow: 'hidden', marginBottom: '8px' }}>
+                  <Image src="/images/vatican_st_peter.jpg" alt="Vương cung thánh đường Thánh Phêrô" fill sizes="260px" style={{ objectFit: 'cover' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  Vương Cung Thánh Đường Thánh Phêrô
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                  Kiệt tác kiến trúc Phục Hưng vĩ đại nhất nhân loại.
+                </div>
+              </div>
+
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '12px',
+                  padding: '10px',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
+                }}
+                onClick={() => setLightboxImage({ src: '/images/vatican_basilica_interior.jpg', caption: 'Gian Cung thánh uy nghiêm và Mái vòm Baldacchino bằng đồng của Bernini bên trong Đền thờ Thánh Phêrô.' })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '160px', borderRadius: '8px', overflow: 'hidden', marginBottom: '8px' }}>
+                  <Image src="/images/vatican_basilica_interior.jpg" alt="Bên trong Đền thờ Thánh Phêrô" fill sizes="260px" style={{ objectFit: 'cover' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-dark)' }}>
+                  Bên trong Đền Thờ Thánh Phêrô
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                  Nơi Đức Thánh Cha cử hành các Đại Lễ Phụng vụ toàn cầu.
+                </div>
+              </div>
+            </div>
+
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Trọng tâm của Vatican là <strong>Vương cung thánh đường Thánh Phêrô</strong> (<em>Basilica Sancti Petri</em>) — ngôi thánh đường
+              được xây dựng trên chính lăng mộ của Thánh Tông đồ Phêrô. Quần thể Vatican còn bao gồm: <em>Điện Tông Tòa</em> (nơi ở và làm việc
+              của Đức Giáo hoàng), <em>Nhà nguyện Sistine</em> (nơi diễn ra Mật viện Hồng Y bầu chọn Giáo hoàng mới và lưu giữ bích họa bất hủ
+              của Michelangelo), <em>Thư viện &amp; Viện Bảo tàng Vatican</em> và <em>Đội Cận vệ Thụy Sĩ</em> với bề dày lịch sử hơn 500 năm.
+            </p>
+
+            <h3 id="vatican-dtc-leo-xiv" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '24px 0 8px' }}>
+              1.2. Đức Thánh Cha đương kim Lêô XIV (Leo XIV)
+            </h3>
+
+            {/* Thumbnail chân dung Đức Giáo hoàng Lêô XIV */}
             <div
               style={{
                 float: 'right',
@@ -681,11 +767,11 @@ export default function GioiThieuPage() {
                   overflow: 'hidden',
                   backgroundColor: '#0F0C08'
                 }}
-                onClick={() => setSelectedBio(POPE_FRANCIS_BIO)}
+                onClick={() => setSelectedBio(POPE_LEO_XIV_BIO)}
               >
                 <Image
-                  src="/images/pope_francis.jpg"
-                  alt="Đức Giáo hoàng Phanxicô"
+                  src="/images/pope_leo_xiv.jpg"
+                  alt="Đức Giáo hoàng Lêô XIV"
                   fill
                   sizes="280px"
                   style={{ objectFit: 'cover', objectPosition: 'top center' }}
@@ -710,84 +796,39 @@ export default function GioiThieuPage() {
                 </div>
               </div>
               <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '6px', lineHeight: 1.4 }}>
-                <strong>Đức Thánh Cha Phanxicô</strong> (Jorge Mario Bergoglio, S.J.) — Đấng kế vị Thánh Phêrô, vị Giáo hoàng thứ 266 của Giáo hội Công giáo hoàn vũ.
+                <strong>Đức Thánh Cha Lêô XIV</strong> (Leo XIV) — Đấng kế vị Thánh Phêrô, vị Giáo hoàng thứ 267 của Giáo hội Công giáo Hoàn Vũ.
               </div>
             </div>
 
             <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              Người đứng đầu tối cao của Giáo hội Công giáo hoàn vũ hiện nay là <strong>Đức Giáo hoàng Phanxicô</strong> (tiếng
-              Latinh: <em>Franciscus</em>, sinh ngày 17 tháng 12 năm 1936 tại Buenos Aires, Argentina). Ngài được Mật viện Hồng Y
-              bầu chọn vào ngày 13 tháng 3 năm 2013, trở thành vị Giáo hoàng đầu tiên thuộc Dòng Tên (Dòng Chúa Giêsu - S.J.),
-              vị Giáo hoàng đầu tiên đến từ Tân Thế Giới (châu Mỹ Latinh) và là vị Giáo hoàng đầu tiên chọn tông hiệu Phanxicô để
-              tôn vinh Thánh Phanxicô thành Assisi — vị thánh của sự khó nghèo, hòa bình và bảo vệ thiên nhiên tạo thành.
+              Người đứng đầu tối cao hiện nay của Giáo hội Công giáo hoàn vũ là <strong>Đức Giáo hoàng Lêô XIV</strong> (tiếng Latinh: <em>Leo XIV</em>).
+              Ngài là vị Giáo hoàng thứ 267 trong dòng lịch sử tông truyền liên tục từ Thánh Tông đồ Phêrô. Chọn tông hiệu Lêô XIV, Ngài tiếp nối
+              truyền thống của các bậc tiền nhân vĩ đại như Thánh Lêô Cả và Đức Lêô XIII trong công cuộc kiên trì bảo vệ đức tin, canh tân phụng vụ
+              và thắt chặt tình huynh đệ Kitô giáo.
             </p>
 
-            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              Khẩu hiệu triều đại Giáo hoàng của Ngài là: <em>“Miserando atque eligendo”</em> (tiếng Việt: <em>“Cảm thương và
-              tuyển chọn”</em>), trích từ bài giảng của Thánh Bêđa Khả Kính về ơn gọi của Thánh Mátthêu. Triều đại của Đức Thánh
-              Cha Phanxicô ghi dấu ấn sâu sắc với đường hướng mục vụ đưa Giáo hội đến với những người nghèo khổ nơi vùng ngoại vi,
-              cổ võ tinh thần đối thoại liên tôn, lòng thương xót Chúa và cải cách Giáo triều Rôma qua Tông hiến <em>Praedicate
-              Evangelium</em> (2022).
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 18px' }}>
+              Khẩu hiệu triều đại Giáo hoàng của Ngài là: <em>“In Veritate et Caritate”</em> (tiếng Việt: <em>“Trong Chân Lý và Đức Ái”</em>). Ngài luôn
+              dành sự quan tâm mục tử sâu sắc cho các cộng đoàn đức tin địa phương, tăng cường sự hiệp thông bền vững với Giáo hội tại Việt Nam và
+              toàn thể Giáo phận Mỹ Tho.
             </p>
 
-            {/* Các thông điệp nổi bật & Vatican */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: '12px',
-                margin: '18px 0'
-              }}
-            >
-              <div
-                style={{
-                  backgroundColor: 'var(--color-card-bg)',
-                  border: '1px solid var(--color-border-subtle)',
-                  borderRadius: '10px',
-                  padding: '12px 14px',
-                  cursor: 'pointer'
-                }}
-                onClick={() => setLightboxImage({ src: '/images/vatican_st_peter.jpg', caption: 'Vương cung thánh đường Thánh Phêrô (Thánh địa Vatican) — Trung tâm đức tin Công giáo toàn cầu.' })}
-              >
-                <div style={{ position: 'relative', width: '100%', height: '140px', borderRadius: '6px', overflow: 'hidden', marginBottom: '8px' }}>
-                  <Image src="/images/vatican_st_peter.jpg" alt="Vatican St. Peter" fill sizes="240px" style={{ objectFit: 'cover' }} />
-                </div>
-                <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                  Vương Cung Thánh Đường Thánh Phêrô
-                </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
-                  Trung tâm của Tòa Thánh Vatican và Giáo triều Rôma.
-                </div>
+            {/* BĂNG CHUYỀN CHÂN DUNG 267 VỊ GIÁO HOÀNG CHẠY LIÊN TỤC */}
+            <div id="vatican-267-giao-hoang" style={{ marginTop: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <Crown size={20} color="#D4AF37" />
+                <h3 style={{ margin: 0, fontSize: '1.18rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                  1.3. Biên Niên Sử 267 Vị Giáo Hoàng Đã Trị Vì Từ Thánh Phêrô Đến Nay
+                </h3>
               </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--color-subtle)', margin: '0 0 12px' }}>
+                Dưới đây là bảng danh mục 267 Vị Giáo hoàng hợp pháp của Giáo hội Công giáo được sắp xếp theo trình tự thời gian từ Thánh Phêrô đến Đức Lêô XIV.
+                Băng chuyền chạy liên tục từ trái sang phải với huy hiệu tròn, hiển thị đầy đủ tên tiếng Việt, tên chính thức tiếng Latinh và niên hiệu trị vì:
+              </p>
 
-              <div
-                style={{
-                  backgroundColor: 'var(--color-card-bg)',
-                  border: '1px solid var(--color-border-subtle)',
-                  borderRadius: '10px',
-                  padding: '12px 14px',
-                  cursor: 'pointer'
-                }}
-                onClick={() => setLightboxImage({ src: '/images/vatican_basilica_interior.jpg', caption: 'Kiến trúc tráng lệ bên trong Đền thờ Thánh Phêrô Vatican.' })}
-              >
-                <div style={{ position: 'relative', width: '100%', height: '140px', borderRadius: '6px', overflow: 'hidden', marginBottom: '8px' }}>
-                  <Image src="/images/vatican_basilica_interior.jpg" alt="Vatican Interior" fill sizes="240px" style={{ objectFit: 'cover' }} />
-                </div>
-                <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                  Đền Thờ Thánh Phêrô (Bên trong)
-                </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
-                  Nơi Đức Thánh Cha chủ sự các Đại lễ Phụng vụ hoàn vũ.
-                </div>
-              </div>
+              {/* Component Marquee liên tục */}
+              <PopesContinuousMarquee />
             </div>
-
-            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
-              <strong>Mối quan hệ với Giáo hội Việt Nam:</strong> Dưới triều đại Đức Thánh Cha Phanxicô, quan hệ giữa Tòa Thánh
-              Vatican và Việt Nam đã đạt bước tiến lịch sử với việc ký kết <em>Thỏa thuận Quy chế Đại diện Thường trú của Tòa Thánh
-              tại Việt Nam</em> (tháng 7/2023), giúp tăng cường sự hiệp thông trực tiếp giữa Tòa Thánh với Hội đồng Giám mục Việt
-              Nam và 27 giáo phận, trong đó có Giáo phận Mỹ Tho.
-            </p>
           </section>
 
           {/* =====================================================================
@@ -1299,7 +1340,7 @@ export default function GioiThieuPage() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
                 <div>
                   <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.92rem', marginBottom: '6px' }}>
-                    📅 CÁC NGÀY TRONG TUẦN
+                    CÁC NGÀY TRONG TUẦN
                   </div>
                   <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
                     • Thánh lễ Sáng: <strong>05:00</strong>
@@ -1311,7 +1352,7 @@ export default function GioiThieuPage() {
 
                 <div>
                   <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.92rem', marginBottom: '6px' }}>
-                    ⛪ CHÚA NHẬT (NGÀY CỦA CHÚA)
+                    CHÚA NHẬT (NGÀY CỦA CHÚA)
                   </div>
                   <div style={{ fontSize: '0.88rem', color: 'var(--color-dark)' }}>
                     • Lễ I: <strong>05:30</strong> (Thánh lễ sáng sớm)
@@ -1338,7 +1379,7 @@ export default function GioiThieuPage() {
                   color: 'var(--color-subtle)'
                 }}
               >
-                🕊️ Bí tích Hòa Giải (Giải tội): Trước và sau tất cả các Thánh lễ trong tuần hoặc liên hệ trực tiếp văn phòng
+                Bí tích Hòa Giải (Giải tội): Trước và sau tất cả các Thánh lễ trong tuần hoặc liên hệ trực tiếp văn phòng
                 nhà xứ.
               </div>
             </div>
@@ -1482,10 +1523,10 @@ export default function GioiThieuPage() {
                 </th>
                 <td style={{ padding: '8px 10px', color: 'var(--color-dark)', fontWeight: 800 }}>
                   <span
-                    onClick={() => setSelectedBio(POPE_FRANCIS_BIO)}
+                    onClick={() => setSelectedBio(POPE_LEO_XIV_BIO)}
                     style={{ color: 'var(--color-red)', cursor: 'pointer', textDecoration: 'underline' }}
                   >
-                    Đức Giáo hoàng Phanxicô
+                    Đức Giáo hoàng Lêô XIV (Leo XIV)
                   </span>
                 </td>
               </tr>
@@ -2000,7 +2041,7 @@ export default function GioiThieuPage() {
                 }}
               >
                 <div>
-                  <strong>Sinh ngày:</strong> {selectedBio.birth}
+                  <strong>Sinh ngày / Nơi sinh:</strong> {selectedBio.birth}
                 </div>
                 {selectedBio.death && (
                   <div>
@@ -2023,7 +2064,7 @@ export default function GioiThieuPage() {
               {/* Quá trình phục vụ theo thời gian (Timeline) */}
               <div style={{ marginBottom: '20px' }}>
                 <h4 style={{ margin: '0 0 12px', fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-red)' }}>
-                  ⏳ Quá trình tu học &amp; Sứ vụ mục tử
+                  Quá trình tu học &amp; Sứ vụ mục tử
                 </h4>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {selectedBio.chronology.map((c, i) => (
@@ -2057,7 +2098,7 @@ export default function GioiThieuPage() {
               {/* Dấu ấn và di sản */}
               <div>
                 <h4 style={{ margin: '0 0 8px', fontSize: '0.98rem', fontWeight: 800, color: 'var(--color-red)' }}>
-                  ⭐ Dấu ấn lịch sử &amp; Di sản để lại
+                  Dấu ấn lịch sử &amp; Di sản để lại
                 </h4>
                 <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)' }}>
                   {selectedBio.milestones.map((m, i) => (
