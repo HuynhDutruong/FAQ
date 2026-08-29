@@ -198,14 +198,14 @@ const QUICK_LINK_ITEMS: SearchResultItem[] = [
   {
     id: 'page-prayers',
     category: 'links',
-    categoryLabel: '216 Kinh Nguyện',
+    categoryLabel: 'Kinh Nguyện',
     categoryIcon: <BookOpen size={15} />,
     badgeColor: { bg: 'rgba(37, 99, 235, 0.12)', text: '#2563EB', border: 'rgba(37, 99, 235, 0.3)' },
-    title: 'Kho Tàng 216 Bản Kinh Công Giáo & Mân Côi',
+    title: 'Kho Tàng 39 Bản Kinh Công Giáo & Mân Côi',
     subtitle: 'Kinh Hằng Ngày, Đức Mẹ, Thánh Giuse, Thánh Thể, Lòng Thương Xót, 14 Đàng Thánh Giá',
     snippet: 'Đầy đủ chữ to, chế độ đọc kinh, chia sẻ, lưu kinh yêu thích, tra cứu theo danh mục.',
     url: '/kinh-nguyen',
-    keywords: ['kinh nguyen', '216 kinh', 'man coi', 'chuoi long thuong xot', '14 dang thanh gia']
+    keywords: ['kinh nguyen', 'kinh cong giao', 'man coi', 'chuoi long thuong xot', '14 dang thanh gia']
   },
   {
     id: 'page-faq-faith',
@@ -333,7 +333,7 @@ export default function OmniSearch() {
     };
   }, [isOpen]);
 
-  // Index 216 Prayers
+  // Index toàn bộ kinh nguyện
   const indexedPrayers: SearchResultItem[] = useMemo(() => {
     return PRAYERS.map(p => ({
       id: `prayer-${p.id}`,
@@ -594,7 +594,7 @@ export default function OmniSearch() {
   const CATEGORY_TABS: { id: SearchCategory; label: string; icon: React.ReactNode }[] = [
     { id: 'all', label: t.tabAllPosts || 'Tất Cả', icon: <Sparkles size={14} /> },
     { id: 'library', label: `Kinh Thánh (73 Sách)`, icon: <BookOpen size={14} /> },
-    { id: 'prayers', label: `${t.tabPrayers || 'Kinh Nguyện'} (216)`, icon: <BookOpen size={14} /> },
+    { id: 'prayers', label: `${t.tabPrayers || 'Kinh Nguyện'} (${PRAYERS.length})`, icon: <BookOpen size={14} /> },
     { id: 'faq', label: t.tabFAQ || 'Vấn Đáp Giáo Lý', icon: <HelpCircle size={14} /> },
     { id: 'mass', label: t.tabMass || 'Giờ Lễ & Giáo Phận', icon: <Clock size={14} /> },
     { id: 'intro', label: t.tabIntro || 'Giới Thiệu & Lịch Sử', icon: <Landmark size={14} /> },

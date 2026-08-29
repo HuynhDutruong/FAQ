@@ -56,12 +56,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  // Popular Prayers Subroutes
-  const popularPrayers = PRAYERS.filter(p => p.isPopular).slice(0, 30).map(p => ({
-    url: `${BASE_URL}/kinh-nguyen?id=${p.id}`,
+  // Trang riêng của từng bản kinh (URL tĩnh, thay cho ?id= mà Google index rất kém)
+  const prayerRoutes: MetadataRoute.Sitemap = PRAYERS.map(p => ({
+    url: `${BASE_URL}/kinh-nguyen/${p.id}`,
     lastModified: currentDate,
     changeFrequency: 'monthly' as const,
-    priority: 0.75,
+    priority: p.isPopular ? 0.8 : 0.7,
   }));
 
   // 27 Dioceses Mass Time Queries
@@ -72,5 +72,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...bibleRoutes, ...dioceseRoutes, ...popularPrayers];
+  return [...staticRoutes, ...bibleRoutes, ...dioceseRoutes, ...prayerRoutes];
 }

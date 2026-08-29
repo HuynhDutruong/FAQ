@@ -228,7 +228,7 @@ export default function Footer() {
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-red)'}
                 onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-dark)'}
               >
-                {t.footer216Prayers || '216 Kinh Nguyện & Mân Côi'}
+                {t.footer216Prayers || 'Kinh Nguyện & Mân Côi'}
               </Link>
               <Link
                 href="/van-dap"

@@ -4,6 +4,7 @@ import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft,
+  ExternalLink,
   Search,
   Check,
   Share2,
@@ -910,6 +911,16 @@ export default function KinhNguyenPage() {
 
                     {/* Quick action buttons */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                      <Link
+                        href={`/kinh-nguyen/${prayer.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        title={`Mở trang riêng: ${prayer.title}`}
+                        aria-label={`Mở trang riêng của ${prayer.title}`}
+                        style={{ display: 'inline-flex', color: 'var(--color-text-subtle)', padding: '4px' }}
+                      >
+                        <ExternalLink size={15} />
+                      </Link>
+
                       <button
                         type="button"
                         onClick={(e) => toggleFavorite(prayer.id, e)}

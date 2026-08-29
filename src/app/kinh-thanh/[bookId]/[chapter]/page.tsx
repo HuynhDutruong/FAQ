@@ -7,6 +7,14 @@ interface Props {
   params: Promise<{ bookId: string; chapter: string }>;
 }
 
+/** Chương 1 của 73 sách được prerender sẵn — đây là các URL nằm trong sitemap. */
+export function generateStaticParams() {
+  return BIBLE_BOOKS.map((b) => ({ bookId: b.id, chapter: '1' }));
+}
+
+// Nội dung Kinh Thánh gần như bất biến; cache 7 ngày trùng với TTL của fetcher.
+export const revalidate = 604800;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { bookId, chapter } = await params;
   const book = getBibleBook(bookId);
@@ -25,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `https://augustino.net/${book.augustinoSlug}${chapterNumber > 1 ? `-chuong-${chapterNumber}` : ''}`
+      canonical: pageUrl
     },
     openGraph: {
       type: 'article',

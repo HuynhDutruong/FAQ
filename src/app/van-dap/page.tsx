@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -11,8 +11,6 @@ import {
   Send,
   Check,
   BookOpen,
-  ChevronLeft,
-  ChevronRight,
   MessageCircleQuestion,
   HelpCircle,
   Sparkles,
@@ -27,12 +25,9 @@ import Rating from '@/components/Rating';
 
 type Step = 'form' | 'rating' | 'success';
 
-const ITEMS_PER_PAGE = 5;
-
 export default function VanDapPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [step, setStep] = useState<Step>('form');
@@ -71,27 +66,6 @@ export default function VanDapPage() {
     }
     return list;
   }, [selectedCategory, searchQuery]);
-
-  // Total pages
-  const totalPages = Math.max(1, Math.ceil(filteredFAQs.length / ITEMS_PER_PAGE));
-
-  // Reset to page 1 on filter or search change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedCategory, searchQuery]);
-
-  // Paginated FAQs for current page
-  const paginatedFAQs = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredFAQs.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredFAQs, currentPage]);
-
-  const handlePageChange = (newPage: number) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-      window.scrollTo({ top: 180, behavior: 'smooth' });
-    }
-  };
 
   const handleRatingSubmit = async (rating: number) => {
     try {
@@ -332,16 +306,11 @@ export default function VanDapPage() {
             Tìm thấy <strong>{filteredFAQs.length}</strong> câu hỏi giáo lý
             {selectedCategory !== 'all' && ` trong mục này`}
           </div>
-          {totalPages > 1 && (
-            <div>
-              Trang <strong>{currentPage}</strong> / {totalPages}
-            </div>
-          )}
         </div>
 
         {/* FAQ Accordion List */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {paginatedFAQs.length === 0 ? (
+          {filteredFAQs.length === 0 ? (
             <div style={{
               textAlign: 'center',
               padding: '48px 20px',
@@ -374,9 +343,9 @@ export default function VanDapPage() {
               </button>
             </div>
           ) : (
-            paginatedFAQs.map((faq, index) => {
+            filteredFAQs.map((faq, index) => {
               const isExpanded = expandedId === faq.id;
-              const globalIndex = (currentPage - 1) * ITEMS_PER_PAGE + index + 1;
+              const globalIndex = index + 1;
 
               return (
                 <div
@@ -392,6 +361,8 @@ export default function VanDapPage() {
                 >
                   <button
                     onClick={() => setExpandedId(isExpanded ? null : faq.id)}
+                    aria-expanded={isExpanded}
+                    aria-controls={`faq-panel-${faq.id}`}
                     style={{
                       width: '100%',
                       padding: '16px 18px',
@@ -441,8 +412,15 @@ export default function VanDapPage() {
                     </div>
                   </button>
 
-                  {isExpanded && (
-                    <div style={{ padding: '0 18px 18px', borderTop: '1px solid rgba(0, 0, 0, 0.06)' }}>
+                  {/* Luôn nằm trong DOM để bộ máy tìm kiếm đọc được; đóng/mở bằng CSS */}
+                  <div
+                    id={`faq-panel-${faq.id}`}
+                    style={{
+                      display: isExpanded ? 'block' : 'none',
+                      padding: '0 18px 18px',
+                      borderTop: '1px solid rgba(0, 0, 0, 0.06)'
+                    }}
+                  >
                       {/* Short Answer Summary Box */}
                       <div style={{
                         marginTop: '14px',
@@ -505,98 +483,12 @@ export default function VanDapPage() {
                           <span>Chia sẻ / Sao chép</span>
                         </button>
                       </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               );
             })
           )}
         </div>
-
-        {/* PAGINATION CONTROLS ("- 1 2 3 -") */}
-        {totalPages > 1 && (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '4px',
-            marginTop: '8px',
-            padding: '12px 0',
-            flexWrap: 'wrap'
-          }}>
-            {/* Previous Button */}
-            <button
-              disabled={currentPage === 1}
-              className="pager-btn"
-              onClick={() => handlePageChange(currentPage - 1)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '3px',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                border: '1px solid var(--color-border-subtle)',
-                backgroundColor: currentPage === 1 ? 'transparent' : 'var(--color-card-bg)',
-                color: currentPage === 1 ? 'var(--color-subtle)' : 'var(--color-dark)',
-                fontSize: '0.74rem',
-                fontWeight: 700,
-                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                opacity: currentPage === 1 ? 0.4 : 1
-              }}
-            >
-              <ChevronLeft size={12} />
-              <span>Trước</span>
-            </button>
-
-            {/* Numeric Page Buttons: 1 2 3 ... */}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(num => (
-              <button
-                key={num}
-                onClick={() => handlePageChange(num)}
-                className="pager-btn pager-num-btn"
-                style={{
-                  minWidth: '28px',
-                  height: '28px',
-                  borderRadius: '6px',
-                  border: currentPage === num ? 'none' : '1px solid var(--color-border-subtle)',
-                  backgroundColor: currentPage === num ? '#B71C1C' : 'var(--color-card-bg)',
-                  color: currentPage === num ? '#FFFFFF' : 'var(--color-dark)',
-                  fontSize: '0.76rem',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  boxShadow: currentPage === num ? '0 1px 4px rgba(183, 28, 28, 0.3)' : 'none',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                {num}
-              </button>
-            ))}
-
-            {/* Next Button */}
-            <button
-              disabled={currentPage === totalPages}
-              className="pager-btn"
-              onClick={() => handlePageChange(currentPage + 1)}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '3px',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                border: '1px solid var(--color-border-subtle)',
-                backgroundColor: currentPage === totalPages ? 'transparent' : 'var(--color-card-bg)',
-                color: currentPage === totalPages ? 'var(--color-subtle)' : 'var(--color-dark)',
-                fontSize: '0.74rem',
-                fontWeight: 700,
-                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                opacity: currentPage === totalPages ? 0.4 : 1
-              }}
-            >
-              <span>Sau</span>
-              <ChevronRight size={12} />
-            </button>
-          </div>
-        )}
 
       </div>
 

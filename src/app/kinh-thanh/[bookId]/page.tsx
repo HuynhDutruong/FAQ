@@ -8,6 +8,13 @@ interface Props {
   params: Promise<{ bookId: string }>;
 }
 
+/** 73 trang giới thiệu sách — dữ liệu tĩnh hoàn toàn, prerender hết. */
+export function generateStaticParams() {
+  return BIBLE_BOOKS.map((b) => ({ bookId: b.id }));
+}
+
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { bookId } = await params;
   const book = BIBLE_BOOKS.find((b) => b.id === bookId);

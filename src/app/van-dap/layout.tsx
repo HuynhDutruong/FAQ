@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { FAITH_FAQS } from '@/lib/faithFAQs';
 
 export const metadata: Metadata = {
   title: 'Vấn Đáp Giáo Lý Hội Thánh Công Giáo & 7 Bí Tích (GLHTCG & Youcat)',
@@ -24,10 +25,42 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE_URL = 'https://chanhtoa.tnttgiaophanmytho.online';
+
 export default function VanDapLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  // FAQPage schema: đưa trọn 40 câu hỏi + câu trả lời đầy đủ vào dữ liệu có
+  // cấu trúc để Google và các công cụ tìm kiếm AI đọc được nguyên vẹn.
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${BASE_URL}/van-dap#faq`,
+    name: 'Vấn Đáp Giáo Lý Hội Thánh Công Giáo',
+    inLanguage: 'vi-VN',
+    isPartOf: { '@id': `${BASE_URL}/#website` },
+    mainEntity: FAITH_FAQS.map((faq) => ({
+      '@type': 'Question',
+      '@id': `${BASE_URL}/van-dap#${faq.id}`,
+      name: faq.question,
+      answerCount: 1,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: [faq.shortAnswer, ...(faq.detailedAnswer ?? [])].join(' '),
+        ...(faq.reference ? { citation: faq.reference } : {})
+      }
+    }))
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+      {children}
+    </>
+  );
 }
