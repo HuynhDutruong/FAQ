@@ -30,7 +30,8 @@ import {
   CheckCircle2,
   X,
   Eye,
-  FileText
+  FileText,
+  Scroll
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
@@ -1181,35 +1182,195 @@ export default function GioiThieuPage() {
               1910.
             </p>
 
-            <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              2.3. Tông hiến Venerabilium Nostrorum &amp; Nâng lên Chính Tòa (1960)
+            <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.18rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              2.3. Sắc Chỉ Tông Hiến Venerabilium Nostrorum &amp; Nâng Lên Chính Tòa (1960)
             </h3>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              Ngày 24 tháng 11 năm 1960, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến lịch sử <em>Venerabilium Nostrorum</em>{' '}
-              thiết lập Hàng Giáo phẩm Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> (tách ra từ Giáo phận
-              Sài Gòn). Nhà thờ Mỹ Tho được chọn làm Nhà thờ Chính Tòa của tân giáo phận dưới quyền coi sóc của Đức Giám
-              mục Tiên khởi Giuse Trần Văn Thiện.
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
+              Ngày <strong>24 tháng 11 năm 1960</strong> là mốc son chói lọi trong lịch sử Giáo hội Công giáo Việt Nam khi <strong>Thánh Giáo hoàng Gioan XXIII</strong> (<em>Ioannes PP. XXIII</em>) ban hành Tông hiến lịch sử <strong>&ldquo;Venerabilium Nostrorum&rdquo;</strong> (<em>Chư Huynh Đáng Kính</em>). Văn kiện long trọng này chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>) và nâng ngôi Thánh đường Mỹ Tho thành <strong>Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm Nguyên Tội</strong>.
             </p>
 
-            {/* Trích dẫn văn kiện giáo hội */}
+            {/* BỘ ĐÔI HÌNH ẢNH TƯ LIỆU LỊCH SỬ SẮC LỆNH 1960 */}
             <div
               style={{
-                backgroundColor: 'rgba(153, 27, 27, 0.04)',
-                borderLeft: '3.5px solid var(--color-red)',
-                padding: '14px 18px',
-                borderRadius: '0 10px 10px 0',
-                margin: '18px 0',
-                fontSize: '0.9rem',
-                fontStyle: 'italic',
-                color: 'var(--color-dark)'
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '14px',
+                margin: '18px 0'
               }}
             >
-              <Quote size={16} color="var(--color-red)" style={{ verticalAlign: '-3px', marginRight: '6px' }} />
-              &ldquo;Nguyện xin Thiên Chúa làm cho Giáo phận Mỹ Tho trở nên muối men của tình yêu thương và ánh sáng Phúc Âm
-              giữa lòng đồng bằng sông Cửu Long trù phú.&rdquo;
-              <div style={{ textAlign: 'right', fontSize: '0.78rem', fontStyle: 'normal', color: 'var(--color-subtle)', marginTop: '4px', fontWeight: 700 }}>
-                — Trích Sắc chỉ Tông hiến Venerabilium Nostrorum (24/11/1960)
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '12px',
+                  padding: '12px',
+                  display: 'flex',
+                  gap: '14px',
+                  alignItems: 'center',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
+                }}
+              >
+                <div
+                  style={{
+                    width: '76px',
+                    height: '100px',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    flexShrink: 0,
+                    border: '1.5px solid #B45309'
+                  }}
+                >
+                  <Image
+                    src="/images/popes/pope_261.jpg"
+                    alt="Thánh Giáo hoàng Gioan XXIII"
+                    fill
+                    sizes="76px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-red)' }}>
+                    Thánh Giáo hoàng Gioan XXIII
+                  </div>
+                  <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                    Đấng ban hành Sắc chỉ <em>Venerabilium Nostrorum</em> (24/11/1960) thiết lập Hàng Giáo Phẩm Việt Nam &amp; Giáo phận Mỹ Tho.
+                  </div>
+                </div>
               </div>
+
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '12px',
+                  padding: '12px',
+                  display: 'flex',
+                  gap: '14px',
+                  alignItems: 'center',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
+                }}
+              >
+                <div
+                  style={{
+                    width: '76px',
+                    height: '100px',
+                    borderRadius: '8px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    flexShrink: 0,
+                    border: '1.5px solid #B45309'
+                  }}
+                >
+                  <Image
+                    src="/images/bishop_1_tran_van_thien.jpg"
+                    alt="Đức Cha Giuse Trần Văn Thiện"
+                    fill
+                    sizes="76px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-red)' }}>
+                    Đức Cha Giuse Trần Văn Thiện
+                  </div>
+                  <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                    Giám mục Tiên khởi Giáo phận Mỹ Tho, được Tòa Thánh bổ nhiệm lãnh đạo tân giáo phận từ năm 1960.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* KHUNG TƯ LIỆU VĂN BẢN: BẢN GỐC LATIN & BẢN DỊCH TIẾNG VIỆT */}
+            <div
+              style={{
+                backgroundColor: 'var(--color-card-bg)',
+                border: '1px solid var(--color-border-subtle)',
+                borderRadius: '12px',
+                padding: '18px',
+                margin: '20px 0'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
+                <Scroll size={18} color="var(--color-red)" />
+                <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--color-red)' }}>
+                  Văn Khố Tòa Thánh: Trích Bản Gốc Tiếng Latinh (AAS 53, 1961, pp. 346–348)
+                </span>
+              </div>
+
+              <div
+                style={{
+                  fontFamily: 'Georgia, serif',
+                  fontSize: '0.86rem',
+                  lineHeight: 1.7,
+                  color: 'var(--color-dark)',
+                  backgroundColor: 'rgba(180, 83, 9, 0.04)',
+                  padding: '14px 16px',
+                  borderRadius: '8px',
+                  borderLeft: '3px solid #B45309',
+                  marginBottom: '16px',
+                  fontStyle: 'italic'
+                }}
+              >
+                &ldquo;IOANNES EPISCOPUS SERVUS SERVORUM DEI AD PERPETUAM REI MEMORIAM.<br />
+                <strong>CONSTITUTIO APOSTOLICA &ldquo;VENERABILIUM NOSTRORUM&rdquo;</strong><br /><br />
+                In Vietnamia, post diuturnos labores et praeclara martyrum testimonia, christiana religio ad tantam maturitatem pervenit ut hierarchia episcopalis ibidem canonice erigi possit. Quapropter, audito Venerabili Fratre Nostro S.R.E. Cardinali Sacrae Congregationi de Propaganda Fide Praefecto, Nostra Apostolica Auctoritate, constituimus et decernimus:<br />
+                Tres Ecclesiasticas Provincias in Vietnamia erigimus: Hanoiensem, Huensem, et Saigonensem... Novas autem dioeceses erigimus, inter quas Dioecesim Mythoensem, cuius Ecclesiam Cathedralem constituimus sub titulo Immaculatae Conceptionis Beatae Mariae Virginis...&rdquo;
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                <BookOpen size={16} color="var(--color-red)" />
+                <span style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--color-dark)' }}>
+                  Bản Dịch Việt Ngữ Chính Thức:
+                </span>
+              </div>
+
+              <div
+                style={{
+                  fontSize: '0.88rem',
+                  lineHeight: 1.75,
+                  color: 'var(--color-dark)',
+                  textAlign: 'justify',
+                  backgroundColor: 'var(--color-input-bg)',
+                  padding: '14px 16px',
+                  borderRadius: '8px'
+                }}
+              >
+                &ldquo;GIOAN GIÁM MỤC, TÔI TỚ CÁC TÔI TỚ CỦA THIÊN CHÚA, ĐỂ GHI NHỚ MUÔN ĐỜI SỰ VIỆC.<br />
+                Tại Việt Nam, sau những năm tháng lao nhọc trường kỳ và những chứng tá đức tin anh dũng rạng ngời của các bậc Tử Đạo, đạo Thánh Chúa Kitô nay đã đạt tới sự trưởng thành đức tin viên mãn để có thể chính thức thiết lập Hàng Giáo Phẩm Chính Tòa. Vì thế, sau khi lắng nghe ý kiến của Chư Huynh Đáng Kính là các Đấng Hồng Y thuộc Thánh Bộ Truyền Bá Đức Tin, với Quyền Bính Tông Tòa Tối Cao, Ta thiết lập và chuẩn định: Thiết lập 3 Giáo Tỉnh tại Việt Nam gồm Hà Nội, Huế và Sài Gòn... Đồng thời thành lập các Giáo phận mới, trong đó có <strong>Giáo phận Mỹ Tho</strong>, và nâng ngôi thánh đường tại Mỹ Tho làm <strong>Nhà thờ Chính Tòa</strong> dâng kính tước hiệu <strong>Đức Mẹ Vô Nhiễm Nguyên Tội</strong>.&rdquo;
+              </div>
+            </div>
+
+            {/* TÓM TẮT 5 QUYẾT ĐỊNH LỊCH SỬ TRỌNG YẾU */}
+            <div
+              style={{
+                backgroundColor: 'rgba(153, 27, 27, 0.03)',
+                border: '1px solid rgba(153, 27, 27, 0.12)',
+                borderRadius: '12px',
+                padding: '16px 20px',
+                margin: '18px 0 24px'
+              }}
+            >
+              <div style={{ fontWeight: 800, fontSize: '0.94rem', color: 'var(--color-red)', marginBottom: '10px' }}>
+                📌 Tóm Tắt 5 Quyết Định Lịch Sử Trọng Yếu Của Tông Hiến Venerabilium Nostrorum:
+              </div>
+              <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.88rem', lineHeight: 1.8, color: 'var(--color-dark)' }}>
+                <li>
+                  <strong>Chấm dứt quy chế Thừa sai Đại diện Tông Tòa (Vicariatus Apostolicus)</strong>: Đánh dấu sự trưởng thành trọn vẹn của Giáo hội Việt Nam sau hơn 300 năm hình thành kể từ hai Địa phận tiên khởi Đàng Trong và Đàng Ngoài (1659).
+                </li>
+                <li>
+                  <strong>Thiết lập 3 Tổng Giáo Phận (Giáo Tỉnh)</strong>: Giáo tỉnh Hà Nội (miền Bắc), Giáo tỉnh Huế (miền Trung) và Giáo tỉnh Sài Gòn (miền Nam).
+                </li>
+                <li>
+                  <strong>Nâng cấp đồng loạt</strong>: Tất cả các Giáo phận Tông Tòa hiện hữu tại Việt Nam được nâng lên hàng Giáo phận Chính Tòa (Dioecesis).
+                </li>
+                <li>
+                  <strong>Khai sinh Giáo phận Mỹ Tho (Dioecesis Mythoensis)</strong>: Tách các tỉnh Định Tường, Long An, Kiến Tường, Kiến Phong từ Tổng Giáo phận Sài Gòn để lập thành giáo phận độc lập thuộc Giáo tỉnh Sài Gòn (được cụ thể hóa bằng Sắc chỉ <em>Quod Venerabiles Fratres</em> ngày 27/11/1960).
+                </li>
+                <li>
+                  <strong>Chính thức công nhận Nhà thờ Chính Tòa Mỹ Tho</strong>: Thánh đường tọa lạc trên đại lộ Bourdais (nay là Hùng Vương) chính thức mang tước hiệu Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm, đặt dưới quyền cai quản của Đức Giám mục Tiên khởi Giuse Trần Văn Thiện.
+                </li>
+              </ul>
             </div>
 
             <h3 id="lich-su-cung-hien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
