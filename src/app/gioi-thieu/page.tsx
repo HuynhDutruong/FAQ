@@ -923,20 +923,25 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-van-chuc',
-    source: 'giaophanmytho.net (xác nhận ngài là cha sở năm 1995); mốc 1975 theo tư liệu giáo xứ',
-    tableNote: 'Theo tư liệu giáo xứ, từ 1975 đến 1992 ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền phụ trách giáo xứ. Cho xây tháp chuông tách rời khỏi nhà thờ để tiếng chuông không gây rung chấn ngôi thánh đường cổ — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
+    source: 'Tư liệu giáo xứ (nhiệm kỳ 1975 – 1992). Lưu ý: tài liệu GP Mỹ Tho 2009 ghi chính ngài cho xây tháp chuông năm 1995, tức sau khi mãn nhiệm — cần đối chiếu sổ sách họ đạo.',
+    tableNote: 'Nhận xứ ngay trước biến cố tháng 4/1975; cùng các cha phó Phêrô Trần Xuân Lộc và Đôminicô Lê Văn Bền duy trì thánh lễ và ổn định đời sống đức tin qua giai đoạn biến động nhất. Đầu năm 1975 ngài cùng giáo dân mua một căn nhà lá làm nhà nguyện, đặt nền móng cho Họ đạo Tân Long. Năm 1995 ngài chủ trì xây tháp chuông tách rời khỏi thánh đường — đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
-    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 2006)',
-    period: '1975 – 2006',
+    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 1992)',
+    period: '1975 – 1992',
     death: '14/12/1999 tại Tiền Giang',
     origin: 'Giáo phận Mỹ Tho',
     shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc lớn nhất của ngài là tháp chuông tách rời hẳn khỏi nhà thờ (1995): vì lo tiếng chuông rung chấn làm hư hại ngôi thánh đường xây từ 1906, ngài cho dựng một tháp chuông riêng — Đức Cha Anrê Nguyễn Văn Nam đặt viên đá đầu tiên ngày 16/02/1995, công trình khánh thành sau hơn 9 tháng vào ngày 30/11/1995.',
     chronology: [
       {
         time: '1975 – 1992',
-        title: 'Cùng phụ trách giáo xứ thời kỳ khó khăn',
-        content: 'Theo tư liệu giáo xứ, trong giai đoạn này ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền chia nhau phụ trách Giáo xứ Chánh Tòa, giữ vững đời sống đức tin và các sinh hoạt phụng vụ của cộng đoàn.'
+        title: 'Giữ vững đức tin qua giai đoạn biến động',
+        content: 'Nhận xứ ngay trước biến cố tháng 4/1975, ngài cùng các cha phó Phêrô Trần Xuân Lộc và Đôminicô Lê Văn Bền kiên trì ở lại, duy trì các thánh lễ và ổn định đời sống tinh thần cho giáo dân giữa bối cảnh xã hội đổi thay sâu sắc.'
+      },
+      {
+        time: 'đầu 1975',
+        title: 'Đặt nền móng Họ đạo Tân Long',
+        content: 'Dù hoàn cảnh kinh tế xã hội hết sức thắt ngặt, ngài cùng giáo dân vẫn mua một căn nhà lá làm nhà nguyện — nền móng đầu tiên hình thành Họ đạo Tân Long sau này.'
       },
       {
         time: '1975 – 1985',
@@ -956,18 +961,20 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ],
     milestones: [
       'Chủ trì xây dựng tháp chuông tách rời khỏi nhà thờ (đặt viên đá 16/02/1995, khánh thành 30/11/1995) để bảo vệ ngôi thánh đường cổ.',
+      'Đặt nền móng cho Họ đạo Tân Long (đầu năm 1975).',
       'Mục tử nhân ái gìn giữ sự bình an và đức tin kiên trung của Giáo xứ Chánh Tòa suốt hơn 20 năm.',
       'Thành lập họ đạo Tân Long và chăm lo đời sống người nghèo khó.'
     ]
   },
   {
     id: 'cha-ha-van-xung',
-    source: 'giaophanmytho.net (trùng tu 2006 và danh sách linh mục đoàn 2009)',
-    tableNote: 'Cha sở đương nhiệm kiêm Linh mục Trưởng Hạt Giáo hạt Mỹ Tho; chủ trì đợt trùng tu 100 năm (khởi công 14/06/2006, lễ tạ ơn khai mạc Năm Thánh 21/05/2007), xây Nhà Mục vụ Giáo xứ (2020) và Lễ đài Đức Mẹ.',
+    priestOrdination: 'Thụ phong Linh mục ngày 27/06/1992',
+    source: 'Tư liệu giáo xứ (nhận sở 1992, thụ phong 27/06/1992) + giaophanmytho.net (chủ trì trùng tu 2006 – 2007; danh sách linh mục đoàn 2009 ghi ngài ở Chánh Tòa)',
+    tableNote: 'Thụ phong linh mục 27/06/1992 và về nhận Chánh Tòa ngay sau đó. Đồng hành cùng hai đời Giám mục Anrê Nguyễn Văn Nam và Phaolô Bùi Văn Đọc; cùng Đức Cha Phaolô tổ chức Lễ Cung hiến Nhà thờ Chánh Tòa Năm Thánh 2000. Chủ trì đợt trùng tu 100 năm (khởi công 14/06/2006, lễ tạ ơn 21/05/2007), xây Đài Đức Mẹ (2009) và Nhà Mục vụ Giáo xứ (2020).',
     name: 'Linh mục Giacôbê Hà Văn Xung',
     saintName: 'Thánh Giacôbê Tông Đồ (James / Jacob)',
-    role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho',
-    period: '2006 – nay',
+    role: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho • Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (từ 1992)',
+    period: '1992 – nay',
     birth: 'Giáo phận Mỹ Tho',
     origin: 'Giáo phận Mỹ Tho',
     motto: '“Tôi tớ trung tín phục vụ Dân Chúa”',
@@ -975,6 +982,21 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     image: '/images/cha_so_ha_van_xung.jpg',
     shortDesc: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho kiêm Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho. Ngài luôn đồng hành chặt chẽ cùng Đức Giám mục Giáo phận, điều phối sứ vụ mục tử liên xứ trong giáo hạt, chăm lo đời sống thiêng liêng cho cộng đoàn Chánh Tòa và dẫn dắt các phong trào hội đoàn giáo dân.',
     chronology: [
+      {
+        time: '1992',
+        title: 'Thụ phong Linh mục & Nhận Nhà thờ Chánh Tòa',
+        content: 'Thụ phong linh mục ngày 27/06/1992 và được bề trên sai về coi sóc Nhà thờ Chánh Tòa Mỹ Tho ngay sau khi Cha Giuse Nguyễn Văn Chúc mãn nhiệm.'
+      },
+      {
+        time: '1992 – nay',
+        title: 'Đồng hành cùng hai đời Giám mục Giáo phận',
+        content: 'Là cánh tay nối dài đắc lực bên cạnh Đức Cha Anrê Nguyễn Văn Nam (1989 – 1999) rồi Đức Cha Phaolô Bùi Văn Đọc (1999 – 2014). Cùng Đức Cha Phaolô tổ chức Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000 nhân Đại Năm Thánh.'
+      },
+      {
+        time: '2009',
+        title: 'Tôn tạo Đài Đức Mẹ',
+        content: 'Xây dựng lại Đài Đức Mẹ quy mô và trang nghiêm hơn ngay giữa khuôn viên nhà thờ.'
+      },
       {
         time: 'Trọng trách Giáo Hạt',
         title: 'Linh mục Trưởng Hạt (Hạt Trưởng) Giáo hạt Mỹ Tho',
