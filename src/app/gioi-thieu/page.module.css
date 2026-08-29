@@ -1,0 +1,56 @@
+.mainLayout {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  width: 330px;
+  flex-shrink: 0;
+}
+
+.floatingImageRight270 {
+  float: right;
+  width: 270px;
+  margin: 8px 0 16px 20px;
+}
+
+.floatingImageRight290 {
+  float: right;
+  width: 290px;
+  margin: 8px 0 16px 20px;
+}
+
+.floatingImageLeft250 {
+  float: left;
+  width: 250px;
+  margin: 8px 20px 16px 0;
+}
+
+@media (max-width: 900px) {
+  .mainLayout {
+    flex-direction: column-reverse; /* Sidebar goes to bottom on mobile */
+    gap: 24px;
+    padding: 16px 12px;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: static;
+  }
+
+  /* Make floating images fluid or center them on small screens */
+  .floatingImageRight270,
+  .floatingImageRight290,
+  .floatingImageLeft250 {
+    float: none;
+    width: 100%;
+    max-width: 400px;
+    margin: 16px auto;
+    display: block;
+  }
+}

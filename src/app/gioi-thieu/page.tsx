@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
+import styles from './page.module.css';
 
 /**
  * Khung chân dung nhân vật. Nhiều cha sở thời sơ khai (1860–1956) không còn
@@ -1273,15 +1274,9 @@ export default function GioiThieuPage() {
           ========================================================================= */}
       <div
         style={{
-          maxWidth: '1220px',
-          margin: '0 auto',
-          padding: '24px 20px',
-          display: 'flex',
-          gap: '36px',
-          alignItems: 'flex-start',
-          boxSizing: 'border-box'
+          backgroundColor: 'transparent' // optional cleanup or just empty
         }}
-        className="wiki-container"
+        className={`wiki-container ${styles.mainLayout}`}
       >
         {/* =======================================================================
             CỘT TRÁI: NỘI DUNG CHÍNH (MAIN ARTICLE CONTENT)
@@ -1556,10 +1551,10 @@ export default function GioiThieuPage() {
                   cursor: 'pointer',
                   boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
                 }}
-                onClick={() => setLightboxImage({ src: '/images/vatican_st_peter.jpg', caption: 'Gian Cung thánh uy nghiêm và Mái vòm Baldacchino bằng đồng của Bernini bên trong Đền thờ Thánh Phêrô.' })}
+                onClick={() => setLightboxImage({ src: '/images/vatican_basilica_interior.jpg', caption: 'Gian Cung thánh uy nghiêm và Mái vòm Baldacchino bằng đồng của Bernini bên trong Đền thờ Thánh Phêrô.' })}
               >
                 <div style={{ position: 'relative', width: '100%', height: '160px', borderRadius: '8px', overflow: 'hidden', marginBottom: '8px' }}>
-                  <Image src="/images/vatican_st_peter.jpg" alt="Bên trong Đền thờ Thánh Phêrô" fill sizes="260px" style={{ objectFit: 'cover' }} />
+                  <Image src="/images/vatican_basilica_interior.jpg" alt="Bên trong Đền thờ Thánh Phêrô" fill sizes="260px" style={{ objectFit: 'cover' }} />
                 </div>
                 <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
                   Bên trong Đền Thờ Thánh Phêrô
@@ -1583,10 +1578,8 @@ export default function GioiThieuPage() {
 
             {/* Thumbnail chân dung Đức Giáo hoàng Lêô XIV */}
             <div
+              className={styles.floatingImageRight270}
               style={{
-                float: 'right',
-                width: '270px',
-                margin: '8px 0 16px 20px',
                 padding: '8px',
                 backgroundColor: 'var(--color-card-bg)',
                 border: '1px solid var(--color-border-subtle)',
@@ -1689,10 +1682,8 @@ export default function GioiThieuPage() {
 
             {/* Minh họa ảnh nổi bên phải chuẩn Wikipedia */}
             <div
+              className={styles.floatingImageRight290}
               style={{
-                float: 'right',
-                width: '290px',
-                margin: '8px 0 16px 20px',
                 padding: '8px',
                 backgroundColor: 'var(--color-card-bg)',
                 border: '1px solid var(--color-border-subtle)',
@@ -2499,8 +2490,6 @@ export default function GioiThieuPage() {
             ======================================================================= */}
         <aside
           style={{
-            width: '330px',
-            flexShrink: 0,
             backgroundColor: 'var(--color-card-bg)',
             border: '1px solid var(--color-border-subtle)',
             borderRadius: '12px',
@@ -2508,7 +2497,7 @@ export default function GioiThieuPage() {
             boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
             fontSize: '0.84rem'
           }}
-          className="wiki-infobox"
+          className={`wiki-infobox ${styles.sidebar}`}
         >
           {/* Infobox Header */}
           <div
