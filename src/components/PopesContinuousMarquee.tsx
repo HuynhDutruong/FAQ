@@ -3,12 +3,13 @@
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import { ALL_POPES, PopeRecord } from '@/lib/vatican/popes';
-import { Crown, Sparkles, Search, Pause, Play, Eye, X, Globe, Church } from 'lucide-react';
+import { Crown, Sparkles, Search, Pause, Play, Eye, X, Globe, Church, Calendar, MapPin, Award, BookOpen } from 'lucide-react';
 
 export default function PopesContinuousMarquee() {
   const [selectedPope, setSelectedPope] = useState<PopeRecord | null>(null);
   const [isPaused, setIsPaused] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [failedImages, setFailedImages] = useState<Record<number, boolean>>({});
 
   const filteredPopes = useMemo(() => {
     if (!searchQuery.trim()) return ALL_POPES;
@@ -18,6 +19,8 @@ export default function PopesContinuousMarquee() {
         p.nameVi.toLowerCase().includes(q) ||
         p.nameLatin.toLowerCase().includes(q) ||
         p.reign.toLowerCase().includes(q) ||
+        (p.notes && p.notes.toLowerCase().includes(q)) ||
+        (p.birthPlace && p.birthPlace.toLowerCase().includes(q)) ||
         p.num.toString() === q
     );
   }, [searchQuery]);
@@ -74,7 +77,7 @@ export default function PopesContinuousMarquee() {
               Biên niên sử 267 Vị Giáo Hoàng (Từ Thánh Phêrô đến Đức Lêô XIV)
             </div>
             <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)' }}>
-              Danh xưng tiếng Việt • Tông hiệu chính thức tiếng Latinh (Nomina Latina) • Niên hiệu triều đại
+              Chân dung đầy đủ 267 Vị Giáo Hoàng • Danh xưng tiếng Việt • Tông hiệu tiếng Latinh • Dấu mốc lịch sử
             </div>
           </div>
         </div>
@@ -91,7 +94,7 @@ export default function PopesContinuousMarquee() {
             <Search size={14} color="var(--color-subtle)" style={{ position: 'absolute', left: '10px' }} />
             <input
               type="text"
-              placeholder="Tìm kiếm Giáo Hoàng..."
+              placeholder="Tìm Giáo Hoàng (tên, Latinh, năm, dấu ấn)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
@@ -101,7 +104,7 @@ export default function PopesContinuousMarquee() {
                 backgroundColor: 'var(--color-input-bg)',
                 color: 'var(--color-dark)',
                 fontSize: '0.78rem',
-                width: '190px',
+                width: '210px',
                 outline: 'none'
               }}
             />
@@ -200,11 +203,11 @@ export default function PopesContinuousMarquee() {
               }}
               className="pope-medallion-card"
             >
-              {/* Huy Hiệu Tròn Giáo Hoàng (Circular Medallion Frame) */}
+              {/* Huy Hiệu Tròn Chân Dung Của Từng Vị Giáo Hoàng */}
               <div
                 style={{
-                  width: '76px',
-                  height: '76px',
+                  width: '78px',
+                  height: '78px',
                   borderRadius: '50%',
                   border: '2px solid #B45309',
                   backgroundColor: 'var(--color-card-bg)',
@@ -212,34 +215,19 @@ export default function PopesContinuousMarquee() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '10px',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
                   position: 'relative',
                   overflow: 'hidden'
                 }}
               >
-                {pope.num === 267 ? (
+                {!failedImages[pope.num] ? (
                   <Image
-                    src="/images/pope_leo_xiv.jpg"
+                    src={`/images/popes/pope_${pope.num}.jpg`}
                     alt={pope.nameVi}
                     fill
-                    sizes="76px"
+                    sizes="78px"
                     style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                ) : pope.num === 266 ? (
-                  <Image
-                    src="/images/pope_francis.jpg"
-                    alt={pope.nameVi}
-                    fill
-                    sizes="76px"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                  />
-                ) : pope.num === 256 ? (
-                  <Image
-                    src="/images/pope_leo_xiv.jpg"
-                    alt={pope.nameVi}
-                    fill
-                    sizes="76px"
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                    onError={() => setFailedImages((prev) => ({ ...prev, [pope.num]: true }))}
                   />
                 ) : (
                   <div
@@ -335,14 +323,14 @@ export default function PopesContinuousMarquee() {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <Sparkles size={13} color="var(--color-red)" />
-          <span>Rê chuột hoặc chạm vào bất kỳ vị nào để tạm dừng và xem chi tiết</span>
+          <span>Nhấn vào bất kỳ vị nào để xem chân dung sắc nét và toàn bộ dấu mốc lịch sử</span>
         </div>
         <div style={{ fontWeight: 700, color: 'var(--color-dark)' }}>
           Tổng cộng: 267 Triều Đại Giáo Hoàng
         </div>
       </div>
 
-      {/* Modal Popup Chi Tiết Giáo Hoàng */}
+      {/* Modal Popup Chi Tiết Giáo Hoàng & Dấu Mốc Lịch Sử */}
       {selectedPope && (
         <div
           onClick={() => setSelectedPope(null)}
@@ -362,15 +350,16 @@ export default function PopesContinuousMarquee() {
             onClick={(e) => e.stopPropagation()}
             style={{
               width: '100%',
-              maxWidth: '480px',
+              maxWidth: '540px',
+              maxHeight: '90vh',
+              overflowY: 'auto',
               backgroundColor: 'var(--color-card-bg)',
               borderRadius: '16px',
               border: '1.5px solid var(--color-border-subtle)',
               boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
               padding: '24px',
               color: 'var(--color-dark)',
-              position: 'relative',
-              textAlign: 'center'
+              position: 'relative'
             }}
           >
             <button
@@ -389,104 +378,118 @@ export default function PopesContinuousMarquee() {
               <X size={20} />
             </button>
 
-            {/* Medallion Avatar */}
-            <div
-              style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: '50%',
-                border: '2.5px solid #B45309',
-                margin: '0 auto 14px',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-                overflow: 'hidden',
-                backgroundColor: 'var(--color-input-bg)',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              {selectedPope.num === 267 ? (
-                <Image
-                  src="/images/pope_leo_xiv.jpg"
-                  alt={selectedPope.nameVi}
-                  fill
-                  sizes="100px"
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                />
-              ) : selectedPope.num === 266 ? (
-                <Image
-                  src="/images/pope_francis.jpg"
-                  alt={selectedPope.nameVi}
-                  fill
-                  sizes="100px"
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                />
-              ) : selectedPope.num === 256 ? (
-                <Image
-                  src="/images/pope_leo_xiv.jpg"
-                  alt={selectedPope.nameVi}
-                  fill
-                  sizes="100px"
-                  style={{ objectFit: 'cover', objectPosition: 'top center' }}
-                />
-              ) : (
-                <div style={{ textAlign: 'center' }}>
-                  <Crown size={34} color="#B45309" />
-                  <div style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-dark)', marginTop: '2px' }}>
-                    #{selectedPope.num}
+            {/* Profile Header */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '16px' }}>
+              {/* Medallion Avatar */}
+              <div
+                style={{
+                  width: '110px',
+                  height: '110px',
+                  borderRadius: '50%',
+                  border: '3px solid #B45309',
+                  marginBottom: '12px',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                  overflow: 'hidden',
+                  backgroundColor: 'var(--color-input-bg)',
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                {!failedImages[selectedPope.num] ? (
+                  <Image
+                    src={`/images/popes/pope_${selectedPope.num}.jpg`}
+                    alt={selectedPope.nameVi}
+                    fill
+                    sizes="110px"
+                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                  />
+                ) : (
+                  <div style={{ textAlign: 'center' }}>
+                    <Crown size={34} color="#B45309" />
+                    <div style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-dark)', marginTop: '2px' }}>
+                      #{selectedPope.num}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+
+              <span
+                style={{
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  backgroundColor: 'rgba(153, 27, 27, 0.08)',
+                  color: 'var(--color-red)',
+                  padding: '3px 12px',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(153, 27, 27, 0.2)'
+                }}
+              >
+                VỊ GIÁO HOÀNG THỨ {selectedPope.num}
+              </span>
+
+              <h3 style={{ margin: '10px 0 2px', fontSize: '1.35rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                {selectedPope.nameVi}
+              </h3>
+
+              <div style={{ fontSize: '0.94rem', fontStyle: 'italic', color: '#B45309', fontWeight: 700 }}>
+                Nomina Latina: {selectedPope.nameLatin}
+              </div>
             </div>
 
-            <span
-              style={{
-                fontSize: '0.72rem',
-                fontWeight: 800,
-                backgroundColor: 'rgba(153, 27, 27, 0.08)',
-                color: 'var(--color-red)',
-                padding: '3px 12px',
-                borderRadius: '20px',
-                border: '1px solid rgba(153, 27, 27, 0.2)'
-              }}
-            >
-              VỊ GIÁO HOÀNG THỨ {selectedPope.num}
-            </span>
-
-            <h3 style={{ margin: '10px 0 2px', fontSize: '1.3rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-              {selectedPope.nameVi}
-            </h3>
-
-            <div style={{ fontSize: '0.92rem', fontStyle: 'italic', color: '#B45309', fontWeight: 700, marginBottom: '14px' }}>
-              Nomina Latina: {selectedPope.nameLatin}
-            </div>
-
+            {/* Thông tin triều đại & Quê quán */}
             <div
               style={{
                 backgroundColor: 'var(--color-input-bg)',
                 borderRadius: '10px',
                 padding: '12px 16px',
                 border: '1px solid var(--color-border-subtle)',
-                textAlign: 'left',
-                fontSize: '0.82rem',
-                marginBottom: '16px'
+                fontSize: '0.84rem',
+                marginBottom: '16px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '6px'
               }}
             >
-              <div style={{ marginBottom: '6px' }}>
-                <strong style={{ color: 'var(--color-dark)' }}>Triều đại:</strong> {selectedPope.reign}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Calendar size={14} color="var(--color-red)" />
+                <span>
+                  <strong style={{ color: 'var(--color-dark)' }}>Triều đại:</strong> {selectedPope.reign}
+                </span>
               </div>
+
               {selectedPope.birthPlace && (
-                <div style={{ marginBottom: '6px' }}>
-                  <strong style={{ color: 'var(--color-dark)' }}>Quê quán:</strong> {selectedPope.birthPlace}
-                </div>
-              )}
-              {selectedPope.notes && (
-                <div>
-                  <strong style={{ color: 'var(--color-dark)' }}>Dấu ấn lịch sử:</strong> {selectedPope.notes}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <MapPin size={14} color="#B45309" />
+                  <span>
+                    <strong style={{ color: 'var(--color-dark)' }}>Quê quán:</strong> {selectedPope.birthPlace}
+                  </span>
                 </div>
               )}
             </div>
+
+            {/* Dấu mốc & Di sản Lịch sử nổi bật (Nếu có hiển thị chi tiết, nếu không có để trống tinh tế) */}
+            {selectedPope.notes && (
+              <div
+                style={{
+                  backgroundColor: 'rgba(153, 27, 27, 0.04)',
+                  borderRadius: '10px',
+                  padding: '14px 16px',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderLeft: '3.5px solid var(--color-red)',
+                  marginBottom: '18px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-red)', marginBottom: '6px' }}>
+                  <Award size={15} />
+                  <span>Dấu mốc &amp; Di sản Lịch sử nổi bật:</span>
+                </div>
+                <p style={{ margin: 0, fontSize: '0.83rem', color: 'var(--color-dark)', lineHeight: 1.6, textAlign: 'justify' }}>
+                  {selectedPope.notes}
+                </p>
+              </div>
+            )}
 
             <button
               onClick={() => setSelectedPope(null)}
