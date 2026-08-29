@@ -70,6 +70,9 @@ export default function FacebookAdmin() {
   const [menuPostId, setMenuPostId] = useState<string | null>(null);
   const [postMessage, setPostMessage] = useState('');
   const [postLink, setPostLink] = useState('');
+  const [postPhotoUrl, setPostPhotoUrl] = useState('');
+  const [postVideoUrl, setPostVideoUrl] = useState('');
+  const [mediaTab, setMediaTab] = useState<'link' | 'photo' | 'video'>('link');
   const [posting, setPosting] = useState(false);
   const [toastMsg, setToastMsg] = useState<{ success: boolean; text: string } | null>(null);
 
@@ -247,21 +250,31 @@ export default function FacebookAdmin() {
 
     setPosting(true);
     try {
+      const payload: Record<string, string> = {
+        message: postMessage.trim()
+      };
+      if (mediaTab === 'link' && postLink.trim()) {
+        payload.link = postLink.trim();
+      } else if (mediaTab === 'photo' && postPhotoUrl.trim()) {
+        payload.photoUrl = postPhotoUrl.trim();
+      } else if (mediaTab === 'video' && postVideoUrl.trim()) {
+        payload.videoUrl = postVideoUrl.trim();
+      }
+
       const res = await authedFetch('/api/facebook/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: postMessage.trim(),
-          link: postLink.trim() || undefined
-        })
+        body: JSON.stringify(payload)
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Đăng bài thất bại');
 
-      showToast(` Đã đăng bài viết thành công lên Fanpage ${data.pageName}!`);
+      showToast(`Đã đăng bài viết thành công lên Fanpage ${data.pageName || ''}!`);
       setPostMessage('');
       setPostLink('');
+      setPostPhotoUrl('');
+      setPostVideoUrl('');
       fetchPosts();
 
     } catch (err: unknown) {
@@ -521,13 +534,114 @@ export default function FacebookAdmin() {
 
               {composerOpen && (
                 <>
-                  <input
-                    className="fb-reply-input"
-                    style={{ marginTop: '10px', width: '100%' }}
-                    value={postLink}
-                    onChange={e => setPostLink(e.target.value)}
-                    placeholder="Đính kèm đường dẫn (tuỳ chọn)"
-                  />
+                  {/* Media Tab Selector */}
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '12px', borderBottom: '1px solid var(--fb-divider)', paddingBottom: '8px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setMediaTab('link')}
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        backgroundColor: mediaTab === 'link' ? 'var(--fb-blue)' : 'transparent',
+                        color: mediaTab === 'link' ? '#FFF' : 'inherit'
+                      }}
+                    >
+                      🔗 Link Website / Báo chí
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMediaTab('photo')}
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        backgroundColor: mediaTab === 'photo' ? 'var(--fb-blue)' : 'transparent',
+                        color: mediaTab === 'photo' ? '#FFF' : 'inherit'
+                      }}
+                    >
+                      🖼️ Ảnh trực tiếp (Photo URL)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setMediaTab('video')}
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        backgroundColor: mediaTab === 'video' ? 'var(--fb-blue)' : 'transparent',
+                        color: mediaTab === 'video' ? '#FFF' : 'inherit'
+                      }}
+                    >
+                      🎥 Video trực tiếp (URL)
+                    </button>
+                  </div>
+
+                  {mediaTab === 'link' && (
+                    <input
+                      className="fb-reply-input"
+                      style={{ marginTop: '10px', width: '100%' }}
+                      value={postLink}
+                      onChange={e => setPostLink(e.target.value)}
+                      placeholder="Dán link bài viết Website (ví dụ: https://chanhtoa.tnttgiaophanmytho.online/bai-viet/...)"
+                    />
+                  )}
+
+                  {mediaTab === 'photo' && (
+                    <input
+                      className="fb-reply-input"
+                      style={{ marginTop: '10px', width: '100%' }}
+                      value={postPhotoUrl}
+                      onChange={e => setPostPhotoUrl(e.target.value)}
+                      placeholder="Dán URL hình ảnh trực tiếp (https://...jpg/png)"
+                    />
+                  )}
+
+                  {mediaTab === 'video' && (
+                    <input
+                      className="fb-reply-input"
+                      style={{ marginTop: '10px', width: '100%' }}
+                      value={postVideoUrl}
+                      onChange={e => setPostVideoUrl(e.target.value)}
+                      placeholder="Dán URL video trực tiếp (https://...mp4)"
+                    />
+                  )}
+
+                  {/* SEO Suggestion Checklist */}
+                  <div
+                    style={{
+                      marginTop: '10px',
+                      padding: '8px 12px',
+                      backgroundColor: 'rgba(24, 119, 242, 0.06)',
+                      borderRadius: '8px',
+                      fontSize: '0.78rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      flexWrap: 'wrap'
+                    }}
+                  >
+                    <span style={{ fontWeight: 700 }}>💡 Gợi ý SEO:</span>
+                    <span style={{ color: postMessage.length > 50 ? '#059669' : '#D97706' }}>
+                      {postMessage.length > 50 ? '✓ Độ dài tốt' : '⚠ Nên viết chi tiết hơn'}
+                    </span>
+                    <span style={{ color: /[A-ZÀ-Ỹ]{3,}/.test(postMessage) ? '#059669' : '#64748B' }}>
+                      {/[A-ZÀ-Ỹ]{3,}/.test(postMessage) ? '✓ Có tiêu đề nổi bật' : '○ Thêm tiêu đề in hoa'}
+                    </span>
+                    <span style={{ color: /#(thongbao|tntt|mytho|chanhtoa)/i.test(postMessage) ? '#059669' : '#64748B' }}>
+                      {/#(thongbao|tntt|mytho|chanhtoa)/i.test(postMessage) ? '✓ Có Hashtag' : '○ Thêm #TNTT #MyTho #ChanhToa'}
+                    </span>
+                  </div>
+
                   <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
                     <button type="submit" className="fb-btn fb-btn-primary fb-btn-block" disabled={posting || !postMessage.trim()}>
                       {posting ? <Loader2 size={16} className="spin" /> : <Send size={16} />} Đăng lên Fanpage
@@ -535,7 +649,13 @@ export default function FacebookAdmin() {
                     <button
                       type="button"
                       className="fb-btn"
-                      onClick={() => { setComposerOpen(false); setPostMessage(''); setPostLink(''); }}
+                      onClick={() => {
+                        setComposerOpen(false);
+                        setPostMessage('');
+                        setPostLink('');
+                        setPostPhotoUrl('');
+                        setPostVideoUrl('');
+                      }}
                     >
                       Huỷ
                     </button>
@@ -561,6 +681,7 @@ export default function FacebookAdmin() {
             const open = activeCommentPost?.id === post.id;
             const editing = editingPost?.id === post.id;
             const reactions = post.likesCount;
+            const webArticleUrl = `https://chanhtoa.tnttgiaophanmytho.online/bai-viet/${encodeURIComponent(post.id)}`;
 
             return (
               <div key={post.id} className="fb-card" style={{ position: 'relative' }}>
@@ -584,6 +705,19 @@ export default function FacebookAdmin() {
 
                 {menuPostId === post.id && (
                   <div className="fb-menu">
+                    <button onClick={() => {
+                      navigator.clipboard.writeText(webArticleUrl);
+                      showToast('Đã sao chép liên kết Website bài viết!');
+                      setMenuPostId(null);
+                    }}>
+                      <Share2 size={17} /> Copy Link Web (SEO 2 chiều)
+                    </button>
+                    <button onClick={() => {
+                      window.open(`https://developers.facebook.com/tools/debug/?q=${encodeURIComponent(webArticleUrl)}`, '_blank');
+                      setMenuPostId(null);
+                    }}>
+                      <Sparkles size={17} /> Kiểm tra thẻ SEO (FB Debugger)
+                    </button>
                     <button onClick={() => { setEditingPost(post); setEditMessage(post.message); setMenuPostId(null); }}>
                       <Edit3 size={17} /> Chỉnh sửa bài viết
                     </button>
@@ -620,6 +754,42 @@ export default function FacebookAdmin() {
                     <Image src={post.full_picture} alt="" fill sizes="680px" style={{ objectFit: 'cover' }} className="fb-post-img" />
                   </div>
                 )}
+
+                {/* 2-Way Link Bar */}
+                <div
+                  style={{
+                    padding: '8px 16px',
+                    backgroundColor: 'rgba(0,0,0,0.02)',
+                    borderTop: '1px solid var(--fb-divider)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '0.78rem',
+                    color: 'var(--color-text-muted)'
+                  }}
+                >
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    🔗 Link Web: <code style={{ backgroundColor: 'rgba(0,0,0,0.06)', padding: '2px 6px', borderRadius: '4px' }}>/bai-viet/{post.id.slice(-8)}</code>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(webArticleUrl);
+                      showToast('Đã copy link bài viết để đăng/share Facebook!');
+                    }}
+                    style={{
+                      border: '1px solid var(--fb-divider)',
+                      borderRadius: '6px',
+                      padding: '3px 8px',
+                      backgroundColor: 'transparent',
+                      cursor: 'pointer',
+                      fontSize: '0.75rem',
+                      fontWeight: 600
+                    }}
+                  >
+                    Copy Link
+                  </button>
+                </div>
 
                 <div className="fb-stats">
                   <span className="fb-reactions">

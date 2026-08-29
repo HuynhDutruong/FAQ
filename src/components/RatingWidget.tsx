@@ -35,20 +35,8 @@ function celebrate() {
 
 export default function RatingWidget() {
   const { t, lang } = useLanguage();
-  const [stats, setStats] = useState<Stats | null>(() => {
-    // Khởi tạo ngay từ localStorage để tránh bị tụt về 0 hoặc giật số
-    if (typeof window !== 'undefined') {
-      try {
-        const savedMax = parseInt(localStorage.getItem(MAX_RECORDED_VISITS_KEY) || '0', 10);
-        if (savedMax > 0) {
-          return { visits: savedMax, count: 0, average: 0, stars: {} };
-        }
-      } catch {
-        // noop
-      }
-    }
-    return null;
-  });
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [picked, setPicked] = useState(0);
   const [hover, setHover] = useState(0);
   const [comment, setComment] = useState('');
@@ -57,6 +45,17 @@ export default function RatingWidget() {
   const [done, setDone] = useState<number | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+    let guaranteedVisits = 0;
+    try {
+      guaranteedVisits = parseInt(localStorage.getItem(MAX_RECORDED_VISITS_KEY) || '0', 10);
+      if (guaranteedVisits > 0) {
+        setStats({ visits: guaranteedVisits, count: 0, average: 0, stars: {} });
+      }
+    } catch {
+      // noop
+    }
+
     let firstVisit = false;
     try {
       firstVisit = !sessionStorage.getItem(VISIT_KEY);
@@ -186,7 +185,7 @@ export default function RatingWidget() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '16px' }}>
         <div className="stat-tile">
           <div className="stat-value">
-            {stats && stats.visits > 0 ? stats.visits.toLocaleString('vi-VN') : '—'}
+            {mounted && stats && stats.visits > 0 ? stats.visits.toLocaleString('vi-VN') : '—'}
           </div>
           <div className="stat-label">
             <Eye size={12} /> {t.ratingVisits || 'Lượt truy cập'}
@@ -195,11 +194,11 @@ export default function RatingWidget() {
 
         <div className="stat-tile">
           <div className="stat-value" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-            {stats && stats.count > 0 ? stats.average.toFixed(1) : '—'}
+            {mounted && stats && stats.count > 0 ? stats.average.toFixed(1) : '—'}
             <Star size={15} fill="#F4B400" strokeWidth={0} />
           </div>
           <div className="stat-label">
-            {stats && stats.count > 0
+            {mounted && stats && stats.count > 0
               ? `${stats.count} ${t.ratingCountLabel || 'lượt đánh giá'}`
               : t.ratingBeFirst || 'Hãy là người đầu tiên'}
           </div>

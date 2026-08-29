@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
+import PostSubmissionsAdmin from '@/components/PostSubmissionsAdmin';
+import PostIntelDashboard from '@/components/PostIntelDashboard';
+import { useFacebookPosts } from '@/lib/useFacebookPosts';
 import {
   ChevronRight,
   Church,
@@ -16,8 +19,11 @@ import {
   Star,
   Trash2,
   User as UserIcon,
-  Users
+  Users,
+  FileText,
+  TrendingUp
 } from 'lucide-react';
+
 import Image from 'next/image';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot, Timestamp, where, doc, deleteDoc } from 'firebase/firestore';
@@ -38,11 +44,21 @@ interface Submission {
   createdAt: Timestamp;
 }
 
-type TabType = 'giole' | 'quanly_admin' | 'faq' | 'feedback' | 'danhgia' | 'history' | 'facebook';
+type TabType =
+  | 'giole'
+  | 'quanly_admin'
+  | 'facebook'
+  | 'donggop_baiviet'
+  | 'thongke_truyenthong'
+  | 'faq'
+  | 'feedback'
+  | 'danhgia'
+  | 'history';
 
 export default function AdminDashboard() {
   const { user, role, loading, signOut } = useAuth();
   const router = useRouter();
+  const { posts: fbPosts } = useFacebookPosts();
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [dataLoading, setDataLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -54,11 +70,14 @@ export default function AdminDashboard() {
       if (tabParam === 'facebook' || fbSuccess === 'true') {
         return 'facebook';
       }
+      if (tabParam === 'donggop_baiviet') return 'donggop_baiviet';
+      if (tabParam === 'thongke_truyenthong') return 'thongke_truyenthong';
     }
     return 'giole';
   });
   const [pendingFeedbackCount, setPendingFeedbackCount] = useState(0);
   const [pendingUserCount, setPendingUserCount] = useState(0);
+  const [pendingSubmissionsCount, setPendingSubmissionsCount] = useState(0);
 
   useEffect(() => {
     if (!loading && (!user || !role)) {
@@ -95,10 +114,19 @@ export default function AdminDashboard() {
         console.error("Error counting pending users:", err);
       });
 
+      // Listen to pending post submissions count
+      const qSubmissions = query(collection(db, 'postSubmissions'), where('status', '==', 'pending'));
+      const unsubscribePostSubmissions = onSnapshot(qSubmissions, (snapshot) => {
+        setPendingSubmissionsCount(snapshot.size);
+      }, (err) => {
+        console.error("Error counting pending post submissions:", err);
+      });
+
       return () => {
         unsubscribeSubmissions();
         unsubscribeFeedback();
         unsubscribeUsers();
+        unsubscribePostSubmissions();
       };
     }
   }, [user, role, loading, router]);
@@ -128,7 +156,9 @@ export default function AdminDashboard() {
   const navItems = [
     { key: 'giole' as TabType, label: 'Quản Lý Giờ Lễ', icon: Church, badge: pendingFeedbackCount },
     { key: 'quanly_admin' as TabType, label: 'Quản Lý Admin', icon: Users, badge: pendingUserCount },
+    { key: 'donggop_baiviet' as TabType, label: 'Bài Viết Đóng Góp', icon: FileText, badge: pendingSubmissionsCount },
     { key: 'facebook' as TabType, label: 'Fanpage Facebook', icon: Share2 },
+    { key: 'thongke_truyenthong' as TabType, label: 'Thống Kê & SEO', icon: TrendingUp },
     { key: 'faq' as TabType, label: 'Hộp Thư Vấn Đáp', icon: HelpCircle },
     { key: 'feedback' as TabType, label: 'Ý Kiến Phản Hồi', icon: MessageSquare },
     { key: 'danhgia' as TabType, label: 'Đánh Giá & Lượt Truy Cập', icon: Star },
@@ -482,8 +512,12 @@ export default function AdminDashboard() {
             <UnifiedMassManagement />
           ) : activeTab === 'quanly_admin' ? (
             <AdminUsersManagement />
+          ) : activeTab === 'donggop_baiviet' ? (
+            <PostSubmissionsAdmin />
           ) : activeTab === 'facebook' ? (
             <FacebookAdmin />
+          ) : activeTab === 'thongke_truyenthong' ? (
+            <PostIntelDashboard posts={fbPosts} />
           ) : activeTab === 'danhgia' ? (
             <RatingsAdmin />
           ) : dataLoading ? (

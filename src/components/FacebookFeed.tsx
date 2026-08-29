@@ -11,8 +11,10 @@ import {
   ChevronRight,
   Flame,
   Megaphone,
-  BookOpen
+  BookOpen,
+  FilePlus
 } from 'lucide-react';
+import PostSubmissionModal from '@/components/PostSubmissionModal';
 
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { translateClientText, translateClientBatch } from '@/lib/clientTranslator';
@@ -96,6 +98,7 @@ export default function FacebookFeed({
   const [filterTab, setFilterTab] = useState<'all' | 'notice' | 'news'>(category);
   const [slideIndex, setSlideIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [submissionOpen, setSubmissionOpen] = useState(false);
   const [translatedMap, setTranslatedMap] = useState<Record<string, { title: string; excerpt: string }>>({});
 
   useEffect(() => {
@@ -397,6 +400,31 @@ export default function FacebookFeed({
         }}>
           {newsCount}
         </span>
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setSubmissionOpen(true)}
+        style={{
+          marginLeft: 'auto',
+          padding: '7px 14px',
+          borderRadius: '20px',
+          fontSize: '0.82rem',
+          fontWeight: 700,
+          cursor: 'pointer',
+          whiteSpace: 'nowrap',
+          flexShrink: 0,
+          border: '1px dashed var(--color-red)',
+          backgroundColor: 'rgba(211, 47, 47, 0.08)',
+          color: 'var(--color-red)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          transition: 'all 0.15s ease'
+        }}
+      >
+        <FilePlus size={14} />
+        <span>Đóng Góp Bài Viết</span>
       </button>
     </div>
   );
@@ -943,6 +971,8 @@ export default function FacebookFeed({
         </div>
       )}
 
+      {/* Modal đóng góp bài viết cộng đoàn */}
+      <PostSubmissionModal isOpen={submissionOpen} onClose={() => setSubmissionOpen(false)} />
     </div>
   );
 }

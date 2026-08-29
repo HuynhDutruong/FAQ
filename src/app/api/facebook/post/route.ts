@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export const POST = withAdmin(async (request: Request) => {
   const body = await request.json();
-  const { message, link } = body;
+  const { message, link, photoUrl, videoUrl } = body;
 
   if (!message || !message.trim()) {
     return NextResponse.json({ error: 'Nội dung bài viết không được để trống' }, { status: 400 });
@@ -14,15 +14,33 @@ export const POST = withAdmin(async (request: Request) => {
 
   const { pageId, pageToken, pageName } = await getFacebookCredentials();
 
-  // Gửi bài đăng lên Fanpage qua Meta Graph API
-  const formData = new URLSearchParams();
-  formData.append('message', message.trim());
-  formData.append('access_token', pageToken);
-  if (link) {
-    formData.append('link', link);
+  if (!pageId || !pageToken) {
+    return NextResponse.json({ error: 'Chưa cấu hình hoặc kết nối Fanpage Facebook' }, { status: 400 });
   }
 
-  const postResponse = await fetch(`https://graph.facebook.com/v20.0/${pageId}/feed`, {
+  let endpoint = `https://graph.facebook.com/v20.0/${pageId}/feed`;
+  const formData = new URLSearchParams();
+  formData.append('access_token', pageToken);
+
+  if (photoUrl && photoUrl.trim()) {
+    // Đăng dạng bài kèm ảnh trực tiếp
+    endpoint = `https://graph.facebook.com/v20.0/${pageId}/photos`;
+    formData.append('caption', message.trim());
+    formData.append('url', photoUrl.trim());
+  } else if (videoUrl && videoUrl.trim()) {
+    // Đăng dạng video trực tiếp
+    endpoint = `https://graph.facebook.com/v20.0/${pageId}/videos`;
+    formData.append('description', message.trim());
+    formData.append('file_url', videoUrl.trim());
+  } else {
+    // Đăng bài viết thông thường hoặc kèm link bài viết Website
+    formData.append('message', message.trim());
+    if (link && link.trim()) {
+      formData.append('link', link.trim());
+    }
+  }
+
+  const postResponse = await fetch(endpoint, {
     method: 'POST',
     body: formData
   });
@@ -36,7 +54,7 @@ export const POST = withAdmin(async (request: Request) => {
 
   return NextResponse.json({
     success: true,
-    postId: postResult.id,
+    postId: postResult.id || postResult.post_id,
     pageName
   });
 });
