@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -27,7 +27,8 @@ import {
   Heart,
   Flame,
   CheckCircle2,
-  X
+  X,
+  Crown
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
@@ -51,8 +52,8 @@ const BISHOPS_DATA: BishopRecord[] = [
   },
   {
     name: 'Đức Cha Anrê Nguyễn Văn Nam',
-    role: 'Giám mục Chính tòa thứ II',
-    motto: '“Vui mừng trong Thánh Giá Chúa Kitô”',
+    role: 'Giám mục Chính tòa thứ II Giáo phận Mỹ Tho',
+    motto: '“Vui mừng trong Thánh Giá Chúa Kitô” (Crux Spes Unica)',
     period: '1989 – 1999',
     desc: 'Coi sóc giáo phận trong giai đoạn chuyển mình của đất nước. Ngài hết lòng củng cố sự hiệp thông, chăm lo đời sống thiêng liêng cho bà con giáo dân và xây dựng tình bác ái huynh đệ khắp các giáo xứ vùng sông nước Tiền Giang, Long An và Đồng Tháp.',
     image: '/images/bishop_nguyen_van_nam.jpg'
@@ -67,7 +68,7 @@ const BISHOPS_DATA: BishopRecord[] = [
   },
   {
     name: 'Đức Tổng Giám Mục Phaolô Bùi Văn Đọc',
-    role: 'Giám mục Chính tòa thứ III',
+    role: 'Giám mục Chính tòa thứ III Giáo phận Mỹ Tho',
     motto: '“Chúa là nguồn vui của con” (Dominus Lux Mea)',
     period: '1999 – 2013',
     desc: 'Thời kỳ Ngài coi sóc ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, thiết lập Trung tâm Mục vụ khang trang, long trọng cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa vào Năm Thánh 2000 và thúc đẩy mạnh mẽ công cuộc loan báo Tin Mừng tại vùng sâu Đồng Tháp Mười.',
@@ -75,7 +76,7 @@ const BISHOPS_DATA: BishopRecord[] = [
   },
   {
     name: 'Đức Cha Phêrô Nguyễn Văn Khảm',
-    role: 'Giám mục Chính tòa đương nhiệm',
+    role: 'Giám mục Chính tòa đương nhiệm (từ 2014)',
     motto: '“Hãy theo Thầy” (Sequere Me)',
     period: '2014 – nay',
     desc: 'Được Đức Giáo hoàng Phanxicô bổ nhiệm làm Giám mục Chính tòa Mỹ Tho vào ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng đường hướng mục vụ phụng vụ, đào tạo đức tin giáo dân và chăm lo ơn gọi linh mục, tu sĩ toàn giáo phận.',
@@ -162,7 +163,7 @@ export default function GioiThieuPage() {
       >
         <div
           style={{
-            maxWidth: '1200px',
+            maxWidth: '1220px',
             margin: '0 auto',
             display: 'flex',
             alignItems: 'center',
@@ -203,11 +204,11 @@ export default function GioiThieuPage() {
           ========================================================================= */}
       <div
         style={{
-          maxWidth: '1200px',
+          maxWidth: '1220px',
           margin: '0 auto',
           padding: '24px 20px',
           display: 'flex',
-          gap: '32px',
+          gap: '36px',
           alignItems: 'flex-start',
           boxSizing: 'border-box'
         }}
@@ -220,7 +221,7 @@ export default function GioiThieuPage() {
           {/* Article Title */}
           <h1
             style={{
-              fontSize: '2.1rem',
+              fontSize: '2.2rem',
               fontWeight: 800,
               fontFamily: 'serif',
               margin: '0 0 8px',
@@ -241,23 +242,22 @@ export default function GioiThieuPage() {
               marginBottom: '18px'
             }}
           >
-            Bách khoa toàn thư Công Giáo — Giáo Xứ Chánh Tòa &amp; Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
+            Bách khoa toàn thư Công Giáo — Giáo xứ Chánh Tòa &amp; Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
           </div>
 
           {/* Dẫn nhập tổng quan (Lead Paragraph) */}
           <p style={{ fontSize: '0.98rem', lineHeight: 1.75, margin: '0 0 16px', textAlign: 'justify' }}>
-            <strong>Nhà thờ chính tòa Mỹ Tho</strong> (tên hiệu chính thức: <em>Nhà thờ Đức Mẹ Vô Nhiễm Nguyên Tội</em>) là
-            nhà thờ chính tòa của <strong>Giáo phận Mỹ Tho</strong>, tọa lạc tại số 32 đại lộ Hùng Vương, phường 7, thành
-            phố Mỹ Tho, tỉnh Tiền Giang, Việt Nam. Đây là trung tâm phụng vụ, đời sống đức tin và mục vụ trọng yếu của
-            cộng đoàn Công giáo thuộc ba tỉnh Tiền Giang, Long An và Đồng Tháp thuộc Giáo tỉnh Sài Gòn.
+            <strong>Nhà thờ chính tòa Mỹ Tho</strong> (tên hiệu đầy đủ: <em>Nhà thờ chính tòa Đức Mẹ Vô Nhiễm Nguyên Tội</em>) là
+            ngôi nhà thờ mẹ và là trung tâm hiệp thông phụng vụ của <strong>Giáo phận Mỹ Tho</strong>, tọa lạc tại số 32 đại lộ
+            Hùng Vương, phường 7, thành phố Mỹ Tho, tỉnh Tiền Giang, thuộc Giáo tỉnh Sài Gòn, Việt Nam. Đây là trung tâm đầu não
+            chăm sóc đời sống đức tin cho hơn 130.000 tín hữu Công giáo trên địa bàn ba tỉnh Tiền Giang, Long An và Đồng Tháp.
           </p>
 
           <p style={{ fontSize: '0.98rem', lineHeight: 1.75, margin: '0 0 20px', textAlign: 'justify' }}>
             Ngôi thánh đường hiện nay được khởi công xây dựng vào ngày 11 tháng 8 năm 1906 bởi linh mục Régnier (cố Gẫm)
-            và hoàn thành vào năm 1910 theo phong cách kiến trúc Phục Hưng (Renaissance) kết hợp các vòm cuốn Hy Lạp -
-            Rôma cổ điển. Ngày 24 tháng 11 năm 1960, cùng với sắc chỉ thiết lập Hàng Giáo phẩm Việt Nam của Thánh Giáo hoàng
-            Gioan XXIII, ngôi thánh đường chính thức được tôn phong làm <strong>Nhà thờ Chính Tòa</strong> của Giáo phận Mỹ
-            Tho.
+            và hoàn thành vào năm 1910 theo phong cách kiến trúc Phục Hưng (Renaissance) phối hợp các thức vòm Romanesque
+            uy nghiêm. Ngày 24 tháng 11 năm 1960, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến <em>Venerabilium Nostrorum</em>{' '}
+            chính thức nâng ngôi thánh đường lên hàng <strong>Nhà thờ Chính Tòa</strong>.
           </p>
 
           {/* =====================================================================
@@ -271,7 +271,7 @@ export default function GioiThieuPage() {
               padding: '16px 20px',
               margin: '24px 0 32px',
               display: 'inline-block',
-              minWidth: '280px',
+              minWidth: '300px',
               maxWidth: '100%',
               boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
             }}
@@ -310,6 +310,11 @@ export default function GioiThieuPage() {
                 }}
               >
                 <li>
+                  <a href="#duc-thanh-cha" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Đức Thánh Cha đương kim &amp; Tòa Thánh Vatican
+                  </a>
+                </li>
+                <li>
                   <a href="#lich-su" style={{ color: 'inherit', textDecoration: 'none' }}>
                     Lịch sử hình thành và phát triển
                   </a>
@@ -326,7 +331,7 @@ export default function GioiThieuPage() {
                     </li>
                     <li>
                       <a href="#lich-su-chinh-toa" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Thành lập Giáo phận &amp; Nâng lên hàng Chính Tòa (1960)
+                        Tông hiến Venerabilium Nostrorum &amp; Nâng lên Chính Tòa (1960)
                       </a>
                     </li>
                     <li>
@@ -343,7 +348,7 @@ export default function GioiThieuPage() {
                   <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
                     <li>
                       <a href="#kien-truc-mat-tien" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Mặt tiền và tháp chuông vươn cao
+                        Mặt tiền Phục Hưng và Tháp chuông 24 mét
                       </a>
                     </li>
                     <li>
@@ -353,14 +358,14 @@ export default function GioiThieuPage() {
                     </li>
                     <li>
                       <a href="#kien-truc-khuon-vien" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Đài Đức Mẹ &amp; 14 Đàng Thánh Giá
+                        Đài Đức Mẹ Lộ Đức &amp; 14 Đàng Thánh Giá
                       </a>
                     </li>
                   </ol>
                 </li>
                 <li>
-                  <a href="#giam-muc" style={{ color: 'inherit', textDecoration: 'none' }}>
-                    Các Đời Giám Mục Giáo Phận Mỹ Tho
+                  <a href="#giao-phan" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    Cơ cấu Giáo phận &amp; Các Đời Giám Mục Mỹ Tho
                   </a>
                 </li>
                 <li>
@@ -382,7 +387,7 @@ export default function GioiThieuPage() {
                 </li>
                 <li>
                   <a href="#phung-vu" style={{ color: 'inherit', textDecoration: 'none' }}>
-                    Giờ Thánh Lễ &amp; Mục Vụ
+                    Giờ Thánh Lễ &amp; Lịch Mục Vụ
                   </a>
                 </li>
                 <li>
@@ -395,7 +400,131 @@ export default function GioiThieuPage() {
           </div>
 
           {/* =====================================================================
-              1. LỊCH SỬ HÌNH THÀNH & PHÁT TRIỂN
+              1. ĐỨC THÁNH CHA ĐƯƠNG KIM & TÒA THÁNH VATICAN
+              ===================================================================== */}
+          <section id="duc-thanh-cha" style={{ marginBottom: '36px' }}>
+            <h2
+              style={{
+                fontSize: '1.45rem',
+                fontWeight: 800,
+                color: 'var(--color-dark)',
+                borderBottom: '1px solid var(--color-border-subtle)',
+                paddingBottom: '6px',
+                marginTop: '32px'
+              }}
+            >
+              1. Đức Thánh Cha đương kim &amp; Tòa Thánh Vatican
+            </h2>
+
+            {/* Thumbnail chân dung Đức Giáo hoàng Phanxicô */}
+            <div
+              style={{
+                float: 'right',
+                width: '280px',
+                margin: '8px 0 16px 20px',
+                padding: '8px',
+                backgroundColor: 'var(--color-card-bg)',
+                border: '1px solid var(--color-border-subtle)',
+                borderRadius: '8px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.04)'
+              }}
+              className="wiki-thumb"
+            >
+              <div
+                style={{ position: 'relative', width: '100%', height: '260px', cursor: 'pointer', borderRadius: '6px', overflow: 'hidden' }}
+                onClick={() => setLightboxImage({ src: '/images/pope_francis.jpg', caption: 'Đức Thánh Cha Phanxicô (Pope Francis) — Vị Giáo hoàng thứ 266 của Giáo hội Công giáo Rôma.' })}
+              >
+                <Image
+                  src="/images/pope_francis.jpg"
+                  alt="Đức Giáo hoàng Phanxicô"
+                  fill
+                  sizes="280px"
+                  style={{ objectFit: 'cover' }}
+                />
+              </div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '6px', lineHeight: 1.4 }}>
+                <strong>Đức Thánh Cha Phanxicô</strong> (Jorge Mario Bergoglio, S.J.) — Đấng kế vị Thánh Phêrô, vị Giáo hoàng thứ 266 của Giáo hội Công giáo hoàn vũ.
+              </div>
+            </div>
+
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Người đứng đầu tối cao của Giáo hội Công giáo hoàn vũ hiện nay là <strong>Đức Giáo hoàng Phanxicô</strong> (tiếng
+              Latinh: <em>Franciscus</em>, sinh ngày 17 tháng 12 năm 1936 tại Buenos Aires, Argentina). Ngài được Mật viện Hồng Y
+              bầu chọn vào ngày 13 tháng 3 năm 2013, trở thành vị Giáo hoàng đầu tiên thuộc Dòng Tên (Dòng Chúa Giêsu - S.J.),
+              vị Giáo hoàng đầu tiên đến từ Tân Thế Giới (châu Mỹ Latinh) và là vị Giáo hoàng đầu tiên chọn tông hiệu Phanxicô để
+              tôn vinh Thánh Phanxicô thành Assisi — vị thánh của sự khó nghèo, hòa bình và bảo vệ thiên nhiên tạo thành.
+            </p>
+
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Khẩu hiệu triều đại Giáo hoàng của Ngài là: <em>“Miserando atque eligendo”</em> (tiếng Việt: <em>“Cảm thương và
+              tuyển chọn”</em>), trích từ bài giảng của Thánh Bêđa Khả Kính về ơn gọi của Thánh Mátthêu. Triều đại của Đức Thánh
+              Cha Phanxicô ghi dấu ấn sâu sắc với đường hướng mục vụ đưa Giáo hội đến với những người nghèo khổ nơi vùng ngoại vi,
+              cổ võ tinh thần đối thoại liên tôn, lòng thương xót Chúa và cải cách Giáo triều Rôma qua Tông hiến <em>Praedicate
+              Evangelium</em> (2022).
+            </p>
+
+            {/* Các thông điệp nổi bật & Vatican */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '12px',
+                margin: '18px 0'
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '10px',
+                  padding: '12px 14px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setLightboxImage({ src: '/images/vatican_st_peter.jpg', caption: 'Vương cung thánh đường Thánh Phêrô (Thánh địa Vatican) — Trung tâm đức tin Công giáo toàn cầu.' })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '140px', borderRadius: '6px', overflow: 'hidden', marginBottom: '8px' }}>
+                  <Image src="/images/vatican_st_peter.jpg" alt="Vatican St. Peter" fill sizes="240px" style={{ objectFit: 'cover' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
+                  Vương Cung Thánh Đường Thánh Phêrô
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                  Trung tâm của Tòa Thánh Vatican và Giáo triều Rôma.
+                </div>
+              </div>
+
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '10px',
+                  padding: '12px 14px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setLightboxImage({ src: '/images/vatican_basilica_interior.jpg', caption: 'Kiến trúc tráng lệ bên trong Đền thờ Thánh Phêrô Vatican.' })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '140px', borderRadius: '6px', overflow: 'hidden', marginBottom: '8px' }}>
+                  <Image src="/images/vatican_basilica_interior.jpg" alt="Vatican Interior" fill sizes="240px" style={{ objectFit: 'cover' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)' }}>
+                  Đền Thờ Thánh Phêrô (Bên trong)
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
+                  Nơi Đức Thánh Cha chủ sự các Đại lễ Phụng vụ hoàn vũ.
+                </div>
+              </div>
+            </div>
+
+            <p style={{ fontSize: '0.96rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
+              <strong>Mối quan hệ với Giáo hội Việt Nam:</strong> Dưới triều đại Đức Thánh Cha Phanxicô, quan hệ giữa Tòa Thánh
+              Vatican và Việt Nam đã đạt bước tiến lịch sử với việc ký kết <em>Thỏa thuận Quy chế Đại diện Thường trú của Tòa Thánh
+              tại Việt Nam</em> (tháng 7/2023), giúp tăng cường sự hiệp thông trực tiếp giữa Tòa Thánh với Hội đồng Giám mục Việt
+              Nam và 27 giáo phận, trong đó có Giáo phận Mỹ Tho.
+            </p>
+          </section>
+
+          {/* =====================================================================
+              2. LỊCH SỬ HÌNH THÀNH & PHÁT TRIỂN
               ===================================================================== */}
           <section id="lich-su" style={{ marginBottom: '36px' }}>
             <h2
@@ -408,7 +537,7 @@ export default function GioiThieuPage() {
                 marginTop: '32px'
               }}
             >
-              1. Lịch sử hình thành và phát triển
+              2. Lịch sử hình thành và phát triển
             </h2>
 
             {/* Minh họa ảnh nổi bên phải chuẩn Wikipedia */}
@@ -443,7 +572,7 @@ export default function GioiThieuPage() {
             </div>
 
             <h3 id="lich-su-so-khai" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-              1.1. Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
+              2.1. Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Hạt giống Tin Mừng được gieo vãi tại vùng đất Mỹ Tho từ rất sớm vào thế kỷ XVII nhờ bước chân truyền giáo của
@@ -457,7 +586,7 @@ export default function GioiThieuPage() {
             </p>
 
             <h3 id="lich-su-xay-dung" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              1.2. Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
+              2.2. Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Nhận thấy ngôi nhà thờ cũ đã xuống cấp và diện tích chật hẹp, ngày 11 tháng 8 năm 1906, Linh mục Régnier (thường
@@ -468,7 +597,7 @@ export default function GioiThieuPage() {
             </p>
 
             <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              1.3. Thành lập Giáo phận &amp; Nâng lên hàng Chính Tòa (1960)
+              2.3. Tông hiến Venerabilium Nostrorum &amp; Nâng lên Chính Tòa (1960)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Ngày 24 tháng 11 năm 1960, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến lịch sử <em>Venerabilium Nostrorum</em>{' '}
@@ -499,7 +628,7 @@ export default function GioiThieuPage() {
             </div>
 
             <h3 id="lich-su-cung-hien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              1.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
+              2.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Nhân dịp Đại Năm Thánh 2000, Đức Tổng Giám mục Phaolô Bùi Văn Đọc đã long trọng cử hành <strong>Lễ Cung Hiến
@@ -514,7 +643,7 @@ export default function GioiThieuPage() {
           </section>
 
           {/* =====================================================================
-              2. KIẾN TRÚC & NGHỆ THUẬT THÁNH
+              3. KIẾN TRÚC & NGHỆ THUẬT THÁNH
               ===================================================================== */}
           <section id="kien-truc" style={{ marginBottom: '36px' }}>
             <h2
@@ -527,7 +656,7 @@ export default function GioiThieuPage() {
                 marginTop: '32px'
               }}
             >
-              2. Kiến trúc &amp; Nghệ thuật Thánh
+              3. Kiến trúc &amp; Nghệ thuật Thánh
             </h2>
 
             {/* Gallery ảnh kiến trúc */}
@@ -568,7 +697,7 @@ export default function GioiThieuPage() {
             </div>
 
             <h3 id="kien-truc-mat-tien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-              2.1. Mặt tiền và tháp chuông vươn cao
+              3.1. Mặt tiền Phục Hưng và Tháp chuông 24 mét
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Nhà thờ mang phong cách kiến trúc Phục Hưng (Renaissance) uy nghiêm với chiều dài 53 mét, chiều rộng 17 mét và
@@ -578,7 +707,7 @@ export default function GioiThieuPage() {
             </p>
 
             <h3 id="kien-truc-cung-thanh" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              2.2. Gian Cung Thánh &amp; Mái vòm Romanesque
+              3.2. Gian Cung Thánh &amp; Mái vòm Romanesque
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Bên trong thánh đường được thiết kế theo hình dạng Thánh Giá La-tinh gồm gian chính (nave) rộng rãi và hai gian
@@ -588,7 +717,7 @@ export default function GioiThieuPage() {
             </p>
 
             <h3 id="kien-truc-khuon-vien" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              2.3. Đài Đức Mẹ &amp; 14 Đàng Thánh Giá
+              3.3. Đài Đức Mẹ Lộ Đức &amp; 14 Đàng Thánh Giá
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
               Khuôn viên nhà thờ có diện tích rộng thoáng rợp bóng cây xanh. Phía bên phải là Đài Đức Mẹ Lộ Đức đá tự nhiên —
@@ -598,9 +727,9 @@ export default function GioiThieuPage() {
           </section>
 
           {/* =====================================================================
-              3. CÁC ĐỜI GIÁM MỤC GIÁO PHẬN MỸ THO
+              4. CƠ CẤU GIÁO PHẬN & CÁC ĐỜI GIÁM MỤC MỸ THO
               ===================================================================== */}
-          <section id="giam-muc" style={{ marginBottom: '36px' }}>
+          <section id="giao-phan" style={{ marginBottom: '36px' }}>
             <h2
               style={{
                 fontSize: '1.45rem',
@@ -611,9 +740,54 @@ export default function GioiThieuPage() {
                 marginTop: '32px'
               }}
             >
-              3. Các Đời Giám Mục Giáo Phận Mỹ Tho
+              4. Cơ cấu Giáo phận &amp; Các Đời Giám Mục Mỹ Tho
             </h2>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 18px' }}>
+
+            {/* Ảnh Linh mục đoàn & Thánh lễ đồng tế */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                gap: '12px',
+                margin: '18px 0'
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '10px',
+                  padding: '10px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setLightboxImage({ src: '/images/linh_muc_doan_my_tho.jpg', caption: 'Linh mục đoàn Giáo phận Mỹ Tho cùng Đức Giám mục trong Thánh lễ Truyền Dầu.' })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '6px', overflow: 'hidden', marginBottom: '6px' }}>
+                  <Image src="/images/linh_muc_doan_my_tho.jpg" alt="Linh Mục Đoàn Mỹ Tho" fill sizes="240px" style={{ objectFit: 'cover' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.84rem', color: 'var(--color-dark)' }}>Linh Mục Đoàn Giáo Phận Mỹ Tho</div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)' }}>Đồng tâm phụng sự cùng Đức Giám mục Chính tòa</div>
+              </div>
+
+              <div
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '10px',
+                  padding: '10px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setLightboxImage({ src: '/images/thanh_le_dong_te_my_tho.jpg', caption: 'Thánh lễ đồng tế đại triều tại Cung thánh Nhà thờ Chính Tòa Mỹ Tho.' })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '150px', borderRadius: '6px', overflow: 'hidden', marginBottom: '6px' }}>
+                  <Image src="/images/thanh_le_dong_te_my_tho.jpg" alt="Thánh Lễ Đồng Tế" fill sizes="240px" style={{ objectFit: 'cover' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.84rem', color: 'var(--color-dark)' }}>Thánh Lễ Đại Triều Tại Chánh Tòa</div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)' }}>Cử hành phụng vụ trọng thể Năm Thánh</div>
+              </div>
+            </div>
+
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 18px', textAlign: 'justify' }}>
               Từ ngày thành lập năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua 5 đời Giám mục coi sóc Chính tòa và Giám mục Phó:
             </p>
 
@@ -635,8 +809,8 @@ export default function GioiThieuPage() {
                 >
                   <div
                     style={{
-                      width: '72px',
-                      height: '72px',
+                      width: '76px',
+                      height: '76px',
                       borderRadius: '50%',
                       overflow: 'hidden',
                       position: 'relative',
@@ -645,7 +819,7 @@ export default function GioiThieuPage() {
                       backgroundColor: '#1E1710'
                     }}
                   >
-                    <Image src={b.image} alt={b.name} fill sizes="72px" style={{ objectFit: 'cover' }} />
+                    <Image src={b.image} alt={b.name} fill sizes="76px" style={{ objectFit: 'cover' }} />
                   </div>
 
                   <div style={{ flex: 1, minWidth: '240px' }}>
@@ -686,7 +860,7 @@ export default function GioiThieuPage() {
           </section>
 
           {/* =====================================================================
-              4. XỨ ĐOÀN CÁC THÁNH TỬ ĐẠO VIỆT NAM (TNTT)
+              5. XỨ ĐOÀN CÁC THÁNH TỬ ĐẠO VIỆT NAM (TNTT)
               ===================================================================== */}
           <section id="xu-doan" style={{ marginBottom: '36px' }}>
             <h2
@@ -699,11 +873,11 @@ export default function GioiThieuPage() {
                 marginTop: '32px'
               }}
             >
-              4. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
+              5. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
             </h2>
 
             <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-              4.1. Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
+              5.1. Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               <strong>Xứ Đoàn Các Thánh Tử Đạo Việt Nam</strong> trực thuộc Giáo xứ Chánh Tòa Mỹ Tho là đoàn thể tông đồ
@@ -746,7 +920,7 @@ export default function GioiThieuPage() {
             </div>
 
             <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-              4.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
+              5.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Khăn quàng TNTT là biểu tượng của tinh thần dâng hiến và trách nhiệm tông đồ. Dưới đây là bảng phân cấp các
@@ -798,7 +972,7 @@ export default function GioiThieuPage() {
           </section>
 
           {/* =====================================================================
-              5. GIỜ PHỤNG VỤ & MỤC VỤ
+              6. GIỜ PHỤNG VỤ & MỤC VỤ
               ===================================================================== */}
           <section id="phung-vu" style={{ marginBottom: '36px' }}>
             <h2
@@ -811,7 +985,7 @@ export default function GioiThieuPage() {
                 marginTop: '32px'
               }}
             >
-              5. Giờ Thánh Lễ &amp; Lịch Mục Vụ
+              6. Giờ Thánh Lễ &amp; Lịch Mục Vụ
             </h2>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 14px' }}>
               Giờ phụng vụ tại Nhà Thờ Chính Tòa Mỹ Tho được cử hành đều đặn mỗi ngày (dữ liệu được đồng bộ trực tiếp từ cơ
@@ -876,13 +1050,16 @@ export default function GioiThieuPage() {
           </section>
 
           {/* =====================================================================
-              6. CHÚ THÍCH & TÀI LIỆU THAM KHẢO
+              7. CHÚ THÍCH & TÀI LIỆU THAM KHẢO
               ===================================================================== */}
           <section id="tai-lieu" style={{ marginTop: '40px', borderTop: '1px solid var(--color-border-subtle)', paddingTop: '20px' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 10px' }}>
-              6. Chú thích &amp; Tài liệu tham khảo
+              7. Chú thích &amp; Tài liệu tham khảo
             </h3>
             <ol style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.6, paddingLeft: '20px' }}>
+              <li>
+                Tòa Thánh Vatican, <em>Niên Giám Tòa Thánh (Annuario Pontificio 2024)</em>, Libreria Editrice Vaticana.
+              </li>
               <li>
                 Tòa Giám Mục Mỹ Tho, <em>Kỷ yếu 50 năm thành lập Giáo phận Mỹ Tho (1960 – 2010)</em>, Nhà xuất bản Tôn Giáo,
                 2010.
@@ -976,12 +1153,84 @@ export default function GioiThieuPage() {
           {/* Infobox Table Rows */}
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <tbody>
+              {/* TÒA THÁNH VATICAN & GIÁO HOÀNG */}
+              <tr>
+                <td
+                  colSpan={2}
+                  style={{
+                    backgroundColor: '#8B0000',
+                    color: '#FFFFFF',
+                    padding: '6px 10px',
+                    textAlign: 'center',
+                    fontWeight: 800,
+                    fontSize: '0.82rem'
+                  }}
+                >
+                  Giáo triều &amp; Tòa Thánh Vatican
+                </td>
+              </tr>
+
               <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
                 <th
                   style={{
                     padding: '8px 10px',
                     textAlign: 'left',
                     width: '38%',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Đức Thánh Cha
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)', fontWeight: 800 }}>
+                  Đức Giáo hoàng Phanxicô (từ 2013)
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
+                    color: 'var(--color-subtle)',
+                    fontWeight: 700,
+                    fontSize: '0.78rem',
+                    verticalAlign: 'top',
+                    backgroundColor: 'var(--color-input-bg)'
+                  }}
+                >
+                  Giáo triều
+                </th>
+                <td style={{ padding: '8px 10px', color: 'var(--color-dark)' }}>
+                  Tòa Thánh Vatican (Thành quốc Vatican)
+                </td>
+              </tr>
+
+              {/* ĐỊA LÝ & GIÁO HẠT */}
+              <tr>
+                <td
+                  colSpan={2}
+                  style={{
+                    backgroundColor: '#8B0000',
+                    color: '#FFFFFF',
+                    padding: '6px 10px',
+                    textAlign: 'center',
+                    fontWeight: 800,
+                    fontSize: '0.82rem'
+                  }}
+                >
+                  Vị trí &amp; Địa hạt
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid var(--color-border-subtle)' }}>
+                <th
+                  style={{
+                    padding: '8px 10px',
+                    textAlign: 'left',
                     color: 'var(--color-subtle)',
                     fontWeight: 700,
                     fontSize: '0.78rem',
