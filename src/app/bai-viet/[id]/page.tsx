@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .trim() || rawTitle;
   const description = rawDesc.length > 180 ? `${rawDesc.slice(0, 177)}...` : rawDesc;
 
-  const coverImage = post.images?.[0] || `${baseUrl}/logo.jpg`;
+  const ogImageUrl = `${baseUrl}/api/article-image?id=${encodeURIComponent(id)}`;
 
   return {
     title: `${title} | Xứ Đoàn Các Thánh Tử Đạo Việt Nam`,
@@ -66,10 +66,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: ['Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Mỹ Tho'],
       images: [
         {
-          url: coverImage,
+          url: ogImageUrl,
+          secureUrl: ogImageUrl,
           alt: title,
           width: 1200,
-          height: 630
+          height: 630,
+          type: 'image/jpeg'
         }
       ]
     },
@@ -77,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${title} — Xứ Đoàn Chánh Tòa Mỹ Tho`,
       description,
-      images: [coverImage]
+      images: [ogImageUrl]
     }
   };
 }
