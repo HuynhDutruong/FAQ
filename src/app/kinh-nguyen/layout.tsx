@@ -16,14 +16,6 @@ export const metadata: Metadata = {
     description: 'Tổng hợp 216 bản kinh nguyện Công giáo đầy đủ chuẩn phụng vụ, chế độ đọc kinh sốt sắng, lưu kinh yêu thích và đếm hạt mân côi.',
     url: 'https://chanhtoa.tnttgiaophanmytho.online/kinh-nguyen',
     type: 'website',
-    images: [
-      {
-        url: '/images/jesus_antique_banner.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Kho tàng 216 Kinh Nguyện Công Giáo',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',

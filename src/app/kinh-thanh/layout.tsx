@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     siteName: 'Bộ Sưu Tập Lời Chúa & Nghệ Thuật Thánh • Chánh Tòa Mỹ Tho',
     title: 'Bộ Sưu Tập 73 Sách Kinh Thánh & Kiệt Tác Nghệ Thuật Thánh Công Giáo',
     description: 'Trọn bộ 73 Sách Cựu Ước & Tân Ước kèm 73 kiệt tác nghệ thuật thánh kinh điển và dẫn nhập thần học tại Chánh Tòa Mỹ Tho.',
-    images: [
-      {
-        url: 'https://chanhtoa.tnttgiaophanmytho.online/images/bible/creation_of_adam.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Bộ Sưu Tập 73 Sách Kinh Thánh & Nghệ Thuật Thánh - Chánh Tòa Mỹ Tho'
-      }
-    ]
   },
   twitter: {
     card: 'summary_large_image',

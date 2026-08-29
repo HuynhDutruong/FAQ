@@ -7,6 +7,7 @@ import ChatBubble from '@/components/ChatBubble';
 import SiteHeader from '@/components/SiteHeader';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import GoogleTranslateScript from '@/components/GoogleTranslateScript';
+import FirebaseAnalytics from '@/components/FirebaseAnalytics';
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -28,8 +29,6 @@ const notoSansSC = Noto_Sans_SC({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   themeColor: '#D32F2F'
 };
 
@@ -73,20 +72,11 @@ export const metadata: Metadata = {
     siteName: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho",
     title: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Mỹ Tho",
     description: "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho. Nơi chia sẻ tin tức sinh hoạt, đào tạo Huynh trưởng - Đoàn sinh và học hỏi Lời Chúa.",
-    images: [
-      {
-        url: "/logo.jpg",
-        width: 600,
-        height: 600,
-        alt: "Logo Xứ Đoàn Các Thánh Tử Đạo Việt Nam"
-      }
-    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Chánh Tòa Mỹ Tho",
     description: "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho.",
-    images: ["/logo.jpg"]
   },
   icons: {
     icon: [
@@ -156,6 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <LanguageProvider>
           <GoogleTranslateScript />
+          <FirebaseAnalytics />
           <SiteHeader />
           {children}
           <Footer />

@@ -16,20 +16,11 @@ export const metadata: Metadata = {
     description: 'Giải đáp mọi thắc mắc về Giáo Lý, 7 Bí Tích, Phụng Vụ, Luân Lý, Hôn Nhân và Đời Sống Đức Tin dựa trên Sách Giáo Lý Hội Thánh Công Giáo.',
     url: 'https://chanhtoa.tnttgiaophanmytho.online/van-dap',
     type: 'website',
-    images: [
-      {
-        url: '/logo.jpg',
-        width: 600,
-        height: 600,
-        alt: 'Vấn Đáp Giáo Lý Hội Thánh Công Giáo',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vấn Đáp Giáo Lý Hội Thánh Công Giáo & 7 Bí Tích',
     description: 'Giải đáp thắc mắc Giáo Lý Công Giáo, 7 Bí Tích, Phụng Vụ và Luân Lý.',
-    images: ['/logo.jpg'],
   },
 };
 

@@ -29,6 +29,10 @@ export default function Home() {
 
   return (
     <main style={{ flex: 1, padding: '12px 8px 48px' }} className="mobile-edge-container">
+      <h1 className="sr-only">
+        Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho
+      </h1>
+
       <div style={{ width: '100%', maxWidth: '1060px', margin: '0 auto' }} className="home-grid">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
           

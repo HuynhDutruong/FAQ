@@ -11,14 +11,6 @@ export const metadata: Metadata = {
     description: 'Tìm hiểu về Xứ Đoàn Các Thánh Tử Đạo Việt Nam, lịch sử Giáo xứ Chánh Tòa & Giáo phận Mỹ Tho, Đức Thánh Cha Lêô XIV, Tòa Thánh Vatican và HĐGMVN.',
     url: 'https://chanhtoa.tnttgiaophanmytho.online/gioi-thieu',
     type: 'website',
-    images: [
-      {
-        url: '/images/nhatho1.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Nhà Thờ Chánh Tòa Mỹ Tho',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',

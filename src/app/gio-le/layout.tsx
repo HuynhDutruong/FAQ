@@ -16,14 +16,6 @@ export const metadata: Metadata = {
     description: 'Tra cứu nhanh giờ lễ 3.300+ nhà thờ trên toàn quốc, chỉ đường Google Maps, tìm nhà thờ gần nhất và đóng góp dữ liệu giờ lễ mới.',
     url: 'https://chanhtoa.tnttgiaophanmytho.online/gio-le',
     type: 'website',
-    images: [
-      {
-        url: '/images/nha_tho_duc_ba.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Tra cứu giờ lễ 27 Giáo phận toàn quốc',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
