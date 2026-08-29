@@ -816,6 +816,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-minh-chieu',
+    image: '/images/cha_nguyen_minh_chieu.png',
     source: 'giaophanmytho.net (xác nhận ngài là cha sở năm 1958); niên hiệu 1948 – 1960 theo tư liệu giáo xứ',
     tableNote: 'Kế nhiệm Cha Henri Bar, và là vị cha sở cuối cùng coi sóc Mỹ Tho khi nơi đây còn là một giáo xứ thuộc Giáo phận Sài Gòn. Năm 1958 cho dời quả chuông từ tháp bên hông nữ lên tháp cao bên nam.',
     name: 'Lm. Phaolô Nguyễn Minh Chiếu',
