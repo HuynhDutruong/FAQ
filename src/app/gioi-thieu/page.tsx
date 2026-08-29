@@ -35,7 +35,6 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
-import styles from './page.module.css';
 
 /**
  * Khung chân dung nhân vật. Nhiều cha sở thời sơ khai (1860–1956) không còn
@@ -1276,7 +1275,7 @@ export default function GioiThieuPage() {
         style={{
           backgroundColor: 'transparent' // optional cleanup or just empty
         }}
-        className={`wiki-container ${styles.mainLayout}`}
+        className="wiki-container main-layout"
       >
         {/* =======================================================================
             CỘT TRÁI: NỘI DUNG CHÍNH (MAIN ARTICLE CONTENT)
@@ -1513,12 +1512,7 @@ export default function GioiThieuPage() {
 
             {/* BỘ SƯU TẬP HÌNH ẢNH TOÀ THÁNH VATICAN */}
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: '14px',
-                margin: '18px 0'
-              }}
+              className="responsive-grid"
             >
               <div
                 style={{
@@ -1578,7 +1572,7 @@ export default function GioiThieuPage() {
 
             {/* Thumbnail chân dung Đức Giáo hoàng Lêô XIV */}
             <div
-              className={styles.floatingImageRight270}
+              className="floating-img-270"
               style={{
                 padding: '8px',
                 backgroundColor: 'var(--color-card-bg)',
@@ -1586,7 +1580,6 @@ export default function GioiThieuPage() {
                 borderRadius: '12px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
               }}
-              className="wiki-thumb"
             >
               <div
                 style={{
@@ -1682,7 +1675,7 @@ export default function GioiThieuPage() {
 
             {/* Minh họa ảnh nổi bên phải chuẩn Wikipedia */}
             <div
-              className={styles.floatingImageRight290}
+              className="floating-img-290"
               style={{
                 padding: '8px',
                 backgroundColor: 'var(--color-card-bg)',
@@ -1690,7 +1683,6 @@ export default function GioiThieuPage() {
                 borderRadius: '12px',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
               }}
-              className="wiki-thumb"
             >
               <div
                 style={{ position: 'relative', width: '100%', height: '185px', cursor: 'pointer', borderRadius: '8px', overflow: 'hidden' }}
@@ -1743,12 +1735,7 @@ export default function GioiThieuPage() {
 
             {/* BỘ ĐÔI HÌNH ẢNH TƯ LIỆU LỊCH SỬ SẮC LỆNH 1960 */}
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: '14px',
-                margin: '18px 0'
-              }}
+              className="responsive-grid"
             >
               <div
                 style={{
@@ -2054,12 +2041,7 @@ export default function GioiThieuPage() {
 
             {/* Gallery ảnh kiến trúc */}
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                gap: '12px',
-                margin: '18px 0'
-              }}
+              className="responsive-grid"
             >
               {[
                 { src: '/images/thanh_le_dong_te_my_tho.jpg', title: 'Mặt tiền Phục Hưng', desc: 'Kiến trúc cột trụ đối xứng hài hòa' },
@@ -2142,12 +2124,7 @@ export default function GioiThieuPage() {
 
             {/* Ảnh Linh mục đoàn & Thánh lễ đồng tế */}
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: '12px',
-                margin: '18px 0'
-              }}
+              className="responsive-grid"
             >
               <div
                 style={{
@@ -2295,12 +2272,7 @@ export default function GioiThieuPage() {
 
             {/* 4 Khẩu hiệu TNTT */}
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '10px',
-                margin: '16px 0'
-              }}
+              className="responsive-grid"
             >
               {[
                 { title: 'CẦU NGUYỆN', desc: 'Nuôi dưỡng đời sống kết hiệp mật thiết với Chúa Giêsu Thánh Thể mỗi ngày.' },
@@ -2408,7 +2380,7 @@ export default function GioiThieuPage() {
                 boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
               }}
             >
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+              <div className="responsive-grid">
                 <div>
                   <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem', marginBottom: '6px' }}>
                     CÁC NGÀY TRONG TUẦN
@@ -2498,7 +2470,7 @@ export default function GioiThieuPage() {
             boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
             fontSize: '0.84rem'
           }}
-          className={`wiki-infobox ${styles.sidebar}`}
+          className="wiki-infobox wiki-sidebar"
         >
           {/* Infobox Header */}
           <div
@@ -3309,18 +3281,57 @@ export default function GioiThieuPage() {
 
       {/* Responsive Style */}
       <style jsx global>{`
-        @media (max-width: 860px) {
-          .wiki-container {
-            flex-direction: column-reverse !important;
+        /* Bố cục chính (TOC & Article bên trái, Infobox bên phải) */
+        .main-layout {
+          max-width: 1220px;
+          margin: 0 auto;
+          padding: 24px 20px;
+          display: flex;
+          gap: 36px;
+          align-items: flex-start;
+          box-sizing: border-box;
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        .wiki-sidebar {
+          width: 330px;
+          flex-shrink: 0;
+        }
+
+        .responsive-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 14px;
+          margin: 18px 0;
+        }
+
+        /* Classes cho ảnh float */
+        .floating-img-270 { float: right; width: 270px; margin-left: 20px; margin-bottom: 12px; }
+        .floating-img-290 { float: right; width: 290px; margin-left: 20px; margin-bottom: 12px; }
+        .floating-img-250 { float: right; width: 250px; margin-left: 20px; margin-bottom: 12px; }
+
+        @media (max-width: 900px) {
+          .main-layout {
+            flex-direction: column-reverse;
+            gap: 24px;
+            padding: 16px 12px;
           }
-          .wiki-infobox {
-            width: 100% !important;
-            margin-bottom: 24px !important;
+          .wiki-sidebar {
+            width: 100%;
+            margin-bottom: 24px;
           }
-          .wiki-thumb {
+          .responsive-grid {
+            grid-template-columns: 1fr !important;
+          }
+          
+          /* Chống ép chữ bằng cách xóa float trên thiết bị di động */
+          .floating-img-270, .floating-img-290, .floating-img-250, .wiki-thumb {
             float: none !important;
             width: 100% !important;
-            margin: 14px 0 !important;
+            max-width: 320px;
+            margin: 16px auto !important;
+            display: block;
           }
         }
 
