@@ -429,10 +429,19 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *  - Cha Nguyễn Khoa Học: cha sở tiên khởi của NHÀ THỜ CHÁNH TÒA — nhà thờ
  *    chỉ được nâng lên hàng chánh tòa cuối năm 1960. Cha Nguyễn Minh Chiếu
  *    là vị cha sở cuối cùng khi nơi đây còn là giáo xứ thuộc GP Sài Gòn.
- *  Mốc kết thúc 1965 của Cha Nguyễn Khoa Học suy ra từ bài Giáo xứ Bình Tạo:
- *  "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa
- *  Mỹ Tho". Ngài về Hạnh Thông Tây năm 1968 (gxhanhthongtay.net), nên giai
- *  đoạn 1965–1968 của ngài chưa rõ ở đâu.
+ *  Theo tư liệu giáo xứ, Cha Nguyễn Khoa Học ở Chánh Tòa đến cuối năm 1968
+ *  rồi về Hạnh Thông Tây (khớp gxhanhthongtay.net: cha sở ở đó 1968–1974).
+ *
+ * GIAI ĐOẠN 1968 – 1975 — KHÔNG CÓ CHÁNH SỞ RIÊNG:
+ *  Theo tư liệu giáo xứ, sau khi Cha Nguyễn Khoa Học thuyên chuyển, giáo
+ *  phận không đặt Chánh sở độc lập cho Nhà thờ Chánh Tòa. Đức Cha Giuse Trần
+ *  Văn Thiện cùng ban cố vấn trực tiếp điều hành sinh hoạt phụng vụ, luân
+ *  chuyển các linh mục trẻ làm phó xứ / thư ký phụ tá giữa thời chiến.
+ *  ĐIỂM CÒN VÊNH: bài "Giáo xứ Bình Tạo" trên giaophanmytho.net ghi "Năm
+ *  1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa Mỹ
+ *  Tho" — mâu thuẫn với cả mốc 1968 của Cha Khoa Học lẫn việc không có
+ *  chánh sở giai đoạn này. Mục Cha Nguyễn Văn Niềm đã được gỡ theo yêu cầu;
+ *  bản sao lưu nằm trong scratchpad. Cần đối chiếu sổ sách họ đạo.
  *
  * ĐÃ GỠ KHỎI DANH SÁCH:
  *  - Eugène FARON (IRFA 1189): KHÔNG phải cha sở mà là "aumônier de l'hôpital
@@ -453,8 +462,12 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *  - Guillou (0682), Lizé (0792), Marc-Dassa (0657): IRFA KHÔNG có ảnh —
  *    trang hồ sơ chỉ có empty_thumbnail, đường dẫn ảnh trả về 404. Cả ba mất
  *    rất sớm (1866, 1887, 1870) nên nhiều khả năng chưa từng được chụp ảnh.
- *  - Nguyễn Minh Chiếu, Nguyễn Văn Niềm, Nguyễn Văn Chúc, Hồ Bản Chánh: đã
- *    tra giaophanmytho.net, vietcatholic.net và tìm kiếm chung, không có ảnh
+ *  - Nguyễn Văn Chúc, Hồ Bản Chánh: ảnh do giáo xứ cung cấp (2026-08).
+ *    Ảnh Cha Chúc là ảnh kỷ niệm ngày thụ phong, chụp lại từ ảnh lộng khung,
+ *    nên phản ánh thời điểm ngài mới chịu chức chứ không phải thời kỳ làm
+ *    cha sở 1975–1999.
+ *  - Nguyễn Minh Chiếu, Nguyễn Văn Niềm: đã tra giaophanmytho.net,
+ *    vietcatholic.net, gxhanhthongtay.net và tìm kiếm chung — không có ảnh
  *    trên Internet. Cần xin từ văn phòng giáo xứ.
  *  Mục thiếu ảnh để trống `image` và hiện ô "Chưa có ảnh tư liệu".
  *
@@ -856,13 +869,13 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-nguyen-khoa-hoc',
     image: '/images/cha_nguyen_khoa_hoc.jpg',
-    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa; bài Giáo xứ Bình Tạo cho biết Cha Phêrô Niềm kế nhiệm năm 1965) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974; ảnh chân dung lấy từ trang Các đời Cha xứ của giáo xứ này)',
+    source: 'giaophanmytho.net (cha sở tiên khởi Nhà thờ Chánh Tòa) + gxhanhthongtay.net (cha sở Hạnh Thông Tây 1968 – 1974; ảnh chân dung lấy từ trang Các đời Cha xứ của giáo xứ này) + tư liệu giáo xứ (thuyên chuyển cuối năm 1968)',
     name: 'Lm. Micae Nguyễn Khoa Học',
     saintName: 'Thánh Micae Tổng lãnh Thiên thần',
-    role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1965)',
-    period: '1960 – 1965',
+    role: 'Linh mục Chánh sở Tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – cuối 1968)',
+    period: '1960 – 1968',
     origin: 'Giáo phận Mỹ Tho',
-    tableNote: 'Cha sở tiên khởi của Nhà thờ Chánh Tòa sau khi giáo phận được thành lập (1960). Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong khuôn viên cạnh nhà thờ; thành lập Trường Tiểu học Thánh Giuse tại giáo xứ. Rời Chánh Tòa năm 1965, về làm cha sở Giáo xứ Hạnh Thông Tây (Sài Gòn) từ 1968 đến 1974.',
+    tableNote: 'Cha sở tiên khởi của Nhà thờ Chánh Tòa sau khi giáo phận được thành lập (1960). Đảm trách xây dựng Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở trong khuôn viên cạnh nhà thờ; thành lập Trường Tiểu học Thánh Giuse tại giáo xứ. Cuối năm 1968 thuyên chuyển về làm cha sở Giáo xứ Hạnh Thông Tây (Sài Gòn), phục vụ ở đó đến 1974.',
     shortDesc: 'Khi Giáo phận Mỹ Tho được thành lập năm 1960, giáo phận chưa có Tòa Giám Mục; Đức Cha Giuse Trần Văn Thiện phải tạm trú tại một ngôi nhà trên đường Lê Lợi, đối diện Bưu điện Mỹ Tho. Là cha sở tiên khởi của Nhà thờ Chánh Tòa, ngài đảm trách xây dựng cả cụm công trình trong khuôn viên cạnh nhà thờ — Tòa Giám Mục, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở — vẫn còn đến ngày nay. Chỉ sau khi Tòa Giám Mục hoàn thành, Đức Cha Giuse mới chính thức về thường trú.',
     chronology: [
       {
@@ -881,9 +894,9 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Thành lập Trường Tiểu học Thánh Giuse ngay tại giáo xứ Chánh Tòa, mở rộng công cuộc giáo dục cho con em trong họ đạo.'
       },
       {
-        time: '1965',
-        title: 'Bàn giao Nhà thờ Chánh Tòa',
-        content: 'Năm 1965 Cha Phêrô Nguyễn Văn Niềm được sai về làm Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, kế nhiệm ngài.'
+        time: 'cuối 1968',
+        title: 'Thuyên chuyển khỏi Mỹ Tho',
+        content: 'Cuối năm 1968 ngài rời Nhà thờ Chánh Tòa Mỹ Tho. Từ đó đến 1975 giáo phận không bổ nhiệm một Chánh sở độc lập cho Nhà thờ Chánh Tòa.'
       },
       {
         time: '1968 – 1974',
@@ -892,59 +905,16 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       }
     ],
     milestones: [
-      'Linh mục Chánh sở tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – 1965).',
+      'Linh mục Chánh sở tiên khởi của Nhà thờ Chánh Tòa Mỹ Tho (1960 – cuối 1968).',
       'Đảm trách xây dựng Tòa Giám Mục Mỹ Tho đầu tiên, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở.',
       'Thành lập Trường Tiểu học Thánh Giuse tại giáo xứ Chánh Tòa.',
       'Chánh sở Giáo xứ Hạnh Thông Tây, Gò Vấp (1968 – 1974).'
     ]
   },
   {
-    id: 'cha-nguyen-van-niem',
-    name: 'Lm. Phêrô Nguyễn Văn Niềm',
-    saintName: 'Thánh Phêrô Tông Đồ',
-    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1965 – đầu 1975)',
-    period: '1965 – 1975',
-    origin: 'Giáo phận Mỹ Tho',
-    source: 'giaophanmytho.net, bài Giáo xứ Bình Tạo: "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa Mỹ Tho"',
-    tableNote: 'Trước đó là Cha Sở Giáo xứ An Đức (1959 – 1965), kiêm nhiệm cả họ đạo Bình Tạo. Về Chánh Tòa năm 1965, coi sóc họ đạo qua giai đoạn chiến sự ác liệt từ biến cố Mậu Thân 1968; giữ vững sinh hoạt phụng vụ và tổ chức công tác bác ái trợ giúp đồng bào di tản đổ về thành phố Mỹ Tho.',
-    shortDesc: 'Kế nhiệm trực tiếp Cha Micae Nguyễn Khoa Học, ngài gánh vác họ đạo Chánh Tòa qua một giai đoạn đầy thử thách. Nhận nhiệm sở đúng lúc chiến sự trở nên ác liệt từ biến cố Mậu Thân 1968, sứ vụ của ngài tập trung vào việc giữ vững sinh hoạt phụng vụ, ổn định đời sống đức tin và tổ chức công tác bác ái trợ giúp làn sóng đồng bào di tản từ vùng chiến sự đổ về trung tâm thành phố. Ngài cũng là cộng sự đắc lực bên cạnh Đức Cha tiên khởi Giuse Trần Văn Thiện trong việc kiện toàn cơ cấu của một giáo phận còn non trẻ.',
-    chronology: [
-      {
-        time: '1959 – 1965',
-        title: 'Cha Sở Giáo xứ An Đức',
-        content: 'Coi sóc Giáo xứ An Đức và kiêm nhiệm họ đạo Bình Tạo từ năm 1959 đến 1965, khi số giáo dân Bình Tạo đã trên 160 người.'
-      },
-      {
-        time: '1965',
-        title: 'Về nhận Nhà thờ Chánh Tòa',
-        content: 'Được sai đi làm Cha Chánh Xứ Nhà thờ Chánh Tòa Mỹ Tho; Cha Tađêô Võ Thành Tích thay ngài coi sóc Giáo xứ An Đức và kiêm nhiệm Bình Tạo.'
-      },
-      {
-        time: '1968 – 1975',
-        title: 'Giữ vững đời sống đức tin & công tác bác ái',
-        content: 'Duy trì các sinh hoạt phụng vụ tại nhà thờ mẹ của giáo phận, ổn định đời sống đức tin cộng đoàn và tổ chức trợ giúp đồng bào di tản từ các vùng chiến sự về trung tâm thành phố Mỹ Tho.'
-      },
-      {
-        time: '1968 – 1975',
-        title: 'Cộng sự của Đức Cha tiên khởi',
-        content: 'Sát cánh cùng Đức Cha Giuse Trần Văn Thiện trong việc phát triển cơ cấu hành chính và mục vụ của Giáo phận Mỹ Tho còn non trẻ.'
-      },
-      {
-        time: 'đầu 1975',
-        title: 'Bàn giao sứ vụ',
-        content: 'Hoàn thành nhiệm kỳ và trao lại quyền chánh sở cho Cha Giuse Nguyễn Văn Chúc.'
-      }
-    ],
-    milestones: [
-      'Chánh sở Nhà thờ Chánh Tòa Mỹ Tho 1965 – đầu 1975.',
-      'Cha Sở Giáo xứ An Đức kiêm nhiệm họ đạo Bình Tạo (1959 – 1965).',
-      'Giữ vững sinh hoạt phụng vụ tại nhà thờ mẹ của giáo phận suốt thời chiến.',
-      'Tổ chức công tác bác ái trợ giúp đồng bào di tản về thành phố Mỹ Tho.'
-    ]
-  },
-  {
     id: 'cha-nguyen-van-chuc',
-    source: 'giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995, tức trong nhiệm kỳ; bài Gx. Tân Long: "Từ năm 1975 đến 1992, các cha thuộc Giáo xứ Chánh Tòa phụ trách gồm có: cha Giuse Nguyễn Văn Chúc, cha Phêrô Trần Xuân Lộc, và cha Đôminicô Lê Văn Bền") + tư liệu giáo xứ (nhiệm kỳ tại Chánh Tòa 1975 – 1999)',
+    image: '/images/cha_nguyen_van_chuc.jpg',
+    source: 'Ảnh do giáo xứ cung cấp (ảnh kỷ niệm ngày thụ phong, không phải thời kỳ làm cha sở). giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995, tức trong nhiệm kỳ; bài Gx. Tân Long: "Từ năm 1975 đến 1992, các cha thuộc Giáo xứ Chánh Tòa phụ trách gồm có: cha Giuse Nguyễn Văn Chúc, cha Phêrô Trần Xuân Lộc, và cha Đôminicô Lê Văn Bền") + tư liệu giáo xứ (nhiệm kỳ tại Chánh Tòa 1975 – 1999)',
     tableNote: 'Nhận xứ ngay trước biến cố tháng 4/1975, giữ vững sinh hoạt phụng vụ qua giai đoạn biến động nhất. Đầu năm 1975 ngài cùng giáo dân mua một căn nhà lá làm nhà nguyện, đặt nền móng cho Họ đạo Tân Long; từ 1975 đến 1992 ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền — đều thuộc Giáo xứ Chánh Tòa — phụ trách họ đạo Tân Long. Năm 1995 ngài chủ trì xây tháp chuông tách rời khỏi thánh đường: đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
@@ -989,12 +959,13 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-ho-ban-chanh',
+    image: '/images/cha_ho_ban_chanh.jpg',
     name: 'Lm. Phêrô Hồ Bản Chánh',
     saintName: 'Thánh Phêrô Tông Đồ',
     role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1999 – 2005), sau là Tổng Đại Diện Giáo phận',
     period: '1999 – 2005',
     origin: 'Giáo phận Mỹ Tho',
-    source: 'Tư liệu giáo xứ (nhiệm kỳ 1999 – 2005 tại Chánh Tòa). Đã xác nhận được: danh sách GP Mỹ Tho 2009 ghi ngài là Tổng Đại Diện Giáo phận; giaophanmytho.net (03/2011) gọi ngài là "nguyên Tổng Đại Diện", sau coi sóc Giáo xứ Thủ Ngữ.',
+    source: 'Ảnh do giáo xứ cung cấp. Tư liệu giáo xứ (nhiệm kỳ 1999 – 2005 tại Chánh Tòa). Đã xác nhận được: danh sách GP Mỹ Tho 2009 ghi ngài là Tổng Đại Diện Giáo phận; giaophanmytho.net (03/2011) gọi ngài là "nguyên Tổng Đại Diện", sau coi sóc Giáo xứ Thủ Ngữ.',
     tableNote: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc, coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — dịp Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000. Về sau ngài được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho.',
     shortDesc: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc năm 1999, ngài coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — giai đoạn ngôi thánh đường được Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung hiến ngày 21/01/2000 và nhận Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai. Năm 2005 ngài chuyển giao giáo xứ cho Cha Giacôbê Hà Văn Xung. Về sau ngài được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho, rồi xin thôi chức và về coi sóc Giáo xứ Thủ Ngữ.',
     chronology: [
@@ -1109,7 +1080,16 @@ export interface PastorTimelineRow {
  * bảng để người đọc thấy rõ đâu là chỗ còn thiếu tư liệu, thay vì kéo dài
  * niên hiệu của vị trước cho liền mạch một cách sai lệch.
  */
-const PASTOR_GAPS: PastorTimelineRow[] = [];
+const PASTOR_GAPS: PastorTimelineRow[] = [
+  {
+    period: '1968 – 1975',
+    name: 'Không bổ nhiệm Chánh sở riêng',
+    note:
+      'Sau khi Cha Micae Nguyễn Khoa Học thuyên chuyển cuối năm 1968, giáo phận không đặt một Chánh sở độc lập cho Nhà thờ Chánh Tòa. Đức Cha Giuse Trần Văn Thiện cùng ban cố vấn trực tiếp điều hành các sinh hoạt phụng vụ trọng thể tại đây — nhà thờ nằm ngay sát Tòa Giám mục và là "nhà thờ mẹ" của giáo phận. Cách tổ chức này giúp Đức Cha linh hoạt luân chuyển các linh mục trẻ làm phó xứ hoặc thư ký phụ tá, vừa lo việc Tòa Giám mục vừa chia nhau cử hành thánh lễ, ban bí tích và tổ chức đoàn thể cho họ đạo, giữa lúc chiến sự miền Nam gây nhiều áp lực lên Mỹ Tho.',
+    source:
+      'Tư liệu giáo xứ. Lưu ý còn vênh: bài "Giáo xứ Bình Tạo" trên giaophanmytho.net ghi "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa Mỹ Tho" — cần đối chiếu sổ sách họ đạo.'
+  }
+];
 
 /** Năm bắt đầu của một mốc thời gian, dùng để xếp bảng theo đúng niên đại. */
 function startYear(period: string): number | null {
@@ -2015,7 +1995,9 @@ export default function GioiThieuPage() {
                               {bio.name}
                             </button>
                           ) : (
-                            <em style={{ color: 'var(--color-subtle)' }}>Chưa cập nhật</em>
+                            <em style={{ color: 'var(--color-subtle)' }}>
+                              {row.name ?? 'Chưa cập nhật'}
+                            </em>
                           )}
                         </td>
                         <td style={{ color: bio ? 'var(--color-dark)' : 'var(--color-subtle)' }}>
