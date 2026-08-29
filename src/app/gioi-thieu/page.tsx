@@ -1781,7 +1781,7 @@ export default function GioiThieuPage() {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <div>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-red)' }}>
                     Thánh Giáo hoàng Gioan XXIII
                   </div>
@@ -1822,7 +1822,7 @@ export default function GioiThieuPage() {
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
-                <div>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontWeight: 800, fontSize: '0.88rem', color: 'var(--color-red)' }}>
                     Đức Cha Giuse Trần Văn Thiện
                   </div>
@@ -1840,11 +1840,12 @@ export default function GioiThieuPage() {
                 border: '1px solid var(--color-border-subtle)',
                 borderRadius: '12px',
                 padding: '18px',
-                margin: '20px 0'
+                margin: '20px 0',
+                wordBreak: 'break-word'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
-                <Scroll size={18} color="var(--color-red)" />
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '12px', borderBottom: '1px solid var(--color-border-subtle)', paddingBottom: '8px' }}>
+                <div style={{ marginTop: '2px', flexShrink: 0 }}><Scroll size={18} color="var(--color-red)" /></div>
                 <span style={{ fontWeight: 800, fontSize: '0.95rem', color: 'var(--color-red)' }}>
                   Văn Khố Tòa Thánh: Trích Bản Gốc Tiếng Latinh (AAS 53, 1961, pp. 346–348)
                 </span>
@@ -1870,8 +1871,8 @@ export default function GioiThieuPage() {
                 Tres Ecclesiasticas Provincias in Vietnamia erigimus: Hanoiensem, Huensem, et Saigonensem... Novas autem dioeceses erigimus, inter quas Dioecesim Mythoensem, cuius Ecclesiam Cathedralem constituimus sub titulo Immaculatae Conceptionis Beatae Mariae Virginis...&rdquo;
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                <BookOpen size={16} color="var(--color-red)" />
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '10px' }}>
+                <div style={{ marginTop: '2px', flexShrink: 0 }}><BookOpen size={16} color="var(--color-red)" /></div>
                 <span style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--color-dark)' }}>
                   Bản Dịch Việt Ngữ Chính Thức:
                 </span>
