@@ -10,11 +10,15 @@ import {
   Church,
   Quote,
   ExternalLink,
-  BookOpen
+  Download,
+  Smartphone,
+  Sparkles,
+  Loader2
 } from 'lucide-react';
 import { BibleBookInfo } from '@/lib/bible/types';
 import { BibleArtwork } from '@/lib/bible/bibleArtworks';
 import { CatholicBookIntro } from '@/lib/bible/bibleIntroductions';
+import { generateStoryCardBlob } from '@/lib/bible/storyCardGenerator';
 
 interface Props {
   isOpen: boolean;
@@ -32,12 +36,16 @@ export default function BibleCardShareModal({
   intro
 }: Props) {
   const [copied, setCopied] = useState(false);
+  const [isSharingStory, setIsSharingStory] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadSuccess, setDownloadSuccess] = useState(false);
 
   if (!isOpen) return null;
 
-  const currentUrl = typeof window !== 'undefined'
-    ? `${window.location.origin}/kinh-thanh/${book.id}`
-    : `https://faqfeedback.web.app/kinh-thanh/${book.id}`;
+  const currentUrl =
+    typeof window !== 'undefined'
+      ? `${window.location.origin}/kinh-thanh/${book.id}`
+      : `https://chanhtoa.tnttgiaophanmytho.online/kinh-thanh/${book.id}`;
 
   const shareTitle = `Sách ${book.name} (${book.code}) • Bộ Sưu Tập Nghệ Thuật Thánh Công Giáo`;
   const shareText = `[BỘ SƯU TẬP NGHỆ THUẬT THÁNH CÔNG GIÁO]
@@ -53,30 +61,64 @@ ${intro.coreMessage}
 Xem chi tiết và đọc toàn bộ sách tại:
 ${currentUrl}`;
 
-  // Kích hoạt bảng chia sẻ mặc định của thiết bị người dùng
-  const handleDeviceShare = async () => {
-    if (typeof navigator !== 'undefined' && navigator.share) {
-      try {
-        await navigator.share({
-          title: shareTitle,
-          text: `"${intro.keyVerse}"\n\nSứ điệp: ${intro.coreMessage}\n\nĐọc toàn văn sách ${book.name} tại:`,
-          url: currentUrl
-        });
-      } catch {
-        // Người dùng hủy chia sẻ
+  // 1. Chia Sẻ Lên Story hoặc Bảng Chia Sẻ Thiết Bị
+  const handleShareStory = async () => {
+    setIsSharingStory(true);
+    try {
+      // Tự động vẽ Thẻ Story 9:16 Full HD
+      const storyFile = await generateStoryCardBlob(book, artwork, intro, currentUrl);
+
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        // Kiểm tra thiết bị có hỗ trợ gửi file ảnh trực tiếp (cho Facebook Story, Instagram Story, Zalo Story)
+        if (navigator.canShare && navigator.canShare({ files: [storyFile] })) {
+          await navigator.share({
+            files: [storyFile],
+            title: shareTitle,
+            text: `"${intro.keyVerse}"\n\nĐọc toàn văn sách ${book.name} tại:\n${currentUrl}`,
+            url: currentUrl
+          });
+        } else {
+          await navigator.share({
+            title: shareTitle,
+            text: `"${intro.keyVerse}"\n\nĐọc toàn văn sách ${book.name} tại:\n${currentUrl}`,
+            url: currentUrl
+          });
+        }
+      } else {
+        // Fallback tự động tải ảnh về cho máy tính / trình duyệt không hỗ trợ Share API
+        await handleDownloadStoryCard();
       }
-    } else {
-      // Fallback sao chép liên kết trên thiết bị không hỗ trợ Web Share API
-      try {
-        await navigator.clipboard.writeText(shareText);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 3000);
-      } catch {
-        // noop
-      }
+    } catch {
+      // Người dùng hủy chia sẻ
+    } finally {
+      setIsSharingStory(false);
     }
   };
 
+  // 2. Tải Thẻ Story 9:16 (Lưu Vào Bộ Sưu Tập Ảnh Thiết Bị)
+  const handleDownloadStoryCard = async () => {
+    setIsDownloading(true);
+    try {
+      const storyFile = await generateStoryCardBlob(book, artwork, intro, currentUrl);
+      const url = URL.createObjectURL(storyFile);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `the_loi_chua_${book.id}_story_9x16.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setDownloadSuccess(true);
+      setTimeout(() => setDownloadSuccess(false), 3500);
+    } catch (err) {
+      console.error('Download error:', err);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  // 3. Sao chép văn bản & link
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(shareText);
@@ -138,7 +180,7 @@ ${currentUrl}`;
                 THẺ LỜI CHÚA NGHỆ THUẬT THÁNH
               </div>
               <div style={{ fontSize: '0.66rem', color: '#CBD5E1', opacity: 0.9 }}>
-                Giáo Xứ Chánh Tòa Mỹ Tho
+                Giáo Xứ Chánh Tòa Mỹ Tho • Tỷ Lệ Story 9:16 HD
               </div>
             </div>
           </div>
@@ -348,7 +390,7 @@ ${currentUrl}`;
         </div>
 
         {/* ========================================================================= */}
-        {/* NÚT CHIA SẺ THIẾT BỊ DUY NHẤT & TIỆN ÍCH */}
+        {/* NÚT CHIA SẺ STORY & LƯU ẢNH THIẾT BỊ */}
         {/* ========================================================================= */}
         <div
           style={{
@@ -360,10 +402,11 @@ ${currentUrl}`;
             gap: '10px'
           }}
         >
-          {/* Nút Chia Sẻ Mặc Định Của Thiết Bị */}
+          {/* Nút 1: Đăng Lên Story (Tự động gửi Ảnh 9:16 vào Facebook Story / Instagram Story / Zalo) */}
           <button
             type="button"
-            onClick={handleDeviceShare}
+            onClick={handleShareStory}
+            disabled={isSharingStory}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -377,39 +420,86 @@ ${currentUrl}`;
               color: '#FFFFFF',
               fontWeight: 900,
               fontSize: '0.92rem',
-              cursor: 'pointer',
+              cursor: isSharingStory ? 'wait' : 'pointer',
               boxShadow: '0 4px 18px rgba(217, 119, 6, 0.45)',
               transition: 'transform 0.15s ease'
             }}
           >
-            <Share2 size={18} />
-            <span>Chia Sẻ Lời Chúa</span>
+            {isSharingStory ? (
+              <>
+                <Loader2 size={18} className="spin" />
+                <span>Đang Tạo Thẻ Story 9:16...</span>
+              </>
+            ) : (
+              <>
+                <Smartphone size={18} />
+                <span>📱 Đăng Lên Story (Facebook / Instagram / Zalo)</span>
+              </>
+            )}
           </button>
 
-          {/* Nút Sao Chép Văn Bản & Liên Kết */}
-          <button
-            type="button"
-            onClick={handleCopy}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '6px',
-              width: '100%',
-              padding: '9px',
-              borderRadius: '10px',
-              border: '1px solid rgba(212, 175, 55, 0.3)',
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
-              color: copied ? '#34D399' : '#FDE68A',
-              fontWeight: 700,
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              transition: 'all 0.15s ease'
-            }}
-          >
-            {copied ? <Check size={15} /> : <Copy size={15} />}
-            <span>{copied ? 'Đã sao chép nội dung & liên kết!' : 'Sao chép nội dung & liên kết Thẻ'}</span>
-          </button>
+          {/* Nút 2: Tải Thẻ Story Về Bộ Sưu Tập Ảnh */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+            <button
+              type="button"
+              onClick={handleDownloadStoryCard}
+              disabled={isDownloading}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '10px',
+                borderRadius: '10px',
+                border: '1px solid rgba(212, 175, 55, 0.4)',
+                backgroundColor: 'rgba(212, 175, 55, 0.12)',
+                color: downloadSuccess ? '#34D399' : '#FDE68A',
+                fontWeight: 800,
+                fontSize: '0.8rem',
+                cursor: isDownloading ? 'wait' : 'pointer'
+              }}
+            >
+              {downloadSuccess ? (
+                <>
+                  <Check size={14} />
+                  <span>Đã Lưu Ảnh!</span>
+                </>
+              ) : isDownloading ? (
+                <>
+                  <Loader2 size={14} className="spin" />
+                  <span>Đang Lưu...</span>
+                </>
+              ) : (
+                <>
+                  <Download size={14} />
+                  <span>Tải Thẻ 9:16 HD</span>
+                </>
+              )}
+            </button>
+
+            {/* Nút 3: Sao Chép Link */}
+            <button
+              type="button"
+              onClick={handleCopy}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px',
+                padding: '10px',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                color: copied ? '#34D399' : '#FFFFFF',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                cursor: 'pointer'
+              }}
+            >
+              {copied ? <Check size={14} /> : <Copy size={14} />}
+              <span>{copied ? 'Đã Chép Link!' : 'Sao Chép Link'}</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
