@@ -1164,7 +1164,8 @@ export const ALL_COMMUNITY_BIOS: DetailedBioRecord[] = [
 interface TnttScarf {
   id: string;
   name: string;
-  motto: string;
+  /** Tuyên Uý không có khẩu hiệu riêng nên để trống. */
+  motto?: string;
   age?: string;
   /** Màu khăn */
   scarf: string;
@@ -1330,7 +1331,6 @@ const TNTT_HUYNH_TRUONG: TnttScarf[] = [
   {
     id: 'tuyen-uy',
     name: 'Tuyên Uý',
-    motto: 'Hiến Dâng',
     age: 'Linh mục',
     scarf: '#FFFFFF',
     scarfName: 'Trắng',
@@ -1340,6 +1340,23 @@ const TNTT_HUYNH_TRUONG: TnttScarf[] = [
     trimName: 'Viền vàng',
     symbolism: 'Màu trắng là màu trong sạch, tượng trưng cho sự trong sáng tinh tuyền, niềm hy vọng và lòng cậy trông để dâng hiến cuộc đời làm hy tế và làm chứng tá cho Chúa và Giáo Hội. Vì vậy, Ngài sẽ là Người đại diện cho Chúa để hướng dẫn Đoàn Thiếu Nhi Thánh Thể.'
   }
+];
+
+/**
+ * Các đời cha tuyên uý Xứ Đoàn, tính từ ngày tái lập năm 2005.
+ * Nguồn: ghi chép của Xứ Đoàn, do Ban Điều Hành cung cấp.
+ */
+const TNTT_CHAPLAINS: { period: string; name: string }[] = [
+  { period: '2005 – 2009', name: 'Lm. Phêrô Nguyễn Ngọc Long' },
+  { period: '2010 – 2013', name: 'Lm. Gioan Baotixita Nguyễn Nhựt Cương' },
+  { period: 'Giữa 2013 – đầu 2016', name: 'Lm. Phêrô Trần Trọng Khương' },
+  { period: 'Cuối 2016 – 2019', name: 'Lm. Phêrô Nguyễn Thành Danh' },
+  { period: '2019 – 2020', name: 'Lm. Antôn Phan Văn Đại' },
+  { period: 'Cuối 2020 – đầu 2022', name: 'Lm. Phêrô Trương Ngọc Đức' },
+  { period: 'Đầu 2022 – 2023', name: 'Lm. Phêrô Trần Anh Duy' },
+  { period: '2023 – 2024', name: 'Lm. Phaolô Nguyễn Hoàng Anh' },
+  { period: '2024 – 2026', name: 'Lm. Phêrô Nguyễn Ngọc' },
+  { period: '2026 – nay', name: 'Lm. Emmanuel Nguyễn Văn Thành' }
 ];
 
 export default function GioiThieuPage() {
@@ -1604,6 +1621,11 @@ export default function GioiThieuPage() {
                     <li>
                       <a href="#xu-doan-khan-quang" style={{ color: 'inherit', textDecoration: 'none' }}>
                         Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#xu-doan-tuyen-uy" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Các Đời Cha Tuyên Uý Xứ Đoàn
                       </a>
                     </li>
                   </ol>
@@ -2538,7 +2560,8 @@ export default function GioiThieuPage() {
                     <ScarfIcon scarf={r} />
                     <div className="scarf-card-title">
                       <div className="scarf-name">
-                        {r.name} — <span className="scarf-motto">{r.motto}</span>
+                        {r.name}
+                        {r.motto && <> — <span className="scarf-motto">{r.motto}</span></>}
                       </div>
                       <div className="scarf-meta">
                         {r.age} • Khăn {r.scarfName.toLowerCase()}
@@ -2556,11 +2579,43 @@ export default function GioiThieuPage() {
               Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
             </p>
 
+            <h3 id="xu-doan-tuyen-uy" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
+              5.4. Các Đời Cha Tuyên Uý Xứ Đoàn
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Cha Tuyên Uý là linh mục được trao trách nhiệm linh hướng Xứ Đoàn. Dưới đây là các vị đã
+              phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay:
+            </p>
+
+            <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
+              <table className="pastor-timeline-table">
+                <caption className="sr-only">
+                  Danh sách các đời cha tuyên uý Xứ Đoàn Các Thánh Tử Đạo Việt Nam
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col" style={{ width: '50px' }}>STT</th>
+                    <th scope="col" style={{ width: '150px' }}>Thời Gian</th>
+                    <th scope="col">Cha Tuyên Uý</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {TNTT_CHAPLAINS.map((row, idx) => (
+                    <tr key={row.period + row.name}>
+                      <td>{idx + 1}</td>
+                      <td style={{ whiteSpace: 'nowrap' }}>{row.period}</td>
+                      <td><strong>{row.name}</strong></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
             {/* =====================================================================
-                5.4. TÁI LẬP XỨ ĐOÀN NĂM 2005
+                5.5. TÁI LẬP XỨ ĐOÀN NĂM 2005
                 ===================================================================== */}
             <h3 id="xu-doan-tai-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
-              5.4. Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
+              5.5. Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Đoàn Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa đã vắng bóng trong sinh hoạt giáo xứ
