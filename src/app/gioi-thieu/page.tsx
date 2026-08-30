@@ -509,6 +509,14 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *    và bài "Giáo xứ Bình Tạo".
  *  - gxhanhthongtay.net (danh sách các đời cha xứ Hạnh Thông Tây).
  *  - Gallica/BNF, Wikipedia tiếng Việt, cgvdt.vn, hdgmvietnam.com.
+ *  - ẢNH CHÂN DUNG: kho IRFA lưu ảnh theo mã số tại
+ *    irfa.paris/wp-content/uploads/2021/12/<mã>.jpg. Đã kiểm từng mã:
+ *    CÓ ảnh 0869 (Sorel), 1056 (Moulins), 1502 (Renier), 2241 (Bar);
+ *    KHÔNG có ảnh 0682 (Guillou), 0792 (Lizé), 0657 (Marc-Dassa) — cả ba
+ *    trang notice đều hiện empty_thumbnail.jpg và mọi biến thể tên file
+ *    đều trả về 404. Ba vị này mất năm 1866, 1887 và 1870, trước thời chân
+ *    dung thừa sai được chụp và lưu trữ có hệ thống. Đừng tìm lại nữa trừ
+ *    khi có nguồn ngoài MEP.
  *  - Les Missions Catholiques 1877, tr.595 & 598 (Gallica ark:/12148/
  *    bpt6k105617d): bài "Variétés: Mytho, Cochinchine occidentale" của thừa
  *    sai Le Mée, KÈM BẢN KHẮC mặt tiền ngôi nhà thờ thứ hai — tư liệu hình
@@ -657,7 +665,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     milestones: [
       'Vị mục tử tiên khởi của Họ đạo Mỹ Tho, coi sóc địa hạt từ năm 1861.',
       'Dựng ngôi nhà thờ đầu tiên của họ đạo — một nhà thờ nhỏ lợp lá, kính Thánh Phanxicô Xaviê.',
-      'Dưới thời ngài, họ đạo từ con số không lên 1.986 giáo dân chỉ trong vòng một năm (28/01/1862).',
+      'Dưới thời ngài, vùng Mỹ Tho từ chỗ chưa có cộng đoàn Công giáo lên 1.986 giáo dân chỉ trong vòng một năm (28/01/1862).',
       'Đồng sáng lập cộng đoàn Kitô hữu Bro-lam giữa người Stiêng.',
       'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (1864).'
     ]
@@ -2884,11 +2892,36 @@ export default function GioiThieuPage() {
               Nhấn vào tên linh mục để xem lý lịch đầy đủ. Niên hiệu và tiểu sử các vị thừa sai
               Hội Thừa Sai Paris được đối chiếu với hồ sơ lưu trữ của Viện Nghiên cứu Pháp – Á (IRFA).
             </p>
-            <p style={{ fontSize: '0.86rem', color: 'var(--color-subtle)', fontStyle: 'italic', margin: '0 0 14px' }}>
-              Đây là niên biểu các vị chánh sở tiêu biểu, không phải danh sách đầy đủ: riêng giai đoạn
-              1866 – 1960 đã có hơn 80 linh mục phục vụ họ đạo. Những khoảng thời gian còn thiếu tư liệu
-              được ghi rõ là <strong>chưa cập nhật</strong>.
-            </p>
+            <div
+              style={{
+                border: '1px solid var(--color-border-subtle)',
+                backgroundColor: 'rgba(153, 27, 27, 0.03)',
+                borderRadius: '10px',
+                padding: '12px 14px',
+                margin: '0 0 16px'
+              }}
+            >
+              <p style={{ fontSize: '0.88rem', lineHeight: 1.7, margin: '0 0 8px', textAlign: 'justify' }}>
+                <strong>Vì sao bảng này chỉ có mười mấy tên?</strong> Theo tài liệu chính thức của Giáo phận Mỹ Tho,
+                từ năm <strong>1866 đến 1960</strong> — gần một trăm năm — họ đạo được <strong>hơn 80 linh mục</strong>{' '}
+                hướng dẫn chăm sóc, trong đó <strong>khoảng 30 vị là linh mục thừa sai</strong> ngoại quốc, số còn lại là
+                linh mục Việt Nam. Bảng dưới đây chỉ liệt kê các vị <strong>chánh sở</strong>, không phải toàn bộ linh mục
+                phục vụ.
+              </p>
+              <p style={{ fontSize: '0.88rem', lineHeight: 1.7, margin: '0 0 8px', textAlign: 'justify' }}>
+                Lý do con số chênh nhau lớn như vậy: <strong>&ldquo;vùng Mỹ Tho&rdquo;</strong> thời ấy được hiểu là một
+                địa hạt rộng, gồm các họ đạo Mỹ Tho, Bình Tạo, Điều Hoà, Vĩnh Tường, Thạnh Trị, Mỹ Chánh, mở rộng đến cả
+                Kinh Điều và Bình Đại. Phần lớn trong hơn 80 vị ấy là các cha phó và các cha coi sóc những họ nhánh đó,
+                chứ không phải chánh sở nhà thờ mẹ. Từ <strong>1960 đến 2007</strong>, giáo xứ có thêm{' '}
+                <strong>20 linh mục</strong> phục vụ, <strong>trong đó 6 vị làm cha sở</strong>.
+              </p>
+              <p style={{ fontSize: '0.82rem', lineHeight: 1.65, margin: 0, color: 'var(--color-subtle)' }}>
+                Số giáo dân qua các mốc: <strong>28/01/1862 — 1.986 người</strong> (ghi nhận của Cha Renier);{' '}
+                <strong>1881 – 1882 — 3.651 người</strong>, gồm 330 người Âu châu và 3.321 người Việt Nam;{' '}
+                <strong>năm 2017 — khoảng 3.600 giáo dân</strong>. Những khoảng thời gian còn thiếu tư liệu trong bảng
+                được ghi rõ là <em>chưa cập nhật</em> thay vì suy đoán.
+              </p>
+            </div>
 
             <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
               <table className="pastor-timeline-table">
