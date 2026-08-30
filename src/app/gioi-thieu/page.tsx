@@ -2859,6 +2859,10 @@ export default function GioiThieuPage() {
                   cap: 'Tư liệu hình ảnh xưa nhất về ngôi nhà thờ thứ hai: bản khắc mặt tiền in trên tuần báo Les Missions Catholiques năm 1877, chú thích gốc “Cochinchine occidentale (Annam) — Façade de l’église de Mytho”. Nhà thờ dài 42 m, rộng 18 m, cao 36 m, 32 cột Corinthiên cao 8 m.'
                 },
                 {
+                  src: '/images/lichsu_ban_khac_ba_giong_1882.jpg',
+                  cap: 'Làng Ba Giồng năm 1882 — bản khắc in trên Les Missions Catholiques số 670 ngày 07/04/1882, chú thích gốc “Cochinchine — Village de Ba Giong”. Ba Giồng thuộc làng Tân Lý Đông, nơi 16 vị chức việc chịu tra tấn vì đức tin ba lần và là nơi Cha Phêrô Nguyễn Văn Lựu coi sóc trước khi bị bắt. Ngày nay đây là Trung tâm Hành hương của Giáo phận Mỹ Tho.'
+                },
+                {
                   src: '/images/lichsu_nha_tho_dinh_tuong.jpg',
                   cap: 'Chính ngôi nhà thờ trong bản khắc 1877, chụp lại thời Pháp thuộc với chú thích gốc “Cathédrale de My Tho”. Đối chiếu hai hình thấy trùng khớp từng chi tiết: mái vòm có đèn lồng, các cửa tròn trên tang trống, trán tường Baroque cuộn và ba vòm cửa. Đây là ngôi thánh đường Cha Sorel dựng, Cha Moulins hoàn tất, làm phép 12/03/1876 và bị tháo dỡ khoảng năm 1900.'
                 },
@@ -3704,26 +3708,93 @@ export default function GioiThieuPage() {
             <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 10px' }}>
               7. Chú thích &amp; Tài liệu tham khảo
             </h3>
-            <ol style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.6, paddingLeft: '20px' }}>
+            <p style={{ fontSize: '0.8rem', color: 'var(--color-subtle)', lineHeight: 1.7, margin: '0 0 12px' }}>
+              Trang này là một bản khảo cứu, không phải bài giới thiệu. Mỗi mốc lịch sử đều dẫn về nguồn dưới đây; chỗ nào
+              các nguồn mâu thuẫn nhau thì ghi rõ là mâu thuẫn, chỗ nào chưa tra được thì ghi <em>chưa cập nhật</em>.
+            </p>
+
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-red)', margin: '14px 0 6px' }}>
+              A. Văn khố Hội Thừa Sai Paris (MEP) — qua Viện Nghiên cứu Pháp&nbsp;–&nbsp;Á (IRFA)
+            </h4>
+            <ol style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.7, paddingLeft: '20px', margin: 0 }}>
               <li>
-                Tòa Thánh Vatican, <em>Niên Giám Tòa Thánh (Annuario Pontificio 2024)</em>, Libreria Editrice Vaticana.
+                Notice tiểu sử các thừa sai, tra tại <em>irfa.paris/missionnaire/&lt;mã&gt;</em>: Guillou (0682), Marc-Dassa
+                (0657), Lizé (0792), Sorel (0869), Moulins (1056), Renier (1502), Bar (2241).
               </li>
               <li>
-                Tòa Giám Mục Mỹ Tho, <em>Kỷ yếu 50 năm thành lập Giáo phận Mỹ Tho (1960 – 2010)</em>, Nhà xuất bản Tôn Giáo,
-                2010.
+                <em>Rapports annuels de la Mission de la Cochinchine occidentale</em>, 1872 – 1923 (145 bản, dạng PDF).
+                Trích dẫn chính, báo cáo 1897: &ldquo;My-tho est le chef-lieu d&rsquo;un district qui compte près de 4.000
+                fidèles, 19 chrétientés, avec 8 prêtres pour les desservir.&rdquo;
               </li>
               <li>
-                Hội Đồng Giám Mục Việt Nam, <em>Niên Giám Giáo Hội Công Giáo Việt Nam 2022</em>, NXB Tôn Giáo, 2022.
-              </li>
-              <li>
-                Ban Truyền Thông Giáo Phận Mỹ Tho, <em>Lược sử Giáo xứ Chánh Tòa Mỹ Tho</em>, Cổng thông tin điện tử Giáo
-                phận.
-              </li>
-              <li>
-                Tổng Liên Đoàn Thiếu Nhi Thánh Thể Việt Nam, <em>Quy chế &amp; Nội quy Phong trào TNTT</em>, Ban Đào tạo
-                Huynh Trưởng.
+                Kho ảnh chân dung thừa sai IRFA. Đã kiểm từng mã: có ảnh Sorel, Moulins, Renier, Bar; không có ảnh Guillou,
+                Lizé, Marc-Dassa.
               </li>
             </ol>
+
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-red)', margin: '14px 0 6px' }}>
+              B. Tuần báo <em>Les Missions Catholiques</em> — Thư viện Quốc gia Pháp (Gallica/BNF)
+            </h4>
+            <ol start={4} style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.7, paddingLeft: '20px', margin: 0 }}>
+              <li>
+                Le Mée (thừa sai MEP), &ldquo;Variétés: Mytho, Cochinchine occidentale&rdquo;, <em>Les Missions Catholiques</em>,
+                1877, tr.598, kèm bản khắc mặt tiền nhà thờ Mỹ Tho ở tr.595 — Gallica ark:/12148/bpt6k105617d. Nguồn của
+                kích thước nhà thờ, ngày làm phép 12/03/1876 và danh sách các dòng tu có mặt tại Mỹ Tho năm 1877.
+              </li>
+              <li>
+                Hamon (thừa sai MEP), &ldquo;Un épisode de la persécution en Cochinchine — Martyre de 27 chrétiens&rdquo;,
+                <em> Les Missions Catholiques</em> số 670, 07/04/1882, tr.157 &amp; 160 – 161, kèm bản khắc làng Ba Giồng —
+                Gallica ark:/12148/bpt6k105622v. Nguồn về 16 vị chức việc Ba Giồng, hai vị Thađêô Nam và Inhaxiô Thịnh, và
+                cuộc tử đạo của Cha Phêrô Nguyễn Văn Lựu.
+              </li>
+              <li>
+                Tường thuật trận bão năm 1904 tại Mỹ Tho — <em>Les Missions Catholiques</em> 1904, Gallica
+                ark:/12148/bpt6k1056449.
+              </li>
+            </ol>
+
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-red)', margin: '14px 0 6px' }}>
+              C. Nguồn Giáo hội Việt Nam
+            </h4>
+            <ol start={7} style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.7, paddingLeft: '20px', margin: 0 }}>
+              <li>
+                Ban Truyền Thông Giáo Phận Mỹ Tho, &ldquo;Các Gx: Chánh Tòa, Nữ Vương Hòa Bình, Chợ Cũ, Bình Tạo, An Đức,
+                Giáo họ Thới Sơn&rdquo; và &ldquo;Giáo phận Mỹ Tho (1): Lịch sử khai sinh giáo phận&rdquo; —
+                giaophanmytho.net. Nguồn của số liệu &ldquo;hơn 80 linh mục, khoảng 30 vị thừa sai&rdquo; và ba lần xây
+                dựng nhà thờ.
+              </li>
+              <li>
+                &ldquo;Dấu ấn họ đạo Chánh tòa Mỹ Tho theo dòng lịch sử&rdquo;, <em>Báo Công giáo và Dân tộc</em> (cgvdt.vn)
+                — dẫn <strong>bản báo cáo viết tay của Cha Renier hiện lưu trữ tại Tòa Tổng Giám mục TGP. TP.HCM</strong>.
+              </li>
+              <li>
+                Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho (cập nhật 11.2024); Thông báo và bản tin phong chức linh
+                mục các năm 2017, 2022, 2024; Danh sách thuyên chuyển và bổ nhiệm linh mục tháng 06.2026 —
+                giaophanmytho.net.
+              </li>
+              <li>
+                Tổng Giáo phận Sài Gòn (tgpsaigon.net), &ldquo;Đức Giám mục Phêrô Nguyễn Văn Khảm nhận Giáo phận Mỹ
+                Tho&rdquo;, 30/08/2014 — nguồn tiểu sử Đức Cha Phêrô Nguyễn Văn Khảm.
+              </li>
+              <li>
+                Tòa Giám Mục Mỹ Tho, <em>Kỷ yếu 50 năm thành lập Giáo phận Mỹ Tho (1960 – 2010)</em>, NXB Tôn Giáo, 2010;
+                Hội Đồng Giám Mục Việt Nam, <em>Niên Giám Giáo Hội Công Giáo Việt Nam 2022</em>, NXB Tôn Giáo.
+              </li>
+              <li>
+                Tòa Thánh Vatican, <em>Annuario Pontificio</em>, Libreria Editrice Vaticana; Tông hiến
+                <em> Venerabilium Nostrorum</em> (24/11/1960) và Sắc chỉ <em>Quod Venerabiles Fratres</em> (27/11/1960).
+              </li>
+              <li>
+                Tổng Liên Đoàn Thiếu Nhi Thánh Thể Việt Nam, <em>Quy chế &amp; Nội quy Phong trào TNTT</em>; bảng
+                &ldquo;Mẫu khăn quàng và các cấp hiệu&rdquo; — Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
+              </li>
+            </ol>
+
+            <p style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', lineHeight: 1.7, margin: '14px 0 0', fontStyle: 'italic' }}>
+              Ảnh tư liệu do Giáo xứ Chánh Tòa Mỹ Tho cung cấp, trừ hai bản khắc năm 1877 và 1882 lấy từ bộ sưu tập số hoá
+              của Thư viện Quốc gia Pháp (Gallica) và các chân dung thừa sai lấy từ văn khố IRFA. Bản khảo cứu cập nhật
+              tháng 8/2026.
+            </p>
           </section>
         </article>
 
