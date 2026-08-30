@@ -33,7 +33,16 @@ function celebrate() {
   setTimeout(() => confetti({ ...base, particleCount: 45, angle: 120, origin: { x: 0.85, y: 0.85 } }), 320);
 }
 
-export default function RatingWidget() {
+interface RatingWidgetProps {
+  /**
+   * Luôn hiển thị dù chưa lấy được số liệu thống kê.
+   * Thẻ ở cột bên trang chủ nên tự ẩn khi máy chủ không trả số liệu, nhưng hộp
+   * thoại do người dùng chủ động mở thì phải luôn gửi đánh giá được.
+   */
+  forceVisible?: boolean;
+}
+
+export default function RatingWidget({ forceVisible = false }: RatingWidgetProps) {
   const { t, lang } = useLanguage();
   const [stats, setStats] = useState<Stats | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -106,7 +115,8 @@ export default function RatingWidget() {
 
   const needComment = picked > 0 && picked < 3;
 
-  if (stats?.unavailable && (!stats.visits || stats.visits === 0)) return null;
+  const statsUnavailable = Boolean(stats?.unavailable) && (!stats?.visits || stats.visits === 0);
+  if (statsUnavailable && !forceVisible) return null;
 
   const submit = async () => {
     if (!picked || sending) return;

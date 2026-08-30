@@ -8,12 +8,15 @@ import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { MOBILE_PRIMARY_NAV } from '@/lib/navConfig';
 import PostSubmissionModal from '@/components/PostSubmissionModal';
 import BentoGridSheet from '@/components/BentoGridSheet';
+import Modal from '@/components/Modal';
+import RatingWidget from '@/components/RatingWidget';
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
   const { t } = useLanguage();
   const [bentoOpen, setBentoOpen] = useState(false);
   const [submissionOpen, setSubmissionOpen] = useState(false);
+  const [ratingsOpen, setRatingsOpen] = useState(false);
 
   // Không hiển thị trên trang Admin
   if (pathname.startsWith('/admin')) return null;
@@ -191,6 +194,7 @@ export default function MobileBottomNav() {
         isOpen={bentoOpen}
         onClose={() => setBentoOpen(false)}
         onOpenSubmission={() => setSubmissionOpen(true)}
+        onOpenRatings={() => setRatingsOpen(true)}
       />
 
       {/* 3. Modal đóng góp bài viết cộng tác viên */}
@@ -198,6 +202,21 @@ export default function MobileBottomNav() {
         isOpen={submissionOpen}
         onClose={() => setSubmissionOpen(false)}
       />
+
+      {/* 4. Hộp thoại đánh giá.
+             Trước đây nút "Đánh Giá & Lượt Xem" chỉ cuộn tới #footer-ratings —
+             mà phần tử đó không tồn tại ở đâu trong mã nguồn, nên bấm vào không
+             có gì xảy ra. Nay mở thẳng RatingWidget đã có sẵn đủ luồng chấm sao,
+             viết nhận xét và gửi. */}
+      {ratingsOpen && (
+        <Modal
+          isOpen={ratingsOpen}
+          onClose={() => setRatingsOpen(false)}
+          title="Đánh Giá & Lượt Xem"
+        >
+          <RatingWidget forceVisible />
+        </Modal>
+      )}
 
       <style jsx global>{`
         /* Ẩn hoàn toàn Bottom Nav trên màn hình Tablet & Desktop */

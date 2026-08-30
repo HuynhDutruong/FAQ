@@ -10,12 +10,14 @@ interface BentoGridSheetProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenSubmission: () => void;
+  onOpenRatings: () => void;
 }
 
 export default function BentoGridSheet({
   isOpen,
   onClose,
-  onOpenSubmission
+  onOpenSubmission,
+  onOpenRatings
 }: BentoGridSheetProps) {
   const { t } = useLanguage();
 
@@ -32,8 +34,7 @@ export default function BentoGridSheet({
         el.scrollIntoView({ behavior: 'smooth' });
       }
     } else if (item.actionId === 'open-ratings') {
-      const el = document.getElementById('footer-ratings');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      onOpenRatings();
     }
   };
 
