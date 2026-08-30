@@ -1152,56 +1152,193 @@ export const ALL_COMMUNITY_BIOS: DetailedBioRecord[] = [
   POPE_LEO_XIV_BIO
 ];
 
-const TNTT_RANKS = [
+/**
+ * Khăn quàng TNTT theo bảng "Mẫu khăn quàng và các cấp hiệu trong Phong trào
+ * Thiếu Nhi Thánh Thể Việt Nam" của Liên đoàn Các Thánh Tử Đạo Việt Nam —
+ * Giáo phận Mỹ Tho.
+ *
+ * LƯU Ý QUAN TRỌNG: khăn của các NGÀNH (Chiên Con, Ấu Nhi, Thiếu Nhi, Nghĩa
+ * Sĩ, Hiệp Sĩ) đều KHÔNG CÓ VIỀN. Viền chỉ dành riêng cho đội trưởng và đội
+ * phó. Bản dữ liệu trước đây gán viền cho mọi ngành là sai.
+ */
+interface TnttScarf {
+  id: string;
+  name: string;
+  motto: string;
+  age?: string;
+  /** Màu khăn */
+  scarf: string;
+  scarfName: string;
+  /** Màu Thánh Giá sau chéo */
+  cross: string;
+  crossName: string;
+  /** Viền khăn — chỉ đặt khi cấp bậc đó thực sự có viền */
+  trim?: string;
+  trimName?: string;
+  /** Quy định viền riêng cho đội trưởng / đội phó của ngành */
+  leaderTrim?: string;
+  symbolism: string;
+}
+
+/** Vẽ khăn quàng: hình tam giác đúng dáng khăn, có Thánh Giá chéo và viền nếu có. */
+function ScarfIcon({ scarf }: { scarf: TnttScarf }) {
+  const needsOutline = scarf.scarf.toUpperCase() === '#FFFFFF';
+  return (
+    <svg viewBox="0 0 48 34" width={48} height={34} role="img" aria-label={`Khăn ${scarf.scarfName}`} style={{ flexShrink: 0 }}>
+      <polygon
+        points="2,3 46,3 24,31"
+        fill={scarf.scarf}
+        stroke={scarf.trim ?? (needsOutline ? 'var(--color-border-subtle)' : 'none')}
+        strokeWidth={scarf.trim ? 2.5 : 1}
+        strokeLinejoin="round"
+      />
+      <g stroke={scarf.cross} strokeWidth="2.2" strokeLinecap="round">
+        <line x1="24" y1="9" x2="24" y2="19" />
+        <line x1="19" y1="13" x2="29" y2="13" />
+      </g>
+    </svg>
+  );
+}
+
+const TNTT_NGANH: TnttScarf[] = [
+  {
+    id: 'chien-con',
+    name: 'Chiên Con (Khai Tâm)',
+    motto: 'Hiền Lành',
+    age: '4 – 6 tuổi',
+    scarf: '#F8A5C2',
+    scarfName: 'Hồng',
+    cross: '#DC2626',
+    crossName: 'Thánh Giá đỏ, cỡ 4cm',
+    leaderTrim: 'Đội trưởng và đội phó có 1 viền đỏ',
+    symbolism: 'Màu hồng tượng trưng cho tâm hồn đơn sơ, trong trắng và vui tươi của các em.'
+  },
   {
     id: 'au-nhi',
-    name: 'Khăn Ngành Ấu Nhi (Chiên Con)',
-    age: '4 – 9 tuổi',
-    motto: 'Vâng Lời',
-    colorName: 'Xanh Lá Mạ (Viền Vàng)',
-    mainColor: '#16A34A',
-    borderColor: '#FBBF24',
-    symbolism: 'Màu của chồi non xanh biếc, tượng trưng cho tâm hồn đơn sơ, trong trắng, luôn biết lắng nghe và vâng phục cha mẹ như Chúa Giêsu thời thơ ấu tại Nadarét.'
+    name: 'Ấu Nhi',
+    motto: 'Ngoan',
+    age: '7 – 9 tuổi',
+    scarf: '#4CAF50',
+    scarfName: 'Xanh lá cây',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá vàng, cỡ 4cm',
+    leaderTrim: 'Đội trưởng và đội phó có 1 viền đỏ',
+    symbolism: 'Màu xanh mạ non diễn tả các em như một lá non trên cành cây đang vươn mình lớn dậy — màu của lứa tuổi hồn nhiên, ngây thơ, biểu tượng cho tâm tình luôn trông cậy vào cha mẹ và phó thác vào Chúa.'
   },
   {
     id: 'thieu-nhi',
-    name: 'Khăn Ngành Thiếu Nhi',
-    age: '10 – 12 tuổi',
+    name: 'Thiếu Nhi',
     motto: 'Hy Sinh',
-    colorName: 'Xanh Dương Đậm (Viền Vàng)',
-    mainColor: '#1D4ED8',
-    borderColor: '#FBBF24',
-    symbolism: 'Màu của bầu trời bao la và biển cả. Tượng trưng cho tâm hồn cởi mở, lòng trung thực, tinh thần vui tươi và sẵn sàng hy sinh phục vụ bạn bè, gia đình.'
+    age: '10 – 12 tuổi',
+    scarf: '#1E3A8A',
+    scarfName: 'Xanh dương',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá vàng, cỡ 5cm',
+    leaderTrim: 'Đội trưởng và đội phó có 1 viền vàng',
+    symbolism: 'Màu khăn xanh biển tượng trưng cho một sức sống mạnh mẽ như trời xanh biển rộng và một hy vọng lớn lao cho tương lai của Giáo Hội và quê hương.'
   },
   {
     id: 'nghia-si',
-    name: 'Khăn Ngành Nghĩa Sĩ',
-    age: '13 – 15 tuổi',
+    name: 'Nghĩa Sĩ',
     motto: 'Chinh Phục',
-    colorName: 'Vàng Nghệ (Viền Đỏ)',
-    mainColor: '#D97706',
-    borderColor: '#DC2626',
-    symbolism: 'Màu của bình minh rực rỡ và lúa chín trĩu hạt. Tượng trưng cho độ tuổi trưởng thành đức tin, khao khát dấn thân, chinh phục lý tưởng yêu thương của Phúc Âm.'
+    age: '13 – 15 tuổi',
+    scarf: '#EAB308',
+    scarfName: 'Vàng nghệ',
+    cross: '#DC2626',
+    crossName: 'Thánh Giá đỏ, cỡ 5cm',
+    leaderTrim: 'Đội trưởng và đội phó có 1 viền đỏ',
+    symbolism: 'Màu vàng nghệ tượng trưng cho bình minh đang ló dạng và toả sáng của lứa tuổi sắp vào đời, nhắc các em luôn thể hiện tinh thần vượt khó để chinh phục bản thân theo đường lối của Thiên Chúa.'
   },
   {
     id: 'hiep-si',
-    name: 'Khăn Ngành Hiệp Sĩ',
-    age: '16 – 17 tuổi',
+    name: 'Hiệp Sĩ',
     motto: 'Dấn Thân',
-    colorName: 'Màu Nâu Đất (Viền Vàng)',
-    mainColor: '#78350F',
-    borderColor: '#FBBF24',
-    symbolism: 'Màu của mảnh đất màu mỡ phù sa sông Tiền. Tượng trưng cho tinh thần vững chãi, khiêm tốn, sẵn sàng đem sức trẻ và tài năng gieo rắc Tin Mừng giữa đời.'
+    age: '16 – 17 tuổi',
+    scarf: '#6B4423',
+    scarfName: 'Nâu đất',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá vàng, cỡ 5cm',
+    leaderTrim: 'Đội trưởng và đội phó có 1 viền vàng',
+    symbolism: 'Màu nâu như màu của đất, nơi dòng máu đức tin của các Thánh Tử Đạo Việt Nam đã đổ ra và chảy vào lòng đất mẹ — nói lên lòng trung thành với đất nước và tình yêu đối với Thiên Chúa, xứng đáng với tuổi hiệp sĩ hào hùng.'
+  }
+];
+
+const TNTT_HUYNH_TRUONG: TnttScarf[] = [
+  {
+    id: 'du-truong',
+    name: 'Dự Trưởng',
+    motto: 'Phụng Sự',
+    age: 'Giáo lý viên dự bị',
+    scarf: '#DC2626',
+    scarfName: 'Đỏ, không viền',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá cỡ 6cm',
+    symbolism: 'Khăn đỏ không viền nói lên sự sửa soạn để trở thành Huynh Trưởng chính thức. Màu đỏ là màu của sự hy sinh và tràn đầy sức sống dám quên mình để tập phục vụ Chúa qua các em một cách vui tươi và hăng hái.'
   },
   {
     id: 'huynh-truong',
-    name: 'Khăn Huynh Trưởng',
-    age: 'Từ 18 tuổi trở lên',
+    name: 'Huynh Trưởng',
     motto: 'Phụng Sự',
-    colorName: 'Đỏ Thắm (Viền Vàng)',
-    mainColor: '#DC2626',
-    borderColor: '#FBBF24',
-    symbolism: 'Màu máu Tử Đạo và Lửa Thánh Thể. Tượng trưng cho lòng nhiệt huyết tông đồ, đức ái hy sinh vô điều kiện để hướng dẫn các em đoàn sinh đến với Chúa Kitô.'
+    age: 'Giáo lý viên các cấp',
+    scarf: '#DC2626',
+    scarfName: 'Đỏ',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá vàng, cỡ 6cm',
+    trim: '#FBBF24',
+    trimName: '1 viền vàng',
+    symbolism: 'Màu đỏ là màu của máu, tượng trưng cho sự hy sinh hiến tế và gian khổ mà người Huynh Trưởng phải chấp nhận để hướng dẫn và dìu dắt các em đến với Chúa. Viền vàng tượng trưng cho niềm vui mừng và hy vọng.'
+  },
+  {
+    id: 'huan-luyen-vien',
+    name: 'Huấn Luyện Viên',
+    motto: 'Sẵn Sàng',
+    age: 'Ban huấn luyện các sa mạc',
+    scarf: '#7C3AED',
+    scarfName: 'Tím',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá vàng, cỡ 6cm',
+    trim: '#FBBF24',
+    trimName: 'Viền vàng (cấp I), thêm viền xanh dương (cấp II), thêm viền xanh lá (cấp III)',
+    symbolism: 'Màu tím là màu của sự hãm mình hy sinh trong vui tươi và tràn đầy hy vọng; màu của sự "sẵn sàng", tự thân và tự huấn luyện để nhắc nhớ người Huấn Luyện Viên phải biết mình luôn hy sinh, phục vụ không quản ngại khó khăn.'
+  },
+  {
+    id: 'tro-ta',
+    name: 'Trợ Tá',
+    motto: 'Phục Vụ',
+    age: 'Cộng tác viên giáo dân',
+    scarf: '#DC2626',
+    scarfName: 'Đỏ',
+    cross: '#2563EB',
+    crossName: 'Thánh Giá xanh dương, cỡ 6cm',
+    trim: '#2563EB',
+    trimName: 'Viền xanh dương',
+    symbolism: 'Màu đỏ là màu của hy lễ và lòng hy sinh nhẫn nại phục vụ. Viền xanh nước biển — màu của Thiếu Nhi — nói lên lòng quảng đại phục vụ các em Thiếu Nhi của người Trợ Tá.'
+  },
+  {
+    id: 'tro-uy',
+    name: 'Trợ Uý',
+    motto: 'Nhiệt Thành',
+    age: 'Tu sĩ nam nữ',
+    scarf: '#DC2626',
+    scarfName: 'Đỏ',
+    cross: '#FFFFFF',
+    crossName: 'Thánh Giá trắng, cỡ 6cm',
+    trim: '#FFFFFF',
+    trimName: 'Viền trắng',
+    symbolism: 'Màu đỏ là màu của hy lễ hiến tế và hy sinh phục vụ. Viền trắng — màu khăn của tuyên uý — tượng trưng sự trong sạch, sự nhẫn nại và lòng độ lượng của người Trợ Uý trong Phong trào.'
+  },
+  {
+    id: 'tuyen-uy',
+    name: 'Tuyên Uý',
+    motto: 'Hiến Dâng',
+    age: 'Linh mục',
+    scarf: '#FFFFFF',
+    scarfName: 'Trắng',
+    cross: '#FBBF24',
+    crossName: 'Thánh Giá vàng, cỡ 6cm',
+    trim: '#FBBF24',
+    trimName: 'Viền vàng',
+    symbolism: 'Màu trắng là màu trong sạch, tượng trưng cho sự trong sáng tinh tuyền, niềm hy vọng và lòng cậy trông để dâng hiến cuộc đời làm hy tế và làm chứng tá cho Chúa và Giáo Hội. Vì vậy, Ngài sẽ là Người đại diện cho Chúa để hướng dẫn Đoàn Thiếu Nhi Thánh Thể.'
   }
 ];
 
@@ -1237,6 +1374,8 @@ export default function GioiThieuPage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '8px',
             fontSize: '0.82rem',
             color: 'var(--color-subtle)'
           }}
@@ -1333,8 +1472,7 @@ export default function GioiThieuPage() {
               borderRadius: '12px',
               padding: '16px 20px',
               margin: '20px 0 28px',
-              display: 'inline-block',
-              minWidth: '300px',
+              display: 'block',
               maxWidth: '100%',
               boxShadow: '0 1px 4px rgba(0,0,0,0.02)'
             }}
@@ -2191,7 +2329,7 @@ export default function GioiThieuPage() {
                   {/* Khung ảnh chân dung dọc (Aspect Ratio 3:4) */}
                   <PortraitFrame src={b.image} name={b.name} width={85} height={110} />
 
-                  <div style={{ flex: 1, minWidth: '220px' }}>
+                  <div style={{ flex: '1 1 220px', minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px' }}>
                       <h4 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                         {b.name}
@@ -2306,48 +2444,58 @@ export default function GioiThieuPage() {
               ngành trong Xứ Đoàn:
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {TNTT_RANKS.map((r) => (
-                <div
-                  key={r.id}
-                  style={{
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    backgroundColor: 'var(--color-card-bg)',
-                    border: '1px solid var(--color-border-subtle)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    flexWrap: 'wrap',
-                    gap: '8px'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div
-                      style={{
-                        width: '16px',
-                        height: '16px',
-                        borderRadius: '4px',
-                        backgroundColor: r.mainColor,
-                        border: `2px solid ${r.borderColor}`
-                      }}
-                    />
-                    <div>
-                      <div style={{ fontWeight: 800, fontSize: '0.9rem', color: 'var(--color-dark)' }}>
-                        {r.name}
+            <div className="scarf-list">
+              {TNTT_NGANH.map((r) => (
+                <div key={r.id} className="scarf-card">
+                  <div className="scarf-card-head">
+                    <ScarfIcon scarf={r} />
+                    <div className="scarf-card-title">
+                      <div className="scarf-name">
+                        Khăn Ngành {r.name} — <span className="scarf-motto">{r.motto}</span>
                       </div>
-                      <div style={{ fontSize: '0.76rem', color: 'var(--color-subtle)' }}>
-                        Độ tuổi: <strong>{r.age}</strong> • Khẩu hiệu: <strong>{r.motto}</strong>
+                      <div className="scarf-meta">
+                        {r.age} • Khăn {r.scarfName.toLowerCase()}, không viền • {r.crossName}
                       </div>
                     </div>
                   </div>
-
-                  <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', flex: 1, minWidth: '220px', textAlign: 'right' }}>
-                    {r.symbolism}
-                  </div>
+                  <p className="scarf-symbolism">{r.symbolism}</p>
+                  {r.leaderTrim && <p className="scarf-trim-note">{r.leaderTrim}.</p>}
                 </div>
               ))}
             </div>
+
+            <h3 id="xu-doan-khan-huynh-truong" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
+              5.3. Khăn Quàng Huynh Trưởng &amp; Ban Điều Hành
+            </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Ngoài khăn của các ngành, Phong trào còn quy định khăn riêng cho những người phục vụ và
+              hướng dẫn Đoàn Thiếu Nhi Thánh Thể:
+            </p>
+
+            <div className="scarf-list">
+              {TNTT_HUYNH_TRUONG.map((r) => (
+                <div key={r.id} className="scarf-card">
+                  <div className="scarf-card-head">
+                    <ScarfIcon scarf={r} />
+                    <div className="scarf-card-title">
+                      <div className="scarf-name">
+                        {r.name} — <span className="scarf-motto">{r.motto}</span>
+                      </div>
+                      <div className="scarf-meta">
+                        {r.age} • Khăn {r.scarfName.toLowerCase()}
+                        {r.trimName ? `, ${r.trimName}` : ''} • {r.crossName}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="scarf-symbolism">{r.symbolism}</p>
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '14px 0 0', lineHeight: 1.6 }}>
+              Nguồn: bảng &ldquo;Mẫu khăn quàng và các cấp hiệu trong Phong trào Thiếu Nhi Thánh Thể Việt Nam&rdquo; —
+              Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
+            </p>
           </section>
 
           {/* =====================================================================
@@ -3044,7 +3192,7 @@ export default function GioiThieuPage() {
                 {/* Ảnh chân dung đầy đủ không bị cắt đầu */}
                 <PortraitFrame src={selectedBio.image} name={selectedBio.name} width={110} height={150} />
 
-                <div style={{ flex: 1, minWidth: '240px' }}>
+                <div style={{ flex: '1 1 240px', minWidth: 0 }}>
                   <h3 style={{ margin: '0 0 4px', fontSize: '1.2rem', fontWeight: 800, color: 'var(--color-dark)' }}>
                     {selectedBio.name}
                   </h3>
@@ -3325,6 +3473,11 @@ export default function GioiThieuPage() {
             grid-template-columns: 1fr !important;
           }
           
+          /* Bảng niên biểu cuộn ngang riêng, không kéo cả trang */
+          .pastor-timeline-table {
+            min-width: 560px;
+          }
+
           /* Chống ép chữ bằng cách xóa float trên thiết bị di động */
           .floating-img-270, .floating-img-290, .floating-img-250, .wiki-thumb {
             float: none !important;
@@ -3333,6 +3486,24 @@ export default function GioiThieuPage() {
             margin: 16px auto !important;
             display: block;
           }
+        }
+
+        /* Chặn mọi phần tử con vượt khung trên màn hình hẹp */
+        @media (max-width: 560px) {
+          .main-layout { padding: 12px 10px; }
+          .main-layout img,
+          .main-layout svg,
+          .main-layout table { max-width: 100%; }
+          .main-layout p,
+          .main-layout li,
+          .main-layout h1,
+          .main-layout h2,
+          .main-layout h3,
+          .main-layout h4 {
+            overflow-wrap: anywhere;
+          }
+          .scarf-card-head { gap: 10px; }
+          .scarf-symbolism { text-align: left; }
         }
 
         .bishop-card-hover:hover {
