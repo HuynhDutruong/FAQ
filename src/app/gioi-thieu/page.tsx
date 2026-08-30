@@ -3296,7 +3296,7 @@ export default function GioiThieuPage() {
             <details className="doc-details">
               <summary className="doc-summary">
             <h3 id="kien-truc-anh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-              Kiến trúc &amp; Nghệ thuật Thánh
+              3.7. Kiến trúc &amp; Nghệ thuật Thánh
             </h3>
               </summary>
             {/* Gallery ảnh kiến trúc */}
