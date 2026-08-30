@@ -1872,8 +1872,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: '02/04/1987',
     origin: 'Giáo xứ Thiên Phước, Đồng Tháp',
     priestOrdination: 'Thụ phong linh mục ngày 29/12/2022 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    image: '/images/tuyen_uy_nguyen_hoang_anh.jpg',
     source:
-      'Thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
     shortDesc:
       'Cha Tuyên Uý thứ tám của Xứ Đoàn, nhận nhiệm vụ ngay trong năm đầu tiên sau khi thụ phong linh mục.',
     chronology: [
