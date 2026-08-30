@@ -34,6 +34,7 @@ import {
   Scroll
 } from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
+import { useChanhToaMassTimes } from '@/lib/useChanhToaMassTimes';
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
 
 /**
@@ -1359,8 +1360,22 @@ const TNTT_CHAPLAINS: { period: string; name: string }[] = [
   { period: '2026 – nay', name: 'Lm. Emmanuel Nguyễn Văn Thành' }
 ];
 
+/**
+ * Ghi chú riêng của từng thánh lễ Chúa Nhật tại Chánh Tòa. Khoá theo giờ: Admin
+ * đổi giờ thì ghi chú tự biến mất, không dán nhầm sang thánh lễ khác.
+ */
+const SUNDAY_MASS_NOTES: Record<string, string> = {
+  '05:30': 'Thánh lễ sáng sớm',
+  '07:00': 'Lễ dành cho Thiếu nhi & Giới trẻ',
+  '16:00': 'Lễ chiều',
+  '18:00': 'Lễ chiều tối'
+};
+
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+
 export default function GioiThieuPage() {
   const { t } = useLanguage();
+  const chanhToa = useChanhToaMassTimes();
   const [lightboxImage, setLightboxImage] = useState<{ src: string; caption: string } | null>(null);
   const [selectedBio, setSelectedBio] = useState<DetailedBioRecord | null>(null);
   const [tocOpen, setTocOpen] = useState(true);
@@ -2771,8 +2786,8 @@ export default function GioiThieuPage() {
               6. Giờ Thánh Lễ &amp; Lịch Mục Vụ
             </h2>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 14px' }}>
-              Giờ phụng vụ tại Nhà Thờ Chính Tòa Mỹ Tho được cử hành đều đặn mỗi ngày (dữ liệu được đồng bộ trực tiếp từ cơ
-              sở dữ liệu Giáo phận):
+              Giờ phụng vụ tại Nhà Thờ Chính Tòa Mỹ Tho được cử hành đều đặn mỗi ngày. Bảng dưới đây đồng bộ trực tiếp với
+              lịch giờ lễ của Giáo phận: Ban Phụng Vụ sửa giờ ở mục Giờ Lễ thì trang này đổi theo ngay, không cần đăng lại.
             </p>
 
             <div
@@ -2789,30 +2804,36 @@ export default function GioiThieuPage() {
                   <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem', marginBottom: '6px' }}>
                     CÁC NGÀY TRONG TUẦN
                   </div>
-                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                    • Thánh lễ Sáng: <strong>05:00</strong>
-                  </div>
-                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                    • Thánh lễ Chiều: <strong>17:30</strong>
-                  </div>
+                  {chanhToa.weekdayMass.map((time) => (
+                    <div key={time} style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
+                      • Thánh lễ: <strong>{time}</strong>
+                    </div>
+                  ))}
+
+                  {chanhToa.saturdayMass && chanhToa.saturdayMass.length > 0 && (
+                    <>
+                      <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem', margin: '10px 0 6px' }}>
+                        THỨ BẢY (LỄ VỌNG CHÚA NHẬT)
+                      </div>
+                      {chanhToa.saturdayMass.map((time) => (
+                        <div key={time} style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
+                          • Thánh lễ: <strong>{time}</strong>
+                        </div>
+                      ))}
+                    </>
+                  )}
                 </div>
 
                 <div>
                   <div style={{ fontWeight: 800, color: 'var(--color-red)', fontSize: '0.9rem', marginBottom: '6px' }}>
                     CHÚA NHẬT (NGÀY CỦA CHÚA)
                   </div>
-                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                    • Lễ I: <strong>05:30</strong> (Thánh lễ sáng sớm)
-                  </div>
-                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                    • Lễ II: <strong>07:00</strong> (Lễ dành cho Thiếu nhi &amp; Giới trẻ)
-                  </div>
-                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                    • Lễ III: <strong>16:00</strong> (Lễ chiều)
-                  </div>
-                  <div style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
-                    • Lễ IV: <strong>18:00</strong> (Lễ chiều tối)
-                  </div>
+                  {chanhToa.sundayMass.map((time, idx) => (
+                    <div key={time} style={{ fontSize: '0.86rem', color: 'var(--color-dark)' }}>
+                      • Lễ {ROMAN[idx] ?? idx + 1}: <strong>{time}</strong>
+                      {SUNDAY_MASS_NOTES[time] ? ` (${SUNDAY_MASS_NOTES[time]})` : ''}
+                    </div>
+                  ))}
                 </div>
               </div>
 

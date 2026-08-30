@@ -1,38 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
-import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
-import { DEFAULT_CHANH_TOA_INFO, MassTime } from '@/lib/massTimes';
+import { useChanhToaMassTimes } from '@/lib/useChanhToaMassTimes';
 
 export default function Footer() {
   const pathname = usePathname();
   const { t } = useLanguage();
-  const [chanhToa, setChanhToa] = useState<MassTime>(DEFAULT_CHANH_TOA_INFO);
-
-  // Lắng nghe dữ liệu Giờ Lễ & Địa chỉ Nhà Thờ Chánh Tòa Mỹ Tho trực tiếp từ Firestore
-  useEffect(() => {
-    try {
-      const unsub = onSnapshot(doc(db, 'massTimes', 'mt-my-tho-chanh-toa'), (snap) => {
-        if (snap.exists()) {
-          const data = snap.data() as Omit<MassTime, 'id'>;
-          setChanhToa({
-            ...data,
-            id: snap.id
-          });
-        }
-      }, (error) => {
-        console.warn('Firestore snapshot error in Footer:', error);
-      });
-
-      return () => unsub();
-    } catch (e) {
-      console.warn('Error setting up Footer snapshot:', e);
-    }
-  }, []);
+  const chanhToa = useChanhToaMassTimes();
 
   // Hide footer on admin pages
   if (pathname?.startsWith('/admin')) {
