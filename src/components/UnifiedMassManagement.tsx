@@ -43,7 +43,7 @@ import {
 import { removeAccents } from '@/lib/textUtils';
 import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, limit } from 'firebase/firestore';
 import { useAuth } from '@/lib/AuthContext';
 
 type SubViewType = 'requests' | 'database' | 'stats';
@@ -113,7 +113,9 @@ export default function UnifiedMassManagement() {
   // ==========================================
   // Listen to Feedback collection in real-time
   useEffect(() => {
-    const q = query(collection(db, 'massTimeFeedback'), orderBy('createdAt', 'desc'));
+    // Giới hạn 300 yêu cầu gần nhất — đủ cho công việc duyệt hằng ngày mà
+    // không phải đọc cả lịch sử đóng góp mỗi lần mở bảng.
+    const q = query(collection(db, 'massTimeFeedback'), orderBy('createdAt', 'desc'), limit(300));
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {

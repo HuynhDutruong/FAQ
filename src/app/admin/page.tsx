@@ -10,8 +10,6 @@ import {
   hasTruyenThongRole,
   ADMIN_ROLES_CONFIG
 } from '@/lib/AuthContext';
-import PostSubmissionsAdmin from '@/components/PostSubmissionsAdmin';
-import PostIntelDashboard from '@/components/PostIntelDashboard';
 import { useFacebookPosts } from '@/lib/useFacebookPosts';
 import {
   ChevronRight,
@@ -37,12 +35,31 @@ import {
 
 import Image from 'next/image';
 import { db } from '@/lib/firebase';
-import { collection, query, orderBy, onSnapshot, Timestamp, where, doc, deleteDoc } from 'firebase/firestore';
-import UnifiedMassManagement from '@/components/UnifiedMassManagement';
-import AdminUsersManagement from '@/components/AdminUsersManagement';
-import FacebookAdmin from '@/components/FacebookAdmin';
-import RatingsAdmin from '@/components/RatingsAdmin';
-import PrayerAndFaqAdmin from '@/components/PrayerAndFaqAdmin';
+import { collection, query, orderBy, onSnapshot, Timestamp, where, doc, deleteDoc, limit } from 'firebase/firestore';
+import dynamic from 'next/dynamic';
+import SystemHealthPanel from '@/components/SystemHealthPanel';
+
+/**
+ * Bảy bảng quản trị nạp động.
+ *
+ * Trước đây cả bảy import tĩnh nên mở trang Admin là tải hết ~250KB mã nguồn
+ * của mọi ban, dù người dùng chỉ xem đúng một tab và phần lớn tài khoản chỉ có
+ * quyền vào một ban. Nay mỗi bảng chỉ tải khi thực sự mở tab tương ứng.
+ */
+const panelLoading = () => (
+  <div style={{ padding: '48px 20px', textAlign: 'center', color: 'var(--color-text-subtle)', fontSize: '0.9rem' }}>
+    Đang tải bảng điều khiển…
+  </div>
+);
+
+const PostSubmissionsAdmin = dynamic(() => import('@/components/PostSubmissionsAdmin'), { ssr: false, loading: panelLoading });
+const PostIntelDashboard = dynamic(() => import('@/components/PostIntelDashboard'), { ssr: false, loading: panelLoading });
+const UnifiedMassManagement = dynamic(() => import('@/components/UnifiedMassManagement'), { ssr: false, loading: panelLoading });
+const AdminUsersManagement = dynamic(() => import('@/components/AdminUsersManagement'), { ssr: false, loading: panelLoading });
+const FacebookAdmin = dynamic(() => import('@/components/FacebookAdmin'), { ssr: false, loading: panelLoading });
+const RatingsAdmin = dynamic(() => import('@/components/RatingsAdmin'), { ssr: false, loading: panelLoading });
+const PrayerAndFaqAdmin = dynamic(() => import('@/components/PrayerAndFaqAdmin'), { ssr: false, loading: panelLoading });
+
 
 interface Submission {
   id: string;
@@ -197,7 +214,10 @@ export default function AdminDashboard() {
 
     if (user && role) {
       // Fetch submissions
-      const q = query(collection(db, 'submissions'), orderBy('createdAt', 'desc'));
+      // Giới hạn 300 mục gần nhất. Trước đây truy vấn không giới hạn nên mỗi
+      // lần mở trang Admin là đọc TOÀN BỘ collection và giữ listener thời gian
+      // thực trên đó — chi phí tăng mãi theo số lượt gửi và ăn hạn mức Firestore.
+      const q = query(collection(db, 'submissions'), orderBy('createdAt', 'desc'), limit(300));
       const unsubscribeSubmissions = onSnapshot(
         q,
         (snapshot) => {
@@ -707,6 +727,9 @@ export default function AdminDashboard() {
           }}
           className="admin-main-body"
         >
+          {/* Chẩn đoán hạ tầng — đặt trên cùng để sự cố không còn hỏng âm thầm. */}
+          <SystemHealthPanel />
+
           {error ? (
             <div style={{ padding: '24px', backgroundColor: '#FEE2E2', color: '#B91C1C', borderRadius: '12px' }}>
               <strong>Lỗi tải dữ liệu:</strong> {error}
