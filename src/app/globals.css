@@ -2207,3 +2207,79 @@ body {
   flex: 1;
 }
 
+
+/* =========================================================================
+   BỐ CỤC BỘ TRANG KHẢO CỨU LỊCH SỬ
+   Trước đây nằm trong <style jsx> của trang Giới thiệu. Khi tách thành sáu
+   trang thì khối này mất theo, khiến nội dung sát mép màn hình và mọi lưới
+   ảnh dồn thành một cột full-width — ảnh ngang bị cắt thành dải.
+   Đưa ra đây để cả sáu trang cùng dùng.
+   ========================================================================= */
+.main-layout {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.wiki-sidebar { width: 330px; flex-shrink: 0; }
+
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.floating-img-270 { float: right; width: 270px; margin-left: 20px; margin-bottom: 12px; }
+.floating-img-290 { float: right; width: 290px; margin-left: 20px; margin-bottom: 12px; }
+.floating-img-250 { float: right; width: 250px; margin-left: 20px; margin-bottom: 12px; }
+
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column-reverse;
+    gap: 24px;
+    padding: 16px 12px;
+    /* Flex column mà giữ align-items:flex-start thì con co theo chiều rộng
+       nội dung tối đa chứ không bằng khung, làm cả trang tràn ngang rồi bị
+       overflow-x:hidden cắt cụt. */
+    align-items: stretch;
+  }
+  .main-layout > * { width: 100%; min-width: 0; max-width: 100%; }
+  .wiki-sidebar { width: 100%; margin-bottom: 24px; }
+  .responsive-grid { grid-template-columns: 1fr !important; }
+
+  .floating-img-270, .floating-img-290, .floating-img-250, .wiki-thumb {
+    float: none !important;
+    width: 100% !important;
+    max-width: 320px;
+    margin: 16px auto !important;
+    display: block;
+  }
+}
+
+@media (max-width: 560px) {
+  .main-layout { padding: 12px 10px; }
+  .main-layout img,
+  .main-layout svg,
+  .main-layout table { max-width: 100%; }
+  .main-layout p,
+  .main-layout li,
+  .main-layout h1,
+  .main-layout h2,
+  .main-layout h3,
+  .main-layout h4 { overflow-wrap: anywhere; }
+  .scarf-card-head { gap: 10px; }
+  .scarf-symbolism { text-align: left; }
+}
+
+.bishop-card-hover:hover {
+  border-color: #B45309 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
+}
