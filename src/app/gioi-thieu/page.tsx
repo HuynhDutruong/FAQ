@@ -2078,16 +2078,34 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
  * ghi sai tên người đã phục vụ.
  */
 const PRIESTS_SERVED: { name: string; note: string; ma: string }[] = [
-  {
-    name: 'Cha François-Isidore Gagelin',
-    note: 'coi các địa hạt Mỹ Tho, Vĩnh Long và Châu Đốc từ năm 1828',
-    ma: 'IRFA 0342'
-  },
-  {
-    name: 'Cha Jean-Joseph Barou',
-    note: 'phục vụ tại Mỹ Tho',
-    ma: 'IRFA 0738'
-  }
+  { name: 'Cha Phanxicô Isiđôrê Gagelin', note: 'quản các địa hạt Mỹ Tho, Vĩnh Long và Châu Đốc từ năm 1828; sau là vị tử đạo được tôn phong hiển thánh', ma: 'IRFA 0342' },
+  { name: 'Cha Charles Gernot', note: 'về Mỹ Tho năm 1862, khi ấy là lỵ sở một địa hạt 2.300 giáo dân; bản tường trình ngài gửi Đức cha Lefebvre năm 1863 đưa tới việc các Nữ tu Thánh Phaolô thành Chartres đến Mỹ Tho', ma: 'IRFA 0794' },
+  { name: 'Cha Jean-Joseph Barou', note: 'coi họ đạo Thủ Ngữ gần Mỹ Tho trong cơn loạn tháng 12/1862', ma: 'IRFA 0738' },
+  { name: 'Cha Théodule Hamon', note: 'học tiếng Việt tại Mỹ Tho rồi quyền coi họ đạo; sang Ba Giồng tháng 02/1870. Chính ngài viết bài tường thuật cuộc bách hại Ba Giồng đăng năm 1882', ma: 'IRFA 1002' },
+  { name: 'Cha Jean Piault', note: 'khởi đầu sứ vụ tại Mỹ Tho tháng 6/1871 trước khi làm giáo sư Chủng viện Sài Gòn', ma: 'IRFA 1078' },
+  { name: 'Cha Jules Leprince', note: 'lần lượt coi sóc các họ đạo Mỹ Tho, Thủ Dầu Một và Giồng Rùm', ma: 'IRFA 1009' },
+  { name: 'Cha Émile Moreau', note: 'coi hai họ đạo Thủ Ngữ và Tân Xuân ngay ngoài Mỹ Tho, xây nhà thờ mới cho họ đạo', ma: 'IRFA 1012' },
+  { name: 'Cha Eugène Faron', note: 'khởi đầu tại Mỹ Tho làm tuyên uý quân y viện; trở lại Mỹ Tho năm 1882 và tiếp tục coi sóc quân y viện', ma: 'IRFA 1189' },
+  { name: 'Cha Adrien Launay', note: 'cha phó kiêm tuyên uý quân y viện Mỹ Tho hai năm 1878 – 1879; về sau là sử gia của Hội Thừa Sai Paris', ma: 'IRFA 1325' },
+  { name: 'Cha Jacques Hirbec', note: 'Đức cha Colombert đặt làm tuyên uý quân y viện Mỹ Tho năm 1879; sau một thời gian dưỡng bệnh lại trở về chính nhiệm sở này', ma: 'IRFA 1061' },
+  { name: 'Cha Alphonse Thévenin', note: 'trông coi một công trình xây dựng lớn tại Mỹ Tho', ma: 'IRFA 1761' },
+  { name: 'Cha Joseph Guillot', note: 'lâm bệnh nặng trên đường về Sài Gòn và qua đời tại Mỹ Tho ngày 27/6/1894', ma: 'IRFA 1686' },
+  { name: 'Cha Victor Quinton', note: 'được chỉ định lập cơ sở mới tại An Đức, vùng phụ cận Mỹ Tho', ma: 'IRFA 1880' },
+  { name: 'Cha Ernest Hay', note: 'coi sóc An Đức cùng bốn họ đạo tách từ địa hạt Mỹ Tho, làm nguồn nuôi Trường Giáo Lý Viên', ma: 'IRFA 1987' },
+  { name: 'Cha Henri Hay', note: 'phụ tá rồi kế nhiệm anh mình tại Trường Giáo Lý Viên An Đức', ma: 'IRFA 2126' },
+  { name: 'Cha Jean Benoit', note: 'được đặt tại Tân An, một họ đạo thuộc địa hạt Mỹ Tho', ma: 'IRFA 1844' },
+  { name: 'Cha Joseph Villeneuve', note: 'năm 1910 chứng kiến phong trào trở lại đạo tại địa hạt Mỹ Tho, sáu bảy họ đạo mới hình thành dọc sông Tiền', ma: 'IRFA 2520' },
+  { name: 'Cha Marcel Piquet', note: 'học tiếng Việt tại Mỹ Tho và ở tại một họ nhánh của Mỹ Tho; về sau là Giám mục Nha Trang', ma: 'IRFA 3141' },
+  { name: 'Cha René Detry', note: 'được Đức cha Cassaigne cho chọn giữa Đà Lạt và Mỹ Tho; ngài chọn Mỹ Tho và làm cha sở tại đây', ma: 'IRFA 3246' },
+  { name: 'Cha Robert Seminel', note: 'cuối năm 1943 làm cha sở họ đạo cổ Thủ Ngữ, cách Mỹ Tho tám cây số; trải qua thời kỳ quân đội Nhật chiếm đóng Mỹ Tho', ma: 'IRFA 3365' }
+];
+
+/** Các Đức Giám mục có dấu ấn trực tiếp trên họ đạo Mỹ Tho. */
+const BISHOPS_LINKED: { name: string; note: string; ma: string }[] = [
+  { name: 'Đức cha Dominique Lefebvre', note: 'Đại diện Tông tòa Tây Đàng Trong, nhận bản tường trình năm 1863 của Cha Gernot về nhu cầu của họ đạo Mỹ Tho', ma: '' },
+  { name: 'Đức cha Jean-Claude Miche', note: 'đặt viên đá đầu tiên ngôi nhà thờ thứ hai năm 1866', ma: 'IRFA 0423' },
+  { name: 'Đức cha Isidore Colombert', note: 'làm phép ngôi nhà thờ thứ hai ngày 12/03/1876; đặt các cha tuyên uý quân y viện Mỹ Tho', ma: 'IRFA 0830' },
+  { name: 'Đức cha Lucien Mossard', note: 'điều Cha Moulins về Sài Gòn và cử Cha Renier về Mỹ Tho năm 1899; dưới thời ngài các Sư huynh Lasan lập trường và nội trú tại Mỹ Tho', ma: 'IRFA 1299' }
 ];
 
 const TNTT_CHAPLAINS = CHAPLAINS_EXTENDED_DATA.map((c) => ({ period: c.period, bio: c }));
@@ -3061,16 +3079,27 @@ export default function GioiThieuPage() {
             >
               <strong style={{ fontWeight: 700 }}>Các Linh mục đã phục vụ họ đạo</strong> — ngoài hàng chánh sở kể trên,
               trong gần một trăm năm 1866 – 1960 còn hơn 80 linh mục nữa hướng dẫn chăm sóc họ đạo, khoảng 30 vị trong số
-              đó là linh mục thừa sai. Những vị đã tra được danh tính từ hồ sơ lưu trữ Hội Thừa Sai Paris:{' '}
+              đó là linh mục thừa sai. Đã tra được {PRIESTS_SERVED.length} vị từ văn khố Hội Thừa Sai Paris, mỗi tên kèm mã
+              hồ sơ để tra cứu lại:{' '}
               {PRIESTS_SERVED.map((c, i) => (
                 <span key={c.ma}>
                   {i > 0 && ' · '}
-                  {c.name} <em>({c.note}, {c.ma})</em>
+                  <strong style={{ fontWeight: 700 }}>{c.name}</strong> <em>({c.note} — {c.ma})</em>
                 </span>
               ))}
-              . Danh sách còn đang được bổ sung. Khoảng 50 linh mục Việt Nam từng phục vụ họ đạo chưa có nguồn số hoá công
-              khai — tên các ngài nằm trong sổ bộ họ đạo và văn khố Tòa Giám mục; trang này để trống còn hơn ghi sai tên
-              người đã phục vụ.
+              .{' '}
+              <br />
+              <strong style={{ fontWeight: 700 }}>Các Đức Giám mục có dấu ấn trực tiếp trên họ đạo:</strong>{' '}
+              {BISHOPS_LINKED.map((c, i) => (
+                <span key={c.name}>
+                  {i > 0 && ' · '}
+                  <strong style={{ fontWeight: 700 }}>{c.name}</strong> <em>({c.note}{c.ma ? ` — ${c.ma}` : ''})</em>
+                </span>
+              ))}
+              .{' '}
+              <br />
+              Khoảng 50 linh mục Việt Nam từng phục vụ họ đạo chưa có nguồn số hoá công khai — tên các ngài nằm trong sổ bộ
+              họ đạo và văn khố Tòa Giám mục; trang này để trống còn hơn ghi sai tên người đã phục vụ.
             </p>
             </details>
           </section>
