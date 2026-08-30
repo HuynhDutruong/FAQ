@@ -2365,4 +2365,293 @@ export const BISHOPS_LINKED: { name: string; note: string; ma: string }[] = [
   { name: 'Đức cha Lucien Mossard', note: 'điều Cha Moulins về Sài Gòn và cử Cha Renier về Mỹ Tho năm 1899; dưới thời ngài các Sư huynh Lasan lập trường và nội trú tại Mỹ Tho', ma: 'IRFA 1299' }
 ];
 
+/**
+ * Các tu sĩ đồng hành với Xứ Đoàn. Hiện chỉ có một vị tra được; để riêng một
+ * mảng để sau này thêm mà không đụng tới các mảng khác.
+ */
+/**
+ * Lý lịch các Huynh Trưởng và tu sĩ từng phục vụ trong Ban Điều Hành Xứ Đoàn.
+ *
+ * Phần lớn các trưởng chưa có tư liệu ngoài chức vụ đã đảm nhiệm — ghi rõ là
+ * chưa cập nhật thay vì suy đoán, giống cách làm với bảng niên biểu cha sở.
+ */
+export const BDH_BIOS: DetailedBioRecord[] = [
+  {
+    id: 'bdh-le-tan-phai',
+    name: 'Phêrô Lê Tấn Phải',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Xứ Đoàn Trưởng (khoảng 2013 – 2019) • Chủ tịch Liên đoàn Giáo phận Mỹ Tho (2017 – 2020)',
+    period: 'Khoảng 2013 – 2019',
+    image: '/images/bdh_le_tan_phai.jpg',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source:
+      'Ảnh do Giáo xứ cung cấp. Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp; bài "Quá trình hình thành và phát triển của TNTT Giáo phận Mỹ Tho — Liên đoàn Các Thánh Tử Đạo Việt Nam", tnttgioitremytho.com, 26/11/2018',
+    shortDesc:
+      'Xứ Đoàn Trưởng trong nhiệm kỳ dài và liên tục nhất của Xứ Đoàn từ ngày tái lập. Đồng thời được bầu làm Chủ tịch Liên đoàn Các Thánh Tử Đạo Việt Nam của cả Giáo phận Mỹ Tho nhiệm kỳ 2017 – 2020.',
+    chronology: [
+      {
+        time: 'Khoảng 2013 – 2019',
+        title: 'Xứ Đoàn Trưởng Xứ Đoàn Chánh Tòa',
+        content:
+          'Đứng đầu Ban Điều Hành trong giai đoạn Xứ Đoàn và Ban Giáo Lý được kiện toàn thành một khối, cùng Thầy Augustinô Võ Tấn Hoàng Việt (Phó nội vụ) và Huấn Luyện Viên Têrêsa Lê Thanh Nhàn (Phó ngoại vụ). Đây là nhiệm kỳ đi trọn nhiều chu kỳ hai năm liên tiếp duy nhất tính đến nay.'
+      },
+      {
+        time: '07/2017',
+        title: 'Được bầu làm Chủ tịch Liên đoàn Giáo phận Mỹ Tho',
+        content:
+          'Nhân khoá huấn luyện Vươn Lên 4 với hơn 310 sa mạc sinh, sau khi Trung tâm Mục vụ Giáo phận khánh thành, Ban Chấp Hành mới của Liên đoàn ra mắt Đức Cha và Huynh Trưởng đoàn. Trưởng Lê Tấn Phải được bầu làm Chủ tịch Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho, nhiệm kỳ 2017 – 2020.'
+      },
+      {
+        time: 'Cuối năm 2017',
+        title: 'Ba Xứ Đoàn mới trong năm tháng',
+        content:
+          'Chỉ trong năm tháng từ khoá huấn luyện đến cuối năm 2017, Liên đoàn có thêm ba Xứ Đoàn mới được thành lập — bước tiến rõ rệt của Phong trào trong giáo phận.'
+      },
+      { time: '2019', title: 'Từ nhiệm', content: 'Ban Điều Hành nhiệm kỳ này từ nhiệm năm 2019.' }
+    ],
+    milestones: [
+      'Xứ Đoàn Trưởng trong nhiệm kỳ dài và liên tục nhất kể từ ngày Xứ Đoàn tái lập năm 2005.',
+      'Chủ tịch Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho, nhiệm kỳ 2017 – 2020.',
+      'Xứ Đoàn Chánh Tòa nhờ đó góp người đứng đầu Phong trào của cả giáo phận.'
+    ]
+  },
+  {
+    id: 'bdh-vo-tan-hoang-viet',
+    name: 'Thầy Augustinô Võ Tấn Hoàng Việt',
+    saintName: 'Thánh Augustinô',
+    role: 'Xứ Đoàn Phó nội vụ (khoảng 2013 – 2019) • Phụ trách Giáo Lý Viên (2020 – nay)',
+    period: 'Khoảng 2013 – nay',
+    image: '/images/bdh_vo_tan_hoang_viet.jpg',
+    origin: 'Giáo xứ Chánh Tòa Mỹ Tho — giáo viên môn Toán, Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp. Ảnh do Giáo xứ cung cấp.',
+    shortDesc:
+      'Giáo viên môn Toán tại Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho. Phó nội vụ trong nhiệm kỳ 2013 – 2019, sau đó tiếp tục phụ trách Giáo Lý Viên cho đến nay. Chữ "Thầy" trước tên là danh xưng nghề giáo.',
+    chronology: [
+      {
+        time: 'Nghề nghiệp',
+        title: 'Giáo viên môn Toán, Trường THCS Lê Ngọc Hân',
+        content:
+          'Thầy dạy Toán tại Trường Trung học Cơ sở Lê Ngọc Hân, thành phố Mỹ Tho. Nghề dạy học ấy đi liền với việc thầy phục vụ trong Xứ Đoàn và về sau phụ trách khối Giáo Lý Viên — cùng một công việc truyền đạt, chỉ khác đối tượng và nội dung.'
+      },
+      { time: 'Khoảng 2013 – 2019', title: 'Xứ Đoàn Phó nội vụ', content: 'Theo Nội Quy, chức này tương ứng với Phó đặc trách quản trị của Ban Thường vụ Xứ Đoàn.' },
+      {
+        time: '2020 – nay',
+        title: 'Phụ trách Giáo Lý Viên',
+        content:
+          'Trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức, thầy phụ trách khối Giáo Lý Viên, song song với trưởng Matthêu Lê Hoàng Thiên Phúc trông coi sinh hoạt Thiếu Nhi Thánh Thể. Tiếp tục phụ trách đến nay.'
+      }
+    ],
+    milestones: [
+      'Giáo viên môn Toán, Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho.',
+      'Phó nội vụ Ban Điều Hành nhiệm kỳ 2013 – 2019.',
+      'Giữ khối Giáo Lý Viên từ năm 2020 đến nay.'
+    ]
+  },
+  {
+    id: 'bdh-le-thanh-nhan',
+    name: 'Têrêsa Lê Thanh Nhàn',
+    saintName: 'Thánh Têrêsa',
+    role: 'Xứ Đoàn Phó ngoại vụ (khoảng 2013 – 2019) • Thư ký Liên đoàn Giáo phận Mỹ Tho (2020 – 2030)',
+    period: 'Khoảng 2013 – nay',
+    image: '/images/bdh_le_thanh_nhan.jpg',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp. Ảnh do Giáo xứ cung cấp.',
+    shortDesc:
+      'Huấn Luyện Viên của Phong trào, giữ chức Phó ngoại vụ Xứ Đoàn trong nhiệm kỳ 2013 – 2019. Rời Xứ Đoàn Chánh Tòa năm 2019 nhưng không rời Phong trào: trưởng tiếp tục phục vụ ở cấp giáo phận với chức Thư ký Liên đoàn Các Thánh Tử Đạo Việt Nam suốt hai nhiệm kỳ liên tiếp, 2020 – 2025 và 2025 – 2030.',
+    chronology: [
+      { time: 'Khoảng 2013 – 2019', title: 'Xứ Đoàn Phó ngoại vụ', content: 'Theo Nội Quy, chức này tương ứng với Phó đặc trách huấn luyện — phù hợp với cấp hiệu Huấn Luyện Viên của trưởng.' },
+      { time: '2019', title: 'Rời Xứ Đoàn Chánh Tòa', content: 'Sau khi Ban Điều Hành từ nhiệm năm 2019, trưởng không còn sinh hoạt tại Xứ Đoàn Chánh Tòa.' },
+      {
+        time: '2020 – 2025',
+        title: 'Thư ký Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho',
+        content:
+          'Trưởng đảm nhiệm chức Thư ký của Liên đoàn ở cấp giáo phận. Theo Nội Quy, thư ký Ban Điều Hành lo phần báo cáo hành chánh và lưu giữ hồ sơ sinh hoạt — công việc thầm lặng nhưng là chỗ dựa cho mọi khoá huấn luyện và mọi kỳ đại hội.'
+      },
+      {
+        time: '2025 – 2030',
+        title: 'Tái cử Thư ký Liên đoàn, nhiệm kỳ thứ hai',
+        content:
+          'Trưởng được tín nhiệm thêm một nhiệm kỳ nữa, nối liền mười năm phục vụ ở cấp giáo phận.'
+      }
+    ],
+    milestones: [
+      'Cấp hiệu Huấn Luyện Viên của Phong trào Thiếu Nhi Thánh Thể.',
+      'Phó ngoại vụ Ban Điều Hành Xứ Đoàn Chánh Tòa, nhiệm kỳ 2013 – 2019.',
+      'Thư ký Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho suốt hai nhiệm kỳ 2020 – 2025 và 2025 – 2030.',
+      'Cùng với Trưởng Phêrô Lê Tấn Phải, là người thứ hai của Xứ Đoàn Chánh Tòa giữ chức vụ trong Ban Điều Hành Liên đoàn cấp giáo phận.'
+    ]
+  },
+  {
+    id: 'bdh-le-hoang-thien-phuc',
+    name: 'Matthêu Lê Hoàng Thiên Phúc',
+    saintName: 'Thánh Matthêu',
+    role: 'Trông coi sinh hoạt TNTT (2020 – 2024) • Xứ Đoàn Trưởng (từ năm học 2025)',
+    period: '2020 – 2026',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
+    offices: [
+      'Giáo viên môn Toán – Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho',
+      'Học viên cao học Đại Học Gia Định – Thành Phố Hồ Chí Minh',
+      'Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030)'
+    ],
+    shortDesc:
+      'Thầy dạy Toán tại Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho. Học viên cao học Đại Học Gia Định – Thành Phố Hồ Chí Minh. Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030). Người giữ sinh hoạt Thiếu Nhi Thánh Thể suốt năm năm Xứ Đoàn không có Ban Điều Hành, rồi được cha Tuyên Uý bổ nhiệm làm Xứ Đoàn Trưởng khi Ban Điều Hành được tái lập đầu năm học 2025.',
+    chronology: [
+      {
+        time: '2020 – 2024',
+        title: 'Trông coi sinh hoạt Thiếu Nhi Thánh Thể',
+        content:
+          'Trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức, trưởng được giao trông coi sinh hoạt Thiếu Nhi Thánh Thể, song song với thầy Augustinô Võ Tấn Hoàng Việt phụ trách Giáo Lý Viên.'
+      },
+      {
+        time: 'Đầu năm học 2025',
+        title: 'Xứ Đoàn Trưởng',
+        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm làm Xứ Đoàn Trưởng khi Ban Điều Hành được tái lập với nhiệm kỳ hai năm. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+      },
+      {
+        time: '2025 – 2030',
+        title: 'Uỷ viên ban Phụng vụ Liên đoàn cấp Giáo phận',
+        content: 'Được tín nhiệm bầu làm Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho, nhiệm kỳ 2025 – 2030.'
+      },
+      { time: '12/12/2026', title: 'Ban Điều Hành ngưng nhiệm vụ', content: 'Nhiệm kỳ kết thúc sớm hơn dự định. Tính đến nay Xứ Đoàn chưa có người đứng đầu Ban Điều Hành.' }
+    ],
+    milestones: [
+      'Giữ sinh hoạt Thiếu Nhi Thánh Thể qua năm năm Xứ Đoàn không có Ban Điều Hành.',
+      'Xứ Đoàn Trưởng của Ban Điều Hành tái lập đầu năm học 2025.',
+      'Uỷ viên ban Phụng vụ Liên đoàn cấp Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030).'
+    ]
+  },
+  {
+    id: 'bdh-le-dang-thu-thao',
+    name: 'Maria Lê Đặng Thu Thảo',
+    saintName: 'Đức Maria',
+    role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó nội vụ (từ năm học 2025)',
+    period: '2020 – nay',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
+    shortDesc: 'Hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức (2020 – 2024). Phó nội vụ của Ban Điều Hành tái lập đầu năm học 2025, tương ứng với Phó đặc trách quản trị theo Nội Quy.',
+    chronology: [
+      {
+        time: '2020 – 2024',
+        title: 'Hỗ trợ sinh hoạt Xứ Đoàn',
+        content: 'Trong năm năm Xứ đoàn không có Ban Điều Hành chính thức, trưởng cùng các anh chị em khác hỗ trợ Matthêu Lê Hoàng Thiên Phúc trong việc duy trì và tổ chức sinh hoạt Thiếu Nhi Thánh Thể.'
+      },
+      {
+        time: 'Đầu năm học 2025',
+        title: 'Xứ Đoàn Phó nội vụ',
+        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm khi Ban Điều Hành được tái lập với nhiệm kỳ hai năm. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+      }
+    ],
+    milestones: [
+      'Hỗ trợ duy trì sinh hoạt Xứ Đoàn trong giai đoạn 2020 – 2024.'
+    ]
+  },
+  {
+    id: 'bdh-le-gia-huy',
+    name: 'Phêrô Lê Gia Huy',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó ngoại vụ (từ năm học 2025)',
+    period: '2020 – nay',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
+    offices: [
+      'Ứng viên cử nhân Đại Học Greenwich – Cơ sở Hồ Chí Minh'
+    ],
+    shortDesc: 'Ứng viên cử nhân Đại Học Greenwich – Cơ sở Hồ Chí Minh. Hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức (2020 – 2024). Phó ngoại vụ của Ban Điều Hành tái lập đầu năm học 2025, tương ứng với Phó đặc trách huấn luyện theo Nội Quy.',
+    chronology: [
+      {
+        time: '2020 – 2024',
+        title: 'Hỗ trợ sinh hoạt Xứ Đoàn',
+        content: 'Trong năm năm Xứ đoàn không có Ban Điều Hành chính thức, trưởng cùng các anh chị em khác hỗ trợ Matthêu Lê Hoàng Thiên Phúc trong việc duy trì và tổ chức sinh hoạt Thiếu Nhi Thánh Thể.'
+      },
+      {
+        time: 'Đầu năm học 2025',
+        title: 'Xứ Đoàn Phó ngoại vụ',
+        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm khi Ban Điều Hành được tái lập với nhiệm kỳ hai năm. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+      }
+    ],
+    milestones: [
+      'Hỗ trợ duy trì sinh hoạt Xứ Đoàn trong giai đoạn 2020 – 2024.'
+    ]
+  },
+  {
+    id: 'bdh-nguyen-phuc-khang',
+    name: 'Batôlômêô Nguyễn Phúc Khang',
+    saintName: 'Thánh Batôlômêô',
+    role: 'Thư Ký Đoàn (từ năm học 2025)',
+    period: 'Từ năm học 2025',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
+    offices: [
+      'Học viên cao học Đại Học Công Thương – ĐH QG Hồ Chí Minh'
+    ],
+    shortDesc: 'Học viên cao học Đại Học Công Thương – ĐH QG Hồ Chí Minh. Thư ký của Ban Điều Hành tái lập đầu năm học 2025. Theo Nội Quy, thư ký do Xứ Đoàn Trưởng và hai phó đề cử.',
+    chronology: [
+      { time: 'Đầu năm học 2025', title: 'Thư Ký Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận khi Ban Điều Hành được tái lập.' },
+      {
+        time: '2026 – nay',
+        title: 'Cộng tác Giáo lý lớp Vào Đời 1',
+        content: 'Hiện đang cộng tác tại Giáo xứ Giuse Gò Vấp, hướng dẫn và đồng hành giáo lý lớp Vào Đời 1 do Xứ Đoàn tổ chức.'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'bdh-tran-thao-my',
+    name: 'Maria Trần Thảo My',
+    saintName: 'Đức Maria',
+    role: 'Thủ Quỹ Đoàn (từ năm học 2025)',
+    period: 'Từ năm học 2025',
+    origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
+    source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
+    shortDesc: 'Thủ quỹ của Ban Điều Hành tái lập đầu năm học 2025. Theo Nội Quy, thủ quỹ do Xứ Đoàn Trưởng và hai phó đề cử.',
+    chronology: [
+      { time: 'Đầu năm học 2025', title: 'Thủ Quỹ Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận khi Ban Điều Hành được tái lập.' }
+    ],
+    milestones: []
+  }
+];
+
+export const TRO_UY_BIOS: DetailedBioRecord[] = [
+  {
+    id: 'so-lucia-huyen-linh',
+    name: 'Sơ Lucia Huyền Linh',
+    saintName: 'Thánh Lucia',
+    role: 'Trợ Uý Xứ Đoàn (2018 – 2019) • Lớp Huấn Luyện Viên đầu tiên của Liên đoàn Giáo phận Mỹ Tho',
+    period: '2018 – 2019',
+    image: '/images/so_lucia_huyen_linh.jpg',
+    origin:
+      'Dòng Nữ Tử Nhiệt Thành Thánh Tâm Chúa Giêsu — tên tiếng Ý Figlie del Divino Zelo (FDZ), hội dòng do Thánh Hannibal Maria Di Francia sáng lập, đặc sủng cầu nguyện cho ơn thiên triệu',
+    source:
+      'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp. Bối cảnh lớp Huấn Luyện Viên đầu tiên theo bài "Quá trình hình thành và phát triển của TNTT Giáo phận Mỹ Tho", tnttgioitremytho.com, 26/11/2018. Phần giới thiệu hội dòng theo trang Dòng Tông Đồ Ơn Gọi. Ảnh do Giáo xứ cung cấp. Bản khảo cứu chưa tìm được nguồn công khai nào ghi chép tiểu sử riêng của sơ.',
+    shortDesc:
+      'Thuộc lớp Huấn Luyện Viên đầu tiên của Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho. Sơ đồng hành với Xứ Đoàn Chánh Tòa trong hai năm 2018 – 2019 với vai trò Trợ Uý, phụ trách và hướng dẫn lớp Huynh Trưởng. Hiện là Bề trên Dòng Nữ Tử Nhiệt Thành Thánh Tâm Chúa Giêsu tại Việt Nam.',
+    chronology: [
+      {
+        time: 'Lớp Huấn Luyện Viên đầu tiên của Giáo phận',
+        title: 'Khi Mỹ Tho thôi phải mượn Huấn Luyện Viên',
+        content:
+          'Sơ thuộc lớp Huấn Luyện Viên đầu tiên của Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho. Ý nghĩa của cột mốc này nằm ở chỗ: những năm đầu sau khi Liên đoàn thành lập năm 2011, giáo phận chưa có Huấn Luyện Viên của riêng mình. Chính ghi chép của Liên đoàn nhìn nhận "Ban huấn luyện và Ban điều hành Sa mạc chủ yếu là Quý trưởng Huấn luyện viên của Liên đoàn Anrê Phú Yên — Giáo phận Sài Gòn". Lớp Huấn Luyện Viên đầu tiên của Mỹ Tho là lúc giáo phận bắt đầu tự đào tạo được người huấn luyện cho mình.'
+      },
+      {
+        time: '2018 – 2019',
+        title: 'Trợ Uý Xứ Đoàn Chánh Tòa Mỹ Tho',
+        content:
+          'Đồng hành với Xứ Đoàn trong hai năm, phụ trách và hướng dẫn lớp Huynh Trưởng, đồng thời theo sát sinh hoạt thường kỳ của Phong trào. Theo bảng cấp hiệu Thiếu Nhi Thánh Thể, Trợ Uý là tu sĩ nam nữ phục vụ Phong trào, mang khăn đỏ viền trắng với khẩu hiệu "Nhiệt Thành" — trùng hợp thay, cũng chính là tên hội dòng của sơ.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Bề trên Dòng Nữ Tử Nhiệt Thành tại Việt Nam',
+        content: 'Sơ đảm nhiệm chức vụ Bề trên của hội dòng tại Việt Nam.'
+      }
+    ],
+    milestones: [
+      'Thuộc lớp Huấn Luyện Viên đầu tiên của Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho.',
+      'Trợ Uý của Xứ Đoàn Chánh Tòa trong hai năm 2018 – 2019.',
+      'Phụ trách và hướng dẫn lớp Huynh Trưởng của Xứ Đoàn.',
+      'Hiện là Bề trên Dòng Nữ Tử Nhiệt Thành Thánh Tâm Chúa Giêsu tại Việt Nam.',
+    ],
+  }
+];
+
 export const TNTT_CHAPLAINS = CHAPLAINS_EXTENDED_DATA.map((c) => ({ period: c.period, bio: c }));

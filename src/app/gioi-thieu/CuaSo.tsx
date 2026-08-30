@@ -11,6 +11,18 @@ import Image from 'next/image';
 import { X, Award, BookOpen, Church, Cross, Calendar, MapPin, Users } from 'lucide-react';
 import { DetailedBioRecord, PortraitFrame } from './duLieu';
 
+/**
+ * Nhãn ở đầu cửa sổ đổi theo loại nhân vật: cùng một cửa sổ dùng cho Đức Giám
+ * mục, cha sở, cha tuyên uý lẫn huynh trưởng, nên không thể ghi cứng một nhãn.
+ */
+function nhanHoSo(id: string): string {
+  if (id.startsWith('bdh-') || id.startsWith('so-')) return 'TIỂU SỬ HUYNH TRƯỞNG ĐOÀN';
+  if (id.startsWith('tuyen-uy-')) return 'TIỂU SỬ CHA TUYÊN UÝ XỨ ĐOÀN';
+  if (id.startsWith('cha-')) return 'TIỂU SỬ LINH MỤC CHÁNH SỞ';
+  if (id.startsWith('duc-cha-') || id.startsWith('dgm-')) return 'TIỂU SỬ HÀNG GIÁO PHẨM CÔNG GIÁO';
+  return 'TIỂU SỬ NHÂN VẬT';
+}
+
 export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; onClose: () => void }) {
   if (!bio) return null;
   return (
@@ -61,7 +73,7 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
             <Cross size={18} color="var(--color-red)" />
             <div>
               <div style={{ fontSize: '0.94rem', fontWeight: 800, color: 'var(--color-red)' }}>
-                TIỂU SỬ HÀNG GIÁO PHẨM CÔNG GIÁO
+                {nhanHoSo(bio.id)}
               </div>
               <div style={{ fontSize: '0.72rem', color: 'var(--color-subtle)' }}>
                 Bản nghiên cứu lịch sử Giáo phận Mỹ Tho
@@ -173,7 +185,7 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
           {/* Quá trình phục vụ theo thời gian (Timeline) */}
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ margin: '0 0 12px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
-              Quá trình tu học &amp; Sứ vụ mục tử
+              {bio.priestOrdination || bio.bishopConsecration ? 'Quá trình tu học &amp; Sứ vụ mục tử' : 'Quá trình phục vụ'}
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {bio.chronology.map((c, i) => (

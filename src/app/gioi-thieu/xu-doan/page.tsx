@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -12,15 +12,41 @@ import {
   ScarfIcon,
   TNTT_CHAPLAINS,
   TNTT_HUYNH_TRUONG,
-  TNTT_NGANH
+  TNTT_NGANH,
+  TRO_UY_BIOS,
+  PortraitFrame,
+  BDH_BIOS,
+  ALL_COMMUNITY_BIOS,
+  CHAPLAINS_EXTENDED_DATA
 } from '../duLieu';
 import type { DetailedBioRecord } from '../duLieu';
 
 export default function Trang() {
   const [lyLich, setLyLich] = useState<DetailedBioRecord | null>(null);
   const [anh, setAnh] = useState<{ src: string; caption: string } | null>(null);
-  const moLyLich = (b: DetailedBioRecord | null) => setLyLich(b);
+
+  const allBios = [...ALL_COMMUNITY_BIOS, ...BDH_BIOS, ...TRO_UY_BIOS, ...CHAPLAINS_EXTENDED_DATA];
+
+  const moLyLich = (b: DetailedBioRecord | null) => {
+    setLyLich(b);
+    if (b) {
+      window.history.replaceState(null, '', `#${b.id}`);
+    } else {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  };
+
   const moAnh = (a: { src: string; caption: string } | null) => setAnh(a);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      const found = allBios.find(b => b.id === hash);
+      if (found) {
+        setLyLich(found);
+      }
+    }
+  }, []);
 
   return (
     <KhungTrang tieuDe="Xứ Đoàn Các Thánh Tử Đạo Việt Nam" phuDe="Bản chất và tôn chỉ Phong trào Thiếu Nhi Thánh Thể, hệ thống khăn quàng, mười đời cha tuyên uý và ngày tái lập Xứ Đoàn năm 2005." duongDan="/gioi-thieu/xu-doan">
@@ -322,6 +348,239 @@ export default function Trang() {
             Chánh Tòa vào tháng 10 năm 2005.
           </p>
         </section>
+
+            <h3 id="xu-doan-ban-dieu-hanh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              4.6. Ban Điều Hành Xứ Đoàn
+            </h3>
+
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Theo <strong>Điều 27 Nội Quy Thiếu Nhi Thánh Thể Việt Nam</strong>, các Ngành trong giáo xứ hợp thành Xứ
+              Đoàn, do cha Tuyên Uý dẫn dắt với sự cộng tác của Ban Điều Hành. Ban Thường vụ gồm{' '}
+              <strong>Xứ Đoàn Trưởng</strong>, <strong>một Phó đặc trách quản trị</strong>,{' '}
+              <strong>một Phó đặc trách huấn luyện</strong>, <strong>một Thư ký</strong> và{' '}
+              <strong>một Thủ quỹ</strong>; ngoài ra còn các trưởng ngành và các uỷ viên. Đoàn trưởng và hai đoàn phó do
+              Hội đồng Huynh Trưởng Xứ Đoàn bầu lên; thư ký, thủ quỹ, các ngành trưởng và uỷ viên do ba vị này đề cử.
+              Mọi huynh trưởng trong Ban Điều Hành đều phải được cha Tuyên Uý chấp thuận.{' '}
+              <strong>Nhiệm kỳ là hai năm và được tái cử.</strong>
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.72, textAlign: 'justify', margin: '0 0 8px', color: 'var(--color-subtle)' }}>
+              Điều 28 đặt thêm điều kiện: có chứng chỉ Huynh Trưởng cấp II trở lên, đã phục vụ Xứ Đoàn ít nhất một năm với
+              tư cách huynh trưởng, và được cha Tuyên Uý chứng nhận tư cách, đạo đức cùng khả năng. Điều 29 xác định bốn
+              trách nhiệm: báo cáo hành chánh lên cấp trên, phối hợp hoạt động các ngành, đại diện Xứ Đoàn đối ngoại, và
+              đào tạo Trợ Tá, Dự Trưởng, Tông Đồ Đội Trưởng cùng bồi dưỡng các huynh trưởng.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.72, textAlign: 'justify', margin: '0 0 18px', color: 'var(--color-subtle)' }}>
+              Tại Chánh Tòa, hai chức phó quen được gọi theo lối địa phương là <em>Phó nội vụ</em> và{' '}
+              <em>Phó ngoại vụ</em>, tương ứng với <em>Phó đặc trách quản trị</em> và <em>Phó đặc trách huấn luyện</em>{' '}
+              trong Nội Quy. Vì Xứ Đoàn tái lập năm 2005 còn non trẻ, Ban Điều Hành trải qua nhiều lần gián đoạn. Nhật ký
+              dưới đây ghi lại các giai đoạn ấy đúng như đã diễn ra.
+            </p>
+
+            {/* ---- Giai đoạn 1 ---- */}
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
+              Giai đoạn đầu — nhen nhóm lại tinh thần Thiếu Nhi Thánh Thể
+            </h4>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)' }}>
+              Ban Điều Hành đầu tiên sau ngày tái lập, gồm các trưởng:
+            </p>
+            <div style={{ overflowX: 'auto', marginBottom: '20px' }}>
+              <table className="pastor-timeline-table">
+                <caption className="sr-only">Ban Điều Hành Xứ Đoàn giai đoạn đầu</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" style={{ width: '50px' }}>STT</th>
+                    <th scope="col" style={{ width: '210px' }}>Chức vụ</th>
+                    <th scope="col">Huynh Trưởng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {['Xứ Đoàn Trưởng', 'Xứ Đoàn Phó (nội vụ)', 'Xứ Đoàn Phó (ngoại vụ)', 'Thư Ký', 'Thủ Quỹ'].map((cv, i) => (
+                    <tr key={cv}>
+                      <td>{i + 1}</td>
+                      <td style={{ whiteSpace: 'nowrap' }}>{cv}</td>
+                      <td><em style={{ color: 'var(--color-subtle)' }}>Chưa cập nhật</em></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* ---- Giai đoạn 2 ---- */}
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
+              Khoảng 2013 – 2019 — hợp nhất với Ban Giáo Lý
+            </h4>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Sau một thời gian Xứ Đoàn và Ban Giáo Lý hoạt động song song rồi phối hợp qua lại, giáo xứ quyết định kiện
+              toàn một Ban Điều Hành chung:
+            </p>
+            <div style={{ overflowX: 'auto', marginBottom: '10px' }}>
+              <table className="pastor-timeline-table">
+                <caption className="sr-only">Ban Điều Hành Xứ Đoàn khoảng 2013 – 2019</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" style={{ width: '50px' }}>STT</th>
+                    <th scope="col" style={{ width: '210px' }}>Chức vụ</th>
+                    <th scope="col">Huynh Trưởng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Xứ Đoàn Trưởng', 'bdh-le-tan-phai'],
+                    ['Xứ Đoàn Phó (nội vụ)', 'bdh-vo-tan-hoang-viet'],
+                    ['Xứ Đoàn Phó (ngoại vụ)', 'bdh-le-thanh-nhan']
+                  ].map(([cv, id], i) => {
+                    const b = BDH_BIOS.find((x) => x.id === id)!;
+                    return (
+                      <tr key={id}>
+                        <td>{i + 1}</td>
+                        <td style={{ whiteSpace: 'nowrap' }}>{cv}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="pastor-name-btn"
+                            onClick={() => moLyLich(b)}
+                            aria-label={`Xem lý lịch ${b.name}`}
+                          >
+                            {b.name}
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 14px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Trong nhiệm kỳ này, Xứ Đoàn Trưởng <strong>Phêrô Lê Tấn Phải</strong> còn được tín nhiệm ở cấp giáo phận:
+              tháng <strong>07/2017</strong>, nhân khoá huấn luyện Vươn Lên 4 với hơn 310 sa mạc sinh, Ban Chấp Hành mới
+              của Liên đoàn ra mắt Đức Cha và Huynh Trưởng đoàn, và trưởng Lê Tấn Phải{' '}
+              <strong>được bầu làm Chủ tịch Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho, nhiệm kỳ 2017 –
+              2020</strong>. Chỉ trong năm tháng cuối năm 2017, Liên đoàn có thêm ba Xứ Đoàn mới được thành lập.{' '}
+              <em style={{ fontSize: '0.84rem' }}>
+                (Nguồn: bài &ldquo;Quá trình hình thành và phát triển của TNTT Giáo phận Mỹ Tho&rdquo;,
+                tnttgioitremytho.com, 26/11/2018)
+              </em>
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Hai năm <strong>2018 – 2019</strong>, Xứ Đoàn có thêm sự đồng hành của một nữ tu với vai trò Trợ Uý:
+            </p>
+            <div style={{ overflowX: 'auto', marginBottom: '14px' }}>
+              <table className="pastor-timeline-table">
+                <caption className="sr-only">Trợ Uý đồng hành với Xứ Đoàn</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" style={{ width: '50px' }}>STT</th>
+                    <th scope="col" style={{ width: '210px' }}>Chức vụ</th>
+                    <th scope="col">Tu sĩ đồng hành</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {TRO_UY_BIOS.map((b, i) => (
+                    <tr key={b.id}>
+                      <td>{i + 1}</td>
+                      <td style={{ whiteSpace: 'nowrap' }}>Trợ Uý Xứ Đoàn</td>
+                      <td>
+                        <button
+                          type="button"
+                          className="pastor-name-btn"
+                          onClick={() => moLyLich(b)}
+                          aria-label={`Xem lý lịch ${b.name}`}
+                        >
+                          {b.name}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p style={{ fontSize: '0.88rem', lineHeight: 1.7, margin: '0 0 20px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Ban Điều Hành này phục vụ đến năm <strong>2019</strong> thì từ nhiệm, và trưởng Têrêsa Lê Thanh Nhàn từ đó
+              không còn sinh hoạt tại Xứ Đoàn Chánh Tòa — nhưng không rời Phong trào: trưởng đảm nhiệm chức{' '}
+              <strong>Thư ký Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho</strong> suốt hai nhiệm kỳ liên tiếp{' '}
+              <strong>2020 – 2025</strong> và <strong>2025 – 2030</strong>. Như vậy nhiệm kỳ 2013 – 2019 của Xứ Đoàn
+              Chánh Tòa đã góp cho Liên đoàn cấp giáo phận <strong>hai người</strong>: một Chủ tịch và một Thư ký.
+            </p>
+
+            {/* ---- Giai đoạn 3 ---- */}
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
+              2020 – 2024 — những năm vắng bóng Ban Điều Hành
+            </h4>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 20px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Suốt năm năm, Xứ Đoàn không có Ban Điều Hành chính thức. Công việc được chia đôi: trưởng{' '}
+              <strong>Matthêu Lê Hoàng Thiên Phúc</strong> được giao trông coi sinh hoạt Thiếu Nhi Thánh Thể, còn thầy{' '}
+              <strong>Augustinô Võ Tấn Hoàng Việt</strong> phụ trách Giáo Lý Viên. Hai bên chưa thống nhất được cách thức
+              hoạt động, nên nhiều việc phải xử lý theo từng vụ thay vì theo một đường lối chung.
+            </p>
+
+            {/* ---- Giai đoạn 4 ---- */}
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
+              Đầu năm học 2025 — tái lập Ban Điều Hành, nhiệm kỳ hai năm
+            </h4>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Cha Tuyên Uý <strong>Phêrô Nguyễn Ngọc</strong> quyết định tái lập Ban Điều Hành với nhiệm kỳ hai năm, và
+              trực tiếp bổ nhiệm các trưởng:
+            </p>
+            <div style={{ overflowX: 'auto', marginBottom: '10px' }}>
+              <table className="pastor-timeline-table">
+                <caption className="sr-only">Ban Điều Hành Xứ Đoàn nhiệm kỳ từ năm học 2025</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" style={{ width: '50px' }}>STT</th>
+                    <th scope="col" style={{ width: '210px' }}>Chức vụ</th>
+                    <th scope="col">Huynh Trưởng</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Xứ Đoàn Trưởng', 'bdh-le-hoang-thien-phuc'],
+                    ['Xứ Đoàn Phó (nội vụ)', 'bdh-le-dang-thu-thao'],
+                    ['Xứ Đoàn Phó (ngoại vụ)', 'bdh-le-gia-huy'],
+                    ['Thư Ký Đoàn', 'bdh-nguyen-phuc-khang'],
+                    ['Thủ Quỹ Đoàn', 'bdh-tran-thao-my']
+                  ].map(([cv, id], i) => {
+                    const b = BDH_BIOS.find((x) => x.id === id)!;
+                    return (
+                      <tr key={id}>
+                        <td>{i + 1}</td>
+                        <td style={{ whiteSpace: 'nowrap' }}>{cv}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="pastor-name-btn"
+                            onClick={() => moLyLich(b)}
+                            aria-label={`Xem lý lịch ${b.name}`}
+                          >
+                            {b.name}
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <p style={{ fontSize: '0.88rem', lineHeight: 1.72, margin: '0 0 12px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Đối chiếu với Nội Quy thì cách tái lập này có vài chỗ chưa khớp. <strong>Điều 27</strong> quy định Xứ Đoàn
+              Trưởng và hai Đoàn Phó <strong>do Hội đồng Huynh Trưởng Xứ Đoàn bầu lên</strong>; thư ký, thủ quỹ và các
+              ngành trưởng thì do ba vị ấy đề cử. Vai trò của cha Tuyên Uý Xứ Đoàn trong điều khoản này là{' '}
+              <strong>chấp thuận</strong>. Còn việc <strong>bổ nhiệm</strong> Ban Thường vụ, theo{' '}
+              <strong>Điều 28</strong>, thuộc thẩm quyền <strong>cha Tuyên Uý Liên đoàn</strong>. Lần tái lập này, cả năm
+              chức vụ đều được bổ nhiệm thẳng. Nhiệm kỳ hai năm thì đúng Nội Quy; phần còn lại thì chưa.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 12px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Nhiệm kỳ này kết thúc sớm hơn dự định. Ngày <strong>12/12/2026</strong>, nhân đêm Thánh Nhạc, Ban Điều Hành
+              được cha Tuyên Uý cho ngưng nhiệm vụ. Tính đến nay Xứ Đoàn <strong>chưa có người đứng đầu Ban Điều
+              Hành</strong>.
+            </p>
+            <p style={{ fontSize: '0.86rem', lineHeight: 1.7, margin: '0 0 18px', color: 'var(--color-subtle)', textAlign: 'justify', fontStyle: 'italic' }}>
+              Ghi chú của bản khảo cứu: theo Điều 27, nhiệm kỳ Ban Điều Hành Xứ Đoàn là hai năm. Trong bốn giai đoạn kể
+              trên, chỉ giai đoạn 2013 – 2019 đi trọn được nhiều nhiệm kỳ liên tiếp — cũng là giai đoạn duy nhất Ban Điều
+              Hành được hình thành đúng quy trình bầu cử của Điều 27. Đây là điều dễ hiểu với một Xứ Đoàn mới tái lập năm
+              2005, và cũng là điều đáng ghi lại: một Ban Điều Hành do Hội đồng Huynh Trưởng bầu lên thì có chỗ dựa để
+              đứng, còn một Ban Điều Hành được đặt vào thì cũng có thể được gỡ ra.
+            </p>
 
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />
       <CuaSoAnh anh={anh} onClose={() => setAnh(null)} />
