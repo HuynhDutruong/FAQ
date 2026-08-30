@@ -2395,9 +2395,12 @@ export default function GioiThieuPage() {
               1. Tòa Thánh Vatican, Đức Thánh Cha Lêô XIV &amp; 267 Vị Giáo Hoàng
             </h2>
 
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="vatican-gioi-thieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               1.1. Thành quốc Vatican &amp; Vương Cung Thánh Đường Thánh Phêrô
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               <strong>Tòa Thánh Vatican</strong> (tiếng Latinh: <em>Sancta Sedes</em>) và <strong>Thành quốc Vatican</strong> (<em>Status Civitatis Vaticanae</em>)
               là trung tâm đầu não tối cao của Giáo hội Công giáo Rôma toàn cầu. Được thiết lập độc lập theo Hiệp ước Lateranô (1929),
@@ -2460,9 +2463,13 @@ export default function GioiThieuPage() {
               của Michelangelo), <em>Thư viện &amp; Viện Bảo tàng Vatican</em> và <em>Đội Cận vệ Thụy Sĩ</em> với bề dày lịch sử hơn 500 năm.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="vatican-dtc-leo-xiv" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '24px 0 8px' }}>
               1.2. Đức Thánh Cha đương kim Lêô XIV (Leo XIV)
             </h3>
+              </summary>
 
             {/* Thumbnail chân dung Đức Giáo hoàng Lêô XIV */}
             <div
@@ -2548,6 +2555,7 @@ export default function GioiThieuPage() {
               {/* Component Marquee Hoàng Gia Chạy Trực Tiếp */}
               <PopesContinuousMarquee />
             </div>
+            </details>
           </section>
 
           {/* =====================================================================
@@ -2595,9 +2603,12 @@ export default function GioiThieuPage() {
               </div>
             </div>
 
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="lich-su-so-khai" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               2.1. Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Hạt giống Tin Mừng được gieo vãi tại vùng đất Mỹ Tho từ rất sớm vào thế kỷ XVII nhờ bước chân truyền giáo của
               các vị thừa sai Dòng Phanxicô và Hội Thừa sai Paris (MEP). Họ đạo đầu tiên dâng kính Thánh Phanxicô Xaviê được
@@ -2609,9 +2620,13 @@ export default function GioiThieuPage() {
               giáo ngày càng tăng của giáo dân địa phương.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="lich-su-xay-dung" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               2.2. Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Nhận thấy ngôi nhà thờ cũ đã xuống cấp và diện tích chật hẹp, ngày 11 tháng 8 năm 1906, Linh mục Régnier (thường
               được bà con giáo dân gọi thân mật là <em>cố Gẫm</em>) đã chính thức đặt viên đá đầu tiên khởi công xây dựng
@@ -2620,9 +2635,13 @@ export default function GioiThieuPage() {
               1910.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.18rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
               2.3. Sắc Chỉ Tông Hiến Venerabilium Nostrorum &amp; Nâng Lên Chính Tòa (1960)
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
               Ngày <strong>24 tháng 11 năm 1960</strong> là mốc son chói lọi trong lịch sử Giáo hội Công giáo Việt Nam khi <strong>Thánh Giáo hoàng Gioan XXIII</strong> (<em>Ioannes PP. XXIII</em>) ban hành Tông hiến lịch sử <strong>&ldquo;Venerabilium Nostrorum&rdquo;</strong> (<em>Chư Huynh Đáng Kính</em>). Văn kiện long trọng này chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>) và nâng ngôi Thánh đường Mỹ Tho thành <strong>Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm Nguyên Tội</strong>.
             </p>
@@ -2807,9 +2826,13 @@ export default function GioiThieuPage() {
               </ul>
             </div>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="lich-su-cung-hien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               2.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Nhân dịp Đại Năm Thánh 2000, ngày <strong>21/01/2000</strong>, Đức Giám mục Giáo phận Phaolô Bùi Văn Đọc đã
               long trọng cử hành <strong>Lễ Cung Hiến Nhà thờ Chánh Tòa Mỹ Tho</strong> và chọn ngày Lễ Đức Mẹ Hồn Xác
@@ -2844,9 +2867,13 @@ export default function GioiThieuPage() {
               kỷ niệm 100 năm xây dựng ngôi thánh đường.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="lich-su-anh-tu-lieu" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
               2.5. Ảnh Tư Liệu Nhà Thờ Qua Các Thời Kỳ
             </h3>
+              </summary>
             <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
               Những bức ảnh dưới đây ghi lại diện mạo ngôi thánh đường và khuôn viên qua hơn một thế kỷ,
               từ thời Pháp thuộc đến trước ngày đại trùng tu năm 2006.
@@ -2913,9 +2940,13 @@ export default function GioiThieuPage() {
             </p>
 
             {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="nien-bieu-cha-so" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
               2.6. Niên Biểu Các Đời Linh Mục Chánh Sở Nhà Thờ Chánh Tòa Mỹ Tho (1861 – Nay)
             </h3>
+              </summary>
             <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 6px' }}>
               Nhấn vào tên linh mục để xem lý lịch đầy đủ. Niên hiệu và tiểu sử các vị thừa sai
               Hội Thừa Sai Paris được đối chiếu với hồ sơ lưu trữ của Viện Nghiên cứu Pháp – Á (IRFA).
@@ -3041,6 +3072,7 @@ export default function GioiThieuPage() {
               khai — tên các ngài nằm trong sổ bộ họ đạo và văn khố Tòa Giám mục; trang này để trống còn hơn ghi sai tên
               người đã phục vụ.
             </p>
+            </details>
           </section>
 
           {/* =====================================================================
@@ -3093,9 +3125,12 @@ export default function GioiThieuPage() {
               ))}
             </div>
 
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="kien-truc-mat-tien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               3.1. Mặt tiền Phục Hưng và Tháp chuông tách rời
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Nhà thờ mang phong cách kiến trúc Phục Hưng (Renaissance) uy nghiêm, theo số liệu của Giáo phận Mỹ Tho:
               chiều cao 24 mét, chiều dài 53 mét, chiều rộng hơn 17 mét, gồm một gian chính và hai gian phụ hai bên.
@@ -3106,9 +3141,13 @@ export default function GioiThieuPage() {
               chính là tháp chuông hiện nay.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="kien-truc-cung-thanh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               3.2. Gian Cung Thánh &amp; Mái vòm Romanesque
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Bên trong thánh đường được thiết kế theo hình dạng Thánh Giá La-tinh gồm gian chính (nave) rộng rãi và hai gian
               phụ (aisles) phân cách bằng hai hàng cột đỡ vòm cung Romanesque liên hoàn. Trần giáo đường uốn cong kiểu vòm
@@ -3116,14 +3155,19 @@ export default function GioiThieuPage() {
               khí trang nghiêm, thánh thiện.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="kien-truc-khuon-vien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               3.3. Đài Đức Mẹ Lộ Đức &amp; 14 Đàng Thánh Giá
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0' }}>
               Khuôn viên nhà thờ có diện tích rộng thoáng rợp bóng cây xanh. Phía bên phải là Đài Đức Mẹ Lộ Đức đá tự nhiên —
               nơi giáo dân và khách hành hương tề tựu lần hạt Mân Côi mỗi ngày. Chạy dọc bờ tường khuôn viên là 14 bức phù
               điêu Đàng Thánh Giá bằng đồng tái hiện cuộc khổ nạn của Chúa Giêsu Kitô trên đồi Can-vê.
             </p>
+            </details>
           </section>
 
           {/* =====================================================================
@@ -3263,9 +3307,12 @@ export default function GioiThieuPage() {
               ))}
             </div>
 
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="giao-phan-anh-tu-lieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
               4.1. Ảnh Tư Liệu Giáo Phận Mỹ Tho
             </h3>
+              </summary>
             <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
               Những bức ảnh hiếm ghi lại hàng giáo sĩ Giáo phận Mỹ Tho từ ngày thành lập năm 1960.
             </p>
@@ -3313,6 +3360,7 @@ export default function GioiThieuPage() {
               Ảnh tư liệu do giáo xứ cung cấp. Chú thích niên đại theo ghi chú gốc in trên ảnh; những gì
               ảnh không nói rõ thì ghi là chưa xác định.
             </p>
+            </details>
           </section>
 
           {/* =====================================================================
@@ -3332,9 +3380,12 @@ export default function GioiThieuPage() {
               5. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
             </h2>
 
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
               5.1. Bản chất, Mục đích &amp; Tôn chỉ Phong trào
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 12px' }}>
               <strong>Thiếu Nhi Thánh Thể</strong> là một đoàn thể Công giáo tiến hành, một trường giáo dục chuyên biệt
               giúp thiếu nhi thăng tiến và thực hành sống đạo. Phong trào lấy tinh thần Đạo Binh Thánh Giá thời Trung cổ:
@@ -3408,9 +3459,13 @@ export default function GioiThieuPage() {
               <li>Sống gắn bó với Giáo Hội, yêu mến và vâng phục <strong>Đức Thánh Cha</strong> — vị thủ lãnh của Phong trào.</li>
             </ul>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               5.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Khăn quàng TNTT là biểu tượng của tinh thần dâng hiến và trách nhiệm tông đồ. Dưới đây là bảng phân cấp các
               ngành trong Xứ Đoàn:
@@ -3436,9 +3491,13 @@ export default function GioiThieuPage() {
               ))}
             </div>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="xu-doan-khan-huynh-truong" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
               5.3. Khăn Quàng Huynh Trưởng &amp; Ban Điều Hành
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Ngoài khăn của các ngành, Phong trào còn quy định khăn riêng cho những người phục vụ và
               hướng dẫn Đoàn Thiếu Nhi Thánh Thể:
@@ -3470,9 +3529,13 @@ export default function GioiThieuPage() {
               Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
             </p>
 
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="xu-doan-tuyen-uy" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
               5.4. Các Đời Cha Tuyên Uý Xứ Đoàn
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Cha Tuyên Uý là linh mục được trao trách nhiệm linh hướng Xứ Đoàn. Dưới đây là các vị đã
               phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay —
@@ -3515,9 +3578,13 @@ export default function GioiThieuPage() {
             {/* =====================================================================
                 5.5. TÁI LẬP XỨ ĐOÀN NĂM 2005
                 ===================================================================== */}
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
             <h3 id="xu-doan-tai-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
               5.5. Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
             </h3>
+              </summary>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Đoàn Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa đã vắng bóng trong sinh hoạt giáo xứ
               kể từ sau biến cố năm 1975. Đến mùa thu năm 2005, Cha sở Giacôbê Hà Văn Xung đứng ra
@@ -3615,6 +3682,7 @@ export default function GioiThieuPage() {
               do giáo xứ cung cấp). Ghi chép này cũng xác nhận Cha Giacôbê Hà Văn Xung đã là Cha sở
               Chánh Tòa vào tháng 10 năm 2005.
             </p>
+            </details>
           </section>
 
           {/* =====================================================================
