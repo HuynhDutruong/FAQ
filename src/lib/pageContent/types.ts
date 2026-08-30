@@ -47,14 +47,15 @@ export interface QuoteBlock extends BaseBlock {
   source?: string;
 }
 
+/**
+ * Ảnh trong thư viện. Admin KHÔNG tải ảnh lên qua giao diện — `src` trỏ tới
+ * tệp đã có sẵn trong public/images. Admin sửa được chú thích, thứ tự và ẩn/hiện.
+ */
 export interface GalleryImage {
   id: string;
   src: string;
   caption: string;
-  /** Đường dẫn trong Vercel Blob, cần để xoá tệp khi gỡ ảnh. */
-  blobPath?: string;
-  width?: number;
-  height?: number;
+  hidden?: boolean;
 }
 
 export interface GalleryBlock extends BaseBlock {
@@ -150,8 +151,8 @@ export interface BioRecord {
   priestOrdination?: string;
   bishopConsecration?: string;
   consecrator?: string;
+  /** Đường dẫn ảnh có sẵn trong public/images; để trống nếu chưa có tư liệu. */
   image?: string;
-  imageBlobPath?: string;
   shortDesc: string;
   tableNote?: string;
   /** Xuất xứ thông tin — hiển thị công khai để người đọc tự thẩm định. */

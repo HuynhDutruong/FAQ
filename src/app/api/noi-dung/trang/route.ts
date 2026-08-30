@@ -1,52 +1,68 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { withRole } from '@/lib/serverAuth';
-import type { PageDocument } from '@/lib/pageContent/types';
+import { sanitizeRichText, type OverrideMap, type PageOverrideDoc } from '@/lib/pageContent/overrides';
 
+/** Sửa nội dung trang là việc của Ban Truyền Thông; super admin luôn qua được. */
 const CONTENT_ROLES = ['truyen_thong'];
 
-/** Các trang cho phép sửa qua Admin. */
 const EDITABLE_SLUGS = new Set(['gioi-thieu']);
+const MAX_KEYS = 600;
+const MAX_LEN = 6000;
 
-function badSlug(slug: string | null): slug is null {
+function invalidSlug(slug: string | null): slug is null {
   return !slug || !EDITABLE_SLUGS.has(slug);
 }
 
-/** Đọc bản nội dung hiện hành. Công khai để trang tĩnh dựng lại được. */
+/** Đọc bản ghi đè hiện hành. Công khai vì trang tĩnh cần lấy khi dựng lại. */
 export async function GET(request: Request) {
   const slug = new URL(request.url).searchParams.get('slug');
-  if (badSlug(slug)) {
+  if (invalidSlug(slug)) {
     return NextResponse.json({ error: 'Trang không hợp lệ.' }, { status: 400 });
   }
   try {
     const { adminDb } = await import('@/lib/firebaseAdmin');
     const snap = await adminDb().collection('pageContent').doc(slug).get();
-    if (!snap.exists) return NextResponse.json({ doc: null });
-    return NextResponse.json({ doc: snap.data() as PageDocument });
+    return NextResponse.json({ doc: snap.exists ? (snap.data() as PageOverrideDoc) : null });
   } catch (err) {
-    console.error('Không đọc được nội dung trang:', err);
-    return NextResponse.json({ doc: null, error: 'Không đọc được nội dung.' }, { status: 200 });
+    // Chưa cấu hình Firebase Admin hoặc mạng lỗi: trang vẫn dùng bản gốc.
+    console.warn('Không đọc được bản ghi đè nội dung:', err);
+    return NextResponse.json({ doc: null });
   }
 }
 
-/**
- * Lưu bản mới. Mỗi lần lưu ghi thêm một bản sao vào pageContentHistory để có
- * thể đối chiếu và khôi phục — yêu cầu minh bạch về ai sửa gì, lúc nào.
- */
 export const PUT = withRole(CONTENT_ROLES, async (request, { email, role }) => {
   const slug = new URL(request.url).searchParams.get('slug');
-  if (badSlug(slug)) {
+  if (invalidSlug(slug)) {
     return NextResponse.json({ error: 'Trang không hợp lệ.' }, { status: 400 });
   }
 
-  let body: PageDocument;
+  let body: { overrides?: unknown };
   try {
-    body = (await request.json()) as PageDocument;
+    body = await request.json();
   } catch {
     return NextResponse.json({ error: 'Dữ liệu gửi lên không đọc được.' }, { status: 400 });
   }
-  if (!body || !Array.isArray(body.sections)) {
-    return NextResponse.json({ error: 'Thiếu danh sách mục nội dung.' }, { status: 400 });
+
+  const raw = body.overrides;
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+    return NextResponse.json({ error: 'Thiếu danh sách nội dung đã sửa.' }, { status: 400 });
+  }
+
+  const entries = Object.entries(raw as Record<string, unknown>);
+  if (entries.length > MAX_KEYS) {
+    return NextResponse.json({ error: `Quá nhiều mục (${entries.length}/${MAX_KEYS}).` }, { status: 413 });
+  }
+
+  const overrides: OverrideMap = {};
+  for (const [key, value] of entries) {
+    if (typeof value !== 'string') continue;
+    const clean = sanitizeRichText(value).trim();
+    if (clean === '') continue; // bỏ trống = quay về bản gốc trong mã nguồn
+    if (clean.length > MAX_LEN) {
+      return NextResponse.json({ error: `Mục "${key}" dài quá ${MAX_LEN} ký tự.` }, { status: 413 });
+    }
+    overrides[key] = clean;
   }
 
   try {
@@ -56,30 +72,27 @@ export const PUT = withRole(CONTENT_ROLES, async (request, { email, role }) => {
     const prev = await ref.get();
     const version = ((prev.data()?.version as number) || 0) + 1;
 
-    const doc: PageDocument = {
-      ...body,
+    const doc: PageOverrideDoc = {
       slug,
+      overrides,
       version,
       updatedAt: new Date().toISOString(),
       updatedBy: email
     };
-
     await ref.set(doc);
 
-    // Lưu vết bản cũ để đối chiếu; giữ tách khỏi bản đang dùng.
+    // Giữ bản cũ để đối chiếu và khôi phục khi cần.
     if (prev.exists) {
       await db
         .collection('pageContentHistory')
-        .doc(`${slug}_v${prev.data()?.version || 0}_${Date.now()}`)
+        .doc(`${slug}_v${prev.data()?.version ?? 0}_${Date.now()}`)
         .set({ ...prev.data(), archivedAt: new Date().toISOString(), archivedBy: email, byRole: role });
     }
 
-    // Trang công khai dùng ISR — buộc dựng lại ngay để người xem thấy bản mới.
-    revalidatePath('/gioi-thieu');
-
-    return NextResponse.json({ ok: true, version, updatedAt: doc.updatedAt });
+    revalidatePath(`/${slug}`);
+    return NextResponse.json({ ok: true, version, count: Object.keys(overrides).length, updatedAt: doc.updatedAt });
   } catch (err) {
-    console.error('Không lưu được nội dung trang:', err);
+    console.error('Không lưu được nội dung:', err);
     return NextResponse.json(
       { error: err instanceof Error ? err.message : 'Không lưu được nội dung.' },
       { status: 500 }
