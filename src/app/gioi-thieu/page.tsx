@@ -2066,6 +2066,30 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
   }
 ];
 
+/**
+ * Bảng ghi công: các linh mục từng phục vụ họ đạo Mỹ Tho ngoài hàng chánh sở.
+ *
+ * Tài liệu Giáo phận Mỹ Tho ghi giai đoạn 1866 – 1960 có hơn 80 linh mục,
+ * khoảng 30 vị là thừa sai. Danh sách dưới đây tra từ hồ sơ lưu trữ IRFA của
+ * Hội Thừa Sai Paris — mỗi tên đều kèm mã hồ sơ để kiểm chứng được.
+ *
+ * Phần linh mục Việt Nam (khoảng 50 vị) chưa có nguồn số hoá công khai; tên
+ * các ngài nằm trong sổ bộ họ đạo và văn khố Tòa Giám mục. Để trống còn hơn
+ * ghi sai tên người đã phục vụ.
+ */
+const PRIESTS_SERVED: { name: string; note: string; ma: string }[] = [
+  {
+    name: 'Cha François-Isidore Gagelin',
+    note: 'coi các địa hạt Mỹ Tho, Vĩnh Long và Châu Đốc từ năm 1828',
+    ma: 'IRFA 0342'
+  },
+  {
+    name: 'Cha Jean-Joseph Barou',
+    note: 'phục vụ tại Mỹ Tho',
+    ma: 'IRFA 0738'
+  }
+];
+
 const TNTT_CHAPLAINS = CHAPLAINS_EXTENDED_DATA.map((c) => ({ period: c.period, bio: c }));
 
 export default function GioiThieuPage() {
@@ -2979,6 +3003,31 @@ export default function GioiThieuPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* Ghi công các linh mục khác — chữ nhỏ và mờ hơn phần chính */}
+            <p
+              style={{
+                fontSize: '0.74rem',
+                lineHeight: 1.75,
+                color: 'var(--color-subtle)',
+                opacity: 0.72,
+                margin: '-8px 0 24px',
+                textAlign: 'justify'
+              }}
+            >
+              <strong style={{ fontWeight: 700 }}>Các Linh mục đã phục vụ họ đạo</strong> — ngoài hàng chánh sở kể trên,
+              trong gần một trăm năm 1866 – 1960 còn hơn 80 linh mục nữa hướng dẫn chăm sóc họ đạo, khoảng 30 vị trong số
+              đó là linh mục thừa sai. Những vị đã tra được danh tính từ hồ sơ lưu trữ Hội Thừa Sai Paris:{' '}
+              {PRIESTS_SERVED.map((c, i) => (
+                <span key={c.ma}>
+                  {i > 0 && ' · '}
+                  {c.name} <em>({c.note}, {c.ma})</em>
+                </span>
+              ))}
+              . Danh sách còn đang được bổ sung. Khoảng 50 linh mục Việt Nam từng phục vụ họ đạo chưa có nguồn số hoá công
+              khai — tên các ngài nằm trong sổ bộ họ đạo và văn khố Tòa Giám mục; trang này để trống còn hơn ghi sai tên
+              người đã phục vụ.
+            </p>
           </section>
 
           {/* =====================================================================
