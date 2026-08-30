@@ -833,57 +833,30 @@ return first ? Math.round(first._distance! * 10) / 10 : null;
                     flexDirection: 'column'
                   }}
                 >
-                  {/* Church Photo Banner */}
-                  <div
-                    style={{
-                      position: 'relative',
-                      width: '100%',
-                      height: '110px',
-                      backgroundColor: '#1E293B'
-                    }}
-                  >
-                    <img
-                      src={`/api/church-image?name=${encodeURIComponent(church.parish)}&diocese=${encodeURIComponent(church.diocese || '')}&lat=${church.lat || ''}&lng=${church.lng || ''}`}
-                      alt={church.parish}
-                      loading="lazy"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
-                      }}
-                    />
+                  {/* Đầu thẻ — thuần văn bản.
+                      Trước đây là ảnh bìa 110px lấy từ tìm kiếm toàn văn Wikimedia
+                      Commons: phần lớn giáo xứ không có ảnh nên trả về ảnh sai
+                      (Ba Giồng ra bản đồ "Xích Quỷ"), lại chiếm 65% dung lượng
+                      trang. Bỏ ảnh, dành chỗ cho thông tin người dùng cần. */}
+                  <div style={{ padding: '12px 13px 0' }}>
                     <div
                       style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(to top, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.2) 60%, transparent 100%)'
-                      }}
-                    />
-
-                    {/* Top distance & diocese badges */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '8px',
-                        left: '8px',
-                        right: '8px',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '6px'
+                        gap: '6px',
+                        flexWrap: 'wrap',
+                        marginBottom: '5px'
                       }}
                     >
                       <span
                         style={{
-                          fontSize: '0.68rem',
+                          fontSize: '0.66rem',
                           fontWeight: 800,
-                          padding: '2px 7px',
-                          borderRadius: '6px',
-                          backgroundColor: 'rgba(0,0,0,0.65)',
-                          color: '#FFFFFF',
-                          backdropFilter: 'blur(4px)',
-                          border: '1px solid rgba(255,255,255,0.2)'
+                          padding: '2px 8px',
+                          borderRadius: '999px',
+                          backgroundColor: 'var(--color-btn-subtle-bg)',
+                          color: 'var(--color-text-subtle)',
+                          border: '1px solid var(--color-border-subtle)'
                         }}
                       >
                         {dioceseLabel(church.diocese || '')}
@@ -892,132 +865,142 @@ return first ? Math.round(first._distance! * 10) / 10 : null;
                       {hasGps && (
                         <span
                           style={{
-                            fontSize: '0.72rem',
-                            fontWeight: 900,
+                            fontSize: '0.68rem',
+                            fontWeight: 800,
                             padding: '2px 8px',
-                            borderRadius: '12px',
-                            backgroundColor: '#059669',
-                            color: '#FFFFFF',
-                            boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+                            borderRadius: '999px',
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            color: '#059669',
+                            border: '1px solid rgba(5, 150, 105, 0.25)',
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '3px'
                           }}
                         >
-                          <Navigation size={11} />
-                          <span>{formatDistance(church._distance!)}</span>
+                          <Navigation size={10} />
+                          {formatDistance(church._distance!)}
                         </span>
                       )}
                     </div>
 
-                    {/* Bottom Title on Image */}
-                    <div
+                    <Link
+                      href={`/gio-le/${church.id}`}
                       style={{
-                        position: 'absolute',
-                        bottom: '8px',
-                        left: '10px',
-                        right: '10px'
+                        display: 'block',
+                        color: 'var(--color-dark)',
+                        textDecoration: 'none',
+                        fontSize: '1.05rem',
+                        fontWeight: 900,
+                        lineHeight: 1.3
                       }}
                     >
-                      <Link
-                        href={`/gio-le/${church.id}`}
+                      {church.parish}
+                    </Link>
+
+                    {church.address && (
+                      <div
                         style={{
-                          color: '#FFFFFF',
-                          textDecoration: 'none',
-                          fontSize: '0.98rem',
-                          fontWeight: 900,
-                          lineHeight: 1.25,
-                          display: 'block',
-                          textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '4px',
+                          marginTop: '3px',
+                          fontSize: '0.76rem',
+                          lineHeight: 1.45,
+                          color: 'var(--color-text-subtle)'
                         }}
                       >
-                        {church.parish}
-                      </Link>
-                      {church.address && (
-                        <div
-                          style={{
-                            fontSize: '0.68rem',
-                            color: '#E2E8F0',
-                            marginTop: '2px',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '3px'
-                          }}
-                        >
-                          <MapPin size={11} style={{ flexShrink: 0 }} />
-                          <span>{church.address}</span>
-                        </div>
-                      )}
-                    </div>
+                        <MapPin size={12} style={{ flexShrink: 0, marginTop: '2px' }} />
+                        <span>{church.address}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Church Card Body */}
                   <div style={{ padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {/* Today Live Mass Status */}
-                    <div
-                      style={{
-                        padding: '6px 10px',
-                        borderRadius: '8px',
-                        backgroundColor: upcomingMass?.isOngoing
-                          ? 'rgba(234, 179, 8, 0.1)'
-                          : upcomingMass
-                            ? 'rgba(16, 185, 129, 0.08)'
-                            : 'var(--color-btn-subtle-bg)',
-                        border: `1px solid ${
-                          upcomingMass?.isOngoing
-                            ? 'rgba(234, 179, 8, 0.25)'
-                            : upcomingMass
-                              ? 'rgba(16, 185, 129, 0.2)'
-                              : 'var(--color-border-subtle)'
-                        }`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '6px',
-                        flexWrap: 'wrap'
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <Clock
-                          size={13}
-                          color={upcomingMass?.isOngoing ? '#D97706' : upcomingMass ? '#059669' : 'var(--color-text-subtle)'}
-                        />
-                        <span style={{ fontSize: '0.74rem', fontWeight: 800 }}>
-                          {upcomingMass?.isOngoing
-                            ? `Đang diễn ra Thánh Lễ (${upcomingMass.time})`
-                            : upcomingMass
-                              ? `Lễ tiếp theo (${dayLabel}): ${upcomingMass.time} (${
-                                  upcomingMass.diffMins < 60
-                                    ? `còn ${upcomingMass.diffMins} phút`
-                                    : `còn ${Math.floor(upcomingMass.diffMins / 60)}h${upcomingMass.diffMins % 60 ? ` ${upcomingMass.diffMins % 60}p` : ''}`
-                                })`
-                              : `Hôm nay (${dayLabel}): Chưa có lễ sắp tới`}
-                        </span>
-                      </div>
+                    {/* Lễ sắp tới — thông tin người dùng cần nhất, đặt nổi bật nhất.
+                        Ba trạng thái: đang diễn ra (vàng), còn lễ hôm nay (xanh),
+                        hết lễ (xám). */}
+                    {(() => {
+                      const state = upcomingMass?.isOngoing ? 'ongoing' : upcomingMass ? 'next' : 'none';
+                      const tone = {
+                        ongoing: { bg: 'rgba(234, 179, 8, 0.1)', border: 'rgba(234, 179, 8, 0.3)', fg: '#B45309' },
+                        next: { bg: 'rgba(16, 185, 129, 0.08)', border: 'rgba(16, 185, 129, 0.25)', fg: '#047857' },
+                        none: { bg: 'var(--color-btn-subtle-bg)', border: 'var(--color-border-subtle)', fg: 'var(--color-text-subtle)' }
+                      }[state];
 
-                      {/* Today All Times */}
-                      <div style={{ display: 'flex', gap: '3px', flexWrap: 'wrap' }}>
-                        {todayTimes.map((t, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              fontSize: '0.7rem',
-                              fontWeight: 800,
-                              padding: '1px 5px',
-                              borderRadius: '4px',
-                              backgroundColor: t === upcomingMass?.time ? 'var(--color-red)' : 'var(--color-card-bg)',
-                              color: t === upcomingMass?.time ? '#FFFFFF' : 'var(--color-dark)',
-                              border: `1px solid ${t === upcomingMass?.time ? 'var(--color-red)' : 'var(--color-border-subtle)'}`
-                            }}
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                      const countdown = upcomingMass
+                        ? upcomingMass.diffMins < 60
+                          ? `còn ${upcomingMass.diffMins} phút`
+                          : `còn ${Math.floor(upcomingMass.diffMins / 60)} giờ${
+                              upcomingMass.diffMins % 60 ? ` ${upcomingMass.diffMins % 60} phút` : ''
+                            }`
+                        : '';
+
+                      return (
+                        <div
+                          style={{
+                            padding: '10px 12px',
+                            borderRadius: '10px',
+                            backgroundColor: tone.bg,
+                            border: `1px solid ${tone.border}`
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: upcomingMass ? '7px' : 0 }}>
+                            <Clock size={14} color={tone.fg} strokeWidth={2.4} />
+                            <span style={{ fontSize: '0.76rem', fontWeight: 800, color: tone.fg }}>
+                              {state === 'ongoing'
+                                ? 'Đang cử hành Thánh Lễ'
+                                : state === 'next'
+                                  ? `Lễ sắp tới — ${dayLabel}`
+                                  : `Hôm nay (${dayLabel}) không còn lễ`}
+                            </span>
+                          </div>
+
+                          {upcomingMass && (
+                            <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', flexWrap: 'wrap' }}>
+                              <span
+                                style={{
+                                  fontSize: '1.6rem',
+                                  fontWeight: 900,
+                                  lineHeight: 1,
+                                  color: tone.fg,
+                                  letterSpacing: '-0.02em'
+                                }}
+                              >
+                                {upcomingMass.time}
+                              </span>
+                              {countdown && (
+                                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: tone.fg, opacity: 0.85 }}>
+                                  {countdown}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          {todayTimes.length > 1 && (
+                            <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', marginTop: '8px' }}>
+                              {todayTimes.map((t, idx) => (
+                                <span
+                                  key={idx}
+                                  style={{
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    padding: '2px 7px',
+                                    borderRadius: '5px',
+                                    backgroundColor:
+                                      t === upcomingMass?.time ? tone.fg : 'var(--color-card-bg)',
+                                    color: t === upcomingMass?.time ? '#FFFFFF' : 'var(--color-text-subtle)',
+                                    border: `1px solid ${t === upcomingMass?.time ? tone.fg : 'var(--color-border-subtle)'}`
+                                  }}
+                                >
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
 
                     {/* Weekday & Sunday Timetable Strip */}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
