@@ -3464,6 +3464,15 @@ export default function GioiThieuPage() {
             flex-direction: column-reverse;
             gap: 24px;
             padding: 16px 12px;
+            /* Bắt buộc: flex column giữ align-items:flex-start sẽ khiến con co
+               theo chiều rộng nội dung tối đa thay vì bằng khung, làm cả trang
+               tràn ngang rồi bị overflow-x:hidden cắt cụt. */
+            align-items: stretch;
+          }
+          .main-layout > * {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
           }
           .wiki-sidebar {
             width: 100%;
@@ -3473,11 +3482,6 @@ export default function GioiThieuPage() {
             grid-template-columns: 1fr !important;
           }
           
-          /* Bảng niên biểu cuộn ngang riêng, không kéo cả trang */
-          .pastor-timeline-table {
-            min-width: 560px;
-          }
-
           /* Chống ép chữ bằng cách xóa float trên thiết bị di động */
           .floating-img-270, .floating-img-290, .floating-img-250, .wiki-thumb {
             float: none !important;
