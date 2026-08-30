@@ -974,7 +974,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
         name: 'Dời trung tâm họ đạo lên Thượng Mỹ Tho',
         now: 'khu vực nhà thờ và Tòa Giám mục ngày nay, 32 Hùng Vương',
         detail:
-          'Khi ngài về nhận họ đạo, cộng đoàn chia làm hai khu vốn từng là hai họ đạo riêng: Thượng Mỹ Tho (Vĩnh Tường) có nhà xứ cho cha phó, một nhà thờ và bệnh viện bản xứ do các Nữ tu Thánh Phaolô coi sóc; Hạ Mỹ Tho là nơi cha sở ở, có ngôi nhà thờ lớn cùng cơ sở Thánh Nhi và nhà nuôi trẻ. Người Pháp đến ngày một đông khiến giáo dân dời dần lên Thượng Mỹ Tho, trong khi ngôi nhà thờ lớn và tháp chuông ở Hạ Mỹ Tho — vốn là niềm tự hào của khu phố — hư hỏng nặng. Sau khi Nhà nước và Đức Giám mục bàn bạc, người ta quyết định tháo dỡ ngôi nhà thờ ấy vì thấy không nên dồn tiền của vào nơi giáo dân đã rời đi. Ngài rời căn phòng trên phòng thánh lớn, lên ở nhờ căn nhà lá của cha phó, rồi lần lượt ở hai căn chòi lá cho tới ngày khánh thành nhà xứ mới — nơi ngài sống mười sáu năm cuối đời.'
+          'Trận bão lớn năm 1904 được báo cáo thường niên của Hội Thừa Sai ghi lại: "Le typhon a causé, à Mytho et dans tous les villages de la contrée, des pertes considérables" — bão gây thiệt hại nặng cho Mỹ Tho và mọi làng mạc quanh vùng; cơ sở Thánh Nhi hư hỏng và không được dựng lại, nhà nuôi trẻ phải dời về Vĩnh Tường. Khi ngài về nhận họ đạo, cộng đoàn chia làm hai khu vốn từng là hai họ đạo riêng: Thượng Mỹ Tho (Vĩnh Tường) có nhà xứ cho cha phó, một nhà thờ và bệnh viện bản xứ do các Nữ tu Thánh Phaolô coi sóc; Hạ Mỹ Tho là nơi cha sở ở, có ngôi nhà thờ lớn cùng cơ sở Thánh Nhi và nhà nuôi trẻ. Người Pháp đến ngày một đông khiến giáo dân dời dần lên Thượng Mỹ Tho, trong khi ngôi nhà thờ lớn và tháp chuông ở Hạ Mỹ Tho — vốn là niềm tự hào của khu phố — hư hỏng nặng. Sau khi Nhà nước và Đức Giám mục bàn bạc, người ta quyết định tháo dỡ ngôi nhà thờ ấy vì thấy không nên dồn tiền của vào nơi giáo dân đã rời đi. Ngài rời căn phòng trên phòng thánh lớn, lên ở nhờ căn nhà lá của cha phó, rồi lần lượt ở hai căn chòi lá cho tới ngày khánh thành nhà xứ mới — nơi ngài sống mười sáu năm cuối đời.'
       },
       {
         time: 'Khởi công 11/08/1906 — hoàn thành 1910',
@@ -2939,11 +2939,20 @@ export default function GioiThieuPage() {
                 chứ không phải chánh sở nhà thờ mẹ. Từ <strong>1960 đến 2007</strong>, giáo xứ có thêm{' '}
                 <strong>20 linh mục</strong> phục vụ, <strong>trong đó 6 vị làm cha sở</strong>.
               </p>
+              <p style={{ fontSize: '0.88rem', lineHeight: 1.7, margin: '0 0 8px', textAlign: 'justify' }}>
+                Báo cáo thường niên năm <strong>1897</strong> của Hội Thừa Sai Paris cho biết con số cụ thể:{' '}
+                <em>&ldquo;My-tho est le chef-lieu d&rsquo;un district qui compte près de 4.000 fidèles, 19 chrétientés,
+                avec 8 prêtres pour les desservir&rdquo;</em> — Mỹ Tho là lỵ sở một địa hạt gần 4.000 giáo dân, 19 họ đạo,
+                do <strong>8 linh mục</strong> coi sóc. Tám vị cùng lúc, thay phiên nhau qua gần một trăm năm, chính là
+                cách con số <strong>hơn 80</strong> hình thành.
+              </p>
               <p style={{ fontSize: '0.82rem', lineHeight: 1.65, margin: 0, color: 'var(--color-subtle)' }}>
                 Số giáo dân qua các mốc: <strong>28/01/1862 — 1.986 người</strong> (ghi nhận của Cha Renier);{' '}
                 <strong>1881 – 1882 — 3.651 người</strong>, gồm 330 người Âu châu và 3.321 người Việt Nam;{' '}
-                <strong>năm 2017 — khoảng 3.600 giáo dân</strong>. Những khoảng thời gian còn thiếu tư liệu trong bảng
-                được ghi rõ là <em>chưa cập nhật</em> thay vì suy đoán.
+                <strong>1897 — gần 4.000 giáo dân</strong> trong toàn địa hạt;{' '}
+                <strong>năm 2017 — khoảng 3.600 giáo dân</strong> trong giáo xứ. Số người lớn được rửa tội mỗi năm tại
+                địa hạt Mỹ Tho theo báo cáo thường niên: 206 (1885), 403 (1889), 402 (1891), 243 (1892), 214 (1893).
+                Những khoảng thời gian còn thiếu tư liệu trong bảng được ghi rõ là <em>chưa cập nhật</em> thay vì suy đoán.
               </p>
             </div>
 
