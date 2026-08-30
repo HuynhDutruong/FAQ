@@ -1913,8 +1913,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: '30/05/1987',
     origin: 'Giáo xứ Lập Điền, Long An',
     priestOrdination: 'Thụ phong linh mục ngày 29/12/2022 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    image: '/images/tuyen_uy_nguyen_ngoc.jpg',
     source:
-      'Thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
     shortDesc:
       'Cha Tuyên Uý thứ chín của Xứ Đoàn. Ngài phục vụ ngay tại Giáo xứ Chánh Tòa, cùng khoá thụ phong với Cha Phêrô Nguyễn Hoàng Anh — vị tuyên uý tiền nhiệm.',
     chronology: [
@@ -1947,8 +1948,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1987',
     origin: 'Giáo xứ Bến Dinh, Đồng Tháp',
     priestOrdination: 'Thụ phong linh mục ngày 30/08/2024 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    image: '/images/tuyen_uy_nguyen_van_thanh.jpg',
     source:
-      'Bản tin Thánh lễ truyền chức linh mục ngày 30/08/2024 (giaophanmytho.net); danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo bản tin Thánh lễ truyền chức linh mục ngày 30/08/2024 (giaophanmytho.net) và danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
     shortDesc:
       'Cha Tuyên Uý đương nhiệm của Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho.',
     chronology: [
@@ -3098,7 +3100,7 @@ export default function GioiThieuPage() {
                 },
                 {
                   src: '/images/gpmt_giam_muc_kinh_ly.jpg',
-                  cap: 'Giám mục trong phẩm phục kinh lý một họ đạo miền quê, có linh mục tháp tùng và cờ phướn giăng đón. Ảnh không mang chú thích gốc nên chưa xác định được danh tính vị Giám mục và niên đại.'
+                  cap: 'Đức Cha Giuse Trần Văn Thiện — Giám mục Tiên khởi Giáo phận Mỹ Tho — đi thăm mục vụ giáo dân tại một họ đạo miền quê, có linh mục tháp tùng và cờ phướn giăng đón. Danh tính do Giáo xứ Chánh Tòa xác nhận.'
                 }
               ].map((img) => (
                 <figure key={img.src} className="tntt-figure">
