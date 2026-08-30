@@ -2937,6 +2937,41 @@ export default function GioiThieuPage() {
               một trăm năm là một họ đạo trong địa hạt rộng lớn của Tây Đàng Trong, Mỹ Tho trở thành nhà thờ mẹ của cả
               một giáo phận. Vị Giám mục Tiên khởi được bổ nhiệm là <strong>Đức cha Giuse Trần Văn Thiện</strong>.
             </p>
+            <figure style={{ margin: '0 0 14px' }}>
+              <button
+                type="button"
+                className="tntt-thumb-btn"
+                style={{ width: '100%', maxWidth: '620px', display: 'block' }}
+                onClick={() =>
+                  setLightboxImage({
+                    src: '/images/lichsu_sac_chi_mytho_1960.jpg',
+                    caption:
+                      'Sắc chỉ Quod Venerabiles Fratres khai sinh Giáo phận Mỹ Tho, đăng nguyên văn trong Công báo Toà Thánh Acta Apostolicae Sedis, tập 53 (1961), trang 474.'
+                  })
+                }
+                aria-label="Phóng to ảnh chụp sắc chỉ khai sinh Giáo phận Mỹ Tho"
+              >
+                <Image
+                  src="/images/lichsu_sac_chi_mytho_1960.jpg"
+                  alt="Sắc chỉ Quod Venerabiles Fratres khai sinh Giáo phận Mỹ Tho, Công báo Toà Thánh 1961 trang 474"
+                  width={1000}
+                  height={608}
+                  sizes="(max-width: 640px) 92vw, 620px"
+                  style={{ width: '100%', height: 'auto', borderRadius: '8px', border: '1px solid var(--color-border-subtle)' }}
+                />
+              </button>
+              <figcaption style={{ fontSize: '0.8rem', color: 'var(--color-subtle)', lineHeight: 1.65, marginTop: '8px', textAlign: 'justify' }}>
+                <strong>Nguyên văn sắc chỉ khai sinh Giáo phận Mỹ Tho.</strong> Ảnh chụp trang 474 Công báo Toà Thánh{' '}
+                <em>Acta Apostolicae Sedis</em>, tập 53 (1961). Tiêu đề ghi{' '}
+                <strong>&ldquo;SAIGONENSIS - KONTUMENSIS (MYTHOÊNSIS - DALATENSIS)&rdquo;</strong> và dòng tóm tắt bằng
+                tiếng Latinh: <em>&ldquo;Diviso territorio archidioecesium Saigonensis et Kontumensis, novae conduntur
+                dioeceses «Mythoënsis» et «Dalatensis» appellandae&rdquo;</em> — <strong>Chia lãnh thổ hai tổng giáo phận
+                Sài Gòn và Kontum, lập các giáo phận mới mang tên &laquo;Mỹ Tho&raquo; và &laquo;Đà Lạt&raquo;.</strong>{' '}
+                Văn kiện mở đầu bằng chính hai chữ <em>Quod venerabiles</em> — theo lệ Toà Thánh, mấy chữ đầu tiên trở
+                thành tên gọi của sắc chỉ. Bản ký tại Rôma, đền thờ Thánh Phêrô, ngày 27/11/1960.
+              </figcaption>
+            </figure>
+
             <p style={{ fontSize: '0.86rem', lineHeight: 1.7, textAlign: 'justify', margin: 0, color: 'var(--color-subtle)', fontStyle: 'italic' }}>
               Toàn văn năm quyết định của Tông hiến và diễn tiến nghi thức nâng lên Chính Tòa được trình bày chi tiết ở
               mục 3.3, phần Giáo Xứ Chánh Tòa.
@@ -4213,8 +4248,11 @@ export default function GioiThieuPage() {
                 Hội Đồng Giám Mục Việt Nam, <em>Niên Giám Giáo Hội Công Giáo Việt Nam 2022</em>, NXB Tôn Giáo.
               </li>
               <li>
-                Tòa Thánh Vatican, <em>Annuario Pontificio</em>, Libreria Editrice Vaticana; Tông hiến{' '}
-                <em>Venerabilium Nostrorum</em> (24/11/1960) và Sắc chỉ <em>Quod Venerabiles Fratres</em> (27/11/1960).
+                Tòa Thánh Vatican, <em>Annuario Pontificio</em>, Libreria Editrice Vaticana. Nguyên văn hai văn kiện lập
+                Giáo phận Mỹ Tho đăng trong Công báo Toà Thánh <em>Acta Apostolicae Sedis</em>, tập 53 (1961):{' '}
+                Tông hiến <em>Venerabilium Nostrorum</em> ngày 24/11/1960 thiết lập Hàng Giáo Phẩm Việt Nam —{' '}
+                <strong>trang 346</strong>; và Sắc chỉ <em>Quod Venerabiles Fratres</em> ngày 27/11/1960 chia lãnh thổ và
+                lập giáo phận — <strong>trang 474</strong>. Bản số hoá tại vatican.va, tệp AAS-53-1961-ocr.pdf.
               </li>
               <li>
                 Tổng Liên Đoàn Thiếu Nhi Thánh Thể Việt Nam, <em>Quy chế &amp; Nội quy Phong trào TNTT</em>; bảng
