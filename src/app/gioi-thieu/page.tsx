@@ -509,12 +509,39 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *    và bài "Giáo xứ Bình Tạo".
  *  - gxhanhthongtay.net (danh sách các đời cha xứ Hạnh Thông Tây).
  *  - Gallica/BNF, Wikipedia tiếng Việt, cgvdt.vn, hdgmvietnam.com.
+ *  - Les Missions Catholiques 1877, tr.595 & 598 (Gallica ark:/12148/
+ *    bpt6k105617d): bài "Variétés: Mytho, Cochinchine occidentale" của thừa
+ *    sai Le Mée, KÈM BẢN KHẮC mặt tiền ngôi nhà thờ thứ hai — tư liệu hình
+ *    ảnh xưa nhất tìm được về ngôi thánh đường này.
+ *  - cgvdt.vn "Dấu ấn họ đạo Chánh tòa Mỹ Tho theo dòng lịch sử": dẫn BẢN
+ *    BÁO CÁO VIẾT TAY của Cha Renier hiện lưu tại Tòa TGM TGP. TP.HCM —
+ *    "Trước năm 1861 chưa có cộng đoàn Công giáo Mỹ Tho... Đến ngày
+ *    28.1.1862, họ đạo Mỹ Tho có 1986 giáo dân"; Nữ tu Thánh Phaolô có mặt
+ *    từ 1864 (bề trên đầu tiên: dì Liziong); Sư huynh Lasan đến năm 1868.
+ *
+ * BA NGÔI NHÀ THỜ CỦA HỌ ĐẠO:
+ *  1. 1861 — nhà thờ nhỏ LỢP LÁ, kính Thánh Phanxicô Xaviê, do Cha Guillou
+ *     và các thừa sai dựng. Vì là nhà lá dựng tạm giữa thời loạn nên gần như
+ *     chắc chắn KHÔNG có ảnh chụp; nguồn 1877 xác nhận Cha Marc vẫn phải
+ *     dâng lễ trong "une chapelle en paille".
+ *  2. 1866–1876 — Đức cha Miche đặt viên đá 1866; Cha Sorel xây từ 1870;
+ *     Cha Moulins hoàn tất; Đức cha Colombert làm phép 12/03/1876. Tư liệu
+ *     Pháp gọi "église de Mytho", tư liệu Việt gọi "nhà thờ Vĩnh Tường"
+ *     (kính Thánh Tâm) — CÙNG MỘT NGÔI. Tháo dỡ khoảng 1900.
+ *  3. 1906–1910 — ngôi hiện nay, tước hiệu Đức Mẹ Vô Nhiễm, do Cha Renier.
+ *
+ * ĐIỂM CÒN BỎ NGỎ: hồ sơ Renier (IRFA) nói ngôi nhà thờ bị tháo dỡ nằm ở
+ *  BAS-MY-THO (Hạ Mỹ Tho), còn VINH-TUONG là tên của HAUT-MY-THO (Thượng Mỹ
+ *  Tho) — khu có nhà thờ riêng và bệnh viện bản xứ. Nếu vậy thì tên gọi
+ *  "nhà thờ Vĩnh Tường" trong tư liệu Việt và vị trí Hạ Mỹ Tho trong hồ sơ
+ *  Pháp chưa khớp nhau. Chưa có nguồn nào giải quyết dứt điểm nên trang giữ
+ *  cả hai cách gọi và ghi rõ mâu thuẫn này thay vì chọn bừa một bên.
  *
  * CHUỖI THỪA SAI PHÁP — mỗi mắt xích xác nhận chéo bởi hồ sơ người kế nhiệm:
  *    Guillou (1861–1865) → Lizé (từ 1864) và Marc-Dassa (1866–1870, hồ sơ
  *    ghi nguyên văn "chargé d'abord avec Lizé, et ensuite seul, de la
- *    paroisse de Mi-tho") → Sorel (1870–1872, khởi công nhà thờ Vĩnh Tường)
- *    → Moulins (1873–1899, hoàn tất nhà thờ Vĩnh Tường, 27 năm) →
+ *    paroisse de Mi-tho") → Sorel (1870–1872, xây ngôi nhà thờ thứ hai)
+ *    → Moulins (1873–1899, hoàn tất, làm phép 12/03/1876, 27 năm) →
  *    Rénier (1899–1922, xây Nhà thờ Chánh Tòa hiện nay) → Bar (~1922–1948,
  *    mất tại nhiệm sở).
  *  Hồ sơ Rénier: "Mgr Mossard l'envoyait à Mytho remplacer M. Moulins, qui
@@ -608,7 +635,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '1861',
         title: 'Coi sóc địa hạt Mỹ Tho',
-        content: 'Được cử làm bề trên địa hạt Mỹ Tho, đúng năm nhiều giáo dân từ các tỉnh miền Tây chạy về Mỹ Tho lánh nạn bách hại và hình thành cộng đoàn Công giáo đầu tiên tại đây.'
+        content:
+          'Được cử làm bề trên địa hạt Mỹ Tho. Bản báo cáo viết tay của Cha Renier, hiện lưu trữ tại Tòa Tổng Giám mục TGP. TP.HCM, ghi rõ: "Trước năm 1861 chưa có cộng đoàn Công giáo Mỹ Tho. Chỉ có những người Công giáo bị lính An Nam giam giữ trong đồn. Những người này thuộc bổn đạo của họ Thủ Ngữ, Ba Giồng hay những họ đạo khác." Cũng theo bản báo cáo ấy, đến ngày 28/01/1862 họ đạo Mỹ Tho đã có 1.986 giáo dân — một sự gia tăng đột biến mà tài liệu giáo xứ gắn với gương tử đạo của Cha Thánh Phêrô Nguyễn Văn Lựu tháng 4/1861, vị vẫn thường vào đồn thăm viếng và an ủi các bổn đạo bị giam.'
       },
       {
         time: '1863 – 1864',
@@ -628,6 +656,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ],
     milestones: [
       'Vị mục tử tiên khởi của Họ đạo Mỹ Tho, coi sóc địa hạt từ năm 1861.',
+      'Dựng ngôi nhà thờ đầu tiên của họ đạo — một nhà thờ nhỏ lợp lá, kính Thánh Phanxicô Xaviê.',
+      'Dưới thời ngài, họ đạo từ con số không lên 1.986 giáo dân chỉ trong vòng một năm (28/01/1862).',
       'Đồng sáng lập cộng đoàn Kitô hữu Bro-lam giữa người Stiêng.',
       'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (1864).'
     ]
@@ -801,10 +831,10 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     works: [
       {
         time: '1870 – 1872 (làm phép 12/03/1876)',
-        name: 'Ngôi nhà thờ thứ hai của họ đạo Mỹ Tho',
+        name: 'Ngôi nhà thờ thứ hai của họ đạo — quen gọi là Nhà thờ Vĩnh Tường',
         now: 'không còn — bị tháo dỡ khoảng năm 1900; ngôi Chánh Tòa 1906 – 1910 thay thế',
         detail:
-          'Ngôi thánh đường Baroque bề thế: dài 42 m, rộng 18 m, cao 36 m; lòng chính rộng 9,40 m; 32 cột Corinthiên cao 8 m; trần vòm cuốn; toàn bộ phào chỉ và trang trí bằng vữa stuc kiểu Hoa, do một người thợ Hoa đắp tay tại chỗ; 16 cửa sổ kính màu và một cửa kính hậu cung sáu huy hiệu kể các mầu nhiệm chính của đạo. Đức cha Colombert làm phép ngày 12/03/1876 trước sự hiện diện của đại tá Trève cùng toàn thể binh sĩ đồn trú, các Sư huynh Lasan và các Nữ tu Thánh Phaolô.'
+          'Tư liệu Pháp gọi đơn giản là "église de Mytho", tư liệu Việt quen gọi là Nhà thờ Vĩnh Tường, kính Thánh Tâm — cùng một ngôi nhà thờ. Đó là một thánh đường Baroque bề thế: dài 42 m, rộng 18 m, cao 36 m; lòng chính rộng 9,40 m; 32 cột Corinthiên cao 8 m; trần vòm cuốn; toàn bộ phào chỉ và trang trí bằng vữa stuc kiểu Hoa, do một người thợ Hoa đắp tay tại chỗ; 16 cửa sổ kính màu và một cửa kính hậu cung sáu huy hiệu kể các mầu nhiệm chính của đạo. Đức cha Colombert làm phép ngày 12/03/1876 trước sự hiện diện của đại tá Trève cùng toàn thể binh sĩ đồn trú, các Sư huynh Lasan và các Nữ tu Thánh Phaolô.'
       },
       {
         time: 'Sau 1872',
@@ -860,7 +890,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     works: [
       {
         time: 'Hoàn tất dưới thời 1873 – 1899',
-        name: 'Hoàn tất ngôi nhà thờ thứ hai của họ đạo Mỹ Tho',
+        name: 'Hoàn tất ngôi nhà thờ thứ hai — Nhà thờ Vĩnh Tường, kính Thánh Tâm',
         now: 'không còn — tháo dỡ khoảng năm 1900; ngôi Chánh Tòa 1906 – 1910 thay thế',
         detail:
           'Ba năm ròng vừa lo kinh phí vừa đích thân làm thợ chạm, thợ mộc và thợ trang trí. Đức cha Colombert làm phép ngày 12/03/1876. Ngôi thánh đường phục vụ họ đạo hai mươi lăm năm, đến khoảng năm 1900 thì được tháo dỡ vì hư hỏng nặng và vì giáo dân đã dời lên khu Thượng Mỹ Tho.'
