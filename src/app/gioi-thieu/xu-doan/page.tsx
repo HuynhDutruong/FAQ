@@ -38,12 +38,9 @@ export default function Trang() {
             4. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
           </h2>
 
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
             4.1. Bản chất, Mục đích &amp; Tôn chỉ Phong trào
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 12px' }}>
             <strong>Thiếu Nhi Thánh Thể</strong> là một đoàn thể Công giáo tiến hành, một trường giáo dục chuyên biệt
             giúp thiếu nhi thăng tiến và thực hành sống đạo. Phong trào lấy tinh thần Đạo Binh Thánh Giá thời Trung cổ:
@@ -117,13 +114,9 @@ export default function Trang() {
             <li>Sống gắn bó với Giáo Hội, yêu mến và vâng phục <strong>Đức Thánh Cha</strong> — vị thủ lãnh của Phong trào.</li>
           </ul>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
             4.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Khăn quàng TNTT là biểu tượng của tinh thần dâng hiến và trách nhiệm tông đồ. Dưới đây là bảng phân cấp các
             ngành trong Xứ Đoàn:
@@ -149,13 +142,9 @@ export default function Trang() {
             ))}
           </div>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="xu-doan-khan-huynh-truong" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
             4.3. Khăn Quàng Huynh Trưởng &amp; Ban Điều Hành
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Ngoài khăn của các ngành, Phong trào còn quy định khăn riêng cho những người phục vụ và
             hướng dẫn Đoàn Thiếu Nhi Thánh Thể:
@@ -187,13 +176,9 @@ export default function Trang() {
             Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
           </p>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="xu-doan-tuyen-uy" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
             4.4. Các Đời Cha Tuyên Uý Xứ Đoàn
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Cha Tuyên Uý là linh mục được trao trách nhiệm linh hướng Xứ Đoàn. Dưới đây là các vị đã
             phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay —
@@ -236,13 +221,9 @@ export default function Trang() {
           {/* =====================================================================
               4.5. TÁI LẬP XỨ ĐOÀN NĂM 2005
               ===================================================================== */}
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="xu-doan-tai-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
             4.5. Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Đoàn Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa đã vắng bóng trong sinh hoạt giáo xứ
             kể từ sau biến cố năm 1975. Đến mùa thu năm 2005, Cha sở Giacôbê Hà Văn Xung đứng ra
@@ -340,7 +321,6 @@ export default function Trang() {
             do giáo xứ cung cấp). Ghi chép này cũng xác nhận Cha Giacôbê Hà Văn Xung đã là Cha sở
             Chánh Tòa vào tháng 10 năm 2005.
           </p>
-          </details>
         </section>
 
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />

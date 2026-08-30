@@ -37,12 +37,9 @@ export default function Trang() {
             2. Giáo Phận Mỹ Tho — Cơ cấu &amp; Các Đời Giám Mục
           </h2>
 
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="giao-phan-truoc-1960" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             2.1. Thời kỳ Địa phận Tây Đàng Trong (1844 – 1960)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Giáo phận Mỹ Tho chỉ ra đời ngày <strong>24/11/1960</strong>. Trước đó, suốt hơn một thế kỷ, họ đạo Mỹ Tho
             thuộc quyền <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại diện Tông toà kế
@@ -100,13 +97,9 @@ export default function Trang() {
             Chân dung Đức cha Simon Hòa Nguyễn Văn Hiền cũng do Giáo xứ cung cấp. Nay đủ chân dung cả chín vị Đấng Bản
             Quyền của họ đạo Mỹ Tho từ năm 1844 đến 1960.
           </p>
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="giao-phan-thanh-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             2.2. Tách Khỏi Sài Gòn &amp; Khai Sinh Giáo Phận Mỹ Tho (1960)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Ngày <strong>24 tháng 11 năm 1960</strong>, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến{' '}
             <em>Venerabilium Nostrorum</em>, thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam. Địa phận Tây Đàng Trong —
@@ -160,14 +153,10 @@ export default function Trang() {
             Toàn văn năm quyết định của Tông hiến và diễn tiến nghi thức nâng lên Chính Tòa được trình bày chi tiết ở
             mục 3.3, phần Giáo Xứ Chánh Tòa.
           </p>
-          </details>
 
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="giao-phan-cac-giam-muc" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             2.3. Các Đời Giám Mục Giáo Phận Mỹ Tho (1960 – nay)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Từ ngày khai sinh năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua <strong>5 đời Giám mục</strong>.
             <em> Nhấp vào từng vị để xem toàn văn tiểu sử, chức vụ và công trình.</em>
@@ -292,15 +281,11 @@ export default function Trang() {
             ))}
           </div>
 
-          </details>
 
 
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="giao-phan-anh-tu-lieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             2.4. Ảnh Tư Liệu Giáo Phận Mỹ Tho
           </h3>
-            </summary>
           <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
             Những bức ảnh hiếm ghi lại hàng giáo sĩ Giáo phận Mỹ Tho từ ngày thành lập năm 1960.
           </p>
@@ -357,7 +342,6 @@ export default function Trang() {
             — ark:/12148/bpt6k105622v, và trang bìa sách — ark:/12148/bpt6k58346217. Các ảnh còn lại do giáo xứ cung cấp;
             chú thích niên đại theo ghi chú gốc in trên ảnh, những gì ảnh không nói rõ thì ghi là chưa xác định.
           </p>
-          </details>
         </section>
 
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />

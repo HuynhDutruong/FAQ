@@ -36,12 +36,9 @@ export default function Trang() {
             1. Giáo Hội Hoàn Vũ — Tòa Thánh Vatican &amp; 267 Vị Giáo Hoàng
           </h2>
 
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="vatican-gioi-thieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
             1.1. Thành quốc Vatican &amp; Vương Cung Thánh Đường Thánh Phêrô
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             <strong>Tòa Thánh Vatican</strong> (tiếng Latinh: <em>Sancta Sedes</em>) và <strong>Thành quốc Vatican</strong> (<em>Status Civitatis Vaticanae</em>)
             là trung tâm đầu não tối cao của Giáo hội Công giáo Rôma toàn cầu. Được thiết lập độc lập theo Hiệp ước Lateranô (1929),
@@ -104,13 +101,9 @@ export default function Trang() {
             của Michelangelo), <em>Thư viện &amp; Viện Bảo tàng Vatican</em> và <em>Đội Cận vệ Thụy Sĩ</em> với bề dày lịch sử hơn 500 năm.
           </p>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="vatican-dtc-leo-xiv" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '24px 0 8px' }}>
             1.2. Đức Thánh Cha đương kim Lêô XIV (Leo XIV)
           </h3>
-            </summary>
 
           {/* Thumbnail chân dung Đức Giáo hoàng Lêô XIV */}
           <div
@@ -196,7 +189,6 @@ export default function Trang() {
             {/* Component Marquee Hoàng Gia Chạy Trực Tiếp */}
             <PopesContinuousMarquee />
           </div>
-          </details>
         </section>
 
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />

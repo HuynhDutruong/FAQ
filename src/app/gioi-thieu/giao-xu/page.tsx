@@ -71,12 +71,9 @@ export default function Trang() {
             </div>
           </div>
 
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="lich-su-so-khai" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
             3.1. Thời kỳ sơ khai &amp; Họ đạo Vĩnh Tường (Thế kỷ XVII – 1866)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Hạt giống Tin Mừng được gieo vãi tại vùng đất Mỹ Tho từ rất sớm vào thế kỷ XVII nhờ bước chân truyền giáo của
             các vị thừa sai Dòng Phanxicô và Hội Thừa sai Paris (MEP). Họ đạo đầu tiên dâng kính Thánh Phanxicô Xaviê được
@@ -88,13 +85,9 @@ export default function Trang() {
             giáo ngày càng tăng của giáo dân địa phương.
           </p>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="lich-su-xay-dung" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
             3.2. Xây dựng ngôi thánh đường hiện nay (1906 – 1910)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Nhận thấy ngôi nhà thờ cũ đã xuống cấp và diện tích chật hẹp, ngày 11 tháng 8 năm 1906, Linh mục Régnier (thường
             được bà con giáo dân gọi thân mật là <em>cố Gẫm</em>) đã chính thức đặt viên đá đầu tiên khởi công xây dựng
@@ -103,13 +96,9 @@ export default function Trang() {
             1910.
           </p>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.18rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             3.3. Sắc Chỉ Tông Hiến Venerabilium Nostrorum &amp; Nâng Lên Chính Tòa (1960)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
             Ngày <strong>24 tháng 11 năm 1960</strong> là mốc son chói lọi trong lịch sử Giáo hội Công giáo Việt Nam khi <strong>Thánh Giáo hoàng Gioan XXIII</strong> (<em>Ioannes PP. XXIII</em>) ban hành Tông hiến lịch sử <strong>&ldquo;Venerabilium Nostrorum&rdquo;</strong> (<em>Chư Huynh Đáng Kính</em>). Văn kiện long trọng này chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>) và nâng ngôi Thánh đường Mỹ Tho thành <strong>Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm Nguyên Tội</strong>.
           </p>
@@ -294,13 +283,9 @@ export default function Trang() {
             </ul>
           </div>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="lich-su-cung-hien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
             3.4. Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Nhân dịp Đại Năm Thánh 2000, ngày <strong>21/01/2000</strong>, Đức Giám mục Giáo phận Phaolô Bùi Văn Đọc đã
             long trọng cử hành <strong>Lễ Cung Hiến Nhà thờ Chánh Tòa Mỹ Tho</strong> và chọn ngày Lễ Đức Mẹ Hồn Xác
@@ -335,13 +320,9 @@ export default function Trang() {
             kỷ niệm 100 năm xây dựng ngôi thánh đường.
           </p>
 
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="lich-su-anh-tu-lieu" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             3.5. Ảnh Tư Liệu Nhà Thờ Qua Các Thời Kỳ
           </h3>
-            </summary>
           <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
             Những bức ảnh dưới đây ghi lại diện mạo ngôi thánh đường và khuôn viên qua hơn một thế kỷ,
             từ thời Pháp thuộc đến trước ngày đại trùng tu năm 2006.
@@ -405,13 +386,9 @@ export default function Trang() {
           </p>
 
           {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="nien-bieu-cha-so" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             3.6. Niên Biểu Các Đời Linh Mục Chánh Sở Nhà Thờ Chánh Tòa Mỹ Tho (1861 – Nay)
           </h3>
-            </summary>
           <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 6px' }}>
             Nhấn vào tên linh mục để xem lý lịch đầy đủ. Niên hiệu và tiểu sử các vị thừa sai
             Hội Thừa Sai Paris được đối chiếu với hồ sơ lưu trữ của Viện Nghiên cứu Pháp – Á (IRFA).
@@ -548,13 +525,9 @@ export default function Trang() {
             Khoảng 50 linh mục Việt Nam từng phục vụ họ đạo chưa có nguồn số hoá công khai — tên các ngài nằm trong sổ bộ
             họ đạo và văn khố Tòa Giám mục; trang này để trống còn hơn ghi sai tên người đã phục vụ.
           </p>
-          </details>
-          <details className="doc-details">
-            <summary className="doc-summary">
           <h3 id="kien-truc-anh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
             3.7. Kiến trúc &amp; Nghệ thuật Thánh
           </h3>
-            </summary>
           {/* Gallery ảnh kiến trúc */}
           <div
             className="responsive-grid"
@@ -587,7 +560,6 @@ export default function Trang() {
               </div>
             ))}
           </div>
-          </details>
         </section>
 
         <section id="phung-vu" style={{ marginBottom: '36px' }}>

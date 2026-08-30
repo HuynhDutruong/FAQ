@@ -18,21 +18,21 @@ const GIAN = [
     href: '/gioi-thieu/giao-hoi',
     ten: 'Giáo Hội Hoàn Vũ',
     mo: 'Tòa Thánh Vatican, Đức Thánh Cha Lêô XIV và biên niên sử 267 vị Giáo hoàng từ Thánh Phêrô đến nay.',
-    anh: '/images/pope_leo_xiv.jpg',
+    anh: '/images/vatican_st_peter.jpg',
     diem: ['Thành quốc Vatican', 'Đức Thánh Cha Lêô XIV', '267 vị Giáo hoàng']
   },
   {
     href: '/gioi-thieu/giao-phan',
     ten: 'Giáo Phận Mỹ Tho',
     mo: 'Từ thời Địa phận Tây Đàng Trong với chín Đấng Bản Quyền, qua ngày tách khỏi Sài Gòn năm 1960, đến năm đời Giám mục hôm nay.',
-    anh: '/images/dgm_colombert.jpg',
+    anh: '/images/gpmt_linh_muc_doan_1961.jpg',
     diem: ['9 Đấng Bản Quyền 1844 – 1960', 'Sắc chỉ khai sinh giáo phận', '5 đời Giám mục Chính tòa']
   },
   {
     href: '/gioi-thieu/giao-xu',
     ten: 'Giáo Xứ Chánh Tòa',
     mo: 'Lịch sử họ đạo từ năm 1861, ba lần dựng nhà thờ, niên biểu các đời linh mục chánh sở và kho ảnh tư liệu qua các thời kỳ.',
-    anh: '/images/lichsu_nha_tho_dinh_tuong.jpg',
+    anh: '/images/lichsu_dai_lo_hung_vuong_xua.jpg',
     diem: ['Ba ngôi nhà thờ 1861 – 1910', 'Niên biểu 13 đời cha sở', 'Ảnh tư liệu & bản khắc 1877']
   },
   {
@@ -77,7 +77,14 @@ export default function TrangCong() {
           Bản khảo cứu chia làm bốn gian. Chọn một gian để bắt đầu.
         </p>
 
-        <div className="responsive-grid" style={{ marginBottom: '26px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '16px',
+            marginBottom: '26px'
+          }}
+        >
           {GIAN.map((g) => (
             <Link
               key={g.href}
@@ -88,8 +95,14 @@ export default function TrangCong() {
                 backgroundColor: 'var(--color-card-bg)', boxShadow: '0 1px 4px rgba(0,0,0,0.03)'
               }}
             >
-              <div style={{ position: 'relative', width: '100%', height: '170px', backgroundColor: 'rgba(153,27,27,0.05)' }}>
-                <Image src={g.anh} alt={g.ten} fill sizes="(max-width: 640px) 92vw, 300px" style={{ objectFit: 'cover' }} />
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 10', backgroundColor: 'rgba(153,27,27,0.05)' }}>
+                <Image
+                  src={g.anh}
+                  alt={g.ten}
+                  fill
+                  sizes="(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 290px"
+                  style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
+                />
               </div>
               <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1 }}>
                 <div style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-red)' }}>{g.ten}</div>
