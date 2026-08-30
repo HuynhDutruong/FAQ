@@ -1624,7 +1624,7 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: 'Thụ phong linh mục năm 2004',
     image: '/images/tuyen_uy_nguyen_ngoc_long.jpg',
     source:
-      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Gx. Lương Hoà Hạ: Thánh lễ nhận xứ của cha Phêrô Nguyễn Ngọc Long", giaophanmytho.net, 01/08/2023',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và bài "Gx. Lương Hoà Hạ: Thánh lễ nhận xứ của cha Phêrô Nguyễn Ngọc Long", giaophanmytho.net, 01/08/2023',
     shortDesc:
       'Vị tuyên uý đầu tiên của Xứ Đoàn sau ngày tái lập năm 2005. Ngài đồng hành với Xứ Đoàn ngay từ khoá huấn luyện Huynh Trưởng đầu tiên, đặt nền cho sinh hoạt Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa. Từ năm 2023 ngài là cha sở Giáo xứ Lương Hoà Hạ, Giáo hạt Đức Hoà.',
     chronology: [
@@ -1659,8 +1659,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1976',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2008',
+    image: '/images/tuyen_uy_nguyen_nhut_cuong.jpg',
     source:
-      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Cha Gioan Baotixita Nguyễn Nhựt Cương nhận xứ Tân Quới", giaophanmytho.net, 28/07/2023',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và bài "Cha Gioan Baotixita Nguyễn Nhựt Cương nhận xứ Tân Quới", giaophanmytho.net, 28/07/2023',
     shortDesc:
       'Cha Tuyên Uý thứ hai của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn kiện toàn hệ thống ngành và đội sau những năm đầu tái lập. Từ năm 2023 ngài là cha sở Giáo xứ Tân Quới, Giáo hạt Cù Lao Tây.',
     chronology: [
@@ -1700,7 +1701,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1981',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2011',
-    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    image: '/images/tuyen_uy_tran_trong_khuong.jpg',
+    source:
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
     shortDesc:
       'Cha Tuyên Uý thứ ba của Xứ Đoàn. Theo danh sách linh mục đoàn cập nhật tháng 11/2024, hiện ngài đang trong thời gian nghỉ bệnh.',
     chronology: [
