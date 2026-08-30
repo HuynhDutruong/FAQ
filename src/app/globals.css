@@ -2098,10 +2098,12 @@ body {
   .pastor-name-btn { font-size: 0.95rem; }
 }
 
-/* Thư viện ảnh tư liệu TNTT 2005 — trang Giới Thiệu */
+/* Thư viện ảnh tư liệu — trang Giới Thiệu.
+   Thumbnail nhỏ, tỉ lệ đồng đều, bấm để phóng to trong lightbox. */
 .tntt-gallery {
   display: grid;
-  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
   margin: 4px 0 16px;
 }
 
@@ -2111,27 +2113,59 @@ body {
   border-radius: 10px;
   overflow: hidden;
   background-color: var(--color-card-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.tntt-thumb-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: none;
+  background: var(--color-input-bg);
+  cursor: zoom-in;
+  overflow: hidden;
 }
 
 .tntt-photo {
-  display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.tntt-thumb-btn:hover .tntt-photo {
+  transform: scale(1.05);
+}
+
+.tntt-zoom {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.72);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.tntt-thumb-btn:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: -2px;
 }
 
 .tntt-caption {
-  padding: 9px 12px 11px;
-  font-size: 0.8rem;
-  line-height: 1.55;
+  padding: 8px 10px 10px;
+  font-size: 0.73rem;
+  line-height: 1.5;
   color: var(--color-subtle);
-}
-
-@media (min-width: 720px) {
-  .tntt-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  /* Ảnh sổ tay là tư liệu gốc — cho chiếm trọn hàng để đọc được chữ */
-  .tntt-figure:first-child {
-    grid-column: 1 / -1;
-  }
+  flex: 1;
 }

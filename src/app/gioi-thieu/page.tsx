@@ -2120,14 +2120,24 @@ export default function GioiThieuPage() {
                 }
               ].map((img) => (
                 <figure key={img.src} className="tntt-figure">
-                  <Image
-                    src={img.src}
-                    alt={img.cap}
-                    width={1500}
-                    height={1030}
-                    sizes="(max-width: 640px) 100vw, 620px"
-                    className="tntt-photo"
-                  />
+                  <button
+                    type="button"
+                    className="tntt-thumb-btn"
+                    onClick={() => setLightboxImage({ src: img.src, caption: img.cap })}
+                    aria-label={`Phóng to: ${img.cap}`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.cap}
+                      width={640}
+                      height={480}
+                      sizes="(max-width: 520px) 46vw, 220px"
+                      className="tntt-photo"
+                    />
+                    <span className="tntt-zoom" aria-hidden="true">
+                      <Eye size={13} /> Xem
+                    </span>
+                  </button>
                   <figcaption className="tntt-caption">{img.cap}</figcaption>
                 </figure>
               ))}
@@ -2621,14 +2631,24 @@ export default function GioiThieuPage() {
                 { src: '/images/tntt2005_doan_sinh_trong_nha_tho.jpg', cap: 'Đoàn sinh Thiếu Nhi Thánh Thể quy tụ trong lòng Nhà thờ Chánh Tòa sau ngày Xứ Đoàn được tái lập.' }
               ].map((img) => (
                 <figure key={img.src} className="tntt-figure">
-                  <Image
-                    src={img.src}
-                    alt={img.cap}
-                    width={1400}
-                    height={950}
-                    sizes="(max-width: 640px) 100vw, 620px"
-                    className="tntt-photo"
-                  />
+                  <button
+                    type="button"
+                    className="tntt-thumb-btn"
+                    onClick={() => setLightboxImage({ src: img.src, caption: img.cap })}
+                    aria-label={`Phóng to: ${img.cap}`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.cap}
+                      width={640}
+                      height={480}
+                      sizes="(max-width: 520px) 46vw, 220px"
+                      className="tntt-photo"
+                    />
+                    <span className="tntt-zoom" aria-hidden="true">
+                      <Eye size={13} /> Xem
+                    </span>
+                  </button>
                   <figcaption className="tntt-caption">{img.cap}</figcaption>
                 </figure>
               ))}
