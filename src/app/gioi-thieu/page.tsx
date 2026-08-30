@@ -2904,10 +2904,6 @@ export default function GioiThieuPage() {
                   cap: 'Tư liệu hình ảnh xưa nhất về ngôi nhà thờ thứ hai: bản khắc mặt tiền in trên tuần báo Les Missions Catholiques năm 1877, chú thích gốc “Cochinchine occidentale (Annam) — Façade de l’église de Mytho”. Nhà thờ dài 42 m, rộng 18 m, cao 36 m, 32 cột Corinthiên cao 8 m.'
                 },
                 {
-                  src: '/images/lichsu_ban_khac_ba_giong_1882.jpg',
-                  cap: 'Làng Ba Giồng năm 1882 — bản khắc in trên Les Missions Catholiques số 670 ngày 07/04/1882, chú thích gốc “Cochinchine — Village de Ba Giong”. Ba Giồng thuộc làng Tân Lý Đông, nơi 16 vị chức việc chịu tra tấn vì đức tin ba lần và là nơi Cha Phêrô Nguyễn Văn Lựu coi sóc trước khi bị bắt. Ngày nay đây là Trung tâm Hành hương của Giáo phận Mỹ Tho.'
-                },
-                {
                   src: '/images/lichsu_nha_tho_dinh_tuong.jpg',
                   cap: 'Chính ngôi nhà thờ trong bản khắc 1877, chụp lại thời Pháp thuộc với chú thích gốc “Cathédrale de My Tho”. Đối chiếu hai hình thấy trùng khớp từng chi tiết: mái vòm có đèn lồng, các cửa tròn trên tang trống, trán tường Baroque cuộn và ba vòm cửa. Đây là ngôi thánh đường Cha Sorel dựng, Cha Moulins hoàn tất, làm phép 12/03/1876 và bị tháo dỡ khoảng năm 1900.'
                 },
@@ -2954,7 +2950,8 @@ export default function GioiThieuPage() {
 
             <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
               Ảnh tư liệu do giáo xứ cung cấp; riêng bản khắc năm 1877 lấy từ tuần báo Les Missions Catholiques
-              (Thư viện Quốc gia Pháp — Gallica, ark:/12148/bpt6k105617d, tr.595). Chú thích niên đại theo ghi chú gốc in trên ảnh.
+              (Thư viện Quốc gia Pháp — Gallica, ark:/12148/bpt6k105617d, tr.595). Chú thích niên đại theo ghi chú gốc in
+              trên ảnh. Ảnh tư liệu về Ba Giồng và Giáo phận nằm ở mục 4.1.
             </p>
 
             {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
@@ -3349,6 +3346,14 @@ export default function GioiThieuPage() {
             <div className="tntt-gallery">
               {[
                 {
+                  src: '/images/lichsu_ban_khac_ba_giong_1882.jpg',
+                  cap: 'Làng Ba Giồng năm 1882 — bản khắc in trên Les Missions Catholiques số 670 ngày 07/04/1882, chú thích gốc “Cochinchine — Village de Ba Giong”. Ba Giồng thuộc làng Tân Lý Đông, nơi 16 vị chức việc chịu tra tấn vì đức tin ba lần và là nơi Cha Phêrô Nguyễn Văn Lựu coi sóc trước khi bị bắt. Ngày nay đây là Trung tâm Hành hương của Giáo phận Mỹ Tho.'
+                },
+                {
+                  src: '/images/lichsu_sach_tu_dao_ba_giong_1882.jpg',
+                  cap: 'Trang bìa cuốn “Un épisode de la Persécution en Cochinchine — Martyre de vingt-sept Chrétiens”, Nhà in Pitrat Ainé, Lyon, 1882. Đây là bản in thành sách riêng bài tường thuật của thừa sai Théodule Hamon — vị từng học tiếng Việt và quyền coi họ đạo Mỹ Tho trước khi sang Ba Giồng. Cuốn sách kể cuộc tử đạo của Cha Phêrô Nguyễn Văn Lựu và của các giáo hữu Ba Giồng.'
+                },
+                {
                   src: '/images/gpmt_linh_muc_doan_1961.jpg',
                   cap: 'Linh mục đoàn Giáo phận Mỹ Tho năm 1961, một năm sau ngày giáo phận được thành lập. Ảnh mang chú thích gốc “DIOCESE DE MYTHO 1961” và ghi tên từng vị ngay trên ảnh, trong đó có Đức Cha Thiện cùng Cha Niềm — vị sẽ làm Chánh sở Chánh Tòa từ năm 1965.'
                 },
@@ -3386,8 +3391,9 @@ export default function GioiThieuPage() {
             </div>
 
             <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
-              Ảnh tư liệu do giáo xứ cung cấp. Chú thích niên đại theo ghi chú gốc in trên ảnh; những gì
-              ảnh không nói rõ thì ghi là chưa xác định.
+              Hai tư liệu năm 1882 lấy từ bộ sưu tập số hoá của Thư viện Quốc gia Pháp (Gallica): bản khắc làng Ba Giồng
+              — ark:/12148/bpt6k105622v, và trang bìa sách — ark:/12148/bpt6k58346217. Các ảnh còn lại do giáo xứ cung cấp;
+              chú thích niên đại theo ghi chú gốc in trên ảnh, những gì ảnh không nói rõ thì ghi là chưa xác định.
             </p>
             </details>
           </section>
