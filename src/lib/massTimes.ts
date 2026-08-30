@@ -121,6 +121,16 @@ export async function getByDiocese(diocese: string): Promise<MassTime[]> {
     .sort((a, b) => a.parish.localeCompare(b.parish, 'vi'));
 }
 
+/**
+ * Danh sách id giáo xứ cho sitemap — đọc đúng MỘT document.
+ * Chỉ mục do refreshFacets() dựng lại mỗi khi dữ liệu giờ lễ thay đổi.
+ */
+export async function getParishIdIndex(): Promise<string[]> {
+  const snap = await getDoc(doc(db, 'massTimesMeta', 'parishIndex'));
+  const ids = snap.data()?.ids;
+  return Array.isArray(ids) ? (ids as string[]) : [];
+}
+
 export const createMass = (data: Omit<MassTime, 'id'>) => addDoc(massCol, data);
 export const updateMass = (id: string, data: Partial<MassTime>) => updateDoc(doc(massCol, id), data);
 export const deleteMass = (id: string) => deleteDoc(doc(massCol, id));
@@ -243,7 +253,19 @@ export async function refreshFacets() {
   const provinces = tally(d => d.province as string, 'Chưa rõ tỉnh/thành');
   const list = tally(d => d.diocese as string, 'Chưa rõ giáo phận');
   await setDoc(metaRef, { provinces, list, total: snap.size, updatedAt: Date.now() });
-  return { provinces, dioceses: list };
+
+  // Chỉ mục id giáo xứ cho sitemap. Không có nó, sitemap phải quét toàn bộ
+  // ~3.300 document mỗi lần dựng lại — mỗi lần build là 3.300 lượt đọc, đủ
+  // để đốt sạch hạn mức miễn phí 50.000 lượt/ngày chỉ sau chục lần build.
+  // Gói vào 1 document nên sitemap chỉ tốn đúng 1 lượt đọc.
+  const ids = snap.docs.map(d => d.id);
+  await setDoc(doc(db, 'massTimesMeta', 'parishIndex'), {
+    ids,
+    total: ids.length,
+    updatedAt: Date.now()
+  });
+
+  return { provinces, dioceses: list, indexed: ids.length };
 }
 
 /** Chuỗi "5:00, 17h30" -> ['05:00','17:30'] cho ô nhập giờ trong trang admin. */

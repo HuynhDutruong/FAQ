@@ -1,13 +1,17 @@
 import { MetadataRoute } from 'next';
-import { ALL_DIOCESES } from '@/lib/dioceses';
 import { PRAYERS } from '@/lib/prayersData';
 import { BIBLE_BOOKS } from '@/lib/bible';
-import { getByDiocese } from '@/lib/massTimes';
+import { getParishIdIndex } from '@/lib/massTimes';
 
 const BASE_URL = 'https://chanhtoa.tnttgiaophanmytho.online';
 
-// Sitemap sinh lại mỗi ngày: ~3.300 lượt đọc Firestore/ngày, không đáng kể so
-// với hạn mức, đổi lại toàn bộ trang giáo xứ được khai báo cho Google.
+// Sitemap dựng lại mỗi ngày và chỉ tốn ĐÚNG 1 lượt đọc Firestore nhờ đọc
+// document chỉ mục massTimesMeta/parishIndex.
+//
+// Bản trước quét toàn bộ 27 giáo phận bằng getByDiocese, tức ~3.300 lượt đọc
+// MỖI LẦN dựng lại. Vì sitemap dựng lại ở mọi lần build chứ không phải mỗi
+// ngày, chỉ vài chục lần build là hết hạn mức 50.000 lượt/ngày của gói Spark
+// và toàn bộ tính năng dùng Firestore ngừng hoạt động.
 export const revalidate = 86400;
 
 /**
@@ -16,9 +20,9 @@ export const revalidate = 86400;
  */
 async function parishRoutes(currentDate: Date): Promise<MetadataRoute.Sitemap> {
   try {
-    const lists = await Promise.all(ALL_DIOCESES.map((d) => getByDiocese(d)));
-    return lists.flat().map((m) => ({
-      url: `${BASE_URL}/gio-le/${m.id}`,
+    const ids = await getParishIdIndex();
+    return ids.map((id) => ({
+      url: `${BASE_URL}/gio-le/${id}`,
       lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
