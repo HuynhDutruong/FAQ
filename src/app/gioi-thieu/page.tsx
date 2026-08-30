@@ -587,8 +587,9 @@ const POPE_LEO_XIV_BIO: DetailedBioRecord = {
 export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-marc-guillou',
-    source: 'Hồ sơ lưu trữ IRFA 0682',
-    tableNote: 'Cha sở tiên khởi. Cộng đoàn Công giáo Mỹ Tho hình thành năm 1861 khi giáo dân các tỉnh miền Tây về đây lánh nạn bách hại; ngài quy tụ và dựng ngôi nhà thờ đầu tiên kính Thánh Phanxicô Xaviê.',
+    source:
+      'Hồ sơ lưu trữ IRFA 0682 — nguyên văn: "En 1861, il eut à diriger le district de Mi-tho ; en 1863, celui de Cai-mong. Nommé provicaire en 1864, il revint à Mi-tho, et, en 1865, il passa à Thu-dau-mot."',
+    tableNote: 'Cha sở tiên khởi. Coi sóc địa hạt Mỹ Tho từ 1861; năm 1863 chuyển sang địa hạt Cái Mơn, được đặt làm Phó Đại diện Tông tòa năm 1864 rồi trở lại Mỹ Tho, đến 1865 đi Thủ Dầu Một. Cộng đoàn Công giáo Mỹ Tho hình thành năm 1861 khi giáo dân các tỉnh miền Tây về đây lánh nạn bách hại; ngài quy tụ và dựng ngôi nhà thờ đầu tiên kính Thánh Phanxicô Xaviê.',
     name: 'Lm. Jean-Marie Guillou (MEP)',
     saintName: 'Thánh Gioan Maria (Jean-Marie)',
     role: 'Linh mục Quản xứ Tiên khởi Họ đạo Mỹ Tho (1861 – 1865)',
@@ -641,7 +642,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     death: '08/02/1887 tại nhà an dưỡng Béthanie, Hồng Kông',
     priestOrdination: 'Thụ phong Linh mục ngày 25/05/1861',
     origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 0792',
-    source: 'Hồ sơ lưu trữ IRFA 0792',
+    source:
+      'Hồ sơ lưu trữ IRFA 0792 và bài cáo phó của Hội Thừa Sai Paris (Đức cha Colombert, thư ngày 11/02/1887)',
     tableNote: 'Về Mỹ Tho năm 1864, giúp các Nữ tu Thánh Phaolô thành Chartres lập cơ sở Thánh Nhi (Sainte-Enfance). Từ năm 1866 cùng Cha Marc phụ trách họ đạo. Khoảng 1869 chuyển hẳn về Vĩnh Tường — khi đó còn là họ nhánh của Mỹ Tho — và lập tại đó một bệnh viện bản xứ.',
     shortDesc: 'Vị thừa sai gắn bó với Mỹ Tho suốt mười năm. Ngài về đây năm 1864 và giúp các Nữ tu Thánh Phaolô thành Chartres thiết lập cơ sở Thánh Nhi. Từ năm 1866 ngài cùng Cha Marc phụ trách họ đạo Mỹ Tho. Khoảng năm 1869 ngài chuyển hẳn sang Vĩnh Tường — lúc bấy giờ còn là họ nhánh của Mỹ Tho — và lập ở đó một bệnh viện bản xứ do các Nữ tu đảm nhiệm. Được đặt làm Phó Đại diện Tông tòa khoảng năm 1872.',
     chronology: [
@@ -663,7 +665,25 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: 'khoảng 1869 – 1874',
         title: 'Về Vĩnh Tường & lập bệnh viện bản xứ',
-        content: 'Chuyển hẳn về Vĩnh Tường, khi ấy còn là họ nhánh của Mỹ Tho, và lập tại đó một bệnh viện bản xứ. Được đặt làm Phó Đại diện Tông tòa khoảng năm 1872. Bệnh nặng, ngài về Pháp năm 1874.'
+        content: 'Chuyển hẳn về Vĩnh Tường, khi ấy còn là họ nhánh của Mỹ Tho, và lập tại đó một bệnh viện bản xứ. Được đặt làm Phó Đại diện Tông tòa khoảng năm 1872.'
+      },
+      {
+        time: '1866 – 1867',
+        title: 'Mùa gặt lớn nhất của họ đạo',
+        content:
+          'Cáo phó của Hội Thừa Sai ghi rõ con số: riêng năm 1866 ngài rửa tội cho 385 người lớn, năm 1867 vượt quá 400 — mức cao nhất trong lịch sử buổi đầu của họ đạo Mỹ Tho.'
+      },
+      {
+        time: '1874 – 1878',
+        title: 'Rời Hội Thừa Sai rồi trở lại',
+        content:
+          'Bệnh nặng buộc ngài về Pháp năm 1874. Ngài rời Hội Thừa Sai Paris, nhận mục vụ tại giáo phận quê nhà và làm cha sở La Selle-Guerchaise. Bình phục, năm 1878 ngài xin đi lại Nam Kỳ và được đặt làm tuyên uý cơ sở Thánh Nhi tại Sài Gòn.'
+      },
+      {
+        time: '1881 – 1887',
+        title: 'Địa hạt Vĩnh Long',
+        content:
+          'Đức cha Colombert trao cho ngài địa hạt Vĩnh Long. Ngài lập nhiều họ đạo, dựng vài nhà nguyện, mở trường; số người lớn được rửa tội mỗi năm từ 156 đến 267, có năm địa hạt của ngài đứng đầu toàn giáo phận. Ngài qua đời đột ngột vì tai biến tại nhà an dưỡng Béthanie, Hồng Kông, rạng sáng 08/02/1887.'
       },
       {
         time: '1878 – 1887',
@@ -680,7 +700,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     works: [
       {
         time: 'Khoảng 1866 – 1869',
-        name: 'Cơ sở Thánh Nhi của các Nữ tu Thánh Phaolô thành Chartres',
+        name: 'Cơ sở Thánh Nhi (Sainte-Enfance) của các Nữ tu Thánh Phaolô thành Chartres',
         detail:
           'Giúp các nữ tu lập cơ sở nuôi dạy trẻ tại Mỹ Tho — công trình bác ái đầu tiên của họ đạo.'
       },
@@ -702,8 +722,9 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     death: '11/04/1870 tại La Grâce-Dieu, Pháp',
     priestOrdination: 'Thụ phong Linh mục ngày 23/05/1850',
     origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 0657. Thường được gọi vắn tắt là "Cha Marc"',
-    source: 'Hồ sơ lưu trữ IRFA 0657 — nguyên văn: "De 1866 à 1870, il fut chargé d\'abord avec Lizé, et ensuite seul, de la paroisse de Mi-tho"',
-    tableNote: 'Phụ trách giáo xứ Mỹ Tho, ban đầu cùng Cha Lizé rồi sau đó một mình. Ngài xin được ân xá cho một số nghĩa quân; những người này về sau theo đạo và lập nên họ đạo An Đức.',
+    source:
+      'Hồ sơ lưu trữ IRFA 0657 — nguyên văn: "De 1866 à 1870, il fut chargé d\'abord avec Lizé, et ensuite seul, de la paroisse de Mi-tho"; và bài "Variétés: Mytho" trên Les Missions Catholiques 1877, tr.598',
+    tableNote: 'Trước khi vào Nam Kỳ, ngài truyền giáo ở Nam Đàng Ngoài và phải lánh về Sài Gòn năm 1860 vì bách hại; tại đây ngài làm thông ngôn cho đoàn quân viễn chinh và các quan cai trị đầu tiên của thuộc địa. Phụ trách giáo xứ Mỹ Tho, ban đầu cùng Cha Lizé rồi sau đó một mình, với chức Phó Đại diện Tông tòa. Ngài xin được ân xá cho một số nghĩa quân; những người này về sau theo đạo và lập nên họ đạo An Đức. Suốt nhiệm kỳ ngài phải dâng lễ trong một nhà nguyện lợp lá vì công trình nhà thờ bị đình lại.',
     shortDesc: 'Thường được gọi vắn tắt là "Cha Marc". Ngài truyền giáo tại Bắc Kỳ từ năm 1854 nhưng cuộc bách hại buộc ngài rời nhiệm sở; năm 1860 ngài lánh về Sài Gòn và gia nhập địa phận Tây Đàng Trong, vừa coi sóc một số họ đạo vừa làm thông ngôn. Từ 1866 đến 1870 ngài phụ trách giáo xứ Mỹ Tho — ban đầu cùng Cha Lizé, sau đó một mình. Dấu ấn đặc biệt của ngài là xin được ân xá cho một số nghĩa quân; những người này sau đó theo đạo và lập nên họ đạo An Đức.',
     chronology: [
       {
@@ -730,6 +751,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     milestones: [
       'Phụ trách giáo xứ Mỹ Tho 1866 – 1870.',
       'Xin được ân xá cho một số nghĩa quân, những người sau đó lập nên họ đạo An Đức.',
+      'Vận động và chứng kiến Đức cha Miche đặt viên đá đầu tiên ngôi nhà thờ họ đạo năm 1866.',
+      'Làm thông ngôn cho đoàn quân viễn chinh và các quan cai trị đầu tiên của thuộc địa.',
       'Thừa sai Bắc Kỳ 1854 – 1860 giữa thời kỳ bách hại.'
     ]
   },
@@ -852,7 +875,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-regnier-co-gam',
-    source: 'Hồ sơ lưu trữ IRFA 1502',
+    source:
+      'Hồ sơ lưu trữ IRFA 1502 và bài cáo phó của Hội Thừa Sai Paris năm 1922. Hồ sơ gốc viết tên là RENIER (không dấu); giáo dân Mỹ Tho quen gọi ngài là "Cố Gẫm".',
     tableNote: 'Đặt viên đá đầu tiên ngày 11/08/1906 và khánh thành năm 1910 ngôi Nhà thờ Chánh Tòa hiện nay; xây trường của các Sư huynh Lasan, nội trú các Nữ tu Thánh Phaolô, nhà thờ Ngũ Hiệp.',
     name: 'Lm. Jean-Marie Rénier (Cố Gẫm - MEP)',
     saintName: 'Thánh Gioan Maria (Jean-Marie)',
@@ -901,9 +925,19 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Khởi công (11/08/1906) và hoàn thành (1910) ngôi Nhà thờ Chánh Tòa Mỹ Tho hiện hữu.',
       'Mở trường học của các Sư huynh Lasan và nội trú của các Nữ tu Thánh Phaolô tại Mỹ Tho.',
       'Xây nhà thờ Ngũ Hiệp và tái thiết nguyện đường Thánh Anna.',
-      'Vị chủ chăn được giáo dân kính trọng gọi là "Cố Gẫm".'
+      'Vị chủ chăn được giáo dân kính trọng gọi là "Cố Gẫm".',
+      'Trông coi việc tháo dỡ ngôi nhà thờ cũ ở Hạ Mỹ Tho và dời trung tâm họ đạo lên Thượng Mỹ Tho.',
+      'Chứng kiến trại phong Cù Lao Rồng và bệnh viện của Nhà nước được trao cho các Nữ tu Thánh Phaolô.',
+      'Là cha sở có uy tín và là chỗ dựa tinh thần lớn của cả tỉnh lỵ Mỹ Tho suốt 23 năm.'
     ],
     works: [
+      {
+        time: '1899 – khoảng 1900',
+        name: 'Dời trung tâm họ đạo lên Thượng Mỹ Tho',
+        now: 'khu vực nhà thờ và Tòa Giám mục ngày nay, 32 Hùng Vương',
+        detail:
+          'Khi ngài về nhận họ đạo, cộng đoàn chia làm hai khu vốn từng là hai họ đạo riêng: Thượng Mỹ Tho (Vĩnh Tường) có nhà xứ cho cha phó, một nhà thờ và bệnh viện bản xứ do các Nữ tu Thánh Phaolô coi sóc; Hạ Mỹ Tho là nơi cha sở ở, có ngôi nhà thờ lớn cùng cơ sở Thánh Nhi và nhà nuôi trẻ. Người Pháp đến ngày một đông khiến giáo dân dời dần lên Thượng Mỹ Tho, trong khi ngôi nhà thờ lớn và tháp chuông ở Hạ Mỹ Tho — vốn là niềm tự hào của khu phố — hư hỏng nặng. Sau khi Nhà nước và Đức Giám mục bàn bạc, người ta quyết định tháo dỡ ngôi nhà thờ ấy vì thấy không nên dồn tiền của vào nơi giáo dân đã rời đi. Ngài rời căn phòng trên phòng thánh lớn, lên ở nhờ căn nhà lá của cha phó, rồi lần lượt ở hai căn chòi lá cho tới ngày khánh thành nhà xứ mới — nơi ngài sống mười sáu năm cuối đời.'
+      },
       {
         time: 'Khởi công 11/08/1906 — hoàn thành 1910',
         name: 'NHÀ THỜ CHÁNH TÒA MỸ THO hiện hữu',
@@ -927,8 +961,9 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-bar-co-bach',
-    source: 'Hồ sơ lưu trữ IRFA 2241',
-    tableNote: 'Đón Đệ tử các Sư huynh Lasan (1929); năm 1930 trường Sư huynh có 400 học sinh, trường Nữ tu Thánh Phaolô 300 nữ sinh; lập ba họ đạo Bàn Hạn, Thược, Phú Vang (1933). Qua đời ngay tại nhiệm sở.',
+    source:
+      'Hồ sơ lưu trữ IRFA 2241. Giáo dân Mỹ Tho quen gọi ngài là "Cố Bạch".',
+    tableNote: 'Trước khi về Mỹ Tho, ngài dạy triết tại Chủng viện Sài Gòn, làm tuyên uý Dòng Kín Cát Minh (1899) rồi coi địa hạt Bãi Xan. Tại Mỹ Tho: đón Đệ tử các Sư huynh Lasan (1929); năm 1930 trường Sư huynh có 400 học sinh, trường Nữ tu Thánh Phaolô 300 nữ sinh; năm 1933 ghi nhận 642 người được rửa tội và lập ba họ đạo Bàn Hạn, Thược, Phú Vang — họ Phú Vang trao cho cha Tôma Kỳ. Mang bệnh ung thư vòm họng, ngài qua đời ngay tại nhiệm sở sau khi lãnh Xức Dầu trước mặt giáo dân và nói lời từ biệt cuối cùng.',
     name: 'Lm. Henri Bar (Cố Bạch - MEP)',
     saintName: 'Thánh Giuse (tên rửa tội: Henri Edmond Joseph)',
     role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (khoảng 1922 – 1948)',
@@ -975,7 +1010,10 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Chánh sở họ đạo Mỹ Tho khoảng một phần tư thế kỷ, qua đời ngay tại nhiệm sở (1948).',
       'Đón các Sư huynh Lasan về Mỹ Tho (1929); đến 1930 trường Sư huynh có 400 học sinh, trường Nữ tu Thánh Phaolô 300 nữ sinh.',
       'Lập ba họ đạo mới Bàn Hạn, Thược và Phú Vang (1933).',
-      'Che chở giáo dân chạy nạn trong thời kỳ loạn lạc 1941 – 1945.'
+      'Năm 1941, cùng cha Ad. Keller đón nhận giáo dân chạy loạn về nương náu tại họ đạo.',
+      'Năm 1933 ghi nhận 642 người được rửa tội trong toàn địa hạt.',
+      'Dạy triết học tại Chủng viện Sài Gòn và làm tuyên uý Dòng Kín Cát Minh (1899) trước khi về Mỹ Tho.',
+      'Trước lúc qua đời, ngài xin lỗi giáo dân và nhắn nhủ họ giữ trọn bổn phận người Kitô hữu.'
     ],
     works: [
       {
