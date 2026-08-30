@@ -2088,9 +2088,58 @@ export default function GioiThieuPage() {
               kỷ niệm 100 năm xây dựng ngôi thánh đường.
             </p>
 
+            <h3 id="lich-su-anh-tu-lieu" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              2.5. Ảnh Tư Liệu Nhà Thờ Qua Các Thời Kỳ
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
+              Những bức ảnh dưới đây ghi lại diện mạo ngôi thánh đường và khuôn viên qua hơn một thế kỷ,
+              từ thời Pháp thuộc đến trước ngày đại trùng tu năm 2006.
+            </p>
+
+            <div className="tntt-gallery">
+              {[
+                {
+                  src: '/images/lichsu_nha_tho_dinh_tuong.jpg',
+                  cap: 'Nhà thờ Định Tường — ngôi thánh đường mang phong cách Baroque với mái vòm và tháp đèn, chụp thời Pháp thuộc. Bản chụp mang chú thích gốc “Cathédrale de My Tho”.'
+                },
+                {
+                  src: '/images/lichsu_nha_tho_1920s_ngoai_that.jpg',
+                  cap: 'Ngôi Nhà thờ Chánh Tòa hiện nay nhìn từ bên hông, khoảng 1920 – 1929. Ảnh mang chú thích gốc “My Tho 1920-1929 — L’Église”. Tháp chuông khi đó còn nằm liền với thánh đường.'
+                },
+                {
+                  src: '/images/lichsu_nha_tho_1920s_noi_that.jpg',
+                  cap: 'Lòng nhà thờ khoảng 1920 – 1929, trang hoàng cờ và lá dừa cho một đại lễ. Thấy rõ hàng cột tròn chống đỡ, mái vòm và nền gạch bông hoa văn thời Pháp.'
+                },
+                {
+                  src: '/images/lichsu_mat_tien_xua.jpg',
+                  cap: 'Mặt tiền thánh đường trước đợt đại trùng tu 2006 — ba vòm cửa nhọn, hai cửa sổ hoa hồng tròn và tháp chuông khung thép dựng bên hông.'
+                },
+                {
+                  src: '/images/lichsu_dai_lo_hung_vuong_xua.jpg',
+                  cap: 'Nhà thờ nhìn từ đại lộ Hùng Vương (trước là đại lộ Bourdais) trong nhịp sống thường nhật của Mỹ Tho xưa.'
+                }
+              ].map((img) => (
+                <figure key={img.src} className="tntt-figure">
+                  <Image
+                    src={img.src}
+                    alt={img.cap}
+                    width={1500}
+                    height={1030}
+                    sizes="(max-width: 640px) 100vw, 620px"
+                    className="tntt-photo"
+                  />
+                  <figcaption className="tntt-caption">{img.cap}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
+              Ảnh tư liệu do giáo xứ cung cấp. Chú thích niên đại theo ghi chú gốc in trên ảnh.
+            </p>
+
             {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
             <h3 id="nien-bieu-cha-so" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-              2.5. Niên Biểu Các Đời Linh Mục Chánh Sở Nhà Thờ Chánh Tòa Mỹ Tho (1861 – Nay)
+              2.6. Niên Biểu Các Đời Linh Mục Chánh Sở Nhà Thờ Chánh Tòa Mỹ Tho (1861 – Nay)
             </h3>
             <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 6px' }}>
               Nhấn vào tên linh mục để xem lý lịch đầy đủ. Niên hiệu và tiểu sử các vị thừa sai
