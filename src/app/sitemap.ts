@@ -56,6 +56,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Bốn gian của bản khảo cứu, tách từ trang Giới thiệu để mỗi trang nhắm
+    // một nhóm từ khoá riêng thay vì một trang gánh tất cả.
+    ...['giao-hoi', 'giao-phan', 'giao-xu', 'xu-doan', 'tu-lieu'].map((slug) => ({
+      url: `${BASE_URL}/gioi-thieu/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: slug === 'tu-lieu' ? 0.7 : 0.88,
+    })),
     {
       url: `${BASE_URL}/gio-le`,
       lastModified: currentDate,
