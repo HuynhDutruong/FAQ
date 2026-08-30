@@ -2091,7 +2091,7 @@ const PRE1960_ORDINARIES: {
   name: string; vn: string; period: string; image?: string; ma?: string; detail: string; mytho?: string;
 }[] = [
   {
-    name: 'Đức cha Dominique Lefebvre', vn: 'Ngãi', period: '1844 – 1864', ma: 'IRFA 0418',
+    name: 'Đức cha Dominique Lefebvre', vn: 'Ngãi', period: '1844 – 1864', image: '/images/dgm_lefebvre.jpg', ma: 'IRFA 0418',
     detail:
       'Sinh 01/8/1810 tại Courtonne-la-Meurdrac (Calvados), thụ phong linh mục 20/12/1834, lên đường sang Đàng Trong 15/3/1835. Ngài học tiếng Việt bên cạnh Cha Borie — vị sau này được tôn phong hiển thánh — rồi vào Đàng Trong đúng lúc cuộc bách hại lên cao. Coi tiểu chủng viện ở Hạ Đàng Trong, thường trú tại Cái Nhum và Cái Mơn, nhiều phen phải lánh đi để thoát các cuộc lục soát. Tấn phong Giám mục hiệu toà Isauropolis tại Gò Thị ngày 01/8/1841.',
     mytho: 'Đấng Bản Quyền trong những năm cộng đoàn Công giáo Mỹ Tho hình thành (1861 – 1864); chính ngài nhận bản tường trình năm 1863 của Cha Gernot về nhu cầu của họ đạo.'
@@ -2123,7 +2123,7 @@ const PRE1960_ORDINARIES: {
     mytho: 'Trước khi làm Giám mục, chính ngài được chỉ định lập cơ sở mới tại An Đức thuộc vùng phụ cận Mỹ Tho — họ đạo do các nghĩa quân được Cha Marc xin ân xá lập nên.'
   },
   {
-    name: 'Đức cha Isidore Dumortier', vn: 'Đượm', period: '1926 – 1941', ma: 'IRFA 2406',
+    name: 'Đức cha Isidore Dumortier', vn: 'Đượm', period: '1926 – 1941', image: '/images/dgm_dumortier.jpg', ma: 'IRFA 2406',
     detail:
       'Sinh 06/4/1869 tại Halluin (Nord). Học tại Đại học Grêgôriô ở Rôma, đậu tiến sĩ triết học và thần học trước khi thụ phong linh mục ngày 27/5/1893. Vào Chủng viện Thừa Sai năm 1897, lên đường sang Nam Kỳ 23/11/1898. Làm cha phó rồi năm 1912 kế nhiệm Cha Gernot tại Cái Mơn, ở đó suốt 26 năm. Trong nhiệm kỳ giám mục, ngài lo nâng trình độ học vấn cho các nữ tu Mến Thánh Giá và vận động các Sư huynh Lasan lập Trường Taberd Sài Gòn.',
     mytho: 'Đấng Bản Quyền suốt phần lớn nhiệm kỳ của Cha Bar tại Mỹ Tho, thời kỳ trường Sư huynh Lasan có 400 học sinh và trường Nữ tu Thánh Phaolô 300 nữ sinh.'
@@ -2659,6 +2659,99 @@ export default function GioiThieuPage() {
               2. Giáo Phận Mỹ Tho — Cơ cấu &amp; Các Đời Giám Mục
             </h2>
 
+            <details className="doc-details">
+              <summary className="doc-summary">
+            <h3 id="giao-phan-truoc-1960" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              2.1. Thời kỳ Địa phận Tây Đàng Trong (1844 – 1960)
+            </h3>
+              </summary>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Giáo phận Mỹ Tho chỉ ra đời ngày <strong>24/11/1960</strong>. Trước đó, suốt hơn một thế kỷ, họ đạo Mỹ Tho
+              thuộc quyền <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại diện Tông toà kế
+              tiếp nhau từ năm 1844 đến 1960 chính là các Đấng Bản Quyền của họ đạo trong suốt thời kỳ ấy: các ngài đặt
+              viên đá, làm phép nhà thờ, và cử từng cha sở về Mỹ Tho.
+            </p>
+
+            <div style={{ display: 'grid', gap: '12px', marginBottom: '18px' }}>
+              {PRE1960_ORDINARIES.map((b, idx) => (
+                <div
+                  key={b.name}
+                  style={{
+                    display: 'flex',
+                    gap: '12px',
+                    alignItems: 'flex-start',
+                    padding: '12px',
+                    borderRadius: '10px',
+                    border: '1px solid var(--color-border-subtle)',
+                    backgroundColor: 'var(--color-card-bg)'
+                  }}
+                >
+                  <PortraitFrame src={b.image} name={b.name} width={78} height={104} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--color-dark)' }}>
+                      {idx + 1}. {b.name}
+                      {b.vn && <span style={{ color: 'var(--color-red)' }}> (Cố {b.vn})</span>}
+                    </div>
+                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--color-red)', margin: '2px 0 6px' }}>
+                      Đại diện Tông toà Tây Đàng Trong {b.period}
+                      {b.ma && <span style={{ fontWeight: 500, color: 'var(--color-subtle)' }}> • {b.ma}</span>}
+                    </div>
+                    <p style={{ margin: '0 0 6px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-subtle)', textAlign: 'justify' }}>
+                      {b.detail}
+                    </p>
+                    {b.mytho && (
+                      <p style={{ margin: 0, fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)', textAlign: 'justify' }}>
+                        <strong style={{ color: 'var(--color-red)' }}>Với Mỹ Tho:</strong> {b.mytho}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
+              Chân dung sáu vị Miche, Colombert, Dépierre, Mossard, Quinton và Cassaigne lấy từ văn khố Hội Thừa Sai
+              Paris (IRFA), mã hồ sơ ghi kèm từng vị; chân dung Đức cha Lefebvre và Đức cha Dumortier do Giáo xứ cung cấp.
+              Đủ chân dung tám vị thừa sai; riêng Đức cha Simon Hòa Nguyễn Văn Hiền chưa bổ sung ảnh.
+            </p>
+            </details>
+            <details className="doc-details">
+              <summary className="doc-summary">
+            <h3 id="giao-phan-thanh-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              2.2. Tách Khỏi Sài Gòn &amp; Khai Sinh Giáo Phận Mỹ Tho (1960)
+            </h3>
+              </summary>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Ngày <strong>24 tháng 11 năm 1960</strong>, Thánh Giáo hoàng Gioan XXIII ban hành Tông hiến{' '}
+              <em>Venerabilium Nostrorum</em>, thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam. Địa phận Tây Đàng Trong —
+              lúc này mang tên Sài Gòn — được nâng lên hàng Tổng Giáo phận, đồng thời <strong>bốn tỉnh Định Tường, Long
+              An, Kiến Tường và Kiến Phong được tách ra</strong> để lập thành một giáo phận mới: <strong>Giáo phận Mỹ
+              Tho</strong> (<em>Dioecesis Mythoensis</em>). Việc phân định địa giới cụ thể được ấn định bằng Sắc chỉ{' '}
+              <em>Quod Venerabiles Fratres</em> ngày 27/11/1960.
+            </p>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Cùng văn kiện ấy, ngôi thánh đường Cha Renier xây năm 1906 – 1910 được nâng lên thành{' '}
+              <strong>Nhà thờ Chính Tòa Mỹ Tho</strong>, tước hiệu <strong>Đức Mẹ Vô Nhiễm Nguyên Tội</strong>. Sau gần
+              một trăm năm là một họ đạo trong địa hạt rộng lớn của Tây Đàng Trong, Mỹ Tho trở thành nhà thờ mẹ của cả
+              một giáo phận. Vị Giám mục Tiên khởi được bổ nhiệm là <strong>Đức cha Giuse Trần Văn Thiện</strong>.
+            </p>
+            <p style={{ fontSize: '0.86rem', lineHeight: 1.7, textAlign: 'justify', margin: 0, color: 'var(--color-subtle)', fontStyle: 'italic' }}>
+              Toàn văn năm quyết định của Tông hiến và diễn tiến nghi thức nâng lên Chính Tòa được trình bày chi tiết ở
+              mục 3.3, phần Giáo Xứ Chánh Tòa.
+            </p>
+            </details>
+
+            <details className="doc-details">
+              <summary className="doc-summary">
+            <h3 id="giao-phan-cac-giam-muc" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              2.3. Các Đời Giám Mục Giáo Phận Mỹ Tho (1960 – nay)
+            </h3>
+              </summary>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+              Từ ngày khai sinh năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua <strong>5 đời Giám mục</strong>.
+              <em> Nhấp vào từng vị để xem toàn văn tiểu sử, chức vụ và công trình.</em>
+            </p>
+
             {/* Ảnh Linh mục đoàn & Thánh lễ đồng tế */}
             <div
               className="responsive-grid"
@@ -2701,7 +2794,6 @@ export default function GioiThieuPage() {
             </div>
 
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 18px', textAlign: 'justify' }}>
-              Từ ngày thành lập năm 1960 đến nay, Giáo phận Mỹ Tho đã trải qua 5 đời Giám mục coi sóc. <em>(Nhấp vào từng vị để xem toàn văn tiểu sử &amp; dấu ấn mục vụ)</em>:
             </p>
 
             {/* DANH SÁCH GIÁM MỤC VỚI KHUNG ẢNH ĐỨNG CHUẨN KHÔNG BỊ CẮT ĐẦU */}
@@ -2779,61 +2871,8 @@ export default function GioiThieuPage() {
               ))}
             </div>
 
-            <details className="doc-details">
-              <summary className="doc-summary">
-            <h3 id="giao-phan-truoc-1960" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-              2.1. Các Đấng Bản Quyền Trước Năm 1960
-            </h3>
-              </summary>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              Giáo phận Mỹ Tho chỉ ra đời ngày <strong>24/11/1960</strong>. Trước đó, suốt hơn một thế kỷ, họ đạo Mỹ Tho
-              thuộc quyền <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại diện Tông toà kế
-              tiếp nhau từ năm 1844 đến 1960 chính là các Đấng Bản Quyền của họ đạo trong suốt thời kỳ ấy: các ngài đặt
-              viên đá, làm phép nhà thờ, và cử từng cha sở về Mỹ Tho.
-            </p>
-
-            <div style={{ display: 'grid', gap: '12px', marginBottom: '18px' }}>
-              {PRE1960_ORDINARIES.map((b, idx) => (
-                <div
-                  key={b.name}
-                  style={{
-                    display: 'flex',
-                    gap: '12px',
-                    alignItems: 'flex-start',
-                    padding: '12px',
-                    borderRadius: '10px',
-                    border: '1px solid var(--color-border-subtle)',
-                    backgroundColor: 'var(--color-card-bg)'
-                  }}
-                >
-                  <PortraitFrame src={b.image} name={b.name} width={78} height={104} />
-                  <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--color-dark)' }}>
-                      {idx + 1}. {b.name}
-                      {b.vn && <span style={{ color: 'var(--color-red)' }}> (Cố {b.vn})</span>}
-                    </div>
-                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--color-red)', margin: '2px 0 6px' }}>
-                      Đại diện Tông toà Tây Đàng Trong {b.period}
-                      {b.ma && <span style={{ fontWeight: 500, color: 'var(--color-subtle)' }}> • {b.ma}</span>}
-                    </div>
-                    <p style={{ margin: '0 0 6px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-subtle)', textAlign: 'justify' }}>
-                      {b.detail}
-                    </p>
-                    {b.mytho && (
-                      <p style={{ margin: 0, fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)', textAlign: 'justify' }}>
-                        <strong style={{ color: 'var(--color-red)' }}>Với Mỹ Tho:</strong> {b.mytho}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
-              Chân dung lấy từ văn khố Hội Thừa Sai Paris (IRFA), mã hồ sơ ghi kèm từng vị. Đức cha Lefebvre và Đức cha
-              Dumortier chưa có ảnh trong kho nên để trống — trang này không mượn ảnh vị khác thay vào.
-            </p>
             </details>
+
 
             <details className="doc-details">
               <summary className="doc-summary">
