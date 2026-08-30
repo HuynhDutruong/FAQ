@@ -1874,9 +1874,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: 'Thụ phong linh mục ngày 29/12/2022 tại Nhà thờ Chánh Tòa Mỹ Tho',
     image: '/images/tuyen_uy_nguyen_hoang_anh.jpg',
     source:
-      'Ảnh do giáo xứ cung cấp. Tiểu sử theo thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022, bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net), danh sách Linh mục đương nhiệm 11.2024 và Danh sách thuyên chuyển và bổ nhiệm Linh mục Gp. Mỹ Tho tháng 06.2026',
     shortDesc:
-      'Cha Tuyên Uý thứ tám của Xứ Đoàn, nhận nhiệm vụ ngay trong năm đầu tiên sau khi thụ phong linh mục.',
+      'Cha Tuyên Uý thứ tám của Xứ Đoàn, nhận nhiệm vụ ngay trong năm đầu tiên sau khi thụ phong linh mục. Từ tháng 06/2026 ngài là chánh xứ Giáo xứ Vĩnh Kim, Giáo hạt Cái Bè.',
     chronology: [
       {
         time: '29/12/2022',
@@ -1896,10 +1896,16 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
           'Ngài phục vụ tại chính Giáo xứ Chánh Tòa trong thời gian làm tuyên uý Xứ Đoàn — nhờ vậy đồng hành sát sao với các em đoàn sinh và anh chị Huynh Trưởng.'
       },
       {
-        time: 'Nhiệm sở hiện nay',
+        time: 'Đến 06/2026',
         title: 'Phó xứ Giáo xứ Nữ Vương Hoà Bình, Giáo hạt Mỹ Tho',
         content:
-          'Giáo xứ Nữ Vương Hoà Bình trải trên địa bàn các phường 6, 5, 4 và 1 của thành phố Mỹ Tho, tỉnh Tiền Giang, hiện có khoảng 2.301 giáo dân.'
+          'Giáo xứ Nữ Vương Hoà Bình trải trên địa bàn các phường 6, 5, 4 và 1 của thành phố Mỹ Tho, tỉnh Tiền Giang, có khoảng 2.301 giáo dân.'
+      },
+      {
+        time: '06/2026 – nay',
+        title: 'Chánh xứ Giáo xứ Vĩnh Kim, Giáo hạt Cái Bè',
+        content:
+          'Theo danh sách thuyên chuyển và bổ nhiệm linh mục Giáo phận Mỹ Tho tháng 06/2026, ngài rời chức phó xứ Nữ Vương Hoà Bình để nhận nhiệm sở mới làm chánh xứ Giáo xứ Vĩnh Kim, Giáo hạt Cái Bè.'
       }
     ],
     milestones: []
@@ -1950,9 +1956,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: 'Thụ phong linh mục ngày 30/08/2024 tại Nhà thờ Chánh Tòa Mỹ Tho',
     image: '/images/tuyen_uy_nguyen_van_thanh.jpg',
     source:
-      'Ảnh do giáo xứ cung cấp. Tiểu sử theo bản tin Thánh lễ truyền chức linh mục ngày 30/08/2024 (giaophanmytho.net) và danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo bản tin Thánh lễ truyền chức linh mục ngày 30/08/2024 (giaophanmytho.net), danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và Danh sách thuyên chuyển và bổ nhiệm Linh mục Gp. Mỹ Tho tháng 06.2026',
     shortDesc:
-      'Cha Tuyên Uý đương nhiệm của Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho.',
+      'Cha Tuyên Uý đương nhiệm của Xứ Đoàn Các Thánh Tử Đạo Việt Nam. Ngài được điều về làm phó xứ Giáo xứ Chánh Toà trong đợt thuyên chuyển tháng 06/2026.',
     chronology: [
       {
         time: '30/08/2024',
@@ -1961,10 +1967,16 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
           'Chịu chức linh mục tại Nhà thờ Chánh Tòa Mỹ Tho do Đức Cha Phêrô Nguyễn Văn Khảm chủ phong, cùng năm tân linh mục khác. Thánh lễ đồng thời mừng Đức Cha Phêrô kỷ niệm 44 năm linh mục và 10 năm nhận Giáo phận Mỹ Tho.'
       },
       {
-        time: '2024',
-        title: 'Nhiệm sở đầu tiên: Giáo xứ Cần Giuộc, Giáo hạt Đức Hoà',
+        time: '2024 – 2026',
+        title: 'Phục vụ tại Giáo hạt Đức Hoà',
         content:
-          'Ngay sau khi thụ phong, ngài được sai đến Giáo xứ Cần Giuộc thuộc Giáo hạt Đức Hoà (theo danh sách linh mục đoàn 11.2024).'
+          'Ngay sau khi thụ phong, ngài được sai về Giáo hạt Đức Hoà: danh sách linh mục đoàn tháng 11/2024 ghi nhiệm sở Cần Giuộc, đến trước tháng 06/2026 ngài phục vụ tại Giáo xứ Lương Hoà Thượng cùng giáo hạt.'
+      },
+      {
+        time: '06/2026',
+        title: 'Phó xứ Giáo xứ Chánh Toà, Giáo hạt Mỹ Tho',
+        content:
+          'Danh sách thuyên chuyển và bổ nhiệm linh mục Giáo phận Mỹ Tho tháng 06/2026 điều ngài từ Giáo xứ Lương Hoà Thượng về làm phó xứ Giáo xứ Chánh Toà — cũng chính là nhiệm sở gắn ngài với sứ vụ Tuyên Uý Xứ Đoàn.'
       },
       {
         time: '2026 – nay',
