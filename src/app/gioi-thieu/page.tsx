@@ -2135,7 +2135,7 @@ const PRE1960_ORDINARIES: {
     mytho: 'Đấng Bản Quyền qua thời kỳ Nhật chiếm đóng và những năm cuối đời Cha Bar; chính ngài phân bổ các thừa sai về Mỹ Tho trong giai đoạn này.'
   },
   {
-    name: 'Đức cha Simon Hòa Nguyễn Văn Hiền', vn: '', period: '1955 – 1960',
+    name: 'Đức cha Simon Hòa Nguyễn Văn Hiền', vn: '', period: '1955 – 1960', image: '/images/dgm_nguyen_van_hien.jpg',
     detail:
       'Vị Đại diện Tông toà người Việt Nam đầu tiên của địa phận Sài Gòn. Năm 1960, khi Hàng Giáo Phẩm Việt Nam được thiết lập, ngài trở thành Giám mục Chính tòa tiên khởi Giáo phận Đà Lạt.',
     mytho: 'Đấng Bản Quyền cuối cùng của họ đạo Mỹ Tho trước khi Giáo phận Mỹ Tho được khai sinh ngày 24/11/1960.'
@@ -2722,7 +2722,8 @@ export default function GioiThieuPage() {
             <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
               Chân dung sáu vị Miche, Colombert, Dépierre, Mossard, Quinton và Cassaigne lấy từ văn khố Hội Thừa Sai
               Paris (IRFA), mã hồ sơ ghi kèm từng vị; chân dung Đức cha Lefebvre và Đức cha Dumortier do Giáo xứ cung cấp.
-              Đủ chân dung tám vị thừa sai; riêng Đức cha Simon Hòa Nguyễn Văn Hiền chưa bổ sung ảnh.
+              Chân dung Đức cha Simon Hòa Nguyễn Văn Hiền cũng do Giáo xứ cung cấp. Nay đủ chân dung cả chín vị Đấng Bản
+              Quyền của họ đạo Mỹ Tho từ năm 1844 đến 1960.
             </p>
             </details>
             <details className="doc-details">
