@@ -74,22 +74,16 @@ export default function BentoGridSheet({
         <div style={{ width: '38px', height: '4px', borderRadius: '4px', backgroundColor: 'var(--color-border-subtle)', margin: '0 auto 14px' }} />
 
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-          <div>
-            <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-              Khám Phá & Tiện Ích
-            </h3>
-            <p style={{ margin: '2px 0 0', fontSize: '0.74rem', color: 'var(--color-subtle)' }}>
-              Các tính năng và chuyên mục mở rộng của xứ đoàn
-            </p>
-          </div>
-
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+          <h3 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+            Xem thêm
+          </h3>
           <button
             type="button"
             onClick={onClose}
             style={{
-              width: '32px',
-              height: '32px',
+              width: '44px',
+              height: '44px',
               borderRadius: '50%',
               backgroundColor: 'var(--color-input-bg)',
               border: '1px solid var(--color-border-subtle)',
@@ -101,114 +95,89 @@ export default function BentoGridSheet({
             }}
             aria-label="Đóng"
           >
-            <X size={16} />
+            <X size={22} />
           </button>
         </div>
 
-        {/* Bento Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+        {/* Danh sách hàng lớn — mỗi mục một dòng, chữ to, vùng chạm rộng.
+            Trước đây dùng lưới 2 cột với hai kiểu thẻ khác nhau và chữ mô tả
+            0.74rem: người lớn tuổi khó đọc và khó đoán đâu là nút bấm. */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {BENTO_EXTENDED_ITEMS.map((item) => {
             const IconComp = item.icon;
             const title = item.titleKey && (t as any)[item.titleKey] ? (t as any)[item.titleKey] : item.defaultTitle;
             const desc = item.descKey && (t as any)[item.descKey] ? (t as any)[item.descKey] : item.defaultDesc;
 
-            if (item.href) {
-              return (
-                <Link
-                  key={item.id}
-                  href={item.href}
-                  onClick={onClose}
-                  style={{
-                    gridColumn: item.isFullWidth ? 'span 2' : 'span 1',
-                    display: 'flex',
-                    flexDirection: item.isFullWidth ? 'row' : 'column',
-                    alignItems: item.isFullWidth ? 'center' : 'flex-start',
-                    justifyContent: 'space-between',
-                    padding: item.isFullWidth ? '14px 16px' : '12px 14px',
-                    borderRadius: item.isFullWidth ? '16px' : '14px',
-                    background: item.isFullWidth
-                      ? 'linear-gradient(135deg, rgba(183, 28, 28, 0.08) 0%, rgba(220, 38, 38, 0.03) 100%)'
-                      : 'var(--color-input-bg)',
-                    border: item.isFullWidth ? '1px solid rgba(220, 38, 38, 0.2)' : '1px solid var(--color-border-subtle)',
-                    textDecoration: 'none',
-                    minHeight: item.isFullWidth ? 'auto' : '94px',
-                    transition: 'all 0.15s ease'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div
-                      style={{
-                        width: item.isFullWidth ? '42px' : '34px',
-                        height: item.isFullWidth ? '42px' : '34px',
-                        borderRadius: item.isFullWidth ? '12px' : '10px',
-                        backgroundColor: item.isFullWidth ? item.color : item.bgLight,
-                        color: item.isFullWidth ? '#FFFFFF' : item.color,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        boxShadow: item.isFullWidth ? `0 4px 12px ${item.color}40` : 'none',
-                        marginBottom: item.isFullWidth ? 0 : '8px'
-                      }}
-                    >
-                      <IconComp size={item.isFullWidth ? 22 : 18} />
-                    </div>
-                    <div>
-                      <div style={{ fontSize: item.isFullWidth ? '0.92rem' : '0.84rem', fontWeight: 800, color: 'var(--color-dark)' }}>
-                        {title}
-                      </div>
-                      <div style={{ fontSize: item.isFullWidth ? '0.72rem' : '0.68rem', color: 'var(--color-subtle)', marginTop: '2px' }}>
-                        {desc}
-                      </div>
-                    </div>
-                  </div>
-                  {item.isFullWidth && <ChevronRight size={18} color="var(--color-red)" />}
-                </Link>
-              );
-            }
+            const rowStyle: React.CSSProperties = {
+              display: 'flex',
+              alignItems: 'center',
+              gap: '14px',
+              width: '100%',
+              minHeight: '72px',
+              padding: '12px 14px',
+              borderRadius: '14px',
+              backgroundColor: 'var(--color-card-bg)',
+              border: '1px solid var(--color-border-subtle)',
+              textDecoration: 'none',
+              textAlign: 'left',
+              cursor: 'pointer',
+              font: 'inherit'
+            };
 
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => handleAction(item)}
-                style={{
-                  gridColumn: item.isFullWidth ? 'span 2' : 'span 1',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  padding: '12px 14px',
-                  borderRadius: '14px',
-                  backgroundColor: 'var(--color-input-bg)',
-                  border: '1px solid var(--color-border-subtle)',
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  minHeight: '94px',
-                  transition: 'all 0.15s ease'
-                }}
-              >
-                <div
+            const inner = (
+              <>
+                <span
                   style={{
-                    width: '34px',
-                    height: '34px',
-                    borderRadius: '10px',
+                    width: '48px',
+                    height: '48px',
+                    flexShrink: 0,
+                    borderRadius: '14px',
                     backgroundColor: item.bgLight,
                     color: item.color,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '8px'
+                    justifyContent: 'center'
                   }}
                 >
-                  <IconComp size={18} />
-                </div>
-                <div>
-                  <div style={{ fontSize: '0.84rem', fontWeight: 800, color: 'var(--color-dark)' }}>
+                  <IconComp size={26} strokeWidth={2} />
+                </span>
+
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span
+                    style={{
+                      display: 'block',
+                      fontSize: '1.02rem',
+                      fontWeight: 800,
+                      color: 'var(--color-dark)',
+                      lineHeight: 1.3
+                    }}
+                  >
                     {title}
-                  </div>
-                  <div style={{ fontSize: '0.68rem', color: 'var(--color-subtle)', marginTop: '1px' }}>
+                  </span>
+                  <span
+                    style={{
+                      display: 'block',
+                      fontSize: '0.86rem',
+                      color: 'var(--color-subtle)',
+                      lineHeight: 1.45,
+                      marginTop: '2px'
+                    }}
+                  >
                     {desc}
-                  </div>
-                </div>
+                  </span>
+                </span>
+
+                <ChevronRight size={22} color="var(--color-subtle)" style={{ flexShrink: 0 }} />
+              </>
+            );
+
+            return item.href ? (
+              <Link key={item.id} href={item.href} onClick={onClose} style={rowStyle}>
+                {inner}
+              </Link>
+            ) : (
+              <button key={item.id} type="button" onClick={() => handleAction(item)} style={rowStyle}>
+                {inner}
               </button>
             );
           })}
