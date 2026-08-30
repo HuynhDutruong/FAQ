@@ -2368,7 +2368,17 @@ export default function GioiThieuPage() {
                   <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
                     <li>
                       <a href="#giao-phan-truoc-1960" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Các Đấng Bản Quyền trước năm 1960
+                        Thời kỳ Địa phận Tây Đàng Trong (1844 – 1960)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#giao-phan-thanh-lap" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Tách khỏi Sài Gòn &amp; Khai sinh Giáo phận (1960)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#giao-phan-cac-giam-muc" style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Các Đời Giám Mục Giáo phận Mỹ Tho (1960 – nay)
                       </a>
                     </li>
                     <li>
@@ -2877,7 +2887,7 @@ export default function GioiThieuPage() {
             <details className="doc-details">
               <summary className="doc-summary">
             <h3 id="giao-phan-anh-tu-lieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-              2.2. Ảnh Tư Liệu Giáo Phận Mỹ Tho
+              2.4. Ảnh Tư Liệu Giáo Phận Mỹ Tho
             </h3>
               </summary>
             <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
