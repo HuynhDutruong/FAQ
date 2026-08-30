@@ -1,11 +1,11 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect, useSyncExternalStore } from 'react';
-import { Language, translations } from './translations';
+import { Language, LANGUAGES, vi, loadDictionary, type Dictionary } from './translations';
 
 type LanguageContextType = {
   lang: Language;
   setLang: (lang: Language) => void;
-  t: typeof translations.vi;
+  t: Dictionary;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -18,11 +18,11 @@ function detectLanguage(): Language {
   const queryLang = urlParams.get('lang');
   const storedLang = localStorage.getItem('app_lang') as Language;
 
-  if (pathLangMatch && Object.keys(translations).includes(pathLangMatch[1])) {
+  if (pathLangMatch && LANGUAGES.includes(pathLangMatch[1] as Language)) {
     return pathLangMatch[1] as Language;
-  } else if (queryLang && Object.keys(translations).includes(queryLang)) {
+  } else if (queryLang && LANGUAGES.includes(queryLang as Language)) {
     return queryLang as Language;
-  } else if (storedLang && Object.keys(translations).includes(storedLang)) {
+  } else if (storedLang && LANGUAGES.includes(storedLang)) {
     return storedLang;
   }
   return 'vi';
@@ -114,7 +114,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     window.history.pushState(null, '', newPathname + newSearch);
   };
 
-  const t = { ...translations.vi, ...translations.en, ...translations[lang] } as typeof translations.vi;
+  // Bộ chuỗi của ngôn ngữ khác tiếng Việt được nạp động; trong lúc chờ vẫn
+  // hiển thị tiếng Việt thay vì để trống.
+  const [dict, setDict] = useState<Partial<Dictionary>>({});
+  useEffect(() => {
+    if (lang === 'vi') { setDict({}); return; }
+    let cancelled = false;
+    loadDictionary(lang).then((d) => { if (!cancelled) setDict(d); });
+    return () => { cancelled = true; };
+  }, [lang]);
+
+  const t = { ...vi, ...dict } as Dictionary;
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>

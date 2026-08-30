@@ -18,7 +18,7 @@ import {
   BookMarked
 } from 'lucide-react';
 import { FAITH_FAQS, FAITH_CATEGORIES, FaithFAQ } from '@/lib/faithFAQs';
-import { removeAccents } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 import Modal from '@/components/Modal';
 import FAQForm from '@/components/FAQForm';
 import Rating from '@/components/Rating';

@@ -42,8 +42,8 @@
 
   /* Fallback cho font chữ */
   --font-be-vietnam-pro: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
-  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-noto-sans-sc: 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  --font-inter: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-noto-sans-sc: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
 
   /* Default Font (Vietnamese) */
   --font-primary: var(--font-be-vietnam-pro);

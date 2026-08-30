@@ -39,8 +39,8 @@ import {
   rejectMassTimeFeedback,
   deleteMassTimeFeedback,
   parseTimes,
-  removeAccents
-} from '@/lib/massTimes';
+  } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 import { ALL_DIOCESES, dioceseLabel } from '@/lib/dioceses';
 import { db } from '@/lib/firebase';
 import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';

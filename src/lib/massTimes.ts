@@ -89,8 +89,7 @@ export async function getChanhToaMassInfo(): Promise<MassTime> {
 }
 
 /** Xoá dấu tiếng Việt để tìm kiếm không cần gõ dấu. Đ/đ không tách được bằng NFD nên xử lý riêng. */
-export const removeAccents = (str: string) =>
-  str.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/đ/g, 'd');
+export { removeAccents } from './textUtils';
 
 /**
  * Danh sách tỉnh/thành + giáo phận kèm số nhà thờ.

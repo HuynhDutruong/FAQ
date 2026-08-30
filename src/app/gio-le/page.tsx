@@ -33,8 +33,8 @@ import {
   Bucket,
   getByDiocese,
   getFacets,
-  removeAccents
-} from '@/lib/massTimes';
+  } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 import {
   calculateDistance,
   getNearbyDioceses,

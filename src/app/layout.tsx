@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Be_Vietnam_Pro, Inter, Noto_Sans_SC } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from '@/lib/i18n/LanguageContext';
 import Footer from '@/components/Footer';
@@ -9,21 +9,14 @@ import MobileBottomNav from '@/components/MobileBottomNav';
 import GoogleTranslateScript from '@/components/GoogleTranslateScript';
 import FirebaseAnalytics from '@/components/FirebaseAnalytics';
 
+// Chỉ tải font tiếng Việt. Inter (lang=en) và Noto Sans SC (lang=zh) trước đây
+// tải cho MỌI khách nhưng chỉ dùng khi đổi ngôn ngữ — nay để system-ui đảm nhiệm.
+// Bỏ luôn weight 500 (chỉ dùng 5 chỗ trong toàn bộ mã nguồn).
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
   subsets: ["vietnamese", "latin"],
-  weight: ['400', '500', '600', '700', '800', '900']
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const notoSansSC = Noto_Sans_SC({
-  variable: "--font-noto-sans-sc",
-  subsets: ["latin"],
-  weight: ['400', '500', '700', '900']
+  weight: ['400', '600', '700', '800', '900'],
+  display: 'swap'
 });
 
 export const viewport: Viewport = {
@@ -79,12 +72,14 @@ export const metadata: Metadata = {
     description: "Trang thông tin chính thức của Xứ Đoàn Các Thánh Tử Đạo Việt Nam — Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho.",
   },
   icons: {
+    // Chỉ khai favicon nhỏ ở đây. Icon 512px dành riêng cho manifest (cài PWA),
+    // nếu khai làm rel=icon thì trình duyệt tải nó trên MỌI trang.
     icon: [
       { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/icon.png", sizes: "512x512", type: "image/png" }
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" }
     ],
     apple: [
-      { url: "/apple-icon.png", sizes: "512x512", type: "image/png" }
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
     ],
     shortcut: "/favicon.ico"
   }
@@ -136,7 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="vi" className={`${beVietnamPro.variable} ${inter.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
+    <html lang="vi" className={beVietnamPro.variable} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

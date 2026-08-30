@@ -29,7 +29,7 @@ import {
   Users
 } from 'lucide-react';
 import { PRAYERS, PRAYER_CATEGORIES, Prayer } from '@/lib/prayersData';
-import { removeAccents } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 
 const FAVORITES_STORAGE_KEY = 'catholic_favorite_prayers_v2';
 

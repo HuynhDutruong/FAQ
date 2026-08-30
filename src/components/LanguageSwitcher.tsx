@@ -57,7 +57,13 @@ export default function LanguageSwitcher() {
         {/* Native invisible select covering the whole pill */}
         <select
           value={lang}
-          onChange={(e) => setLang(e.target.value as Language)}
+          onChange={(e) => {
+            // Báo cho GoogleTranslateScript nạp ngay thay vì chờ lúc rảnh
+            if (e.target.value !== 'vi') {
+              window.dispatchEvent(new Event('app:need-translate'));
+            }
+            setLang(e.target.value as Language);
+          }}
           aria-label="Chọn ngôn ngữ"
           style={{
             position: 'absolute',

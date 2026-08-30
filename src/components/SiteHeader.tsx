@@ -14,7 +14,14 @@ import {
   Sparkles
 } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
-import OmniSearch from './OmniSearch';
+import dynamic from 'next/dynamic';
+
+// OmniSearch kéo theo PRAYERS, FAITH_FAQS, BIBLE_BOOKS và danh sách giáo phận
+// (~140KB) nhưng chỉ dùng khi người dùng bấm tìm kiếm — nạp động.
+const OmniSearch = dynamic(() => import('@/components/OmniSearch'), {
+  ssr: false,
+  loading: () => <span style={{ display: 'inline-block', width: 34, height: 34 }} />
+});
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function SiteHeader() {

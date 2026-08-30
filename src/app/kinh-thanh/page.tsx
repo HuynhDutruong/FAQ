@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import { BIBLE_BOOKS, BIBLE_SUMMARY_INFO, BibleBookInfo, Testament, BibleBookGroup, getBibleBookArtwork } from '@/lib/bible';
 import { getCatholicBookIntro } from '@/lib/bible/bibleIntroductions';
-import { removeAccents } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 import BibleCardShareModal from '@/components/BibleCardShareModal';
 
 type CategoryFilter = 'all' | 'old' | 'new' | BibleBookGroup;

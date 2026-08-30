@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { PRAYERS, PRAYER_CATEGORIES, Prayer } from '@/lib/prayersData';
 import { FAITH_FAQS, FAITH_CATEGORIES, FaithFAQ } from '@/lib/faithFAQs';
-import { removeAccents } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 
 const PRAYERS_STORAGE_KEY = 'custom_prayers_db_v1';
 const FAQS_STORAGE_KEY = 'custom_faith_faqs_db_v1';

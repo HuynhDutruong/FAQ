@@ -21,7 +21,7 @@ import {
 import { PRAYERS } from '@/lib/prayersData';
 import { FAITH_FAQS } from '@/lib/faithFAQs';
 import { ECCLESIASTICAL_PROVINCES, ALL_DIOCESES } from '@/lib/dioceses';
-import { removeAccents } from '@/lib/massTimes';
+import { removeAccents } from '@/lib/textUtils';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import { BIBLE_BOOKS } from '@/lib/bible';
 
