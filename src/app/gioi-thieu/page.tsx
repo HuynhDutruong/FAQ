@@ -1772,8 +1772,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1984',
     origin: 'Giáo xứ Anrê, Thanh Bình, Đồng Tháp',
     priestOrdination: 'Thụ phong linh mục ngày 21/04/2017 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    image: '/images/tuyen_uy_phan_van_dai.jpg',
     source:
-      'Thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 04/02/2017; danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 04/02/2017 và danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
     shortDesc:
       'Cha Tuyên Uý thứ năm của Xứ Đoàn. Sau nhiệm kỳ tuyên uý, ngài được cử đi du học tại Philippines.',
     chronology: [
