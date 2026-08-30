@@ -1736,8 +1736,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1978',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2013',
+    image: '/images/tuyen_uy_nguyen_thanh_danh.jpg',
     source:
-      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Gx. An Thái Trung: Thánh lễ Tạ ơn và nhận sở mới của cha Phêrô Nguyễn Thành Danh", giaophanmytho.net, 31/08/2023',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và bài "Gx. An Thái Trung: Thánh lễ Tạ ơn và nhận sở mới của cha Phêrô Nguyễn Thành Danh", giaophanmytho.net, 31/08/2023',
     shortDesc:
       'Cha Tuyên Uý thứ tư của Xứ Đoàn, đồng hành gần ba năm trong giai đoạn Xứ Đoàn mở rộng số đoàn sinh và củng cố đội ngũ Huynh Trưởng. Từ năm 2023 ngài là cha sở Giáo xứ An Thái Trung, Giáo hạt Cái Bè.',
     chronology: [
@@ -1804,8 +1805,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1986',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2019',
+    image: '/images/tuyen_uy_truong_ngoc_duc.jpg',
     source:
-      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Cha Phêrô Trương Ngọc Đức – Tân chánh xứ Giáo xứ Mỹ Điền", giaophanmytho.net, 04/08/2023',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và bài "Cha Phêrô Trương Ngọc Đức – Tân chánh xứ Giáo xứ Mỹ Điền", giaophanmytho.net, 04/08/2023',
     shortDesc:
       'Cha Tuyên Uý thứ sáu của Xứ Đoàn, đồng hành đúng vào giai đoạn đại dịch khi mọi sinh hoạt tập trung của Xứ Đoàn bị gián đoạn. Nguyên cha phó Giáo xứ Tân An, từ năm 2023 ngài là chánh xứ Giáo xứ Mỹ Điền.',
     chronology: [
@@ -1839,8 +1841,9 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1985',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2019',
+    image: '/images/tuyen_uy_tran_anh_duy.jpg',
     source:
-      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Giáo xứ Gò Da: Cha Tổng Đại Diện chủ sự thánh lễ nhận xứ", giaophanmytho.net, 10/08/2023',
+      'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và bài "Giáo xứ Gò Da: Cha Tổng Đại Diện chủ sự thánh lễ nhận xứ", giaophanmytho.net, 10/08/2023',
     shortDesc:
       'Cha Tuyên Uý thứ bảy của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn khôi phục sinh hoạt sau đại dịch. Từ năm 2023 ngài là cha sở Giáo xứ Gò Da, Giáo hạt Cù Lao Tây.',
     chronology: [
