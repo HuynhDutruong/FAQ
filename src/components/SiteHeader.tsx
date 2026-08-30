@@ -214,17 +214,22 @@ export default function SiteHeader() {
         }
         @media (min-width: 768px) {
           .site-nav-scrollbar {
-            display: grid !important;
-            grid-template-columns: repeat(6, 1fr) !important;
-            padding: 0 4px !important;
+            justify-content: center !important;
+            gap: 4px !important;
+            padding: 0 8px !important;
+            overflow-x: visible !important;
           }
           .site-nav-link {
-            border-radius: 0 !important;
+            border-radius: 8px 8px 0 0 !important;
             margin: 0 !important;
-            padding: 9px 4px !important;
+            padding: 10px 18px !important;
+            font-size: 0.88rem !important;
             color: var(--color-nav-text) !important;
             background-color: transparent !important;
             border-bottom: 2.5px solid transparent !important;
+          }
+          .site-nav-link:hover {
+            background-color: var(--color-nav-active-bg) !important;
           }
           .site-nav-link.active {
             color: var(--color-nav-active-text) !important;

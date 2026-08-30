@@ -32,12 +32,9 @@ export default function MobileBottomNav() {
           left: 0,
           right: 0,
           zIndex: 9990,
-          backgroundColor: 'var(--color-nav-glass)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           borderTop: '1px solid var(--color-border-subtle)',
-          boxShadow: '0 -3px 16px rgba(0, 0, 0, 0.06)',
-          paddingTop: '5px',
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.08)',
+          paddingTop: '6px',
           paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 6px)',
           userSelect: 'none'
         }}
@@ -82,29 +79,15 @@ export default function MobileBottomNav() {
                   position: 'relative'
                 }}
               >
-                {isActive && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      top: '-4px',
-                      width: '16px',
-                      height: '3px',
-                      borderRadius: '99px',
-                      backgroundColor: 'var(--color-red)',
-                      boxShadow: '0 1px 4px rgba(211, 47, 47, 0.5)'
-                    }}
-                  />
-                )}
-
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: '28px',
-                    height: '24px',
-                    borderRadius: '12px',
-                    backgroundColor: isActive ? 'rgba(211, 47, 47, 0.1)' : 'transparent',
+                    width: '40px',
+                    height: '26px',
+                    borderRadius: '13px',
+                    backgroundColor: isActive ? 'rgba(211, 47, 47, 0.12)' : 'transparent',
                     transition: 'all 0.15s ease'
                   }}
                 >

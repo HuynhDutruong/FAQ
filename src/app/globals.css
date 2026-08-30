@@ -1872,16 +1872,53 @@ body {
 /* ========================================================================= */
 /* MOBILE BOTTOM NAVIGATION BAR & SAFE-AREA PADDING */
 /* ========================================================================= */
+/* Nền thanh nav phải đủ đục: 0.88 cho nội dung phía sau lộ qua, chữ khó đọc
+   khi cuộn ngang bảng hoặc lịch. Blur chỉ là hiệu ứng thêm, không phải nền. */
+.mobile-bottom-nav {
+  background-color: rgba(255, 255, 255, 0.97);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .mobile-bottom-nav {
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+}
+
+[data-theme="dark"] .mobile-bottom-nav,
+.mobile-bottom-nav.dark {
+  background-color: rgba(27, 29, 34, 0.97);
+}
+
+@media (prefers-color-scheme: dark) {
+  .mobile-bottom-nav {
+    background-color: rgba(27, 29, 34, 0.97);
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .mobile-bottom-nav {
+      background-color: rgba(27, 29, 34, 0.97);
+    }
+  }
+}
+
 @media (max-width: 767px) {
   body {
-    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+    padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .chat-bubble-btn {
-    bottom: calc(68px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(74px + env(safe-area-inset-bottom, 0px)) !important;
     right: 16px !important;
     width: 48px !important;
     height: 48px !important;
+  }
+}
+
+/* Màn hình rất hẹp: thu nhãn để 5 mục không chạm nhau */
+@media (max-width: 359px) {
+  .mobile-bottom-nav-item span:last-child {
+    font-size: 0.6rem !important;
   }
 }
 
