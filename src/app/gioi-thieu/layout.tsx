@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Giới Thiệu Xứ Đoàn Các Thánh Tử Đạo Việt Nam & Giáo Xứ Chánh Tòa Mỹ Tho',
-  description: 'Giới thiệu về Xứ Đoàn Các Thánh Tử Đạo Việt Nam (Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho), lịch sử họ đạo Chánh Tòa từ năm 1906, 5 vị Giám mục, Tòa Thánh Vatican & Đức Giáo Hoàng Lêô XIV, Giáo Hội Việt Nam.',
+  description: 'Giới thiệu về Xứ Đoàn Các Thánh Tử Đạo Việt Nam (Giáo Xứ Chánh Tòa Giáo Phận Mỹ Tho), lịch sử họ đạo Chánh Tòa từ năm 1861, 5 vị Giám mục, Tòa Thánh Vatican & Đức Giáo Hoàng Lêô XIV, Giáo Hội Việt Nam.',
   alternates: {
     canonical: 'https://chanhtoa.tnttgiaophanmytho.online/gioi-thieu',
   },

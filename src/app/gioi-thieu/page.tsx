@@ -2084,14 +2084,14 @@ export default function GioiThieuPage() {
               <ArrowLeft size={14} /> Trang Chủ
             </Link>
             <span>/</span>
-            <span>Tài Liệu Bách Khoa</span>
+            <span>Bản Nghiên Cứu Lịch Sử</span>
             <span>/</span>
             <span style={{ color: 'var(--color-dark)', fontWeight: 700 }}>Nhà Thờ Chính Tòa Mỹ Tho</span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem' }}>
             <Globe size={14} color="var(--color-red)" />
-            <span>Bách khoa toàn thư Công Giáo</span>
+            <span>Bản nghiên cứu lịch sử</span>
           </div>
         </div>
       </div>
@@ -2133,7 +2133,7 @@ export default function GioiThieuPage() {
               marginBottom: '18px'
             }}
           >
-            Bách khoa toàn thư Công Giáo — Giáo xứ Chánh Tòa &amp; Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
+            Bản nghiên cứu lịch sử — Giáo xứ Chánh Tòa &amp; Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
           </div>
 
           {/* Dẫn nhập tổng quan (Lead Paragraph) */}
@@ -4165,7 +4165,7 @@ export default function GioiThieuPage() {
                     TIỂU SỬ HÀNG GIÁO PHẨM CÔNG GIÁO
                   </div>
                   <div style={{ fontSize: '0.72rem', color: 'var(--color-subtle)' }}>
-                    Tài liệu Bách khoa toàn thư Giáo phận Mỹ Tho
+                    Bản nghiên cứu lịch sử Giáo phận Mỹ Tho
                   </div>
                 </div>
               </div>
