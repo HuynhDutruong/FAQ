@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { fetchPostDetail } from '@/lib/fetchPostDetail';
+import { fetchPostDetail, getLastPostFailure } from '@/lib/fetchPostDetail';
 import ArticleDetailView from '@/components/ArticleDetailView';
 
 export const dynamic = 'force-dynamic';
@@ -105,10 +105,14 @@ export default async function BaiVietPage({ params }: Props) {
         }}
       >
         <h2 style={{ fontSize: '1.4rem', color: 'var(--color-primary)', marginBottom: '12px' }}>
-          Không tìm thấy bài viết
+          {getLastPostFailure() === 'unavailable'
+            ? 'Tạm thời chưa tải được bài viết'
+            : 'Không tìm thấy bài viết'}
         </h2>
         <p style={{ color: 'var(--color-text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>
-          Bài viết có thể đã bị gỡ bỏ hoặc bạn đã nhập sai đường dẫn.
+          {getLastPostFailure() === 'unavailable'
+            ? 'Máy chủ đang không kết nối được tới nguồn bài viết. Bài viết vẫn còn — xin thử lại sau ít phút.'
+            : 'Bài viết có thể đã bị gỡ bỏ hoặc bạn đã nhập sai đường dẫn.'}
         </p>
         <Link
           href="/"

@@ -20,6 +20,22 @@ const POST_FIELDS =
 const memoryCache = new Map<string, { at: number; post: PostDetail }>();
 const CACHE_TTL_MS = 60 * 1000; // 1 phút
 
+/**
+ * Phân biệt hai tình huống rất khác nhau mà trước đây đều trả về null:
+ *  - 'missing'     : bài viết thật sự không còn trên Facebook.
+ *  - 'unavailable' : máy chủ chưa lấy được (thiếu token, hết hạn mức Firestore,
+ *                    Graph API lỗi). Bài viết vẫn còn, chỉ tạm thời không tải được.
+ * Báo sai loại khiến người dùng tưởng bài đã bị gỡ.
+ */
+export type PostFetchFailure = 'missing' | 'unavailable';
+
+let lastFailure: PostFetchFailure = 'missing';
+
+/** Lý do của lần fetchPostDetail gần nhất trả về null. */
+export function getLastPostFailure(): PostFetchFailure {
+  return lastFailure;
+}
+
 export async function fetchPostDetail(id: string): Promise<PostDetail | null> {
   if (!id) return null;
 
@@ -45,7 +61,11 @@ export async function fetchPostDetail(id: string): Promise<PostDetail | null> {
     }
   }
 
-  if (!pageToken) return null;
+  if (!pageToken) {
+    // Không có token nghĩa là hệ thống chưa sẵn sàng, không phải bài viết bị gỡ.
+    lastFailure = 'unavailable';
+    return null;
+  }
 
   try {
     const res = await fetch(
@@ -53,9 +73,17 @@ export async function fetchPostDetail(id: string): Promise<PostDetail | null> {
       { next: { revalidate: 300 } }
     );
 
-    if (!res.ok) return null;
+    if (!res.ok) {
+      // 4xx do bài không tồn tại; còn lại coi là sự cố tạm thời.
+      lastFailure = res.status === 404 || res.status === 400 ? 'missing' : 'unavailable';
+      return null;
+    }
     const post = await res.json();
-    if (post.error) return null;
+    if (post.error) {
+      const code = Number(post.error?.code);
+      lastFailure = code === 100 || code === 803 ? 'missing' : 'unavailable';
+      return null;
+    }
 
     // Ảnh trong album: Graph trả nhiều ảnh con qua subattachments
     const attachment = post.attachments?.data?.[0];
@@ -86,6 +114,7 @@ export async function fetchPostDetail(id: string): Promise<PostDetail | null> {
     return detail;
   } catch (err) {
     console.error('Error fetching post detail for id', id, err);
+    lastFailure = 'unavailable';
     return null;
   }
 }
