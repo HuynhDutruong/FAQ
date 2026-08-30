@@ -92,6 +92,53 @@ async function verifyAdmin(request: Request): Promise<string> {
   return email;
 }
 
+/** Đọc role của một email quản trị. Host trong danh sách cứng luôn là super_admin. */
+export async function getAdminRole(email: string): Promise<string> {
+  if (PRIMARY_HOST_EMAILS.includes(email.toLowerCase())) return 'super_admin';
+  try {
+    if (process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+      const { adminDb } = await import('@/lib/firebaseAdmin');
+      const snap = await adminDb().collection('users').doc(email.toLowerCase()).get();
+      const data = snap.data();
+      if (snap.exists && data?.status === 'active') return (data.role as string) || 'admin';
+    }
+  } catch (err) {
+    console.warn('Không đọc được role quản trị:', err);
+  }
+  return 'admin';
+}
+
+/**
+ * Bọc route handler và bắt buộc người gọi thuộc một trong các ban được phép.
+ * super_admin và host luôn qua được.
+ */
+export function withRole(
+  allowed: string[],
+  handler: (request: Request, ctx: { email: string; role: string }) => Promise<NextResponse>
+) {
+  return async (request: Request): Promise<NextResponse> => {
+    try {
+      const email = await verifyAdmin(request);
+      const role = await getAdminRole(email);
+      const ok = role === 'super_admin' || role === 'host' || allowed.includes(role);
+      if (!ok) {
+        return NextResponse.json(
+          { error: 'Tài khoản của bạn không thuộc ban được phân công quản lý nội dung này.' },
+          { status: 403 }
+        );
+      }
+      return await handler(request, { email, role });
+    } catch (err: unknown) {
+      if (err instanceof AuthError) {
+        return NextResponse.json({ error: err.message }, { status: err.status });
+      }
+      console.error('Lỗi xác thực quản trị:', err);
+      const msg = err instanceof Error ? err.message : 'Lỗi máy chủ';
+      return NextResponse.json({ error: msg }, { status: 500 });
+    }
+  };
+}
+
 /** Bọc một route handler để bắt buộc đăng nhập quản trị trước khi chạy. */
 export function withAdmin(handler: (request: Request, email: string) => Promise<NextResponse>) {
   return async (request: Request): Promise<NextResponse> => {
