@@ -134,6 +134,20 @@ export interface DetailedBioRecord {
   shortDesc: string;
   chronology: { time: string; title: string; content: string }[];
   milestones: string[];
+  /**
+   * Công trình nổi bật do vị đó chủ trì hoặc khởi xướng. Chỉ ghi khi có tư
+   * liệu xác thực — vị nào chưa tra được thì bỏ trống và khối này tự ẩn, thà
+   * thiếu còn hơn gán cho một vị công trình không phải của mình.
+   */
+  /** Các chức vụ đã và đang đảm nhiệm — ghi rõ để người đọc không phải suy đoán. */
+  offices?: string[];
+  works?: {
+    time: string;
+    name: string;
+    detail: string;
+    /** Công trình đó ngày nay là gì / nằm ở đâu — giúp người đọc hình dung ngay. */
+    now?: string;
+  }[];
   quotes?: string;
 }
 
@@ -152,6 +166,11 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: '21/09/1935',
     bishopConsecration: '22/01/1961 tại Nhà thờ Đức Bà Sài Gòn',
     consecrator: 'Đức Tổng Giám Mục Phêrô Máctinô Ngô Đình Thục (Chủ phong)',
+    offices: [
+      'Giám mục Tiên khởi Giáo phận Mỹ Tho (1960 – 1989)',
+      'Đấng sáng lập Tiểu Chủng viện Gioan XXIII Mỹ Tho',
+      'Đấng thiết lập Dòng Mến Thánh Giá Mỹ Tho'
+    ],
     image: '/images/bishop_1_tran_van_thien.jpg',
     shortDesc: 'Được Thánh Giáo hoàng Gioan XXIII bổ nhiệm làm Giám mục Tiên khởi ngày 24/11/1960. Ngài đặt nền móng cơ sở hạ tầng, thành lập Tiểu Chủng viện Gioan XXIII, quy tụ linh mục đoàn và kiến thiết giáo phận trong thời kỳ sơ khai đầy gian khó.',
     chronology: [
@@ -181,6 +200,28 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Thành lập và định hướng linh đạo Dòng Mến Thánh Giá Mỹ Tho.',
       'Phân chia 6 giáo hạt và quy hoạch mạng lưới các giáo xứ nông thôn.',
       'Giữ vững đức tin và phụng vụ thánh thiện cho cộng đoàn trong suốt 29 năm biến động lịch sử.'
+    ],
+    works: [
+      {
+        time: 'Thập niên 1960',
+        name: 'Tiểu Chủng viện Gioan XXIII',
+        detail:
+          'Cơ sở đào tạo linh mục đầu tiên của Giáo phận Mỹ Tho non trẻ, mang tên vị Giáo hoàng đã ký sắc chỉ thành lập giáo phận năm 1960. Đây là nền móng cho hàng giáo sĩ bản xứ của giáo phận.'
+      },
+      {
+        time: 'Thập niên 1960',
+        name: 'Dòng Mến Thánh Giá Mỹ Tho',
+        now: 'Hội dòng Mến Thánh Giá Mỹ Tho, vẫn đang phục vụ giáo phận',
+        detail:
+          'Thiết lập và định hướng linh đạo cho hội dòng nữ tu riêng của giáo phận, lực lượng nòng cốt trong giáo dục, y tế và mục vụ giáo xứ suốt các thập niên sau.'
+      },
+      {
+        time: '1960 – 1989',
+        name: 'Quy hoạch 6 giáo hạt',
+        now: 'khung 6 giáo hạt mà Giáo phận Mỹ Tho về căn bản vẫn dùng',
+        detail:
+          'Phân chia toàn giáo phận thành 6 giáo hạt và quy hoạch mạng lưới giáo xứ nông thôn — khung tổ chức mục vụ mà Giáo phận Mỹ Tho về căn bản vẫn dùng đến nay.'
+      }
     ]
   },
   {
@@ -197,6 +238,11 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: '29/03/1952',
     bishopConsecration: '10/06/1975 (Giám mục phó Mỹ Tho); kế vị Giám mục chánh tòa 24/02/1989; nghỉ hưu 15/04/1999',
     consecrator: 'Đức Cha Giuse Trần Văn Thiện (Chủ phong)',
+    offices: [
+      'Giám mục Phó Giáo phận Mỹ Tho (bổ nhiệm 06/06/1975, tấn phong 10/06/1975)',
+      'Giám mục Chính tòa Giáo phận Mỹ Tho (24/02/1989 – 15/04/1999)',
+      'Nghỉ hưu từ năm 1999'
+    ],
     image: '/images/bishop_nguyen_van_nam.jpg',
     shortDesc: 'Coi sóc giáo phận trong giai đoạn đất nước Đổi Mới. Ngài hết lòng củng cố sự hiệp thông, chăm lo đời sống thiêng liêng cho bà con giáo dân và xây dựng tình bác ái huynh đệ khắp các giáo xứ vùng sông nước miền Tây.',
     chronology: [
@@ -240,6 +286,11 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: '25/05/1965 tại Nhà thờ Lớn Cần Thơ',
     bishopConsecration: '11/08/1993 tại Cần Thơ',
     consecrator: 'Đức Giám mục Emmanuel Lê Phong Thuận (Chủ phong)',
+    offices: [
+      'Giám mục Phó Giáo phận Mỹ Tho (1993 – 1998)',
+      'Tổng Giám mục Tổng Giáo phận TP. Hồ Chí Minh (1998 – 2014)',
+      'Hồng Y (được vinh thăng năm 2003)'
+    ],
     image: '/images/bishop_3_pham_minh_man.jpg',
     shortDesc: 'Trong 5 năm phục vụ với cương vị Giám mục Phó Giáo phận Mỹ Tho, Ngài phụ trách công tác đào tạo chủng sinh, linh mục và xây dựng các chương trình bác ái Caritas trước khi được Tòa Thánh tấn phong Tổng Giám mục TGP Sài Gòn và thăng tước Hồng Y.',
     chronology: [
@@ -284,6 +335,11 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: '17/12/1970 tại Nhà thờ Chính Tòa Đà Lạt',
     bishopConsecration: '20/05/1999 tại Nhà thờ Chính Tòa Đà Lạt (bổ nhiệm 26/03/1999, nhận giáo phận 27/05/1999)',
     consecrator: 'Đức Tổng Giám mục Gioan Baotixita Phạm Minh Mẫn (Chủ phong)',
+    offices: [
+      'Giám mục Chính tòa Giáo phận Mỹ Tho (1999 – 2013)',
+      'Tổng Giám mục Tổng Giáo phận TP. Hồ Chí Minh (bổ nhiệm 28/09/2013)',
+      'Chủ tịch Hội đồng Giám mục Việt Nam (2013 – 2016)'
+    ],
     image: '/images/bishop_4_bui_van_doc.jpg',
     shortDesc: 'Thời kỳ Ngài coi sóc ghi dấu những bước phát triển vượt bậc: xây dựng Tòa Giám mục mới, Trung tâm Mục vụ khang trang, cử hành Lễ Cung Hiến Nhà thờ Chánh Tòa Năm Thánh 2000 và truyền giáo mạnh mẽ tại Đồng Tháp Mười.',
     chronology: [
@@ -313,6 +369,22 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Cung hiến Nhà thờ Chính Tòa Mỹ Tho vào Năm Thánh 2000.',
       'Khai phá và gieo mầm Tin Mừng trên toàn vùng trũng Đồng Tháp Mười.',
       'Nhà thần học lỗi lạc với phong thái mục tử hân hoan, vui tươi đầy bình an.'
+    ],
+    works: [
+      {
+        time: '1999 – 2013',
+        name: 'Tòa Giám Mục & Trung tâm Mục vụ Giáo phận',
+        now: 'Tòa Giám mục và Trung tâm Mục vụ Giáo phận, 32 Hùng Vương',
+        detail:
+          'Xây dựng cơ sở điều hành và trung tâm huấn luyện của giáo phận tại 32 Hùng Vương, ngay bên cạnh Nhà thờ Chính Tòa — nơi quy tụ các khoá thường huấn linh mục, tu sĩ và giáo lý viên.'
+      },
+      {
+        time: 'Năm Thánh 2000',
+        name: 'Cung hiến Nhà thờ Chính Tòa Mỹ Tho',
+        now: 'ngày cung hiến vẫn được Giáo xứ Chánh Tòa mừng hằng năm',
+        detail:
+          'Chủ sự nghi thức cung hiến ngôi thánh đường xây năm 1906 – 1910, chính thức thánh hiến nhà thờ mẹ của giáo phận đúng vào Đại Năm Thánh 2000.'
+      }
     ]
   },
   {
@@ -321,20 +393,33 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
     saintName: 'Thánh Phêrô Tông Đồ (Peter)',
     role: 'Giám mục Chính tòa đương nhiệm Giáo phận Mỹ Tho (từ 2014)',
     period: '2014 – nay',
-    birth: '02/10/1952 tại Hà Đông, Hà Nội',
-    origin: 'Hà Đông (Hà Nội)',
+    source: 'Tiểu sử theo TGP Sài Gòn (tgpsaigon.net) — bài "Đức Giám mục Phêrô Nguyễn Văn Khảm nhận Giáo phận Mỹ Tho", 30/08/2014.',
+    birth: '02/10/1952 tại Đàn Giản, Hà Đông (nay thuộc Hà Nội)',
+    origin: 'Đàn Giản, Hà Đông (nay thuộc Hà Nội)',
     motto: '“Hãy theo Thầy”',
     mottoLatin: 'Sequere Me (Ga 21,22)',
-    priestOrdination: '28/02/1980 tại Sài Gòn',
-    bishopConsecration: '15/11/2008 tại Nhà thờ Đức Bà Sài Gòn',
+    priestOrdination: '30/08/1980',
+    bishopConsecration:
+      'Bổ nhiệm Giám mục Phụ tá TGP TP.HCM 15/10/2008; tấn phong 15/11/2008 tại Đại Chủng viện Thánh Giuse TP.HCM',
     consecrator: 'Đức Hồng Y Gioan Baotixita Phạm Minh Mẫn (Chủ phong)',
+    offices: [
+      'Giám mục Chính tòa Giáo phận Mỹ Tho (bổ nhiệm 26/07/2014, nhận giáo phận 30/08/2014) — đương nhiệm',
+      'Viện trưởng Học viện Công giáo Việt Nam (Toà Thánh bổ nhiệm, công bố ngày 14/09/2024) — đương nhiệm',
+      'Chủ tịch Uỷ ban Tu sĩ trực thuộc Hội đồng Giám mục Việt Nam — đương nhiệm',
+      'Thành viên Bộ Truyền Thông Toà Thánh Vatican',
+      'Nguyên Tổng Thư ký Hội đồng Giám mục Việt Nam',
+      'Nguyên Phó Tổng Thư ký HĐGMVN (2010 – 2013 và 2013 – 2016)',
+      'Nguyên Chủ tịch Uỷ ban Giáo dục Công giáo (2009 – 2010) và Chủ tịch Uỷ ban Truyền thông Xã hội',
+      'Nguyên Giám mục Phụ tá Tổng Giáo phận TP. Hồ Chí Minh (2008 – 2014), Giám đốc Trung tâm Mục vụ TGP Sài Gòn'
+    ],
     image: '/images/bishop_5_nguyen_van_kham.jpg',
     shortDesc: 'Được bổ nhiệm làm Giám mục Chính tòa Mỹ Tho ngày 26/07/2014. Với tâm hồn mục tử sâu sắc, kiến thức thần học uyên bác và tài thuyết giảng truyền cảm hứng, Ngài không ngừng định hướng phụng vụ, đào tạo giáo dân và chăm lo ơn gọi toàn giáo phận.',
     chronology: [
       {
         time: '1952 – 1980',
         title: 'Tu học và thụ phong Linh mục',
-        content: 'Tu học tại Tiểu Chủng viện Thánh Giuse Sài Gòn và Đại Chủng viện Thánh Giuse. Thụ phong linh mục ngày 28/02/1980.'
+        content:
+          'Tu học tại Tiểu Chủng viện Thánh Giuse Sài Gòn và Đại Chủng viện Thánh Giuse. Thụ phong linh mục ngày 30/08/1980, sau đó làm linh mục phụ tá Giáo xứ Hà Đông, hạt Xóm Mới (1980 – 1983).'
       },
       {
         time: '2000 – 2004',
@@ -344,12 +429,14 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '2008 – 2014',
         title: 'Giám mục Phụ tá Tổng Giáo Phận Sài Gòn',
-        content: 'Đức Giáo hoàng Bênêđictô XVI bổ nhiệm làm Giám mục Phụ tá Sài Gòn tước hiệu Troyna, Giám đốc Trung tâm Mục vụ TGP Sài Gòn.'
+        content:
+          'Tháng 3/2008 làm Thư ký điều hành Hội đồng Giám mục Việt Nam. Ngày 15/10/2008, Đức Giáo hoàng Bênêđictô XVI bổ nhiệm làm Giám mục Phụ tá Tổng Giáo phận TP.HCM; tấn phong ngày 15/11/2008 tại Đại Chủng viện Thánh Giuse TP.HCM do Đức Hồng Y Gioan Baotixita Phạm Minh Mẫn chủ phong. Ngài đồng thời làm Giám đốc Trung tâm Mục vụ TGP Sài Gòn.'
       },
       {
         time: '26/07/2014 – nay',
         title: 'Giám mục Chính tòa Giáo phận Mỹ Tho',
-        content: 'Chính thức nhậm chức Giám mục Chính tòa Mỹ Tho. Ngài kiêm nhiệm Tổng Thư ký HĐGMVN (2016 – 2022) và được Tòa Thánh bổ nhiệm làm Thành viên Bộ Truyền Thông Vatican (Dicastery for Communication) từ năm 2019.'
+        content:
+          'Ngày 26/07/2014, Đức Giáo hoàng Phanxicô bổ nhiệm ngài làm Giám mục Giáo phận Mỹ Tho; ngày 30/08/2014 ngài chính thức nhận giáo phận — cũng là ngày kỷ niệm 34 năm linh mục. Trong Hội đồng Giám mục Việt Nam, ngài từng là Phó Tổng Thư ký (2010 – 2013 và 2013 – 2016), Chủ tịch Uỷ ban Giáo dục Công giáo (2009 – 2010) và Chủ tịch Uỷ ban Truyền thông Xã hội, sau đó là Tổng Thư ký. Ngài được Tòa Thánh bổ nhiệm làm Thành viên Bộ Truyền Thông Vatican.'
       }
     ],
     milestones: [
@@ -357,6 +444,15 @@ const BISHOPS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Thúc đẩy phong trào Thiếu Nhi Thánh Thể, Huynh Trưởng và Giới trẻ phát triển mạnh mẽ.',
       'Thành viên Bộ Truyền Thông Tòa Thánh Vatican đại diện cho Giáo hội Việt Nam.',
       'Nhà thuyết giảng thần học và Huấn giáo Kinh Thánh uyên bác hàng đầu Việt Nam.'
+    ],
+    works: [
+      {
+        time: 'Đặt viên đá 12/05/2023',
+        name: 'Trung tâm Hành hương Ba Giồng',
+        now: 'Trung tâm Hành hương Ba Giồng, nơi hành hương chính của Giáo phận Mỹ Tho',
+        detail:
+          'Công trình mới của trung tâm hành hương kính các Thánh Tử Đạo, tổng diện tích xây dựng khoảng 3.500 m², gồm một tầng trệt và hai tầng lầu mái ngói, có nhà nguyện kính Cha Phêrô Nguyễn Văn Lựu cùng hội trường và phòng triển lãm. Ba Giồng được nâng lên hàng trung tâm hành hương của giáo phận từ năm 2004; sau hơn hai mươi năm, nhà thờ cũ xuống cấp và không còn đủ chỗ đón khách hành hương.'
+      }
     ]
   }
 ];
@@ -580,6 +676,20 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Giúp các Nữ tu Thánh Phaolô thành Chartres lập cơ sở Thánh Nhi tại Mỹ Tho.',
       'Lập bệnh viện bản xứ tại Vĩnh Tường (khoảng 1869).',
       'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (khoảng 1872).'
+    ],
+    works: [
+      {
+        time: 'Khoảng 1866 – 1869',
+        name: 'Cơ sở Thánh Nhi của các Nữ tu Thánh Phaolô thành Chartres',
+        detail:
+          'Giúp các nữ tu lập cơ sở nuôi dạy trẻ tại Mỹ Tho — công trình bác ái đầu tiên của họ đạo.'
+      },
+      {
+        time: 'Khoảng 1869',
+        name: 'Bệnh viện bản xứ Vĩnh Tường',
+        detail:
+          'Lập bệnh viện dành cho người bản xứ tại Vĩnh Tường, mở đầu hoạt động y tế của họ đạo Mỹ Tho.'
+      }
     ]
   },
   {
@@ -663,6 +773,21 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Chánh sở họ đạo Mỹ Tho 1870 – 1872.',
       'Khởi công ngôi nhà thờ thứ hai của họ đạo (Nhà thờ Vĩnh Tường).',
       'Xây nhà thờ Thủ Dầu Một, nhiều năm được coi là đẹp nhất địa phận Tây Đàng Trong.'
+    ],
+    works: [
+      {
+        time: 'Khởi công khoảng 1870 – 1872',
+        name: 'Nhà thờ Vĩnh Tường — ngôi nhà thờ thứ hai của họ đạo',
+        now: 'không còn; ngôi Chánh Tòa xây 1906 – 1910 đã thay thế',
+        detail:
+          'Khởi công ngôi thánh đường thứ hai của họ đạo Mỹ Tho, thay cho cơ sở tạm thời buổi đầu. Công trình sau đó được Cha Moulins hoàn tất.'
+      },
+      {
+        time: 'Sau 1872',
+        name: 'Nhà thờ Thủ Dầu Một',
+        detail:
+          'Xây dựng ngôi thánh đường mà trong nhiều năm được xem là đẹp nhất địa phận Tây Đàng Trong.'
+      }
     ]
   },
   {
@@ -706,6 +831,21 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Hoàn tất ngôi Nhà thờ Vĩnh Tường do Cha Sorel khởi công.',
       'Tái lập họ đạo Xoài Mút và thành lập địa hạt Bình Đại.',
       'Chánh sở Nhà thờ Chánh Tòa Sài Gòn (1899 – 1900).'
+    ],
+    works: [
+      {
+        time: 'Hoàn tất dưới thời 1873 – 1899',
+        name: 'Nhà thờ Vĩnh Tường',
+        now: 'không còn; ngôi Chánh Tòa xây 1906 – 1910 đã thay thế',
+        detail:
+          'Hoàn tất ngôi nhà thờ thứ hai của họ đạo do Cha Sorel khởi công, phục vụ cộng đoàn Mỹ Tho cho tới khi ngôi Chánh Tòa hiện nay được dựng lên đầu thế kỷ XX.'
+      },
+      {
+        time: '1873 – 1899',
+        name: 'Tái lập họ đạo Xoài Mút và lập địa hạt Bình Đại',
+        detail:
+          'Mở rộng địa bàn mục vụ của họ đạo Mỹ Tho ra các vùng lân cận trong suốt nhiệm kỳ 27 năm — nhiệm kỳ dài nhất trong lịch sử họ đạo.'
+      }
     ]
   },
   {
@@ -760,6 +900,27 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Mở trường học của các Sư huynh Lasan và nội trú của các Nữ tu Thánh Phaolô tại Mỹ Tho.',
       'Xây nhà thờ Ngũ Hiệp và tái thiết nguyện đường Thánh Anna.',
       'Vị chủ chăn được giáo dân kính trọng gọi là "Cố Gẫm".'
+    ],
+    works: [
+      {
+        time: 'Khởi công 11/08/1906 — hoàn thành 1910',
+        name: 'NHÀ THỜ CHÁNH TÒA MỸ THO hiện hữu',
+        now: 'chính ngôi nhà thờ đang đứng tại 32 Hùng Vương, Phường 7, TP. Mỹ Tho',
+        detail:
+          'Công trình lớn nhất trong lịch sử họ đạo: ngôi thánh đường đang đứng tại 32 Hùng Vương ngày nay, cũng là nhà thờ mẹ của Giáo phận Mỹ Tho từ năm 1960. Ngôi nhà thờ này được cung hiến vào Đại Năm Thánh 2000 và đại trùng tu nhân dịp bách chu niên 2006 – 2007.'
+      },
+      {
+        time: '1899 – 1922',
+        name: 'Trường Sư huynh Lasan và nội trú Nữ tu Thánh Phaolô',
+        detail:
+          'Mở hai cơ sở giáo dục Công giáo tại Mỹ Tho, đặt nền cho mạng lưới trường học của họ đạo phát triển mạnh dưới thời Cha Bar.'
+      },
+      {
+        time: '1899 – 1922',
+        name: 'Nhà thờ Ngũ Hiệp và nguyện đường Thánh Anna',
+        detail:
+          'Xây mới nhà thờ Ngũ Hiệp và tái thiết nguyện đường Thánh Anna trong địa hạt mục vụ của họ đạo Mỹ Tho.'
+      }
     ]
   },
   {
@@ -813,6 +974,20 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Đón các Sư huynh Lasan về Mỹ Tho (1929); đến 1930 trường Sư huynh có 400 học sinh, trường Nữ tu Thánh Phaolô 300 nữ sinh.',
       'Lập ba họ đạo mới Bàn Hạn, Thược và Phú Vang (1933).',
       'Che chở giáo dân chạy nạn trong thời kỳ loạn lạc 1941 – 1945.'
+    ],
+    works: [
+      {
+        time: '1929 – 1930',
+        name: 'Hệ thống trường học Công giáo Mỹ Tho',
+        detail:
+          'Đón các Sư huynh Lasan về Mỹ Tho năm 1929. Đến năm 1930 trường Sư huynh đã có 400 học sinh và trường Nữ tu Thánh Phaolô 300 nữ sinh — quy mô giáo dục lớn nhất của họ đạo tính đến thời điểm đó.'
+      },
+      {
+        time: '1933',
+        name: 'Ba họ đạo Bàn Hạn, Thược và Phú Vang',
+        detail:
+          'Thành lập cùng lúc ba họ đạo mới, mở rộng đáng kể địa bàn Công giáo quanh Mỹ Tho.'
+      }
     ]
   },
   {
@@ -857,6 +1032,15 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Linh mục người Việt Nam đầu tiên làm Chánh xứ Họ đạo Mỹ Tho (1956).',
       'Chủ trì công trình di dời chuông nhà thờ lên tháp cao phía Nam (1958).',
       'Đặt nền móng quản trị họ đạo bản xứ trước khi Giáo phận Mỹ Tho được thành lập.'
+    ],
+    works: [
+      {
+        time: '1958',
+        name: 'Di dời chuông nhà thờ lên tháp cao phía Nam',
+        now: 'bộ chuông sau này được chuyển sang tháp chuông riêng do Cha Chúc xây năm 1995',
+        detail:
+          'Đưa bộ chuông lên tháp cao phía Nam của ngôi thánh đường, thay đổi rõ rệt diện mạo mặt tiền nhà thờ. Đây là công trình cải tạo lớn đầu tiên do một linh mục người Việt chủ trì tại họ đạo.'
+      }
     ]
   },
   {
@@ -902,6 +1086,28 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Đảm trách xây dựng Tòa Giám Mục Mỹ Tho đầu tiên, Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở.',
       'Thành lập Trường Tiểu học Thánh Giuse tại giáo xứ Chánh Tòa.',
       'Chánh sở Giáo xứ Hạnh Thông Tây, Gò Vấp (1968 – 1974).'
+    ],
+    works: [
+      {
+        time: '1960 – 1965',
+        name: 'Tòa Giám Mục Mỹ Tho đầu tiên',
+        now: 'khuôn viên Tòa Giám mục Mỹ Tho, 32 Hùng Vương — sát bên nhà thờ',
+        detail:
+          'Xây dựng trụ sở điều hành cho giáo phận vừa được thành lập năm 1960 — công trình bản lề biến khuôn viên Chánh Tòa thành trung tâm của cả giáo phận.'
+      },
+      {
+        time: '1960 – 1965',
+        name: 'Nhà Tĩnh Tâm, Nghênh Đài Đức Mẹ và Nhà Cha Sở',
+        detail:
+          'Ba hạng mục hoàn thiện khuôn viên nhà thờ: nơi tĩnh tâm cho giáo sĩ và giáo dân, đài kính Đức Mẹ, và nhà ở của cha sở.'
+      },
+      {
+        time: '1960 – 1965',
+        name: 'Trường Tiểu học Thánh Giuse',
+        now: 'không còn hoạt động dưới danh nghĩa trường Công giáo',
+        detail:
+          'Thành lập trường tiểu học của giáo xứ Chánh Tòa, nối tiếp truyền thống giáo dục Công giáo có từ thời Cha Rénier và Cha Bar.'
+      }
     ]
   },
   {
@@ -910,6 +1116,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     saintName: 'Thánh Phêrô Tông Đồ',
     role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1965 – đầu 1975)',
     period: '1965 – 1975',
+    image: '/images/cha_nguyen_van_niem.jpg',
     origin: 'Giáo phận Mỹ Tho',
     source: 'giaophanmytho.net, bài Giáo xứ Bình Tạo: "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa Mỹ Tho"',
     tableNote: 'Trước đó là Cha Sở Giáo xứ An Đức (1959 – 1965), kiêm nhiệm cả họ đạo Bình Tạo. Về Chánh Tòa năm 1965, coi sóc họ đạo qua giai đoạn chiến sự ác liệt từ biến cố Mậu Thân 1968; giữ vững sinh hoạt phụng vụ và tổ chức công tác bác ái trợ giúp đồng bào di tản đổ về thành phố Mỹ Tho.',
@@ -992,6 +1199,21 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Đặt nền móng cho Họ đạo Tân Long (đầu năm 1975).',
       'Mục tử nhân ái gìn giữ sự bình an và đức tin kiên trung của Giáo xứ Chánh Tòa suốt hơn 20 năm.',
       'Thành lập họ đạo Tân Long và chăm lo đời sống người nghèo khó.'
+    ],
+    works: [
+      {
+        time: 'Đặt viên đá 16/02/1995 — khánh thành 30/11/1995',
+        name: 'Tháp chuông tách rời Nhà thờ Chánh Tòa',
+        now: 'tháp chuông đứng riêng bên cạnh nhà thờ, nhìn thấy ngay từ đường Hùng Vương',
+        detail:
+          'Dựng tháp chuông thành một khối riêng, tách khỏi thân nhà thờ, nhằm gỡ tải trọng và rung chấn của bộ chuông khỏi ngôi thánh đường đã gần chín mươi tuổi. Đây là lý do Nhà thờ Chánh Tòa Mỹ Tho có tháp chuông đứng riêng như hiện nay.'
+      },
+      {
+        time: 'Đầu năm 1975',
+        name: 'Họ đạo Tân Long',
+        detail:
+          'Đặt nền móng và thành lập họ đạo Tân Long ngay trong giai đoạn biến động nhất của lịch sử giáo phận.'
+      }
     ]
   },
   {
@@ -1095,6 +1317,22 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, ngôi Thánh đường Mẹ của Giáo phận.',
       'Chủ trì công trình Đại trùng tu Bách Chu Niên Nhà thờ Chánh Tòa (2006 – 2007) và xây dựng Nhà Mục vụ Giáo xứ (2020).',
       'Mục tử tận tụy trong việc cử hành bí tích, chăm sóc mục vụ bệnh nhân và nâng đỡ các đoàn thể đức tin.'
+    ],
+    works: [
+      {
+        time: '2006 – 2007',
+        name: 'Đại trùng tu Bách Chu Niên Nhà thờ Chánh Tòa',
+        now: 'diện mạo Nhà thờ Chánh Tòa mà giáo dân thấy hiện nay',
+        detail:
+          'Trùng tu toàn diện ngôi thánh đường đúng dịp tròn một trăm năm ngày khởi công (11/08/1906), giữ nguyên kiến trúc gốc thời Cha Rénier.'
+      },
+      {
+        time: '2020',
+        name: 'Nhà Mục vụ Giáo xứ',
+        now: 'Nhà Mục vụ trong khuôn viên Giáo xứ Chánh Tòa, nơi Xứ Đoàn sinh hoạt',
+        detail:
+          'Xây dựng nhà mục vụ phục vụ giáo lý, sinh hoạt đoàn thể và các lớp huấn luyện của giáo xứ, trong đó có Xứ Đoàn Thiếu Nhi Thánh Thể.'
+      }
     ]
   }
 ];
@@ -1347,18 +1585,6 @@ const TNTT_HUYNH_TRUONG: TnttScarf[] = [
  * Các đời cha tuyên uý Xứ Đoàn, tính từ ngày tái lập năm 2005.
  * Nguồn: ghi chép của Xứ Đoàn, do Ban Điều Hành cung cấp.
  */
-const TNTT_CHAPLAINS: { period: string; name: string }[] = [
-  { period: '2005 – 2009', name: 'Lm. Phêrô Nguyễn Ngọc Long' },
-  { period: '2010 – 2013', name: 'Lm. Gioan Baotixita Nguyễn Nhựt Cương' },
-  { period: 'Giữa 2013 – đầu 2016', name: 'Lm. Phêrô Trần Trọng Khương' },
-  { period: 'Cuối 2016 – 2019', name: 'Lm. Phêrô Nguyễn Thành Danh' },
-  { period: '2019 – 2020', name: 'Lm. Antôn Phan Văn Đại' },
-  { period: 'Cuối 2020 – đầu 2022', name: 'Lm. Phêrô Trương Ngọc Đức' },
-  { period: 'Đầu 2022 – 2023', name: 'Lm. Phêrô Trần Anh Duy' },
-  { period: '2023 – 2024', name: 'Lm. Phaolô Nguyễn Hoàng Anh' },
-  { period: '2024 – 2026', name: 'Lm. Phêrô Nguyễn Ngọc' },
-  { period: '2026 – nay', name: 'Lm. Emmanuel Nguyễn Văn Thành' }
-];
 
 /**
  * Ghi chú riêng của từng thánh lễ Chúa Nhật tại Chánh Tòa. Khoá theo giờ: Admin
@@ -1372,6 +1598,315 @@ const SUNDAY_MASS_NOTES: Record<string, string> = {
 };
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+
+/**
+ * Lý lịch các đời cha tuyên uý Xứ Đoàn.
+ *
+ * Nguồn gốc dữ liệu:
+ *  - Năm sinh, năm chịu chức và nhiệm sở: danh sách Linh mục đương nhiệm Giáo
+ *    phận Mỹ Tho cập nhật 11.2024 (giaophanmytho.net).
+ *  - Ngày sinh, ngày chịu chức và quê quán: thông báo và bản tin phong chức
+ *    của Toà Giám mục Mỹ Tho, chỉ có cho các khoá 2017, 2022 và 2024.
+ *  - Nhiệm kỳ tuyên uý: ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp.
+ *
+ * Những mục chưa tra được nguồn thì bỏ trống để hiển thị "chưa cập nhật" —
+ * không suy đoán. Chưa vị nào có ảnh tư liệu nên đều để trống trường image.
+ */
+const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
+  {
+    id: 'tuyen-uy-nguyen-ngoc-long',
+    name: 'Lm. Phêrô Nguyễn Ngọc Long',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (2005 – 2009)',
+    period: '2005 – 2009',
+    birth: 'Sinh năm 1977',
+    origin: 'Giáo phận Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục năm 2004',
+    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    shortDesc:
+      'Vị tuyên uý đầu tiên của Xứ Đoàn sau ngày tái lập năm 2005. Ngài đồng hành với Xứ Đoàn ngay từ khoá huấn luyện Huynh Trưởng đầu tiên, đặt nền cho sinh hoạt Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa.',
+    chronology: [
+      { time: '2004', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
+      {
+        time: '2005 – 2009',
+        title: 'Cha Tuyên Uý Xứ Đoàn Các Thánh Tử Đạo Việt Nam',
+        content:
+          'Linh hướng Xứ Đoàn trong bốn năm đầu tiên sau ngày tái lập, giai đoạn hình thành ban điều hành và các ngành.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ Lương Hòa Hạ, Giáo hạt Đức Hòa (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: ['Cha Tuyên Uý tiên khởi của Xứ Đoàn sau ngày tái lập năm 2005.']
+  },
+  {
+    id: 'tuyen-uy-nguyen-nhut-cuong',
+    name: 'Lm. Gioan Baotixita Nguyễn Nhựt Cương',
+    saintName: 'Thánh Gioan Baotixita',
+    role: 'Cha Tuyên Uý Xứ Đoàn (2010 – 2013)',
+    period: '2010 – 2013',
+    birth: 'Sinh năm 1976',
+    origin: 'Giáo phận Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục năm 2008',
+    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    shortDesc:
+      'Cha Tuyên Uý thứ hai của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn kiện toàn hệ thống ngành và đội sau những năm đầu tái lập.',
+    chronology: [
+      { time: '2008', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
+      {
+        time: '2010 – 2013',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ Tân Quới, Giáo hạt Cù Lao Tây (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-tran-trong-khuong',
+    name: 'Lm. Phêrô Trần Trọng Khương',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (giữa 2013 – đầu 2016)',
+    period: 'Giữa 2013 – đầu 2016',
+    birth: 'Sinh năm 1981',
+    origin: 'Giáo phận Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục năm 2011',
+    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    shortDesc:
+      'Cha Tuyên Uý thứ ba của Xứ Đoàn. Theo danh sách linh mục đoàn cập nhật tháng 11/2024, hiện ngài đang trong thời gian nghỉ bệnh.',
+    chronology: [
+      { time: '2011', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
+      {
+        time: 'Giữa 2013 – đầu 2016',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Tình trạng',
+        content: 'Nghỉ bệnh (theo danh sách linh mục đoàn 11.2024). Xin cộng đoàn cầu nguyện cho ngài.'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-nguyen-thanh-danh',
+    name: 'Lm. Phêrô Nguyễn Thành Danh',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (cuối 2016 – 2019)',
+    period: 'Cuối 2016 – 2019',
+    birth: 'Sinh năm 1978',
+    origin: 'Giáo phận Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục năm 2013',
+    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    shortDesc:
+      'Cha Tuyên Uý thứ tư của Xứ Đoàn, đồng hành gần ba năm trong giai đoạn Xứ Đoàn mở rộng số đoàn sinh và củng cố đội ngũ Huynh Trưởng.',
+    chronology: [
+      { time: '2013', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
+      {
+        time: 'Cuối 2016 – 2019',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ An Thái Trung, Giáo hạt Cái Bè (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-phan-van-dai',
+    name: 'Lm. Antôn Phan Văn Đại',
+    saintName: 'Thánh Antôn',
+    role: 'Cha Tuyên Uý Xứ Đoàn (2019 – 2020)',
+    period: '2019 – 2020',
+    birth: 'Sinh năm 1984',
+    origin: 'Giáo xứ Anrê, Thanh Bình, Đồng Tháp',
+    priestOrdination: 'Thụ phong linh mục ngày 21/04/2017 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    source:
+      'Thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 04/02/2017; danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
+    shortDesc:
+      'Cha Tuyên Uý thứ năm của Xứ Đoàn. Sau nhiệm kỳ tuyên uý, ngài được cử đi du học tại Philippines.',
+    chronology: [
+      {
+        time: '21/04/2017',
+        title: 'Thụ phong linh mục',
+        content:
+          'Chịu chức linh mục lúc 09g30 tại Nhà thờ Chánh Tòa Mỹ Tho, cùng khoá với sáu tân linh mục khác của giáo phận.'
+      },
+      {
+        time: '2019 – 2020',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Du học',
+        content: 'Đang du học tại Philippines (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-truong-ngoc-duc',
+    name: 'Lm. Phêrô Trương Ngọc Đức',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (cuối 2020 – đầu 2022)',
+    period: 'Cuối 2020 – đầu 2022',
+    birth: 'Sinh năm 1986',
+    origin: 'Giáo phận Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục năm 2019',
+    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    shortDesc:
+      'Cha Tuyên Uý thứ sáu của Xứ Đoàn, đồng hành đúng vào giai đoạn đại dịch khi mọi sinh hoạt tập trung của Xứ Đoàn bị gián đoạn.',
+    chronology: [
+      { time: '2019', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
+      {
+        time: 'Cuối 2020 – đầu 2022',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content:
+          'Linh hướng Xứ Đoàn trong giai đoạn dịch bệnh, khi các buổi sinh hoạt và thánh lễ tập trung phải tạm ngưng nhiều đợt.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ Mỹ Điền, Giáo hạt Đức Hòa (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-tran-anh-duy',
+    name: 'Lm. Phêrô Trần Anh Duy',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (đầu 2022 – 2023)',
+    period: 'Đầu 2022 – 2023',
+    birth: 'Sinh năm 1985',
+    origin: 'Giáo phận Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục năm 2019',
+    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    shortDesc:
+      'Cha Tuyên Uý thứ bảy của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn khôi phục sinh hoạt sau đại dịch.',
+    chronology: [
+      { time: '2019', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
+      {
+        time: 'Đầu 2022 – 2023',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ Gò Da, Giáo hạt Cù Lao Tây (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-nguyen-hoang-anh',
+    name: 'Lm. Phêrô Nguyễn Hoàng Anh',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (2023 – 2024)',
+    period: '2023 – 2024',
+    birth: '02/04/1987',
+    origin: 'Giáo xứ Thiên Phước, Đồng Tháp',
+    priestOrdination: 'Thụ phong linh mục ngày 29/12/2022 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    source:
+      'Thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
+    shortDesc:
+      'Cha Tuyên Uý thứ tám của Xứ Đoàn, nhận nhiệm vụ ngay trong năm đầu tiên sau khi thụ phong linh mục.',
+    chronology: [
+      {
+        time: '29/12/2022',
+        title: 'Thụ phong linh mục',
+        content:
+          'Chịu chức linh mục lúc 09g30 tại Nhà thờ Chánh Tòa Mỹ Tho do Đức Cha Phêrô Nguyễn Văn Khảm chủ phong, cùng bảy tân linh mục khác của giáo phận.'
+      },
+      {
+        time: '2023 – 2024',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ Nữ Vương Hòa Bình, Giáo hạt Mỹ Tho (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-nguyen-ngoc',
+    name: 'Lm. Phêrô Nguyễn Ngọc',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Tuyên Uý Xứ Đoàn (2024 – 2026)',
+    period: '2024 – 2026',
+    birth: '30/05/1987',
+    origin: 'Giáo xứ Lập Điền, Long An',
+    priestOrdination: 'Thụ phong linh mục ngày 29/12/2022 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    source:
+      'Thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 22/11/2022 và bản tin Thánh lễ phong chức 29/12/2022 (giaophanmytho.net); danh sách Linh mục đương nhiệm 11.2024',
+    shortDesc:
+      'Cha Tuyên Uý thứ chín của Xứ Đoàn. Ngài phục vụ ngay tại Giáo xứ Chánh Tòa, cùng khoá thụ phong với Cha Phêrô Nguyễn Hoàng Anh — vị tuyên uý tiền nhiệm.',
+    chronology: [
+      {
+        time: '29/12/2022',
+        title: 'Thụ phong linh mục',
+        content:
+          'Chịu chức linh mục lúc 09g30 tại Nhà thờ Chánh Tòa Mỹ Tho do Đức Cha Phêrô Nguyễn Văn Khảm chủ phong.'
+      },
+      {
+        time: '2024 – 2026',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: 'Hiện nay',
+        title: 'Nhiệm sở',
+        content: 'Phục vụ tại Giáo xứ Chánh Tòa, Giáo hạt Mỹ Tho (theo danh sách linh mục đoàn 11.2024).'
+      }
+    ],
+    milestones: []
+  },
+  {
+    id: 'tuyen-uy-nguyen-van-thanh',
+    name: 'Lm. Emmanuel Nguyễn Văn Thành',
+    saintName: 'Emmanuel',
+    role: 'Cha Tuyên Uý Xứ Đoàn đương nhiệm (2026 – nay)',
+    period: '2026 – nay',
+    birth: 'Sinh năm 1987',
+    origin: 'Giáo xứ Bến Dinh, Đồng Tháp',
+    priestOrdination: 'Thụ phong linh mục ngày 30/08/2024 tại Nhà thờ Chánh Tòa Mỹ Tho',
+    source:
+      'Bản tin Thánh lễ truyền chức linh mục ngày 30/08/2024 (giaophanmytho.net); danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
+    shortDesc:
+      'Cha Tuyên Uý đương nhiệm của Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho.',
+    chronology: [
+      {
+        time: '30/08/2024',
+        title: 'Thụ phong linh mục',
+        content:
+          'Chịu chức linh mục tại Nhà thờ Chánh Tòa Mỹ Tho do Đức Cha Phêrô Nguyễn Văn Khảm chủ phong, cùng năm tân linh mục khác. Thánh lễ đồng thời mừng Đức Cha Phêrô kỷ niệm 44 năm linh mục và 10 năm nhận Giáo phận Mỹ Tho.'
+      },
+      {
+        time: '2026 – nay',
+        title: 'Cha Tuyên Uý Xứ Đoàn',
+        content: 'Đương nhiệm linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      }
+    ],
+    milestones: []
+  }
+];
+
+const TNTT_CHAPLAINS = CHAPLAINS_EXTENDED_DATA.map((c) => ({ period: c.period, bio: c }));
 
 export default function GioiThieuPage() {
   const { t } = useLanguage();
@@ -2475,6 +3010,57 @@ export default function GioiThieuPage() {
                 </div>
               ))}
             </div>
+
+            <h3 id="giao-phan-anh-tu-lieu" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+              4.1. Ảnh Tư Liệu Giáo Phận Mỹ Tho
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
+              Những bức ảnh hiếm ghi lại hàng giáo sĩ Giáo phận Mỹ Tho từ ngày thành lập năm 1960.
+            </p>
+
+            <div className="tntt-gallery">
+              {[
+                {
+                  src: '/images/gpmt_linh_muc_doan_1961.jpg',
+                  cap: 'Linh mục đoàn Giáo phận Mỹ Tho năm 1961, một năm sau ngày giáo phận được thành lập. Ảnh mang chú thích gốc “DIOCESE DE MYTHO 1961” và ghi tên từng vị ngay trên ảnh, trong đó có Đức Cha Thiện cùng Cha Niềm — vị sẽ làm Chánh sở Chánh Tòa từ năm 1965.'
+                },
+                {
+                  src: '/images/gpmt_tan_gm_nguyen_van_nam_1975.jpg',
+                  cap: 'Đức Cha Anrê Nguyễn Văn Nam trong năm được tấn phong Giám mục Phó Giáo phận Mỹ Tho (10/06/1975). Ảnh mang chú thích gốc viết tay “Tân GM. Andre Nam 1975”.'
+                },
+                {
+                  src: '/images/gpmt_giam_muc_kinh_ly.jpg',
+                  cap: 'Giám mục trong phẩm phục kinh lý một họ đạo miền quê, có linh mục tháp tùng và cờ phướn giăng đón. Ảnh không mang chú thích gốc nên chưa xác định được danh tính vị Giám mục và niên đại.'
+                }
+              ].map((img) => (
+                <figure key={img.src} className="tntt-figure">
+                  <button
+                    type="button"
+                    className="tntt-thumb-btn"
+                    onClick={() => setLightboxImage({ src: img.src, caption: img.cap })}
+                    aria-label={`Phóng to: ${img.cap}`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.cap}
+                      width={640}
+                      height={480}
+                      sizes="(max-width: 520px) 46vw, 220px"
+                      className="tntt-photo"
+                    />
+                    <span className="tntt-zoom" aria-hidden="true">
+                      <Eye size={13} /> Xem
+                    </span>
+                  </button>
+                  <figcaption className="tntt-caption">{img.cap}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
+              Ảnh tư liệu do giáo xứ cung cấp. Chú thích niên đại theo ghi chú gốc in trên ảnh; những gì
+              ảnh không nói rõ thì ghi là chưa xác định.
+            </p>
           </section>
 
           {/* =====================================================================
@@ -2637,7 +3223,8 @@ export default function GioiThieuPage() {
             </h3>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
               Cha Tuyên Uý là linh mục được trao trách nhiệm linh hướng Xứ Đoàn. Dưới đây là các vị đã
-              phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay:
+              phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay —
+              <strong> nhấn vào tên để xem lý lịch đầy đủ</strong>:
             </p>
 
             <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
@@ -2654,10 +3241,19 @@ export default function GioiThieuPage() {
                 </thead>
                 <tbody>
                   {TNTT_CHAPLAINS.map((row, idx) => (
-                    <tr key={row.period + row.name}>
+                    <tr key={row.bio.id}>
                       <td>{idx + 1}</td>
                       <td style={{ whiteSpace: 'nowrap' }}>{row.period}</td>
-                      <td><strong>{row.name}</strong></td>
+                      <td>
+                        <button
+                          type="button"
+                          className="pastor-name-btn"
+                          onClick={() => setSelectedBio(row.bio)}
+                          aria-label={`Xem lý lịch ${row.bio.name}`}
+                        >
+                          {row.bio.name}
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -3582,19 +4178,82 @@ export default function GioiThieuPage() {
                 </div>
               </div>
 
-              {/* Dấu ấn và di sản */}
-              <div>
-                <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
-                  Dấu ấn lịch sử &amp; Di sản để lại
-                </h4>
-                <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)' }}>
-                  {selectedBio.milestones.map((m, i) => (
-                    <li key={i} style={{ marginBottom: '4px' }}>
-                      {m}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {/* Chức vụ — ẩn khi chưa có tư liệu */}
+              {selectedBio.offices && selectedBio.offices.length > 0 && (
+                <div style={{ marginBottom: '18px' }}>
+                  <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                    Chức vụ đã và đang đảm nhiệm
+                  </h4>
+                  <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.65, color: 'var(--color-dark)' }}>
+                    {selectedBio.offices.map((o, i) => (
+                      <li key={i} style={{ marginBottom: '3px' }}>{o}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Công trình nổi bật — ẩn hẳn khi chưa có tư liệu */}
+              {selectedBio.works && selectedBio.works.length > 0 && (
+                <div style={{ marginBottom: '18px' }}>
+                  <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                    Công trình nổi bật
+                  </h4>
+                  <div style={{ display: 'grid', gap: '8px' }}>
+                    {selectedBio.works.map((w, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          padding: '10px 12px',
+                          borderRadius: '9px',
+                          border: '1px solid var(--color-border-subtle)',
+                          backgroundColor: 'rgba(153, 27, 27, 0.03)'
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'wrap' }}>
+                          <span style={{ fontWeight: 800, fontSize: '0.86rem', color: 'var(--color-dark)', minWidth: 0 }}>
+                            {w.name}
+                            {w.now && (
+                              <span
+                                style={{
+                                  fontWeight: 600,
+                                  fontSize: '0.78rem',
+                                  color: 'var(--color-red)',
+                                  marginLeft: '6px',
+                                  whiteSpace: 'normal'
+                                }}
+                              >
+                                → nay là: {w.now}
+                              </span>
+                            )}
+                          </span>
+                          <span style={{ fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-red)', flexShrink: 0 }}>
+                            {w.time}
+                          </span>
+                        </div>
+                        <p style={{ margin: '3px 0 0', fontSize: '0.8rem', color: 'var(--color-subtle)', lineHeight: 1.55, textAlign: 'justify' }}>
+                          {w.detail}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Dấu ấn và di sản — ẩn khi chưa có tư liệu */}
+              {selectedBio.milestones.length > 0 && (
+                <div>
+                  <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                    Dấu ấn lịch sử &amp; Di sản để lại
+                  </h4>
+                  <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)' }}>
+                    {selectedBio.milestones.map((m, i) => (
+                      <li key={i} style={{ marginBottom: '4px' }}>
+                        {m}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Bottom Modal Close */}
