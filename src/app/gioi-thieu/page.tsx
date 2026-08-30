@@ -1615,7 +1615,7 @@ export default function GioiThieuPage() {
                   <ol style={{ paddingLeft: '18px', color: 'var(--color-subtle)' }}>
                     <li>
                       <a href="#xu-doan-ton-chi" style={{ color: 'inherit', textDecoration: 'none' }}>
-                        Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
+                        Bản chất, Mục đích &amp; Tôn chỉ Phong trào
                       </a>
                     </li>
                     <li>
@@ -2480,16 +2480,47 @@ export default function GioiThieuPage() {
             </h2>
 
             <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-              5.1. Tôn chỉ &amp; 4 Khẩu hiệu Phong trào
+              5.1. Bản chất, Mục đích &amp; Tôn chỉ Phong trào
             </h3>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 12px' }}>
+              <strong>Thiếu Nhi Thánh Thể</strong> là một đoàn thể Công giáo tiến hành, một trường giáo dục chuyên biệt
+              giúp thiếu nhi thăng tiến và thực hành sống đạo. Phong trào lấy tinh thần Đạo Binh Thánh Giá thời Trung cổ:
+              thay vì bảo vệ thánh địa vật chất, Phong trào bảo vệ và tô điểm đền thờ thiêng liêng là tâm hồn các em, với
+              vũ khí là <strong>Cầu Nguyện, Rước Lễ, Hy Sinh và Làm Tông Đồ</strong>.
+            </p>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-              <strong>Xứ Đoàn Các Thánh Tử Đạo Việt Nam</strong> trực thuộc Giáo xứ Chánh Tòa Mỹ Tho là đoàn thể tông đồ
-              hướng dẫn thanh thiếu nhi và giới trẻ theo tôn chỉ của <em>Phong trào Thiếu Nhi Thánh Thể Việt Nam</em>. Mục đích
-              của Xứ Đoàn là giáo dục thanh thiếu niên về cả hai phương diện: <strong>Tự nhiên</strong> (trở thành công dân
-              tốt cho xã hội) và <strong>Siêu nhiên</strong> (trở thành Kitô hữu đích thực, yêu mến Chúa Giêsu Thánh Thể).
+              Phong trào bắt nguồn từ Hội Tông Đồ Cầu Nguyện bên Pháp, do hai linh mục Léonard Cros và Henri Ramière khởi
+              xướng năm <strong>1865</strong>; vào Việt Nam nhờ hai cha Léon Paliard và Paul Urureau. Năm <strong>1929</strong>
+              mang tên <em>Nghĩa Binh Thánh Thể</em>; năm <strong>1965</strong> đổi thành <em>Thiếu Nhi Thánh Thể Việt Nam</em>
+              và đưa phương pháp sinh hoạt trẻ vào như một phương cách giáo dục mới; năm <strong>1971</strong> hoàn thiện
+              tài liệu huấn luyện; năm <strong>1975</strong> ngưng mọi hoạt động; năm <strong>2003</strong> tái lập cho phù
+              hợp hoàn cảnh mới. Danh xưng và phương pháp thay đổi, nhưng bản chất thì không: Thiếu Nhi Thánh Thể vẫn là
+              trường giáo dục thiếu nhi về đức tin và hướng dẫn các em làm tông đồ.
             </p>
 
-            {/* 4 Khẩu hiệu TNTT */}
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 8px' }}>
+              <strong style={{ color: 'var(--color-red)' }}>Mục đích</strong> — Điều 2, Chương I Nội Quy Tổng Liên Đoàn nêu
+              hai mục đích quấn quyện và bổ sung cho nhau, không thể thiếu một:
+            </p>
+            <ol style={{ fontSize: '0.93rem', lineHeight: 1.7, margin: '0 0 14px', paddingLeft: '20px' }}>
+              <li style={{ marginBottom: '6px' }}>
+                <strong>Đào luyện</strong> thanh thiếu nhi về hai phương diện <strong>tự nhiên</strong> (con người kiện toàn
+                về thể chất, tinh thần và nhân cách, có ý thức góp phần xây dựng xã hội) và <strong>siêu nhiên</strong>
+                (Kitô hữu hoàn hảo, hiểu biết giáo lý, sống đạo trưởng thành, ý thức ơn gọi nên thánh và làm tông đồ).
+              </li>
+              <li>
+                <strong>Đoàn ngũ hoá</strong> thiếu nhi để hướng dẫn các em truyền thông Tin Mừng, góp phần xây dựng xã hội
+                theo tinh thần Tin Mừng.
+              </li>
+            </ol>
+
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 10px' }}>
+              <strong style={{ color: 'var(--color-red)' }}>Tôn chỉ</strong> — Điều 5 Nội Quy: <em>Sống Lời Chúa và kết hợp
+              với Chúa Giêsu Thánh Thể</em> qua bốn phương thế, nhất là làm tông đồ cho giới trẻ, vì
+              &ldquo;người trẻ phải làm tông đồ trước tiên và trực tiếp cho giới trẻ&rdquo; (Sắc lệnh Tông Đồ Giáo Dân, số 12).
+            </p>
+
+            {/* 4 phương thế của Tôn chỉ */}
             <div
               className="responsive-grid"
             >
@@ -2516,6 +2547,13 @@ export default function GioiThieuPage() {
                 </div>
               ))}
             </div>
+
+            <ul style={{ fontSize: '0.93rem', lineHeight: 1.7, margin: '14px 0 0', paddingLeft: '20px' }}>
+              <li><strong>Thánh Kinh và Thánh Thể</strong> là nền tảng của Phong trào.</li>
+              <li>Tôn sùng <strong>Mẹ Maria</strong> và cậy nhờ Mẹ dẫn đưa các em đến với Chúa.</li>
+              <li>Noi gương <strong>các Thánh Tử Đạo Việt Nam</strong>.</li>
+              <li>Sống gắn bó với Giáo Hội, yêu mến và vâng phục <strong>Đức Thánh Cha</strong> — vị thủ lãnh của Phong trào.</li>
+            </ul>
 
             <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
               5.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
