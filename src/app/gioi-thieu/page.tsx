@@ -2084,61 +2084,245 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
  * Trong (sau gọi là Sài Gòn). Chín vị Đại diện Tông toà kế tiếp nhau từ 1844
  * đến 1960 chính là các Đấng Bản Quyền của họ đạo Mỹ Tho suốt hơn một thế kỷ.
  *
- * Ảnh chân dung lấy từ văn khố IRFA của Hội Thừa Sai Paris; hai vị không có
- * ảnh trong kho thì để trống, không mượn ảnh vị khác.
+ * Tiểu sử tra từ notice lưu trữ IRFA của Hội Thừa Sai Paris; chân dung sáu vị
+ * lấy từ cùng văn khố, ba vị còn lại do Giáo xứ cung cấp.
  */
-const PRE1960_ORDINARIES: {
-  name: string; vn: string; period: string; image?: string; ma?: string; detail: string; mytho?: string;
-}[] = [
+const PRE1960_ORDINARIES: DetailedBioRecord[] = [
   {
-    name: 'Đức cha Dominique Lefebvre', vn: 'Ngãi', period: '1844 – 1864', image: '/images/dgm_lefebvre.jpg', ma: 'IRFA 0418',
-    detail:
-      'Sinh 01/8/1810 tại Courtonne-la-Meurdrac (Calvados), thụ phong linh mục 20/12/1834, lên đường sang Đàng Trong 15/3/1835. Ngài học tiếng Việt bên cạnh Cha Borie — vị sau này được tôn phong hiển thánh — rồi vào Đàng Trong đúng lúc cuộc bách hại lên cao. Coi tiểu chủng viện ở Hạ Đàng Trong, thường trú tại Cái Nhum và Cái Mơn, nhiều phen phải lánh đi để thoát các cuộc lục soát. Tấn phong Giám mục hiệu toà Isauropolis tại Gò Thị ngày 01/8/1841.',
-    mytho: 'Đấng Bản Quyền trong những năm cộng đoàn Công giáo Mỹ Tho hình thành (1861 – 1864); chính ngài nhận bản tường trình năm 1863 của Cha Gernot về nhu cầu của họ đạo.'
+    id: 'dgm-lefebvre',
+    name: 'Đức cha Dominique Lefebvre',
+    saintName: 'Cố Ngãi',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1844 – 1864)',
+    period: '1844 – 1864',
+    birth: '01/08/1810 tại Courtonne-la-Meurdrac, Calvados, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 0418',
+    priestOrdination: 'Thụ phong linh mục ngày 20/12/1834',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Isauropolis tại Gò Thị ngày 01/08/1841',
+    image: '/images/dgm_lefebvre.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 0418. Chân dung do Giáo xứ Chánh Tòa Mỹ Tho cung cấp.',
+    shortDesc:
+      'Đấng Bản Quyền trong chính những năm cộng đoàn Công giáo Mỹ Tho hình thành. Ngài học tiếng Việt bên cạnh Cha Borie — vị sau này được tôn phong hiển thánh — và vào Đàng Trong đúng lúc cuộc bách hại lên cao.',
+    chronology: [
+      { time: '1810 – 1834', title: 'Thời niên thiếu và ơn gọi', content: 'Sinh ngày 01/08/1810 tại Courtonne-la-Meurdrac (Calvados), học tại tiểu chủng viện Lisieux và đại chủng viện Bayeux. Vào Chủng viện Thừa Sai Paris với chức phó tế đầu tháng 9/1833, thụ phong linh mục ngày 20/12/1834.' },
+      { time: '1835 – 1840', title: 'Sang Đàng Trong giữa cơn bách hại', content: 'Lên đường ngày 15/03/1835. Cập bến Bắc Kỳ, học tiếng bên cạnh Cha Borie tại Bố Chính, rồi vào Đàng Trong đúng lúc bách hại lên cao. Ngài coi tiểu chủng viện ở Hạ Đàng Trong, thường trú tại Cái Nhum và Cái Mơn thuộc tỉnh Vĩnh Long, nhiều phen phải lánh đi để thoát các cuộc lục soát.' },
+      { time: '1841', title: 'Tấn phong Giám mục', content: 'Được chọn làm Phó Đại diện Tông toà năm 1840, rồi làm Giám mục phó cho Đức cha Cuénot. Chiếu theo đoản sắc ngày 10/12/1839, ngài được tấn phong Giám mục hiệu toà Isauropolis tại Gò Thị ngày 01/08/1841. Đoản sắc Pastorale officium ngày 26/02/1841 đặt ngài kế vị Đức cha Cuénot nếu vị này qua đời — Rôma khi ấy không thể nắm tin tức kịp thời từ các địa phận An Nam.' },
+      { time: '1861 – 1864', title: 'Với họ đạo Mỹ Tho', content: 'Là Đấng Bản Quyền khi giáo dân các tỉnh miền Tây chạy về Mỹ Tho lánh nạn và hình thành cộng đoàn đầu tiên. Chính ngài nhận bản tường trình năm 1863 của Cha Charles Gernot về nhu cầu của họ đạo — bản tường trình dẫn tới việc các Nữ tu Thánh Phaolô thành Chartres đến Mỹ Tho năm 1864.' }
+    ],
+    milestones: [
+      'Đấng Bản Quyền của họ đạo Mỹ Tho trong những năm cộng đoàn hình thành (1861 – 1864).',
+      'Nhận bản tường trình 1863 của Cha Gernot, mở đường cho các Nữ tu Thánh Phaolô đến Mỹ Tho.'
+    ]
   },
   {
-    name: 'Đức cha Jean-Claude Miche', vn: 'Mịch', period: '1864 – 1873', image: '/images/dgm_miche.jpg', ma: 'IRFA 0423',
-    detail: 'Từng được sai tới làng Công giáo Lái Thiêu gần Sài Gòn, rồi được đặt làm Giám mục phó của Đức cha Lefebvre năm 1846 trước khi kế vị.',
-    mytho: 'Chính ngài long trọng đặt viên đá đầu tiên xây ngôi nhà thờ thứ hai của họ đạo Mỹ Tho năm 1866.'
+    id: 'dgm-miche',
+    name: 'Đức cha Jean-Claude Miche',
+    saintName: 'Cố Mịch',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1864 – 1873)',
+    period: '1864 – 1873',
+    birth: '09/08/1805 tại Bruyères, Vosges, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 0423',
+    priestOrdination: 'Thụ phong linh mục ngày 05/06/1830 tại Saint-Dié',
+    image: '/images/dgm_miche.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 0423',
+    shortDesc:
+      'Vị Giám mục đã long trọng đặt viên đá đầu tiên xây ngôi nhà thờ thứ hai của họ đạo Mỹ Tho năm 1866 — ngôi thánh đường có trong bản khắc năm 1877.',
+    chronology: [
+      { time: '1805 – 1835', title: 'Xuất thân và ơn gọi', content: 'Sinh ngày 09/08/1805 tại Bruyères (Vosges) trong một gia đình khiêm tốn. Học tiểu chủng viện Sénaide rồi đại chủng viện Foucharupt, thụ phong linh mục ngày 05/06/1830 tại Saint-Dié. Làm cha phó trong giáo xứ của người anh ruột là Cha Joseph, rồi theo anh về Fraize năm 1832.' },
+      { time: '1836 – 1841', title: 'Ba lần vào Đàng Trong', content: 'Vào Chủng viện Thừa Sai ngày 10/09/1835. Chuyến đi đầu bị bão lớn ở vịnh Gascogne chặn lại; ngài rời Pháp ngày 15/04/1836 trên tàu Denise. Vì cuộc bách hại của vua Minh Mạng, ngài không vào được nhiệm sở nên phải học tiếng Việt tại Chủng viện chung, nơi ngài dạy thần học luân lý. Mãi ngày 19/06/1841 ngài mới vào được Đàng Trong.' },
+      { time: '1841 – 1864', title: 'Phó Đại diện Tông toà', content: 'Đến ở Gò Thị gần Quy Nhơn bên cạnh Đức cha Cuénot và được đặt làm Phó Đại diện Tông toà. Với chức vụ này, ngài dự phần vào một công đồng bàn về việc ban các bí tích và cách hành xử của các thừa sai.' },
+      { time: '1866', title: 'Đặt viên đá nhà thờ Mỹ Tho', content: 'Ngài long trọng đặt viên đá đầu tiên xây ngôi nhà thờ kiên cố cho họ đạo Mỹ Tho. Công trình bị đình lại khi tường mới cao một mét; Cha Sorel tiếp tục từ 1870 và Cha Moulins hoàn tất, làm phép năm 1876.' }
+    ],
+    milestones: [
+      'Đặt viên đá đầu tiên ngôi nhà thờ thứ hai của họ đạo Mỹ Tho năm 1866.',
+      'Từng bị cuộc bách hại của vua Minh Mạng chặn lại năm năm mới vào được nhiệm sở.'
+    ],
+    works: [
+      {
+        time: '1866',
+        name: 'Ngôi nhà thờ thứ hai của họ đạo Mỹ Tho',
+        now: 'không còn — tháo dỡ khoảng năm 1900',
+        detail:
+          'Đặt viên đá đầu tiên. Công trình do Cha Sorel dựng từ năm 1870 và Cha Moulins hoàn tất, được Đức cha Colombert làm phép ngày 12/03/1876.'
+      }
+    ]
   },
   {
-    name: 'Đức cha Isidore Colombert', vn: 'Mỹ', period: '1873 – 1894', image: '/images/dgm_colombert.jpg', ma: 'IRFA 0830',
-    detail: 'Dưới thời ngài, các Sư huynh Lasan được mời vào thuộc địa và hệ thống chủng viện của địa phận được kiện toàn.',
-    mytho: 'Làm phép trọng thể ngôi nhà thờ Mỹ Tho ngày 12/03/1876 trước sự hiện diện của toàn thể binh sĩ đồn trú; đặt các cha tuyên uý quân y viện Mỹ Tho; năm 1881 trao địa hạt Vĩnh Long cho Cha Lizé, vị thừa sai từng phục vụ Mỹ Tho.'
+    id: 'dgm-colombert',
+    name: 'Đức cha Isidore Colombert',
+    saintName: 'Cố Mỹ',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1873 – 1894)',
+    period: '1873 – 1894',
+    birth: '19/03/1838 tại Sainte-Marie-du-Bois, Mayenne, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 0830',
+    priestOrdination: 'Thụ phong linh mục ngày 30/05/1863',
+    bishopConsecration: 'Đoản sắc 06/02/1872 đặt làm Giám mục hiệu toà Samosate; tấn phong tại Sài Gòn ngày 25/07/1872',
+    image: '/images/dgm_colombert.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 0830',
+    shortDesc:
+      'Vị Giám mục làm phép ngôi nhà thờ Mỹ Tho ngày 12/03/1876, trước sự hiện diện của đại tá Trève cùng toàn thể binh sĩ đồn trú, các Sư huynh Lasan và các Nữ tu Thánh Phaolô.',
+    chronology: [
+      { time: '1838 – 1863', title: 'Học vấn và ơn gọi', content: 'Sinh ngày 19/03/1838 tại Sainte-Marie-du-Bois (Mayenne). Học trường trung học Laval, tiểu chủng viện Précigné (1856 – 1858) và đại chủng viện Le Mans. Vào Chủng viện Thừa Sai ngày 04/10/1860, thụ phong linh mục ngày 30/05/1863 và lên đường sang Nam Kỳ ngày 16/07 cùng năm.' },
+      { time: '1864 – 1872', title: 'Từ Cái Nhum tới Toà Giám mục', content: 'Học tiếng tại Mặc Bắc. Năm 1864 coi địa hạt Cái Nhum tỉnh Vĩnh Long, nơi ngài dựng một nhà nguyện và một nhà xứ. Năm 1866 làm thư ký riêng của Đức cha Miche tại Sài Gòn kiêm quản lý địa phận; tài quản trị của ngài bộc lộ rõ trong các chức vụ này, đến mức Đức cha Miche lúc cuối đời đã chọn ngài làm Giám mục phó.' },
+      { time: '12/03/1876', title: 'Làm phép nhà thờ Mỹ Tho', content: 'Chủ sự nghi thức làm phép trọng thể ngôi nhà thờ Mỹ Tho do Cha Sorel dựng và Cha Moulins hoàn tất. Tường thuật năm 1877 ghi rõ có mặt đại tá hải quân lục chiến Trève, các quan cai trị hạt, sĩ quan và công chức, toàn thể binh sĩ đồn trú, các Sư huynh Lasan và các Nữ tu Thánh Phaolô cùng học sinh, và toàn thể giáo dân.' },
+      { time: '1879 – 1894', title: 'Chăm lo mục vụ Mỹ Tho', content: 'Đặt các cha tuyên uý cho quân y viện Mỹ Tho — Cha Hirbec năm 1879, trước đó là Cha Faron và Cha Launay. Năm 1881 trao địa hạt Vĩnh Long cho Cha Lizé, vị thừa sai từng phục vụ Mỹ Tho mười lăm năm.' }
+    ],
+    milestones: [
+      'Làm phép ngôi nhà thờ thứ hai của họ đạo Mỹ Tho ngày 12/03/1876.',
+      'Đặt các cha tuyên uý cho quân y viện Mỹ Tho.',
+      'Dưới thời ngài, các Sư huynh Lasan được mời vào thuộc địa và hệ thống chủng viện địa phận được kiện toàn.'
+    ]
   },
   {
-    name: 'Đức cha Jean-Marie Dépierre', vn: 'Đễ', period: '1895 – 1898', image: '/images/dgm_depierre.jpg', ma: 'IRFA 1442',
-    detail:
-      'Sinh 18/01/1855 tại Thoiry (Savoie), thụ phong linh mục 20/9/1879. Làm giáo sư Chủng viện Sài Gòn, lần lượt dạy tu từ, triết học và thần học tín lý; ngài soạn và cho in một sách giáo khoa triết học cùng một sách thần học. Đắc cử Giám mục hiệu toà Benda ngày 12/4/1895, tấn phong tại Sài Gòn ngày 25/7/1895.',
-    mytho: 'Đấng Bản Quyền trong những năm cuối nhiệm kỳ 27 năm của Cha Moulins tại Mỹ Tho.'
+    id: 'dgm-depierre',
+    name: 'Đức cha Jean-Marie Dépierre',
+    saintName: 'Cố Đễ',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1895 – 1898)',
+    period: '1895 – 1898',
+    birth: '18/01/1855 tại Thoiry, Savoie, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 1442',
+    priestOrdination: 'Thụ phong linh mục ngày 20/09/1879',
+    bishopConsecration: 'Đắc cử Giám mục hiệu toà Benda ngày 12/04/1895; tấn phong tại Sài Gòn ngày 25/07/1895',
+    image: '/images/dgm_depierre.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 1442',
+    shortDesc:
+      'Nhà thần học của địa phận: giáo sư chủng viện Sài Gòn, soạn và cho in một sách giáo khoa triết học cùng một sách thần học. Chính ngài giao cho Cha Quinton lập chủng viện tại An Đức gần Mỹ Tho năm 1896.',
+    chronology: [
+      { time: '1855 – 1879', title: 'Học vấn', content: 'Sinh ngày 18/01/1855 tại Thoiry (Savoie). Học tiểu chủng viện Saint-Pierre d’Albigny, vài tháng ở đại chủng viện Chambéry, vào Chủng viện Thừa Sai ngày 08/09/1876 với tư cách giáo dân. Thụ phong linh mục ngày 20/09/1879.' },
+      { time: '1879 – 1895', title: 'Giáo sư và tác giả', content: 'Lên đường sang Nam Kỳ ngày 26/11/1879. Sau một thời gian ngắn ở Biên Hoà, ngài được đặt làm giáo sư Chủng viện Sài Gòn, lần lượt dạy tu từ học, triết học và thần học tín lý. Trong giai đoạn này ngài soạn và cho in một sách giáo khoa triết học và một sách thần học.' },
+      { time: '1895 – 1898', title: 'Đại diện Tông toà', content: 'Đắc cử Giám mục hiệu toà Benda ngày 12/04/1895, tấn phong tại Sài Gòn ngày 25/07/1895. Ngài tách tiểu chủng viện khỏi đại chủng viện — việc phân chia này không kéo dài được lâu.' },
+      { time: '1896', title: 'Chủng viện tại An Đức, gần Mỹ Tho', content: 'Khi tách tiểu chủng viện khỏi đại chủng viện, ngài giao cho Cha Victor Quinton lập một cơ sở mới tại An Đức thuộc vùng phụ cận Mỹ Tho. Vài năm sau, khí hậu không lành ở đó buộc phải chuyển các chủng sinh về Tân Định.' }
+    ],
+    milestones: [
+      'Soạn và cho in một sách giáo khoa triết học và một sách thần học cho chủng viện.',
+      'Tách tiểu chủng viện khỏi đại chủng viện và lập tiểu chủng viện tại An Đức, gần Mỹ Tho (1896).'
+    ]
   },
   {
-    name: 'Đức cha Lucien Mossard', vn: 'Mão', period: '1899 – 1920', image: '/images/dgm_mossard.jpg', ma: 'IRFA 1299',
-    detail: 'Dưới thời ngài, trường Taberd của các Sư huynh Lasan tiếp tục phát triển.',
-    mytho: 'Năm 1899 chính ngài điều Cha Moulins về làm chánh sở Nhà thờ Chánh Tòa Sài Gòn và cử Cha Renier về Mỹ Tho — vị sẽ xây ngôi thánh đường hiện nay. Cũng dưới thời ngài, các Sư huynh Lasan lập trường và mở nội trú tại Mỹ Tho.'
+    id: 'dgm-mossard',
+    name: 'Đức cha Lucien Mossard',
+    saintName: 'Cố Mão',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1899 – 1920)',
+    period: '1899 – 1920',
+    birth: '24/10/1851 tại Dampierre-sur-le-Doubs, giáo phận Besançon, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 1299',
+    priestOrdination: 'Thụ phong linh mục ngày 23/09/1876',
+    image: '/images/dgm_mossard.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 1299',
+    shortDesc:
+      'Chính ngài cử Cha Renier về Mỹ Tho năm 1899 — vị sẽ xây ngôi thánh đường hiện nay. Trước khi sang Nam Kỳ, ngài được gửi sang Pondichéry học tiếng Tamil vì Sài Gòn khi ấy có đông người Ấn.',
+    chronology: [
+      { time: '1851 – 1876', title: 'Ơn gọi từ một giáo xứ nhỏ', content: 'Sinh ngày 24/10/1851 tại Dampierre-sur-le-Doubs trong một gia đình đạo đức sâu sắc. Cha sở giáo xứ là Cha Piquet gửi ngài vào tiểu chủng viện Marnay học trung học từ 1866 đến 1872, rồi một năm triết học tại Vesoul. Vào Chủng viện Thừa Sai ngày 23/09/1873, thụ phong linh mục ngày 23/09/1876 và hôm sau nhận bài sai đi Nam Kỳ.' },
+      { time: '1876 – 1877', title: 'Một năm ở Ấn Độ học tiếng Tamil', content: 'Trước khi tới nhiệm sở, ngài được gửi sang Pondichéry học tiếng Tamil, vì nhiều người Ấn sinh sống tại Sài Gòn và vùng phụ cận. Ngài ở Ấn Độ khoảng một năm và tới Sài Gòn năm 1877.' },
+      { time: '1899', title: 'Cử Cha Renier về Mỹ Tho', content: 'Ngài mời Cha Moulins — sau 27 năm ở Mỹ Tho — về nhận chức chánh sở Nhà thờ Chánh Tòa Sài Gòn, và cử Cha Renier từ Chợ Đũi về thay. Cha Renier chính là vị sẽ khởi công ngôi thánh đường hiện nay ngày 11/08/1906.' },
+      { time: '1899 – 1920', title: 'Trường Lasan tại Mỹ Tho', content: 'Dưới thời ngài, các Sư huynh Lasan lập một trường tại Mỹ Tho và mở nội trú, số học sinh tăng nhanh. Trường Taberd tại Sài Gòn cũng tiếp tục phát triển.' }
+    ],
+    milestones: [
+      'Cử Cha Renier về Mỹ Tho năm 1899 — vị xây ngôi Nhà thờ Chánh Tòa hiện nay.',
+      'Dưới thời ngài, các Sư huynh Lasan lập trường và mở nội trú tại Mỹ Tho.'
+    ]
   },
   {
-    name: 'Đức cha Victor Quinton', vn: 'Tôn', period: '1920 – 1924', image: '/images/dgm_quinton.jpg', ma: 'IRFA 1880',
-    detail: 'Kế vị Đức cha Mossard sau hơn hai mươi năm phục vụ trong địa phận.',
-    mytho: 'Trước khi làm Giám mục, chính ngài được chỉ định lập cơ sở mới tại An Đức thuộc vùng phụ cận Mỹ Tho — họ đạo do các nghĩa quân được Cha Marc xin ân xá lập nên.'
+    id: 'dgm-quinton',
+    name: 'Đức cha Victor Quinton',
+    saintName: 'Cố Tôn',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1920 – 1924)',
+    period: '1920 – 1924',
+    birth: '04/11/1866 tại xóm La Cointerie, giáo xứ Gorron, Mayenne, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 1880',
+    image: '/images/dgm_quinton.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 1880',
+    shortDesc:
+      'Trước khi làm Giám mục, chính ngài được Đức cha Dépierre giao lập tiểu chủng viện tại An Đức gần Mỹ Tho năm 1896 — họ đạo do các nghĩa quân được Cha Marc xin ân xá lập nên.',
+    chronology: [
+      { time: '1866', title: 'Gia đình', content: 'Sinh ngày 04/11/1866 tại xóm La Cointerie thuộc giáo xứ Gorron (Mayenne), rửa tội ngay hôm sau. Ngài là con thứ tư của ông Joseph Quinton và bà Victoire Garnier; một người chị hơn ngài hai tuổi tên Léonie đi tu dòng Bác Ái Évron.' },
+      { time: 'Trước 1896', title: 'Học tiếng Việt và dạy chủng viện', content: 'Sau một thời gian ở Bà Rịa học tiếng Việt dưới sự hướng dẫn của Cha Combalbert, ngài được đặt về Chủng viện Sài Gòn.' },
+      { time: '1896', title: 'Lập tiểu chủng viện tại An Đức, gần Mỹ Tho', content: 'Đức cha Dépierre tách tiểu chủng viện khỏi đại chủng viện và giao cho ngài lập một cơ sở mới tại An Đức thuộc vùng phụ cận Mỹ Tho. Vài năm sau, khí hậu không lành ở đó buộc ngài phải chuyển các chủng sinh đi nơi khác. Về Tân Định, nơi ngài tự tay dựng một khuôn viên đẹp đẽ, ngài sống những năm hạnh phúc nhất, yêu mến học trò và được các chủng sinh cùng anh em linh mục quý mến.' },
+      { time: '1920 – 1924', title: 'Đại diện Tông toà', content: 'Kế vị Đức cha Mossard, coi sóc địa phận Tây Đàng Trong trong đó có họ đạo Mỹ Tho, cho tới khi qua đời.' }
+    ],
+    milestones: [
+      'Lập tiểu chủng viện của địa phận tại An Đức, vùng phụ cận Mỹ Tho, năm 1896.',
+      'Gây dựng cơ sở chủng viện tại Tân Định sau khi rời An Đức.'
+    ],
+    works: [
+      {
+        time: '1896',
+        name: 'Tiểu chủng viện tại An Đức',
+        now: 'không còn ở An Đức — chủng sinh đã chuyển về Tân Định vì khí hậu không lành',
+        detail:
+          'Cơ sở đào tạo do Đức cha Dépierre giao cho ngài lập tại An Đức, họ đạo gần Mỹ Tho do các nghĩa quân được Cha Marc xin ân xá lập nên. Đây là lần đầu vùng Mỹ Tho có một chủng viện của địa phận.'
+      }
+    ]
   },
   {
-    name: 'Đức cha Isidore Dumortier', vn: 'Đượm', period: '1926 – 1941', image: '/images/dgm_dumortier.jpg', ma: 'IRFA 2406',
-    detail:
-      'Sinh 06/4/1869 tại Halluin (Nord). Học tại Đại học Grêgôriô ở Rôma, đậu tiến sĩ triết học và thần học trước khi thụ phong linh mục ngày 27/5/1893. Vào Chủng viện Thừa Sai năm 1897, lên đường sang Nam Kỳ 23/11/1898. Làm cha phó rồi năm 1912 kế nhiệm Cha Gernot tại Cái Mơn, ở đó suốt 26 năm. Trong nhiệm kỳ giám mục, ngài lo nâng trình độ học vấn cho các nữ tu Mến Thánh Giá và vận động các Sư huynh Lasan lập Trường Taberd Sài Gòn.',
-    mytho: 'Đấng Bản Quyền suốt phần lớn nhiệm kỳ của Cha Bar tại Mỹ Tho, thời kỳ trường Sư huynh Lasan có 400 học sinh và trường Nữ tu Thánh Phaolô 300 nữ sinh.'
+    id: 'dgm-dumortier',
+    name: 'Đức cha Isidore Dumortier',
+    saintName: 'Cố Đượm',
+    role: 'Đại diện Tông toà Tây Đàng Trong (1926 – 1941)',
+    period: '1926 – 1941',
+    birth: '06/04/1869 tại Halluin, Nord, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 2406',
+    priestOrdination: 'Thụ phong linh mục ngày 27/05/1893',
+    image: '/images/dgm_dumortier.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 2406. Chân dung do Giáo xứ Chánh Tòa Mỹ Tho cung cấp.',
+    shortDesc:
+      'Tiến sĩ triết học và thần học tại Đại học Grêgôriô ở Rôma. Ngài làm cha phó rồi kế nhiệm Cha Gernot tại Cái Mơn suốt 26 năm trước khi lên Giám mục.',
+    chronology: [
+      { time: '1869 – 1893', title: 'Học tại Rôma', content: 'Sinh ngày 06/04/1869 tại Halluin (Nord). Theo học Đại học Grêgôriô, đậu tiến sĩ triết học và tiến sĩ thần học trước khi thụ phong linh mục ngày 27/05/1893.' },
+      { time: '1898 – 1924', title: 'Hai mươi sáu năm tại Cái Mơn', content: 'Vào Chủng viện Thừa Sai năm 1897, lên đường sang Nam Kỳ ngày 23/11/1898. Sau khi học tiếng Việt tại Sài Gòn, ngài được gửi tới Cái Mơn ở với Cha Gernot, làm cha phó rồi năm 1912 kế nhiệm. Ngài ở Cái Mơn 26 năm, đi khắp địa hạt thăm viếng giáo dân.' },
+      { time: '1926 – 1941', title: 'Đại diện Tông toà', content: 'Sau khi Đức cha Quinton qua đời, ngài được đặt làm Giám mục hiệu toà Lipara và Đại diện Tông toà Tây Đàng Trong. Trong nhiệm kỳ, ngài lo nâng trình độ học vấn cho các nữ tu Mến Thánh Giá và vận động các Sư huynh Lasan lập Trường Taberd tại Sài Gòn.' },
+      { time: '1929 – 1941', title: 'Với họ đạo Mỹ Tho', content: 'Là Đấng Bản Quyền suốt phần lớn nhiệm kỳ của Cha Bar tại Mỹ Tho: năm 1929 các Đệ tử Sư huynh Lasan về Mỹ Tho, đến 1930 trường Sư huynh có 400 học sinh và trường Nữ tu Thánh Phaolô 300 nữ sinh; năm 1933 địa hạt ghi nhận 642 người được rửa tội và ba họ đạo mới được lập.' }
+    ],
+    milestones: [
+      'Tiến sĩ triết học và thần học tại Đại học Grêgôriô, Rôma.',
+      'Nâng trình độ học vấn cho các nữ tu Mến Thánh Giá.',
+      'Vận động các Sư huynh Lasan lập Trường Taberd Sài Gòn.'
+    ]
   },
   {
-    name: 'Đức cha Jean Cassaigne', vn: 'Sanh', period: '1941 – 1955', image: '/images/dgm_cassaigne.jpg', ma: 'IRFA 3300',
-    detail:
-      'Sinh 30/01/1895 tại Grenade-sur-l’Adour (Landes). Học với các Sư huynh Lasan, năm 1911 học nghề buôn rượu vang với thân phụ. Vào Hội Thừa Sai ngày 07/9/1920, thụ phong linh mục 19/12/1925 do Đức cha de Guébriant, và lên đường sang Sài Gòn ngày 06/4/1926. Ngài được biết đến nhiều nhất vì đời phục vụ người phong tại Di Linh, nơi ngài xin về sống và qua đời giữa họ.',
-    mytho: 'Đấng Bản Quyền qua thời kỳ Nhật chiếm đóng và những năm cuối đời Cha Bar; chính ngài phân bổ các thừa sai về Mỹ Tho trong giai đoạn này.'
+    id: 'dgm-cassaigne',
+    name: 'Đức cha Jean Cassaigne',
+    saintName: 'Cố Sanh',
+    role: 'Đại diện Tông toà Sài Gòn (1941 – 1955)',
+    period: '1941 – 1955',
+    birth: '30/01/1895 tại Grenade-sur-l’Adour, Landes, Pháp',
+    origin: 'Hội Thừa Sai Paris — hồ sơ IRFA 3300',
+    priestOrdination: 'Thụ phong linh mục ngày 19/12/1925 do Đức cha de Guébriant',
+    image: '/images/dgm_cassaigne.jpg',
+    source: 'Hồ sơ lưu trữ IRFA 3300',
+    shortDesc:
+      'Vị tông đồ của người phong. Sau nhiệm kỳ Giám mục, ngài xin về sống giữa các bệnh nhân phong tại Di Linh và qua đời ở đó.',
+    chronology: [
+      { time: '1895 – 1920', title: 'Từ nghề buôn rượu vang tới ơn gọi', content: 'Sinh ngày 30/01/1895 tại Grenade-sur-l’Adour (Landes). Học với các Sư huynh Lasan tại Lez, Tây Ban Nha, rồi năm 1911 bắt đầu học nghề buôn rượu vang với thân phụ. Được nhận vào Hội Thừa Sai ngày 07/09/1920.' },
+      { time: '1925 – 1926', title: 'Thụ phong và lên đường', content: 'Thụ phong linh mục ngày 19/12/1925 do Đức cha de Guébriant, khi ấy là Bề trên Tổng quyền. Ngày 10/02/1926 nhận bài sai đi địa phận Sài Gòn và lên đường ngày 06/04 cùng năm.' },
+      { time: '1941 – 1955', title: 'Đại diện Tông toà Sài Gòn', content: 'Coi sóc địa phận qua thời kỳ Nhật chiếm đóng và những năm biến động sau đó. Chính ngài phân bổ các thừa sai về Mỹ Tho trong giai đoạn này — hồ sơ Cha René Detry ghi ngài từng cho vị này chọn giữa Đà Lạt và Mỹ Tho.' },
+      { time: 'Sau 1955', title: 'Trở về với người phong Di Linh', content: 'Sau khi từ nhiệm, ngài xin về sống giữa các bệnh nhân phong tại Di Linh — công cuộc ngài đã khởi sự từ khi còn là linh mục — và qua đời ở đó.' }
+    ],
+    milestones: [
+      'Vị tông đồ của người phong tại Di Linh.',
+      'Đấng Bản Quyền của họ đạo Mỹ Tho qua thời kỳ Nhật chiếm đóng và những năm cuối đời Cha Bar.'
+    ]
   },
   {
-    name: 'Đức cha Simon Hòa Nguyễn Văn Hiền', vn: '', period: '1955 – 1960', image: '/images/dgm_nguyen_van_hien.jpg',
-    detail:
-      'Vị Đại diện Tông toà người Việt Nam đầu tiên của địa phận Sài Gòn. Năm 1960, khi Hàng Giáo Phẩm Việt Nam được thiết lập, ngài trở thành Giám mục Chính tòa tiên khởi Giáo phận Đà Lạt.',
-    mytho: 'Đấng Bản Quyền cuối cùng của họ đạo Mỹ Tho trước khi Giáo phận Mỹ Tho được khai sinh ngày 24/11/1960.'
+    id: 'dgm-nguyen-van-hien',
+    name: 'Đức cha Simon Hòa Nguyễn Văn Hiền',
+    saintName: 'Thánh Simon',
+    role: 'Đại diện Tông toà Sài Gòn (1955 – 1960) — vị người Việt đầu tiên',
+    period: '1955 – 1960',
+    origin: 'Việt Nam',
+    image: '/images/dgm_nguyen_van_hien.jpg',
+    source: 'Chân dung do Giáo xứ Chánh Tòa Mỹ Tho cung cấp.',
+    shortDesc:
+      'Vị Đại diện Tông toà người Việt Nam đầu tiên của địa phận Sài Gòn, và là Đấng Bản Quyền cuối cùng của họ đạo Mỹ Tho trước khi Giáo phận Mỹ Tho được khai sinh.',
+    chronology: [
+      { time: '1955 – 1960', title: 'Đại diện Tông toà người Việt đầu tiên', content: 'Ngài là người Việt Nam đầu tiên coi sóc địa phận Sài Gòn, kế nhiệm Đức cha Cassaigne. Suốt nhiệm kỳ này, họ đạo Mỹ Tho vẫn thuộc quyền ngài.' },
+      { time: '24/11/1960', title: 'Bước ngoặt', content: 'Tông hiến Venerabilium Nostrorum thiết lập Hàng Giáo Phẩm Việt Nam: Sài Gòn được nâng lên Tổng Giáo phận, bốn tỉnh Định Tường, Long An, Kiến Tường và Kiến Phong tách ra lập Giáo phận Mỹ Tho. Từ đây họ đạo Mỹ Tho có Đấng Bản Quyền riêng là Đức cha Giuse Trần Văn Thiện.' },
+      { time: '1960', title: 'Giám mục tiên khởi Đà Lạt', content: 'Cùng năm ấy, ngài được đặt làm Giám mục Chính tòa tiên khởi Giáo phận Đà Lạt.' }
+    ],
+    milestones: [
+      'Vị Đại diện Tông toà người Việt Nam đầu tiên của địa phận Sài Gòn.',
+      'Đấng Bản Quyền cuối cùng của họ đạo Mỹ Tho trước ngày lập Giáo phận Mỹ Tho.',
+      'Giám mục Chính tòa tiên khởi Giáo phận Đà Lạt (1960).'
+    ]
   }
 ];
 
@@ -2679,13 +2863,16 @@ export default function GioiThieuPage() {
               Giáo phận Mỹ Tho chỉ ra đời ngày <strong>24/11/1960</strong>. Trước đó, suốt hơn một thế kỷ, họ đạo Mỹ Tho
               thuộc quyền <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại diện Tông toà kế
               tiếp nhau từ năm 1844 đến 1960 chính là các Đấng Bản Quyền của họ đạo trong suốt thời kỳ ấy: các ngài đặt
-              viên đá, làm phép nhà thờ, và cử từng cha sở về Mỹ Tho.
+              viên đá, làm phép nhà thờ, và cử từng cha sở về Mỹ Tho. <em>Nhấn vào từng vị để xem lý lịch đầy đủ.</em>
             </p>
 
             <div style={{ display: 'grid', gap: '12px', marginBottom: '18px' }}>
               {PRE1960_ORDINARIES.map((b, idx) => (
-                <div
-                  key={b.name}
+                <button
+                  key={b.id}
+                  type="button"
+                  onClick={() => setSelectedBio(b)}
+                  aria-label={`Xem lý lịch ${b.name}`}
                   style={{
                     display: 'flex',
                     gap: '12px',
@@ -2693,29 +2880,33 @@ export default function GioiThieuPage() {
                     padding: '12px',
                     borderRadius: '10px',
                     border: '1px solid var(--color-border-subtle)',
-                    backgroundColor: 'var(--color-card-bg)'
+                    backgroundColor: 'var(--color-card-bg)',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                    width: '100%',
+                    font: 'inherit',
+                    color: 'inherit'
                   }}
                 >
                   <PortraitFrame src={b.image} name={b.name} width={78} height={104} />
                   <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--color-dark)' }}>
+                    <div style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--color-red)' }}>
                       {idx + 1}. {b.name}
-                      {b.vn && <span style={{ color: 'var(--color-red)' }}> (Cố {b.vn})</span>}
+                      {b.saintName.startsWith('Cố') && (
+                        <span style={{ color: 'var(--color-subtle)', fontWeight: 600 }}> ({b.saintName})</span>
+                      )}
                     </div>
-                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--color-red)', margin: '2px 0 6px' }}>
-                      Đại diện Tông toà Tây Đàng Trong {b.period}
-                      {b.ma && <span style={{ fontWeight: 500, color: 'var(--color-subtle)' }}> • {b.ma}</span>}
+                    <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--color-dark)', margin: '2px 0 6px' }}>
+                      {b.role}
                     </div>
-                    <p style={{ margin: '0 0 6px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-subtle)', textAlign: 'justify' }}>
-                      {b.detail}
+                    <p style={{ margin: 0, fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-subtle)', textAlign: 'justify' }}>
+                      {b.shortDesc}
                     </p>
-                    {b.mytho && (
-                      <p style={{ margin: 0, fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)', textAlign: 'justify' }}>
-                        <strong style={{ color: 'var(--color-red)' }}>Với Mỹ Tho:</strong> {b.mytho}
-                      </p>
-                    )}
+                    <div style={{ marginTop: '6px', fontSize: '0.76rem', fontWeight: 700, color: 'var(--color-red)' }}>
+                      Nhấn để xem lý lịch đầy đủ →
+                    </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
 
