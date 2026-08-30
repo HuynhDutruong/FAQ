@@ -2097,3 +2097,41 @@ body {
 
   .pastor-name-btn { font-size: 0.95rem; }
 }
+
+/* Thư viện ảnh tư liệu TNTT 2005 — trang Giới Thiệu */
+.tntt-gallery {
+  display: grid;
+  gap: 14px;
+  margin: 4px 0 16px;
+}
+
+.tntt-figure {
+  margin: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--color-card-bg);
+}
+
+.tntt-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tntt-caption {
+  padding: 9px 12px 11px;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--color-subtle);
+}
+
+@media (min-width: 720px) {
+  .tntt-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* Ảnh sổ tay là tư liệu gốc — cho chiếm trọn hàng để đọc được chữ */
+  .tntt-figure:first-child {
+    grid-column: 1 / -1;
+  }
+}
