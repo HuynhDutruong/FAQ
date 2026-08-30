@@ -738,15 +738,15 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     source: 'Hồ sơ lưu trữ IRFA 0869',
     name: 'Lm. Constant-Joseph Sorel (MEP)',
     saintName: 'Thánh Giuse',
-    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho • Khởi công Nhà thờ Vĩnh Tường (1870 – 1872)',
+    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho • Người xây ngôi nhà thờ thứ hai (1870 – 1872)',
     period: '1870 – 1872',
     birth: '14/04/1840 tại Bulles, Giáo phận Beauvais, Pháp',
     death: '26/02/1873 tại Nice, Pháp; an táng tại Marseille',
     priestOrdination: 'Thụ phong Linh mục ngày 17/12/1864',
     origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 0869',
     image: '/images/cha_sorel.jpg',
-    tableNote: 'Khởi công xây ngôi nhà thờ thứ hai của họ đạo — Nhà thờ Vĩnh Tường — mà người kế nhiệm là Cha Moulins hoàn tất.',
-    shortDesc: 'Trước khi về Mỹ Tho, ngài phục vụ tại Thủ Dầu Một và dựng ở đó một ngôi nhà thờ khiêm tốn nhưng nhiều năm liền được coi là đẹp nhất địa phận. Tháng 7/1868 ngài theo đoàn quân cứu giáo dân Thị Tính nhưng đến nơi sau khi cuộc thảm sát đã xảy ra. Năm 1870 ngài về Mỹ Tho và khởi công xây ngôi nhà thờ thứ hai của họ đạo — Nhà thờ Vĩnh Tường — công trình sau này được Cha Moulins hoàn tất. Ngã bệnh, ngài về Pháp năm 1872 và qua đời năm sau.',
+    tableNote: 'Vốn có kiến thức kiến trúc, ngài tự vẽ đồ án, mua vật liệu, thuê thợ và nhiều khi cầm bay xây như một người thợ lành nghề, dựng lên ngôi nhà thờ thứ hai của họ đạo mà Cha Marc chỉ mới đặt được viên đá năm 1866. Ngã bệnh khi mặt tiền và cung thánh còn dang dở; Cha Moulins hoàn tất.',
+    shortDesc: 'Trước khi về Mỹ Tho, ngài phục vụ tại Thủ Dầu Một và dựng ở đó một ngôi nhà thờ gạch khiêm tốn nhưng nhiều năm liền được coi là đẹp nhất địa phận, được các sĩ quan công binh Pháp đánh giá cao. Tháng 7/1868 ngài theo cánh quân của thiếu tá Darros đi cứu giáo dân Thị Tính nhưng đến nơi sau khi cuộc thảm sát đã xảy ra. Năm 1870 ngài về Mỹ Tho, nơi công trình nhà thờ do Cha Marc khởi xướng đã ngưng từ lâu, tường mới cao một mét. Vốn am hiểu kiến trúc, ngài tự nghiên cứu đồ án, xin ngân khoản, mua vật liệu, thuê thợ, trực tiếp chỉ huy thợ nề thợ mộc và nhiều khi cầm bay làm việc như một người thợ lành nghề. Tường lên đủ độ cao, mái đã lợp, ngài đang làm mặt tiền và cung thánh thì kiệt sức; phải sang nhà hưu Hồng Kông rồi về Nice, qua đời ngày 26/02/1873 tại nhà các Sư huynh Thánh Gioan Thiên Chúa.',
     chronology: [
       {
         time: '1861 – 1865',
@@ -760,8 +760,9 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       },
       {
         time: '1870 – 1872',
-        title: 'Về Mỹ Tho & khởi công Nhà thờ Vĩnh Tường',
-        content: 'Nhận họ đạo Mỹ Tho năm 1870 và khởi công xây ngôi nhà thờ thứ hai của họ đạo. Công trình do người kế nhiệm là Cha Moulins hoàn tất, được Đức cha Colombert thánh hiến năm 1876 với tên Nhà thờ Vĩnh Tường. Ngôi nhà thờ này nay không còn.'
+        title: 'Về Mỹ Tho & dựng ngôi nhà thờ thứ hai của họ đạo',
+        content:
+          'Nhận họ đạo Mỹ Tho năm 1870 và bắt tay xây dựng ngôi nhà thờ mà Đức cha Miche đã đặt viên đá năm 1866 rồi phải bỏ dở. Công trình được Cha Moulins hoàn tất và Đức cha Colombert làm phép trọng thể ngày 12/03/1876. Ngôi nhà thờ này bị tháo dỡ khoảng năm 1900 và nay không còn — chính là ngôi thánh đường trong bản khắc năm 1877 và trong tấm ảnh cũ đề "Cathédrale de My Tho".'
       },
       {
         time: '1872 – 1873',
@@ -771,16 +772,16 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ],
     milestones: [
       'Chánh sở họ đạo Mỹ Tho 1870 – 1872.',
-      'Khởi công ngôi nhà thờ thứ hai của họ đạo (Nhà thờ Vĩnh Tường).',
+      'Xây dựng ngôi nhà thờ thứ hai của họ đạo Mỹ Tho, tự tay chỉ huy công trường.',
       'Xây nhà thờ Thủ Dầu Một, nhiều năm được coi là đẹp nhất địa phận Tây Đàng Trong.'
     ],
     works: [
       {
-        time: 'Khởi công khoảng 1870 – 1872',
-        name: 'Nhà thờ Vĩnh Tường — ngôi nhà thờ thứ hai của họ đạo',
-        now: 'không còn; ngôi Chánh Tòa xây 1906 – 1910 đã thay thế',
+        time: '1870 – 1872 (làm phép 12/03/1876)',
+        name: 'Ngôi nhà thờ thứ hai của họ đạo Mỹ Tho',
+        now: 'không còn — bị tháo dỡ khoảng năm 1900; ngôi Chánh Tòa 1906 – 1910 thay thế',
         detail:
-          'Khởi công ngôi thánh đường thứ hai của họ đạo Mỹ Tho, thay cho cơ sở tạm thời buổi đầu. Công trình sau đó được Cha Moulins hoàn tất.'
+          'Ngôi thánh đường Baroque bề thế: dài 42 m, rộng 18 m, cao 36 m; lòng chính rộng 9,40 m; 32 cột Corinthiên cao 8 m; trần vòm cuốn; toàn bộ phào chỉ và trang trí bằng vữa stuc kiểu Hoa, do một người thợ Hoa đắp tay tại chỗ; 16 cửa sổ kính màu và một cửa kính hậu cung sáu huy hiệu kể các mầu nhiệm chính của đạo. Đức cha Colombert làm phép ngày 12/03/1876 trước sự hiện diện của đại tá Trève cùng toàn thể binh sĩ đồn trú, các Sư huynh Lasan và các Nữ tu Thánh Phaolô.'
       },
       {
         time: 'Sau 1872',
@@ -802,8 +803,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     priestOrdination: 'Thụ phong Linh mục ngày 22/05/1869',
     origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 1056',
     image: '/images/cha_moulins.jpg',
-    tableNote: 'Coi sóc họ đạo suốt 27 năm — nhiệm kỳ dài nhất trong lịch sử. Hoàn tất Nhà thờ Vĩnh Tường do Cha Sorel khởi công, tái lập họ đạo Xoài Mút và lập địa hạt Bình Đại. Năm 1899 được gọi về làm Chánh sở Nhà thờ Chánh Tòa Sài Gòn.',
-    shortDesc: 'Vị chánh sở gắn bó với Mỹ Tho lâu nhất trong lịch sử họ đạo — 27 năm liên tục. Ngài hoàn tất ngôi Nhà thờ Vĩnh Tường do Cha Sorel khởi công, phát triển giáo xứ, tái lập họ đạo Xoài Mút và thành lập địa hạt Bình Đại; xây nhiều nhà xứ và nhà nguyện tại Xoài Mút, An Đức và Bình Đại. Dưới thời ngài, Mỹ Tho trở thành nơi dừng chân của các thừa sai từ các tỉnh miền dưới, Campuchia và Lào. Năm 1899 Đức cha Mossard mời ngài nhận chức Chánh sở Nhà thờ Chánh Tòa Sài Gòn, nhưng ngài chỉ đảm nhiệm được vài tháng thì qua đời.',
+    tableNote: 'Coi sóc họ đạo suốt 27 năm — nhiệm kỳ dài nhất trong lịch sử. Trong ba năm, ngài vừa lo kinh phí vừa tự làm thợ chạm, thợ mộc, thợ trang trí để hoàn tất ngôi nhà thờ Cha Sorel bỏ dở; tái lập họ đạo Xoài Mút và lập địa hạt Bình Đại. Năm 1899 được gọi về làm Chánh sở Nhà thờ Chánh Tòa Sài Gòn.',
+    shortDesc: 'Vị chánh sở gắn bó với Mỹ Tho lâu nhất trong lịch sử họ đạo — 27 năm liên tục. Trước khi về Mỹ Tho ngài tập sự tại Chủng viện Sài Gòn, Lái Thiêu, rồi Cái Mơn — nơi ngài phụ giúp Cha Gernot xây nhà thờ. Ngài hoàn tất ngôi nhà thờ do Cha Sorel bỏ dở, phát triển giáo xứ, tái lập họ đạo Xoài Mút và thành lập địa hạt Bình Đại; xây nhiều nhà xứ và nhà nguyện tại Xoài Mút, An Đức và Bình Đại. Dưới thời ngài, Mỹ Tho trở thành nơi dừng chân của các thừa sai từ các tỉnh miền dưới, Campuchia và Lào. Năm 1899 Đức cha Mossard mời ngài nhận chức Chánh sở Nhà thờ Chánh Tòa Sài Gòn, nhưng ngài chỉ đảm nhiệm được vài tháng thì qua đời.',
     chronology: [
       {
         time: '1869 – 1873',
@@ -813,7 +814,8 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '1873',
         title: 'Nhận họ đạo Mỹ Tho',
-        content: 'Được trao coi sóc họ đạo Mỹ Tho và hoàn tất ngôi nhà thờ do Cha Sorel khởi công — sau này mang tên Nhà thờ Vĩnh Tường, được Đức cha Colombert thánh hiến năm 1876.'
+        content:
+          'Được trao coi sóc họ đạo Mỹ Tho. Trong ba năm, ngài lo được nguồn kinh phí và tự mình làm thợ chạm, thợ mộc, thợ trang trí để đưa công trình dang dở của Cha Sorel đến đích. Đức cha Colombert làm phép trọng thể ngôi nhà thờ ngày 12/03/1876.'
       },
       {
         time: '1873 – 1899',
@@ -828,17 +830,17 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ],
     milestones: [
       'Chánh sở họ đạo Mỹ Tho suốt 27 năm (1873 – 1899) — nhiệm kỳ dài nhất trong lịch sử họ đạo.',
-      'Hoàn tất ngôi Nhà thờ Vĩnh Tường do Cha Sorel khởi công.',
+      'Hoàn tất ngôi nhà thờ thứ hai của họ đạo, làm phép ngày 12/03/1876.',
       'Tái lập họ đạo Xoài Mút và thành lập địa hạt Bình Đại.',
       'Chánh sở Nhà thờ Chánh Tòa Sài Gòn (1899 – 1900).'
     ],
     works: [
       {
         time: 'Hoàn tất dưới thời 1873 – 1899',
-        name: 'Nhà thờ Vĩnh Tường',
-        now: 'không còn; ngôi Chánh Tòa xây 1906 – 1910 đã thay thế',
+        name: 'Hoàn tất ngôi nhà thờ thứ hai của họ đạo Mỹ Tho',
+        now: 'không còn — tháo dỡ khoảng năm 1900; ngôi Chánh Tòa 1906 – 1910 thay thế',
         detail:
-          'Hoàn tất ngôi nhà thờ thứ hai của họ đạo do Cha Sorel khởi công, phục vụ cộng đoàn Mỹ Tho cho tới khi ngôi Chánh Tòa hiện nay được dựng lên đầu thế kỷ XX.'
+          'Ba năm ròng vừa lo kinh phí vừa đích thân làm thợ chạm, thợ mộc và thợ trang trí. Đức cha Colombert làm phép ngày 12/03/1876. Ngôi thánh đường phục vụ họ đạo hai mươi lăm năm, đến khoảng năm 1900 thì được tháo dỡ vì hư hỏng nặng và vì giáo dân đã dời lên khu Thượng Mỹ Tho.'
       },
       {
         time: '1873 – 1899',
@@ -2753,8 +2755,12 @@ export default function GioiThieuPage() {
             <div className="tntt-gallery">
               {[
                 {
+                  src: '/images/lichsu_ban_khac_nha_tho_1877.jpg',
+                  cap: 'Tư liệu hình ảnh xưa nhất về ngôi nhà thờ thứ hai: bản khắc mặt tiền in trên tuần báo Les Missions Catholiques năm 1877, chú thích gốc “Cochinchine occidentale (Annam) — Façade de l’église de Mytho”. Nhà thờ dài 42 m, rộng 18 m, cao 36 m, 32 cột Corinthiên cao 8 m.'
+                },
+                {
                   src: '/images/lichsu_nha_tho_dinh_tuong.jpg',
-                  cap: 'Nhà thờ Định Tường — ngôi thánh đường mang phong cách Baroque với mái vòm và tháp đèn, chụp thời Pháp thuộc. Bản chụp mang chú thích gốc “Cathédrale de My Tho”.'
+                  cap: 'Chính ngôi nhà thờ trong bản khắc 1877, chụp lại thời Pháp thuộc với chú thích gốc “Cathédrale de My Tho”. Đối chiếu hai hình thấy trùng khớp từng chi tiết: mái vòm có đèn lồng, các cửa tròn trên tang trống, trán tường Baroque cuộn và ba vòm cửa. Đây là ngôi thánh đường Cha Sorel dựng, Cha Moulins hoàn tất, làm phép 12/03/1876 và bị tháo dỡ khoảng năm 1900.'
                 },
                 {
                   src: '/images/lichsu_nha_tho_1920s_ngoai_that.jpg',
@@ -2798,7 +2804,8 @@ export default function GioiThieuPage() {
             </div>
 
             <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
-              Ảnh tư liệu do giáo xứ cung cấp. Chú thích niên đại theo ghi chú gốc in trên ảnh.
+              Ảnh tư liệu do giáo xứ cung cấp; riêng bản khắc năm 1877 lấy từ tuần báo Les Missions Catholiques
+              (Thư viện Quốc gia Pháp — Gallica, ark:/12148/bpt6k105617d, tr.595). Chú thích niên đại theo ghi chú gốc in trên ảnh.
             </p>
 
             {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
