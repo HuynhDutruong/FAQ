@@ -1622,9 +1622,11 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1977',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2004',
-    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    image: '/images/tuyen_uy_nguyen_ngoc_long.jpg',
+    source:
+      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Gx. Lương Hoà Hạ: Thánh lễ nhận xứ của cha Phêrô Nguyễn Ngọc Long", giaophanmytho.net, 01/08/2023',
     shortDesc:
-      'Vị tuyên uý đầu tiên của Xứ Đoàn sau ngày tái lập năm 2005. Ngài đồng hành với Xứ Đoàn ngay từ khoá huấn luyện Huynh Trưởng đầu tiên, đặt nền cho sinh hoạt Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa.',
+      'Vị tuyên uý đầu tiên của Xứ Đoàn sau ngày tái lập năm 2005. Ngài đồng hành với Xứ Đoàn ngay từ khoá huấn luyện Huynh Trưởng đầu tiên, đặt nền cho sinh hoạt Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa. Từ năm 2023 ngài là cha sở Giáo xứ Lương Hoà Hạ, Giáo hạt Đức Hoà.',
     chronology: [
       { time: '2004', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
       {
@@ -1634,9 +1636,16 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
           'Linh hướng Xứ Đoàn trong bốn năm đầu tiên sau ngày tái lập, giai đoạn hình thành ban điều hành và các ngành.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ Lương Hòa Hạ, Giáo hạt Đức Hòa (theo danh sách linh mục đoàn 11.2024).'
+        time: '19/06/2023',
+        title: 'Bổ nhiệm cha sở Giáo xứ Lương Hoà Hạ',
+        content:
+          'Đức Cha Phêrô Nguyễn Văn Khảm ký văn thư bổ nhiệm ngài làm cha sở Giáo xứ Lương Hoà Hạ, Giáo hạt Đức Hoà.'
+      },
+      {
+        time: '31/07/2023',
+        title: 'Thánh lễ nhận xứ Lương Hoà Hạ',
+        content:
+          'Lúc 09g30 ngày 31/07/2023, Đức Cha Phêrô Nguyễn Văn Khảm chủ sự thánh lễ nhận xứ tại Giáo xứ Lương Hoà Hạ, toạ lạc Ấp 7, xã Lương Hoà, huyện Bến Lức, tỉnh Long An. Cha Gabriel Nguyễn Tấn Di — Hạt trưởng Hạt Đức Hoà — công bố văn thư bổ nhiệm.'
       }
     ],
     milestones: ['Cha Tuyên Uý tiên khởi của Xứ Đoàn sau ngày tái lập năm 2005.']
@@ -1650,9 +1659,10 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1976',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2008',
-    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    source:
+      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Cha Gioan Baotixita Nguyễn Nhựt Cương nhận xứ Tân Quới", giaophanmytho.net, 28/07/2023',
     shortDesc:
-      'Cha Tuyên Uý thứ hai của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn kiện toàn hệ thống ngành và đội sau những năm đầu tái lập.',
+      'Cha Tuyên Uý thứ hai của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn kiện toàn hệ thống ngành và đội sau những năm đầu tái lập. Từ năm 2023 ngài là cha sở Giáo xứ Tân Quới, Giáo hạt Cù Lao Tây.',
     chronology: [
       { time: '2008', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
       {
@@ -1661,9 +1671,22 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ Tân Quới, Giáo hạt Cù Lao Tây (theo danh sách linh mục đoàn 11.2024).'
+        time: '19/06/2023',
+        title: 'Bổ nhiệm cha sở Giáo xứ Tân Quới',
+        content:
+          'Đức Cha Phêrô Nguyễn Văn Khảm bổ nhiệm ngài làm cha sở Giáo xứ Tân Quới, kế nhiệm cha Inhaxiô Võ Viết Chuyên.'
+      },
+      {
+        time: '28/07/2023',
+        title: 'Thánh lễ nhận xứ Tân Quới',
+        content:
+          'Lúc 09g30 ngày 28/07/2023, cha Tổng Đại Diện Phaolô Trần Kỳ Minh chủ sự thánh lễ tạ ơn và nghi thức nhận xứ, cùng 24 linh mục hạt Cù Lao Tây và hạt Cái Bè đồng tế.'
+      },
+      {
+        time: 'Nhiệm sở hiện nay',
+        title: 'Giáo xứ Tân Quới, Giáo hạt Cù Lao Tây',
+        content:
+          'Nhà thờ Tân Quới toạ lạc tại xã Tân Quới, huyện Thanh Bình, tỉnh Đồng Tháp. Giáo xứ thành lập từ năm 1862, trước năm 1974 gọi là Họ đạo Cù Lao Tây, hiện có 2.562 giáo dân và 682 gia đình công giáo.'
       }
     ],
     milestones: []
@@ -1688,6 +1711,12 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
+        time: 'Khoảng 2013 – 2016',
+        title: 'Cha phó Giáo xứ Chánh Tòa Mỹ Tho',
+        content:
+          'Trong chính giai đoạn làm tuyên uý, ngài phục vụ với tư cách cha phó Giáo xứ Chánh Tòa. Bản tin của giáo phận ghi nhận ngài trong các sinh hoạt của giáo xứ như Đại hội Các Bà Mẹ Công Giáo năm 2013 và cuộc rước kiệu tôn vinh Mẹ Maria năm 2016.'
+      },
+      {
         time: 'Hiện nay',
         title: 'Tình trạng',
         content: 'Nghỉ bệnh (theo danh sách linh mục đoàn 11.2024). Xin cộng đoàn cầu nguyện cho ngài.'
@@ -1704,9 +1733,10 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1978',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2013',
-    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    source:
+      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Gx. An Thái Trung: Thánh lễ Tạ ơn và nhận sở mới của cha Phêrô Nguyễn Thành Danh", giaophanmytho.net, 31/08/2023',
     shortDesc:
-      'Cha Tuyên Uý thứ tư của Xứ Đoàn, đồng hành gần ba năm trong giai đoạn Xứ Đoàn mở rộng số đoàn sinh và củng cố đội ngũ Huynh Trưởng.',
+      'Cha Tuyên Uý thứ tư của Xứ Đoàn, đồng hành gần ba năm trong giai đoạn Xứ Đoàn mở rộng số đoàn sinh và củng cố đội ngũ Huynh Trưởng. Từ năm 2023 ngài là cha sở Giáo xứ An Thái Trung, Giáo hạt Cái Bè.',
     chronology: [
       { time: '2013', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
       {
@@ -1715,9 +1745,16 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ An Thái Trung, Giáo hạt Cái Bè (theo danh sách linh mục đoàn 11.2024).'
+        time: '31/08/2023',
+        title: 'Thánh lễ tạ ơn và nhận sở mới tại Giáo xứ An Thái Trung',
+        content:
+          'Đức Cha Phêrô Nguyễn Văn Khảm chủ sự thánh lễ nhận sở tại Giáo xứ An Thái Trung, Ấp 2, xã An Thái Trung, huyện Cái Bè, tỉnh Tiền Giang. Đồng tế có cha Tổng Đại Diện Phaolô Trần Kỳ Minh, quý cha Hạt trưởng hạt Mỹ Tho và hạt Cái Bè cùng 66 linh mục trong và ngoài giáo phận.'
+      },
+      {
+        time: 'Nhiệm sở hiện nay',
+        title: 'Giáo xứ An Thái Trung, Giáo hạt Cái Bè',
+        content:
+          'Giáo xứ do các thừa sai Dòng Chúa Cứu Thế (Cái Nhum) khai mở, công cuộc truyền giáo bắt đầu trong hai năm 1958 – 1959 tại vùng phía tây Mỹ Tho.'
       }
     ],
     milestones: []
@@ -1764,9 +1801,10 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1986',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2019',
-    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    source:
+      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Cha Phêrô Trương Ngọc Đức – Tân chánh xứ Giáo xứ Mỹ Điền", giaophanmytho.net, 04/08/2023',
     shortDesc:
-      'Cha Tuyên Uý thứ sáu của Xứ Đoàn, đồng hành đúng vào giai đoạn đại dịch khi mọi sinh hoạt tập trung của Xứ Đoàn bị gián đoạn.',
+      'Cha Tuyên Uý thứ sáu của Xứ Đoàn, đồng hành đúng vào giai đoạn đại dịch khi mọi sinh hoạt tập trung của Xứ Đoàn bị gián đoạn. Nguyên cha phó Giáo xứ Tân An, từ năm 2023 ngài là chánh xứ Giáo xứ Mỹ Điền.',
     chronology: [
       { time: '2019', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
       {
@@ -1776,9 +1814,15 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
           'Linh hướng Xứ Đoàn trong giai đoạn dịch bệnh, khi các buổi sinh hoạt và thánh lễ tập trung phải tạm ngưng nhiều đợt.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ Mỹ Điền, Giáo hạt Đức Hòa (theo danh sách linh mục đoàn 11.2024).'
+        time: 'Trước 2023',
+        title: 'Cha phó Giáo xứ Tân An',
+        content: 'Phục vụ với tư cách cha phó Giáo xứ Tân An trước khi được bổ nhiệm làm chánh xứ.'
+      },
+      {
+        time: '04/08/2023',
+        title: 'Tân chánh xứ Giáo xứ Mỹ Điền',
+        content:
+          'Đức Cha Phêrô Nguyễn Văn Khảm chủ sự thánh lễ nhận xứ tại Nhà thờ Mỹ Điền, xã Long Hựu Tây, huyện Cần Đước, tỉnh Long An, thuộc Giáo hạt Đức Hoà.'
       }
     ],
     milestones: []
@@ -1792,9 +1836,10 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     birth: 'Sinh năm 1985',
     origin: 'Giáo phận Mỹ Tho',
     priestOrdination: 'Thụ phong linh mục năm 2019',
-    source: 'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho, cập nhật 11.2024 (giaophanmytho.net)',
+    source:
+      'Danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024; bài "Giáo xứ Gò Da: Cha Tổng Đại Diện chủ sự thánh lễ nhận xứ", giaophanmytho.net, 10/08/2023',
     shortDesc:
-      'Cha Tuyên Uý thứ bảy của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn khôi phục sinh hoạt sau đại dịch.',
+      'Cha Tuyên Uý thứ bảy của Xứ Đoàn, đồng hành trong giai đoạn Xứ Đoàn khôi phục sinh hoạt sau đại dịch. Từ năm 2023 ngài là cha sở Giáo xứ Gò Da, Giáo hạt Cù Lao Tây.',
     chronology: [
       { time: '2019', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
       {
@@ -1803,9 +1848,10 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ Gò Da, Giáo hạt Cù Lao Tây (theo danh sách linh mục đoàn 11.2024).'
+        time: '10/08/2023',
+        title: 'Thánh lễ nhận xứ Gò Da',
+        content:
+          'Cha Tổng Đại Diện Phaolô Trần Kỳ Minh chủ sự thánh lễ nhận xứ tại Nhà thờ Gò Da, xã Bình Phú, huyện Tân Hồng, tỉnh Đồng Tháp, thuộc Giáo hạt Cù Lao Tây, cùng 20 linh mục trong giáo phận đồng tế.'
       }
     ],
     milestones: []
@@ -1836,9 +1882,16 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ Nữ Vương Hòa Bình, Giáo hạt Mỹ Tho (theo danh sách linh mục đoàn 11.2024).'
+        time: '2023 – 2024',
+        title: 'Cha phó Giáo xứ Chánh Tòa Mỹ Tho',
+        content:
+          'Ngài phục vụ tại chính Giáo xứ Chánh Tòa trong thời gian làm tuyên uý Xứ Đoàn — nhờ vậy đồng hành sát sao với các em đoàn sinh và anh chị Huynh Trưởng.'
+      },
+      {
+        time: 'Nhiệm sở hiện nay',
+        title: 'Phó xứ Giáo xứ Nữ Vương Hoà Bình, Giáo hạt Mỹ Tho',
+        content:
+          'Giáo xứ Nữ Vương Hoà Bình trải trên địa bàn các phường 6, 5, 4 và 1 của thành phố Mỹ Tho, tỉnh Tiền Giang, hiện có khoảng 2.301 giáo dân.'
       }
     ],
     milestones: []
@@ -1869,9 +1922,10 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Nhiệm sở',
-        content: 'Phục vụ tại Giáo xứ Chánh Tòa, Giáo hạt Mỹ Tho (theo danh sách linh mục đoàn 11.2024).'
+        time: '2024 – nay',
+        title: 'Phục vụ tại Giáo xứ Chánh Tòa, Giáo hạt Mỹ Tho',
+        content:
+          'Danh sách linh mục đoàn cập nhật tháng 11/2024 ghi nhận ngài phục vụ tại Giáo xứ Chánh Tòa — cùng nhiệm sở với nhiệm kỳ tuyên uý Xứ Đoàn. Lưu ý: danh sách của giáo phận in tên ngài là "Phêrô Nguyên Ngọc", trong khi thông báo và bản tin phong chức năm 2022 đều ghi "Phêrô Nguyễn Ngọc"; trang này theo văn bản phong chức.'
       }
     ],
     milestones: []
@@ -1895,6 +1949,12 @@ const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         title: 'Thụ phong linh mục',
         content:
           'Chịu chức linh mục tại Nhà thờ Chánh Tòa Mỹ Tho do Đức Cha Phêrô Nguyễn Văn Khảm chủ phong, cùng năm tân linh mục khác. Thánh lễ đồng thời mừng Đức Cha Phêrô kỷ niệm 44 năm linh mục và 10 năm nhận Giáo phận Mỹ Tho.'
+      },
+      {
+        time: '2024',
+        title: 'Nhiệm sở đầu tiên: Giáo xứ Cần Giuộc, Giáo hạt Đức Hoà',
+        content:
+          'Ngay sau khi thụ phong, ngài được sai đến Giáo xứ Cần Giuộc thuộc Giáo hạt Đức Hoà (theo danh sách linh mục đoàn 11.2024).'
       },
       {
         time: '2026 – nay',
