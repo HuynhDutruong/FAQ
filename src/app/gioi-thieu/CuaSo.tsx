@@ -185,7 +185,7 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
           {/* Quá trình phục vụ theo thời gian (Timeline) */}
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ margin: '0 0 12px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
-              {bio.priestOrdination || bio.bishopConsecration ? 'Quá trình tu học &amp; Sứ vụ mục tử' : 'Quá trình phục vụ'}
+              {bio.priestOrdination || bio.bishopConsecration ? 'Quá trình tu học và Sứ vụ mục tử' : 'Quá trình phục vụ'}
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {bio.chronology.map((c, i) => (

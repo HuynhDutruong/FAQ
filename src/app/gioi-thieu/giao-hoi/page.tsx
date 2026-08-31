@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -9,6 +9,7 @@ import {
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
 import KhungTrang from '../KhungTrang';
 import { CuaSoLyLich, CuaSoAnh } from '../CuaSo';
+import MetaUpdater from '@/components/MetaUpdater';
 import {
   POPE_LEO_XIV_BIO
 } from '../duLieu';
@@ -17,8 +18,34 @@ import type { DetailedBioRecord } from '../duLieu';
 export default function Trang() {
   const [lyLich, setLyLich] = useState<DetailedBioRecord | null>(null);
   const [anh, setAnh] = useState<{ src: string; caption: string } | null>(null);
-  const moLyLich = (b: DetailedBioRecord | null) => setLyLich(b);
+
+  const allBios = [POPE_LEO_XIV_BIO];
+
+  const moLyLich = (b: DetailedBioRecord | null) => {
+    setLyLich(b);
+    if (b) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('bio', b.id);
+      window.history.replaceState(null, '', url.toString());
+    } else {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('bio');
+      window.history.replaceState(null, '', url.toString());
+    }
+  };
+
   const moAnh = (a: { src: string; caption: string } | null) => setAnh(a);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const bioId = params.get('bio');
+    if (bioId) {
+      const found = allBios.find(b => b.id === bioId);
+      if (found) {
+        setLyLich(found);
+      }
+    }
+  }, []);
 
   return (
     <KhungTrang tieuDe="Giáo Hội Hoàn Vũ" phuDe="Tòa Thánh Vatican, Đức Thánh Cha Lêô XIV và biên niên sử 267 vị Giáo hoàng — bối cảnh rộng nhất mà Giáo phận Mỹ Tho thuộc về." duongDan="/gioi-thieu/giao-hoi">
@@ -191,6 +218,12 @@ export default function Trang() {
           </div>
         </section>
 
+      <MetaUpdater
+        title={lyLich ? `${lyLich.name} — ${lyLich.role}` : undefined}
+        description={lyLich ? lyLich.shortDesc : undefined}
+        image={lyLich?.image ? `https://chanhtoa.tnttgiaophanmytho.online${lyLich.image}` : (lyLich ? `https://chanhtoa.tnttgiaophanmytho.online/api/og/${lyLich.id}` : undefined)}
+        url={`https://chanhtoa.tnttgiaophanmytho.online/gioi-thieu/giao-hoi?bio=${lyLich?.id}`}
+      />
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />
       <CuaSoAnh anh={anh} onClose={() => setAnh(null)} />
     </KhungTrang>

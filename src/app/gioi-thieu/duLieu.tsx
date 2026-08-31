@@ -597,7 +597,7 @@ export const POPE_LEO_XIV_BIO: DetailedBioRecord = {
  *    Ảnh Cha Chúc là ảnh kỷ niệm ngày thụ phong, chụp lại từ ảnh lộng khung,
  *    nên phản ánh thời điểm ngài mới chịu chức chứ không phải thời kỳ làm
  *    cha sở 1975–1999.
- *  - Nguyễn Minh Chiếu, Nguyễn Văn Niềm: đã tra giaophanmytho.net,
+ *  - Nguyễn Minh Chiếu, Ngô Văn Niềm: đã tra giaophanmytho.net,
  *    vietcatholic.net, gxhanhthongtay.net và tìm kiếm chung — không có ảnh
  *    trên Internet. Cần xin từ văn phòng giáo xứ.
  *  Mục thiếu ảnh để trống `image` và hiện ô "Chưa có ảnh tư liệu".
@@ -676,6 +676,59 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       'Dưới thời ngài, vùng Mỹ Tho từ chỗ chưa có cộng đoàn Công giáo lên 1.986 giáo dân chỉ trong vòng một năm (28/01/1862).',
       'Đồng sáng lập cộng đoàn Kitô hữu Bro-lam giữa người Stiêng.',
       'Phó Đại diện Tông tòa Giáo phận Tây Đàng Trong (1864).'
+    ]
+  },
+  {
+    id: 'cha-gernot',
+    name: 'Lm. Charles Gernot (MEP)',
+    saintName: 'Thừa sai Hội Thừa Sai Paris',
+    role: 'Linh mục Chánh sở Họ đạo Mỹ Tho (28/01/1862 – đầu 1864)',
+    period: '1862 – 1864',
+    birth: '04/11/1836 tại Joppécourt, Moselle, Pháp',
+    origin: 'Hội Thừa Sai Paris (MEP) — hồ sơ IRFA 0794',
+    priestOrdination: 'Thụ phong linh mục ngày 25/05/1861',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 24 – 25 — "Cha Guillou rời Mỹ Tho và được thay thế bởi cha Gernot, ngài nhận nhiệm sở ngày 28 tháng 01 năm 1862". Tiểu sử theo hồ sơ lưu trữ IRFA 0794. Hai nguồn lệch nhau ở mốc rời Mỹ Tho: Kỷ yếu ghi ngài ở Mỹ Tho khoảng hai năm rồi đi Cái Mơn đầu năm 1864, còn hồ sơ IRFA ghi ngài được đặt về Cái Mơn ngay trong năm 1862.',
+    tableNote:
+      'Kế nhiệm Cha Guillou, nhận nhiệm sở ngày 28/01/1862 khi họ đạo Mỹ Tho có 1.986 giáo dân. Chính bản tường trình ngài gửi Đức cha Lefebvre năm 1863 dẫn tới việc các Nữ tu Thánh Phaolô thành Chartres đến Mỹ Tho năm 1864. Đầu năm 1864 ngài chuyển về Cái Mơn, dẫn theo các nữ tu Bãi Xan từng lánh nạn tại Mỹ Tho.',
+    shortDesc:
+      'Vị chánh sở thứ hai của họ đạo Mỹ Tho, nhận nhiệm sở ngày 28/01/1862. Về sau tại Cái Mơn ngài làm nên một công trình lớn của cả địa phận: đào tạo các nữ tu Mến Thánh Giá thành giáo lý viên và giáo viên.',
+    chronology: [
+      {
+        time: '1836 – 1861',
+        title: 'Xuất thân và ơn gọi',
+        content:
+          'Sinh ngày 04/11/1836 tại Joppécourt (Moselle). Học cổ điển tại tiểu chủng viện Metz, triết học tại đại chủng viện cùng thành phố. Vào Chủng viện Thừa Sai ngày 17/09/1858, thụ phong linh mục ngày 25/05/1861 và lên đường ngày 09/08 cùng năm.'
+      },
+      {
+        time: '28/01/1862',
+        title: 'Nhận nhiệm sở Mỹ Tho',
+        content:
+          'Tới Sài Gòn ngày 28/01/1862 và nhận ngay nhiệm sở Mỹ Tho — lỵ sở một địa hạt 2.300 giáo dân theo hồ sơ IRFA. Kỷ yếu giáo xứ ghi con số 1.986 giáo dân tại thời điểm ngài nhận xứ, và riêng năm 1861 họ đạo có 2.250 lượt xưng tội cùng 207 em rước lễ.'
+      },
+      {
+        time: '1863',
+        title: 'Bản tường trình mở đường cho các Nữ tu Thánh Phaolô',
+        content:
+          'Ngài gửi Đức cha Lefebvre một bản tường trình có dẫn chứng về nhu cầu của họ đạo. Kết quả: năm 1864 các Nữ tu Thánh Phaolô thành Chartres đến Mỹ Tho, thay chỗ các nữ tu Việt Nam vừa ra đi, với bề trên đầu tiên là sơ Lizion. Cũng trong năm 1864 các trường học dành cho thanh thiếu niên nam nữ bắt đầu hoạt động, cùng một cô nhi viện.'
+      },
+      {
+        time: 'Đầu 1864',
+        title: 'Chuyển về Cái Mơn',
+        content:
+          'Ngài rời Mỹ Tho về Cái Mơn, dẫn theo các nữ tu dòng Bãi Xan từng lánh nạn tại Mỹ Tho từ cuối năm 1861. Tại Cái Mơn ngài giữ chức Phó Đại diện Tông toà các tỉnh miền tây cho tới năm 1865.'
+      },
+      {
+        time: '1864 – 1910',
+        title: 'Công trình lớn tại Cái Mơn',
+        content:
+          'Ngài mạnh dạn sai các nữ tu Mến Thánh Giá đi dạy giáo lý cho tân tòng — một sáng kiến chưa từng có. Chỉ vài năm sau đã có 1.250 dự tòng được rửa tội; từ 1880 đến 1910 các nữ tu dạy dỗ 4.500 tân tòng. Ngài còn huấn luyện họ thành giáo viên: năm 1875 các nữ tu coi 8 trường với 382 học sinh, đến năm 1910 là 1 cô nhi viện, 44 trường và 1.890 trẻ. Năm 1871 ngài khởi sự đào tạo giáo lý viên nam; năm 1874 đã có 26 người đủ trình độ được sai đi các làng.'
+      }
+    ],
+    milestones: [
+      'Vị chánh sở thứ hai của họ đạo Mỹ Tho, nhận nhiệm sở ngày 28/01/1862.',
+      'Bản tường trình năm 1863 của ngài mở đường cho các Nữ tu Thánh Phaolô đến Mỹ Tho.',
+      'Tại Cái Mơn: sai các nữ tu Mến Thánh Giá đi dạy giáo lý — sáng kiến đưa tới 1.250 dự tòng rửa tội chỉ trong vài năm.'
     ]
   },
   {
@@ -1159,7 +1212,7 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
       {
         time: '1965',
         title: 'Bàn giao Nhà thờ Chánh Tòa',
-        content: 'Năm 1965 Cha Phêrô Nguyễn Văn Niềm được sai về làm Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, kế nhiệm ngài.'
+        content: 'Năm 1965 Cha Phêrô Ngô Văn Niềm được sai về làm Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho, kế nhiệm ngài.'
       },
       {
         time: '1968 – 1974',
@@ -1198,13 +1251,14 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   },
   {
     id: 'cha-nguyen-van-niem',
-    name: 'Lm. Phêrô Nguyễn Văn Niềm',
+    name: 'Lm. Phêrô Ngô Văn Niềm',
     saintName: 'Thánh Phêrô Tông Đồ',
-    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1965 – đầu 1975)',
-    period: '1965 – 1975',
-    image: '/images/cha_nguyen_van_niem.jpg',
+    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1965 – 1971)',
+    period: '1965 – 1971',
+    image: '/images/cha_ngo_van_niem.jpg',
     origin: 'Giáo phận Mỹ Tho',
-    source: 'giaophanmytho.net, bài Giáo xứ Bình Tạo: "Năm 1965 Cha Phêrô Niềm được sai đi làm Cha Chánh Xứ Nhà Thờ Chánh Tòa Mỹ Tho"',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 49 — ghi rõ "Phêrô Ngô Văn Niềm (1965 – 1971)" kèm chân dung. Trang này trước đây chép nhầm họ thành Nguyễn và kéo dài nhiệm kỳ tới 1975; nay sửa theo Kỷ yếu của chính giáo xứ. Mốc khởi đầu 1965 khớp với bài Giáo xứ Bình Tạo trên giaophanmytho.net.',
     tableNote: 'Trước đó là Cha Sở Giáo xứ An Đức (1959 – 1965), kiêm nhiệm cả họ đạo Bình Tạo. Về Chánh Tòa năm 1965, coi sóc họ đạo qua giai đoạn chiến sự ác liệt từ biến cố Mậu Thân 1968; giữ vững sinh hoạt phụng vụ và tổ chức công tác bác ái trợ giúp đồng bào di tản đổ về thành phố Mỹ Tho.',
     shortDesc: 'Kế nhiệm trực tiếp Cha Micae Nguyễn Khoa Học, ngài gánh vác họ đạo Chánh Tòa qua một giai đoạn đầy thử thách. Nhận nhiệm sở đúng lúc chiến sự trở nên ác liệt từ biến cố Mậu Thân 1968, sứ vụ của ngài tập trung vào việc giữ vững sinh hoạt phụng vụ, ổn định đời sống đức tin và tổ chức công tác bác ái trợ giúp làn sóng đồng bào di tản từ vùng chiến sự đổ về trung tâm thành phố. Ngài cũng là cộng sự đắc lực bên cạnh Đức Cha tiên khởi Giuse Trần Văn Thiện trong việc kiện toàn cơ cấu của một giáo phận còn non trẻ.',
     chronology: [
@@ -1244,14 +1298,15 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
   {
     id: 'cha-nguyen-van-chuc',
     image: '/images/cha_nguyen_van_chuc.jpg',
-    source: 'Ảnh do giáo xứ cung cấp (ảnh kỷ niệm ngày thụ phong, không phải thời kỳ làm cha sở). giaophanmytho.net (xác nhận ngài cho xây tháp chuông năm 1995, tức trong nhiệm kỳ; bài Gx. Tân Long: "Từ năm 1975 đến 1992, các cha thuộc Giáo xứ Chánh Tòa phụ trách gồm có: cha Giuse Nguyễn Văn Chúc, cha Phêrô Trần Xuân Lộc, và cha Đôminicô Lê Văn Bền") + tư liệu giáo xứ (nhiệm kỳ tại Chánh Tòa 1975 – 1999)',
     tableNote: 'Nhận xứ ngay trước biến cố tháng 4/1975, giữ vững sinh hoạt phụng vụ qua giai đoạn biến động nhất. Đầu năm 1975 ngài cùng giáo dân mua một căn nhà lá làm nhà nguyện, đặt nền móng cho Họ đạo Tân Long; từ 1975 đến 1992 ngài cùng Cha Phêrô Trần Xuân Lộc và Cha Đôminicô Lê Văn Bền — đều thuộc Giáo xứ Chánh Tòa — phụ trách họ đạo Tân Long. Năm 1995 ngài chủ trì xây tháp chuông tách rời khỏi thánh đường: đặt viên đá 16/02/1995, khánh thành 30/11/1995.',
     name: 'Lm. Giuse Nguyễn Văn Chúc',
     saintName: 'Thánh Giuse (Joseph)',
-    role: 'Linh mục Chánh xứ Nhà thờ Chánh Tòa Mỹ Tho (1975 – 1999)',
-    period: '1975 – 1999',
+    role: 'Linh mục phục vụ Nhà thờ Chánh Tòa Mỹ Tho (1963 – 1998)',
+    period: '1963 – 1998',
     death: '14/12/1999 tại Tiền Giang',
     origin: 'Giáo phận Mỹ Tho',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 49 — ghi "Giuse Nguyễn Văn Chúc (1963 – 1998)". Trang này trước đây ghi 1975 – 1999; nay sửa theo Kỷ yếu của chính giáo xứ. Khoảng thời gian ấy chồng lấn với Cha Ngô Văn Niềm (1965 – 1971) và Cha Micae Nguyễn Khoa Học (1960 – 1965), nên nhiều phần ngài phục vụ với tư cách cha phó trước khi làm chánh sở — Kỷ yếu ghi chung là "đã phục vụ Giáo xứ" chứ không phân định.',
     shortDesc: 'Vị mục tử nhân hiền, hiền hòa và tận tụy phục vụ giáo xứ Chánh Tòa suốt hơn 20 năm qua giai đoạn đầy gian khó sau năm 1975. Dấu ấn kiến trúc lớn nhất của ngài là tháp chuông tách rời hẳn khỏi nhà thờ (1995): vì lo tiếng chuông rung chấn làm hư hại ngôi thánh đường xây từ 1906, ngài cho dựng một tháp chuông riêng — Đức Cha Anrê Nguyễn Văn Nam đặt viên đá đầu tiên ngày 16/02/1995, công trình khánh thành sau hơn 9 tháng vào ngày 30/11/1995.',
     chronology: [
       {
@@ -1303,17 +1358,109 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
     ]
   },
   {
+    id: 'cha-rene-detry',
+    name: 'Lm. René Detry (MEP)',
+    saintName: 'Thừa sai Hội Thừa Sai Paris — người Bỉ',
+    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1948 – 1949)',
+    period: '1948 – 1949',
+    birth: '26/06/1890 tại Couillet, giáo phận Tournai, tỉnh Hainaut, Bỉ',
+    death: '24/06/1983 tại Audregnies, Bỉ — trước sinh nhật thứ 94 đúng một ngày; an táng tại nghĩa trang Jurbise',
+    origin: 'Hội Thừa Sai Paris (MEP), người Bỉ — hồ sơ IRFA 3246',
+    priestOrdination: 'Thụ phong linh mục ngày 10/08/1913 tại Tournai',
+    image: '/images/cha_rene_detry.jpg',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 49 — ghi "René Detry (1948 – 1949)" kèm chân dung. Tiểu sử theo hồ sơ lưu trữ IRFA 3246.',
+    tableNote:
+      'Vị thừa sai cuối cùng coi sóc họ đạo, và là người Bỉ chứ không phải người Pháp. Kế nhiệm Cha Bar sau khi vị này qua đời tại nhiệm sở năm 1948; nhiệm kỳ chỉ hơn một năm.',
+    shortDesc:
+      'Thừa sai người Bỉ, nghệ sĩ vĩ cầm, say mê nhiếp ảnh và điện ảnh. Đức cha Cassaigne cho ngài chọn giữa Đà Lạt và Mỹ Tho — ngài chọn Mỹ Tho. Nhiệm kỳ chỉ hơn một năm rồi ngài từ nhiệm và về hẳn châu Âu.',
+    chronology: [
+      {
+        time: '1890 – 1913',
+        title: 'Xuất thân và ơn gọi tại Bỉ',
+        content:
+          'Sinh ngày 26/06/1890 tại Couillet, giáo phận Tournai, vùng Charleroi, tỉnh Hainaut nước Bỉ. Anh cả của ngài là Cha Désiré, linh mục giáo phận Tournai. Học tiểu chủng viện Bonne-Espérance rồi đại chủng viện Tournai; chịu chức phó tế ngày 06/10/1912 và thụ phong linh mục ngày 10/08/1913. Làm cha phó tại Obourg, giáo sư Trường Saint Vincent de Soignies, rồi cha phó La Bouverie.'
+      },
+      {
+        time: '22/04/1922',
+        title: 'Đơn xin gia nhập Hội Thừa Sai — sau nhiều lần bị từ chối',
+        content:
+          'Ngài mở đầu lá đơn bằng một câu Thánh vịnh: "Laqueus contritus est, et nos liberati sumus" — "Lưới đã đứt và chúng tôi thoát được". Hồ sơ IRFA ghi đây hẳn là ám chỉ những lần xin trước đã bị bác: Đức Giám mục thì đồng ý, nhưng cha Tổng Đại Diện thì không. Ngài được nhận ngày 30/04/1922.'
+      },
+      {
+        time: '1923 – 1947',
+        title: 'Hai mươi lăm năm tại Nam Kỳ',
+        content:
+          'Tới Sài Gòn đầu tháng 11/1923, học tiếng Việt tại Cái Mơn. Vốn là nhạc sĩ có đôi tai tinh, ngài bắt các thanh điệu tiếng Việt rất nhanh và phát âm chuẩn. Lần lượt làm cha phó Nhà thờ Chánh Tòa Sài Gòn, cha sở Thủ Dầu Một (từ 02/1932), giáo sư tín lý Đại Chủng viện Sài Gòn, rồi cha sở Xóm Chiếu và Chợ Quán — nơi ngài ở khoảng mười năm. Ngày 25/09/1945, giữa làn sóng bài ngoại sau các biến cố tháng 9/1945, ngài phải rời Chợ Quán về lánh tại Toà Giám mục Sài Gòn.'
+      },
+      {
+        time: '26/03/1948',
+        title: 'Chọn Mỹ Tho thay vì Đà Lạt',
+        content:
+          'Sau hai năm dưỡng bệnh tại Bỉ, ngài trở lại nhiệm sở. Đức cha Cassaigne đưa ra hai lựa chọn — Đà Lạt hoặc Mỹ Tho — và ngài chọn Mỹ Tho, về kế nhiệm Cha Henri Bar vừa qua đời tại nhiệm sở ngày 19/03/1948.'
+      },
+      {
+        time: '1948 – 1949',
+        title: 'Một năm tại Chánh Tòa rồi từ nhiệm',
+        content:
+          'Hồ sơ IRFA ghi thẳng: tuy tình hình đã lắng bớt, tại Mỹ Tho vẫn hình thành một nhóm nhỏ không đồng thuận với cha sở mới, điều ấy đè nặng lên một con người vốn rất nhạy cảm như ngài. Ngài không muốn cố chấp, xin từ nhiệm và về hẳn châu Âu, tới Pháp ngày 06/09/1949.'
+      },
+      {
+        time: '1949 – 1983',
+        title: 'Ba mươi tư năm cuối tại Bỉ',
+        content:
+          'Coi sóc lần lượt các giáo xứ Forêt-lès-Anvin, Erbisouil và Herchies, rồi làm tuyên uý bệnh viện Sept-Douleurs tại Frameries. Năm 1963 ngài về với người anh Désiré, lo phần thiêng liêng cho các nữ tu và người trọ tại Foyer Notre-Dame ở Audregnies, phục vụ tới năm 1980. Ngài qua đời tại đó ngày 24/06/1983, trước sinh nhật thứ 94 đúng một ngày.'
+      }
+    ],
+    milestones: [
+      'Vị thừa sai cuối cùng coi sóc họ đạo Mỹ Tho — và là người Bỉ, không phải người Pháp.',
+      'Nghệ sĩ vĩ cầm, say mê nhiếp ảnh và điện ảnh; thú tiêu khiển ưa thích là vẽ phong cảnh và những gương mặt có thần.',
+      'Học tiếng Việt rất nhanh nhờ đôi tai nhạc sĩ, phát âm đúng thanh điệu.',
+      'Từ nhiệm thay vì cố giữ chức khi gặp chống đối — "ngài không muốn cố chấp".'
+    ]
+  },
+  {
+    id: 'cha-nguyen-thanh-thong',
+    name: 'Lm. Phêrô Nguyễn Thành Thông',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Linh mục phục vụ Nhà thờ Chánh Tòa Mỹ Tho (1959 – 1961)',
+    period: '1959 – 1961',
+    origin: 'Giáo phận Mỹ Tho',
+    image: '/images/cha_nguyen_thanh_thong.jpg',
+    source: 'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 49, kèm chân dung.',
+    tableNote:
+      'Phục vụ họ đạo đúng vào khúc giao thời: Giáo phận Mỹ Tho được thiết lập ngày 24/11/1960 và nhà thờ được nâng lên hàng Chánh Tòa ngay trong nhiệm kỳ của ngài.',
+    shortDesc:
+      'Phục vụ Nhà thờ Chánh Tòa trong hai năm bản lề 1959 – 1961, đúng lúc Giáo phận Mỹ Tho được khai sinh và ngôi thánh đường được nâng lên hàng Chánh Tòa.',
+    chronology: [
+      {
+        time: '1959 – 1961',
+        title: 'Phục vụ Nhà thờ Chánh Tòa',
+        content:
+          'Nhiệm kỳ của ngài trùng với mốc lớn nhất trong lịch sử ngôi thánh đường: ngày 24/11/1960, Tông hiến Venerabilium Nostrorum thiết lập Giáo phận Mỹ Tho và nâng nhà thờ Mỹ Tho lên hàng Nhà thờ Chính Tòa, tước hiệu Đức Mẹ Vô Nhiễm Nguyên Tội.'
+      }
+    ],
+    milestones: ['Phục vụ họ đạo đúng năm Giáo phận Mỹ Tho được khai sinh và nhà thờ được nâng lên hàng Chánh Tòa.']
+  },
+  {
     id: 'cha-ho-ban-chanh',
-    image: '/images/cha_ho_ban_chanh.jpg',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007) — chân dung và ảnh chụp nguyên văn Giấy Bổ Nhiệm ngày 18/05/1998. Trang này trước đây ghi nhiệm kỳ 1999 – 2005; nay sửa thành 1998 – 2005 theo chính văn thư bổ nhiệm. Danh sách GP Mỹ Tho 2009 ghi ngài là Tổng Đại Diện Giáo phận; giaophanmytho.net (03/2011) gọi ngài là "nguyên Tổng Đại Diện", sau coi sóc Giáo xứ Thủ Ngữ.',
+    image: '/images/cha_ho_ban_chanh_kyyeu.jpg',
     name: 'Lm. Phêrô Hồ Bản Chánh',
     saintName: 'Thánh Phêrô Tông Đồ',
-    role: 'Linh mục Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1999 – 2005), sau là Tổng Đại Diện Giáo phận',
-    period: '1999 – 2005',
+    role: 'Tổng Đại Diện Giáo phận kiêm Chánh sở Nhà thờ Chánh Tòa Mỹ Tho (1998 – 2005)',
+    period: '1998 – 2005',
     origin: 'Giáo phận Mỹ Tho',
-    source: 'Ảnh do giáo xứ cung cấp. Tư liệu giáo xứ (nhiệm kỳ 1999 – 2005 tại Chánh Tòa). Đã xác nhận được: danh sách GP Mỹ Tho 2009 ghi ngài là Tổng Đại Diện Giáo phận; giaophanmytho.net (03/2011) gọi ngài là "nguyên Tổng Đại Diện", sau coi sóc Giáo xứ Thủ Ngữ.',
-    tableNote: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc, coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — dịp Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000. Về sau ngài được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho.',
-    shortDesc: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc năm 1999, ngài coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — giai đoạn ngôi thánh đường được Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung hiến ngày 21/01/2000 và nhận Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai. Năm 2005 ngài chuyển giao giáo xứ cho Cha Giacôbê Hà Văn Xung. Về sau ngài được đặt làm Tổng Đại Diện Giáo phận Mỹ Tho, rồi xin thôi chức và về coi sóc Giáo xứ Thủ Ngữ.',
+    tableNote: 'Kế nhiệm Cha Giuse Nguyễn Văn Chúc, coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — dịp Đức Cha Phaolô Bùi Văn Đọc cử hành Lễ Cung hiến Nhà thờ Chánh Tòa ngày 21/01/2000. Ngài nhận cùng lúc hai trọng trách theo Giấy Bổ Nhiệm ngày 18/05/1998.',
+    shortDesc: 'Được Đức cha Anrê Nguyễn Văn Nam bổ nhiệm ngày 18/05/1998, cùng lúc làm Tổng Đại Diện Giáo phận và phụ trách Giáo xứ Chánh Tòa. Ngài coi sóc họ đạo Chánh Tòa qua thời kỳ Đại Năm Thánh 2000 — giai đoạn ngôi thánh đường được Đức Cha Phaolô Bùi Văn Đọc long trọng cử hành Lễ Cung hiến ngày 21/01/2000 và nhận Lễ Đức Mẹ Hồn Xác Lên Trời làm lễ Bổn mạng thứ hai. Năm 2005 ngài chuyển giao giáo xứ cho Cha Giacôbê Hà Văn Xung. Về sau ngài xin thôi chức Tổng Đại Diện và về coi sóc Giáo xứ Thủ Ngữ.',
     chronology: [
+      {
+        time: '18/05/1998',
+        title: 'Giấy Bổ Nhiệm của Đức cha Anrê Nguyễn Văn Nam',
+        content:
+          'Toà Giám mục Mỹ Tho ban hành Giấy Bổ Nhiệm, nguyên văn: "Vì nhu cầu mục vụ của Giáo Phận, sau khi suy nghĩ, cầu nguyện và lấy ý kiến tham vấn của một số Cha trong Giáo Phận, tôi quyết định đề cử: Cha làm Linh Mục Tổng Đại Diện Giáo Phận và về phụ trách Giáo Xứ Chánh Tòa Mỹ Tho." Văn thư ký tại Mỹ Tho ngày 18/05/1998, do Đức cha Anrê Nguyễn Văn Nam — Giám mục Giáo phận Mỹ Tho — ký và đóng dấu. Như vậy ngài nhận cùng lúc hai trọng trách: Tổng Đại Diện Giáo phận và Chánh sở Nhà thờ Chánh Tòa.'
+      },
       {
         time: '1999',
         title: 'Nhận Nhà thờ Chánh Tòa',
@@ -1427,6 +1574,70 @@ export const PASTORS_EXTENDED_DATA: DetailedBioRecord[] = [
  * Một dòng của bảng niên biểu cha sở: hoặc trỏ tới lý lịch đã có, hoặc là
  * khoảng trống lịch sử chưa tra được nguồn.
  */
+/**
+ * Các cha phó xứ. Để riêng vì bảng niên biểu chỉ liệt kê hàng chánh sở; các
+ * ngài được nhắc trong phần ghi chú dưới bảng.
+ */
+export const CHA_PHO_BIOS: DetailedBioRecord[] = [
+  {
+    id: 'cha-tran-xuan-loc',
+    name: 'Lm. Phêrô Trần Xuân Lộc',
+    saintName: 'Thánh Phêrô Tông Đồ',
+    role: 'Cha Phó xứ Nhà thờ Chánh Tòa Mỹ Tho (1958 – 1983)',
+    period: '1958 – 1983',
+    origin: 'Giáo phận Mỹ Tho',
+    image: '/images/cha_tran_xuan_loc.jpg',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 49, ghi rõ "Phêrô Trần Xuân Lộc (Phó xứ 1958 – 1983)" kèm chân dung. Bài Gx. Tân Long trên giaophanmytho.net cũng nêu tên ngài trong nhóm các cha phụ trách Giáo xứ Chánh Tòa giai đoạn 1975 – 1992.',
+    tableNote:
+      'Hai mươi lăm năm làm cha phó — nhiệm kỳ phó xứ dài nhất được ghi nhận tại Chánh Tòa, trải qua bốn đời cha sở và cả biến cố năm 1975.',
+    shortDesc:
+      'Cha phó xứ Nhà thờ Chánh Tòa suốt hai mươi lăm năm, từ 1958 đến 1983 — nhiệm kỳ phó xứ dài nhất được ghi nhận, trải qua bốn đời cha sở và cả giai đoạn biến động sau năm 1975.',
+    chronology: [
+      {
+        time: '1958 – 1983',
+        title: 'Hai mươi lăm năm làm cha phó',
+        content:
+          'Ngài bắt đầu phục vụ trước khi Giáo phận Mỹ Tho được thành lập và tiếp tục cho tới năm 1983, đi qua các đời cha sở Nguyễn Minh Chiếu, Nguyễn Thành Thông, Nguyễn Khoa Học, Ngô Văn Niềm và Nguyễn Văn Chúc.'
+      },
+      {
+        time: '1975 – 1983',
+        title: 'Giai đoạn sau năm 1975',
+        content:
+          'Bài Gx. Tân Long ghi: "Từ năm 1975 đến 1992, các cha thuộc Giáo xứ Chánh Tòa phụ trách gồm có: cha Giuse Nguyễn Văn Chúc, cha Phêrô Trần Xuân Lộc, và cha Đôminicô Lê Văn Bền."'
+      }
+    ],
+    milestones: [
+      'Nhiệm kỳ cha phó dài nhất được ghi nhận tại Nhà thờ Chánh Tòa: hai mươi lăm năm.',
+      'Cùng Cha Nguyễn Văn Chúc và Cha Lê Văn Bền gánh vác họ đạo trong giai đoạn khó khăn sau năm 1975.'
+    ]
+  },
+  {
+    id: 'cha-le-van-ben',
+    name: 'Lm. Đôminicô Lê Văn Bền',
+    saintName: 'Thánh Đôminicô',
+    role: 'Cha Phó xứ Nhà thờ Chánh Tòa Mỹ Tho (1970 – 1984)',
+    period: '1970 – 1984',
+    origin: 'Giáo phận Mỹ Tho',
+    image: '/images/cha_le_van_ben.jpg',
+    source:
+      'Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), trang 49, ghi rõ "Đôminicô Lê Văn Bền (Phó xứ 1970 – 1984)" kèm chân dung. Bài Gx. Tân Long trên giaophanmytho.net cũng nêu tên ngài trong nhóm các cha phụ trách Giáo xứ Chánh Tòa giai đoạn 1975 – 1992.',
+    tableNote:
+      'Mười bốn năm làm cha phó, cùng Cha Trần Xuân Lộc và Cha Nguyễn Văn Chúc gánh vác họ đạo qua biến cố 1975.',
+    shortDesc:
+      'Cha phó xứ Nhà thờ Chánh Tòa từ 1970 đến 1984, cùng Cha Phêrô Trần Xuân Lộc và Cha Giuse Nguyễn Văn Chúc gánh vác họ đạo qua biến cố năm 1975 và những năm khó khăn tiếp theo.',
+    chronology: [
+      {
+        time: '1970 – 1984',
+        title: 'Mười bốn năm làm cha phó',
+        content:
+          'Ngài phục vụ suốt giai đoạn chuyển tiếp khó khăn nhất của họ đạo, từ cuối thời Cha Ngô Văn Niềm cho tới giữa thời Cha Nguyễn Văn Chúc.'
+      }
+    ],
+    milestones: ['Cùng Cha Trần Xuân Lộc và Cha Nguyễn Văn Chúc gánh vác Giáo xứ Chánh Tòa giai đoạn 1975 – 1984.']
+  },
+];
+
 export interface PastorTimelineRow {
   period: string;
   bioId?: string;
@@ -1853,7 +2064,7 @@ export const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     id: 'tuyen-uy-phan-van-dai',
     name: 'Lm. Antôn Phan Văn Đại',
     saintName: 'Thánh Antôn',
-    role: 'Cha Tuyên Uý Xứ Đoàn (2019 – 2020)',
+    role: 'Cha Tuyên Uý Xứ Đoàn (2019 – 2020) • Phó Giám Đốc Tiểu Chủng viện Gioan XXIII (từ 2025)',
     period: '2019 – 2020',
     birth: 'Sinh năm 1984',
     origin: 'Giáo xứ Anrê, Thanh Bình, Đồng Tháp',
@@ -1862,7 +2073,7 @@ export const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     source:
       'Ảnh do giáo xứ cung cấp. Tiểu sử theo thông báo phong chức linh mục của Toà Giám mục Mỹ Tho ngày 04/02/2017 và danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024',
     shortDesc:
-      'Cha Tuyên Uý thứ năm của Xứ Đoàn. Sau nhiệm kỳ tuyên uý, ngài được cử đi du học tại Philippines.',
+      'Cha Tuyên Uý thứ năm của Xứ Đoàn. Sau nhiệm kỳ tuyên uý, ngài đi du học hai năm tại Philippines rồi sang Rôma. Năm 2025, Đức cha Phêrô Nguyễn Văn Khảm đặt ngài làm Phó Giám Đốc Tiểu Chủng viện Gioan XXIII — chính ngôi chủng viện do Đức cha Giuse Trần Văn Thiện sáng lập những năm đầu của giáo phận.',
     chronology: [
       {
         time: '21/04/2017',
@@ -1876,12 +2087,27 @@ export const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
       },
       {
-        time: 'Hiện nay',
-        title: 'Du học',
-        content: 'Đang du học tại Philippines (theo danh sách linh mục đoàn 11.2024).'
+        time: '2020 – 2022',
+        title: 'Du học tại Philippines',
+        content:
+          'Sau nhiệm kỳ tuyên uý, ngài được cử đi du học tại Philippines trong hai năm. Danh sách linh mục đoàn cập nhật tháng 11/2024 vẫn ghi nhiệm sở của ngài là Philippines.'
+      },
+      {
+        time: 'Từ khoảng 2022',
+        title: 'Sang Rôma tiếp tục học',
+        content: 'Hết hai năm tại Philippines, ngài sang Rôma tiếp tục chương trình học cho tới năm 2025.'
+      },
+      {
+        time: '2025 – nay',
+        title: 'Phó Giám Đốc Tiểu Chủng viện Gioan XXIII',
+        content:
+          'Đức cha Phêrô Nguyễn Văn Khảm bổ nhiệm ngài làm Phó Giám Đốc Tiểu Chủng viện Gioan XXIII. Đây là ngôi chủng viện do Đức cha Giuse Trần Văn Thiện — Giám mục Tiên khởi — sáng lập những năm đầu của giáo phận, mang tên vị Giáo hoàng đã ký Tông hiến khai sinh Giáo phận Mỹ Tho năm 1960. Từ một cha tuyên uý Xứ Đoàn, ngài trở về góp phần đào tạo lớp linh mục kế tiếp cho giáo phận.'
       }
     ],
-    milestones: []
+    milestones: [
+      'Du học hai năm tại Philippines, rồi tiếp tục học tại Rôma.',
+      'Phó Giám Đốc Tiểu Chủng viện Gioan XXIII từ năm 2025 — cơ sở đào tạo linh mục của Giáo phận Mỹ Tho.'
+    ]
   },
   {
     id: 'tuyen-uy-truong-ngoc-duc',
@@ -2485,17 +2711,16 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     id: 'bdh-le-hoang-thien-phuc',
     name: 'Matthêu Lê Hoàng Thiên Phúc',
     saintName: 'Thánh Matthêu',
-    role: 'Trông coi sinh hoạt TNTT (2020 – 2024) • Xứ Đoàn Trưởng (từ năm học 2025)',
+    role: 'Trông coi sinh hoạt TNTT (2020 – 2024) • Xứ Đoàn Trưởng (từ tháng 6/2025)',
     period: '2020 – 2026',
     origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
     source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
     offices: [
-      'Giáo viên môn Toán – Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho',
       'Học viên cao học Đại Học Gia Định – Thành Phố Hồ Chí Minh',
       'Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030)'
     ],
     shortDesc:
-      'Thầy dạy Toán tại Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho. Học viên cao học Đại Học Gia Định – Thành Phố Hồ Chí Minh. Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030). Người giữ sinh hoạt Thiếu Nhi Thánh Thể suốt năm năm Xứ Đoàn không có Ban Điều Hành, rồi được cha Tuyên Uý bổ nhiệm làm Xứ Đoàn Trưởng khi Ban Điều Hành được tái lập đầu năm học 2025.',
+      'Học viên cao học Đại Học Gia Định – Thành Phố Hồ Chí Minh. Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030). Người giữ sinh hoạt Thiếu Nhi Thánh Thể suốt năm năm Xứ Đoàn không có Ban Điều Hành, rồi được cha Tuyên Uý bổ nhiệm làm Xứ Đoàn Trưởng khi Ban Điều Hành được tái lập tháng 6/2025 — việc tái lập xuất phát từ mong muốn và thỉnh nguyện của chính Huynh Trưởng đoàn sau năm năm Xứ Đoàn không có ban.',
     chronology: [
       {
         time: '2020 – 2024',
@@ -2504,20 +2729,25 @@ export const BDH_BIOS: DetailedBioRecord[] = [
           'Trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức, trưởng được giao trông coi sinh hoạt Thiếu Nhi Thánh Thể, song song với thầy Augustinô Võ Tấn Hoàng Việt phụ trách Giáo Lý Viên.'
       },
       {
-        time: 'Đầu năm học 2025',
+        time: 'Tháng 6/2025',
         title: 'Xứ Đoàn Trưởng',
-        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm làm Xứ Đoàn Trưởng khi Ban Điều Hành được tái lập với nhiệm kỳ hai năm. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+        content: 'Sau khi Huynh Trưởng đoàn bày tỏ nguyện vọng tái lập Ban Điều Hành, cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm ngài làm Xứ Đoàn Trưởng, nhiệm kỳ hai năm theo Nội Quy. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
       },
       {
         time: '2025 – 2030',
         title: 'Uỷ viên ban Phụng vụ Liên đoàn cấp Giáo phận',
         content: 'Được tín nhiệm bầu làm Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho, nhiệm kỳ 2025 – 2030.'
       },
-      { time: '12/12/2026', title: 'Ban Điều Hành ngưng nhiệm vụ', content: 'Nhiệm kỳ kết thúc sớm hơn dự định. Tính đến nay Xứ Đoàn chưa có người đứng đầu Ban Điều Hành.' }
+      {
+        time: '12/12/2025',
+        title: 'Ban Điều Hành ngưng nhiệm vụ',
+        content:
+          'Nhiệm kỳ kết thúc sớm hơn dự định, vào tối Đêm Thánh Ca "Ánh Sáng Hy Vọng" của Giáo hạt Mỹ Tho tổ chức tại Nhà thờ Chánh Tòa. Tính đến nay Xứ Đoàn chưa có người đứng đầu Ban Điều Hành.'
+      }
     ],
     milestones: [
       'Giữ sinh hoạt Thiếu Nhi Thánh Thể qua năm năm Xứ Đoàn không có Ban Điều Hành.',
-      'Xứ Đoàn Trưởng của Ban Điều Hành tái lập đầu năm học 2025.',
+      'Xứ Đoàn Trưởng của Ban Điều Hành tái lập tháng 6/2025.',
       'Uỷ viên ban Phụng vụ Liên đoàn cấp Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030).'
     ]
   },
@@ -2525,11 +2755,11 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     id: 'bdh-le-dang-thu-thao',
     name: 'Maria Lê Đặng Thu Thảo',
     saintName: 'Đức Maria',
-    role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó nội vụ (từ năm học 2025)',
+    role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó nội vụ (từ tháng 6/2025)',
     period: '2020 – nay',
     origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
     source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
-    shortDesc: 'Hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức (2020 – 2024). Phó nội vụ của Ban Điều Hành tái lập đầu năm học 2025, tương ứng với Phó đặc trách quản trị theo Nội Quy.',
+    shortDesc: 'Hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức (2020 – 2024). Phó nội vụ của Ban Điều Hành tái lập tháng 6/2025, tương ứng với Phó đặc trách quản trị theo Nội Quy.',
     chronology: [
       {
         time: '2020 – 2024',
@@ -2537,9 +2767,9 @@ export const BDH_BIOS: DetailedBioRecord[] = [
         content: 'Trong năm năm Xứ đoàn không có Ban Điều Hành chính thức, trưởng cùng các anh chị em khác hỗ trợ Matthêu Lê Hoàng Thiên Phúc trong việc duy trì và tổ chức sinh hoạt Thiếu Nhi Thánh Thể.'
       },
       {
-        time: 'Đầu năm học 2025',
+        time: 'Tháng 6/2025',
         title: 'Xứ Đoàn Phó nội vụ',
-        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm khi Ban Điều Hành được tái lập với nhiệm kỳ hai năm. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm tháng 6/2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
       }
     ],
     milestones: [
@@ -2550,14 +2780,14 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     id: 'bdh-le-gia-huy',
     name: 'Phêrô Lê Gia Huy',
     saintName: 'Thánh Phêrô Tông Đồ',
-    role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó ngoại vụ (từ năm học 2025)',
+    role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó ngoại vụ (từ tháng 6/2025)',
     period: '2020 – nay',
     origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
     source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
     offices: [
       'Ứng viên cử nhân Đại Học Greenwich – Cơ sở Hồ Chí Minh'
     ],
-    shortDesc: 'Ứng viên cử nhân Đại Học Greenwich – Cơ sở Hồ Chí Minh. Hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức (2020 – 2024). Phó ngoại vụ của Ban Điều Hành tái lập đầu năm học 2025, tương ứng với Phó đặc trách huấn luyện theo Nội Quy.',
+    shortDesc: 'Ứng viên cử nhân Đại Học Greenwich – Cơ sở Hồ Chí Minh. Hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc trong năm năm Xứ Đoàn không có Ban Điều Hành chính thức (2020 – 2024). Phó ngoại vụ của Ban Điều Hành tái lập tháng 6/2025, tương ứng với Phó đặc trách huấn luyện theo Nội Quy.',
     chronology: [
       {
         time: '2020 – 2024',
@@ -2565,9 +2795,9 @@ export const BDH_BIOS: DetailedBioRecord[] = [
         content: 'Trong năm năm Xứ đoàn không có Ban Điều Hành chính thức, trưởng cùng các anh chị em khác hỗ trợ Matthêu Lê Hoàng Thiên Phúc trong việc duy trì và tổ chức sinh hoạt Thiếu Nhi Thánh Thể.'
       },
       {
-        time: 'Đầu năm học 2025',
+        time: 'Tháng 6/2025',
         title: 'Xứ Đoàn Phó ngoại vụ',
-        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm khi Ban Điều Hành được tái lập với nhiệm kỳ hai năm. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+        content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm tháng 6/2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
       }
     ],
     milestones: [
@@ -2578,16 +2808,16 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     id: 'bdh-nguyen-phuc-khang',
     name: 'Batôlômêô Nguyễn Phúc Khang',
     saintName: 'Thánh Batôlômêô',
-    role: 'Thư Ký Đoàn (từ năm học 2025)',
-    period: 'Từ năm học 2025',
+    role: 'Thư Ký Đoàn (từ tháng 6/2025)',
+    period: 'Từ tháng 6/2025',
     origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
     source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
     offices: [
       'Học viên cao học Đại Học Công Thương – ĐH QG Hồ Chí Minh'
     ],
-    shortDesc: 'Học viên cao học Đại Học Công Thương – ĐH QG Hồ Chí Minh. Thư ký của Ban Điều Hành tái lập đầu năm học 2025. Theo Nội Quy, thư ký do Xứ Đoàn Trưởng và hai phó đề cử.',
+    shortDesc: 'Học viên cao học Đại Học Công Thương – ĐH QG Hồ Chí Minh. Thư ký của Ban Điều Hành tái lập tháng 6/2025. Theo Nội Quy, thư ký do Xứ Đoàn Trưởng và hai phó đề cử.',
     chronology: [
-      { time: 'Đầu năm học 2025', title: 'Thư Ký Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận khi Ban Điều Hành được tái lập.' },
+      { time: 'Tháng 6/2025', title: 'Thư Ký Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận tháng 6/2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn.' },
       {
         time: '2026 – nay',
         title: 'Cộng tác Giáo lý lớp Vào Đời 1',
@@ -2600,13 +2830,13 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     id: 'bdh-tran-thao-my',
     name: 'Maria Trần Thảo My',
     saintName: 'Đức Maria',
-    role: 'Thủ Quỹ Đoàn (từ năm học 2025)',
-    period: 'Từ năm học 2025',
+    role: 'Thủ Quỹ Đoàn (từ tháng 6/2025)',
+    period: 'Từ tháng 6/2025',
     origin: 'Xứ Đoàn Các Thánh Tử Đạo Việt Nam, Giáo xứ Chánh Tòa Mỹ Tho',
     source: 'Ghi chép của Xứ Đoàn do Ban Điều Hành cung cấp',
-    shortDesc: 'Thủ quỹ của Ban Điều Hành tái lập đầu năm học 2025. Theo Nội Quy, thủ quỹ do Xứ Đoàn Trưởng và hai phó đề cử.',
+    shortDesc: 'Thủ quỹ của Ban Điều Hành tái lập tháng 6/2025. Theo Nội Quy, thủ quỹ do Xứ Đoàn Trưởng và hai phó đề cử.',
     chronology: [
-      { time: 'Đầu năm học 2025', title: 'Thủ Quỹ Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận khi Ban Điều Hành được tái lập.' }
+      { time: 'Tháng 6/2025', title: 'Thủ Quỹ Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận tháng 6/2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn.' }
     ],
     milestones: []
   }

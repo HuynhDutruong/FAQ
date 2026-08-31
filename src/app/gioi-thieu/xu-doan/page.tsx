@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import KhungTrang from '../KhungTrang';
 import { CuaSoLyLich, CuaSoAnh } from '../CuaSo';
+import MetaUpdater from '@/components/MetaUpdater';
 import {
   ScarfIcon,
   TNTT_CHAPLAINS,
@@ -30,18 +31,23 @@ export default function Trang() {
   const moLyLich = (b: DetailedBioRecord | null) => {
     setLyLich(b);
     if (b) {
-      window.history.replaceState(null, '', `#${b.id}`);
+      const url = new URL(window.location.href);
+      url.searchParams.set('bio', b.id);
+      window.history.replaceState(null, '', url.toString());
     } else {
-      window.history.replaceState(null, '', window.location.pathname);
+      const url = new URL(window.location.href);
+      url.searchParams.delete('bio');
+      window.history.replaceState(null, '', url.toString());
     }
   };
 
   const moAnh = (a: { src: string; caption: string } | null) => setAnh(a);
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-      const found = allBios.find(b => b.id === hash);
+    const params = new URLSearchParams(window.location.search);
+    const bioId = params.get('bio');
+    if (bioId) {
+      const found = allBios.find(b => b.id === bioId);
       if (found) {
         setLyLich(found);
       }
@@ -51,21 +57,9 @@ export default function Trang() {
   return (
     <KhungTrang tieuDe="Xứ Đoàn Các Thánh Tử Đạo Việt Nam" phuDe="Bản chất và tôn chỉ Phong trào Thiếu Nhi Thánh Thể, hệ thống khăn quàng, mười đời cha tuyên uý và ngày tái lập Xứ Đoàn năm 2005." duongDan="/gioi-thieu/xu-doan">
         <section id="xu-doan" style={{ marginBottom: '36px' }}>
-          <h2
-            style={{
-              fontSize: '1.4rem',
-              fontWeight: 800,
-              color: 'var(--color-dark)',
-              borderBottom: '1px solid var(--color-border-subtle)',
-              paddingBottom: '6px',
-              marginTop: '32px'
-            }}
-          >
-            4. Xứ Đoàn Các Thánh Tử Đạo Việt Nam (TNTT)
-          </h2>
 
           <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-            4.1. Bản chất, Mục đích &amp; Tôn chỉ Phong trào
+            Bản chất, Mục đích &amp; Tôn chỉ Phong trào
           </h3>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 12px' }}>
             <strong>Thiếu Nhi Thánh Thể</strong> là một đoàn thể Công giáo tiến hành, một trường giáo dục chuyên biệt
@@ -141,7 +135,7 @@ export default function Trang() {
           </ul>
 
           <h3 id="xu-doan-khan-quang" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-            4.2. Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
+            Hệ thống Ngành &amp; Ý nghĩa Khăn Quàng TNTT
           </h3>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Khăn quàng TNTT là biểu tượng của tinh thần dâng hiến và trách nhiệm tông đồ. Dưới đây là bảng phân cấp các
@@ -169,7 +163,7 @@ export default function Trang() {
           </div>
 
           <h3 id="xu-doan-khan-huynh-truong" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
-            4.3. Khăn Quàng Huynh Trưởng &amp; Ban Điều Hành
+            Khăn Quàng Huynh Trưởng &amp; Ban Điều Hành
           </h3>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Ngoài khăn của các ngành, Phong trào còn quy định khăn riêng cho những người phục vụ và
@@ -202,53 +196,8 @@ export default function Trang() {
             Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
           </p>
 
-          <h3 id="xu-doan-tuyen-uy" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
-            4.4. Các Đời Cha Tuyên Uý Xứ Đoàn
-          </h3>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-            Cha Tuyên Uý là linh mục được trao trách nhiệm linh hướng Xứ Đoàn. Dưới đây là các vị đã
-            phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay —
-            <strong> nhấn vào tên để xem lý lịch đầy đủ</strong>:
-          </p>
-
-          <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
-            <table className="pastor-timeline-table">
-              <caption className="sr-only">
-                Danh sách các đời cha tuyên uý Xứ Đoàn Các Thánh Tử Đạo Việt Nam
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col" style={{ width: '50px' }}>STT</th>
-                  <th scope="col" style={{ width: '150px' }}>Thời Gian</th>
-                  <th scope="col">Cha Tuyên Uý</th>
-                </tr>
-              </thead>
-              <tbody>
-                {TNTT_CHAPLAINS.map((row, idx) => (
-                  <tr key={row.bio.id}>
-                    <td>{idx + 1}</td>
-                    <td style={{ whiteSpace: 'nowrap' }}>{row.period}</td>
-                    <td>
-                      <button
-                        type="button"
-                        className="pastor-name-btn"
-                        onClick={() => moLyLich(row.bio)}
-                        aria-label={`Xem lý lịch ${row.bio.name}`}
-                      >
-                        {row.bio.name}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* =====================================================================
-              4.5. TÁI LẬP XỨ ĐOÀN NĂM 2005
-              ===================================================================== */}
           <h3 id="xu-doan-tai-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
-            4.5. Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
+            Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
           </h3>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
             Đoàn Thiếu Nhi Thánh Thể tại Giáo xứ Chánh Tòa đã vắng bóng trong sinh hoạt giáo xứ
@@ -349,8 +298,53 @@ export default function Trang() {
           </p>
         </section>
 
+          <h3 id="xu-doan-tuyen-uy" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
+            Các Đời Cha Tuyên Uý Xứ Đoàn
+          </h3>
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
+            Cha Tuyên Uý là linh mục được trao trách nhiệm linh hướng Xứ Đoàn. Dưới đây là các vị đã
+            phục vụ Xứ Đoàn Các Thánh Tử Đạo Việt Nam từ ngày tái lập năm 2005 đến nay —
+            <strong> nhấn vào tên để xem lý lịch đầy đủ</strong>:
+          </p>
+
+          <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
+            <table className="pastor-timeline-table">
+              <caption className="sr-only">
+                Danh sách các đời cha tuyên uý Xứ Đoàn Các Thánh Tử Đạo Việt Nam
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" style={{ width: '50px' }}>STT</th>
+                  <th scope="col" style={{ width: '150px' }}>Thời Gian</th>
+                  <th scope="col">Cha Tuyên Uý</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TNTT_CHAPLAINS.map((row, idx) => (
+                  <tr key={row.bio.id}>
+                    <td>{idx + 1}</td>
+                    <td style={{ whiteSpace: 'nowrap' }}>{row.period}</td>
+                    <td>
+                      <button
+                        type="button"
+                        className="pastor-name-btn"
+                        onClick={() => moLyLich(row.bio)}
+                        aria-label={`Xem lý lịch ${row.bio.name}`}
+                      >
+                        {row.bio.name}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* =====================================================================
+              TÁI LẬP XỨ ĐOÀN NĂM 2005
+              ===================================================================== */}
             <h3 id="xu-doan-ban-dieu-hanh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-              4.6. Ban Điều Hành Xứ Đoàn
+              Ban Điều Hành Xứ Đoàn
             </h3>
 
             <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
@@ -515,15 +509,23 @@ export default function Trang() {
 
             {/* ---- Giai đoạn 4 ---- */}
             <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
-              Đầu năm học 2025 — tái lập Ban Điều Hành, nhiệm kỳ hai năm
+Tháng 6 năm 2025 — Ban Điều Hành trở lại theo thỉnh nguyện của Huynh Trưởng đoàn
             </h4>
-            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
-              Cha Tuyên Uý <strong>Phêrô Nguyễn Ngọc</strong> quyết định tái lập Ban Điều Hành với nhiệm kỳ hai năm, và
-              trực tiếp bổ nhiệm các trưởng:
+            <p className="doc-para">
+              Năm năm không có Ban Điều Hành là năm năm mỗi việc phải xử lý theo từng vụ. Không có ai đại diện Xứ Đoàn đối
+              ngoại, không có ai đứng ra phân công giữa các ngành, và những khoá huấn luyện nội bộ thì tuỳ lúc tuỳ người.
+              Các anh chị Huynh Trưởng là những người thấy rõ nhất chỗ trống ấy — vì chính họ phải bù vào.
+            </p>
+            <p className="doc-para">
+              Vì vậy, việc Ban Điều Hành trở lại không đến từ một quyết định áp xuống, mà{' '}
+              <strong>xuất phát từ mong muốn và thỉnh nguyện của chính Huynh Trưởng đoàn</strong>. Sau khi các trưởng bày
+              tỏ nguyện vọng, <strong>vào tháng 6 năm 2025</strong>, cha Tuyên Uý <strong>Phêrô Nguyễn Ngọc</strong> chính
+              thức bổ nhiệm Ban Điều Hành mới với nhiệm kỳ hai năm theo Nội Quy. Sau sáu năm kể từ ngày ban cũ từ nhiệm
+              năm 2019, Xứ Đoàn lại có một guồng máy đầy đủ năm chức vụ:
             </p>
             <div style={{ overflowX: 'auto', marginBottom: '10px' }}>
               <table className="pastor-timeline-table">
-                <caption className="sr-only">Ban Điều Hành Xứ Đoàn nhiệm kỳ từ năm học 2025</caption>
+                <caption className="sr-only">Ban Điều Hành Xứ Đoàn nhiệm kỳ từ tháng 6/2025</caption>
                 <thead>
                   <tr>
                     <th scope="col" style={{ width: '50px' }}>STT</th>
@@ -561,8 +563,9 @@ export default function Trang() {
               </table>
             </div>
 
-            <p style={{ fontSize: '0.88rem', lineHeight: 1.72, margin: '0 0 12px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
-              Đối chiếu với Nội Quy thì cách tái lập này có vài chỗ chưa khớp. <strong>Điều 27</strong> quy định Xứ Đoàn
+            <p className="doc-para" style={{ fontSize: '0.88rem', color: 'var(--color-subtle)' }}>
+              Một ghi chú để người sau đối chiếu. Nguyện vọng tái lập đến từ Huynh Trưởng đoàn, đúng tinh thần Nội Quy;
+              nhưng về hình thức thì cách tiến hành có vài chỗ chưa khớp. <strong>Điều 27</strong> quy định Xứ Đoàn
               Trưởng và hai Đoàn Phó <strong>do Hội đồng Huynh Trưởng Xứ Đoàn bầu lên</strong>; thư ký, thủ quỹ và các
               ngành trưởng thì do ba vị ấy đề cử. Vai trò của cha Tuyên Uý Xứ Đoàn trong điều khoản này là{' '}
               <strong>chấp thuận</strong>. Còn việc <strong>bổ nhiệm</strong> Ban Thường vụ, theo{' '}
@@ -570,8 +573,8 @@ export default function Trang() {
               chức vụ đều được bổ nhiệm thẳng. Nhiệm kỳ hai năm thì đúng Nội Quy; phần còn lại thì chưa.
             </p>
             <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 12px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
-              Nhiệm kỳ này kết thúc sớm hơn dự định. Ngày <strong>12/12/2026</strong>, nhân đêm Thánh Nhạc, Ban Điều Hành
-              được cha Tuyên Uý cho ngưng nhiệm vụ. Tính đến nay Xứ Đoàn <strong>chưa có người đứng đầu Ban Điều
+              Nhiệm kỳ này kết thúc sớm hơn dự định. Ngày <strong>12/12/2025</strong>, nhân Đêm Thánh Ca “Ánh Sáng Hy Vọng” của Giáo hạt Mỹ Tho tổ chức tại
+              Nhà thờ Chánh Tòa, Ban Điều Hành được cha Tuyên Uý cho ngưng nhiệm vụ. Tính đến nay Xứ Đoàn <strong>chưa có người đứng đầu Ban Điều
               Hành</strong>.
             </p>
             <p style={{ fontSize: '0.86rem', lineHeight: 1.7, margin: '0 0 18px', color: 'var(--color-subtle)', textAlign: 'justify', fontStyle: 'italic' }}>
@@ -582,6 +585,12 @@ export default function Trang() {
               đứng, còn một Ban Điều Hành được đặt vào thì cũng có thể được gỡ ra.
             </p>
 
+      <MetaUpdater
+        title={lyLich ? `${lyLich.name} — ${lyLich.role}` : undefined}
+        description={lyLich ? lyLich.shortDesc : undefined}
+        image={lyLich?.image ? `https://chanhtoa.tnttgiaophanmytho.online${lyLich.image}` : (lyLich ? `https://chanhtoa.tnttgiaophanmytho.online/api/og/${lyLich.id}` : undefined)}
+        url={`https://chanhtoa.tnttgiaophanmytho.online/gioi-thieu/xu-doan?bio=${lyLich?.id}`}
+      />
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />
       <CuaSoAnh anh={anh} onClose={() => setAnh(null)} />
     </KhungTrang>

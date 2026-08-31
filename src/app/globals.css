@@ -2283,3 +2283,77 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(0,0,0,0.06) !important;
 }
+
+/* =========================================================================
+   KIỂU TRÌNH BÀY BÀI KHẢO CỨU: CHỮ CHẢY QUANH HÌNH
+   Dùng cho các mục lịch sử dài, để chữ và hình xen kẽ như một trang sách
+   thay vì hình chắn ngang giữa các đoạn.
+   ========================================================================= */
+.doc-para {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  text-align: justify;
+  margin: 0 0 14px;
+}
+
+.doc-figure {
+  margin: 4px 0 14px;
+  width: 320px;
+  max-width: 100%;
+}
+
+.doc-figure-right { float: right; margin-left: 22px; }
+.doc-figure-left  { float: left;  margin-right: 22px; }
+
+.doc-caption {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--color-subtle);
+  margin-top: 6px;
+  text-align: justify;
+  font-style: italic;
+}
+
+/* Khung nhấn mạnh cho số liệu và trích dẫn tư liệu */
+.doc-box {
+  clear: both;
+  border-left: 3px solid var(--color-red);
+  background-color: rgba(153, 27, 27, 0.035);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 16px;
+  margin: 6px 0 18px;
+}
+
+.doc-box-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--color-red);
+  margin-bottom: 6px;
+}
+
+.doc-box-text {
+  font-size: 0.86rem;
+  line-height: 1.75;
+  margin: 0 0 8px;
+  color: var(--color-dark);
+}
+
+.doc-box-note {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--color-subtle);
+  font-style: italic;
+}
+
+/* Màn hình hẹp: bỏ float để chữ không bị bóp thành cột hẹp */
+@media (max-width: 720px) {
+  .doc-figure-right,
+  .doc-figure-left {
+    float: none;
+    margin: 14px auto;
+    width: 100%;
+    max-width: 420px;
+  }
+  .doc-para { text-align: left; }
+}
