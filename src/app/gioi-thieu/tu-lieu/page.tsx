@@ -140,9 +140,81 @@ export default function Trang() {
           </ol>
 
           <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-red)', margin: '16px 0 6px' }}>
+            C-bis. Nguồn về buổi đầu Giáo hội Việt Nam — mốc 1533 và những gì đến sau
+          </h4>
+          <p style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.7, margin: '0 0 8px' }}>
+            Phần này phục vụ đoạn <em>&ldquo;Tin Mừng đến Việt Nam&rdquo;</em> ở cuối Chương I. Đây là chỗ bản khảo cứu
+            phải cẩn thận nhất, vì cột mốc 1533 vừa được toàn thể Giáo hội Việt Nam dùng, vừa bị chính giới nghiên cứu
+            Công giáo phản biện. Cả hai phía đều ghi ở đây.
+          </p>
+          <ol style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.75, paddingLeft: '20px', margin: 0 }}>
+            <li>
+              <strong>Nguồn gốc của mốc 1533</strong> — Quốc Sử Quán triều Nguyễn, <em>Khâm Định Việt Sử Thông Giám
+              Cương Mục</em>, <strong>Chính biên, quyển XXXIII, tờ 6b</strong> (biên soạn khoảng 1856 – 1884, tức{' '}
+              <strong>hơn ba trăm năm sau</strong> sự kiện được chép). Ghi tháng 3 năm Nguyên Hoà nguyên niên đời Lê
+              Trang Tông, người Tây Dương tên <strong>I-nê-khu</strong> theo đường biển vào giảng đạo Gia Tô ở{' '}
+              <strong>Ninh Cường</strong>, <strong>Quần Anh</strong> (huyện Nam Chân) và <strong>Trà Lũ</strong> (huyện
+              Giao Thuỷ) — nay đều thuộc Giáo phận Bùi Chu, tỉnh Nam Định. Bản dịch Viện Sử học; bản số hoá đọc được tại
+              archive.org và cvdvn.net.
+            </li>
+            <li>
+              <strong>Điểm yếu của chính nguồn ấy, do chính sách nêu ra</strong> — <em>Cương Mục</em> dẫn xuất xứ là{' '}
+              <strong>&ldquo;Dã Lục&rdquo;</strong>, tức ghi chép tư nhân trong dân gian chứ không phải hồ sơ quốc sử;
+              và <strong>bản Dã Lục đó nay đã thất truyền</strong>. Không có bất kỳ văn khố Bồ Đào Nha, Tây Ban Nha hay
+              Dòng Tên đương thời nào xác nhận chuyến đi; không rõ I-nê-khu thuộc dòng tu nào.
+            </li>
+            <li>
+              <strong>Phản biện học thuật</strong> — Lm. <strong>Võ Đình Đệ</strong>, &ldquo;Thực hư có giáo sĩ I-nê-xu
+              lén truyền giáo ở Đại Việt năm 1533&rdquo;, <em>gpquinhon.org</em>: tổng hợp lập luận và dẫn Chu Thiên,
+              Đinh Xuân Lâm, Trần Thanh Ái, Lm. Bùi Đức Sinh; nêu khả năng chi tiết bắt nguồn từ{' '}
+              <em>Tây Dương Gia Tô Bí Lục</em> — sách công kích đạo Công giáo thế kỷ XIX, không phải sử liệu. Xem thêm{' '}
+              <em>ofmvn.org</em>, &ldquo;Thừa sai I-nê-xu của sách Cương Mục và thừa sai I-nê-xu Dòng Phan Sinh&rdquo;.
+              Truy cập 08/2026.
+            </li>
+            <li>
+              <strong>Phía giữ mốc 1533</strong> — Hội đồng Giám mục Việt Nam, <em>Biên niên sử của Giáo hội Công giáo
+              Việt Nam</em>, <em>hdgmvietnam.com</em>; cùng các nhà chép sử Công giáo Phan Phát Huồn, Hồng Lam, Lm. Trần
+              Anh Dũng. Đây cũng là nguồn của các mốc: 1550 (Gaspar da Santa Cruz, Hà Tiên), 1580 – 1586 (Luís da
+              Fonseca và Grégoire de la Motte, Quảng Nam), 1583 (bốn thừa sai Phanxicô ra Bắc),{' '}
+              <strong>18/01/1615</strong> (Dòng Tên lập cơ sở thường trú tại Cửa Hàn — Francesco Buzomi, Diogo
+              Carvalho), 1627 (Alexandre de Rhodes vào Đàng Ngoài), <strong>26/07/1644</strong> (thầy Anrê Phú Yên),
+              1651 (ba tác phẩm quốc ngữ in tại Rôma), <strong>1659</strong> (Alexanđê VII lập hai Phủ Doãn Tông Toà),
+              1668 (bốn linh mục Việt Nam đầu tiên tại Ayutthaya) và 1670 (Công đồng Phố Hiến, lập Dòng Mến Thánh Giá).
+              Truy cập 08/2026.
+            </li>
+            <li>
+              <strong>Hình ảnh dùng cho đoạn này</strong> — tất cả lấy từ Wikimedia Commons, kiểm giấy phép từng tệp
+              tháng 8/2026. <em>Phạm vi công cộng:</em> tờ đầu quyển thủ và một trang ruột <em>Cương Mục</em> (Quốc Sử
+              Quán triều Nguyễn); trang bìa <em>Dictionarium Annamiticum Lusitanum et Latinum</em>, Rôma 1651; trang bìa{' '}
+              <em>Divers voyages et missions du P. Alexandre de Rhodes</em>, Paris 1653; chân dung Cha Alexandre de
+              Rhodes. <em>Giấy phép CC BY-SA 3.0, ghi công tác giả Hoangvantoanajc:</em> Vương cung thánh đường Phú Nhai
+              và Nhà thờ Chính toà Bùi Chu. Tờ đầu <em>Cương Mục</em> đọc được niên đại phụng mệnh &ldquo;Tự Đức bát
+              niên thập nhị nguyệt thập ngũ nhật&rdquo; — đầu năm 1856, xác nhận độc lập niên đại biên soạn nêu ở mục
+              trên.
+            </li>
+            <li>
+              <strong>Dấu vết vật chất</strong> — đài kỷ niệm <strong>Bến I-nê-khu</strong> tại Lác Môn, Giáo phận Bùi
+              Chu (Nam Định), đánh dấu nơi được tin là chỗ Tin Mừng cập bờ đất Việt. Bản khảo cứu này{' '}
+              <strong>chưa tự đến khảo sát tại chỗ</strong> và chưa có ảnh gốc do mình chụp; mọi mô tả đều là dẫn lại.
+            </li>
+          </ol>
+
+          <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-red)', margin: '16px 0 6px' }}>
             D. Đã tìm mà không thấy — và những chỗ chưa với tới được
           </h4>
           <ol start={15} style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.75, paddingLeft: '20px', margin: 0 }}>
+            <li>
+              <strong>Bản &ldquo;Dã Lục&rdquo; mà Cương Mục dẫn</strong> — đã thất truyền. Đây là mắt xích quyết định
+              của mốc 1533: chừng nào chưa tìm lại được nó, hoặc chưa tìm được một văn khố phương Tây cùng thời, thì
+              1533 vẫn chỉ là <em>cột mốc quy ước</em> chứ không phải sự kiện đã kiểm chứng. Bản khảo cứu ghi rõ như vậy
+              thay vì chọn một phía.
+            </li>
+            <li>
+              <strong>Đức Cha Giuse Trần Văn Thiện có phải nghị phụ Công Đồng Vaticanô II hay không</strong> — Giáo
+              phận Mỹ Tho lập tháng 11/1960, Công Đồng khai mạc tháng 10/1962, nên về nguyên tắc vị Giám mục Tiên khởi
+              thuộc diện được triệu tập. Nhưng bản khảo cứu <em>chưa tra được</em> danh sách nghị phụ có tên ngài, nên
+              không khẳng định. Cần đối chiếu <em>Acta Synodalia Sacrosancti Concilii Oecumenici Vaticani II</em>.
+            </li>
             <li>
               <strong>Ảnh ngôi nhà thờ thứ nhất (1861)</strong> — không có và gần như chắc chắn chưa từng có. Ba nguồn
               độc lập đều tả đó là nhà nguyện <em>lợp lá</em>: tài liệu Giáo phận (&ldquo;chỉ là một nhà nguyện với mái

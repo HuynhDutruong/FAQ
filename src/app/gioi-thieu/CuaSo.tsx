@@ -155,6 +155,11 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
                 <strong>Sinh ngày / Nơi sinh:</strong> {bio.birth}
               </div>
             )}
+            {bio.nghe && (
+              <div style={{ gridColumn: '1 / -1' }}>
+                <strong>Nghề nghiệp / Học vấn:</strong> {bio.nghe}
+              </div>
+            )}
             {bio.origin && (
               <div>
                 <strong>Gốc / Tổ chức:</strong> {bio.origin}
@@ -182,7 +187,24 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
             )}
           </div>
 
-          {/* Quá trình phục vụ theo thời gian (Timeline) */}
+          {/* Dấu ấn và di sản — đặt trên cùng, đọc như phần mở đầu một mục từ */}
+          {bio.milestones.length > 0 && (
+            <div style={{ marginBottom: '20px' }}>
+              <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
+                {bio.chronology.length === 0 ? 'Hành trình phục vụ & Dấu ấn để lại' : 'Dấu ấn lịch sử & Di sản để lại'}
+              </h4>
+              <div style={{ margin: 0, fontSize: '0.85rem', lineHeight: 1.8, color: 'var(--color-dark)', textAlign: 'justify' }}>
+                {bio.milestones.map((m, i) => (
+                  <p key={i} style={{ margin: i === bio.milestones.length - 1 ? 0 : '0 0 10px' }}>
+                    {m}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Quá trình phục vụ theo thời gian — ẩn khi đã gộp vào phần văn xuôi ở trên */}
+          {bio.chronology.length > 0 && (
           <div style={{ marginBottom: '20px' }}>
             <h4 style={{ margin: '0 0 12px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
               {bio.priestOrdination || bio.bishopConsecration ? 'Quá trình tu học và Sứ vụ mục tử' : 'Quá trình phục vụ'}
@@ -215,6 +237,8 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
               ))}
             </div>
           </div>
+
+          )}
 
           {/* Chức vụ — ẩn khi chưa có tư liệu */}
           {bio.offices && bio.offices.length > 0 && (
@@ -277,21 +301,6 @@ export function CuaSoLyLich({ bio, onClose }: { bio: DetailedBioRecord | null; o
             </div>
           )}
 
-          {/* Dấu ấn và di sản — ẩn khi chưa có tư liệu */}
-          {bio.milestones.length > 0 && (
-            <div>
-              <h4 style={{ margin: '0 0 8px', fontSize: '0.96rem', fontWeight: 800, color: 'var(--color-red)' }}>
-                Dấu ấn lịch sử &amp; Di sản để lại
-              </h4>
-              <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--color-dark)' }}>
-                {bio.milestones.map((m, i) => (
-                  <li key={i} style={{ marginBottom: '4px' }}>
-                    {m}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
 
         {/* Bottom Modal Close */}

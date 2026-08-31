@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Eye, ScrollText } from 'lucide-react';
 import KhungTrang from '../KhungTrang';
@@ -46,7 +47,7 @@ export default function Trang() {
   return (
     <KhungTrang
       tieuDe="Lịch Sử Giáo Phận Mỹ Tho"
-      phuDe="Hơn ba thế kỷ đức tin — từ những cộng đoàn tiên khởi thế kỷ XVII, qua máu đào các vị tử đạo, đến ngày khai sinh giáo phận năm 1960 và hành trình phát triển đến hôm nay."
+      phuDe="Chương II. Chương I dừng lại ở tông sắc năm 1659 của Đức Alexanđê VII; chương này bắt đầu bốn năm sau đó, ở những ngôi mộ khắc thập giá trên một dải gò đất giữa đồng lầy Định Tường — và đi tới ngày một sắc chỉ Rôma đặt tên cho vùng đất ấy."
       duongDan="/gioi-thieu/giao-phan"
     >
       <section id="lich-su-giao-phan" style={{ marginBottom: '36px' }}>
@@ -81,6 +82,15 @@ export default function Trang() {
             <br /><em>Gallica (BnF), ark:/12148/bpt6k58346217.</em>
           </div>
         </div>
+
+        <p className="doc-para">
+          Chương trước khép lại ở Rôma, ngày 9 tháng 9 năm 1659, khi Đức Alexanđê VII đặt bút lập hai Phủ Doãn Tông Toà
+          cho một xứ sở mà ngài chưa từng thấy. Chương này bắt đầu ở đầu kia của cùng đường dây ấy, và bắt đầu sớm hơn
+          người ta tưởng: <strong>chỉ bốn năm sau tông sắc đó</strong>, trên một dải gò đất nổi cao giữa đồng lầy Định
+          Tường, đã có những ngôi mộ khắc hình thập giá — niên đại <strong>1663 – 1664</strong>, còn nằm nguyên trong
+          khuôn viên Trung tâm Hành hương Ba Giồng hôm nay. Văn kiện của Toà Thánh và những nấm mộ ấy là hai đầu của
+          cùng một sợi dây, và phần lớn chương này là chuyện sợi dây đó bị kéo căng đến mức nào.
+        </p>
 
         <p className="doc-para">
           Giáo phận Mỹ Tho ngày nay trải rộng trên vùng đồng bằng sông Cửu Long — tỉnh Tiền Giang, tỉnh Long An và gần hai phần ba tỉnh Đồng Tháp — một lãnh thổ hơn <strong>9.262 km²</strong> với <strong>114 giáo xứ</strong>, gần <strong>181 linh mục</strong> và khoảng <strong>137.000 giáo dân</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[1]</sup> Nhưng cái vóc dáng ấy không xuất hiện trong một sớm một chiều. Nó được đúc nên từ hơn ba thế kỷ lịch sử — lịch sử của những người lặng lẽ khai phá, của những vị chứng nhân đổ máu, và của những vị mục tử kiên trì xây dựng. Đọc lịch sử Giáo phận Mỹ Tho là đọc lịch sử đức tin của cả một vùng đất.
@@ -122,6 +132,17 @@ export default function Trang() {
 
         <p className="doc-para">
           Tại vùng Định Tường, Cha <strong>Phêrô Nguyễn Văn Lựu</strong> (1812–1861) là nhân vật trung tâm của thời kỳ bi hùng này. Sinh tại Gò Vấp, Gia Định, ngài theo học tại Chủng viện Pénang (Penang, Malaysia) trước khi thụ phong linh mục và phục vụ lần lượt ở Mặc Bắc, Sa Đéc, Mỹ Tho. Từ năm <strong>1853</strong>, ngài làm cha sở họ đạo Ba Giồng.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[6]</sup> Cuối năm 1860, khi tình hình bách hại trở nên nguy cấp, ngài vẫn kiên trì cải trang vào ngục thăm viếng và trao Mình Thánh Chúa cho các giáo hữu bị giam cầm. Bị phát giác và dẫn ra trước quan án, ngài khảng khái tuyên bố: <em style={{ color: 'var(--color-dark)' }}>«Đạo Thánh đã thấm nhập vào xương tủy tôi rồi, tôi làm sao bỏ được. Vả lại, một người giáo hữu thường, một thầy giảng còn không có quyền bỏ đạo, huống chi tôi đây là đạo trưởng.»</em><sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[7]</sup> Ngày <strong>7 tháng 4 năm 1861</strong>, ngài bị xử trảm tại pháp trường ngoài thành Mỹ Tho. Đức Giáo hoàng Gioan Phaolô II tôn phong ngài <strong>Hiển Thánh ngày 19/6/1988</strong>, và Giáo phận Mỹ Tho sau đó chọn ngài làm <strong>Thánh Bổn Mạng</strong>, mừng lễ ngày 7/4 hàng năm.
+        </p>
+
+        <p className="doc-para">
+          Cần dừng lại một nhịp ở đây, vì đây là chỗ hai chương của quyển sách này chạm vào nhau. Cha Phêrô Lựu bị chém
+          <strong> tháng 4 năm 1861</strong>. <strong>Tháng 5 năm 1861</strong> — chưa đầy một tháng sau — quân Pháp chiếm
+          Mỹ Tho, và người Công giáo khắp các tỉnh đồng bằng kéo về tỉnh lỵ ẩn náu. Chính đám người chạy loạn ấy làm nên
+          cộng đoàn đầu tiên của họ đạo Mỹ Tho, trong một ngôi chùa bỏ hoang bên chợ. Nói cách khác:{' '}
+          <strong>giáo xứ Chánh Toà ra đời từ chính cuộc bách hại đã giết vị Bổn mạng của giáo phận</strong>, cách nhau
+          đúng một tháng và mười hai cây số. Câu chuyện ngôi nhà thờ ấy là{' '}
+          <Link href="/gioi-thieu/giao-xu" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương III</Link>;
+          ở đây ta đi tiếp phần của vùng đất.
         </p>
 
         <p className="doc-para">
@@ -330,6 +351,19 @@ export default function Trang() {
 
         <p className="doc-para">
           Sau hơn sáu mươi năm phát triển, Giáo phận Mỹ Tho hôm nay là một cộng đồng đức tin trưởng thành và sống động. Địa giới bao gồm tỉnh <strong>Tiền Giang</strong>, tỉnh <strong>Long An</strong> và khoảng <strong>2/3 tỉnh Đồng Tháp</strong> (phần phía bắc sông Tiền), tổng diện tích hơn <strong>9.262 km²</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[11]</sup> Đức Giám mục Chính tòa hiện nay là <strong>Đức Cha Phêrô Nguyễn Văn Khảm</strong> (sinh 02/10/1952), được Đức Thánh Cha Phanxicô bổ nhiệm ngày 26/7/2014. Tiến sĩ Thần học Mục vụ tại Đại học Công giáo Hoa Kỳ (2001–2004), ngài còn là Tổng Thư ký Hội đồng Giám mục Việt Nam (2016–2022) và Viện trưởng Học viện Công giáo Việt Nam (từ 2024).<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[12]</sup>
+        </p>
+
+        <p className="doc-para">
+          Còn một mối nối nữa cần nói cho trọn, vì nó chạy suốt cả bốn chương. Ngày <strong>19 tháng 6 năm 1988</strong>,
+          tại Rôma, Đức Gioan Phaolô II tôn phong <strong>117 Thánh Tử Đạo Việt Nam</strong> — sự kiện đã kể ở{' '}
+          <Link href="/gioi-thieu/giao-hoi" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương I</Link>{' '}
+          như một cột mốc của Giáo hội hoàn vũ. Trong danh sách ấy có <strong>Cha Phêrô Nguyễn Văn Lựu</strong>, vị linh
+          mục bị chém ngoài thành Mỹ Tho năm 1861, và Giáo phận Mỹ Tho đã chọn ngài làm <strong>Bổn mạng</strong>. Mười
+          bảy năm sau nữa, khi đoàn thiếu nhi của Nhà thờ Chánh Toà được tái lập vào mùa thu 2005, các em lấy chính danh
+          hiệu chung của các ngài làm tên mình: <strong>Xứ Đoàn Các Thánh Tử Đạo Việt Nam</strong> —{' '}
+          <Link href="/gioi-thieu/xu-doan" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương IV</Link>. Một
+          bản án tử hình năm 1861, một lễ tôn phong năm 1988, và một chiếc khăn quàng năm 2005 là ba điểm trên cùng một
+          đường thẳng.
         </p>
 
         <p className="doc-para">

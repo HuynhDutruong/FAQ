@@ -2391,3 +2391,153 @@ body {
   }
   .pastor-timeline-table tbody tr { overflow: hidden; }
 }
+
+/* =========================================================================
+   NIÊN BIỂU CHA SỞ DẠNG THẺ
+   Bảng năm cột trước đây để lại nhiều khoảng trống: cột ảnh và cột số thứ tự
+   hẹp, trong khi cột dấu ấn dài. Chuyển sang thẻ cho mỗi vị một khối liền,
+   ảnh bên trái và nội dung bên phải.
+   ========================================================================= */
+.pastor-cards {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 24px;
+}
+
+.pastor-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 12px;
+  background-color: var(--color-card-bg);
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.pastor-card:hover {
+  border-color: var(--color-red);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.pastor-card:focus-visible { outline: 2px solid var(--color-red); outline-offset: 2px; }
+
+/* Hàng chưa có tư liệu: không bấm được, làm nhạt đi cho phân biệt ngay */
+.pastor-card-empty {
+  cursor: default;
+  background-image: repeating-linear-gradient(
+    45deg, transparent, transparent 7px,
+    rgba(120, 120, 120, 0.045) 7px, rgba(120, 120, 120, 0.045) 14px
+  );
+}
+.pastor-card-empty:hover { border-color: var(--color-border-subtle); box-shadow: none; transform: none; }
+
+.pastor-card-no {
+  flex-shrink: 0;
+  width: 26px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-red);
+  padding-top: 2px;
+}
+
+.pastor-card-photo { flex-shrink: 0; line-height: 0; }
+
+.pastor-card-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }
+
+.pastor-card-period {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--color-subtle);
+  text-transform: uppercase;
+}
+.pastor-card-period.is-current { color: var(--color-red); }
+
+.pastor-card-name { font-size: 1rem; font-weight: 800; color: var(--color-dark); line-height: 1.35; }
+
+.pastor-card-role { font-size: 0.78rem; font-weight: 600; color: var(--color-red); line-height: 1.45; }
+
+.pastor-card-note {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--color-subtle);
+  text-align: justify;
+  margin-top: 2px;
+}
+
+.pastor-card-source { font-size: 0.72rem; line-height: 1.55; color: var(--color-subtle); opacity: 0.8; font-style: italic; }
+
+.pastor-card-cta { font-size: 0.75rem; font-weight: 700; color: var(--color-red); margin-top: 2px; }
+
+@media (max-width: 560px) {
+  .pastor-card { padding: 12px; gap: 10px; }
+  .pastor-card-no { width: 18px; font-size: 0.8rem; }
+  .pastor-card-note { text-align: left; }
+}
+
+/* =========================================================================
+   TRỤC THỜI GIAN CHUNG — nối bốn chương của bản khảo cứu thành một quyển
+   Dùng bởi src/app/gioi-thieu/dongThoiGian.tsx
+   ========================================================================= */
+
+:root {
+  --tang-hoan-vu:   #B45309;
+  --tang-giao-phan: #B91C1C;
+  --tang-giao-xu:   #0F766E;
+  --tang-tntt:      #1D4ED8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tang-hoan-vu:   #F0B429;
+    --tang-giao-phan: #FF7B72;
+    --tang-giao-xu:   #2DD4BF;
+    --tang-tntt:      #8AB4FF;
+  }
+}
+
+/* ---- Chân trang lật chương ---- */
+.dtg-lat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin-top: 30px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.dtg-lat-o {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 10px;
+  background-color: var(--color-card-bg);
+  text-decoration: none;
+}
+
+.dtg-lat-sau { text-align: right; align-items: flex-end; }
+.dtg-lat-trong { opacity: 0.55; }
+
+.dtg-lat-nhan {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-subtle);
+}
+
+.dtg-lat-ten { font-size: 0.95rem; font-weight: 800; color: var(--color-dark); }
+
+@media (max-width: 560px) {
+  .dtg-lat-sau { text-align: left; align-items: flex-start; }
+}

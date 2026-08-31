@@ -55,8 +55,36 @@ export default function Trang() {
   }, []);
 
   return (
-    <KhungTrang tieuDe="Xứ Đoàn Các Thánh Tử Đạo Việt Nam" phuDe="Bản chất và tôn chỉ Phong trào Thiếu Nhi Thánh Thể, hệ thống khăn quàng, mười đời cha tuyên uý và ngày tái lập Xứ Đoàn năm 2005." duongDan="/gioi-thieu/xu-doan">
+    <KhungTrang tieuDe="Xứ Đoàn Các Thánh Tử Đạo Việt Nam" phuDe="Chương IV, chương cuối. Ba chương trước đi từ bờ hồ Galilê tới một pháp trường ở Mỹ Tho rồi tới một ngôi thánh đường; chương này kể chuyện những đứa trẻ quàng khăn trong chính ngôi thánh đường ấy — và vì sao các em mang tên các vị đã chết năm 1861." duongDan="/gioi-thieu/xu-doan">
         <section id="xu-doan" style={{ marginBottom: '36px' }}>
+
+          {/* ══════════ XỨ ĐOÀN NÀY LÀ GÌ ══════════ */}
+          <div style={{ margin: '38px 0 14px', paddingTop: '16px', borderTop: '2px solid var(--color-border-subtle)' }}>
+            <div style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-red)', marginBottom: '4px' }}>
+              Phần I
+            </div>
+            <h2 style={{ fontSize: '1.42rem', fontWeight: 800, fontFamily: 'serif', color: 'var(--color-dark)', margin: '0 0 6px', lineHeight: 1.25 }}>
+              Xứ Đoàn này là gì
+            </h2>
+            <p style={{ fontSize: '0.87rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
+              Trước khi kể chuyện đã xảy ra, cần nói rõ đang kể về cái gì: bản chất, mục đích, tôn chỉ, và ý nghĩa chiếc khăn quàng mà mỗi đoàn sinh mang trên vai.
+            </p>
+          </div>
+
+
+          <p className="doc-para">
+            Cái tên <strong>Xứ Đoàn Các Thánh Tử Đạo Việt Nam</strong> không phải một cái tên đẹp chọn cho kêu. Nó là
+            điểm cuối của một sợi dây chạy suốt ba chương trước. Năm <strong>1861</strong>, Cha Phêrô Nguyễn Văn Lựu bị
+            chém ngoài thành Mỹ Tho, và năm sau hai mươi bảy giáo hữu Ba Giồng chịu chết ở gò Chết Chém —{' '}
+            <Link href="/gioi-thieu/giao-phan" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương II</Link>.
+            Năm <strong>1988</strong>, tại Rôma, Đức Gioan Phaolô II tôn phong 117 vị trong số các chứng nhân ấy lên
+            hàng Hiển Thánh —{' '}
+            <Link href="/gioi-thieu/giao-hoi" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương I</Link>.
+            Năm <strong>2005</strong>, khi đoàn thiếu nhi của giáo xứ được dựng lại trong lòng ngôi Nhà thờ Chánh Toà —{' '}
+            <Link href="/gioi-thieu/giao-xu" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương III</Link> —
+            các em nhận lấy chính danh hiệu chung của các ngài. Một trăm bốn mươi bốn năm nối một lưỡi gươm với một
+            chiếc khăn quàng.
+          </p>
 
           <h3 id="xu-doan-ton-chi" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
             Bản chất, Mục đích &amp; Tôn chỉ Phong trào
@@ -67,93 +95,6 @@ export default function Trang() {
             thay vì bảo vệ thánh địa vật chất, Phong trào bảo vệ và tô điểm đền thờ thiêng liêng là tâm hồn các em, với
             vũ khí là <strong>Cầu Nguyện, Rước Lễ, Hy Sinh và Làm Tông Đồ</strong>.
           </p>
-          <div style={{ display: 'grid', gap: '12px', margin: '0 0 16px' }}>
-            {[
-              {
-                time: '1865 – 1929',
-                title: 'Từ Hội Tông Đồ Cầu Nguyện đến Nghĩa Binh Thánh Thể',
-                body: (
-                  <>
-                    Phong trào bắt nguồn từ Hội Tông Đồ Cầu Nguyện bên Pháp, do hai linh mục Léonard Cros và Henri
-                    Ramière khởi xướng năm <strong>1865</strong>. Khi vào Việt Nam nhờ hai cha Léon Paliard và Paul Urureau,
-                    tinh thần Thánh Thể ấy dần tìm được hình thức sinh hoạt phù hợp với thiếu nhi. Đến năm{' '}
-                    <strong>1929</strong>, Phong trào mang tên <em>Nghĩa Binh Thánh Thể</em>.
-                  </>
-                )
-              },
-              {
-                time: '1965 – 2003',
-                title: 'Thiếu Nhi Thánh Thể Việt Nam và giai đoạn tái lập',
-                body: (
-                  <>
-                    Năm <strong>1965</strong>, Phong trào đổi thành <em>Thiếu Nhi Thánh Thể Việt Nam</em> và đưa phương
-                    pháp sinh hoạt trẻ vào như một phương cách giáo dục mới. Năm <strong>1971</strong>, tài liệu huấn luyện
-                    được hoàn thiện; năm <strong>1975</strong>, Phong trào ngưng mọi hoạt động; đến năm <strong>2003</strong>
-                    được tái lập cho phù hợp hoàn cảnh mới. Danh xưng và phương pháp thay đổi, nhưng bản chất vẫn là giáo
-                    dục thiếu nhi về đức tin và hướng dẫn các em làm tông đồ.
-                  </>
-                )
-              },
-              {
-                time: '2011 – 2015',
-                title: 'Phong trào bén rễ tại Giáo phận Mỹ Tho',
-                body: (
-                  <>
-                    Theo bài “Quá trình hình thành và phát triển của TNTT GP. Mỹ Tho”, Phong trào Thiếu Nhi Thánh Thể tại
-                    Giáo phận Mỹ Tho bắt đầu hoạt động từ năm <strong>2011</strong>. Cha Tuyên Uý Liên đoàn đầu tiên là cha{' '}
-                    <strong>Phêrô Nguyễn Ngọc Long</strong>, do Đức Giám mục <strong>Phaolô Bùi Văn Đọc</strong> bổ nhiệm.
-                    Khoá huấn luyện Huynh Trưởng đầu tiên diễn ra từ ngày <strong>06/06 đến 10/06/2011</strong> tại Trung tâm
-                    Mục vụ Giáo phận, với khoảng một trăm sa mạc sinh. Giai đoạn đầu, Mỹ Tho được các Huấn Luyện Viên thuộc
-                    Liên đoàn Anrê Phú Yên — Giáo phận Sài Gòn nâng đỡ, rồi dần hình thành Liên đoàn Các Thánh Tử Đạo Việt
-                    Nam — Giáo phận Mỹ Tho.
-                  </>
-                )
-              },
-              {
-                time: '2012 – 2017',
-                title: 'Sa mạc huấn luyện và sự hiệp thông với Xứ Đoàn Chánh Tòa',
-                body: (
-                  <>
-                    Liên đoàn Mỹ Tho lớn lên qua các sa mạc huấn luyện: <strong>Vươn Lên 2</strong> năm 2012,{' '}
-                    <strong>Vươn Lên 3</strong> năm 2013, <strong>Lên Đường 1</strong> năm 2014, rồi khoá huấn luyện Trợ Uý
-                    đầu tiên cho quý dì Mến Thánh Giá Tân An năm 2015. Đến năm 2017, sa mạc <strong>Vươn Lên 4</strong> quy
-                    tụ hơn 310 sa mạc sinh; Ban Chấp Hành mới của Liên đoàn ra mắt, và trưởng{' '}
-                    <strong>Phêrô Lê Tấn Phải</strong> của Xứ Đoàn Chánh Tòa được bầu làm Chủ tịch Liên đoàn nhiệm kỳ 2017 –
-                    2020. Từ đây có thể thấy sự hiệp thông rõ rệt: Xứ Đoàn Chánh Tòa vừa đón nhận đường hướng từ Liên đoàn,
-                    vừa đóng góp nhân sự cho đời sống Phong trào của toàn Giáo phận Mỹ Tho.
-                  </>
-                )
-              }
-            ].map((moc) => (
-              <div
-                key={moc.time}
-                style={{
-                  padding: '12px 14px',
-                  borderRadius: '12px',
-                  border: '1px solid var(--color-border-subtle)',
-                  backgroundColor: 'rgba(153, 27, 27, 0.035)',
-                  display: 'grid',
-                  gridTemplateColumns: '110px minmax(0, 1fr)',
-                  gap: '12px'
-                }}
-              >
-                <div style={{ color: 'var(--color-red)', fontWeight: 800, fontSize: '0.82rem' }}>{moc.time}</div>
-                <div>
-                  <h4 style={{ margin: '0 0 5px', fontSize: '0.94rem', color: 'var(--color-dark)', fontWeight: 800 }}>
-                    {moc.title}
-                  </h4>
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.7, textAlign: 'justify', margin: 0, color: 'var(--color-subtle)' }}>
-                    {moc.body}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p style={{ fontSize: '0.86rem', lineHeight: 1.65, textAlign: 'justify', margin: '0 0 14px', color: 'var(--color-subtle)', fontStyle: 'italic' }}>
-            Nguồn đối chiếu: bài “Quá trình hình thành và phát triển của TNTT GP. Mỹ Tho — Liên đoàn Các Thánh Tử Đạo Việt
-            Nam”, tnttgioitremytho.com.
-          </p>
-
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 8px' }}>
             <strong style={{ color: 'var(--color-red)' }}>Mục đích</strong> — Điều 2, Chương I Nội Quy Tổng Liên Đoàn nêu
             hai mục đích quấn quyện và bổ sung cho nhau, không thể thiếu một:
@@ -273,6 +214,156 @@ export default function Trang() {
             Liên đoàn Các Thánh Tử Đạo Việt Nam, Giáo phận Mỹ Tho.
           </p>
 
+
+          <p className="doc-para">
+            Đó là bộ khung: một đoàn thể có mục đích rõ, có tôn chỉ rõ, có phẩm trật thể hiện ngay trên màu khăn. Phần
+            còn lại của chương này là chuyện bộ khung ấy đã đến Việt Nam bằng đường nào, và đã sống ra sao trong một
+            giáo xứ cụ thể bên bờ sông Tiền.
+          </p>
+
+
+          {/* ══════════ PHONG TRÀO ĐẾN TỪ ĐÂU ══════════ */}
+          <div style={{ margin: '38px 0 14px', paddingTop: '16px', borderTop: '2px solid var(--color-border-subtle)' }}>
+            <div style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-red)', marginBottom: '4px' }}>
+              Phần II
+            </div>
+            <h2 style={{ fontSize: '1.42rem', fontWeight: 800, fontFamily: 'serif', color: 'var(--color-dark)', margin: '0 0 6px', lineHeight: 1.25 }}>
+              Phong trào đến từ đâu
+            </h2>
+            <p style={{ fontSize: '0.87rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
+              Xứ Đoàn Chánh Toà không tự nghĩ ra cách làm của mình. Phần này lần ngược dòng: từ một hội cầu nguyện bên Pháp năm 1865, qua một sắc lệnh Toà Thánh năm 1910, tới cái tên Thiếu Nhi Thánh Thể Việt Nam năm 1965.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gap: '12px', margin: '0 0 16px' }}>
+            {[
+              {
+                time: '1865 – 1929',
+                title: 'Từ Hội Tông Đồ Cầu Nguyện đến Nghĩa Binh Thánh Thể',
+                body: (
+                  <>
+                    Phong trào bắt nguồn từ Hội Tông Đồ Cầu Nguyện bên Pháp, do hai linh mục Léonard Cros và Henri
+                    Ramière khởi xướng năm <strong>1865</strong>. Khi vào Việt Nam nhờ hai cha Léon Paliard và Paul Urureau,
+                    tinh thần Thánh Thể ấy dần tìm được hình thức sinh hoạt phù hợp với thiếu nhi. Đến năm{' '}
+                    <strong>1929</strong>, Phong trào mang tên <em>Nghĩa Binh Thánh Thể</em>.
+                  </>
+                )
+              },
+              {
+                time: '1965 – 2003',
+                title: 'Thiếu Nhi Thánh Thể Việt Nam và giai đoạn tái lập',
+                body: (
+                  <>
+                    Năm <strong>1965</strong>, Phong trào đổi thành <em>Thiếu Nhi Thánh Thể Việt Nam</em> và đưa phương
+                    pháp sinh hoạt trẻ vào như một phương cách giáo dục mới. Năm <strong>1971</strong>, tài liệu huấn luyện
+                    được hoàn thiện; năm <strong>1975</strong>, Phong trào ngưng mọi hoạt động; đến năm <strong>2003</strong>
+                    được tái lập cho phù hợp hoàn cảnh mới. Danh xưng và phương pháp thay đổi, nhưng bản chất vẫn là giáo
+                    dục thiếu nhi về đức tin và hướng dẫn các em làm tông đồ.
+                  </>
+                )
+              },
+              {
+                time: '2011 – 2015',
+                title: 'Phong trào bén rễ tại Giáo phận Mỹ Tho',
+                body: (
+                  <>
+                    Theo bài “Quá trình hình thành và phát triển của TNTT GP. Mỹ Tho”, Phong trào Thiếu Nhi Thánh Thể tại
+                    Giáo phận Mỹ Tho bắt đầu hoạt động từ năm <strong>2011</strong>. Cha Tuyên Uý Liên đoàn đầu tiên là cha{' '}
+                    <strong>Phêrô Nguyễn Ngọc Long</strong>, do Đức Giám mục <strong>Phaolô Bùi Văn Đọc</strong> bổ nhiệm.
+                    Khoá huấn luyện Huynh Trưởng đầu tiên diễn ra từ ngày <strong>06/06 đến 10/06/2011</strong> tại Trung tâm
+                    Mục vụ Giáo phận, với khoảng một trăm sa mạc sinh. Giai đoạn đầu, Mỹ Tho được các Huấn Luyện Viên thuộc
+                    Liên đoàn Anrê Phú Yên — Giáo phận Sài Gòn nâng đỡ, rồi dần hình thành Liên đoàn Các Thánh Tử Đạo Việt
+                    Nam — Giáo phận Mỹ Tho.
+                  </>
+                )
+              },
+              {
+                time: '2012 – 2017',
+                title: 'Sa mạc huấn luyện và sự hiệp thông với Xứ Đoàn Chánh Tòa',
+                body: (
+                  <>
+                    Liên đoàn Mỹ Tho lớn lên qua các sa mạc huấn luyện: <strong>Vươn Lên 2</strong> năm 2012,{' '}
+                    <strong>Vươn Lên 3</strong> năm 2013, <strong>Lên Đường 1</strong> năm 2014, rồi khoá huấn luyện Trợ Uý
+                    đầu tiên cho quý dì Mến Thánh Giá Tân An năm 2015. Đến năm 2017, sa mạc <strong>Vươn Lên 4</strong> quy
+                    tụ hơn 310 sa mạc sinh; Ban Chấp Hành mới của Liên đoàn ra mắt, và trưởng{' '}
+                    <strong>Phêrô Lê Tấn Phải</strong> của Xứ Đoàn Chánh Tòa được bầu làm Chủ tịch Liên đoàn nhiệm kỳ 2017 –
+                    2020. Từ đây có thể thấy sự hiệp thông rõ rệt: Xứ Đoàn Chánh Tòa vừa đón nhận đường hướng từ Liên đoàn,
+                    vừa đóng góp nhân sự cho đời sống Phong trào của toàn Giáo phận Mỹ Tho.
+                  </>
+                )
+              }
+            ].map((moc) => (
+              <div
+                key={moc.time}
+                style={{
+                  padding: '12px 14px',
+                  borderRadius: '12px',
+                  border: '1px solid var(--color-border-subtle)',
+                  backgroundColor: 'rgba(153, 27, 27, 0.035)',
+                  display: 'grid',
+                  gridTemplateColumns: '110px minmax(0, 1fr)',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ color: 'var(--color-red)', fontWeight: 800, fontSize: '0.82rem' }}>{moc.time}</div>
+                <div>
+                  <h4 style={{ margin: '0 0 5px', fontSize: '0.94rem', color: 'var(--color-dark)', fontWeight: 800 }}>
+                    {moc.title}
+                  </h4>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.7, textAlign: 'justify', margin: 0, color: 'var(--color-subtle)' }}>
+                    {moc.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: '0.86rem', lineHeight: 1.65, textAlign: 'justify', margin: '0 0 14px', color: 'var(--color-subtle)', fontStyle: 'italic' }}>
+            Nguồn đối chiếu: bài “Quá trình hình thành và phát triển của TNTT GP. Mỹ Tho — Liên đoàn Các Thánh Tử Đạo Việt
+            Nam”, tnttgioitremytho.com.
+          </p>
+
+          <p className="doc-para">
+            Ba mốc trong bảng trên trùng khít với ba mốc đã kể ở những chương khác, và sự trùng khít ấy không phải ngẫu
+            nhiên. Thứ nhất: <strong>năm 1865</strong>, năm Hội Tông Đồ Cầu Nguyện được khởi xướng bên Pháp, cũng đúng là
+            năm Cha Marc ngồi lập bản báo cáo sổ rửa tội của họ đạo Mỹ Tho — bản thống kê 646 giáo dân Bình Tạo, 743
+            Điều Hoà, 393 Họ Giồng mà{' '}
+            <Link href="/gioi-thieu/giao-xu" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương III</Link>{' '}
+            còn giữ nguyên. Hai việc ở hai đầu địa cầu, không hề biết nhau, mà một trăm bốn mươi năm sau sẽ gặp nhau
+            trong cùng một ngôi nhà thờ.
+          </p>
+
+          <p className="doc-para">
+            Thứ hai, và quan trọng hơn: một phong trào Thánh Thể dành cho <em>thiếu nhi</em> vốn không thể có trước năm{' '}
+            <strong>1910</strong>. Mãi đến ngày <strong>8 tháng 8 năm 1910</strong>, dưới triều Đức Piô X, Toà Thánh mới
+            ban sắc lệnh <em>Quam Singulari</em> cho phép trẻ em được rước lễ từ tuổi khôn thay vì phải đợi đến tuổi
+            thiếu niên. Không có văn kiện đó thì bốn phương thế <em>Cầu Nguyện, Rước Lễ, Hy Sinh, Làm Tông Đồ</em> mất
+            hẳn một chân. Và năm 1910 ấy, ở Mỹ Tho, cũng chính là năm ngôi thánh đường thứ ba hoàn thành — ngôi nhà thờ
+            mà chín mươi lăm năm sau sẽ có một đoàn thiếu nhi quàng khăn đứng bên trong.
+          </p>
+
+          <p className="doc-para">
+            Thứ ba: <strong>năm 1965</strong>, năm Phong trào đổi tên thành <em>Thiếu Nhi Thánh Thể Việt Nam</em>, cũng
+            là năm Công Đồng Vaticanô II ban hành Sắc lệnh <em>Apostolicam Actuositatem</em> về Tông Đồ Giáo Dân, ngày
+            18 tháng 11. Câu mà Nội Quy Phong trào trích làm tôn chỉ — <em>“người trẻ phải làm tông đồ trước tiên và
+            trực tiếp cho giới trẻ”</em> — chính là số 12 của sắc lệnh ấy. Nói cách khác, tôn chỉ mà các Huynh Trưởng
+            Chánh Toà đọc trong ngày sa mạc là một câu lấy nguyên từ một văn kiện Công Đồng ra đời cùng năm với cái tên
+            các em đang mang.
+          </p>
+
+
+          {/* ══════════ NHẬT KÝ XỨ ĐOÀN CHÁNH TOÀ ══════════ */}
+          <div style={{ margin: '38px 0 14px', paddingTop: '16px', borderTop: '2px solid var(--color-border-subtle)' }}>
+            <div style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-red)', marginBottom: '4px' }}>
+              Phần III
+            </div>
+            <h2 style={{ fontSize: '1.42rem', fontWeight: 800, fontFamily: 'serif', color: 'var(--color-dark)', margin: '0 0 6px', lineHeight: 1.25 }}>
+              Nhật ký Xứ Đoàn Chánh Toà
+            </h2>
+            <p style={{ fontSize: '0.87rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
+              Từ đây là chuyện của riêng nơi này, kể theo đúng thứ tự đã xảy ra — từ mùa thu 2005 khi Cha sở mở lớp Huynh Trưởng đầu tiên, qua bốn đời Ban Điều Hành, đến ngày 12/12/2025.
+            </p>
+          </div>
+
           <h3 id="xu-doan-tai-lap" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
             Khoá Huấn Luyện Huynh Trưởng Đầu Tiên &amp; Ngày Tái Lập Xứ Đoàn (2005)
           </h3>
@@ -373,7 +464,6 @@ export default function Trang() {
             do giáo xứ cung cấp). Ghi chép này cũng xác nhận Cha Giacôbê Hà Văn Xung đã là Cha sở
             Chánh Tòa vào tháng 10 năm 2005.
           </p>
-        </section>
 
           <h3 id="xu-doan-tuyen-uy" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
             Các Đời Cha Tuyên Uý Xứ Đoàn
@@ -417,9 +507,6 @@ export default function Trang() {
             </table>
           </div>
 
-          {/* =====================================================================
-              TÁI LẬP XỨ ĐOÀN NĂM 2005
-              ===================================================================== */}
             <h3 id="xu-doan-ban-dieu-hanh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
               Ban Điều Hành Xứ Đoàn
             </h3>
@@ -451,12 +538,15 @@ export default function Trang() {
             <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
               Giai đoạn đầu — nhen nhóm lại tinh thần Thiếu Nhi Thánh Thể
             </h4>
-            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)' }}>
-              Ban Điều Hành đầu tiên sau ngày tái lập, gồm các trưởng:
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Ban Điều Hành đầu tiên sau ngày tái lập được ghi lại dưới đây. Đây là guồng máy hình thành ngay sau ngày sa
+              mạc 04/12/2005, khi lứa Huynh Trưởng vừa nhận khăn quàng phải bắt tay tổ chức sinh hoạt cho các em mà chưa
+              có tiền lệ nào để dựa vào. Hai chức phó thời kỳ này do các thầy đảm nhiệm — một nét riêng của buổi đầu, khi
+              Xứ Đoàn còn cần người có nền huấn luyện vững đứng ra gánh vác:
             </p>
-            <div style={{ overflowX: 'auto', marginBottom: '20px' }}>
+            <div style={{ overflowX: 'auto', marginBottom: '10px' }}>
               <table className="pastor-timeline-table">
-                <caption className="sr-only">Ban Điều Hành Xứ Đoàn giai đoạn đầu</caption>
+                <caption className="sr-only">Ban Điều Hành Xứ Đoàn giai đoạn đầu, sau ngày tái lập 2005</caption>
                 <thead>
                   <tr>
                     <th scope="col" style={{ width: '50px' }}>STT</th>
@@ -465,16 +555,49 @@ export default function Trang() {
                   </tr>
                 </thead>
                 <tbody>
-                  {['Xứ Đoàn Trưởng', 'Xứ Đoàn Phó (nội vụ)', 'Xứ Đoàn Phó (ngoại vụ)', 'Thư Ký', 'Thủ Quỹ'].map((cv, i) => (
-                    <tr key={cv}>
-                      <td>{i + 1}</td>
-                      <td style={{ whiteSpace: 'nowrap' }}>{cv}</td>
-                      <td><em style={{ color: 'var(--color-subtle)' }}>Chưa cập nhật</em></td>
-                    </tr>
-                  ))}
+                  {[
+                    ['Xứ Đoàn Trưởng', 'Trưởng Tôma Bùi Mạnh Khang', null],
+                    ['Xứ Đoàn Phó (nội vụ)', 'Thầy Phêrô Lê Tấn Phải', 'bdh-le-tan-phai'],
+                    ['Xứ Đoàn Phó (ngoại vụ)', 'Thầy Augustinô Võ Tấn Hoàng Việt', 'bdh-vo-tan-hoang-viet'],
+                    ['Thư Ký Đoàn', 'Cô Maria Nguyễn Ngọc Anh', null],
+                    ['Thủ Quỹ Đoàn', 'Cô Têrêsa Nguyễn Ngọc Kim Anh', null]
+                  ].map(([cv, ten, id], i) => {
+                    const b = id ? BDH_BIOS.find((x) => x.id === id) : null;
+                    return (
+                      <tr key={cv as string}>
+                        <td>{i + 1}</td>
+                        <td style={{ whiteSpace: 'nowrap' }}>{cv}</td>
+                        <td>
+                          {b ? (
+                            <button
+                              type="button"
+                              className="pastor-name-btn"
+                              onClick={() => moLyLich(b)}
+                              aria-label={`Xem lý lịch ${b.name}`}
+                            >
+                              {ten}
+                            </button>
+                          ) : (
+                            ten
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
+            <p style={{ fontSize: '0.8rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 20px', lineHeight: 1.65, textAlign: 'justify' }}>
+              Nguồn: hồi ức của các Huynh Trưởng Xứ Đoàn, thu thập tháng 8/2026. Danh sách này{' '}
+              <strong>chưa đối chiếu được với văn bản lưu</strong> của giáo xứ, và cũng chưa xác định được nhiệm kỳ bắt
+              đầu — kết thúc chính xác. Riêng hai chức phó: người cung cấp ban đầu chỉ nhớ tên gọi cuối là{' '}
+              <em>Phải</em> và <em>Việt</em>; bản khảo cứu đối chiếu với hồ sơ Ban Điều Hành giai đoạn 2013 – 2019 và
+              nhận ra hai vị này về sau đảm nhiệm chức Xứ Đoàn Trưởng và Xứ Đoàn Phó nội vụ, nên ghi đầy đủ họ tên theo
+              đó. Với trưởng <strong>Phêrô Lê Tấn Phải</strong>, Ban Điều Hành sau đó đã{' '}
+              <strong>xác nhận</strong> quá trình phục vụ bắt đầu từ năm 2005. Với thầy{' '}
+              <strong>Augustinô Võ Tấn Hoàng Việt</strong> thì vẫn là <strong>suy luận đối chiếu, chưa có xác nhận
+              riêng</strong> — cần người trong cuộc xác minh lại.
+            </p>
 
             {/* ---- Giai đoạn 2 ---- */}
             <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
@@ -602,7 +725,7 @@ export default function Trang() {
               của Xứ Đoàn sau ngày tái lập: sinh hoạt vẫn còn, các lớp vẫn học, các em vẫn đến nhà thờ, nhưng thiếu một cơ
               cấu đứng giữa để nối kết, định hướng và chịu trách nhiệm chung. Công việc được chia đôi: trưởng{' '}
               <strong>Matthêu Lê Hoàng Thiên Phúc</strong> được giao trông coi sinh hoạt Thiếu Nhi Thánh Thể, còn thầy{' '}
-              <strong>Augustinô Võ Tấn Hoàng Việt</strong> phụ trách Giáo Lý Viên. Vì chưa có một Ban Điều Hành được nhìn nhận
+              <strong>Augustinô Võ Tấn Hoàng Việt</strong> quản lý Ban Giáo Lý Thiếu Nhi của giáo xứ. Vì chưa có một Ban Điều Hành được nhìn nhận
               như đầu mối chung, hai phần việc này nhiều lúc vận hành song song hơn là cùng đi trong một đường lối thống
               nhất. Những việc lẽ ra cần được bàn bạc, phân công và ghi nhận theo hệ thống thì thường phải xử lý theo từng
               vụ, tuỳ hoàn cảnh, tuỳ người phụ trách và tuỳ nhu cầu trước mắt.
@@ -732,6 +855,15 @@ Tháng 6 năm 2025 — Ban Điều Hành trở lại theo thỉnh nguyện của
               Nhà thờ Chánh Tòa, Ban Điều Hành được cha Tuyên Uý cho ngưng nhiệm vụ. Tính đến nay Xứ Đoàn <strong>chưa có người đứng đầu Ban Điều
               Hành</strong>.
             </p>
+            <p className="doc-para">
+              Và đây là chỗ quyển sách dừng lại — không phải ở một kết thúc, mà ở một chỗ còn dở. Chương I kết thúc bằng
+              một Giáo hội một tỷ ba trăm triệu người và một vị Giáo hoàng mới đắc cử tháng 5 năm 2025. Chương II kết
+              thúc bằng một thánh đường sắp cung hiến ở Ba Giồng, ngay trên nền đất các vị tử đạo. Chương III kết thúc
+              bằng một ngôi nhà thờ vừa qua Năm Thánh trăm năm. Chương IV kết thúc bằng một Xứ Đoàn tròn hai mươi năm
+              tái lập mà hiện chưa có người đứng đầu Ban Điều Hành. Bốn chương, bốn độ cao, cùng một dòng chảy — và cái
+              dòng ấy đến hôm nay vẫn đang chảy, chưa đóng lại thành sử.
+            </p>
+
             <p style={{ fontSize: '0.86rem', lineHeight: 1.7, margin: '0 0 18px', color: 'var(--color-subtle)', textAlign: 'justify', fontStyle: 'italic' }}>
               Ghi chú của bản khảo cứu: theo Điều 27, nhiệm kỳ Ban Điều Hành Xứ Đoàn là hai năm. Trong bốn giai đoạn kể
               trên, chỉ giai đoạn 2013 – 2019 đi trọn được nhiều nhiệm kỳ liên tiếp — cũng là giai đoạn duy nhất Ban Điều
@@ -739,6 +871,61 @@ Tháng 6 năm 2025 — Ban Điều Hành trở lại theo thỉnh nguyện của
               2005, và cũng là điều đáng ghi lại: một Ban Điều Hành do Hội đồng Huynh Trưởng bầu lên thì có chỗ dựa để
               đứng, còn một Ban Điều Hành được đặt vào thì cũng có thể được gỡ ra.
             </p>
+
+
+          {/* ══════════ DẤU ẤN ĐỂ LẠI ══════════ */}
+          <div style={{ margin: '38px 0 14px', paddingTop: '16px', borderTop: '2px solid var(--color-border-subtle)' }}>
+            <div style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-red)', marginBottom: '4px' }}>
+              Phần IV
+            </div>
+            <h2 style={{ fontSize: '1.42rem', fontWeight: 800, fontFamily: 'serif', color: 'var(--color-dark)', margin: '0 0 6px', lineHeight: 1.25 }}>
+              Dấu ấn để lại
+            </h2>
+            <p style={{ fontSize: '0.87rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: 0, lineHeight: 1.65 }}>
+              Nhật ký dừng ở một chỗ dở dang. Nhưng dở dang không có nghĩa là mất, và phần này ghi lại những gì còn ở lại.
+            </p>
+          </div>
+
+
+          <p className="doc-para">
+            Ban Điều Hành tái lập tháng 6/2025 kết thúc nhiệm kỳ sớm hơn dự định. Nhưng một nhiệm kỳ ngắn không có nghĩa
+            là một nhiệm kỳ trắng. Những gì các trưởng để lại đã kịp bén rễ vào nếp sinh hoạt của Xứ Đoàn, và không có
+            quyết định nào gỡ được chúng ra: <strong>chương trình ngành Hiệp Sĩ</strong> cùng khăn Hiệp Sĩ được đưa vào
+            sinh hoạt chính thức, giúp hệ thống ngành lần đầu đủ mặt; <strong>chương trình đào tạo Huynh Trưởng Xứ
+            Đoàn</strong> vạch được một lộ trình nội bộ rõ ràng cho Dự Trưởng, Trợ Tá và các anh chị đang phục vụ các
+            ngành; và <strong>hệ thống các ban chuyên trách</strong> — Truyền thông – Kỹ thuật, Môi trường, Y tế, Phụng
+            vụ, Trực — cho Xứ Đoàn một guồng máy biết ai làm việc gì thay vì phải xử lý theo từng vụ như năm năm trước
+            đó. Hội chợ <strong>Trung Thu 2025</strong>, với sự góp mặt của các giáo xứ Nữ Vương Hoà Bình, Antôn, Bình
+            Tạo, Giuse Lao Công và nhiều giáo xứ khách mời, được ghi nhận là một trong những chương trình thành công
+            nhất trong hai mươi năm hình thành và tái lập của Xứ Đoàn.
+          </p>
+
+          <p className="doc-para">
+            Và các trưởng không dừng lại. Sau ngày 12/12/2025, các anh chị vẫn tiếp tục phục vụ ở những chỗ không cần
+            chức danh: <strong>hỗ trợ các vấn đề truyền thông</strong> của Xứ Đoàn, đồng hành với các lớp giáo lý, tiếp
+            tục theo học và nâng cao chuyên môn — trưởng Matthêu Lê Hoàng Thiên Phúc và trưởng Batôlômêô Nguyễn Phúc
+            Khang ở bậc cao học, trưởng Phêrô Lê Gia Huy ở bậc cử nhân — và giữ liên hệ với Phong trào ở cấp cao hơn,
+            như trưởng Thiên Phúc trong vai trò Uỷ viên ban Phụng vụ Liên đoàn Giáo phận nhiệm kỳ 2025 – 2030. Đây không
+            phải lần đầu Xứ Đoàn thấy điều này: năm 2019, khi Ban Điều Hành trước từ nhiệm, trưởng Têrêsa Lê Thanh Nhàn
+            rời sinh hoạt tại Chánh Toà nhưng vẫn làm Thư ký Liên đoàn Giáo phận suốt hai nhiệm kỳ liên tiếp.
+          </p>
+
+          <p className="doc-para">
+            Đó có lẽ là dấu ấn thật của hai mươi năm này, và cũng là điều một bản khảo cứu nên ghi lại cho người sau.
+            Chức vụ trong Xứ Đoàn thì có nhiệm kỳ, có ngày bổ nhiệm và có ngày ngưng. Nhưng việc phục vụ thì không có
+            nhiệm kỳ. Trong những khoảng lặng dài nhất của Xứ Đoàn — năm năm 2020 – 2024 không có Ban Điều Hành, và
+            quãng dừng bắt đầu từ cuối năm 2025 — sinh hoạt vẫn còn, các em vẫn đến nhà thờ, và vẫn có người đứng ra lo,
+            không phải vì chức vụ buộc mình mà vì đã được sai đi thì không bỏ dở. Xứ Đoàn tái lập năm 2005 đã sống qua hai mươi năm bằng đúng
+            thứ đó.
+          </p>
+
+          <p style={{ fontSize: '0.86rem', lineHeight: 1.7, margin: '0 0 18px', color: 'var(--color-subtle)', textAlign: 'justify', fontStyle: 'italic' }}>
+            Chương này khép lại ở một dấu ba chấm chứ không phải một dấu chấm. Tính đến lúc bản khảo cứu được cập nhật,
+            Xứ Đoàn Các Thánh Tử Đạo Việt Nam vẫn chưa có người đứng đầu Ban Điều Hành. Trang này sẽ được viết tiếp khi
+            có người viết tiếp phần của mình.
+          </p>
+
+        </section>
 
       <MetaUpdater
         title={lyLich ? `${lyLich.name} — ${lyLich.role}` : undefined}

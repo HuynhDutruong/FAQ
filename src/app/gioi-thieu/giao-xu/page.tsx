@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
-  MapPin, Church, Landmark, Crown, Award, Users, BookOpen, Cross, Eye, Calendar, Clock, ScrollText, Star, Scroll
+  Eye, ScrollText, BookOpen, Scroll
 } from 'lucide-react';
 import { useChanhToaMassTimes } from '@/lib/useChanhToaMassTimes';
 import KhungTrang from '../KhungTrang';
@@ -58,10 +58,10 @@ export default function Trang() {
   }, []);
 
   return (
-    <KhungTrang tieuDe="Giáo Xứ Chánh Tòa Mỹ Tho" phuDe="Lịch sử họ đạo từ năm 1861, ba lần dựng nhà thờ, niên biểu các đời linh mục chánh sở và kho ảnh tư liệu qua các thời kỳ." duongDan="/gioi-thieu/giao-xu">
+    <KhungTrang tieuDe="Giáo Xứ Chánh Tòa Mỹ Tho" phuDe="Chương III. Chương II khép lại ở một pháp trường tháng 4 năm 1861; chương này mở ra một tháng sau đó, cách mười hai cây số, trong một ngôi chùa bỏ hoang bên chợ — rồi ba lần dựng nhà thờ và mười sáu đời cha sở, đến ngôi thánh đường trên đại lộ Hùng Vương hôm nay." duongDan="/gioi-thieu/giao-xu">
         <section id="lich-su" style={{ marginBottom: '36px' }}>
 
-          {/* Minh họa ảnh nổi bên phải chuẩn Wikipedia */}
+          {/* ẢNH NỔI PHẢI: Nhà thờ Chánh Tòa */}
           <div
             className="floating-img-290"
             style={{
@@ -74,37 +74,53 @@ export default function Trang() {
           >
             <div
               style={{ position: 'relative', width: '100%', height: '185px', cursor: 'pointer', borderRadius: '8px', overflow: 'hidden' }}
-              onClick={() => moAnh({ src: '/images/nhatho2.jpg', caption: 'Toàn cảnh ngôi thánh đường Chánh Tòa Mỹ Tho cổ kính xây dựng năm 1906.' })}
+              onClick={() => moAnh({ src: '/images/nhatho2.jpg', caption: 'Toàn cảnh ngôi thánh đường Chánh Tòa Mỹ Tho cổ kính xây dựng năm 1906–1910. Kiến trúc Hy Lạp–Rôma Phục Hưng, dài 53 m, rộng 17 m.' })}
             >
               <Image
                 src="/images/nhatho2.jpg"
-                alt="Nhà thờ Chánh Tòa Mỹ Tho xưa"
+                alt="Nhà thờ Chánh Tòa Mỹ Tho"
                 fill
                 sizes="290px"
                 style={{ objectFit: 'cover' }}
               />
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '6px', lineHeight: 1.4 }}>
-              Toàn cảnh ngôi thánh đường Chánh Tòa Mỹ Tho cổ kính xây dựng năm 1906.
+              Nhà thờ Chánh Tòa Đức Mẹ Vô Nhiễm, Mỹ Tho — ngôi thánh đường thứ ba của họ đạo, khởi công 1906.
             </div>
           </div>
 
-          <h3 id="lich-su-so-khai" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '18px 0 8px' }}>
-            Thời Kỳ Khởi Sự (1861 – 1866)
-          </h3>
+          <p className="doc-para">
+            Hai chương trước đứng ở trên cao nhìn xuống: Chương I kể một Giáo hội trải hai ngàn năm và hai trăm sáu mươi
+            bảy đời Giáo hoàng, Chương II kể một vùng đất trải ba thế kỷ đức tin. Chương này thì ngược lại — nó chỉ kể
+            <strong> một ngôi nhà thờ</strong>, và kể thật kỹ. Cùng một biến cố, nhìn từ hai độ cao khác nhau, cho hai
+            câu chuyện khác nhau: ở Chương II, năm 1861 là năm Cha Phêrô Nguyễn Văn Lựu tử đạo và họ đạo Ba Giồng tan
+            tác; ở chương này, năm 1861 là năm những người sống sót của cuộc tan tác ấy dựng lên một cộng đoàn mới bên
+            bờ sông. Cùng một năm, cùng một dòng người, hai câu chuyện.
+          </p>
 
           <p className="doc-para">
-            Bản báo cáo viết tay của Cha thừa sai Renier, hiện lưu trữ tại Toà Tổng Giám mục Sài Gòn, mở đầu lịch sử họ đạo
+            Nếu bạn muốn biết vì sao lại có cuộc bách hại đó, vì sao có Ba Giồng và ai là Cha Lựu, hãy đọc{' '}
+            <Link href="/gioi-thieu/giao-phan" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương II — Lịch
+            sử Giáo Phận Mỹ Tho</Link> trước. Còn nếu bạn đã đọc rồi, thì đây là chỗ câu chuyện tiếp tục: từ đây trở đi
+            mọi thứ đều đo được bằng mét, đếm được bằng sổ rửa tội, và có ngày tháng ghi trong báo cáo của các cha thừa
+            sai.
+          </p>
+
+          {/* ── BẮT ĐẦU DÒNG CHẢY LỊCH SỬ ── */}
+          <p className="doc-para">
+            Bản báo cáo viết tay của Cha thừa sai <strong>Renier</strong>, hiện lưu trữ tại Toà Tổng Giám mục Sài Gòn, mở đầu lịch sử họ đạo
             bằng một câu dứt khoát: <strong>&ldquo;Trước năm 1861 chưa có cộng đoàn công giáo Mỹ Tho.&rdquo;</strong> Chỉ
             có những người Công giáo bị lính An Nam giam giữ trong đồn — họ thuộc bổn đạo Thủ Ngữ, Ba Giồng hay các họ đạo
             khác. Trong số tù nhân ấy có một cụ già tám mươi tuổi, <strong>Cha Thiềng</strong>, một linh mục Việt Nam.
           </p>
+
           <figure className="doc-figure doc-figure-right">
             <button type="button" className="tntt-thumb-btn" onClick={() => moAnh({ src: '/images/lichsu_nha_tho_la_dau_tien.jpg', caption: 'Nhà thờ lá đầu tiên của họ đạo Mỹ Tho — tranh phục dựng in trong Kỷ yếu 100 năm của giáo xứ. Đây vốn là một ngôi chùa cũ bên cạnh chợ, được Đô đốc Charner trao cho họ đạo làm nơi thờ phượng dưới sự bảo trợ của Thánh Phanxicô Xaviê.' })} aria-label="Phóng to ảnh tư liệu">
-              <Image src="/images/lichsu_nha_tho_la_dau_tien.jpg" alt="Nhà thờ lá đầu tiên của họ đạo Mỹ Tho — tranh phục dựng in trong Kỷ yếu 100 năm của giáo x" width={900} height={700} sizes="(max-width: 720px) 92vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+              <Image src="/images/lichsu_nha_tho_la_dau_tien.jpg" alt="Nhà thờ lá đầu tiên — tranh phục dựng in trong Kỷ yếu 100 năm" width={900} height={700} sizes="(max-width: 720px) 92vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
             </button>
-            <figcaption className="doc-caption">Nhà thờ lá đầu tiên của họ đạo Mỹ Tho — tranh phục dựng in trong Kỷ yếu 100 năm của giáo xứ. Đây vốn là một ngôi chùa cũ bên cạnh chợ, được Đô đốc Charner trao cho họ đạo làm nơi thờ phượng dưới sự bảo trợ của Thánh Phanxicô Xaviê.</figcaption>
+            <figcaption className="doc-caption">Nhà thờ lá đầu tiên — ngôi chùa cũ bên chợ, Đô đốc Charner trao cho họ đạo. Tranh phục dựng in trong Kỷ yếu 100 năm.</figcaption>
           </figure>
+
           <p className="doc-para">
             <strong>Cha Phêrô Nguyễn Văn Lựu</strong> vừa từ Mặc Bắc đổi về Ba Giồng, cách Mỹ Tho khoảng 12 km, và được phép
             vào đồn thăm Cha Thiềng. Người giúp việc tên <strong>Danh</strong> trao cho Cha Lựu bức thư của Cha Thiềng.
@@ -112,12 +128,14 @@ export default function Trang() {
             <em>đạo trưởng</em>. Ngài bị tống ngục và bị kết án tử hình vì không chịu chối đạo và bước qua thập giá. Bản
             báo cáo còn đính chính một chi tiết mà người sau hay nhầm: <strong>Cha Lựu bị chém đầu vào tháng tư, không
             phải ở chỗ Cha Moulins về sau dựng cây thập giá bằng đá granit đối diện lò gạch trên đường đi Sài Gòn, mà
-            ngay bên cạnh cổng vào lò gạch.</strong>
+            ngay bên cạnh cổng vào lò gạch.</strong> <em>(Để hiểu rõ hơn về cuộc tử đạo và vai trò của Cha Lựu trong lịch sử Giáo phận, xem bài <Link href="/gioi-thieu/giao-phan" style={{ color: 'var(--color-red)', textDecoration: 'underline' }}>Lịch sử Giáo Phận Mỹ Tho</Link>.)</em>
           </p>
+
           <p className="doc-para">
             <strong>Tháng 5 năm 1861 người Pháp chiếm Mỹ Tho.</strong> Từ lúc đó, nhiều người Công giáo ở các tỉnh đồng bằng
             tìm về Mỹ Tho ẩn náu dưới lá cờ Pháp để tránh sự bách hại của triều đình An Nam. Cộng đoàn hình thành từ đó.
           </p>
+
           <p className="doc-para">
             <strong>Cha Bề Trên Guillou là cha sở đầu tiên của họ đạo mới này.</strong> Nhà thờ khi ấy là một ngôi chùa cũ nằm
             bên cạnh chợ; <strong>Đô đốc Charner</strong> đã cho họ đạo ngôi chùa này để dùng làm nơi thờ phượng dưới sự
@@ -126,15 +144,18 @@ export default function Trang() {
             <strong>Cha Marc</strong>, mà giáo dân quen gọi là <strong>Cha Thanh</strong>: trước kia ngài là thừa sai ở
             Bắc Kỳ, nhưng được tách ra để làm thông dịch cho chính quyền Pháp.
           </p>
+
           <p className="doc-para">
             Cuối năm 1861, vì lo sợ cuộc bách hại sẽ ập tới dòng nữ tu Việt Nam ở Bãi Xan, Cha Guillou ra lệnh cho nhà dòng
             đến tá túc ở Mỹ Tho. Nhà của các chị được cất bằng tranh, gần nhà thờ Thánh Phanxicô Xaviê.
           </p>
+
           <p className="doc-para">
             Cha Guillou rời Mỹ Tho và được thay thế bởi <strong>Cha Gernot</strong>, nhận nhiệm sở{' '}
             <strong>ngày 28 tháng 01 năm 1862</strong>. Vào lúc này họ đạo Mỹ Tho có <strong>1.986 giáo dân</strong>.
             Riêng trong năm 1861 đã có <strong>2.250 lượt người xưng tội và 207 em rước lễ</strong>.
           </p>
+
           <p className="doc-para">
             Cha Gernot ở Mỹ Tho khoảng hai năm rồi đổi đi Cái Mơn vào khoảng đầu năm 1864, dẫn theo các chị em nữ tu dòng Bãi
             Xan. Cũng trong năm 1864, <strong>các sơ dòng Thánh Phaolô</strong> đến thế chỗ các sơ Việt Nam vừa ra đi, ở
@@ -142,6 +163,7 @@ export default function Trang() {
             Lizion.</strong> Chính trong năm 1864 đã khởi sự có các trường để giáo dục thanh thiếu niên nam nữ, do các sơ
             coi sóc, ngoài ra còn có một cô nhi viện.
           </p>
+
           <p className="doc-para">
             Từ năm 1862 đến 1864 không có tài liệu trực tiếp nào về hoạt động của họ đạo. Nhưng theo bản báo cáo của Cha Marc
             năm 1865, có thể kết luận rằng các cha Pháp và Việt Nam ở Mỹ Tho <em>không hề rảnh rỗi</em>. Họ đạo Mỹ Tho khi
@@ -151,6 +173,7 @@ export default function Trang() {
             Giồng khoảng 15 km, <strong>Trấn Định</strong> tức Tân Hiệp, <strong>Vũng Gù</strong> tức Tân An, và{' '}
             <strong>Rạch Chanh</strong> qua khỏi Tân An.
           </p>
+
           <div className="doc-box">
             <div className="doc-box-title">Sổ rửa tội năm 1865 — bản báo cáo của Cha Marc</div>
             <p className="doc-box-text">
@@ -166,22 +189,21 @@ export default function Trang() {
             </p>
           </div>
 
-          <h3 id="lich-su-lon-len" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
-            Thời Kỳ Lớn Lên (1866 – 1873) &amp; Thời Kỳ Ổn Định (1873 – 1904)
-          </h3>
-
+          {/* ── NGÔI NHÀ THỜ THỨ HAI ── */}
           <p className="doc-para">
             Nhà tranh không còn đủ cho một họ đạo đang lớn. Năm <strong>1866</strong>, Đức cha <strong>Miche</strong> long
             trọng đặt viên đá xây dựng một ngôi nhà thờ kiên cố. Nhưng tường mới cao chừng một mét thì công việc phải
             ngưng, và suốt nhiệm kỳ của mình <strong>Cha Marc vẫn phải dâng lễ trong một nhà nguyện lợp lá</strong>. Ngài
             qua đời năm 1870 mà chưa thấy ước nguyện thành sự.
           </p>
+
           <figure className="doc-figure doc-figure-right">
             <button type="button" className="tntt-thumb-btn" onClick={() => moAnh({ src: '/images/lichsu_ban_khac_nha_tho_1877.jpg', caption: 'Mặt tiền ngôi nhà thờ thứ hai, bản khắc in trên tuần báo Les Missions Catholiques năm 1877, trang 595. Kỷ yếu 100 năm của giáo xứ dẫn lại đúng bản khắc này với cùng số trang — hai nguồn độc lập gặp nhau.' })} aria-label="Phóng to ảnh tư liệu">
-              <Image src="/images/lichsu_ban_khac_nha_tho_1877.jpg" alt="Mặt tiền ngôi nhà thờ thứ hai, bản khắc in trên tuần báo Les Missions Catholiques năm 1877" width={900} height={700} sizes="(max-width: 720px) 92vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+              <Image src="/images/lichsu_ban_khac_nha_tho_1877.jpg" alt="Mặt tiền ngôi nhà thờ thứ hai — Les Missions Catholiques 1877" width={900} height={700} sizes="(max-width: 720px) 92vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
             </button>
-            <figcaption className="doc-caption">Mặt tiền ngôi nhà thờ thứ hai, bản khắc in trên tuần báo Les Missions Catholiques năm 1877, trang 595. Kỷ yếu 100 năm của giáo xứ dẫn lại đúng bản khắc này với cùng số trang — hai nguồn độc lập gặp nhau.</figcaption>
+            <figcaption className="doc-caption">Mặt tiền ngôi nhà thờ thứ hai, bản khắc in trên tuần báo Les Missions Catholiques năm 1877, trang 595 — hai nguồn độc lập gặp nhau.</figcaption>
           </figure>
+
           <p className="doc-para">
             <strong>Cha Sorel</strong> về Mỹ Tho năm 1870. Vốn có kiến thức kiến trúc — trước đó ngài đã dựng ở Thủ Dầu Một
             một ngôi nhà thờ gạch mà các sĩ quan công binh Pháp đánh giá cao — ngài nghiên cứu đồ án, xin ngân khoản, mua
@@ -190,13 +212,15 @@ export default function Trang() {
             thánh thì sức lực phản bội: ngã bệnh nặng, ngài phải sang nhà hưu Hồng Kông rồi về Nice, qua đời ngày
             26/02/1873.
           </p>
+
           <p className="doc-para">
             Việc hoàn tất được giao cho <strong>Cha Moulins</strong> — khó tìm được đôi tay khéo hơn. Suốt ba năm ngài vừa lo
             được nguồn kinh phí vừa lần lượt làm thợ chạm, thợ mộc, thợ trang trí, đưa công trình gian nan ấy đến đích.
-            <strong>Ngày 12 tháng 03 năm 1876, Đức cha Colombert làm phép trọng thể ngôi nhà thờ Mỹ Tho.</strong> Đại tá
+            <strong> Ngày 12 tháng 03 năm 1876, Đức cha Colombert làm phép trọng thể ngôi nhà thờ Mỹ Tho.</strong> Đại tá
             hải quân lục chiến Trève, các quan cai trị hạt, sĩ quan và công chức, toàn thể binh sĩ đồn trú, các Sư huynh
             Lasan và các Nữ tu Thánh Phaolô cùng học sinh, và toàn thể giáo dân đều có mặt.
           </p>
+
           <div className="doc-box">
             <div className="doc-box-title">Ngôi nhà thờ thứ hai qua mô tả năm 1877</div>
             <p className="doc-box-text">
@@ -219,6 +243,7 @@ export default function Trang() {
             <strong>5 Nữ tu Thánh Phaolô</strong> coi trường nữ và một cô nhi viện 70 – 75 em; <strong>4 nữ tu khác</strong>{' '}
             chăm 40 – 45 bệnh nhân ở bệnh viện bản xứ; và <strong>3 nữ tu</strong> phục vụ quân y viện trong thành.
           </p>
+
           <p className="doc-para">
             Số giáo dân tăng đều suốt thời kỳ ổn định. Sổ họ đạo ghi: <strong>1881 – 1882</strong> có 3.651 người, gồm 330
             người Âu châu và 3.321 người Việt Nam. <strong>1895 – 1896</strong>: 462 người Âu, 912 người Việt — rồi cùng
@@ -227,19 +252,18 @@ export default function Trang() {
             dưới 1.000. Năm <strong>1897</strong>, báo cáo thường niên của Hội Thừa Sai ghi Mỹ Tho là lỵ sở một địa hạt
             <strong> gần 4.000 giáo dân, 19 họ đạo, do 8 linh mục coi sóc</strong>.
           </p>
+
           <p className="doc-para">
             Năm <strong>1903</strong>, theo lời kêu gọi của chính quyền, <strong>các sơ Phaolô đến làm y tá cho nhà thương
             cùi ở Cù Lao Rồng</strong> — 3 sơ Pháp và 2 sơ Việt Nam, chăm trung bình từ 180 đến 200 người cùi.
           </p>
 
-          <h3 id="lich-su-xay-dung" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 8px' }}>
-            Thời Kỳ Phá Huỷ Và Xây Dựng Lại (1904 – 1910)
-          </h3>
-
+          {/* ── NGÔI NHÀ THỜ THỨ BA — HIỆN NAY ── */}
           <p className="doc-para">
-            Đây là khúc ngoặt lạ lùng nhất trong lịch sử ngôi thánh đường, và may thay chính Cha Renier đã chép lại bằng ngôi
+            Rồi đến khúc ngoặt lạ lùng nhất trong lịch sử ngôi thánh đường — may thay chính Cha Renier đã chép lại bằng ngôi
             thứ nhất. Năm 1903 ngài được phép cất một căn nhà gần nhà thờ và vào khoảng tháng 9 năm ấy thì dọn vào ở.
           </p>
+
           <p className="doc-para">
             <strong>Ngày 3 tháng 1 năm 1904</strong>, theo lệnh Đức Giám mục <strong>Monard</strong> và của chính quyền địa
             phương, vì sợ một ngày nào đó ngôi nhà thờ đã suy yếu sẽ sụp đổ, ngài cho <strong>hạ ngôi nhà thờ</strong>.
@@ -249,6 +273,14 @@ export default function Trang() {
             người.</strong>&rdquo;</em> Trường học cách đó không xa cũng bị thiệt hại nặng nề; nhà trẻ và các trường được
             chuyển về nhà thờ Vĩnh Tường.
           </p>
+
+          <figure className="doc-figure doc-figure-left">
+            <button type="button" className="tntt-thumb-btn" onClick={() => moAnh({ src: '/images/lichsu_nha_tho_1920s_ngoai_that.jpg', caption: 'Ngôi nhà thờ hiện nay nhìn từ bên hông, ảnh chụp khoảng 1920 – 1929. Công trình khởi công tháng 1/1906 ở phía bên kia đại lộ Bourdais, đối diện ngôi nhà thờ cũ đã bị hạ.' })} aria-label="Phóng to ảnh tư liệu">
+              <Image src="/images/lichsu_nha_tho_1920s_ngoai_that.jpg" alt="Nhà thờ Chánh Tòa hiện nay, ảnh khoảng 1920–1929" width={900} height={700} sizes="(max-width: 720px) 92vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+            </button>
+            <figcaption className="doc-caption">Nhà thờ hiện nay nhìn từ bên hông, ảnh khoảng 1920 – 1929. Khởi công 1/1906, bên kia đại lộ Bourdais, đối diện ngôi nhà thờ cũ.</figcaption>
+          </figure>
+
           <p className="doc-para">
             Trường học không còn gần nhà xứ nữa, và người Công giáo trong khu vực cũng dần bỏ đi. Đức Giám mục khuyên ngài đến
             ở trong nhà xứ Vĩnh Tường, gần <strong>nhà thờ Thánh Tâm do Cha Faron xây</strong>; <strong>ngày 18 tháng 3
@@ -256,23 +288,20 @@ export default function Trang() {
             1904, lại quá nhỏ so với số giáo dân Mỹ Tho. Phải nghĩ đến một ngôi nhà thờ lớn hơn — và ngài khởi sự từ{' '}
             <strong>tháng 7 năm 1905</strong>.
           </p>
-          <figure className="doc-figure doc-figure-left">
-            <button type="button" className="tntt-thumb-btn" onClick={() => moAnh({ src: '/images/lichsu_nha_tho_1920s_ngoai_that.jpg', caption: 'Ngôi nhà thờ hiện nay nhìn từ bên hông, ảnh chụp khoảng 1920 – 1929. Công trình khởi công tháng 1/1906 ở phía bên kia đại lộ Bourdais, đối diện ngôi nhà thờ cũ đã bị hạ.' })} aria-label="Phóng to ảnh tư liệu">
-              <Image src="/images/lichsu_nha_tho_1920s_ngoai_that.jpg" alt="Ngôi nhà thờ hiện nay nhìn từ bên hông, ảnh chụp khoảng 1920 – 1929. Công trình khởi công " width={900} height={700} sizes="(max-width: 720px) 92vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
-            </button>
-            <figcaption className="doc-caption">Ngôi nhà thờ hiện nay nhìn từ bên hông, ảnh chụp khoảng 1920 – 1929. Công trình khởi công tháng 1/1906 ở phía bên kia đại lộ Bourdais, đối diện ngôi nhà thờ cũ đã bị hạ.</figcaption>
-          </figure>
+
           <p className="doc-para">
             <strong>Bắt đầu từ tháng 1 năm 1906 khởi sự công việc làm móng ngôi nhà thờ mới.</strong> Một chi tiết mà ít người
             để ý: <strong>ngôi nhà thờ này nằm phía bên kia đại lộ Bourdais, đối diện ngôi nhà thờ cũ</strong> — nghĩa là
             nhà thờ Chánh Tòa hôm nay không đứng trên nền ngôi nhà thờ năm 1876, mà ở bên kia đường. Riêng việc xây móng
             kéo dài mãi đến năm 1907.
           </p>
+
           <p className="doc-para">
             Năm <strong>1907</strong>, những người Công giáo Mỹ Tho dâng một thỉnh nguyện thư lên Vị Đại Diện Tông Toà, trong
             đó họ cũng xin cho được phép xây dựng trong họ đạo một trường học — <strong>Trường Thánh Giuse</strong> —
             dành cho nam sinh dưới sự điều khiển của các Sư huynh Lasan.
           </p>
+
           <div className="doc-box">
             <div className="doc-box-title">Vì sao mốc &ldquo;100 năm&rdquo; là 1907 chứ không phải 1906 hay 1910</div>
             <p className="doc-box-text">
@@ -283,11 +312,9 @@ export default function Trang() {
             </p>
           </div>
 
-          <h3 id="lich-su-chinh-toa" style={{ fontSize: '1.18rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-            Sắc Chỉ Tông Hiến Venerabilium Nostrorum &amp; Nâng Lên Chính Tòa (1960)
-          </h3>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
-            Ngày <strong>24 tháng 11 năm 1960</strong> là mốc son chói lọi trong lịch sử Giáo hội Công giáo Việt Nam khi <strong>Thánh Giáo hoàng Gioan XXIII</strong> (<em>Ioannes PP. XXIII</em>) ban hành Tông hiến lịch sử <strong>&ldquo;Venerabilium Nostrorum&rdquo;</strong> (<em>Chư Huynh Đáng Kính</em>). Văn kiện long trọng này chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>) và nâng ngôi Thánh đường Mỹ Tho thành <strong>Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm Nguyên Tội</strong>.
+          {/* ── SẮC CHỈ 1960 — CROSS-REFERENCE ── */}
+          <p className="doc-para">
+            Từ một họ đạo ven sông, ngôi thánh đường Mỹ Tho bước sang một chương mới hoàn toàn vào ngày <strong>24 tháng 11 năm 1960</strong>, khi Thánh Giáo hoàng <strong>Gioan XXIII</strong> ban hành Tông hiến lịch sử <strong>&ldquo;Venerabilium Nostrorum&rdquo;</strong>. Văn kiện này chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam, đồng thời khai sinh <strong>Giáo phận Mỹ Tho</strong> và nâng ngôi thánh đường lên hàng <strong>Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm Nguyên Tội</strong>.
           </p>
 
           {/* BỘ ĐÔI HÌNH ẢNH TƯ LIỆU LỊCH SỬ SẮC LỆNH 1960 */}
@@ -377,7 +404,7 @@ export default function Trang() {
             </div>
           </div>
 
-          {/* KHUNG TƯ LIỆU VĂN BẢN: BẢN GỐC LATIN & BẢN DỊCH TIẾNG VIỆT */}
+          {/* KHUNG TƯ LIỆU VĂN BẢN */}
           <div
             style={{
               backgroundColor: 'var(--color-card-bg)',
@@ -438,48 +465,30 @@ export default function Trang() {
             </div>
           </div>
 
-          {/* TÓM TẮT 5 QUYẾT ĐỊNH LỊCH SỬ TRỌNG YẾU */}
-          <div
-            style={{
-              backgroundColor: 'rgba(153, 27, 27, 0.03)',
-              border: '1px solid rgba(153, 27, 27, 0.12)',
-              borderRadius: '12px',
-              padding: '16px 20px',
-              margin: '18px 0 24px'
-            }}
-          >
-            <div style={{ fontWeight: 800, fontSize: '0.94rem', color: 'var(--color-red)', marginBottom: '10px' }}>
-              📌 Tóm Tắt 5 Quyết Định Lịch Sử Trọng Yếu Của Tông Hiến Venerabilium Nostrorum:
-            </div>
-            <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '0.88rem', lineHeight: 1.8, color: 'var(--color-dark)' }}>
-              <li>
-                <strong>Chấm dứt quy chế Thừa sai Đại diện Tông Tòa (Vicariatus Apostolicus)</strong>: Đánh dấu sự trưởng thành trọn vẹn của Giáo hội Việt Nam sau hơn 300 năm hình thành kể từ hai Địa phận tiên khởi Đàng Trong và Đàng Ngoài (1659).
-              </li>
-              <li>
-                <strong>Thiết lập 3 Tổng Giáo Phận (Giáo Tỉnh)</strong>: Giáo tỉnh Hà Nội (miền Bắc), Giáo tỉnh Huế (miền Trung) và Giáo tỉnh Sài Gòn (miền Nam).
-              </li>
-              <li>
-                <strong>Nâng cấp đồng loạt</strong>: Tất cả các Giáo phận Tông Tòa hiện hữu tại Việt Nam được nâng lên hàng Giáo phận Chính Tòa (Dioecesis).
-              </li>
-              <li>
-                <strong>Khai sinh Giáo phận Mỹ Tho (Dioecesis Mythoensis)</strong>: Tách các tỉnh Định Tường, Long An, Kiến Tường, Kiến Phong từ Tổng Giáo phận Sài Gòn để lập thành giáo phận độc lập thuộc Giáo tỉnh Sài Gòn (được cụ thể hóa bằng Sắc chỉ <em>Quod Venerabiles Fratres</em> ngày 27/11/1960).
-              </li>
-              <li>
-                <strong>Chính thức công nhận Nhà thờ Chính Tòa Mỹ Tho</strong>: Thánh đường tọa lạc trên đại lộ Bourdais (nay là Hùng Vương) chính thức mang tước hiệu Nhà thờ Chính Tòa Đức Mẹ Vô Nhiễm, đặt dưới quyền cai quản của Đức Giám mục Tiên khởi Giuse Trần Văn Thiện.
-              </li>
-            </ul>
+          {/* CROSS-REFERENCE SAU SẮC CHỈ */}
+          <div style={{
+            backgroundColor: 'rgba(153,27,27,0.03)',
+            border: '1px solid rgba(153,27,27,0.12)',
+            borderRadius: '10px',
+            padding: '12px 16px',
+            marginBottom: '18px',
+            fontSize: '0.85rem',
+            lineHeight: 1.7
+          }}>
+            <strong style={{ color: 'var(--color-red)' }}>📌 Tóm tắt 5 quyết định lịch sử trọng yếu</strong> của Tông hiến <em>Venerabilium Nostrorum</em>: (1) Chấm dứt quy chế Thừa sai Đại diện Tông Tòa; (2) Thiết lập 3 Giáo Tỉnh (Hà Nội, Huế, Sài Gòn); (3) Nâng cấp đồng loạt các Giáo phận; (4) Khai sinh Giáo phận Mỹ Tho; (5) Chính thức công nhận Nhà thờ Chính Tòa.
+            Để đọc chi tiết về các Đại Diện Tông Tòa trước 1960 và năm đời Giám mục từ 1960 đến nay, xem bài{' '}
+            <Link href="/gioi-thieu/giao-phan" style={{ color: 'var(--color-red)', fontWeight: 700, textDecoration: 'underline' }}>Lịch sử Giáo Phận Mỹ Tho</Link>.
           </div>
 
-          <h3 id="lich-su-cung-hien" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '22px 0 8px' }}>
-            Lễ Cung Hiến &amp; Đại trùng tu Bách chu niên (2000 – 2006)
-          </h3>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-            Nhân dịp Đại Năm Thánh 2000, ngày <strong>21/01/2000</strong>, Đức Giám mục Giáo phận Phaolô Bùi Văn Đọc đã
+          {/* ── LỄ CUNG HIẾN & TRÙNG TU ── */}
+          <p className="doc-para">
+            Ngôi thánh đường, vốn sinh ra từ gian truân — hạ rồi dựng, dựng rồi bão phá — nay bước vào thiên niên kỷ mới với hai mốc son đáng ghi nhớ. Nhân dịp Đại Năm Thánh 2000, ngày <strong>21/01/2000</strong>, Đức Giám mục Giáo phận <strong>Phaolô Bùi Văn Đọc</strong> đã
             long trọng cử hành <strong>Lễ Cung Hiến Nhà thờ Chánh Tòa Mỹ Tho</strong> và chọn ngày Lễ Đức Mẹ Hồn Xác
             Lên Trời (15 tháng 8) làm lễ Bổn mạng thứ hai của nhà thờ.
           </p>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 16px' }}>
-            Đến năm 2006, đánh dấu kỷ niệm 100 năm ngày khởi công xây dựng,{' '}
+
+          <p className="doc-para">
+            Sáu năm sau, đánh dấu kỷ niệm 100 năm ngày khởi công xây dựng,{' '}
             <button
               type="button"
               onClick={() => {
@@ -507,9 +516,21 @@ export default function Trang() {
             kỷ niệm 100 năm xây dựng ngôi thánh đường.
           </p>
 
-          <h3 id="lich-su-anh-tu-lieu" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-            Ảnh Tư Liệu Nhà Thờ Qua Các Thời Kỳ
-          </h3>
+          <p className="doc-para">
+            Một chi tiết mà hai chương của quyển sách này để lộ ra khi đặt cạnh nhau, mà đọc riêng từng chương thì không
+            thấy. Cha sở đứng ra xin trùng tu ngôi thánh đường năm 2006 và khai mạc Năm Thánh trăm năm năm 2007 là{' '}
+            <strong>Cha Giacôbê Hà Văn Xung</strong>. Cũng chính ngài, vào <strong>mùa thu năm 2005</strong> — trước lễ
+            khởi công đúng tám tháng — đã đứng ra mở lớp huấn luyện Huynh Trưởng đầu tiên sau năm 1975, cho cả Giáo hạt
+            Mỹ Tho, và đưa Đoàn Thiếu Nhi Thánh Thể trở lại giáo xứ sau ba mươi năm vắng bóng. Trong cùng hai năm ấy,
+            một vị đã lo sửa cả phần xác lẫn phần hồn của ngôi nhà thờ: mái ngói và tháp chuông ở một bên, và ở bên kia
+            là những đứa trẻ sẽ quàng khăn đứng trong lòng nhà thờ đó. Câu chuyện thứ hai là{' '}
+            <Link href="/gioi-thieu/xu-doan" style={{ color: 'var(--color-red)', fontWeight: 700 }}>Chương IV</Link>.
+          </p>
+
+          {/* ── ẢNH TƯ LIỆU QUA CÁC THỜI KỲ ── */}
+          <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--color-dark)', margin: '26px 0 6px' }}>
+            Ảnh tư liệu nhà thờ qua các thời kỳ
+          </div>
           <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 14px', lineHeight: 1.7 }}>
             Những bức ảnh dưới đây ghi lại diện mạo ngôi thánh đường và khuôn viên qua hơn một thế kỷ,
             từ thời Pháp thuộc đến trước ngày đại trùng tu năm 2006.
@@ -519,15 +540,15 @@ export default function Trang() {
             {[
               {
                 src: '/images/lichsu_ban_khac_nha_tho_1877.jpg',
-                cap: 'Tư liệu hình ảnh xưa nhất về ngôi nhà thờ thứ hai: bản khắc mặt tiền in trên tuần báo Les Missions Catholiques năm 1877, chú thích gốc “Cochinchine occidentale (Annam) — Façade de l’église de Mytho”. Nhà thờ dài 42 m, rộng 18 m, cao 36 m, 32 cột Corinthiên cao 8 m.'
+                cap: 'Tư liệu hình ảnh xưa nhất về ngôi nhà thờ thứ hai: bản khắc mặt tiền in trên tuần báo Les Missions Catholiques năm 1877, chú thích gốc "Cochinchine occidentale (Annam) — Façade de l\'église de Mytho". Nhà thờ dài 42 m, rộng 18 m, cao 36 m, 32 cột Corinthiên cao 8 m.'
               },
               {
                 src: '/images/lichsu_nha_tho_dinh_tuong.jpg',
-                cap: 'Chính ngôi nhà thờ trong bản khắc 1877, chụp lại thời Pháp thuộc với chú thích gốc “Cathédrale de My Tho”. Đối chiếu hai hình thấy trùng khớp từng chi tiết: mái vòm có đèn lồng, các cửa tròn trên tang trống, trán tường Baroque cuộn và ba vòm cửa. Đây là ngôi thánh đường Cha Sorel dựng, Cha Moulins hoàn tất, làm phép 12/03/1876 và bị tháo dỡ khoảng năm 1900.'
+                cap: 'Chính ngôi nhà thờ trong bản khắc 1877, chụp lại thời Pháp thuộc với chú thích gốc "Cathédrale de My Tho". Đối chiếu hai hình thấy trùng khớp từng chi tiết: mái vòm có đèn lồng, các cửa tròn trên tang trống, trán tường Baroque cuộn và ba vòm cửa. Đây là ngôi thánh đường Cha Sorel dựng, Cha Moulins hoàn tất, làm phép 12/03/1876 và bị tháo dỡ khoảng năm 1900.'
               },
               {
                 src: '/images/lichsu_nha_tho_1920s_ngoai_that.jpg',
-                cap: 'Ngôi Nhà thờ Chánh Tòa hiện nay nhìn từ bên hông, khoảng 1920 – 1929. Ảnh mang chú thích gốc “My Tho 1920-1929 — L’Église”. Tháp chuông khi đó còn nằm liền với thánh đường.'
+                cap: 'Ngôi Nhà thờ Chánh Tòa hiện nay nhìn từ bên hông, khoảng 1920 – 1929. Ảnh mang chú thích gốc "My Tho 1920-1929 — L\'Église". Tháp chuông khi đó còn nằm liền với thánh đường.'
               },
               {
                 src: '/images/lichsu_nha_tho_1920s_noi_that.jpg',
@@ -535,7 +556,7 @@ export default function Trang() {
               },
               {
                 src: '/images/lichsu_giay_bo_nhiem_1998.jpg',
-                cap: 'Giấy Bổ Nhiệm ngày 18/05/1998 của Toà Giám mục Mỹ Tho, do Đức cha Anrê Nguyễn Văn Nam ký và đóng dấu, đặt Cha Phêrô Hồ Bản Chánh cùng lúc làm Tổng Đại Diện Giáo phận và phụ trách Giáo xứ Chánh Tòa. Nguyên văn: “Vì nhu cầu mục vụ của Giáo Phận, sau khi suy nghĩ, cầu nguyện và lấy ý kiến tham vấn của một số Cha trong Giáo Phận, tôi quyết định đề cử: Cha làm Linh Mục Tổng Đại Diện Giáo Phận và về phụ trách Giáo Xứ Chánh Tòa Mỹ Tho.” Ảnh chụp từ Kỷ yếu 100 năm của giáo xứ.'
+                cap: 'Giấy Bổ Nhiệm ngày 18/05/1998 của Toà Giám mục Mỹ Tho, do Đức cha Anrê Nguyễn Văn Nam ký và đóng dấu, đặt Cha Phêrô Hồ Bản Chánh cùng lúc làm Tổng Đại Diện Giáo phận và phụ trách Giáo xứ Chánh Tòa. Ảnh chụp từ Kỷ yếu 100 năm của giáo xứ.'
               },
               {
                 src: '/images/lichsu_mat_tien_xua.jpg',
@@ -572,18 +593,18 @@ export default function Trang() {
 
           <p style={{ fontSize: '0.82rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
             Ảnh tư liệu do giáo xứ cung cấp, trong đó chân dung các cha và Giấy Bổ Nhiệm 1998 chụp từ Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007); riêng bản khắc năm 1877 lấy từ tuần báo Les Missions Catholiques
-            (Thư viện Quốc gia Pháp — Gallica, ark:/12148/bpt6k105617d, tr.595). Chú thích niên đại theo ghi chú gốc in
-            trên ảnh. Ảnh tư liệu về Ba Giồng và Giáo phận nằm ở mục 4.1.
+            (Thư viện Quốc gia Pháp — Gallica, ark:/12148/bpt6k105617d, tr.595). Ảnh tư liệu về Ba Giồng và Giáo phận nằm trong bài <Link href="/gioi-thieu/giao-phan" style={{ color: 'var(--color-red)', textDecoration: 'underline' }}>Lịch sử Giáo Phận</Link>.
           </p>
 
-          {/* NIÊN BIỂU CÁC ĐỜI LINH MỤC CHÁNH SỞ HỌ ĐẠO CHÁNH TÒA MỸ THO */}
-          <h3 id="nien-bieu-cha-so" style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
-            Niên Biểu Các Đời Linh Mục Chánh Sở Nhà Thờ Chánh Tòa Mỹ Tho (1861 – Nay)
-          </h3>
+          {/* ── NIÊN BIỂU CÁC ĐỜI CHA SỞ ── */}
+          <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--color-dark)', margin: '26px 0 6px' }}>
+            Niên biểu các đời Linh mục Chánh sở (1861 – nay)
+          </div>
           <p style={{ fontSize: '0.92rem', color: 'var(--color-subtle)', margin: '0 0 6px' }}>
             Nhấn vào tên linh mục để xem lý lịch đầy đủ. Niên hiệu và tiểu sử các vị thừa sai
             Hội Thừa Sai Paris được đối chiếu với hồ sơ lưu trữ của Viện Nghiên cứu Pháp – Á (IRFA).
           </p>
+
           <div
             style={{
               border: '1px solid var(--color-border-subtle)',
@@ -696,7 +717,7 @@ export default function Trang() {
             </table>
           </div>
 
-          {/* Ghi công các linh mục khác — chữ nhỏ và mờ hơn phần chính */}
+          {/* Ghi công các linh mục khác */}
           <p
             style={{
               fontSize: '0.74rem',
@@ -748,14 +769,16 @@ export default function Trang() {
               </span>
             ))}
             .{' '}
+            Xem thêm <Link href="/gioi-thieu/giao-phan" style={{ color: 'var(--color-red)', textDecoration: 'underline' }}>tiểu sử đầy đủ các Đức Giám mục tại trang Giáo Phận</Link>.
             <br />
             Khoảng 50 linh mục Việt Nam từng phục vụ họ đạo chưa có nguồn số hoá công khai — tên các ngài nằm trong sổ bộ
             họ đạo và văn khố Tòa Giám mục; trang này để trống còn hơn ghi sai tên người đã phục vụ.
           </p>
-          <h3 id="kien-truc-anh" style={{ fontSize: '1.12rem', fontWeight: 800, color: 'var(--color-red)', margin: '26px 0 10px' }}>
+
+          {/* ── KIẾN TRÚC & NGHỆ THUẬT THÁNH ── */}
+          <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--color-dark)', margin: '26px 0 6px' }}>
             Kiến trúc &amp; Nghệ thuật Thánh
-          </h3>
-          {/* Gallery ảnh kiến trúc */}
+          </div>
           <div
             className="responsive-grid"
           >
@@ -787,21 +810,33 @@ export default function Trang() {
               </div>
             ))}
           </div>
+
+          {/* ── TÀI LIỆU THAM KHẢO ── */}
+          <div style={{
+            marginTop: '32px', paddingTop: '16px',
+            borderTop: '1px solid var(--color-border-subtle)',
+            fontSize: '0.77rem', color: 'var(--color-subtle)', lineHeight: 1.75
+          }}>
+            <div style={{ fontWeight: 800, color: 'var(--color-dark)', marginBottom: '8px', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <ScrollText size={13} style={{ color: 'var(--color-red)', flexShrink: 0 }} />
+              Tài liệu tham khảo
+            </div>
+            <ol style={{ paddingLeft: '18px', margin: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <li>Bản báo cáo viết tay của Cha Renier, lưu trữ tại Toà Tổng Giám mục TP. Hồ Chí Minh; cgvdt.vn — <em>Dấu ấn họ đạo Chánh tòa Mỹ Tho theo dòng lịch sử</em>.</li>
+              <li>Kỷ yếu Mừng Năm Thánh 100 năm Nhà thờ Chánh Tòa Mỹ Tho (1907 – 2007), ấn hành 2007.</li>
+              <li><em>Les Missions Catholiques</em>, tuần báo, Lyon, 1877, tr. 595 &amp; 598 — bản khắc mặt tiền nhà thờ. Gallica (BnF), ark:/12148/bpt6k105617d.</li>
+              <li>IRFA (Viện Nghiên cứu Pháp–Á) — hồ sơ thừa sai: Guillou (#0682), Sorel (#0869), Moulins (#1056), Renier (#1502), Bar (#2241).</li>
+              <li>Tông hiến <em>Venerabilium Nostrorum</em>, Gioan XXIII, 24/11/1960; <em>Acta Apostolicae Sedis</em> 53 (1961), tr. 346–348.</li>
+              <li>giaophanmytho.net — <em>Lịch sử Khai Sinh Giáo Phận</em>, soạn 03/2009 cho Kỷ Yếu Năm Thánh 2010 HĐGMVN.</li>
+              <li>Báo cáo thường niên Hội Thừa Sai Paris (MEP), 1897: lưu trữ tại IRFA.</li>
+            </ol>
+          </div>
         </section>
 
         <section id="phung-vu" style={{ marginBottom: '36px' }}>
-          <h2
-            style={{
-              fontSize: '1.4rem',
-              fontWeight: 800,
-              color: 'var(--color-dark)',
-              borderBottom: '1px solid var(--color-border-subtle)',
-              paddingBottom: '6px',
-              marginTop: '32px'
-            }}
-          >
+          <div style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--color-dark)', margin: '32px 0 6px' }}>
             Giờ Thánh Lễ &amp; Lịch Mục Vụ
-          </h2>
+          </div>
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 14px' }}>
             Giờ phụng vụ tại Nhà Thờ Chính Tòa Mỹ Tho được cử hành đều đặn mỗi ngày. Bảng dưới đây đồng bộ trực tiếp với
             lịch giờ lễ của Giáo phận: Ban Phụng Vụ sửa giờ ở mục Giờ Lễ thì trang này đổi theo ngay, không cần đăng lại.
