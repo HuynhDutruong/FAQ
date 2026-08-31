@@ -19,6 +19,8 @@ import {
   SUNDAY_MASS_NOTES
 ,
   CHA_PHO_BIOS
+,
+  PortraitFrame
 } from '../duLieu';
 import type { DetailedBioRecord } from '../duLieu';
 
@@ -631,6 +633,7 @@ export default function Trang() {
                 <tr>
                   <th scope="col" style={{ width: '50px' }}>STT</th>
                   <th scope="col" style={{ width: '130px' }}>Thời Gian</th>
+                  <th scope="col" style={{ width: '72px' }}>Ảnh</th>
                   <th scope="col">Linh Mục Chánh Sở</th>
                   <th scope="col">Dấu Ấn Mục Vụ &amp; Lịch Sử</th>
                 </tr>
@@ -647,6 +650,20 @@ export default function Trang() {
                       <td style={{ fontWeight: 700 }}>{idx + 1}</td>
                       <td style={{ fontWeight: 600, color: isCurrent ? 'var(--color-red)' : 'var(--color-subtle)' }}>
                         {row.period}
+                      </td>
+                      <td className="pastor-photo-cell">
+                        {bio ? (
+                          <button
+                            type="button"
+                            className="pastor-photo-btn"
+                            onClick={() => moLyLich(bio)}
+                            aria-label={`Xem lý lịch ${bio.name}`}
+                          >
+                            <PortraitFrame src={bio.image} name={bio.name} width={56} height={72} />
+                          </button>
+                        ) : (
+                          <span className="pastor-photo-empty" aria-hidden="true" />
+                        )}
                       </td>
                       <td>
                         {bio ? (

@@ -13,23 +13,6 @@ import {
 } from '../duLieu';
 import type { DetailedBioRecord } from '../duLieu';
 
-/** Dấu phân cách mờ giữa các giai đoạn — không có tiêu đề, chỉ có thời điểm */
-function PhanCach({ label }: { label: string }) {
-  return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: '12px',
-      margin: '30px 0 18px'
-    }}>
-      <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--color-border-subtle)' }} />
-      <span style={{
-        fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em',
-        color: 'var(--color-subtle)', textTransform: 'uppercase', whiteSpace: 'nowrap'
-      }}>{label}</span>
-      <div style={{ flex: 1, height: '1px', backgroundColor: 'var(--color-border-subtle)' }} />
-    </div>
-  );
-}
-
 export default function Trang() {
   const [lyLich, setLyLich] = useState<DetailedBioRecord | null>(null);
   const [anh, setAnh] = useState<{ src: string; caption: string } | null>(null);
@@ -82,75 +65,69 @@ export default function Trang() {
           <div
             style={{ position: 'relative', width: '100%', height: '185px', cursor: 'pointer', borderRadius: '8px', overflow: 'hidden' }}
             onClick={() => moAnh({
-              src: '/images/lichsu_hoa_trai_lang_ba_giong_1882.jpg',
-              caption: 'Bản khắc gỗ "COCHINCHINE. — Village de Ba-Giong" in trong cuốn "Un épisode de la Persécution en Cochinchine" của Cha Théodule Hamon, Lyon, 1882. Thấy rõ nhà thờ họ đạo Ba Giồng với hai cây thánh giá, nhà dân ven rạch và ghe thuyền trên sông — khung cảnh nguyên vẹn của cộng đoàn đức tin tiên khởi thế kỷ XIX. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.'
+              src: '/images/lichsu_ba_giong_lang_1882_hires.jpg',
+              caption: 'Bản khắc gỗ "COCHINCHINE. — Village de Ba-Giong" (Làng Ba Giồng), trang tiêu đề (p.9) cuốn "Un épisode de la Persécution en Cochinchine" của Cha Théodule Hamon, Lyon, 1882. Thấy rõ nhà thờ họ đạo với hai cây thánh giá, nhà dân ven rạch và ghe thuyền trên sông — khung cảnh nguyên vẹn của cộng đoàn đức tin tiên khởi. Khắc bởi Marichal. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.'
             })}
           >
             <Image
-              src="/images/lichsu_hoa_trai_lang_ba_giong_1882.jpg"
-              alt="Bản khắc gỗ làng Ba Giồng, 1882 — Gallica BnF"
+              src="/images/lichsu_ba_giong_lang_1882_hires.jpg"
+              alt="Bản khắc gỗ làng Ba Giồng — Village de Ba-Giong, 1882 — Gallica BnF"
               fill sizes="290px"
               style={{ objectFit: 'cover' }}
             />
           </div>
           <div style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', marginTop: '6px', lineHeight: 1.4 }}>
-            Làng Ba Giồng — bản khắc gỗ in trong sách Cha Hamon, 1882.
+            "Village de Ba-Giong" — khắc gỗ của Marichal,<br />in trong sách Cha Hamon, Lyon, 1882 (p.9).
             <br /><em>Gallica (BnF), ark:/12148/bpt6k58346217.</em>
           </div>
         </div>
 
-        {/* ── ĐOẠN MỞ ── */}
         <p className="doc-para">
           Giáo phận Mỹ Tho ngày nay trải rộng trên vùng đồng bằng sông Cửu Long — tỉnh Tiền Giang, tỉnh Long An và gần hai phần ba tỉnh Đồng Tháp — một lãnh thổ hơn <strong>9.262 km²</strong> với <strong>114 giáo xứ</strong>, gần <strong>181 linh mục</strong> và khoảng <strong>137.000 giáo dân</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[1]</sup> Nhưng cái vóc dáng ấy không xuất hiện trong một sớm một chiều. Nó được đúc nên từ hơn ba thế kỷ lịch sử — lịch sử của những người lặng lẽ khai phá, của những vị chứng nhân đổ máu, và của những vị mục tử kiên trì xây dựng. Đọc lịch sử Giáo phận Mỹ Tho là đọc lịch sử đức tin của cả một vùng đất.
         </p>
-
-        <PhanCach label="Thế kỷ XVII – XVIII" />
 
         <p className="doc-para">
           Ánh sáng Tin Mừng đến vùng Đàng Trong từ giữa thế kỷ XVII, qua bàn tay của các thừa sai Dòng Tên, tiếp nối bởi Hội Thừa Sai Paris (MEP) và các tu sĩ Phanxicô. Năm <strong>1659</strong>, Giáo hoàng Alexander VII lập hai Phủ Doãn Tông Tòa <em>Đàng Trong</em> và <em>Đàng Ngoài</em> — nền tảng hành chính đầu tiên của Giáo hội Việt Nam.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[2]</sup> Vùng đất Nam Bộ, khi đó còn hoang vu, bắt đầu đón nhận người Công giáo từ khoảng năm <strong>1700</strong>. Trước áp lực các đợt cấm đạo của chúa Nguyễn tại miền Trung, nhiều gia đình tín hữu từ Phú Yên xuôi thuyền vào Nam, định cư tại những vùng đất mới chưa có dân cư đông đúc. Họ đặt lều ở Ba Giồng — một dải gò đất nổi cao giữa đồng lầy, thuộc vùng Định Tường.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[3]</sup> Những ngôi mộ cổ có bia khắc hình thập giá còn lưu lại trong khuôn viên Trung tâm Hành hương Ba Giồng hôm nay, có niên đại từ năm <strong>1663–1664</strong>, là bằng chứng sống động cho sự hiện diện Kitô giáo từ buổi khai nguyên.
         </p>
 
         <p className="doc-para">
-          Từ năm <strong>1722</strong>, các thừa sai Phanxicô người Tây Ban Nha từ Philippines bắt đầu coi sóc vùng này. Linh mục <strong>Francisco José García (OFM)</strong> được ghi nhận là người đầu tiên đặt chân đến Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè từ năm 1723, tổ chức các cộng đoàn nhỏ, dạy giáo lý và cử hành các bí tích.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[4]</sup> Sang thế kỷ XIX, vai trò ấy dần chuyển sang Hội Thừa Sai Paris — những linh mục triều người Pháp đảm nhận việc đào tạo hàng giáo sĩ bản địa và phát triển hệ thống họ đạo có tổ chức, đặt nền móng cho một giáo phận tương lai.
-        </p>
-
-        <PhanCach label="1820 – 1862 · Thời kỳ bách hại" />
-
-        <p className="doc-para">
-          Cộng đoàn đức tin non trẻ ấy sớm đối mặt với những đợt bách hại khốc liệt. Dưới ba triều vua nhà Nguyễn — <strong>Minh Mạng</strong> (1820–1840), <strong>Thiệu Trị</strong> (1841–1847) và đặc biệt là <strong>Tự Đức</strong> (1848–1883) — hàng trăm linh mục và hàng chục ngàn giáo dân bị tử hình vì đức tin trên khắp đất nước. Năm 1988, Đức Thánh Giáo hoàng Gioan Phaolô II tôn phong <strong>117 Thánh Tử Đạo Việt Nam</strong>, trong đó nhiều vị gắn liền với vùng đất Nam Kỳ.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[5]</sup>
+          Từ năm <strong>1722</strong>, các thừa sai Phanxicô người Tây Ban Nha từ Philippines bắt đầu coi sóc vùng này. Linh mục <strong>Francisco José García (OFM)</strong> được ghi nhận là người đầu tiên đặt chân đến Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè từ năm 1723, tổ chức các cộng đoàn nhỏ, dạy giáo lý và cử hành các bí tích.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[4]</sup> Sang thế kỷ XIX, vai trò ấy dần chuyển sang Hội Thừa Sai Paris — những linh mục triều người Pháp đảm nhận việc đào tạo hàng giáo sĩ bản địa và phát triển hệ thống họ đạo có tổ chức, đặt nền móng cho một giáo phận tương lai. Nhưng trước khi giáo phận ấy ra đời, cộng đoàn đức tin non trẻ phải vượt qua những thử thách khốc liệt nhất trong lịch sử của mình.
         </p>
 
         <figure className="doc-figure doc-figure-right">
           <button
             type="button" className="tntt-thumb-btn"
             onClick={() => moAnh({
-              src: '/images/lichsu_hoa_trai_tu_dao_hanh_hinh_1882.jpg',
-              caption: 'Bản khắc gỗ "COCHINCHINE. — Martyre des chrétiens de Ba-Giong" (Tử đạo của các giáo hữu Ba Giồng), p. 19. Cảnh hành hình 25 vị bô lão tại chợ Cổ Chi năm 1862. In trong cuốn sách của Cha Théodule Hamon, Lyon, 1882. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.'
+              src: '/images/lichsu_ba_giong_martyre_1882_hires.jpg',
+              caption: 'Bản khắc gỗ "COCHINCHINE. — Martyre des chrétiens de Ba-Giong" (Tử đạo của các giáo hữu Ba Giồng), p.19. Cảnh hành hình 25 vị bô lão tại chợ Cổ Chi — "gò Chết Chém" — năm 1862. Quan mandarin ngồi trên cao; lính và dân chúng vây quanh. Khắc bởi Marichal. In trong cuốn sách của Cha Théodule Hamon, Lyon, 1882. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.'
             })}
             aria-label="Phóng to bản khắc tử đạo Ba Giồng 1862"
           >
             <Image
-              src="/images/lichsu_hoa_trai_tu_dao_hanh_hinh_1882.jpg"
-              alt="Martyre des chrétiens de Ba-Giong, 1882"
+              src="/images/lichsu_ba_giong_martyre_1882_hires.jpg"
+              alt="Martyre des chrétiens de Ba-Giong, p.19, Hamon 1882"
               width={900} height={700}
               sizes="(max-width: 720px) 92vw, 320px"
               style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
             />
           </button>
           <figcaption className="doc-caption">
-            Hành hình 25 vị giáo hữu Ba Giồng tại chợ Cổ Chi, 1862 — bản khắc gỗ in trong sách Cha Hamon, 1882. <em>Gallica (BnF)</em>.
+            Hành hình 25 vị giáo hữu tại chợ Cổ Chi, 1862 — bản khắc gỗ Marichal, sách Cha Hamon, 1882. <em>Gallica (BnF)</em>.
           </figcaption>
         </figure>
 
         <p className="doc-para">
-          Tại vùng Định Tường, Cha <strong>Phêrô Nguyễn Văn Lựu</strong> (1812–1861) là nhân vật trung tâm của thời kỳ bi hùng này. Sinh tại Gò Vấp, Gia Định, ngài theo học tại Chủng viện Pénang (Penang, Malaysia) trước khi thụ phong linh mục và phục vụ lần lượt ở Mặc Bắc, Sa Đéc, Mỹ Tho. Từ năm <strong>1853</strong>, ngài làm cha sở họ đạo Ba Giồng.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[6]</sup> Cuối năm 1860, khi tình hình bách hại trở nên nguy cấp, ngài vẫn kiên trì cải trang vào ngục thăm viếng và trao Mình Thánh Chúa cho các giáo hữu bị giam cầm. Bị phát giác và dẫn ra trước quan án, ngài khảng khái tuyên bố: <em style={{ color: 'var(--color-dark)' }}>«Đạo Thánh đã thấm nhập vào xương tủy tôi rồi, tôi làm sao bỏ được. Vả lại, một người giáo hữu thường, một thầy giảng còn không có quyền bỏ đạo, huống chi tôi đây là đạo trưởng.»</em><sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[7]</sup> Ngày <strong>7 tháng 4 năm 1861</strong>, ngài bị xử trảm tại pháp trường ngoài thành Mỹ Tho. Đức Giáo hoàng Gioan Phaolô II tôn phong ngài <strong>Hiển Thánh ngày 19/6/1988</strong>. Giáo phận Mỹ Tho sau đó chọn ngài làm <strong>Thánh Bổn Mạng</strong>, mừng lễ ngày 7/4 hàng năm.
+          Dưới ba triều vua nhà Nguyễn — <strong>Minh Mạng</strong> (1820–1840), <strong>Thiệu Trị</strong> (1841–1847) và đặc biệt là <strong>Tự Đức</strong> (1848–1883) — hàng trăm linh mục và hàng chục ngàn giáo dân bị tử hình vì đức tin trên khắp đất nước. Năm 1988, Đức Thánh Giáo hoàng Gioan Phaolô II tôn phong <strong>117 Thánh Tử Đạo Việt Nam</strong>, trong đó nhiều vị gắn liền với vùng đất Nam Kỳ.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[5]</sup>
         </p>
 
         <p className="doc-para">
-          Sau cái chết của Cha Phêrô Lựu, cuộc bách hại không dừng lại. Năm <strong>1862</strong>, chiếu chỉ <em>Phân Sáp</em> được thi hành triệt để: quan quân vây họ đạo Ba Giồng trong đêm, ra lệnh giải tán các làng Công giáo và phân tán giáo dân vào các làng ngoại đạo. Một phần giáo hữu tháo chạy qua sông trong đêm khuya — cảnh tượng đó được ghi lại trong bản khắc gỗ <em>«Fuite des chrétiens de Ba-Giong»</em> của Cha Hamon. Nhưng phần lớn không thoát kịp. <strong>25 vị bô lão</strong> — chức việc cao niên của họ đạo — bị bắt và dẫn về chợ Cổ Chi, một địa điểm mà dân gian gọi là «gò Chết Chém», cách Ba Giồng khoảng 2 km. Trước lưỡi gươm hành quyết, các ngài đồng loạt khẳng định đức tin, kiên quyết không chối đạo.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[8]</sup> Thêm hai người chết khi trốn chạy — nâng tổng số lên <strong>27 vị tử đạo</strong> (tính cả Cha Phêrô Lựu) mà Cha Théodule Hamon đã ghi chép lại mười năm sau.
+          Tại vùng Định Tường, Cha <strong>Phêrô Nguyễn Văn Lựu</strong> (1812–1861) là nhân vật trung tâm của thời kỳ bi hùng này. Sinh tại Gò Vấp, Gia Định, ngài theo học tại Chủng viện Pénang (Penang, Malaysia) trước khi thụ phong linh mục và phục vụ lần lượt ở Mặc Bắc, Sa Đéc, Mỹ Tho. Từ năm <strong>1853</strong>, ngài làm cha sở họ đạo Ba Giồng.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[6]</sup> Cuối năm 1860, khi tình hình bách hại trở nên nguy cấp, ngài vẫn kiên trì cải trang vào ngục thăm viếng và trao Mình Thánh Chúa cho các giáo hữu bị giam cầm. Bị phát giác và dẫn ra trước quan án, ngài khảng khái tuyên bố: <em style={{ color: 'var(--color-dark)' }}>«Đạo Thánh đã thấm nhập vào xương tủy tôi rồi, tôi làm sao bỏ được. Vả lại, một người giáo hữu thường, một thầy giảng còn không có quyền bỏ đạo, huống chi tôi đây là đạo trưởng.»</em><sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[7]</sup> Ngày <strong>7 tháng 4 năm 1861</strong>, ngài bị xử trảm tại pháp trường ngoài thành Mỹ Tho. Đức Giáo hoàng Gioan Phaolô II tôn phong ngài <strong>Hiển Thánh ngày 19/6/1988</strong>, và Giáo phận Mỹ Tho sau đó chọn ngài làm <strong>Thánh Bổn Mạng</strong>, mừng lễ ngày 7/4 hàng năm.
         </p>
 
-        {/* Tư liệu Hamon */}
+        <p className="doc-para">
+          Sau cái chết của Cha Phêrô Lựu, cuộc bách hại không dừng lại. Năm <strong>1862</strong>, chiếu chỉ <em>Phân Sáp</em> được thi hành triệt để: quan quân vây họ đạo Ba Giồng trong đêm, ra lệnh giải tán các làng Công giáo và phân tán giáo dân vào các làng ngoại đạo. Một phần giáo hữu tháo chạy qua sông trong đêm khuya — cảnh tượng đó được ghi lại trong bản khắc gỗ <em>«Fuite des chrétiens de Ba-Giong»</em> của Cha Hamon: hàng trăm người lội giữa dòng nước tối, trên bờ vẫn còn thấy bóng thánh giá nhà thờ dưới trăng non. Nhưng phần lớn không thoát kịp. <strong>25 vị bô lão</strong> — chức việc cao niên của họ đạo — bị bắt và dẫn về chợ Cổ Chi, một địa điểm mà dân gian gọi là «gò Chết Chém», cách Ba Giồng khoảng 2 km. Trước lưỡi gươm hành quyết, các ngài đồng loạt khẳng định đức tin, kiên quyết không chối đạo.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[8]</sup> Thêm hai người chết khi trốn chạy — nâng tổng số lên <strong>27 vị tử đạo</strong> mà Cha Théodule Hamon đã ghi chép lại mười năm sau, khi thân thức đến Ba Giồng để chủ trì lễ cải táng hài cốt các ngài.
+        </p>
+
         <div className="doc-box">
           <div className="doc-box-title">Nguồn tư liệu gốc — Cha Théodule Hamon, MEP (1845–1911)</div>
           <p className="doc-box-text">
@@ -158,23 +135,32 @@ export default function Trang() {
           </p>
         </div>
 
-        {/* Gallery 3 bản khắc */}
         <div className="tntt-gallery" style={{ marginBottom: '8px' }}>
           {[
             {
+              src: '/images/lichsu_ba_giong_lang_1882_hires.jpg',
+              cap: 'Bản khắc gỗ "COCHINCHINE. — Village de Ba-Giong" (Làng Ba Giồng). Nhà thờ họ đạo với hai cây thánh giá, nhà dân ven rạch và ghe thuyền trên sông. Khắc bởi Marichal, Hamon, Lyon, 1882, p.9. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.',
+              label: 'Làng Ba Giồng · p.9 · Hamon 1882'
+            },
+            {
               src: '/images/lichsu_hoa_trai_bia_sach_1882.jpg',
               cap: 'Trang bìa cuốn "Un épisode de la Persécution en Cochinchine — Martyre de vingt-sept Chrétiens", Imprimerie de Pitrat Ainé, Lyon, 1882. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.',
-              label: 'Bìa sách · 1882'
+              label: 'Bìa sách · Hamon 1882'
             },
             {
-              src: '/images/lichsu_hoa_trai_giao_huu_thao_chay_1882.jpg',
-              cap: 'Bản khắc gỗ "COCHINCHINE. — Fuite des chrétiens de Ba-Giong" (Giáo hữu Ba Giồng tháo chạy), p. 13. Cảnh đêm khuya, toàn thể họ đạo lội qua sông để trốn khỏi cuộc bố ráp của quân triều đình, 1861. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.',
-              label: 'Giáo hữu tháo chạy · p.13'
+              src: '/images/lichsu_ba_giong_fuite_1882_hires.jpg',
+              cap: 'Bản khắc gỗ "COCHINCHINE. — Fuite des chrétiens de Ba-Giong" (Giáo hữu Ba Giồng tháo chạy), p.13. Đêm khuya, hàng trăm giáo dân lội qua sông trong bóng tối, ánh trăng non le lói. Phía sau vẫn thấy bóng nhà thờ với hai cây thánh giá. Khắc bởi Marichal. Gallica (BnF), ark:/12148/bpt6k58346217.',
+              label: 'Giáo hữu tháo chạy · p.13 · Hamon 1882'
             },
             {
-              src: '/images/lichsu_hoa_trai_tu_dao_hanh_hinh_1882.jpg',
-              cap: 'Bản khắc gỗ "COCHINCHINE. — Martyre des chrétiens de Ba-Giong", p. 19. Cảnh hành hình 25 vị bô lão tại chợ Cổ Chi ("gò Chết Chém") năm 1862. Nguồn: Gallica (BnF), ark:/12148/bpt6k58346217.',
-              label: 'Tử đạo tại gò Chết Chém · p.19'
+              src: '/images/lichsu_ba_giong_martyre_1882_hires.jpg',
+              cap: 'Bản khắc gỗ "COCHINCHINE. — Martyre des chrétiens de Ba-Giong", p.19. Cảnh hành quyết 25 vị bô lão tại chợ Cổ Chi — "gò Chết Chém" — năm 1862. Quan mandarin ngồi trên cao; hàng trăm dân chúng và quân binh vây quanh. Khắc bởi Marichal. Gallica (BnF), ark:/12148/bpt6k58346217.',
+              label: 'Tử đạo tại gò Chết Chém · p.19 · Hamon 1882'
+            },
+            {
+              src: '/images/lichsu_lmc_ba_giong_martyre_1882.jpg',
+              cap: 'Bản khắc gỗ "COCHINCHINE. — Martyre des chrétiens de Ba-Giong" in trong tạp chí Les Missions Catholiques, số ra tháng 4/1882, trang 187 — bản khắc thứ hai về biến cố Ba Giồng, phổ biến đến độc giả châu Âu qua báo chí thừa sai. Nguồn: Gallica (BnF), ark:/12148/bpt6k105622v.',
+              label: 'Tử đạo Ba Giồng · Les Missions Catholiques 1882, tr.187'
             },
           ].map((img) => (
             <figure key={img.src} className="tntt-figure">
@@ -190,14 +176,12 @@ export default function Trang() {
             </figure>
           ))}
         </div>
-        <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 24px', lineHeight: 1.6 }}>
-          Ba bản khắc gỗ in trong cuốn sách của Cha Théodule Hamon, Lyon, 1882 — bản số hóa tại <em>Gallica (BnF)</em>, ark:/12148/bpt6k58346217. Sử dụng theo chính sách domaine public.
+        <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 28px', lineHeight: 1.6 }}>
+          Năm bản khắc gỗ lịch sử: bốn bản in trong sách Cha Théodule Hamon, Lyon, 1882 (khắc bởi Marichal), một bản in trong <em>Les Missions Catholiques</em>, tháng 4/1882 — đều số hóa tại <em>Gallica (BnF)</em>. Sử dụng theo chính sách domaine public (PD-old-70).
         </p>
 
-        <PhanCach label="1844 – 1960 · Thời kỳ Địa phận Tây Đàng Trong" />
-
         <p className="doc-para">
-          Trong suốt hơn một thế kỷ trước ngày giáo phận được khai sinh, họ đạo Mỹ Tho thuộc quyền cai quản của <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại Diện Tông Tòa kế tiếp nhau từ năm <strong>1844 đến 1960</strong> là các Đấng Bản Quyền của vùng đất này; các ngài đặt viên đá xây nhà thờ, bổ nhiệm cha sở và hướng dẫn đời sống đức tin của người Công giáo Mỹ Tho qua suốt thời kỳ Pháp thuộc, kháng chiến và phân liệt đất nước. <em>Nhấn vào từng vị để xem lý lịch đầy đủ.</em>
+          Máu của các vị tử đạo không chảy vô ích. Sau khi Pháp chiếm Nam Kỳ (1862–1867), áp lực bách hại giảm bớt và cộng đoàn Công giáo dần hồi phục. Từ năm <strong>1844</strong>, họ đạo Mỹ Tho thuộc quyền cai quản của <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại Diện Tông Tòa kế tiếp nhau trong hơn một thế kỷ là các Đấng Bản Quyền của vùng đất này; các ngài đặt viên đá xây nhà thờ, bổ nhiệm cha sở và hướng dẫn đời sống đức tin của người Công giáo Mỹ Tho qua suốt thời kỳ Pháp thuộc, kháng chiến và phân liệt đất nước. <em>Nhấn vào từng vị để xem lý lịch đầy đủ.</em>
         </p>
 
         <div style={{ display: 'grid', gap: '10px', marginBottom: '8px' }}>
@@ -230,11 +214,13 @@ export default function Trang() {
             </button>
           ))}
         </div>
-        <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 24px', lineHeight: 1.6 }}>
+        <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 28px', lineHeight: 1.6 }}>
           Chân dung các vị Miche, Colombert, Dépierre, Mossard, Quinton và Cassaigne lấy từ văn khố Hội Thừa Sai Paris (IRFA). Chân dung Đức cha Lefebvre, Dumortier và Simon Hòa Nguyễn Văn Hiền do Giáo xứ cung cấp.
         </p>
 
-        <PhanCach label="24 tháng 11 năm 1960 · Khai sinh Giáo phận" />
+        <p className="doc-para">
+          Hành trình dài hơn một thế kỷ ấy kết thúc vào một buổi chiều tháng 11 lịch sử. Ngày <strong>24 tháng 11 năm 1960</strong>, Thánh Giáo hoàng <strong>Gioan XXIII</strong> ban hành Tông hiến <em>«Venerabilium Nostrorum»</em>, chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam. Địa phận Tây Đàng Trong — lúc này mang tên Sài Gòn — được nâng lên hàng Tổng Giáo phận, và cùng văn kiện ấy, ngày <strong>27 tháng 11</strong>, Tòa Thánh ban hành Sắc chỉ <em>«Quod Venerabiles Fratres»</em>: <strong>bốn tỉnh Định Tường, Long An, Kiến Tường và Kiến Phong</strong> được tách ra để lập thành <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>), thuộc Giáo tỉnh Sài Gòn.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[9]</sup>
+        </p>
 
         <figure className="doc-figure doc-figure-right">
           <button
@@ -259,14 +245,8 @@ export default function Trang() {
         </figure>
 
         <p className="doc-para">
-          Ngày <strong>24 tháng 11 năm 1960</strong>, Thánh Giáo hoàng <strong>Gioan XXIII</strong> ban hành Tông hiến <em>«Venerabilium Nostrorum»</em>, chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam. Địa phận Tây Đàng Trong — lúc này mang tên Sài Gòn — được nâng lên hàng Tổng Giáo phận, và cùng văn kiện ấy, ngày <strong>27 tháng 11</strong>, Tòa Thánh ban hành Sắc chỉ <em>«Quod Venerabiles Fratres»</em>: <strong>bốn tỉnh Định Tường, Long An, Kiến Tường và Kiến Phong</strong> được tách ra để lập thành <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>), thuộc Giáo tỉnh Sài Gòn.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[9]</sup>
-        </p>
-
-        <p className="doc-para">
           Cùng lúc đó, ngôi thánh đường do Cha <strong>Lucien Régnier</strong> — mà giáo dân quen gọi thân thương là <em>Cha Gẫm</em> — khởi công ngày 11/8/1906 và hoàn thành năm 1910, được nâng lên thành <strong>Nhà thờ Chính Tòa</strong>, mang tước hiệu <strong>Đức Mẹ Vô Nhiễm Nguyên Tội</strong>. Kiến trúc Hy Lạp–Rôma Phục Hưng, cao 24 m, dài 53 m, rộng 17 m — ngôi thánh đường từng phải hạ thấp chiều cao so với thiết kế ban đầu vì nền đất sình lầy — nay trở thành <em>nhà thờ mẹ</em> của cả một giáo phận.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[10]</sup> Vị Giám mục Tiên khởi được bổ nhiệm là <strong>Đức Cha Giuse Trần Văn Thiện</strong>.
         </p>
-
-        <PhanCach label="1960 – Nay · Các đời Giám mục" />
 
         <p className="doc-para">
           Từ ngày khai sinh đến nay, Giáo phận Mỹ Tho đã trải qua <strong>5 đời Giám mục</strong>, mỗi vị để lại dấu ấn riêng trên vùng đất này. <em>Nhấp vào từng vị để xem toàn văn tiểu sử, chức vụ và công trình.</em>
@@ -305,14 +285,13 @@ export default function Trang() {
                 </div>
                 <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-subtle)', lineHeight: 1.5, textAlign: 'justify' }}>{b.shortDesc}</p>
                 <div style={{ marginTop: '7px', display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.74rem', fontWeight: 800, color: 'var(--color-red)' }}>
-                  <Eye size={12} /><span>Xem toàn văn tiểu sử & quá trình phục vụ ➔</span>
+                  <Eye size={12} /><span>Xem toàn văn tiểu sử &amp; quá trình phục vụ ➔</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Ảnh tư liệu */}
         <div className="tntt-gallery" style={{ marginBottom: '8px' }}>
           {[
             {
@@ -345,11 +324,9 @@ export default function Trang() {
             </figure>
           ))}
         </div>
-        <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 6px', lineHeight: 1.6 }}>
+        <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'var(--color-subtle)', margin: '0 0 28px', lineHeight: 1.6 }}>
           Ảnh tư liệu do Giáo xứ Chánh Tòa Mỹ Tho cung cấp. Chú thích niên đại theo ghi chú gốc trên ảnh.
         </p>
-
-        <PhanCach label="Giáo phận hôm nay" />
 
         <p className="doc-para">
           Sau hơn sáu mươi năm phát triển, Giáo phận Mỹ Tho hôm nay là một cộng đồng đức tin trưởng thành và sống động. Địa giới bao gồm tỉnh <strong>Tiền Giang</strong>, tỉnh <strong>Long An</strong> và khoảng <strong>2/3 tỉnh Đồng Tháp</strong> (phần phía bắc sông Tiền), tổng diện tích hơn <strong>9.262 km²</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[11]</sup> Đức Giám mục Chính tòa hiện nay là <strong>Đức Cha Phêrô Nguyễn Văn Khảm</strong> (sinh 02/10/1952), được Đức Thánh Cha Phanxicô bổ nhiệm ngày 26/7/2014. Tiến sĩ Thần học Mục vụ tại Đại học Công giáo Hoa Kỳ (2001–2004), ngài còn là Tổng Thư ký Hội đồng Giám mục Việt Nam (2016–2022) và Viện trưởng Học viện Công giáo Việt Nam (từ 2024).<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[12]</sup>
@@ -359,7 +336,6 @@ export default function Trang() {
           Ngày <strong>26/6/2026</strong>, Giáo phận long trọng cử hành Thánh lễ tạ ơn cung hiến Thánh đường mới tại <strong>Trung tâm Hành hương Ba Giồng</strong> — hoàn thành sau hơn ba mươi năm chuẩn bị. Ba Giồng được Đức Cha Phaolô Bùi Văn Đọc chọn làm Trung tâm Hành hương của Giáo phận từ ngày 21/11/2004, nay trở thành địa điểm hành hương trọng điểm của cả Giáo tỉnh Sài Gòn. Nơi đây, những ngôi mộ cổ từ thế kỷ XVII và di cốt của các vị tử đạo Ba Giồng vẫn được bảo tồn — sợi chỉ đỏ nối liền quá khứ đức tin với hiện tại sứ vụ của một Giáo phận đang lớn lên từng ngày.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[13]</sup>
         </p>
 
-        {/* ── TÀI LIỆU THAM KHẢO ── */}
         <div style={{
           marginTop: '32px', paddingTop: '16px',
           borderTop: '1px solid var(--color-border-subtle)',

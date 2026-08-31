@@ -67,14 +67,91 @@ export default function Trang() {
             thay vì bảo vệ thánh địa vật chất, Phong trào bảo vệ và tô điểm đền thờ thiêng liêng là tâm hồn các em, với
             vũ khí là <strong>Cầu Nguyện, Rước Lễ, Hy Sinh và Làm Tông Đồ</strong>.
           </p>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 14px' }}>
-            Phong trào bắt nguồn từ Hội Tông Đồ Cầu Nguyện bên Pháp, do hai linh mục Léonard Cros và Henri Ramière khởi
-            xướng năm <strong>1865</strong>; vào Việt Nam nhờ hai cha Léon Paliard và Paul Urureau. Năm <strong>1929</strong>
-            mang tên <em>Nghĩa Binh Thánh Thể</em>; năm <strong>1965</strong> đổi thành <em>Thiếu Nhi Thánh Thể Việt Nam</em>
-            và đưa phương pháp sinh hoạt trẻ vào như một phương cách giáo dục mới; năm <strong>1971</strong> hoàn thiện
-            tài liệu huấn luyện; năm <strong>1975</strong> ngưng mọi hoạt động; năm <strong>2003</strong> tái lập cho phù
-            hợp hoàn cảnh mới. Danh xưng và phương pháp thay đổi, nhưng bản chất thì không: Thiếu Nhi Thánh Thể vẫn là
-            trường giáo dục thiếu nhi về đức tin và hướng dẫn các em làm tông đồ.
+          <div style={{ display: 'grid', gap: '12px', margin: '0 0 16px' }}>
+            {[
+              {
+                time: '1865 – 1929',
+                title: 'Từ Hội Tông Đồ Cầu Nguyện đến Nghĩa Binh Thánh Thể',
+                body: (
+                  <>
+                    Phong trào bắt nguồn từ Hội Tông Đồ Cầu Nguyện bên Pháp, do hai linh mục Léonard Cros và Henri
+                    Ramière khởi xướng năm <strong>1865</strong>. Khi vào Việt Nam nhờ hai cha Léon Paliard và Paul Urureau,
+                    tinh thần Thánh Thể ấy dần tìm được hình thức sinh hoạt phù hợp với thiếu nhi. Đến năm{' '}
+                    <strong>1929</strong>, Phong trào mang tên <em>Nghĩa Binh Thánh Thể</em>.
+                  </>
+                )
+              },
+              {
+                time: '1965 – 2003',
+                title: 'Thiếu Nhi Thánh Thể Việt Nam và giai đoạn tái lập',
+                body: (
+                  <>
+                    Năm <strong>1965</strong>, Phong trào đổi thành <em>Thiếu Nhi Thánh Thể Việt Nam</em> và đưa phương
+                    pháp sinh hoạt trẻ vào như một phương cách giáo dục mới. Năm <strong>1971</strong>, tài liệu huấn luyện
+                    được hoàn thiện; năm <strong>1975</strong>, Phong trào ngưng mọi hoạt động; đến năm <strong>2003</strong>
+                    được tái lập cho phù hợp hoàn cảnh mới. Danh xưng và phương pháp thay đổi, nhưng bản chất vẫn là giáo
+                    dục thiếu nhi về đức tin và hướng dẫn các em làm tông đồ.
+                  </>
+                )
+              },
+              {
+                time: '2011 – 2015',
+                title: 'Phong trào bén rễ tại Giáo phận Mỹ Tho',
+                body: (
+                  <>
+                    Theo bài “Quá trình hình thành và phát triển của TNTT GP. Mỹ Tho”, Phong trào Thiếu Nhi Thánh Thể tại
+                    Giáo phận Mỹ Tho bắt đầu hoạt động từ năm <strong>2011</strong>. Cha Tuyên Uý Liên đoàn đầu tiên là cha{' '}
+                    <strong>Phêrô Nguyễn Ngọc Long</strong>, do Đức Giám mục <strong>Phaolô Bùi Văn Đọc</strong> bổ nhiệm.
+                    Khoá huấn luyện Huynh Trưởng đầu tiên diễn ra từ ngày <strong>06/06 đến 10/06/2011</strong> tại Trung tâm
+                    Mục vụ Giáo phận, với khoảng một trăm sa mạc sinh. Giai đoạn đầu, Mỹ Tho được các Huấn Luyện Viên thuộc
+                    Liên đoàn Anrê Phú Yên — Giáo phận Sài Gòn nâng đỡ, rồi dần hình thành Liên đoàn Các Thánh Tử Đạo Việt
+                    Nam — Giáo phận Mỹ Tho.
+                  </>
+                )
+              },
+              {
+                time: '2012 – 2017',
+                title: 'Sa mạc huấn luyện và sự hiệp thông với Xứ Đoàn Chánh Tòa',
+                body: (
+                  <>
+                    Liên đoàn Mỹ Tho lớn lên qua các sa mạc huấn luyện: <strong>Vươn Lên 2</strong> năm 2012,{' '}
+                    <strong>Vươn Lên 3</strong> năm 2013, <strong>Lên Đường 1</strong> năm 2014, rồi khoá huấn luyện Trợ Uý
+                    đầu tiên cho quý dì Mến Thánh Giá Tân An năm 2015. Đến năm 2017, sa mạc <strong>Vươn Lên 4</strong> quy
+                    tụ hơn 310 sa mạc sinh; Ban Chấp Hành mới của Liên đoàn ra mắt, và trưởng{' '}
+                    <strong>Phêrô Lê Tấn Phải</strong> của Xứ Đoàn Chánh Tòa được bầu làm Chủ tịch Liên đoàn nhiệm kỳ 2017 –
+                    2020. Từ đây có thể thấy sự hiệp thông rõ rệt: Xứ Đoàn Chánh Tòa vừa đón nhận đường hướng từ Liên đoàn,
+                    vừa đóng góp nhân sự cho đời sống Phong trào của toàn Giáo phận Mỹ Tho.
+                  </>
+                )
+              }
+            ].map((moc) => (
+              <div
+                key={moc.time}
+                style={{
+                  padding: '12px 14px',
+                  borderRadius: '12px',
+                  border: '1px solid var(--color-border-subtle)',
+                  backgroundColor: 'rgba(153, 27, 27, 0.035)',
+                  display: 'grid',
+                  gridTemplateColumns: '110px minmax(0, 1fr)',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ color: 'var(--color-red)', fontWeight: 800, fontSize: '0.82rem' }}>{moc.time}</div>
+                <div>
+                  <h4 style={{ margin: '0 0 5px', fontSize: '0.94rem', color: 'var(--color-dark)', fontWeight: 800 }}>
+                    {moc.title}
+                  </h4>
+                  <p style={{ fontSize: '0.9rem', lineHeight: 1.7, textAlign: 'justify', margin: 0, color: 'var(--color-subtle)' }}>
+                    {moc.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: '0.86rem', lineHeight: 1.65, textAlign: 'justify', margin: '0 0 14px', color: 'var(--color-subtle)', fontStyle: 'italic' }}>
+            Nguồn đối chiếu: bài “Quá trình hình thành và phát triển của TNTT GP. Mỹ Tho — Liên đoàn Các Thánh Tử Đạo Việt
+            Nam”, tnttgioitremytho.com.
           </p>
 
           <p style={{ fontSize: '0.95rem', lineHeight: 1.75, textAlign: 'justify', margin: '0 0 8px' }}>
@@ -404,8 +481,20 @@ export default function Trang() {
               Khoảng 2013 – 2019 — hợp nhất với Ban Giáo Lý
             </h4>
             <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
-              Sau một thời gian Xứ Đoàn và Ban Giáo Lý hoạt động song song rồi phối hợp qua lại, giáo xứ quyết định kiện
-              toàn một Ban Điều Hành chung:
+              Sau một thời gian Xứ Đoàn và Ban Giáo Lý hoạt động song song rồi phối hợp qua lại, giáo xứ bước vào một giai
+              đoạn kiện toàn quan trọng: tìm cách đặt sinh hoạt Thiếu Nhi Thánh Thể và chương trình giáo lý thiếu nhi dưới
+              một nhịp điều hành chung. Đây là một chọn lựa có ý nghĩa, vì đời sống Xứ Đoàn không chỉ nằm ở sinh hoạt vòng
+              tròn, trò chơi, chuyên môn hay nghi thức khăn quàng, mà còn gắn chặt với việc giáo dục đức tin thường xuyên
+              cho các em. Khi hai mảng này được nối lại, Huynh Trưởng và Giáo Lý Viên có cơ hội cùng nhìn về một mục tiêu:
+              đào luyện thiếu nhi trở thành Kitô hữu trưởng thành, biết sống đạo, biết tham dự phụng vụ và biết phục vụ
+              trong tinh thần Phong trào.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 10px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Từ hướng đi đó, giáo xứ quyết định kiện toàn một Ban Điều Hành chung. Ban này vừa mang trách nhiệm tổ chức
+              sinh hoạt Xứ Đoàn, vừa giữ vai trò nối kết với chương trình giáo lý, giúp các ngành và các lớp học không còn
+              đứng tách rời nhau như hai hệ thống riêng biệt. Trong ký ức của nhiều huynh trưởng, đây là thời kỳ Xứ Đoàn có
+              đường hướng rõ hơn, có người đại diện trong sinh hoạt đối nội, đối ngoại, và có khả năng phối hợp với cấp
+              Liên đoàn trong các khoá huấn luyện, sinh hoạt giáo phận và những chương trình chung của Phong trào:
             </p>
             <div style={{ overflowX: 'auto', marginBottom: '10px' }}>
               <table className="pastor-timeline-table">
@@ -495,16 +584,45 @@ export default function Trang() {
               <strong>2020 – 2025</strong> và <strong>2025 – 2030</strong>. Như vậy nhiệm kỳ 2013 – 2019 của Xứ Đoàn
               Chánh Tòa đã góp cho Liên đoàn cấp giáo phận <strong>hai người</strong>: một Chủ tịch và một Thư ký.
             </p>
+            <p style={{ fontSize: '0.88rem', lineHeight: 1.7, margin: '0 0 20px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Tuy nhiên, sự hợp nhất giữa Xứ Đoàn và Ban Giáo Lý đã không đi trọn đến hồi kết. Khi Ban Điều Hành từ nhiệm,
+              cơ chế phối hợp chung mất đi điểm tựa; rồi bước ngoặt đại dịch <strong>Covid-19</strong> làm sinh hoạt giáo xứ,
+              lớp học giáo lý và sinh hoạt thiếu nhi bị gián đoạn trong một thời gian dài. Từ đó, tiến trình hợp nhất dần
+              chững lại, không kịp hoàn thiện thành một mô hình bền vững. Giai đoạn 2013 – 2019 vì thế vừa là một dấu son
+              của nỗ lực nối kết, vừa để lại một bài học: muốn Xứ Đoàn và chương trình giáo lý đi chung lâu dài thì cần
+              một cơ cấu điều hành ổn định, có người kế thừa và có lộ trình giáo dục đức tin được ghi nhận rõ ràng.
+            </p>
 
             {/* ---- Giai đoạn 3 ---- */}
             <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-dark)', margin: '0 0 6px' }}>
               2020 – 2024 — những năm vắng bóng Ban Điều Hành
             </h4>
             <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 20px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
-              Suốt năm năm, Xứ Đoàn không có Ban Điều Hành chính thức. Công việc được chia đôi: trưởng{' '}
+              Suốt năm năm, Xứ Đoàn không có Ban Điều Hành chính thức. Đây là một khoảng lặng dài trong lịch sử điều hành
+              của Xứ Đoàn sau ngày tái lập: sinh hoạt vẫn còn, các lớp vẫn học, các em vẫn đến nhà thờ, nhưng thiếu một cơ
+              cấu đứng giữa để nối kết, định hướng và chịu trách nhiệm chung. Công việc được chia đôi: trưởng{' '}
               <strong>Matthêu Lê Hoàng Thiên Phúc</strong> được giao trông coi sinh hoạt Thiếu Nhi Thánh Thể, còn thầy{' '}
-              <strong>Augustinô Võ Tấn Hoàng Việt</strong> phụ trách Giáo Lý Viên. Hai bên chưa thống nhất được cách thức
-              hoạt động, nên nhiều việc phải xử lý theo từng vụ thay vì theo một đường lối chung.
+              <strong>Augustinô Võ Tấn Hoàng Việt</strong> phụ trách Giáo Lý Viên. Vì chưa có một Ban Điều Hành được nhìn nhận
+              như đầu mối chung, hai phần việc này nhiều lúc vận hành song song hơn là cùng đi trong một đường lối thống
+              nhất. Những việc lẽ ra cần được bàn bạc, phân công và ghi nhận theo hệ thống thì thường phải xử lý theo từng
+              vụ, tuỳ hoàn cảnh, tuỳ người phụ trách và tuỳ nhu cầu trước mắt.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 20px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Dấu vết rõ nhất của giai đoạn này nằm ở chương trình giáo lý. Sách giáo lý và cách tổ chức chương trình học
+              bắt đầu có sự thay đổi; mỗi ngành dần hình thành một chương trình riêng, phù hợp hơn với độ tuổi, khả năng
+              tiếp nhận và nhịp sinh hoạt của từng nhóm. Việc phân ngành như thế tự nó không phải là điều xấu, vì giáo dục
+              đức tin cho thiếu nhi cần biết tôn trọng từng lứa tuổi. Nhưng khi thiếu một Ban Điều Hành chung để điều phối,
+              thiếu một người hoặc một nhóm có trách nhiệm ráp nối các chương trình ấy thành một lộ trình xuyên suốt, sự
+              phân tách ban đầu dần trở thành khoảng cách. Mỗi ngành có thể lo tốt phần của mình, nhưng toàn thể giáo xứ lại
+              chưa có một bộ giáo lý chung để bảo đảm các em đi từ ngành này sang ngành khác mà vẫn được đào luyện trong một
+              mạch thống nhất.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 20px', color: 'var(--color-subtle)', textAlign: 'justify' }}>
+              Hệ quả ấy kéo dài đến hôm nay và trở thành một bài học lớn cho Xứ Đoàn: sinh hoạt có thể duy trì bằng thiện
+              chí của từng người, nhưng giáo dục đức tin cần một chương trình chung, có định hướng, có người chịu trách
+              nhiệm và có sự liên tục giữa các thế hệ. Những năm 2020 – 2024 vì thế không chỉ là thời kỳ vắng bóng Ban Điều
+              Hành, mà còn là giai đoạn cho thấy rõ nhu cầu phải tái lập lại cơ cấu điều hành, thống nhất lại lộ trình đào
+              luyện thiếu nhi và xây dựng một nền giáo lý chung cho toàn giáo xứ.
             </p>
 
             {/* ---- Giai đoạn 4 ---- */}
@@ -522,6 +640,29 @@ Tháng 6 năm 2025 — Ban Điều Hành trở lại theo thỉnh nguyện của
               tỏ nguyện vọng, <strong>vào tháng 6 năm 2025</strong>, cha Tuyên Uý <strong>Phêrô Nguyễn Ngọc</strong> chính
               thức bổ nhiệm Ban Điều Hành mới với nhiệm kỳ hai năm theo Nội Quy. Sau sáu năm kể từ ngày ban cũ từ nhiệm
               năm 2019, Xứ Đoàn lại có một guồng máy đầy đủ năm chức vụ:
+            </p>
+            <p className="doc-para">
+              Trong thời kỳ này, Xứ Đoàn từng bước đi đến tình liên đới rộng hơn giữa các xứ đoàn với nhau, lớn lên mạnh
+              mẽ qua nhiều chương trình chung. Các trưởng thuộc Ban Điều Hành được đưa đi huấn luyện tại Liên đoàn Giáo
+              phận và Tổng Liên đoàn thuộc Tổng Giáo phận Sài Gòn, nhằm chuẩn bị nhân sự cho công cuộc xây dựng lại Xứ
+              Đoàn sau hai mươi năm tái lập và phát triển.
+            </p>
+            <p className="doc-para">
+              Cùng với việc củng cố nhân sự, các trưởng phân công và xây dựng lại hệ thống phục vụ của Xứ Đoàn qua các
+              ban chuyên trách: <strong>Ban Truyền thông - Kỹ thuật</strong> do trưởng{' '}
+              <strong>Giuse Mai Hồng Phúc</strong> làm trưởng ban; <strong>Ban Môi trường</strong> do trưởng{' '}
+              <strong>Maria Đoàn Nguyễn Phương Anh</strong> làm trưởng ban; <strong>Ban Y tế</strong> do trưởng{' '}
+              <strong>Maria Đào Ngọc Nhã Trân</strong> làm trưởng ban; <strong>Ban Phụng vụ</strong> và{' '}
+              <strong>Ban Trực</strong> do trưởng <strong>Têrêsa Trần Ngọc Tú Trân</strong> làm trưởng ban. Những phân nhiệm này
+              nhằm giúp sinh hoạt được tổ chức rõ ràng hơn, từng bước tái xây dựng nề nếp điều hành theo tinh thần Nội Quy
+              của Phong trào Thiếu Nhi Thánh Thể.
+            </p>
+            <p className="doc-para">
+              Đến dịp <strong>Trung Thu năm 2025</strong>, các trưởng cùng cha Tuyên Uý tổ chức hội chợ Trung Thu với sự
+              góp mặt của các giáo xứ <strong>Nữ Vương Hoà Bình</strong>, <strong>Antôn</strong>, <strong>Bình Tạo</strong>,{' '}
+              <strong>Giuse Lao Công</strong> và nhiều giáo xứ khách mời khác. Buổi Trung Thu diễn ra tốt đẹp và được ghi
+              nhận như một trong những chương trình thành công nổi bật nhất trong hai mươi năm hình thành, tái lập và phát
+              triển của Xứ Đoàn.
             </p>
             <div style={{ overflowX: 'auto', marginBottom: '10px' }}>
               <table className="pastor-timeline-table">
@@ -562,6 +703,20 @@ Tháng 6 năm 2025 — Ban Điều Hành trở lại theo thỉnh nguyện của
                 </tbody>
               </table>
             </div>
+
+            <p className="doc-para">
+              Trong phần định hướng sinh hoạt cuối năm <strong>2025</strong>, trưởng{' '}
+              <strong>Matthêu Lê Hoàng Thiên Phúc</strong> và trưởng <strong>Phêrô Lê Gia Huy</strong> đã đưa ý kiến và
+              thúc đẩy việc đưa <strong>chương trình ngành Hiệp Sĩ</strong> cùng <strong>khăn Hiệp Sĩ</strong> vào sinh hoạt
+              chính thức của Xứ Đoàn. Đây là bước chuẩn bị để hệ thống ngành được đầy đủ hơn, giúp các em lớn có môi
+              trường tiếp tục đào luyện và phục vụ trong tinh thần Thiếu Nhi Thánh Thể.
+            </p>
+            <p className="doc-para">
+              Cũng trong hướng chuẩn bị nhân sự lâu dài, trưởng <strong>Matthêu Lê Hoàng Thiên Phúc</strong>, trưởng{' '}
+              <strong>Phêrô Lê Gia Huy</strong> và trưởng <strong>Phêrô Nguyễn Phúc Khang</strong> cùng tham gia xây dựng{' '}
+              <strong>chương trình đào tạo Huynh Trưởng Xứ Đoàn</strong>, nhằm tạo một lộ trình nội bộ rõ ràng hơn cho
+              Dự Trưởng, Trợ Tá và các anh chị đang phục vụ các ngành.
+            </p>
 
             <p className="doc-para" style={{ fontSize: '0.88rem', color: 'var(--color-subtle)' }}>
               Một ghi chú để người sau đối chiếu. Nguyện vọng tái lập đến từ Huynh Trưởng đoàn, đúng tinh thần Nội Quy;

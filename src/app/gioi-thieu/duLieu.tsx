@@ -61,6 +61,7 @@ export function PortraitFrame({
   width: number;
   height: number;
 }) {
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const frameStyle: React.CSSProperties = {
     width: `${width}px`,
     height: `${height}px`,
@@ -73,7 +74,7 @@ export function PortraitFrame({
     boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
   };
 
-  if (src) {
+  if (src && failedSrc !== src) {
     return (
       <div style={frameStyle}>
         <Image
@@ -82,6 +83,7 @@ export function PortraitFrame({
           fill
           sizes={`${width}px`}
           style={{ objectFit: 'cover', objectPosition: 'top center' }}
+          onError={() => setFailedSrc(src)}
         />
       </div>
     );
@@ -2037,13 +2039,19 @@ export const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
     source:
       'Ảnh do giáo xứ cung cấp. Tiểu sử theo danh sách Linh mục đương nhiệm Giáo phận Mỹ Tho 11.2024 và bài "Gx. An Thái Trung: Thánh lễ Tạ ơn và nhận sở mới của cha Phêrô Nguyễn Thành Danh", giaophanmytho.net, 31/08/2023',
     shortDesc:
-      'Cha Tuyên Uý thứ tư của Xứ Đoàn, đồng hành gần ba năm trong giai đoạn Xứ Đoàn mở rộng số đoàn sinh và củng cố đội ngũ Huynh Trưởng. Từ năm 2023 ngài là cha sở Giáo xứ An Thái Trung, Giáo hạt Cái Bè.',
+      'Cha Tuyên Uý thứ tư của Xứ Đoàn, đồng hành gần ba năm trong giai đoạn Xứ Đoàn mở rộng số đoàn sinh và củng cố đội ngũ Huynh Trưởng. Từ năm 2019 đến 2023, ngài là cha nhiệm sở Nhà thờ Đông Hoà và giám quản Giáo họ Vĩnh Kim; từ năm 2023 ngài là cha sở Giáo xứ An Thái Trung, Giáo hạt Cái Bè.',
     chronology: [
       { time: '2013', title: 'Thụ phong linh mục', content: 'Chịu chức linh mục thuộc Giáo phận Mỹ Tho.' },
       {
         time: 'Cuối 2016 – 2019',
         title: 'Cha Tuyên Uý Xứ Đoàn',
         content: 'Linh hướng Xứ Đoàn Các Thánh Tử Đạo Việt Nam tại Giáo xứ Chánh Tòa Mỹ Tho.'
+      },
+      {
+        time: '2019 – 2023',
+        title: 'Cha nhiệm sở Nhà thờ Đông Hoà và giám quản Giáo họ Vĩnh Kim',
+        content:
+          'Sau nhiệm kỳ tuyên uý tại Xứ Đoàn Chánh Tòa, ngài phục vụ với trách nhiệm cha nhiệm sở Nhà thờ Đông Hoà, đồng thời giám quản Giáo họ Vĩnh Kim.'
       },
       {
         time: '31/08/2023',
@@ -2058,7 +2066,9 @@ export const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
           'Giáo xứ do các thừa sai Dòng Chúa Cứu Thế (Cái Nhum) khai mở, công cuộc truyền giáo bắt đầu trong hai năm 1958 – 1959 tại vùng phía tây Mỹ Tho.'
       }
     ],
-    milestones: []
+    milestones: [
+      'Cha nhiệm sở Nhà thờ Đông Hoà và giám quản Giáo họ Vĩnh Kim giai đoạn 2019 – 2023.'
+    ]
   },
   {
     id: 'tuyen-uy-phan-van-dai',
@@ -2709,6 +2719,7 @@ export const BDH_BIOS: DetailedBioRecord[] = [
   },
   {
     id: 'bdh-le-hoang-thien-phuc',
+    image: '/images/bdh_le_hoang_thien_phuc.jpg',
     name: 'Matthêu Lê Hoàng Thiên Phúc',
     saintName: 'Thánh Matthêu',
     role: 'Trông coi sinh hoạt TNTT (2020 – 2024) • Xứ Đoàn Trưởng (từ tháng 6/2025)',
@@ -2739,6 +2750,18 @@ export const BDH_BIOS: DetailedBioRecord[] = [
         content: 'Được tín nhiệm bầu làm Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam – Giáo phận Mỹ Tho, nhiệm kỳ 2025 – 2030.'
       },
       {
+        time: 'Cuối năm 2025',
+        title: 'Thúc đẩy chương trình ngành Hiệp Sĩ tại Xứ Đoàn',
+        content:
+          'Cùng trưởng Phêrô Lê Gia Huy đưa ý kiến và thúc đẩy việc đưa chương trình ngành Hiệp Sĩ cùng khăn Hiệp Sĩ vào sinh hoạt chính thức của Xứ Đoàn, giúp hệ thống ngành được đầy đủ hơn và tạo môi trường tiếp tục đào luyện cho các em lớn.'
+      },
+      {
+        time: 'Cuối năm 2025',
+        title: 'Xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn',
+        content:
+          'Cùng trưởng Phêrô Lê Gia Huy và trưởng Batôlômêô Nguyễn Phúc Khang tham gia xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn, nhằm hình thành một lộ trình nội bộ rõ ràng hơn cho Dự Trưởng, Trợ Tá và các anh chị đang phục vụ các ngành.'
+      },
+      {
         time: '12/12/2025',
         title: 'Ban Điều Hành ngưng nhiệm vụ',
         content:
@@ -2748,11 +2771,14 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     milestones: [
       'Giữ sinh hoạt Thiếu Nhi Thánh Thể qua năm năm Xứ Đoàn không có Ban Điều Hành.',
       'Xứ Đoàn Trưởng của Ban Điều Hành tái lập tháng 6/2025.',
-      'Uỷ viên ban Phụng vụ Liên đoàn cấp Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030).'
+      'Uỷ viên ban Phụng vụ Liên đoàn cấp Giáo phận Mỹ Tho (nhiệm kỳ 2025 – 2030).',
+      'Cùng trưởng Phêrô Lê Gia Huy thúc đẩy đưa chương trình ngành Hiệp Sĩ và khăn Hiệp Sĩ vào sinh hoạt chính thức của Xứ Đoàn cuối năm 2025.',
+      'Cùng trưởng Phêrô Lê Gia Huy và trưởng Batôlômêô Nguyễn Phúc Khang xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn.'
     ]
   },
   {
     id: 'bdh-le-dang-thu-thao',
+    image: '/images/bdh_le_dang_thu_thao.jpg',
     name: 'Maria Lê Đặng Thu Thảo',
     saintName: 'Đức Maria',
     role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó nội vụ (từ tháng 6/2025)',
@@ -2778,6 +2804,8 @@ export const BDH_BIOS: DetailedBioRecord[] = [
   },
   {
     id: 'bdh-le-gia-huy',
+    image: '/images/bdh_le_gia_huy.jpg',
+    // Ảnh lật ngang để cùng hướng nhìn với các chân dung khác trong Ban Điều Hành.
     name: 'Phêrô Lê Gia Huy',
     saintName: 'Thánh Phêrô Tông Đồ',
     role: 'Hỗ trợ Xứ Đoàn (2020 – 2024) • Xứ Đoàn Phó ngoại vụ (từ tháng 6/2025)',
@@ -2798,14 +2826,29 @@ export const BDH_BIOS: DetailedBioRecord[] = [
         time: 'Tháng 6/2025',
         title: 'Xứ Đoàn Phó ngoại vụ',
         content: 'Được cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm tháng 6/2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn. Quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch tổ chức các chương trình lớn trong Xứ Đoàn.'
+      },
+      {
+        time: 'Cuối năm 2025',
+        title: 'Thúc đẩy chương trình ngành Hiệp Sĩ tại Xứ Đoàn',
+        content:
+          'Cùng trưởng Matthêu Lê Hoàng Thiên Phúc đưa ý kiến và thúc đẩy việc đưa chương trình ngành Hiệp Sĩ cùng khăn Hiệp Sĩ vào sinh hoạt chính thức của Xứ Đoàn, giúp hệ thống ngành được đầy đủ hơn và tạo môi trường tiếp tục đào luyện cho các em lớn.'
+      },
+      {
+        time: 'Cuối năm 2025',
+        title: 'Xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn',
+        content:
+          'Cùng trưởng Matthêu Lê Hoàng Thiên Phúc và trưởng Batôlômêô Nguyễn Phúc Khang tham gia xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn, nhằm hình thành một lộ trình nội bộ rõ ràng hơn cho Dự Trưởng, Trợ Tá và các anh chị đang phục vụ các ngành.'
       }
     ],
     milestones: [
-      'Hỗ trợ duy trì sinh hoạt Xứ Đoàn trong giai đoạn 2020 – 2024.'
+      'Hỗ trợ duy trì sinh hoạt Xứ Đoàn trong giai đoạn 2020 – 2024.',
+      'Cùng trưởng Matthêu Lê Hoàng Thiên Phúc thúc đẩy đưa chương trình ngành Hiệp Sĩ và khăn Hiệp Sĩ vào sinh hoạt chính thức của Xứ Đoàn cuối năm 2025.',
+      'Cùng trưởng Matthêu Lê Hoàng Thiên Phúc và trưởng Batôlômêô Nguyễn Phúc Khang xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn.'
     ]
   },
   {
     id: 'bdh-nguyen-phuc-khang',
+    image: '/images/bdh_nguyen_phuc_khang.jpg',
     name: 'Batôlômêô Nguyễn Phúc Khang',
     saintName: 'Thánh Batôlômêô',
     role: 'Thư Ký Đoàn (từ tháng 6/2025)',
@@ -2819,15 +2862,25 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     chronology: [
       { time: 'Tháng 6/2025', title: 'Thư Ký Đoàn', content: 'Được đề cử và được cha Tuyên Uý chấp thuận tháng 6/2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn.' },
       {
+        time: 'Cuối năm 2025',
+        title: 'Xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn',
+        content:
+          'Cùng trưởng Matthêu Lê Hoàng Thiên Phúc và trưởng Phêrô Lê Gia Huy tham gia xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn, nhằm hình thành một lộ trình nội bộ rõ ràng hơn cho Dự Trưởng, Trợ Tá và các anh chị đang phục vụ các ngành.'
+      },
+      {
         time: '2026 – nay',
         title: 'Cộng tác Giáo lý lớp Vào Đời 1',
         content: 'Hiện đang cộng tác tại Giáo xứ Giuse Gò Vấp, hướng dẫn và đồng hành giáo lý lớp Vào Đời 1 do Xứ Đoàn tổ chức.'
       }
     ],
-    milestones: []
+    milestones: [
+      'Thư Ký Đoàn của Ban Điều Hành tái lập tháng 6/2025.',
+      'Cùng trưởng Matthêu Lê Hoàng Thiên Phúc và trưởng Phêrô Lê Gia Huy xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn.'
+    ]
   },
   {
     id: 'bdh-tran-thao-my',
+    image: '/images/bdh_tran_thao_my.jpg',
     name: 'Maria Trần Thảo My',
     saintName: 'Đức Maria',
     role: 'Thủ Quỹ Đoàn (từ tháng 6/2025)',

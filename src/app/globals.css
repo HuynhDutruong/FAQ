@@ -2357,3 +2357,37 @@ body {
   }
   .doc-para { text-align: left; }
 }
+
+/* Cột ảnh trong bảng niên biểu cha sở */
+.pastor-photo-cell { width: 72px; }
+
+.pastor-photo-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  line-height: 0;
+}
+
+.pastor-photo-btn:hover { opacity: 0.85; }
+.pastor-photo-btn:focus-visible { outline: 2px solid var(--color-red); outline-offset: 2px; }
+
+/* Hàng chưa có tư liệu: chừa chỗ trống bằng đúng khung ảnh cho bảng khỏi so le */
+.pastor-photo-empty {
+  display: block;
+  width: 56px;
+  height: 72px;
+  border: 1px dashed var(--color-border-subtle);
+  border-radius: 6px;
+}
+
+/* Trên mobile bảng xếp thành thẻ: ảnh nổi bên trái, chữ chảy quanh */
+@media (max-width: 640px) {
+  .pastor-timeline-table td.pastor-photo-cell {
+    float: left;
+    width: auto;
+    margin: 0 10px 6px 0;
+  }
+  .pastor-timeline-table tbody tr { overflow: hidden; }
+}
