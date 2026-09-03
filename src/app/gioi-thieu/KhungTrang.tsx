@@ -43,7 +43,7 @@ export default function KhungTrang({
   return (
     <div style={{ backgroundColor: 'var(--background)', color: 'var(--color-dark)', minHeight: '100vh', paddingBottom: '80px' }}>
       {/* Đường dẫn phân cấp */}
-      <div style={{ borderBottom: '1px solid var(--color-border-subtle)', backgroundColor: 'var(--color-card-bg)', padding: '12px 20px' }}>
+      <div className="history-breadcrumb" style={{ borderBottom: '1px solid var(--color-border-subtle)', backgroundColor: 'var(--color-card-bg)', padding: '12px 20px' }}>
         <div
           style={{
             maxWidth: '1220px', margin: '0 auto', display: 'flex', alignItems: 'center',
@@ -73,6 +73,7 @@ export default function KhungTrang({
 
       {/* Dải chuyển nhanh giữa bốn chương */}
       <nav
+        className="history-chapter-nav"
         aria-label="Bốn chương của bản nghiên cứu"
         style={{ borderBottom: '1px solid var(--color-border-subtle)', backgroundColor: 'var(--background)' }}
       >
@@ -126,6 +127,7 @@ export default function KhungTrang({
             </div>
           )}
           <h1
+            className="history-title"
             style={{
               fontSize: '2.1rem', fontWeight: 800, fontFamily: 'serif', margin: '0 0 8px',
               color: 'var(--color-dark)', borderBottom: '1.5px solid var(--color-border-subtle)',

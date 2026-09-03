@@ -46,6 +46,1187 @@ import { useChanhToaMassTimes } from '@/lib/useChanhToaMassTimes';
 import PopesContinuousMarquee from '@/components/PopesContinuousMarquee';
 
 /**
+ * Từ điển lịch sử dùng chung cho bộ trang khảo cứu. Mỗi mục là một chú giải
+ * bấm-để-mở cho một cái tên, một địa danh, một tông sắc hay một ông vua xuất
+ * hiện trong chính văn — kèm ảnh tư liệu cổ nhất tìm được và danh mục nguồn.
+ *
+ * Quy ước ghi nguồn: `source` là nguồn gốc chính (một dòng, hiện ngay dưới bài);
+ * `refs` là danh mục đối chiếu đầy đủ, gồm cả sử liệu Việt và văn khố quốc tế.
+ */
+export interface TuDienRecord {
+  id: string;
+  type: 'Vua' | 'Triều đại' | 'Địa danh' | 'Nhân vật' | 'Sự kiện' | 'Tông sắc';
+  name: string;
+  /** Tên gốc trong văn khố: Hán–Nôm, Latinh hoặc tiếng Âu châu. */
+  altName?: string;
+  period?: string;
+  description: string;
+  /** Trích một câu nguyên văn từ chính văn kiện hoặc chính sử. */
+  quote?: string;
+  quoteSource?: string;
+  /**
+   * Nhãn minh bạch về sử liệu, hiện ngay đầu cửa sổ để người đọc biết mình
+   * đang đọc thứ gì: một sự kiện có văn khố đối chiếu, một truyền thống được
+   * đồng thuận nhưng chưa kiểm chứng, hay một điểm giới sử học còn cãi nhau.
+   */
+  doTinCay?: 'Có văn khố' | 'Truyền thống' | 'Đang tranh luận';
+  /** Các mục nội dung chi tiết, mỗi mục một tiêu đề riêng. */
+  sections?: { title: string; body: string }[];
+  /**
+   * Phần bắt buộc phải có với mọi nhân vật và biến cố nhạy cảm: điều ít được
+   * kể, chỗ sử liệu mâu thuẫn, hoặc mặt tối mà các trang đạo thường bỏ qua.
+   */
+  gocKhuat?: { title: string; body: string }[];
+  image?: string;
+  imageCaption?: string;
+  gallery?: { src: string; caption: string }[];
+  source?: string;
+  refs?: string[];
+}
+
+export const TU_DIEN: Record<string, TuDienRecord> = {
+
+  /* ─────────────── TÔNG SẮC · TÔNG HIẾN · HUẤN THỊ ─────────────── */
+
+  'inscrutabili-1622': {
+    id: 'inscrutabili-1622',
+    doTinCay: 'Có văn khố',
+    type: 'Tông sắc',
+    name: 'Tông sắc Inscrutabili Divinae Providentiae',
+    altName: 'Inscrutabili Divinae Providentiae Arcano — Đức Grêgôriô XV, 22/06/1622',
+    period: 'Ban hành ngày 22 tháng 6 năm 1622',
+    description: 'Văn kiện khai sinh Thánh Bộ Truyền Bá Đức Tin (Sacra Congregatio de Propaganda Fide). Ngày 06/01/1622, Đức Grêgôriô XV triệu tập mười ba Hồng y và hai Giám chức để công bố ý định lập một cơ quan thường trực lo việc truyền giáo; ngày 22/6 cùng năm, tông sắc chính thức được ban hành. Ý nghĩa của nó với Việt Nam là quyết định: từ đây quyền điều hành các xứ truyền giáo được rút dần khỏi tay hai vương triều Bồ Đào Nha và Tây Ban Nha (chế độ bảo trợ) để về thẳng Toà Thánh. Chính Bộ này về sau lập hai Hạt Đại diện Tông toà Việt Nam năm 1659, và chính nhà in của Bộ ở Rôma in cuốn Từ điển Việt–Bồ–La năm 1651. Đây cũng là văn bản đầu tiên dùng chữ "propaganda" theo nghĩa hiện đại.',
+    image: '/images/tudien_sl_inscrutabili_1622.jpg',
+    imageCaption: 'Chính văn tông sắc, in trong Bullarium Romanum (bản Taurinensis), tập XII, tr. 690, mục LX: «Erectio Congregationis de Propaganda Fide — Gregorius Papa XV, servus servorum Dei, ad perpetuam rei memoriam — Inscrutabili divinae providentiae arcano…». Bản số hoá: archive.org, phạm vi công cộng.',
+    source: 'Bullarium Romanum, t. XII; Acta S.C. de Propaganda Fide',
+    refs: [
+      'Grêgôriô XV, Tông sắc "Inscrutabili Divinae Providentiae Arcano", Rôma, 22/06/1622 — Bullarium Romanum, tập XII, tr. 690–693.',
+      'Catholic Encyclopedia (1913), mục "Sacred Congregation of Propaganda", newadvent.org/cathen/12456a.htm.',
+      'Congregatio pro Gentium Evangelizatione, "Profilo storico", vatican.va.',
+      'IRFA (Viện Nghiên cứu Pháp–Á), "400 ans de la Propagation de la Foi", irfa.paris, 2022.'
+    ]
+  },
+
+  'apostolatus-officium-1658': {
+    id: 'apostolatus-officium-1658',
+    doTinCay: 'Có văn khố',
+    type: 'Tông sắc',
+    name: 'Tông chiếu Apostolatus Officium',
+    altName: 'Apostolatus Officium — Đức Alexanđê VII, 17/08/1658',
+    period: 'Bổ nhiệm 29/07/1658 — Tông chiếu 17/08/1658',
+    description: 'Bước thứ nhất của quyết định 1659. Ngày 29/07/1658, Đức Alexanđê VII bổ nhiệm hai linh mục Pháp làm Giám mục hiệu toà: cha François Pallu làm Giám mục hiệu toà Héliopolis và cha Pierre Lambert de la Motte làm Giám mục hiệu toà Béryte. Tông chiếu ngày 17/08/1658 trao cho hai vị trách nhiệm các xứ truyền giáo Trung Hoa và các nước lân cận, kèm quyền chọn thêm một vị Đại diện Tông toà thứ ba — vị ấy là cha Ignace Cotolendi. Đây là lần đầu tiên Toà Thánh bổ nhiệm Giám mục cho vùng Viễn Đông mà không qua sự đề cử của vua Bồ Đào Nha, và là hệ quả trực tiếp của những năm cha Đắc Lộ vận động tại Rôma và Paris.',
+    source: 'Catholic Encyclopedia (1913); Văn khố MEP/IRFA',
+    refs: [
+      'Ảnh tư liệu: chưa tìm được bản số hoá công khai của chính tông chiếu 1658; các bộ sưu tập Bullarium Romanum (Taurinensis) và Collectanea S.C.P.F. đều không in văn bản này.',
+      'Catholic Encyclopedia (1913), mục "Society of Foreign Missions of Paris": "By a Brief of 17 August 1658, Alexander VII nominated François Pallu and Pierre de la Motte Lambert…".',
+      'IRFA, hồ sơ thừa sai số 0012 — PALLU François, irfa.paris.',
+      'A. Launay, Histoire générale de la Société des Missions Étrangères, Paris, 1894, t. I.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục năm 1658.'
+    ]
+  },
+
+  'super-cathedram-1659': {
+    id: 'super-cathedram-1659',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Một quyết định châm ngòi cho ba mươi năm nội chiến trong lòng Giáo hội', body: 'Lập Đại diện Tông toà người Pháp cho Đàng Trong và Đàng Ngoài nghĩa là Toà Thánh lấy lại quyền mà vương triều Bồ Đào Nha vẫn giữ theo chế độ bảo trợ. Lisbon và Macao không chấp nhận. Các Giám mục MEP bị cản đường, bị từ chối công nhận, có lúc bị đe doạ vạ tuyệt thông từ phía đối lập; ngược lại các ngài cũng dùng vũ khí giáo luật với những ai không tuân phục. Nhiều thừa sai Dòng Tên Bồ Đào Nha ở Đàng Trong từ chối trình diện với Đức cha Lambert de la Motte. Cuộc giằng co ấy kéo dài tới cuối thế kỷ XVII, và người thiệt trước tiên là giáo dân Việt Nam, những người có lúc bị chính hai phe giáo sĩ yêu cầu chọn bên.' },
+      { title: 'Bản thân tông sắc chưa tìm được ảnh chụp công khai', body: 'Trang này đã đối chiếu Bullarium Romanum bản Taurinensis, Bullarium Pontificium S.C. de Propaganda Fide và bộ Iuris Pontificii de Propaganda Fide của de Martinis mà không bộ nào in nguyên văn tông sắc 1659. Nội dung phân định lãnh thổ của nó chỉ còn đọc lại được qua một đoản sắc năm 1669 của Đức Clêmentê IX in trong Collectanea S.C.P.F., t. I, tr. 61. Nói cách khác: văn kiện khai sinh Giáo hội Việt Nam về mặt hành chính hiện chưa có bản số hoá công khai nào để người đọc tự kiểm chứng.' },
+      { title: 'Ranh giới vẽ trên giấy, không vẽ trên đất', body: 'Tông sắc trao cho Đức cha Pallu cả Lào và năm tỉnh nam Trung Hoa, cho Đức cha Lambert de la Motte cả năm tỉnh đông nam Trung Hoa và đảo Hải Nam. Trên thực tế không vị nào cai quản nổi những vùng ấy, và phần lớn thời gian các ngài còn không vào được chính Đàng Trong hay Đàng Ngoài, phải trú tại Ayutthaya bên Xiêm. Bản đồ trong văn kiện Rôma và bản đồ thực tế là hai thứ rất khác nhau.' },
+    ],
+    type: 'Tông sắc',
+    name: 'Tông sắc Super Cathedram Principis Apostolorum',
+    altName: 'Super Cathedram Principis Apostolorum — Đức Alexanđê VII, 09/09/1659',
+    period: 'Ban hành ngày 9 tháng 9 năm 1659',
+    description: 'Giấy khai sinh hành chính của Giáo hội Việt Nam. Tông sắc thiết lập và phân định ranh giới hai Hạt Đại diện Tông toà đầu tiên trên đất Việt: Đàng Ngoài — trao cho Đức cha François Pallu, gồm cả Lào và năm tỉnh nam Trung Hoa (Vân Nam, Quý Châu, Hồ Quảng, Tứ Xuyên, Quảng Tây); và Đàng Trong — trao cho Đức cha Pierre Lambert de la Motte, gồm cả năm tỉnh đông nam Trung Hoa (Chiết Giang, Phúc Kiến, Quảng Đông, Giang Tây, Hải Nam). Từ một cánh đồng truyền giáo vô danh dưới quyền bảo trợ Bồ Đào Nha, Việt Nam lần đầu có địa chỉ riêng trong Giáo hội hoàn vũ, trực thuộc thẳng Toà Thánh. Chuỗi phân chia bắt đầu từ đây: Đàng Ngoài tách đôi năm 1679, Đàng Trong tách đôi năm 1844 — và nhánh Tây Đàng Trong chính là tổ phụ của Giáo phận Mỹ Tho hôm nay.',
+    quote: '"Super cathedram principis apostolorum, inscrutabili divinae Providentiae arcano, collocati…"',
+    quoteSource: 'Câu mở đầu tông sắc — cố ý nhắc lại chính câu mở đầu tông sắc lập Bộ Truyền Bá Đức Tin năm 1622.',
+    source: 'Bullarium Romanum; Hội đồng Giám mục Việt Nam',
+    refs: [
+      'Ảnh tư liệu: chưa tìm được bản số hoá công khai của chính tông sắc 1659. Đã đối chiếu Bullarium Romanum (Taurinensis) t. XVI, Bullarium Pontificium S.C. de Propaganda Fide và Iuris Pontificii de Propaganda Fide — không bộ nào in nguyên văn. Phần phân định lãnh thổ của tông sắc được nhắc lại nguyên văn trong đoản sắc năm 1669 của Đức Clêmentê IX, Collectanea S.C.P.F., t. I, tr. 61.',
+      'Alexanđê VII, "Super Cathedram Principis Apostolorum", 09/09/1659 — toàn văn Latinh tại papalencyclicals.net và documentacatholicaomnia.eu.',
+      'Lưu ý niên đại: các nguồn Việt Nam và MEP thống nhất ghi 09/09/1659; vài bản Latinh in lại đề 08/09 hoặc 09/10/1659. Bài này dùng mốc 09/09/1659 theo Hội đồng Giám mục Việt Nam.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, cbcvietnam.org, mục 1659.',
+      'IRFA, "Présence des Missions Étrangères de Paris au Vietnam, 1664–1975", irfa.paris.'
+    ]
+  },
+
+  'instructio-1659': {
+    id: 'instructio-1659',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Bản văn tiến bộ nhất của thế kỷ, và điều đã xảy ra sau đó', body: 'Huấn thị 1659 cấm áp đặt phong tục Âu châu và buộc đào tạo giáo sĩ bản quốc — nguyên tắc mà mãi tới Công Đồng Vatican II mới được Giáo hội phổ quát nói lại rõ ràng như thế. Nhưng chỉ hơn năm mươi năm sau, chính Rôma ban hành Ex Illa Die (1715) rồi Ex Quo Singulari (1742) cấm tiệt việc tế tổ tiên — làm ngược lại đúng tinh thần huấn thị của mình. Bản văn hay nhất và bản văn tai hại nhất cho Á Đông đều mang cùng một con dấu.' },
+      { title: 'Việc đào tạo linh mục bản quốc cũng đi rất chậm so với lời hứa', body: 'Bốn linh mục Việt Nam đầu tiên chịu chức năm 1668, chín năm sau huấn thị — nhanh. Nhưng phải đợi tới năm 1933, tức 274 năm sau, Việt Nam mới có vị Giám mục người Việt đầu tiên là Đức cha Gioan Baotixita Nguyễn Bá Tòng; và tới năm 1960 mới có Hàng Giáo phẩm riêng. Nguyên tắc được viết năm 1659; việc thực hiện đầy đủ mất ba thế kỷ.' },
+    ],
+    type: 'Tông sắc',
+    name: 'Huấn thị 1659 của Bộ Truyền Bá Đức Tin',
+    altName: 'Instructio S.C. de Propaganda Fide ad Vicarios Apostolicos, 1659',
+    period: 'Năm 1659',
+    description: 'Bản văn được giới sử học gọi là "Đại Hiến chương" của công cuộc truyền giáo cận đại, trao tận tay ba vị Đại diện Tông toà trước khi lên đường. Huấn thị cấm các thừa sai áp đặt phong tục Âu châu lên dân bản xứ, trừ khi phong tục địa phương trái rõ ràng với đức tin và luân lý; và đặt lên hàng đầu nhiệm vụ đào tạo hàng giáo sĩ bản quốc. Với Việt Nam, đây không phải lý thuyết suông: chín năm sau huấn thị, bốn linh mục Việt Nam đầu tiên được truyền chức (1668), và mười một năm sau, Dòng Mến Thánh Giá — dòng nữ bản địa tiên khởi — được lập (1670).',
+    quote: '«Nullum studium ponite, nullaque ratione suadete illis populis ut ritus suos, consuetudines et mores mutent, modo non sint apertissime Religioni et bonis moribus contraria. Quid enim absurdius quam Galliam, Hispaniam, aut Italiam, aut aliam Europae partem in Sinas invehere?» — Đừng bận tâm, đừng vì bất cứ lẽ gì mà thuyết phục các dân ấy đổi lễ nghi, tập tục và phong hoá của họ, miễn là những điều đó không trái rõ ràng với Đạo và với luân lý. Còn gì vô lý hơn là mang cả nước Pháp, nước Tây Ban Nha hay một miền nào khác của Âu châu sang đất Trung Hoa?',
+    quoteSource: 'Nguyên văn Huấn thị 1659 — Collectanea S.C. de Propaganda Fide, Rôma 1907, t. I, số 135, tr. 42.',
+    image: '/images/tudien_sl_instructio_1659.jpg',
+    imageCaption: 'Chính văn huấn thị: Collectanea S. Congregationis de Propaganda Fide, Rôma 1907, tập I, trang 42, mục 135 — «Instr. S. C. de Propag. Fide 1659 (Ad Vicarios App. Societatis Mission. ad Exteros)». Câu «Quid enim absurdius quam Galliam, Hispaniam, aut Italiam, aut aliam Europae partem in Sinas invehere?» nằm ở cuối cột trái. Bản số hoá: archive.org, phạm vi công cộng.',
+    source: 'Collectanea S.C. de Propaganda Fide, t. I, n. 135',
+    refs: [
+      'Sacra Congregatio de Propaganda Fide, "Instructio ad Vicarios Apostolicos in regna Sinarum proficiscentes", 1659 — Collectanea S.C.P.F., Rôma, 1907, t. I, số 135.',
+      'H. Chappoulie, Aux origines d’une Église: Rome et les missions d’Indochine au XVIIe siècle, Paris, 1943.',
+      'G. Criveller, "A Century of Incoherent Missionary Policy: Propaganda Fide and China", Journal of the Centre for Catholic Studies, CUHK, số 14 (2023), tr. 189–199.',
+      'F. Pallu & P. Lambert de la Motte, Monita ad Missionarios, Paris, 1665 — bản triển khai huấn thị này cho các thừa sai tại chỗ.'
+    ]
+  },
+
+  'ex-illa-die-1715': {
+    id: 'ex-illa-die-1715',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Một cuộc tranh luận trăm năm, quyết định trong mười lăm phút của người không ở đó', body: 'Cuộc tranh luận về lễ nghi phương Đông kéo dài từ cuối thế kỷ XVI, giữa một bên là các thừa sai Dòng Tên sống lâu năm tại chỗ, chủ trương hội nhập văn hoá, và bên kia là các dòng tu tới sau cùng các cơ quan ở Rôma. Phần thắng cuối cùng thuộc về phía chưa từng sống ở Á Đông. Chính vì thế mà khi Rôma đảo ngược năm 1939, nhiều nhà nghiên cứu coi đó là một sự thừa nhận muộn màng rằng phía Dòng Tên đã đúng.' },
+    ],
+    type: 'Tông sắc',
+    name: 'Tông hiến Ex Illa Die',
+    altName: 'Ex Illa Die — Đức Clêmentê XI, 19/03/1715',
+    period: 'Ban hành ngày 19 tháng 3 năm 1715',
+    description: 'Văn kiện dứt điểm cuộc tranh luận về "lễ nghi phương Đông": cấm người Công giáo Trung Hoa và Việt Nam cử hành các nghi lễ tế Khổng Tử và tế tổ tiên, buộc mọi thừa sai phải tuyên thệ tuân giữ. Hệ quả tại Việt Nam kéo dài hơn hai thế kỷ và rất nặng nề: khi người có đạo không được thắp hương bái lạy tổ tiên, các quan lại Nho học có ngay lập luận trung tâm để gọi đạo Công giáo là "tả đạo" — thứ đạo dạy người ta bất hiếu, "vô quân vô phụ". Gần như mọi dụ cấm đạo của các chúa Nguyễn và của triều Nguyễn về sau đều lấy lý do ấy làm đầu.',
+    image: '/images/tudien_sl_ex_quo_singulari_1742.jpg',
+    imageCaption: 'Trang bìa ấn bản Rôma – Firenze năm 1742: «Confirmatio et innovatio Constitutionis incipientis: Ex illa die, a Clemente Papa XI, in causa rituum seu ceremoniarum Sinensium editae» — văn bản chính thức xác nhận và tái ban hành hiến chế 1715, kèm công thức tuyên thệ mới buộc các thừa sai. Đây là ấn bản đương thời còn lưu được của hiến chế Ex Illa Die; chưa có bản số hoá công khai của chính ấn bản 1715. Nguồn: Wikimedia Commons, CC0.',
+    source: 'Bullarium Romanum; Collectanea S.C. de Propaganda Fide',
+    refs: [
+      'Clêmentê XI, Tông hiến "Ex Illa Die", 19/03/1715.',
+      'Bênêđictô XIV, Tông hiến "Ex Quo Singulari", 11/07/1742 — xác nhận dứt khoát lệnh cấm.',
+      'Bộ Truyền Bá Đức Tin, Huấn thị "Plane Compertum Est", 08/12/1939 — nới lỏng lệnh cấm sau 224 năm.',
+      'G. Minamiki, The Chinese Rites Controversy from Its Beginning to Modern Times, Loyola University Press, 1985.'
+    ]
+  },
+
+  'ex-quo-singulari-1742': {
+    id: 'ex-quo-singulari-1742',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Một quyết định ở Rôma làm nặng thêm cuộc bách hại ở Việt Nam', body: 'Khi Toà Thánh cấm người có đạo tế tổ tiên, các quan lại Nho học có ngay lập luận trung tâm và dễ hiểu nhất với dân chúng: đạo này dạy người ta bỏ ông bà, tức là bất hiếu, tức là «vô quân vô phụ». Không phải ngẫu nhiên mà gần như mọi dụ cấm đạo của chúa Nguyễn và triều Nguyễn đều mở đầu bằng đúng lý lẽ đó. Người ra quyết định ở Rôma không phải người trả giá; người trả giá là các gia đình Việt Nam bị chính họ hàng làng xóm coi là kẻ chối bỏ tổ tiên.' },
+      { title: 'Gần hai thế kỷ sau, chính Rôma đảo ngược quyết định của mình', body: 'Ngày 08/12/1939, Bộ Truyền Bá Đức Tin ban Huấn thị «Plane Compertum Est» dưới triều Đức Piô XII, nhìn nhận việc kính nhớ tổ tiên mang ý nghĩa văn hoá và tôn kính chứ không phải thờ cúng ngẫu tượng, và cho phép người Công giáo Á Đông thực hành. Nghĩa là lệnh cấm từng góp phần định hình hai thế kỷ bách hại đã được chính cơ quan ban hành nó rút lại sau 197 năm. Tại Việt Nam, Hội đồng Giám mục về sau còn ra thông cáo hướng dẫn cụ thể việc kính nhớ tổ tiên trong gia đình Công giáo.' },
+      { title: 'Người bị buộc tuyên thệ là các thừa sai, người bị hỏi cung là giáo dân', body: 'Hiến chế 1742 kèm một công thức tuyên thệ buộc mọi thừa sai đi Viễn Đông phải đọc. Nhưng thừa sai chỉ phải giữ lời thề trước bề trên; còn giáo dân Việt Nam phải giữ nó trước bàn thờ tổ tiên nhà mình, trước lý trưởng và trước quan phủ. Khoảng cách giữa hai vị trí ấy là chỗ mà lịch sử truyền giáo hay bỏ trống.' },
+    ],
+    type: 'Tông sắc',
+    name: 'Tông hiến Ex Quo Singulari',
+    altName: 'Ex Quo Singulari — Đức Bênêđictô XIV, 11/07/1742',
+    period: 'Ban hành ngày 11 tháng 7 năm 1742',
+    description: 'Bản án cuối cùng của cuộc tranh luận lễ nghi. Đức Bênêđictô XIV huỷ mọi châm chước từng được ban, tái xác nhận lệnh cấm của tông hiến Ex Illa Die (1715) và buộc mọi thừa sai đi Viễn Đông phải tuyên thệ theo một công thức thống nhất. Lệnh cấm ấy đứng vững đúng 197 năm, cho tới Huấn thị Plane Compertum Est ngày 08/12/1939 mới được nới. Riêng tại Đàng Trong, chỉ tám năm sau tông hiến này, chúa Võ Vương Nguyễn Phúc Khoát ra lệnh trục xuất toàn bộ thừa sai (1750).',
+    image: '/images/tudien_sl_ex_quo_singulari_1742.jpg',
+    imageCaption: 'Trang bìa chính bản in Rôma – Firenze năm 1742 của hiến chế, tại nhà in Ioannis Baptistae Bruscagli & Sociorum: «Confirmatio et innovatio Constitutionis incipientis: Ex illa die, a Clemente Papa XI… necnon revocatio, rescissio, abolitio, cassatio, annullatio ac damnatio permissionum super iisdem ritibus… cum praescriptione novae formulae iuramenti per missionarios illarum partium praestandi». Nguồn: Wikimedia Commons, CC0.',
+    source: 'Bullarium Benedicti XIV, t. I',
+    refs: [
+      'Bênêđictô XIV, Tông hiến "Ex Quo Singulari", 11/07/1742 — Bullarium Benedicti XIV, Rôma, t. I.',
+      'Lê Quý Đôn, Phủ biên tạp lục, 1776 — ghi chép về lệnh trục xuất thừa sai của Võ Vương năm 1750.',
+      'G. Minamiki, The Chinese Rites Controversy, Loyola University Press, 1985, ch. 5.'
+    ]
+  },
+
+  'chia-dang-trong-1844': {
+    id: 'chia-dang-trong-1844',
+    doTinCay: 'Có văn khố',
+    type: 'Tông sắc',
+    name: 'Sắc lệnh chia Hạt Đại diện Tông toà Đàng Trong (1844)',
+    altName: 'Đức Grêgôriô XVI, tháng 3 năm 1844',
+    period: 'Tháng 3 năm 1844',
+    description: 'Sau 185 năm là một khối duy nhất, Hạt Đại diện Tông toà Đàng Trong được Đức Grêgôriô XVI chia làm hai: Đông Đàng Trong — từ Bình Thuận trở ra, toà đặt tại Quy Nhơn, giao Đức cha Étienne-Théodore Cuénot (Cố Thể); và Tây Đàng Trong — toàn bộ Nam Kỳ lục tỉnh cùng Cao Miên, giao Đức cha Dominique Lefèbvre. Chính nhánh Tây Đàng Trong này về sau đổi tên thành Địa phận Sài Gòn (1924), rồi năm 1960 tách bốn tỉnh Định Tường, Long An, Kiến Tường, Kiến Phong để lập Giáo phận Mỹ Tho. Quyết định 1844 vì thế là nhịp nối trực tiếp giữa tông sắc 1659 và ngôi nhà thờ Chánh toà bên sông Tiền.',
+    source: 'Acta Gregorii XVI; Catholic-Hierarchy; Văn khố MEP/IRFA',
+    refs: [
+      'Ảnh tư liệu: chưa tìm được bản số hoá công khai của chính sắc lệnh tháng 3/1844.',
+      'Ngày tháng chính xác có hai dị bản trong tài liệu: 02/03/1844 và 11/03/1844. Bài này ghi "tháng 3/1844".',
+      'A. Launay, Histoire de la Mission de Cochinchine 1658–1823, Paris, 1923–1925, 3 tập.',
+      'IRFA, hồ sơ thừa sai số 0418 — LEFEBVRE Dominique, irfa.paris.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục năm 1844.'
+    ]
+  },
+
+  'venerabilium-nostrorum-1960': {
+    id: 'venerabilium-nostrorum-1960',
+    doTinCay: 'Có văn khố',
+    type: 'Tông sắc',
+    name: 'Tông hiến Venerabilium Nostrorum',
+    altName: 'Venerabilium Nostrorum — Thánh Gioan XXIII, 24/11/1960',
+    period: 'Ban hành ngày 24 tháng 11 năm 1960',
+    description: 'Văn kiện chấm dứt quy chế "xứ truyền giáo" kéo dài 301 năm và thiết lập Hàng Giáo phẩm Công giáo Việt Nam. Ba Giáo tỉnh được lập: Hà Nội, Huế và Sài Gòn; các Hạt Đại diện Tông toà được nâng thành Giáo phận chính toà do Giám mục chính toà cai quản, thay vì Giám mục hiệu toà đại diện Đức Giáo hoàng. Cùng dịp này, ba giáo phận mới ra đời: Đà Lạt, Mỹ Tho và Long Xuyên. Tông hiến được công bố tại Việt Nam ngày 08/12/1960 và đăng trên công báo Toà Thánh Acta Apostolicae Sedis, tập 53 (1961), tr. 346–350.',
+    quote: '«VI — VIETNAMENSIS. In Vietnamensi regione Hierarchia Episcopalis constituitur.»',
+    quoteSource: 'Tiêu đề chính thức của văn kiện trong Acta Apostolicae Sedis 53 (1961), tr. 346.',
+    image: '/images/tudien_sl_venerabilium_1960.jpg',
+    imageCaption: 'Chính văn Tông hiến trên công báo Toà Thánh: Acta Apostolicae Sedis, tập 53 (1961), trang 346 — «VI. VIETNAMENSIS. In Vietnamensi regione Hierarchia Episcopalis constituitur. IOANNES EPISCOPUS, SERVUS SERVORUM DEI, AD PERPETUAM REI MEMORIAM. Venerabilium Nostrorum S. R. E. Fratrum Cardinalium Sacro Fidei Propagandae Consilio praepositorum sententiam probantes…». Nguồn: vatican.va.',
+    source: 'Acta Apostolicae Sedis 53 (1961), tr. 346–350',
+    refs: [
+      'Gioan XXIII, Tông hiến "Venerabilium Nostrorum", 24/11/1960 — AAS 53 (1961), tr. 346–350.',
+      'Bản dịch Việt ngữ: Tổng Giáo phận Sài Gòn, tgpsaigon.net; Giáo phận Đà Lạt, giaophandalat.com; báo Công giáo và Dân tộc.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, cbcvietnam.org, mục 24/11/1960.'
+    ]
+  },
+
+  'quod-venerabiles-fratres-1960': {
+    id: 'quod-venerabiles-fratres-1960',
+    doTinCay: 'Có văn khố',
+    type: 'Tông sắc',
+    name: 'Sắc chỉ Quod Venerabiles Fratres',
+    altName: 'Quod Venerabiles Fratres — Thánh Gioan XXIII, 27/11/1960',
+    period: 'Ký tại Rôma ngày 27 tháng 11 năm 1960',
+    description: 'Sắc chỉ khai sinh Giáo phận Mỹ Tho — Dioecesis Mythoënsis. Ba ngày sau Tông hiến Venerabilium Nostrorum, Toà Thánh tách bốn tỉnh Định Tường, Long An, Kiến Tường và Kiến Phong khỏi Tổng Giáo phận Sài Gòn để lập giáo phận mới, thuộc Giáo tỉnh Sài Gòn, cùng lúc với Giáo phận Đà Lạt tách từ Kontum. Nhà thờ do cha Lucien Régnier (Cha Gẫm) khởi công năm 1906 được nâng lên hàng Nhà thờ Chánh toà, tước hiệu Đức Mẹ Vô Nhiễm Nguyên Tội. Giám mục tiên khởi: Đức cha Giuse Trần Văn Thiện.',
+    quote: '"Diviso territorio archidioecesium Saigonensis et Kontumensis, novae conduntur dioeceses Mythoënsis et Dalatensis appellandae." — Chia lãnh thổ hai tổng giáo phận Sài Gòn và Kontum, lập các giáo phận mới mang tên Mỹ Tho và Đà Lạt.',
+    quoteSource: 'Acta Apostolicae Sedis, tập 53 (1961), tr. 474.',
+    image: '/images/lichsu_sac_chi_mytho_1960.jpg',
+    imageCaption: 'Trang 474, Acta Apostolicae Sedis, tập 53 (1961) — nguyên văn sắc chỉ khai sinh Giáo phận Mỹ Tho, ký tại Rôma ngày 27/11/1960.',
+    source: 'Acta Apostolicae Sedis 53 (1961), tr. 474',
+    refs: [
+      'Gioan XXIII, Sắc chỉ "Quod Venerabiles Fratres", 27/11/1960 — AAS 53 (1961), tr. 474.',
+      'Giáo phận Mỹ Tho, "60 Năm Thành Lập Hàng Giáo Phẩm Việt Nam, 60 Năm Thành Lập Giáo Phận Mỹ Tho", giaophanmytho.net, 2020.',
+      'Toà Giám mục Mỹ Tho, Kỷ yếu Giáo phận Mỹ Tho.'
+    ]
+  },
+
+  /* ─────────────── VUA · CHÚA · TRIỀU ĐÌNH ─────────────── */
+
+  'le-trang-tong': {
+    id: 'le-trang-tong',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Ông vua chỉ là cái mốc thời gian, không phải nhân vật của câu chuyện', body: 'Lê Trang Tông không hề biết đến sự kiện được chép dưới niên hiệu của mình, và cũng không có quyền lực thực tế: ngài được Nguyễn Kim tôn lên ở đất Ai Lao để làm ngọn cờ chính danh chống nhà Mạc, cả triều đình lúc ấy còn lưu vong ở vùng Thanh Hoá. Việc lấy niên hiệu Nguyên Hoà làm mốc khởi đầu của Giáo hội Việt Nam chỉ là chuyện quy chiếu thời gian của người chép sử ba trăm năm sau.' },
+      { title: 'Chính sử ghi mốc ấy trong ngữ cảnh một lệnh cấm', body: 'Câu văn của Cương Mục không phải một ghi nhận trung tính. Nó nằm trong mạch chép về việc cấm «tả đạo», và dùng chữ «lén lút» cùng «ngấm ngầm truyền tà giáo». Nghĩa là ngay từ dòng chữ đầu tiên nói về sự hiện diện của đạo Công giáo trên đất Việt, giọng của nhà nước đã là giọng cấm đoán.' },
+    ],
+    type: 'Vua',
+    name: 'Vua Lê Trang Tông',
+    altName: 'Lê Duy Ninh 黎維寧 — niên hiệu Nguyên Hoà 元和',
+    period: 'Trị vì: 1533 – 1548',
+    description: 'Vị vua mở đầu thời Lê Trung Hưng, được Nguyễn Kim tôn lên ở đất Ai Lao rồi đưa về Thanh Hoá để dựng lại nhà Lê chống nhà Mạc. Niên hiệu của ngài — Nguyên Hoà — bắt đầu năm 1533, và chính chữ "Nguyên Hoà nguyên niên" ấy là toạ độ thời gian duy nhất cho cột mốc khởi đầu của Giáo hội Công giáo Việt Nam: bộ Khâm Định Việt Sử Thông Giám Cương Mục chép rằng tháng 3 năm Nguyên Hoà nguyên niên, có người Tây Dương tên I-nê-khu lén vào giảng đạo Gia Tô ở Ninh Cường, Quần Anh và Trà Lũ. Cần nói rõ: bản thân Cương Mục dẫn nguồn từ "Dã Lục" — một ghi chép tư nhân nay đã thất truyền — nên 1533 là cột mốc tưởng niệm được đồng thuận, chưa phải sự kiện đã kiểm chứng bằng văn khố.',
+    image: '/images/tudien_nguyen_hoa_thong_bao.png',
+    imageCaption: 'Đồng tiền "Nguyên Hoà thông bảo" 元和通寶 đúc dưới niên hiệu Nguyên Hoà của Lê Trang Tông — hiện vật đương thời gần nhất với mốc năm 1533. Bản đồ hoạ theo sưu tập Toda. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, q. XXXIII, tờ 6b',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, quyển XXXIII, tờ 6b (soạn 1856–1884), bản dịch Viện Sử học.',
+      'Đại Việt sử ký toàn thư, Bản kỷ tục biên — chép việc Nguyễn Kim lập Lê Duy Ninh năm 1533.',
+      'Lm. Võ Đình Đệ, "Thực hư có giáo sĩ I-nê-xu lén truyền giáo ở Đại Việt năm 1533", gpquinhon.org — tổng hợp phản biện.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục năm 1533.'
+    ]
+  },
+
+  'chua-sai': {
+    id: 'chua-sai',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Đón thừa sai vì cần súng, không vì mến đạo', body: 'Năm 1615 Đàng Trong đang đối đầu với họ Trịnh ở phía bắc và rất cần vũ khí, đại bác cùng thợ đúc súng — những thứ chỉ có thể mua từ thuyền buôn Bồ Đào Nha ghé Hội An. Thừa sai đi cùng thuyền buôn, và giữ được thừa sai nghĩa là giữ được mối buôn. Các thư từ đương thời của chính các thừa sai cũng nói rõ họ hiểu vị thế của mình. Đây là nền móng thực tế của cơ sở truyền giáo đầu tiên trên đất Việt: một tính toán quân sự và thương mại.' },
+      { title: 'Và khi tính toán thay đổi thì thái độ cũng thay đổi', body: 'Về cuối triều, trước sức ép của các quan và giới tăng lữ bản địa, cùng những năm mất mùa hạn hán bị quy cho người theo đạo mới, chúa bắt đầu hạn chế việc giảng đạo và có lệnh trục xuất. Cùng một vị chúa, cùng một triều đại: mở cửa khi cần, đóng cửa khi hết cần. Toàn bộ lịch sử truyền giáo ở Đàng Trong thế kỷ XVII vận hành theo nhịp đó.' },
+    ],
+    type: 'Vua',
+    name: 'Chúa Sãi Nguyễn Phúc Nguyên',
+    altName: 'Nguyễn Phúc Nguyên 阮福源 — Chúa Sãi, Chúa Bụt',
+    period: 'Trị vì Đàng Trong: 1613 – 1635',
+    description: 'Chúa Nguyễn thứ hai của Đàng Trong, con Nguyễn Hoàng. Chính dưới thời ngài, ngày 18/01/1615, nhóm tu sĩ Dòng Tên chạy khỏi cuộc bách hại ở Nhật Bản được phép cập bến Cửa Hàn và ở lại — cơ sở truyền giáo thường trú đầu tiên trên đất Việt. Lý do khoan dung phần lớn là thương mại: chúa cần thuyền buôn Bồ Đào Nha ở Hội An để mua vũ khí đối phó họ Trịnh, mà thừa sai đi cùng thuyền buôn. Về cuối triều, trước sức ép của các quan và giới tăng lữ bản địa, chúa bắt đầu hạn chế việc giảng đạo. Ngài cũng là người gả công nữ Ngọc Vạn cho vua Chân Lạp Chey Chettha II năm 1620 — bước mở đầu cho người Việt vào định cư vùng Prey Nokor, tức miền đất sau này có Sài Gòn và Mỹ Tho.',
+    image: '/images/tudien_chua_sai_nguyen_phuc_nguyen.jpg',
+    imageCaption: 'Chân dung thế tử Nguyễn Phúc Nguyên ở Đàng Trong, tranh thế kỷ XVII — hình ảnh đương thời hiếm hoi của vị chúa cho phép Dòng Tên ở lại năm 1615. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Đại Nam thực lục, Tiền biên; Cristoforo Borri, Relatione della nuova missione (1631)',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Tiền biên, quyển II–III, bản dịch Viện Sử học.',
+      'C. Borri, Relatione della nuova missione delli PP. della Compagnia di Giesu al Regno della Cocincina, Rôma, 1631 — tường thuật của một thừa sai có mặt tại Đàng Trong 1618–1622.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục 18/01/1615.',
+      'Lê Quý Đôn, Phủ biên tạp lục, 1776.'
+    ]
+  },
+
+  'trinh-trang': {
+    id: 'trinh-trang',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Đổ vỡ vì chế độ đa thê, không vì thần học', body: 'Chúa Trịnh Tráng ban đầu trọng đãi cha Đắc Lộ vì hiếu kỳ với đồng hồ, sách toán và kiến thức thiên văn. Quan hệ hỏng khi giáo lý một vợ một chồng đụng thẳng vào cấu trúc quyền lực của phủ chúa — nơi hôn nhân là công cụ liên minh giữa các dòng họ. Các bà phi và các quan vận động, và ngày 18/6/1628 chúa ra lệnh cấm người Việt lui tới với thừa sai. Cuộc va chạm đầu tiên giữa đạo Công giáo và xã hội Việt Nam không phải về Thiên Chúa, mà về gia đình.' },
+      { title: 'Ba năm ấy để lại nhiều hơn người ta tưởng', body: 'Cha Đắc Lộ bị trục xuất năm 1630, nhưng cộng đoàn Đàng Ngoài không tan. Tổ chức Thầy Giảng — những giáo dân nam độc thân dấn thân trọn đời, do chính ngài lập ra để thay thế linh mục khi không có linh mục — chính là thứ giữ cho đạo sống qua các lệnh trục xuất về sau. Đây có lẽ là sáng kiến mục vụ quan trọng nhất của giai đoạn này, và ít được nhắc hơn cuốn từ điển rất nhiều.' },
+    ],
+    type: 'Vua',
+    name: 'Chúa Trịnh Tráng',
+    altName: 'Trịnh Tráng 鄭梉 — Thanh Đô Vương',
+    period: 'Chấp chính Đàng Ngoài: 1623 – 1657',
+    description: 'Vị chúa Trịnh đón cha Alexandre de Rhodes vào Đàng Ngoài. Cha Đắc Lộ cập bến Cửa Bạng (Thanh Hoá) ngày 19/03/1627 rồi được đưa ra Kẻ Chợ — Thăng Long; chúa ban đầu trọng đãi vì hiếu kỳ với đồng hồ, sách toán và khả năng thiên văn của thừa sai. Quan hệ đổ vỡ khi giáo lý một vợ một chồng đụng thẳng vào chế độ hậu cung; các quan và các bà phi vận động, và ngày 18/06/1628 chúa ra lệnh cấm người Việt lui tới với thừa sai Âu châu. Cha Đắc Lộ bị trục xuất khỏi Đàng Ngoài năm 1630 — nhưng ba năm ngắn ngủi ấy đã để lại một cộng đoàn có tổ chức và, quan trọng hơn, khối tư liệu ngôn ngữ dẫn tới cuốn từ điển năm 1651.',
+    image: '/images/tudien_chua_trinh_trang.jpg',
+    imageCaption: 'Chúa Trịnh Tráng (1577–1657), Thanh Đô Vương. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Đại Việt sử ký toàn thư; A. de Rhodes, Histoire du Royaume de Tunquin (1651)',
+    refs: [
+      'A. de Rhodes, Histoire du Royaume de Tunquin, Lyon, 1651 — tường thuật của chính người trong cuộc.',
+      'A. de Rhodes, Divers voyages et missions, Paris, 1653.',
+      'Đại Việt sử ký toàn thư, Bản kỷ tục biên, kỷ nhà Lê — Trịnh.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, mục 1627 và 18/06/1628.'
+    ]
+  },
+
+  'nguyen-phuc-lan': {
+    id: 'nguyen-phuc-lan',
+    doTinCay: 'Có văn khố',
+    type: 'Vua',
+    name: 'Chúa Thượng Nguyễn Phúc Lan',
+    altName: 'Nguyễn Phúc Lan 阮福瀾 — Chúa Thượng',
+    period: 'Trị vì Đàng Trong: 1635 – 1648',
+    description: 'Chúa Nguyễn thứ ba. Dưới triều ngài, ngày 26/07/1644, thầy giảng Anrê Phú Yên — mười chín tuổi — bị xử trảm tại Kẻ Chàm (Thanh Chiêm), dinh Quảng Nam, theo lệnh quan trấn thủ mà các tài liệu thừa sai gọi là "Ông Nghè Bộ". Đó là giọt máu đầu tiên của một người Công giáo Việt Nam đổ ra vì đức tin. Cha Alexandre de Rhodes có mặt tại chỗ, đưa thi hài xuống thuyền về Macao an táng và mang thủ cấp về đặt tại nhà Bề trên Cả Dòng Tên ở Rôma; chính tường thuật của ngài là nguồn sử liệu gốc cho biến cố này.',
+    source: 'A. de Rhodes, La glorieuse mort d’André, catéchiste (Paris, 1653)',
+    refs: [
+      'A. de Rhodes, La glorieuse mort d’André, catéchiste de la Cochinchine, Paris, 1653 — tường thuật của nhân chứng trực tiếp.',
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Tiền biên, quyển IV.',
+      'Hồ sơ tuyên phong Chân phước Anrê Phú Yên; Gioan Phaolô II tôn phong Chân phước ngày 05/03/2000.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục 26/07/1644.'
+    ]
+  },
+
+  'nguyen-phuc-chu': {
+    id: 'nguyen-phuc-chu',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Cùng một ông chúa mở đất phương Nam và cấm đạo', body: 'Năm 1698 Quốc Chúa sai Nguyễn Hữu Cảnh kinh lược, lập phủ Gia Định — nền hành chính đầu tiên của chính vùng đất mà Giáo phận Mỹ Tho đứng trên hôm nay. Cũng chính ông chúa ấy ra các lệnh cấm đạo những năm 1700, 1704, 1712, 1724. Nghĩa là cộng đồng Công giáo ở đồng bằng sông Cửu Long tồn tại được là nhờ một cuộc mở cõi do một người đang cấm đạo tiến hành.' },
+    ],
+    type: 'Vua',
+    name: 'Quốc Chúa Nguyễn Phúc Chu',
+    altName: 'Nguyễn Phúc Chu 阮福淍 — hiệu Thiên Túng Đạo Nhân',
+    period: 'Trị vì Đàng Trong: 1691 – 1725',
+    description: 'Chúa Nguyễn thứ sáu, người đầu tiên xưng "Quốc Chúa". Triều ngài là thời mở cõi mạnh nhất về phương Nam: năm 1698 sai Nguyễn Hữu Cảnh kinh lược, lập phủ Gia Định — nền hành chính đầu tiên của cả vùng đất mà Giáo phận Mỹ Tho đứng trên hôm nay. Ngài mộ đạo Phật, tự lấy hiệu Thiên Túng Đạo Nhân và năm 1695 mời hoà thượng Thạch Liêm từ Quảng Đông sang; song song, ngài ra một loạt lệnh cấm đạo Công giáo (các năm 1700, 1704, 1712, 1724), phá nhà thờ, buộc thừa sai tập trung về Hội An chờ trục xuất. Chính trong khoảng cấm cách ấy, năm 1723, cha Francisco José García Dòng Phanxicô vẫn lặng lẽ đến được Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè.',
+    source: 'Đại Nam thực lục, Tiền biên; Lê Quý Đôn, Phủ biên tạp lục',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Tiền biên, quyển VII–VIII, bản dịch Viện Sử học.',
+      'Lê Quý Đôn, Phủ biên tạp lục, 1776.',
+      'A. Launay, Histoire de la Mission de Cochinchine 1658–1823, Paris, 1923, t. I–II — văn khố MEP về các lệnh cấm 1700–1724.',
+      'Thích Đại Sán (Thạch Liêm), Hải ngoại kỷ sự, 1696 — ghi chép của chính vị hoà thượng được chúa mời sang.'
+    ]
+  },
+
+  'nguyen-phuc-khoat': {
+    id: 'nguyen-phuc-khoat',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Hai văn kiện ở hai đầu thế giới gặp nhau trên lưng giáo dân', body: 'Năm 1742 Toà Thánh ban Ex Quo Singulari cấm dứt khoát việc tế tổ tiên. Năm 1750, tức tám năm sau, Võ Vương ra lệnh trục xuất toàn bộ thừa sai khỏi Đàng Trong. Không có bằng chứng nào cho thấy hai việc có quan hệ nhân quả trực tiếp, nhưng chúng cùng vận hành trên một logic: Rôma buộc giáo dân Việt Nam từ bỏ nghi lễ tổ tiên, và triều đình lấy đúng điều đó làm bằng chứng rằng đây là thứ đạo phá hoại luân thường.' },
+    ],
+    type: 'Vua',
+    name: 'Võ Vương Nguyễn Phúc Khoát',
+    altName: 'Nguyễn Phúc Khoát 阮福濶 — Võ Vương',
+    period: 'Trị vì Đàng Trong: 1738 – 1765',
+    description: 'Chúa Nguyễn thứ tám, xưng Vương năm 1744 và định chế lại toàn bộ triều nghi ở Phú Xuân — trong đó có lệnh cải cách y phục thường được coi là cội nguồn của chiếc áo dài. Với Giáo hội, triều ngài là một trong những khúc nặng nhất của thế kỷ XVIII: năm 1750 chúa ra lệnh trục xuất toàn bộ thừa sai ngoại quốc khỏi Đàng Trong, phá huỷ nhà thờ, cấm dân theo đạo; hàng chục linh mục bị tống giam rồi đưa xuống tàu. Chỉ một số ít lén ở lại hoạt động chui. Lệnh này ban ra tám năm sau khi Toà Thánh dứt khoát cấm nghi lễ tế tổ tiên bằng tông hiến Ex Quo Singulari (1742) — hai văn kiện ở hai đầu thế giới, gặp nhau trên lưng người giáo dân Việt.',
+    image: '/images/tudien_vo_vuong_nguyen_phuc_khoat.jpg',
+    imageCaption: 'Chân dung Võ Vương Nguyễn Phúc Khoát (1714–1765). Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Lê Quý Đôn, Phủ biên tạp lục (1776); Đại Nam thực lục, Tiền biên',
+    refs: [
+      'Lê Quý Đôn, Phủ biên tạp lục, 1776, quyển I–II — nguồn đương thời gần nhất về triều Võ Vương.',
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Tiền biên, quyển X.',
+      'A. Launay, Histoire de la Mission de Cochinchine 1658–1823, Paris, 1924, t. II — hồ sơ cuộc trục xuất năm 1750.',
+      'Bênêđictô XIV, Tông hiến "Ex Quo Singulari", 11/07/1742.'
+    ]
+  },
+
+  'gia-long': {
+    id: 'gia-long',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Một vị giám mục và một vương tôn mười lăm tuổi', body: 'Năm 1777 quân Tây Sơn diệt gần hết họ Nguyễn ở Gia Định. Nguyễn Phúc Ánh, khi ấy mười lăm tuổi, chạy về vùng Hà Tiên và được Giám mục Pierre Pigneau de Behaine — người Việt gọi là Bá Đa Lộc — che giấu. Quan hệ bắt đầu từ đó và kéo dài hai mươi hai năm, cho tới khi vị giám mục chết ngoài mặt trận.' },
+      { title: 'Chuyến đi Pháp của hoàng tử Cảnh', body: 'Năm 1783 Nguyễn Ánh trao con trai là hoàng tử Cảnh, khi ấy bốn tuổi, cho Bá Đa Lộc đưa sang Pháp cầu viện, cùng ấn tín làm tin. Đoàn qua Pondichéry rồi tới Versailles; hoàng tử Cảnh trở thành nhân vật gây chú ý ở triều đình Louis XVI. Ngày 28/11/1787, Hiệp ước Versailles được ký.' },
+      { title: 'Triều đại không cấm đạo — nhưng cũng không theo đạo', body: 'Suốt mười tám năm trị vì, Gia Long không ban một dụ cấm đạo nào, cho phép xây sửa nhà thờ và dùng nhiều người Công giáo trong bộ máy. Nhưng chính ngài cũng không bao giờ theo đạo, giữ nguyên khuôn khổ Nho giáo trong luật lệ và điển chế, và cuối đời chọn người kế vị là hoàng tử Đảm — sau này là Minh Mạng — chứ không phải dòng của hoàng tử Cảnh vốn gần với Công giáo.' },
+    ],
+    gocKhuat: [
+      { title: 'Hiệp ước Versailles 1787: tờ giấy người Pháp lấy làm cớ bảy mươi năm sau', body: 'Theo hiệp ước, Pháp cấp tàu chiến và quân để giúp Nguyễn Ánh, đổi lại Pháp được cửa biển Đà Nẵng và quần đảo Côn Lôn cùng quyền tự do buôn bán. Triều đình Pháp rốt cuộc không thi hành: Toàn quyền Pondichéry là Thomas Conway được lệnh tuỳ nghi và đã từ chối. Nhưng văn bản thì vẫn còn đó. Đến giữa thế kỷ XIX, khi Pháp chuẩn bị đánh Việt Nam, chính hiệp ước không bao giờ được thi hành này được đem ra viện dẫn như một cơ sở pháp lý cho yêu sách về Đà Nẵng. Một chữ ký năm 1787 của một giám mục thay mặt một vương tôn lưu vong trở thành lập luận cho tàu chiến năm 1858.' },
+      { title: 'Bá Đa Lộc tự xoay tiền, tự mộ người', body: 'Khi Pháp bỏ rơi hiệp ước, vị giám mục không dừng lại: ngài quyên tiền từ thương nhân Pháp ở Pondichéry và Ile de France, tự mua tàu, tự mua vũ khí và mộ những sĩ quan tình nguyện — trong đó có Jean-Baptiste Chaigneau và Philippe Vannier, những người sau này làm quan trong triều Gia Long. Đây là việc làm cá nhân của một giáo sĩ, không phải chính sách nhà nước Pháp — nhưng chính vì thế mà nó khó gỡ khỏi câu hỏi lớn: một người của Giáo hội đã trực tiếp góp phần quyết định vào một cuộc nội chiến Việt Nam.' },
+      { title: 'Ngài cũng bị chính Rôma khiển trách', body: 'Bá Đa Lộc chủ trương mềm dẻo với việc thờ cúng tổ tiên và có những bất đồng với các quyết định của Toà Thánh về lễ nghi phương Đông. Ngài cũng bị một số bề trên phê phán vì dấn quá sâu vào việc quân sự và chính trị. Đây không phải một vị thánh trong sách; đây là một con người phức tạp, làm những việc mà chính Giáo hội của ngài cũng không hoàn toàn tán thành.' },
+      { title: 'Gia Long biết ơn nhưng vẫn cảnh giác', body: 'Đại Nam thực lục chép việc nhà vua cử quốc tang cho Bá Đa Lộc năm 1799 với nghi thức rất trọng. Nhưng cũng chính nhà vua, khi bàn việc kế vị, đã bỏ qua dòng hoàng tử Cảnh. Sử triều Nguyễn ghi lại lời dặn dò của ngài với người kế vị theo hướng cảnh giác với người phương Tây. Lòng biết ơn cá nhân và tính toán của một ông vua là hai chuyện khác nhau.' },
+    ],
+    type: 'Vua',
+    name: 'Vua Gia Long',
+    altName: 'Nguyễn Phúc Ánh 阮福暎 — niên hiệu Gia Long 嘉隆',
+    period: 'Trị vì: 1802 – 1820',
+    description: 'Hoàng đế sáng lập triều Nguyễn, thống nhất đất nước sau ba mươi năm nội chiến. Quan hệ của ngài với Giáo hội gắn liền với một con người: Giám mục Pierre Pigneau de Behaine — Bá Đa Lộc. Năm 1777, khi Nguyễn Ánh còn là một vương tôn mười lăm tuổi chạy trốn quân Tây Sơn, chính vị giám mục này che giấu ngài ở Hà Tiên. Năm 1787, Bá Đa Lộc đưa hoàng tử Cảnh sang Pháp và ký Hiệp ước Versailles ngày 28/11/1787 — hiệp ước mà triều đình Pháp rốt cuộc không thi hành, nên giám mục tự quyên tiền, mua tàu và mộ những sĩ quan tình nguyện. Bá Đa Lộc mất tại mặt trận Thị Nại ngày 09/10/1799; Nguyễn Ánh cử quốc tang và an táng ngài trọng thể ở Gia Định — khu mộ dân gian gọi là Lăng Cha Cả. Bản thân Gia Long không theo đạo và vẫn giữ nguyên khuôn khổ Nho giáo, nhưng suốt triều ngài không có dụ cấm đạo nào.',
+    image: '/images/tudien_vua_gia_long.jpg',
+    imageCaption: 'Chân dung vua Gia Long (1762–1820). Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Đại Nam thực lục, Chính biên, Đệ nhất kỷ; Văn khố MEP',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ nhất kỷ, bản dịch Viện Sử học.',
+      'Quốc Sử Quán triều Nguyễn, Quốc triều chánh biên toát yếu.',
+      'A. Launay, Histoire de la Mission de Cochinchine 1658–1823, Paris, 1925, t. III — thư từ của chính Đức cha Bá Đa Lộc.',
+      'Hiệp ước Versailles ngày 28/11/1787 — bản gốc lưu tại Archives Nationales, Paris.'
+    ]
+  },
+
+  'minh-mang': {
+    id: 'minh-mang',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Bảy đạo dụ trong hai mươi mốt năm', body: 'Các năm 1825, 1826, 1830, 1833, 1834, 1836 và 1838. Dụ đầu tiên năm 1825 chỉ nhắm việc ngăn thừa sai theo tàu buôn vào nước; tới dụ ngày 06/01/1833 thì thành lệnh cấm toàn quốc: triệt hạ nhà thờ, buộc người có đạo bước qua thập giá. Các dụ 1836 và 1838 siết thêm, đặt giải thưởng bắt đạo trưởng và quy trách nhiệm liên đới cho lý trưởng, hàng xóm.' },
+      { title: 'Quá khoá — phép thử tàn nhẫn nhất', body: '«Quá khoá» nghĩa đen là bước qua. Người bị nghi theo đạo bị dẫn tới một cây thập giá đặt dưới đất và bị buộc bước qua để chứng tỏ đã bỏ đạo. Phép thử này hiệu quả về mặt cai trị vì nó rẻ, nhanh, và biến việc giữ đạo thành một hành vi công khai chống lệnh vua trước mặt cả làng. Rất nhiều hồ sơ tử đạo triều Minh Mạng bắt đầu đúng từ khoảnh khắc một người từ chối bước.' },
+    ],
+    gocKhuat: [
+      { title: 'Vụ Lê Văn Khôi: chỗ mà cả hai bên đều có lý của mình', body: 'Năm 1833, Lê Văn Khôi — con nuôi Tả quân Lê Văn Duyệt — nổi dậy chiếm thành Phiên An, và mục tiêu tuyên bố là lật Minh Mạng để đưa An Hoà, con của hoàng tử Cảnh, lên ngôi. Cả hai cha con đều là người Công giáo. Trong thành có linh mục Joseph Marchand (Cố Du) của Hội Thừa sai Paris. Ngài khai rằng chỉ lo việc đạo, và khi Khôi ép ký thư kêu gọi nổi dậy thì ngài đã đốt hết; nhưng ngài cũng được giao coi một trong sáu thớt voi chiến và đứng đầu khối giáo dân trong thành. Từ chỗ đứng của triều đình, đó là bằng chứng. Từ chỗ đứng của Giáo hội, ngài là con tin. Không có tài liệu nào giải quyết dứt điểm được câu hỏi này.' },
+      { title: 'Sau 1835, cấm đạo thôi không còn là chuyện tôn giáo', body: 'Thành Phiên An bị hạ tháng 9/1835. Cố Du bị bắt, tra tấn bằng kìm nung, và bị xử lăng trì ngày 30/11/1835 với hai tội danh ghi rõ trong bản án: là đạo trưởng, và tiếp tay Lê Văn Khôi. Từ đó trở đi triều Nguyễn không còn coi đạo Công giáo là một tà thuyết cần răn dạy, mà là một lực lượng chính trị có tổ chức, có ngoại viện và có ứng viên ngai vàng. Cách nhìn ấy sống rất dai — nó còn vọng lại trong lập luận của nhà nước Việt Nam khi phản đối lễ phong thánh năm 1988, hơn một thế kỷ rưỡi sau.' },
+      { title: 'Cấm đạo không phải chính sách duy nhất, và không phải điều duy nhất đáng nhớ về ông vua này', body: 'Minh Mạng cũng là người hoàn chỉnh bộ máy hành chính từ Nam chí Bắc, lập tỉnh thay dinh trấn, mở Quốc Tử Giám, chỉnh lý điển lệ, và cho biên soạn nhiều bộ sách lớn. Một trang khảo cứu tử tế không thể rút gọn ngài thành «ông vua giết đạo», cũng như không thể im lặng về việc dưới triều ngài hàng vạn người chết vì đức tin. Cả hai đều là ngài.' },
+    ],
+    type: 'Vua',
+    name: 'Vua Minh Mạng',
+    altName: 'Nguyễn Phúc Đảm 阮福膽 — niên hiệu Minh Mệnh 明命',
+    period: 'Trị vì: 1820 – 1841',
+    description: 'Hoàng đế thứ hai triều Nguyễn, một nhà cai trị Nho học chặt chẽ và là người khởi động cuộc bách hại quy mô quốc gia đầu tiên. Ngài ban bảy dụ liên quan tới đạo Công giáo, vào các năm 1825, 1826, 1830, 1833, 1834, 1836 và 1838. Bước ngoặt là dụ ngày 06/01/1833: lệnh triệt hạ nhà thờ trên toàn quốc và buộc người có đạo phải bước qua thập giá — "quá khoá" — để chứng tỏ đã bỏ đạo. Cuộc nổi loạn Lê Văn Khôi ở thành Phiên An (1833–1835), trong đó thừa sai Joseph Marchand (Cố Du) bị bắt trong thành, khiến triều đình càng tin đạo Công giáo là mối hoạ chính trị: Cố Du bị xử lăng trì ngày 30/11/1835, và các dụ 1836, 1838 siết chặt thêm. Trong số các vị tử đạo triều Minh Mạng có Thánh Anrê Trần An Dũng Lạc, bị trảm quyết tại Hà Nội ngày 21/12/1839.',
+    image: '/images/tudien_vua_minh_mang.png',
+    imageCaption: 'Chân dung vua Minh Mạng (1791–1841) theo bản khắc Âu châu thế kỷ XIX. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Đại Nam thực lục, Chính biên, Đệ nhị kỷ',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ nhị kỷ, bản dịch Viện Sử học — nguyên văn các dụ 1833, 1836, 1838.',
+      'Khâm Định Đại Nam Hội Điển Sự Lệ — phần chép các điều lệ trừng trị "tả đạo".',
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988.',
+      'Giáo hội Công giáo Việt Nam — "Những thời kỳ bị bách hại", vntaiwan.catholic.org.tw, thống kê bảy dụ cấm đạo triều Minh Mạng.'
+    ]
+  },
+
+  'thieu-tri': {
+    id: 'thieu-tri',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Bảy năm tương đối yên, kết thúc vì một loạt đại bác của Pháp', body: 'Thiệu Trị thi hành luật cấm đạo nhẹ tay hơn cha mình và năm 1843 còn tha án tử cho năm thừa sai Pháp đang bị giam khi hạm trưởng Lévêque của chiến hạm Héroïne tới Đà Nẵng đòi người. Chính sự nhân nhượng ấy dẫn tới hậu quả ngược: ngày 15/4/1847, hai chiến hạm Pháp Gloire và Victorieuse của đại tá Lapierre bắn chìm các thuyền chiến Việt ở vịnh Đà Nẵng. Bị làm nhục, nhà vua ban một dụ gay gắt rồi băng hà tháng 11 cùng năm, để lại cho Tự Đức một triều đình đã hết thiện cảm với người Âu. Đây là ví dụ rõ nhất cho thấy sức ép quân sự của phương Tây làm hại người có đạo chứ không cứu họ.' },
+    ],
+    type: 'Vua',
+    name: 'Vua Thiệu Trị',
+    altName: 'Nguyễn Phúc Miên Tông 阮福綿宗 — niên hiệu Thiệu Trị 紹治',
+    period: 'Trị vì: 1841 – 1847',
+    description: 'Hoàng đế thứ ba triều Nguyễn, một quãng lặng ngắn giữa hai cơn bão. Ngài không bãi bỏ luật cấm đạo của vua cha nhưng thi hành nhẹ tay hơn, và năm 1843 đã tha án tử cho năm thừa sai Pháp đang bị giam khi hạm trưởng Lévêque của chiến hạm Héroïne tới Đà Nẵng đòi thả người. Chính sự nhân nhượng ấy lại dẫn tới đổ vỡ: ngày 15/04/1847, hai chiến hạm Pháp Gloire và Victorieuse của đại tá Lapierre nổ súng bắn chìm các thuyền chiến Việt ở vịnh Đà Nẵng. Bị làm nhục, vua ban một dụ cấm đạo gay gắt và treo giải bắt thừa sai; ngài băng hà ngày 04/11/1847, để lại ngôi cho vua Tự Đức và một triều đình đã mất hết thiện cảm với người Âu.',
+    image: '/images/tudien_sac_chi_thieu_tri.jpg',
+    imageCaption: 'Một đạo sắc chỉ triều Thiệu Trị — mẫu văn bản hành chính bằng chữ Hán có ấn tỷ của nhà vua, cùng dạng với các dụ cấm đạo cùng thời. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Đại Nam thực lục, Chính biên, Đệ tam kỷ',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ tam kỷ, bản dịch Viện Sử học.',
+      'A. Launay, Histoire de la Mission de Cochinchine, t. III — hồ sơ vụ Héroïne (1843) và vụ Đà Nẵng 15/04/1847.',
+      'Giáo hội Công giáo Việt Nam — "Những thời kỳ bị bách hại", vntaiwan.catholic.org.tw: hai dụ cấm đạo triều Thiệu Trị.'
+    ]
+  },
+
+  'tu-duc': {
+    id: 'tu-duc',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Mười ba đạo dụ, ba mươi sáu năm', body: 'Ngay năm lên ngôi 1848, nhà vua gọi người có đạo là «tả đạo» và ra lệnh cấm trên cả nước. Tháng 3/1851: thừa sai ngoại quốc bị ném xuống sông biển, linh mục Việt bị chém làm đôi. Tháng 9/1855: đốt nhà thờ, cấm hội họp. Ngày 06/6/1857: buộc người có đạo cưới hỏi ma chay theo nghi lễ cổ truyền có tế tổ tiên. Ngày 15/12/1859: giáng chức mọi quan lại theo đạo, quan lớn không chối đạo thì xử tử. Ngày 05/8/1861: Chiếu Phân Sáp.' },
+      { title: 'Kết thúc bằng một hoà ước, không bằng một sự hối cải', body: 'Cuộc bách hại chấm dứt sau Hoà ước Nhâm Tuất ký ngày 05/6/1862, trong đó triều đình phải cam kết để dân tự do theo đạo Gia Tô. Cuối năm 1862 nhà vua ban dụ bãi bỏ toàn bộ các lệnh cấm trước đó. Nghĩa là điều mà ba trăm năm cầu nguyện và chịu chết không đạt được, thì bốn năm tàu chiến đạt được — và đó chính là gốc rễ của một vết thương sẽ còn nhức suốt một thế kỷ sau.' },
+    ],
+    gocKhuat: [
+      { title: 'Các con số không khớp nhau, và phần lớn đến từ một phía', body: 'Con số thường gặp cho riêng giai đoạn 1848–1860 là khoảng 25 thừa sai ngoại quốc, 300 linh mục Việt Nam và 30.000 giáo dân thiệt mạng; con số cho toàn bộ ba thế kỷ bách hại thường được ghi là hơn 130.000, có tài liệu đẩy lên cao hơn nữa. Cần nói thẳng: các con số ấy chủ yếu đến từ báo cáo của thừa sai gửi về châu Âu và từ hồ sơ phong thánh, không có tổng điều tra độc lập, và Châu bản cùng Đại Nam thực lục ghi số vụ xử ít hơn nhiều. Không ai biết con số thật. Điều chắc chắn là quy mô rất lớn; điều không chắc chắn là bao nhiêu.' },
+      { title: 'Cuộc bách hại trở thành cớ cho tàu chiến — và có người trong đạo đã góp phần', body: 'Ngày 20/7/1857, Giám mục Dòng Đaminh người Tây Ban Nha José María Díaz Sanjurjo (Đức cha An) bị xử trảm tại pháp trường Bảy Mẫu, Nam Định. Cái chết của ngài là cớ để Tây Ban Nha góp quân cho cuộc viễn chinh của Pháp. Cũng năm 1857, Napoléon III lập một uỷ ban nghiên cứu vấn đề Việt Nam, và trong uỷ ban ấy có Giám mục Pellerin, Đại diện Tông toà Bắc Đàng Trong. Năm 1858, khi hạm đội Pháp – Tây Ban Nha nổ súng vào Đà Nẵng, Giám mục Pellerin có mặt trên chiến hạm chỉ huy Némésis bên cạnh tướng Rigault de Genouilly với tư cách cố vấn chính trị, và đã khẳng định với phía Pháp rằng giáo dân Việt Nam sẽ nổi lên ủng hộ. Điều đó đã không xảy ra.' },
+      { title: 'Cái giá của việc ấy do người ở lại trả', body: 'Việc một số chức sắc trong đạo cổ vũ can thiệp quân sự đã cho triều đình đúng thứ lập luận họ cần: rằng người Công giáo là nội ứng của giặc. Chiếu Phân Sáp năm 1861 ban ra giữa lúc chiến sự đang diễn ra, và nhắm thẳng vào toàn thể cộng đồng giáo dân — những người không hề được hỏi ý kiến và không có tiếng nói nào trong các tính toán ở Paris hay Madrid. Đây là góc khuất nặng nhất của cả giai đoạn: người chịu chết phần lớn không phải người đã gọi tàu chiến tới.' },
+      { title: 'Tự Đức không phải một bạo chúa đơn giản', body: 'Ngài là ông vua hay chữ nhất triều Nguyễn, để lại khối lượng thơ văn và châu phê đồ sộ, cho tổ chức việc trị thuỷ, khuyến nông, và chính ngài đã cho biên soạn bộ Khâm Định Việt Sử Thông Giám Cương Mục — cũng chính là bộ sách ghi lại mốc 1533 của đạo Công giáo. Cùng một triều đại vừa đàn áp đạo vừa lưu giữ cho đạo cái mốc khởi đầu duy nhất mà nó có.' },
+    ],
+    type: 'Vua',
+    name: 'Vua Tự Đức',
+    altName: 'Nguyễn Phúc Hồng Nhậm 阮福洪任 — niên hiệu Tự Đức 嗣德',
+    period: 'Trị vì: 1847 – 1883',
+    description: 'Hoàng đế thứ tư triều Nguyễn và là người ban nhiều dụ cấm đạo nhất — mười ba đạo dụ trong ba mươi sáu năm trị vì. Ngay năm lên ngôi, ngài gọi người Công giáo là "tả đạo" và ra lệnh cấm trên cả nước; tháng 3/1851 buộc thừa sai ngoại quốc bị ném xuống sông biển, linh mục Việt bị chém làm đôi; tháng 9/1855 lệnh đốt nhà thờ; ngày 06/06/1857 buộc người có đạo phải cưới hỏi ma chay theo nghi lễ cổ truyền có tế tổ tiên; ngày 15/12/1859 giáng chức mọi quan lại theo đạo. Đỉnh điểm là Chiếu Phân Sáp ngày 05/08/1861. Chỉ ước tính giai đoạn 1848–1860 đã có khoảng 25 thừa sai ngoại quốc, 300 linh mục Việt Nam và 30.000 giáo dân thiệt mạng. Cuộc bách hại chấm dứt sau Hoà ước Nhâm Tuất ký ngày 05/06/1862; cuối năm 1862 nhà vua ban dụ bãi bỏ toàn bộ các lệnh cấm trước đó.',
+    image: '/images/tudien_vua_tu_duc.jpg',
+    imageCaption: 'Vua Tự Đức (1829–1883). Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Đại Nam thực lục, Chính biên, Đệ tứ kỷ',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ tứ kỷ, bản dịch Viện Sử học.',
+      'Hoà ước Nhâm Tuất (Hiệp ước Sài Gòn), ký ngày 05/06/1862.',
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988.',
+      'Giáo hội Công giáo Việt Nam — "Những thời kỳ bị bách hại", vntaiwan.catholic.org.tw: danh mục 13 dụ cấm đạo triều Tự Đức.'
+    ]
+  },
+
+  /* ─────────────── SỰ KIỆN · VĂN BẢN TRIỀU ĐÌNH ─────────────── */
+
+  'phan-sap': {
+    id: 'phan-sap',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Ban ra giữa lúc đang thua trận', body: 'Chiếu Phân Sáp ký ngày 05/8/1861, tức là sau khi Pháp đã chiếm Gia Định và đang đánh rộng ra Nam Kỳ. Đây không phải một quyết định thuần tôn giáo mà là một biện pháp an ninh thời chiến: triều đình tin rằng các làng Công giáo là hậu cứ tiềm tàng của quân địch nên phải phá vỡ chúng thành từng mảnh. Hiểu như vậy không làm nó bớt tàn nhẫn, nhưng cho thấy vì sao nó xảy ra đúng vào năm 1861 chứ không phải năm nào khác.' },
+      { title: 'Điều khoản độc nhất: tách vợ chồng, tách con khỏi cha mẹ', body: 'Điểm khiến chiếu này nặng hơn mọi dụ cấm đạo trước đó không phải án tử, mà là khoản buộc tách gia đình theo giới tính và đưa đi các tỉnh khác nhau. Mục tiêu công khai là triệt đường sinh con nối đạo và làm tan rã cộng đoàn từ gốc. Nhiều gia đình không bao giờ tìm lại được nhau sau năm 1862, kể cả khi lệnh đã được bãi bỏ.' },
+      { title: 'Bị bãi bỏ vì hoà ước, không vì thay đổi quan niệm', body: 'Chiếu Phân Sáp chấm dứt sau Hoà ước Nhâm Tuất 05/6/1862, trong đó triều đình buộc phải cam kết để dân theo đạo tự do. Cuối năm 1862 nhà vua ban dụ bãi bỏ các lệnh cấm. Nghĩa là chính sách này không được xét lại từ bên trong; nó bị buộc phải dừng từ bên ngoài. Chi tiết ấy về sau trở thành lập luận nặng nhất chống lại người Công giáo Việt Nam: rằng tự do của họ đến từ nòng súng ngoại bang.' },
+    ],
+    type: 'Sự kiện',
+    name: 'Chiếu Phân Sáp',
+    altName: 'Dụ phân sáp của vua Tự Đức, 05/08/1861',
+    period: 'Ban hành ngày 5 tháng 8 năm 1861',
+    description: 'Chính sách tàn khốc nhất trong ba thế kỷ bách hại. Chiếu gồm năm khoản: giải tán toàn bộ làng Công giáo và phân tán mọi tín hữu — bất kể nam nữ, già trẻ, giàu nghèo — vào các làng bên lương; mỗi người có đạo bị năm người ngoại đạo canh giữ; vợ chồng con cái bị tách theo giới tính và đưa đi các tỉnh khác nhau để triệt đường tái lập cộng đoàn; triệt hạ mọi nhà thờ; tịch thu toàn bộ ruộng đất và tài sản. Mỗi người bị thích vào hai bên má bằng dùi sắt nung đỏ: một bên hai chữ "tả đạo", bên kia tên tổng, huyện quê quán, để không thể trốn. Chính sách kết thúc cùng cuộc bách hại sau Hoà ước Nhâm Tuất ngày 05/06/1862.',
+    source: 'Đại Nam thực lục, Chính biên, Đệ tứ kỷ; Hồ sơ Thánh tử đạo Việt Nam',
+    refs: [
+      'Lưu ý niên đại: một số tài liệu ghi 1860 (năm dự thảo, chuẩn bị) và một số ghi 1851 (một dụ cấm đạo khác của Tự Đức). Bản khảo cứu này dùng mốc 05/08/1861 theo Đại Nam thực lục và hồ sơ tử đạo.',
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ tứ kỷ.',
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988.',
+      'Giáo hội Công giáo Việt Nam — "Những thời kỳ bị bách hại", vntaiwan.catholic.org.tw: nguyên văn năm khoản của chiếu phân sáp.'
+    ]
+  },
+
+  'trinh-nguyen': {
+    id: 'trinh-nguyen',
+    doTinCay: 'Có văn khố',
+    type: 'Sự kiện',
+    name: 'Trịnh – Nguyễn phân tranh',
+    period: '1627 – 1672',
+    description: 'Cuộc nội chiến gần nửa thế kỷ giữa họ Trịnh ở Đàng Ngoài và họ Nguyễn ở Đàng Trong, kết thúc bằng việc hai bên lấy sông Gianh làm ranh giới. Cuộc phân tranh này định hình luôn bản đồ truyền giáo: vì đất nước bị chia đôi trên thực tế, Toà Thánh năm 1659 cũng lập hai Hạt Đại diện Tông toà riêng — Đàng Trong và Đàng Ngoài — thay vì một. Nó cũng lý giải vì sao các chúa lúc thì mở cửa đón thừa sai (để mua súng đạn của thuyền buôn Bồ Đào Nha), lúc lại cấm gắt: chính sách với đạo Công giáo luôn là hàm số của nhu cầu quân sự và áp lực của giới quan lại Nho học.',
+    source: 'Đại Nam thực lục, Tiền biên; Đại Việt sử ký toàn thư',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Tiền biên.',
+      'Đại Việt sử ký toàn thư, Bản kỷ tục biên.',
+      'Lê Quý Đôn, Phủ biên tạp lục, 1776.'
+    ]
+  },
+
+  'mtg': {
+    id: 'mtg',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Hai nữ tu đầu tiên có tên', body: 'Ngày 19/02/1670 tại Kiên Lao, Đàng Ngoài, Đức cha Lambert de la Motte nhận lời khấn của hai phụ nữ Việt Nam lấy tên thánh là Anê và Paula. Đó là buổi khai sinh của dòng nữ bản địa đầu tiên trong lịch sử Giáo hội Việt Nam, và cũng là một trong những dòng nữ bản địa sớm nhất ở toàn cõi Á Đông. Năm sau, 1671, dòng được lập tại An Chỉ, Đàng Trong.' },
+      { title: 'Lực lượng giữ đạo bền nhất trong ba thế kỷ bách hại', body: 'Vì là phụ nữ và là người bản xứ, các nữ tu Mến Thánh Giá đi lại được ở những nơi linh mục không thể đến. Trong các giai đoạn vắng bóng linh mục — có khi hàng chục năm liền ở một vùng — chính họ dạy giáo lý, rửa tội cho trẻ hấp hối, giữ sổ sách họ đạo, nuôi giấu và chuyển thư cho các cha. Rất nhiều họ đạo còn sống sót tới thế kỷ XX là nhờ mạng lưới này.' },
+    ],
+    gocKhuat: [
+      { title: 'Được lập ra sớm, nhưng rất lâu mới được nhìn nhận đúng vị trí', body: 'Trong suốt hai thế kỷ, Mến Thánh Giá không có quy chế dòng tu theo giáo luật phổ quát mà chỉ là các «nhà phước» sống theo luật riêng từng địa phận, dưới quyền trực tiếp của Giám mục và cha sở. Mãi tới thế kỷ XX các hội dòng mới lần lượt được chuẩn nhận theo giáo luật. Công lao thì có ngay từ 1670; danh phận thì đến rất muộn.' },
+      { title: 'Hầu như không ai trong số họ có tên trong danh sách tử đạo', body: 'Các nữ tu Mến Thánh Giá chịu chung mọi đợt bách hại, bị bắt, bị phân sáp, bị thích chữ vào mặt như mọi giáo dân khác. Nhưng trong 117 vị được tuyên thánh năm 1988 không có một nữ tu Mến Thánh Giá nào. Lý do phần lớn mang tính kỹ thuật — hồ sơ phong thánh cần nhân chứng và biên bản mà những cái chết lặng lẽ trong lưu đày không để lại — nhưng kết quả là một khoảng trống rất lớn trong ký ức chính thức.' },
+    ],
+    type: 'Sự kiện',
+    name: 'Dòng Mến Thánh Giá',
+    altName: 'Amantes Crucis — Congrégation des Amantes de la Croix',
+    period: 'Thành lập ngày 19/02/1670',
+    description: 'Dòng nữ bản địa đầu tiên của Giáo hội Công giáo Việt Nam và là dòng nữ đầu tiên do một Giám mục Đại diện Tông toà lập ra ở Á Đông. Đức cha Pierre Lambert de la Motte lập dòng tại Kiên Lao, Đàng Ngoài ngày 19/02/1670 với hai nữ tu tiên khởi Anê và Paula, rồi lập tại An Chỉ, Đàng Trong năm 1671. Đây chính là hoa trái trực tiếp của Huấn thị 1659 — bản văn buộc các thừa sai phải gây dựng lực lượng bản quốc thay vì trông vào người Âu. Trong ba thế kỷ bách hại, các nữ tu Mến Thánh Giá là mạng lưới giữ đạo âm thầm mà bền nhất ở các họ đạo miền quê: dạy giáo lý, rửa tội cho trẻ hấp hối, nuôi giấu linh mục.',
+    source: 'Hội đồng Giám mục Việt Nam; Văn khố MEP/IRFA',
+    refs: [
+      'P. Lambert de la Motte, Nhật ký và thư từ — Văn khố Hội Thừa sai Paris (AMEP), tập 858 và 877.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, mục 19/02/1670.',
+      'A. Launay, Histoire de la Mission du Tonkin, Paris, 1927.',
+      'Liên hiệp Nữ tu Mến Thánh Giá Việt Nam, Hiến chương và lịch sử Dòng.'
+    ]
+  },
+
+  /* ─────────────── ĐỊA DANH ─────────────── */
+
+  'ninh-cuong-quan-anh-tra-lu': {
+    id: 'ninh-cuong-quan-anh-tra-lu',
+    doTinCay: 'Đang tranh luận',
+    gocKhuat: [
+      { title: 'Ba cái tên, không một hiện vật', body: 'Ninh Cường, Quần Anh và Trà Lũ là ba địa danh có thật, tra được trong địa bạ và địa dư chí. Nhưng không có một hiện vật khảo cổ, một ngôi mộ, một mảnh tượng ảnh hay một sổ sách nào ở ba nơi ấy có niên đại thế kỷ XVI để xác nhận đã có một cộng đoàn Kitô hữu tại đó năm 1533. Đài kỷ niệm Bến I-nê-khu ở Lác Môn là một công trình tưởng niệm do giáo dân dựng thời hiện đại, không phải một di tích khảo cổ.' },
+    ],
+    type: 'Địa danh',
+    name: 'Ninh Cường – Quần Anh – Trà Lũ',
+    period: 'Ghi trong chính sử: năm 1533',
+    description: 'Ba làng được Khâm Định Việt Sử Thông Giám Cương Mục nêu đích danh là nơi người Tây Dương tên I-nê-khu lén giảng đạo Gia Tô năm 1533: Ninh Cường và Quần Anh thuộc huyện Nam Chân, Trà Lũ thuộc huyện Giao Thuỷ. Cả ba nay đều nằm trong địa bàn Giáo phận Bùi Chu, tỉnh Nam Định — Ninh Cường còn nguyên tên, Quần Anh nay là vùng Quần Phương (Hải Hậu), Trà Lũ nay là vùng Phú Nhai (Xuân Trường). Tại Lác Môn, giáo dân đã dựng đài kỷ niệm mang tên Bến I-nê-khu, đánh dấu nơi được tin là chỗ Tin Mừng lần đầu cập bờ đất Việt.',
+    source: 'Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, q. XXXIII, tờ 6b',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, quyển XXXIII, tờ 6b — bản dịch Viện Sử học.',
+      'Giáo phận Bùi Chu, Lịch sử Giáo phận Bùi Chu, gpbuichu.org.',
+      'Lm. Võ Đình Đệ, "Thực hư có giáo sĩ I-nê-xu lén truyền giáo ở Đại Việt năm 1533", gpquinhon.org.',
+      'Đồng Khánh địa dư chí — đối chiếu tên huyện Nam Chân và Giao Thuỷ với địa danh hiện nay.'
+    ]
+  },
+
+  'cua-han': {
+    id: 'cua-han',
+    doTinCay: 'Có văn khố',
+    type: 'Địa danh',
+    name: 'Cửa Hàn – Hội An – Nước Mặn',
+    altName: 'Cửa Hàn (Tourane, Đà Nẵng) · Hội An (Faifo) · Nước Mặn (Quy Nhơn)',
+    period: 'Từ 18/01/1615',
+    description: 'Ba cái tên làm nên tam giác truyền giáo đầu tiên của Đàng Trong. Ngày 18/01/1615, cha Francesco Buzomi và cha Diogo Carvalho — cùng nhóm tu sĩ Dòng Tên chạy khỏi cuộc bách hại ở Nhật Bản — cập bến Cửa Hàn, tức vịnh Đà Nẵng ngày nay. Từ đó các ngài chuyển về Hội An, thương cảng quốc tế có phố Nhật và phố Khách, nơi thuyền buôn Bồ Đào Nha ghé mỗi mùa gió; rồi năm 1618 mở cơ sở ở Nước Mặn thuộc phủ Quy Nhơn. Khác với những chuyến ghé chân chớp nhoáng của thế kỷ trước, đây là cơ sở truyền giáo thường trú đầu tiên trên đất Việt — và từ mốc này trở đi, mọi niên đại đều có văn khố đối chiếu.',
+    source: 'Hội đồng Giám mục Việt Nam; C. Borri, Relatione della nuova missione (1631)',
+    refs: [
+      'C. Borri, Relatione della nuova missione delli PP. della Compagnia di Giesu al Regno della Cocincina, Rôma, 1631.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, mục 18/01/1615.',
+      'Archivum Romanum Societatis Iesu (ARSI), phông Japonica-Sinica — thư từ của các thừa sai Dòng Tên tại Đàng Trong.',
+      'Đỗ Quang Chính, Lịch sử chữ Quốc ngữ 1620–1659, Sài Gòn, 1972.'
+    ]
+  },
+
+  'dinh-chiem': {
+    id: 'dinh-chiem',
+    doTinCay: 'Có văn khố',
+    type: 'Địa danh',
+    name: 'Thanh Chiêm (Kẻ Chàm), dinh Quảng Nam',
+    altName: 'Dinh Chiêm · Kẻ Chàm · Cacciam trong thư tịch thừa sai',
+    period: 'Thế kỷ XVII',
+    description: 'Dinh trấn của thế tử Nguyễn ở Quảng Nam, và là cái nôi có thật của chữ Quốc ngữ. Tại đây, khoảng 1617–1625, cha Francisco de Pina mở lớp dạy tiếng Việt cho các thừa sai — học trò của ngài có Alexandre de Rhodes và António de Fontes — và bắt đầu dùng mẫu tự Latinh ghi âm tiếng Việt một cách có hệ thống. Cũng chính tại Kẻ Chàm, ngày 26/07/1644, thầy giảng Anrê Phú Yên bị xử trảm, trở thành người Công giáo Việt Nam đầu tiên đổ máu vì đức tin.',
+    source: 'Đỗ Quang Chính, Lịch sử chữ Quốc ngữ 1620–1659',
+    refs: [
+      'Đỗ Quang Chính, Lịch sử chữ Quốc ngữ 1620–1659, Sài Gòn, Ra Khơi, 1972 — khảo cứu trên thủ bút gốc lưu tại ARSI và Thư viện Vatican.',
+      'A. de Rhodes, La glorieuse mort d’André, catéchiste de la Cochinchine, Paris, 1653.',
+      'Roland Jacques, Portuguese Pioneers of Vietnamese Linguistics, Bangkok, Orchid Press, 2002 — phục dựng vai trò của Francisco de Pina.',
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Tiền biên — về dinh trấn Thanh Chiêm.'
+    ]
+  },
+
+  'ke-cho': {
+    id: 'ke-cho',
+    doTinCay: 'Có văn khố',
+    type: 'Địa danh',
+    name: 'Kẻ Chợ (Thăng Long)',
+    altName: 'Kecho · Cachao trong thư tịch Âu châu thế kỷ XVII',
+    period: 'Từ 19/03/1627',
+    description: 'Tên người Âu quen gọi kinh đô Thăng Long — nghĩa đen là "chợ của xứ này", theo cách gọi dân gian. Cha Alexandre de Rhodes cùng cha Pedro Marques cập bến Cửa Bạng (Thanh Hoá) ngày 19/03/1627 rồi được đưa ra Kẻ Chợ yết kiến chúa Trịnh Tráng. Ba năm hoạt động tại đây — theo chính lời cha Đắc Lộ, khoảng 6.700 người chịu phép rửa — đã dựng nên cộng đoàn Đàng Ngoài và tổ chức Thầy Giảng, mô hình giáo dân dấn thân trọn đời sẽ giữ cho đạo sống sót qua ba thế kỷ vắng bóng linh mục.',
+    image: '/images/tu-dien/tudien_kecho.png',
+    imageCaption: 'Bản khắc "The City of CHA-CHO the Metropolis of TONQUEEN" (Thành phố Kẻ Chợ, thủ đô xứ Đàng Ngoài) in trong sách của Samuel Baron (1685).',
+    source: 'A. de Rhodes, Histoire du Royaume de Tunquin (1651)',
+    refs: [
+      'A. de Rhodes, Histoire du Royaume de Tunquin, Lyon, 1651 — con số 6.700 là do chính tác giả đưa ra, cần đọc như một tường thuật của người trong cuộc.',
+      'A. de Rhodes, Divers voyages et missions, Paris, 1653.',
+      'S. Baron, A Description of the Kingdom of Tonqueen, London, 1683 — mô tả Kẻ Chợ của một người sinh tại chỗ.',
+      'Đại Việt sử ký toàn thư, Bản kỷ tục biên.'
+    ]
+  },
+
+  'macao': {
+    id: 'macao',
+    doTinCay: 'Có văn khố',
+    type: 'Địa danh',
+    name: 'Macao và Học viện Thánh Phaolô',
+    altName: 'Macau · Colégio de São Paulo · Địa phận Macao lập năm 1576',
+    period: 'Thế kỷ XVI – XVIII',
+    description: 'Bàn đạp của toàn bộ công cuộc truyền giáo Viễn Đông dưới chế độ bảo trợ Bồ Đào Nha. Địa phận Macao lập năm 1576 nắm quyền tài phán trên cả Trung Hoa, Nhật Bản và Việt Nam; Học viện Thánh Phaolô là nơi các thừa sai học tiếng, học phong tục trước khi lên đường — và chính từ Macao, nhóm của cha Buzomi xuống thuyền đi Cửa Hàn năm 1615. Thi hài thầy giảng Anrê Phú Yên cũng được đưa về an táng ở đây năm 1644. Sau trận hoả hoạn năm 1835, học viện và nhà thờ chỉ còn lại bức tường mặt tiền bằng đá — di tích nổi tiếng ngày nay.',
+    image: '/images/ruins_st_pauls.jpg',
+    imageCaption: 'Di tích mặt tiền nhà thờ Thánh Phaolô ở Macao — tất cả những gì còn lại của học viện Dòng Tên nơi các thừa sai đầu tiên đến Việt Nam được đào tạo.',
+    source: 'Archivum Romanum Societatis Iesu, phông Japonica-Sinica',
+    refs: [
+      'Archivum Romanum Societatis Iesu (ARSI), Japonica-Sinica — thư từ và danh mục thừa sai của tỉnh dòng Nhật Bản đóng tại Macao.',
+      'C. R. Boxer, The Portuguese Seaborne Empire 1415–1825, London, 1969.',
+      'A. de Rhodes, Divers voyages et missions, Paris, 1653.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục năm 1615.'
+    ]
+  },
+
+  'ayutthaya': {
+    id: 'ayutthaya',
+    doTinCay: 'Có văn khố',
+    type: 'Địa danh',
+    name: 'Ayutthaya và Chủng viện Thánh Giuse',
+    altName: 'Ayutthaya (Xiêm La) · Séminaire Saint-Joseph, lập năm 1665',
+    period: 'Thế kỷ XVII – XVIII',
+    description: 'Cố đô Xiêm La, và là tổng hành dinh trên thực tế của Hội Thừa sai Paris tại Đông Nam Á suốt hơn một thế kỷ. Vì cả Đàng Trong lẫn Đàng Ngoài đều cấm đạo từng đợt, các Giám mục Đại diện Tông toà đặt cơ sở ở đây: Đức cha Lambert de la Motte lập Chủng viện Thánh Giuse năm 1665 làm chủng viện chung cho cả vùng Viễn Đông — nơi các chủng sinh Việt, Hoa, Xiêm cùng học — và Công đồng Ayutthaya năm 1664 họp tại đây đã định ra đường lối mục vụ cho các xứ truyền giáo. Nhiều Giám mục Đàng Trong lánh nạn, qua đời và được an táng tại nhà thờ Thánh Giuse. Kinh đô bị quân Miến Điện phá huỷ năm 1767.',
+    image: '/images/st_joseph_ayutthaya.jpg',
+    imageCaption: 'Nhà thờ Thánh Giuse tại Ayutthaya, Thái Lan — cơ sở của Hội Thừa sai Paris nơi nhiều Giám mục Đại diện Tông toà Đàng Trong đặt trụ sở và được an táng.',
+    source: 'Văn khố Hội Thừa sai Paris (AMEP); IRFA',
+    refs: [
+      'Văn khố Hội Thừa sai Paris (AMEP), phông Siam — biên bản Công đồng Ayutthaya 1664 và hồ sơ Chủng viện Thánh Giuse.',
+      'A. Launay, Histoire de la Mission de Siam 1662–1811, Paris, 1920.',
+      'IRFA, "Présence des Missions Étrangères de Paris", irfa.paris.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục năm 1665.'
+    ]
+  },
+
+  'thi-nai': {
+    id: 'thi-nai',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Một giám mục chết ngoài mặt trận', body: 'Cần gọi đúng tên sự việc: Đức cha Bá Đa Lộc không qua đời trong một nhà thờ hay một chủng viện, mà tại một mặt trận, trong đoàn quân của Nguyễn Ánh, giữa một cuộc nội chiến Việt Nam. Ngài mất vì bệnh kiết lỵ ngày 09/10/1799 ở tuổi 58. Việc một giám mục có mặt ở đó là điều mà cả sử đạo lẫn sử đời đều phải giải thích, chứ không thể kể lướt qua.' },
+    ],
+    type: 'Địa danh',
+    name: 'Cảng Thị Nại (Quy Nhơn)',
+    period: 'Cuối thế kỷ XVIII',
+    description: 'Cửa biển chiến lược của phủ Quy Nhơn và là chiến trường ác liệt nhất giữa quân Tây Sơn và quân Nguyễn Ánh. Đức cha Pierre Pigneau de Behaine — Bá Đa Lộc — theo Nguyễn Ánh ra mặt trận này và qua đời tại đây ngày 09/10/1799 vì bệnh kiết lỵ, thọ 58 tuổi. Nguyễn Ánh đích thân cử quốc tang, đưa linh cữu về an táng ở Gia Định, khu mộ mà dân gian gọi là Lăng Cha Cả.',
+    image: '/images/lang_cha_ca.jpg',
+    imageCaption: 'Lăng Cha Cả tại Gia Định — nơi an táng Đức cha Bá Đa Lộc sau khi ngài mất tại mặt trận Thị Nại năm 1799. Ảnh tư liệu.',
+    source: 'Quốc triều chánh biên toát yếu; Đại Nam thực lục, Chính biên, Đệ nhất kỷ',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ nhất kỷ; Quốc triều chánh biên toát yếu.',
+      'A. Launay, Histoire de la Mission de Cochinchine, t. III — thư của các thừa sai về cái chết của Đức cha Bá Đa Lộc.',
+      'IRFA, hồ sơ thừa sai PIGNEAU DE BEHAINE Pierre, irfa.paris.'
+    ]
+  },
+
+  'ba-giong': {
+    id: 'ba-giong',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Con số 25 hay 27 vị, và chuyện tên tuổi đã mất', body: 'Cha Théodule Hamon ghi lại 25 vị bô lão bị bắt và xử tại gò Chết Chém, cộng thêm hai người chết khi trốn chạy, thành 27 vị. Nhưng đó là con số của những người có chức việc trong họ đạo — tức những người có tên trong sổ sách. Số giáo dân thường chết trong đêm vây làng, khi vượt sông, hoặc sau đó trong lưu đày thì không ai đếm được. Cuốn sách của cha Hamon in năm 1882, mười năm sau khi ngài quy tập hài cốt, và hai mươi năm sau biến cố.' },
+      { title: 'Không một vị nào trong số họ được tuyên thánh', body: 'Trong 117 vị được tôn phong năm 1988 có cha Phêrô Nguyễn Văn Lựu, cha sở Ba Giồng, nhưng không có các bô lão và giáo dân bị tàn sát năm 1862 tại chính họ đạo của ngài. Lý do là hồ sơ: cần nhân chứng, cần biên bản, cần chứng cứ về động cơ tử đạo cho từng người. Ba Giồng vì thế là ví dụ cụ thể nhất cho khoảng cách giữa số người chết vì đạo và số người được ghi tên.' },
+    ],
+    type: 'Địa danh',
+    name: 'Ba Giồng',
+    altName: 'Tân Lý Tây, Châu Thành, Tiền Giang',
+    period: 'Từ giữa thế kỷ XVII',
+    description: 'Họ đạo cổ nhất của vùng đất nay là Giáo phận Mỹ Tho, và là điểm mà Chương II của bản khảo cứu này bắt đầu. Tại đây còn những ngôi mộ cổ khắc thập giá có niên đại 1663 — tức chỉ bốn năm sau tông sắc lập Hạt Đại diện Tông toà Đàng Trong. Trong cuộc bách hại năm 1862, giáo dân Ba Giồng bị tàn sát; năm 1872 cha Théodule Hamon quy tập hài cốt các vị tử đạo và năm 1882 cho xuất bản tập sách Martyre de vingt-sept Chrétiens kể lại biến cố, kèm những bản khắc hình nay là tư liệu hình ảnh sớm nhất về vùng này.',
+    source: 'Th. Hamon, Martyre de vingt-sept Chrétiens (1882)',
+    refs: [
+      'Th. Hamon (MEP), Martyre de vingt-sept Chrétiens, 1882 — kèm các bản khắc minh hoạ.',
+      'Văn khố Hội Thừa sai Paris (AMEP), phông Cochinchine occidentale.',
+      'Toà Giám mục Mỹ Tho, Kỷ yếu Giáo phận Mỹ Tho — hồ sơ họ đạo Ba Giồng.'
+    ]
+  },
+
+  'phu-xuan': {
+    id: 'phu-xuan',
+    doTinCay: 'Có văn khố',
+    type: 'Địa danh',
+    name: 'Phú Xuân (Huế)',
+    period: 'Từ 1687; kinh đô triều Nguyễn 1802 – 1945',
+    description: 'Thủ phủ các chúa Nguyễn từ năm 1687 và kinh đô của triều Nguyễn từ 1802. Đây là nơi ký gần như toàn bộ các văn bản đã định đoạt số phận Giáo hội Việt Nam trong hai thế kỷ: lệnh trục xuất thừa sai năm 1750 của Võ Vương, dụ cấm đạo ngày 06/01/1833 của vua Minh Mạng, và Chiếu Phân Sáp ngày 05/08/1861 của vua Tự Đức. Cũng chính tại đây, các phái đoàn Pháp lần lượt tới thương thuyết — và khi thương thuyết thất bại thì tàu chiến nổ súng ở Đà Nẵng.',
+    source: 'Đại Nam thực lục; Khâm Định Đại Nam Hội Điển Sự Lệ',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên — các Đệ nhất đến Đệ tứ kỷ.',
+      'Khâm Định Đại Nam Hội Điển Sự Lệ, Nội các triều Nguyễn.',
+      'Trung tâm Lưu trữ Quốc gia I, Châu bản triều Nguyễn — bản gốc có ngự phê của các vua.'
+    ]
+  },
+
+  /* ─────────────── NHÂN VẬT ─────────────── */
+
+  'thay-giang': {
+    id: 'thay-giang',
+    type: 'Sự kiện',
+    name: 'Tổ chức Thầy Giảng',
+    altName: 'Catechistae — thành lập tại Đàng Ngoài, khoảng 1630',
+    period: 'Từ khoảng năm 1630',
+    doTinCay: 'Có văn khố',
+    description: 'Sáng kiến mục vụ quan trọng nhất mà cha Alexandre de Rhodes để lại, và cũng là thứ ít được nhắc nhất. Đây là những giáo dân nam độc thân, khấn dâng mình trọn đời, được huấn luyện để dạy giáo lý, chuẩn bị người dự tòng, rửa tội khi cần và coi sóc cộng đoàn — làm gần như mọi việc của một linh mục, trừ việc cử hành Thánh Lễ và ban các bí tích dành riêng cho chức linh mục.',
+    sections: [
+      { title: 'Vì sao phải có tổ chức này', body: 'Vì thừa sai ngoại quốc có thể bị trục xuất bất cứ lúc nào, mà linh mục người Việt thì tới năm 1668 mới có. Trong khoảng trống ấy, nếu không có một lớp người bản xứ đứng ra gánh vác thì cộng đoàn tan ngay sau chuyến tàu chở thừa sai rời bến. Cha Đắc Lộ lập tổ chức này chính là để chuẩn bị cho ngày ngài bị đuổi — và ngài bị đuổi thật, năm 1630.' },
+      { title: 'Người tử đạo đầu tiên là một thầy giảng', body: 'Anrê Phú Yên, mười chín tuổi, khấn dâng mình trong tổ chức Thầy Giảng ngày 31/7/1643 và bị xử trảm ngày 26/7/1644. Người Công giáo Việt Nam đầu tiên đổ máu vì đức tin không phải một linh mục hay một giám mục, mà là một giáo dân trẻ thuộc tổ chức này.' }
+    ],
+    gocKhuat: [
+      { title: 'Gánh phần nguy hiểm nhất, nhận phần ghi công ít nhất', body: 'Trong ba thế kỷ bách hại, người bị bắt trước tiên thường không phải thừa sai ngoại quốc — vì các vị ấy trốn được, có nơi ẩn náu và đôi khi có bảo hộ ngoại giao — mà là các thầy giảng và giáo dân địa phương, những người không thể trốn khỏi chính làng mình. Nhưng phần lớn tên tuổi họ không được ghi lại, vì thư từ gửi về châu Âu chủ yếu kể về các thừa sai.' },
+      { title: 'Mô hình bị quên khi có đủ linh mục', body: 'Khi hàng giáo sĩ bản quốc lớn mạnh dần từ thế kỷ XIX, vai trò thầy giảng thu hẹp lại rồi gần như biến mất khỏi cơ cấu chính thức. Điều đáng chú ý là hơn ba trăm năm sau, Công Đồng Vatican II lại đặt lại đúng vấn đề mà cha Đắc Lộ đã giải quyết năm 1630: vai trò của giáo dân dấn thân trong đời sống Giáo hội.' }
+    ],
+    source: 'A. de Rhodes, Histoire du Royaume de Tunquin (1651)',
+    refs: [
+      'A. de Rhodes, Histoire du Royaume de Tunquin, Lyon, 1651 — mô tả việc lập tổ chức Thầy Giảng và công thức khấn hứa.',
+      'A. de Rhodes, La glorieuse mort d’André, catéchiste de la Cochinchine, Paris, 1653.',
+      'Đỗ Quang Chính, Lịch sử chữ Quốc ngữ 1620–1659, Sài Gòn, 1972.'
+    ]
+  },
+
+  'marchand-co-du': {
+    id: 'marchand-co-du',
+    type: 'Nhân vật',
+    name: 'Thánh Joseph Marchand (Cố Du)',
+    altName: 'Joseph Marchand, MEP (1803 – 1835)',
+    period: '1803 – 30/11/1835',
+    doTinCay: 'Đang tranh luận',
+    description: 'Thừa sai Hội Thừa sai Paris, người có mặt trong thành Phiên An suốt cuộc nổi dậy Lê Văn Khôi (1833 – 1835) và bị vua Minh Mạng xử lăng trì ngày 30/11/1835. Cái chết của ngài là bước ngoặt: từ đó triều Nguyễn không còn coi đạo Công giáo là một tà thuyết cần răn dạy, mà là một lực lượng chính trị có ngoại viện. Ngài được tuyên thánh trong số 117 vị ngày 19/6/1988.',
+    sections: [
+      { title: 'Bối cảnh cuộc nổi dậy', body: 'Năm 1833, Lê Văn Khôi — con nuôi Tả quân Lê Văn Duyệt — chiếm thành Phiên An ở Gia Định. Mục tiêu tuyên bố của cuộc nổi dậy là lật Minh Mạng và đưa An Hoà, con của hoàng tử Cảnh, lên ngôi. Hoàng tử Cảnh chính là người từng được Giám mục Bá Đa Lộc đưa sang Pháp năm 1783, và cả hai cha con đều là người Công giáo. Điều đó khiến cuộc nổi dậy, dù nguyên nhân chính là mâu thuẫn giữa Minh Mạng với phe Lê Văn Duyệt, mang màu sắc tôn giáo trong mắt triều đình.' },
+      { title: 'Bản án hai tội danh', body: 'Thành thất thủ tháng 9/1835. Cố Du bị bắt khi vừa dâng lễ xong, bị nhốt trong cũi và tra tấn nhiều lần bằng kìm nung. Bản án của triều đình ghi rõ hai tội: là đạo trưởng, và tiếp tay Lê Văn Khôi. Ngài bị xử lăng trì ngày 30/11/1835.' }
+    ],
+    gocKhuat: [
+      { title: 'Ngài có tham gia nổi dậy hay không — câu hỏi chưa có lời đáp dứt khoát', body: 'Theo lời khai của chính ngài dưới tra tấn, ngài chỉ dạy giáo lý, cầu nguyện và dâng lễ; khi Lê Văn Khôi ép ký những lá thư kêu gọi nổi dậy thì ngài đã đốt hết. Nhưng các ghi chép cũng cho thấy trong thành ngài được giao coi một trong sáu thớt voi chiến và đứng đầu khối giáo dân. Phía Giáo hội đọc đó là hoàn cảnh của một con tin bị giữ trong thành; phía triều đình đọc đó là bằng chứng cộng tác. Không có tài liệu nào giải quyết được dứt điểm, và trang này không giả vờ là có.' },
+      { title: 'Hậu quả đổ lên đầu người không liên quan', body: 'Dù sự thật là gì, kết quả thực tế thì rõ: sau năm 1835, mọi giáo dân trên toàn cõi Đại Nam đều bị nhìn qua lăng kính vụ Phiên An. Các dụ cấm đạo 1836 và 1838 gay gắt hơn hẳn giai đoạn trước, và lập luận «người Công giáo là nội ứng» từ đó có chỗ đứng trong tư duy nhà nước — một lập luận sẽ còn được nhắc lại rất lâu, kể cả trong phản ứng của nhà nước Việt Nam trước lễ phong thánh năm 1988.' }
+    ],
+    source: 'Đại Nam thực lục, Chính biên, Đệ nhị kỷ; Hồ sơ 117 Thánh Tử Đạo Việt Nam',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ nhị kỷ — bản án và diễn biến vụ thành Phiên An.',
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988.',
+      'IRFA, Notices biographiques — hồ sơ thừa sai MARCHAND Joseph, irfa.paris.',
+      'Lưu ý: các nguồn Giáo hội và các nguồn sử học nhà nước mô tả vai trò của ngài trong thành Phiên An theo hai hướng khác nhau; mục này ghi cả hai.'
+    ]
+  },
+
+  'pellerin': {
+    id: 'pellerin',
+    type: 'Nhân vật',
+    name: 'Giám mục François-Marie Pellerin',
+    altName: 'Đại diện Tông toà Bắc Đàng Trong (1813 – 1862)',
+    period: '1813 – 1862',
+    doTinCay: 'Có văn khố',
+    description: 'Giám mục Hội Thừa sai Paris, Đại diện Tông toà Bắc Đàng Trong, và là nhân vật đứng ở đúng chỗ giao nhau giữa việc truyền giáo và cuộc xâm lược. Sau khi trốn khỏi Việt Nam trong cuộc bách hại của vua Tự Đức, ngài sang Pháp vận động can thiệp quân sự, tham gia uỷ ban nghiên cứu vấn đề Việt Nam do Napoléon III lập năm 1857, và năm 1858 có mặt trên chiến hạm chỉ huy Némésis bên cạnh tướng Rigault de Genouilly khi hạm đội Pháp – Tây Ban Nha nổ súng vào Đà Nẵng.',
+    gocKhuat: [
+      { title: 'Lời tiên đoán sai đã làm hại chính giáo dân', body: 'Giám mục Pellerin khẳng định với phía Pháp rằng đánh Đà Nẵng sẽ không khó vì giáo dân Việt Nam sẽ nổi lên ủng hộ. Điều đó đã không xảy ra: cộng đồng Công giáo không nổi dậy, quân Pháp sa lầy ở Đà Nẵng, và hậu quả duy nhất mà lời tiên đoán ấy tạo ra là củng cố đúng điều triều đình vẫn nghi ngờ — rằng người có đạo là nội ứng của giặc. Ba năm sau là Chiếu Phân Sáp.' },
+      { title: 'Vì sao mục này phải có mặt trên một trang của giáo phận', body: 'Rất dễ kể lịch sử Giáo hội Việt Nam như một chuỗi tử đạo thuần khiết. Nhưng nếu chỉ kể thế thì không ai hiểu nổi vì sao suốt hơn một thế kỷ sau đó, cụm từ «đạo theo Tây» lại bám dai đến vậy. Nó bám được vì có những sự việc có thật để bám vào, và đây là một trong số đó. Ghi ra không phải để kết tội một người đã chết gần một trăm sáu mươi năm; ghi ra để những người chịu chết vì đức tin không bị lẫn với những người đã gọi tàu chiến tới.' }
+    ],
+    source: 'Văn khố Hội Thừa sai Paris (AMEP); GS Đinh Xuân Lâm, «Đà Nẵng trong ý đồ chiến lược của tư bản Pháp trước 1858»',
+    refs: [
+      'Đinh Xuân Lâm, «Đà Nẵng trong ý đồ chiến lược của tư bản Pháp trước chiến tranh xâm lược Việt Nam (1858)», Khoa Lịch sử, Trường ĐH KHXH&NV — ĐHQG Hà Nội.',
+      'IRFA / AMEP, Notices biographiques — hồ sơ thừa sai PELLERIN François-Marie.',
+      'Các nghiên cứu về Uỷ ban Nam Kỳ (Commission de la Cochinchine) do Napoléon III lập năm 1857.'
+    ]
+  },
+
+  'diaz-sanjurjo': {
+    id: 'diaz-sanjurjo',
+    type: 'Nhân vật',
+    name: 'Thánh José María Díaz Sanjurjo (Đức cha An)',
+    altName: 'José María Díaz Sanjurjo, OP (1818 – 1857)',
+    period: '1818 – 20/7/1857',
+    doTinCay: 'Có văn khố',
+    description: 'Giám mục Dòng Đaminh người Tây Ban Nha, Đại diện Tông toà Trung Đàng Ngoài, bị xử trảm tại pháp trường Bảy Mẫu, Nam Định ngày 20/7/1857 dưới triều vua Tự Đức. Ngài được tuyên thánh trong số 117 vị ngày 19/6/1988.',
+    gocKhuat: [
+      { title: 'Cái chết của ngài là cớ để Tây Ban Nha tham chiến', body: 'Sau khi ngài bị xử, chính phủ Tây Ban Nha lấy đó làm lý do đưa một lực lượng viễn chinh đặt dưới quyền điều động của Pháp cho chiến dịch trừng phạt Việt Nam. Đó là lý do vì sao cuộc tấn công Đà Nẵng năm 1858 là một cuộc tấn công của liên quân Pháp – Tây Ban Nha chứ không phải của riêng Pháp. Một vị giám mục chết vì đức tin, và cái chết ấy được chính phủ nước ngài dùng làm giấy phép cho một cuộc chiến — hai chuyện tách rời nhau trong ý hướng, nhưng dính chặt vào nhau trong hậu quả.' }
+    ],
+    source: 'Hồ sơ 117 Thánh Tử Đạo Việt Nam; Catholic-Hierarchy',
+    refs: [
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988.',
+      'Catholic-Hierarchy, mục Bishop St. José María Díaz Sanjurjo.',
+      'Các nghiên cứu về chiến dịch Nam Kỳ (Cochinchina Campaign) 1858 – 1862 và vai trò của lực lượng Tây Ban Nha.'
+    ]
+  },
+
+  'hiep-uoc-versailles-1787': {
+    id: 'hiep-uoc-versailles-1787',
+    type: 'Sự kiện',
+    name: 'Hiệp ước Versailles 1787',
+    altName: 'Traité de Versailles, 28/11/1787',
+    period: 'Ký ngày 28 tháng 11 năm 1787',
+    doTinCay: 'Có văn khố',
+    description: 'Văn kiện do Giám mục Pierre Pigneau de Behaine — Bá Đa Lộc — ký thay mặt Nguyễn Ánh với triều đình Louis XVI. Theo đó Pháp cấp tàu chiến và quân giúp Nguyễn Ánh giành lại ngôi, đổi lại Pháp được nhượng cửa biển Đà Nẵng và quần đảo Côn Lôn cùng quyền tự do buôn bán. Hiệp ước chưa bao giờ được thi hành: Toàn quyền Pondichéry là Thomas Conway được lệnh tuỳ nghi và đã từ chối cấp quân.',
+    gocKhuat: [
+      { title: 'Một tờ giấy chết được hồi sinh bảy mươi năm sau', body: 'Vì không được thi hành, hiệp ước 1787 lẽ ra chỉ là một chú thích trong sử. Nhưng đến giữa thế kỷ XIX, khi Pháp chuẩn bị can thiệp vào Việt Nam, chính văn bản này được đem ra viện dẫn như một cơ sở pháp lý cho yêu sách về Đà Nẵng — nghĩa là chữ ký của một giám mục thay mặt một vương tôn lưu vong trở thành lập luận cho hạm đội năm 1858.' },
+      { title: 'Người ký không có tư cách nhà nước', body: 'Nguyễn Ánh lúc ấy không phải vua của một quốc gia được thừa nhận, mà là người đứng đầu một lực lượng đang thua trận và lưu vong. Bá Đa Lộc thì là một giáo sĩ, không phải sứ thần. Về mặt công pháp, đây là một văn kiện có vấn đề ngay từ đầu — điều đó không ngăn nó gây hậu quả thật.' },
+      { title: 'Không có nó thì có lẽ cũng không có triều Nguyễn', body: 'Mặt còn lại phải nói cho công bằng: khi Pháp bỏ rơi hiệp ước, Bá Đa Lộc tự quyên tiền, mua tàu và mộ sĩ quan tình nguyện. Số người Pháp ấy — Chaigneau, Vannier, Dayot và những người khác — góp phần đáng kể vào việc hiện đại hoá thuỷ quân của Nguyễn Ánh và vào chiến thắng cuối cùng năm 1802. Lịch sử ở đây không có phía nào sạch sẽ hoàn toàn.' }
+    ],
+    source: 'Archives Nationales, Paris; Đại Nam thực lục, Chính biên, Đệ nhất kỷ',
+    refs: [
+      'Bản gốc Hiệp ước Versailles ngày 28/11/1787 — Archives Nationales, Paris.',
+      'A. Launay, Histoire de la Mission de Cochinchine 1658–1823, Paris, 1925, t. III.',
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ nhất kỷ.'
+    ]
+  },
+
+  'hoa-uoc-nham-tuat-1862': {
+    id: 'hoa-uoc-nham-tuat-1862',
+    type: 'Sự kiện',
+    name: 'Hoà ước Nhâm Tuất (1862)',
+    altName: 'Hiệp ước Sài Gòn, ký ngày 05/6/1862',
+    period: 'Ký ngày 5 tháng 6 năm 1862',
+    doTinCay: 'Có văn khố',
+    description: 'Hoà ước triều Nguyễn ký với Pháp và Tây Ban Nha, nhượng ba tỉnh miền Đông Nam Kỳ là Biên Hoà, Gia Định, Định Tường cùng đảo Côn Lôn, bồi thường chiến phí, mở ba cửa biển cho tàu buôn — và cam kết để dân theo đạo Gia Tô được tự do hành đạo. Cuối năm 1862, vua Tự Đức ban dụ bãi bỏ toàn bộ các lệnh cấm đạo trước đó.',
+    gocKhuat: [
+      { title: 'Tự do tôn giáo đến bằng nòng súng, và cái giá kéo dài một thế kỷ', body: 'Điều mà ba trăm năm cầu nguyện và hàng vạn cái chết không giành được thì bốn năm tàu chiến giành được. Kể từ 1862, người Công giáo Việt Nam có tự do hành đạo, nhưng thứ tự do ấy nằm trong cùng một văn bản với việc mất ba tỉnh Nam Kỳ. Từ đó, mọi lập luận cho rằng đạo Công giáo là công cụ của ngoại bang đều có một tờ hoà ước để chỉ vào. Đây là gốc rễ sâu nhất của mối nghi kỵ kéo dài suốt thế kỷ XX.' },
+      { title: 'Định Tường — tức Mỹ Tho — nằm ngay trong ba tỉnh bị nhượng', body: 'Điều này không phải chuyện xa xôi với vùng đất của giáo phận này. Định Tường là một trong ba tỉnh bị cắt cho Pháp theo hoà ước. Nghĩa là ở đúng nơi mà năm 1861 cha Phêrô Nguyễn Văn Lựu bị xử trảm ngoài thành Mỹ Tho và giáo dân Ba Giồng bị tàn sát, thì chỉ một năm sau đã thành đất thuộc Pháp. Cùng một mảnh đất, hai vết thương chồng lên nhau trong vòng mười hai tháng.' },
+      { title: 'Người Công giáo không phải bên đàm phán', body: 'Cần nói rõ để tránh một ngộ nhận phổ biến: hoà ước do triều đình Huế ký với chính phủ Pháp và Tây Ban Nha. Cộng đồng Công giáo Việt Nam không có đại diện, không được hỏi ý kiến và không có quyền quyết định gì trong đó. Họ nhận được tự do như một điều khoản trong bản hợp đồng của người khác — và sau đó phải mang tiếng vì chính điều khoản ấy.' }
+    ],
+    source: 'Đại Nam thực lục, Chính biên, Đệ tứ kỷ; văn bản Hoà ước Nhâm Tuất',
+    refs: [
+      'Hoà ước Nhâm Tuất (Traité de Saigon), ký ngày 05/6/1862 — nguyên văn Pháp ngữ và bản dịch.',
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ tứ kỷ.',
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988 — về việc chấm dứt bách hại.'
+    ]
+  },
+
+  'lang-cha-ca': {
+    id: 'lang-cha-ca',
+    type: 'Địa danh',
+    name: 'Lăng Cha Cả',
+    altName: 'Khu mộ Giám mục Bá Đa Lộc, Gia Định — 1799 đến 1983',
+    period: '1799 – 1983',
+    doTinCay: 'Có văn khố',
+    description: 'Khu mộ của Giám mục Pierre Pigneau de Behaine tại vùng Tân Sơn Nhất, Gia Định. Sau khi ngài mất tại mặt trận Thị Nại ngày 09/10/1799, Nguyễn Ánh cho đưa linh cữu về an táng với nghi thức quốc tang. Dân gian gọi khu mộ là Lăng Cha Cả, và cái tên ấy trở thành địa danh của cả một khu vực Sài Gòn — đến nay vòng xoay ở đó vẫn mang tên này, dù ngôi mộ đã không còn.',
+    gocKhuat: [
+      { title: 'Ngôi mộ bị giải toả năm 1983, di cốt được đưa về Pháp', body: 'Năm 1980 có quyết định giải toả khu mộ; ngày 02/3/1983 công trình bị phá dỡ và việc cải táng hoàn tất. Di cốt của Giám mục Bá Đa Lộc được bàn giao cho Tổng lãnh sự Pháp để đưa về Pháp, và được an táng tại nhà nguyện Chủng viện Hội Thừa sai Paris ở phố Bac. Người từng được một hoàng đế Việt Nam cử quốc tang, gần hai trăm năm sau rời khỏi đất Việt trong im lặng.' },
+      { title: 'Một địa danh còn lại sau khi vật thể đã mất', body: 'Điều đáng chú ý là cái tên vẫn sống. Hàng triệu người Sài Gòn hôm nay đi qua vòng xoay Lăng Cha Cả mỗi ngày mà phần lớn không biết «Cha Cả» là ai, vì sao có lăng, và vì sao lăng không còn. Đây có lẽ là ví dụ rõ nhất cho thấy lịch sử Công giáo Việt Nam đã chìm sâu tới mức nào trong đời sống thường ngày — hiện diện khắp nơi dưới dạng tên gọi, mà gần như vô hình dưới dạng ký ức.' }
+    ],
+    image: '/images/lang_cha_ca.jpg',
+    imageCaption: 'Lăng Cha Cả tại Gia Định — khu mộ Giám mục Bá Đa Lộc trước khi bị giải toả năm 1983. Ảnh tư liệu.',
+    source: 'Đại Nam thực lục, Chính biên, Đệ nhất kỷ; tư liệu báo chí về việc giải toả năm 1983',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Đại Nam thực lục, Chính biên, Đệ nhất kỷ — về quốc tang và việc an táng năm 1799.',
+      'Tư liệu và ảnh về Lăng Cha Cả trước 1983; các bài khảo cứu trên báo VnExpress và Thanh Niên về lịch sử khu mộ.',
+      'Văn khố Hội Thừa sai Paris (AMEP) — hồ sơ tiếp nhận di cốt năm 1983, nhà nguyện Chủng viện phố Bac, Paris.'
+    ]
+  },
+
+
+  'i-ne-khu': {
+    id: 'i-ne-khu',
+    doTinCay: 'Đang tranh luận',
+    sections: [
+      { title: 'Toàn bộ bằng chứng: đúng một câu', body: 'Tất cả những gì lịch sử biết về người này nằm trong một câu duy nhất của Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, quyển XXXIII, tờ 6b: tháng 3 năm Nguyên Hoà nguyên niên, có người Tây Dương tên I-nê-khu đi đường biển lén vào giảng đạo Gia Tô ở Ninh Cường, Quần Anh và Trà Lũ. Không có tên dòng tu, không có tên thuyền, không có ngày tháng cụ thể, không có tên người đã rửa tội, không một dòng nào khác trong bất kỳ bộ sử nào.' },
+      { title: 'Bộ sử ấy được viết sau đó ba trăm hai mươi năm', body: 'Cương Mục do Quốc Sử Quán triều Nguyễn biên soạn dưới triều Tự Đức, khởi từ khoảng 1856 và hoàn tất năm 1884 — tức là sự kiện năm 1533 được đặt bút ghi lại hơn ba thế kỷ sau khi nó được cho là đã xảy ra. Và chính các sử quan cũng không nhận đó là ghi chép của quốc sử: họ dẫn nguồn là «Dã Lục» — một thứ ghi chép tư nhân trong dân gian. Bản Dã Lục đó đến nay đã thất truyền, không ai còn đối chiếu được.' },
+      { title: 'Vì sao Giáo hội Việt Nam vẫn giữ mốc này', body: 'Vì đây là điểm quy chiếu duy nhất được cả cộng đồng chấp nhận, và vì nó được chính bộ chính sử của nhà nước phong kiến ghi lại — nghĩa là ngay cả một triều đình đang cấm đạo cũng thừa nhận đạo đã có mặt từ năm ấy. Hội đồng Giám mục Việt Nam giữ 1533 trong Biên niên sử chính thức, và Giáo hội Việt Nam đang hướng tới năm 2033 để mừng 500 năm theo đúng mốc quy ước này.' },
+    ],
+    gocKhuat: [
+      { title: 'Chi tiết này có thể bắt nguồn từ một cuốn sách chống đạo', body: 'Linh mục Võ Đình Đệ (Giáo phận Quy Nhơn) đã tổng hợp phản biện của các nhà nghiên cứu Chu Thiên, Đinh Xuân Lâm, Trần Thanh Ái và linh mục Bùi Đức Sinh, nêu khả năng chi tiết I-nê-khu không đến từ một ghi chép trung tính, mà có gốc từ «Tây Dương Gia Tô Bí Lục» — một cuốn sách công kích đạo Công giáo lưu hành thế kỷ XIX. Nếu đúng vậy thì cái mốc mà Giáo hội Việt Nam lấy làm năm khởi đầu lại đến từ ngòi bút của những người chống đạo. Đây là điều gần như không trang sử đạo nào ghi ra.' },
+      { title: 'Không một văn khố châu Âu nào xác nhận', body: 'Nếu có một thừa sai tên Inácio hay Ignacio thật sự đến Đại Việt năm 1533, thì các dòng tu và các nhà nước bảo trợ ở châu Âu lẽ ra phải có dấu vết: danh sách người lên tàu, thư báo cáo về bề trên, sổ chi tiêu. Đến nay chưa tìm được gì trong văn khố Bồ Đào Nha, Tây Ban Nha hay Dòng Tên. Thêm một điểm khó: Dòng Tên chỉ được thành lập năm 1540, tức bảy năm sau mốc 1533, nên nếu có người ấy thì chắc chắn không phải tu sĩ Dòng Tên.' },
+      { title: 'Cách đọc công bằng', body: 'Không thể nói mốc 1533 là bịa, cũng không thể nói nó đã được chứng minh. Nó là một cột mốc tưởng niệm được đồng thuận — giá trị của nó nằm ở chỗ cả một cộng đồng cùng nhận nhau qua nó, chứ không nằm ở chỗ nó đã qua kiểm chứng văn khố. Ghi rõ điều đó không làm mốc 1533 mất giá; ngược lại, nó cho thấy Giáo hội Việt Nam đủ tự tin để nói thật về chính điểm khởi đầu của mình.' },
+    ],
+    type: 'Nhân vật',
+    name: 'I-nê-khu',
+    altName: 'Có thể là Inácio (Bồ) hoặc Íñigo / Ignacio (Tây Ban Nha)',
+    period: 'Được chép: tháng 3 năm Nguyên Hoà nguyên niên — 1533',
+    description: 'Người mang cái tên duy nhất còn lại từ cột mốc khởi đầu của Giáo hội Công giáo Việt Nam — và cũng là người ta biết ít nhất. Khâm Định Việt Sử Thông Giám Cương Mục chép có "người Tây Dương tên là I-nê-khu" đi đường biển lén vào giảng đạo Gia Tô ở Ninh Cường, Quần Anh và Trà Lũ. Cái tên nhiều phần là lối phiên âm Hán–Việt của Inácio trong tiếng Bồ hay Íñigo / Ignacio trong tiếng Tây Ban Nha: ta biết ông có thể tên gì, mà không biết ông là ai, thuộc dòng tu nào, đi trên thuyền nào. Không một văn khố Bồ Đào Nha, Tây Ban Nha hay Dòng Tên nào cùng thời xác nhận chuyến đi này, và chính Cương Mục cũng ghi nguồn là "Dã Lục" — một ghi chép tư nhân nay đã thất truyền. Vì thế 1533 là cột mốc tưởng niệm được cả Giáo hội Việt Nam đồng thuận, chứ không phải một sự kiện đã kiểm chứng bằng văn khố.',
+    image: '/images/ghvn_cuong_muc_trang_sach.jpg',
+    imageCaption: 'Trang sách Cương Mục chép mốc năm 1533 và tên I-nê-khu — Chính biên, quyển XXXIII, tờ 6b. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, q. XXXIII, tờ 6b',
+    refs: [
+      'Quốc Sử Quán triều Nguyễn, Khâm Định Việt Sử Thông Giám Cương Mục, Chính biên, quyển XXXIII, tờ 6b — bản dịch Viện Sử học.',
+      'Lm. Võ Đình Đệ, "Thực hư có giáo sĩ I-nê-xu lén truyền giáo ở Đại Việt năm 1533", gpquinhon.org — tổng hợp phản biện của Chu Thiên, Đinh Xuân Lâm, Trần Thanh Ái, Lm. Bùi Đức Sinh.',
+      'Ofmvn.org, "Thừa sai I-nê-xu của sách Cương Mục và thừa sai I-nê-xu Dòng Phan Sinh".',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam — vẫn giữ 1533 làm năm khởi đầu.'
+    ]
+  },
+
+  'hien-thanh-tu-dao': {
+    id: 'hien-thanh-tu-dao',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Ai được ghi tên', body: '117 vị gồm 96 người Việt Nam, 11 thừa sai Tây Ban Nha Dòng Đaminh và 10 thừa sai Pháp thuộc Hội Thừa sai Paris. Trong số người Việt có 37 linh mục, còn lại là thầy giảng, chủng sinh và giáo dân thường — trong đó có phụ nữ, lý trưởng, lính, thợ may, người bán hàng. Các vị chịu chết rải suốt từ năm 1745 đến 1862, dưới thời chúa Trịnh, chúa Nguyễn, Tây Sơn và bốn đời vua triều Nguyễn.' },
+      { title: 'Vì sao mãi tới 1988', body: 'Các án phong được mở từ thế kỷ XIX và các vị lần lượt được phong Chân phước qua bốn đợt: 1900, 1906, 1909 và 1951. Việc gộp tất cả lại thành một lễ tuyên thánh chung chỉ diễn ra ngày 19/6/1988 tại Quảng trường Thánh Phêrô, do Đức Gioan Phaolô II chủ sự — thành cuộc tuyên thánh đông người nhất trong một nghi lễ tính đến lúc đó.' },
+    ],
+    gocKhuat: [
+      { title: 'Lễ phong thánh 1988 là một biến cố chính trị, không chỉ tôn giáo', body: 'Toà Thánh công bố quyết định phong thánh mà không báo trước cho nhà nước Việt Nam. Tháng 3/1988, ông Nguyễn Quang Huy, Trưởng ban Tôn giáo Chính phủ, gặp các giám mục và cảnh báo rằng việc phong thánh sẽ gây hậu quả nặng nề cho quan hệ giữa người Công giáo và phần còn lại của xã hội. Lập luận chính thức của phía nhà nước là nhiều vị trong danh sách gắn với thế lực thực dân châu Âu. Một chiến dịch tuyên truyền được mở, và cuối cùng không một giáo dân nào từ trong nước được phép sang Rôma dự lễ. Có giám mục — như Đức cha Phaolô Huỳnh Đông Các của Quy Nhơn — đã khuyên giáo dân không tổ chức mừng để tránh căng thẳng.' },
+      { title: 'Con số 117 là phần lập được hồ sơ, không phải tổng số người chết', body: 'Muốn được ghi tên phải có hồ sơ: nhân chứng, biên bản, chứng cứ về động cơ tử đạo. Phần lớn những người chết trong ba thế kỷ bách hại không để lại thứ gì như thế — họ chết trong các đợt phân sáp, trong khi bị lưu đày, trong những vụ tàn sát cả làng như Ba Giồng năm 1862, và không ai kịp ghi tên. Con số 117 vì thế nói về khả năng lưu trữ của Giáo hội, chứ không nói về quy mô của cuộc bách hại.' },
+      { title: 'Chân phước Anrê Phú Yên không nằm trong 117 vị', body: 'Người Công giáo Việt Nam đầu tiên đổ máu vì đức tin, tử đạo năm 1644, lại không có tên trong danh sách 1988 — thầy được tôn phong riêng, ở bậc Chân phước, ngày 05/3/2000. Đây là chi tiết rất hay bị nhầm trên các trang giáo xứ.' },
+      { title: 'Ba mươi năm sau, cùng một sự kiện được kỷ niệm công khai trong nước', body: 'Điều đáng ghi nhận là căng thẳng ấy đã nguội. Các dịp kỷ niệm 25 năm và 30 năm ngày phong thánh về sau được tổ chức công khai tại Việt Nam. Ghi lại phản ứng năm 1988 không phải để khơi lại, mà vì nếu bỏ qua thì người đọc sẽ không hiểu vì sao suốt một thời gian dài cụm từ «các Thánh Tử Đạo Việt Nam» lại là một cụm từ nhạy cảm.' },
+    ],
+    type: 'Sự kiện',
+    name: '117 Thánh Tử Đạo Việt Nam',
+    altName: 'Lễ tuyên phong Hiển thánh, Rôma, 19/06/1988',
+    period: 'Tôn phong ngày 19 tháng 6 năm 1988',
+    description: 'Ngày 19/06/1988 tại Quảng trường Thánh Phêrô, Đức Gioan Phaolô II tôn phong Hiển thánh cùng lúc 117 vị tử đạo tại Việt Nam — cuộc tuyên thánh đông người nhất trong một nghi lễ của lịch sử Giáo hội cho tới lúc đó. Trong số đó có 96 người Việt Nam, 11 thừa sai Tây Ban Nha thuộc Dòng Đaminh và 10 thừa sai Pháp thuộc Hội Thừa sai Paris; các vị chịu chết dưới bốn triều đại và nhiều đời chúa, từ năm 1745 đến 1862. Con số này chỉ là phần được lập hồ sơ đầy đủ: ước tính tổng số tín hữu thiệt mạng trong ba thế kỷ bách hại lên tới hơn 130.000 người. Giáo phận Mỹ Tho có Thánh Phêrô Nguyễn Văn Lựu, cha sở Ba Giồng, bị xử trảm ngoài thành Mỹ Tho ngày 07/04/1861 — nay là Thánh Bổn Mạng của giáo phận. Lễ kính chung: ngày 24 tháng 11.',
+    source: 'Acta Apostolicae Sedis 81 (1989); Hồ sơ 117 Thánh Tử Đạo Việt Nam',
+    refs: [
+      'Gioan Phaolô II, Bài giảng lễ tuyên phong Hiển thánh 117 vị tử đạo Việt Nam, Rôma, 19/06/1988 — vatican.va.',
+      'Hội đồng Giám mục Việt Nam, Hồ sơ 117 Thánh Tử Đạo Việt Nam, 1988.',
+      'Bộ Phong Thánh, hồ sơ án phong — Congregatio de Causis Sanctorum.',
+      'Chân phước Anrê Phú Yên (1644) được tôn phong riêng ngày 05/03/2000, không nằm trong danh sách 117 vị.'
+    ]
+  },
+
+
+  'alexandre-vii': {
+    id: 'alexandre-vii',
+    doTinCay: 'Có văn khố',
+    type: 'Nhân vật',
+    name: 'Đức Giáo hoàng Alexanđê VII',
+    altName: 'Fabio Chigi (1599 – 1667), Giáo hoàng 1655 – 1667',
+    period: 'Tại vị: 1655 – 1667',
+    description: 'Vị Giáo hoàng đã ký hai văn kiện khai sinh cơ cấu Giáo hội tại Việt Nam: tông chiếu Apostolatus Officium (17/08/1658) bổ nhiệm François Pallu và Pierre Lambert de la Motte làm Giám mục, và tông sắc Super Cathedram Principis Apostolorum (09/09/1659) lập hai Hạt Đại diện Tông toà Đàng Ngoài và Đàng Trong. Trước khi lên ngôi, ngài là Sứ thần Toà Thánh tại Köln và tham dự đàm phán Hoà ước Westphalia. Ngài cũng là vị Giáo hoàng đã giao cho Bernini dựng hàng cột ôm vòng Quảng trường Thánh Phêrô (1656–1667).',
+    image: '/images/tudien_dgh_alexandro_vii.jpg',
+    imageCaption: 'Đức Alexanđê VII (Fabio Chigi), tranh của Giovanni Battista Gaulli — Il Baciccio. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'J.N.D. Kelly, The Oxford Dictionary of Popes',
+    refs: [
+      'J.N.D. Kelly & M.J. Walsh, The Oxford Dictionary of Popes, Oxford University Press, 2010.',
+      'Alexanđê VII, "Super Cathedram Principis Apostolorum", 09/09/1659.',
+      'Catholic Encyclopedia (1913), mục "Pope Alexander VII".'
+    ]
+  },
+
+  'gioan-xxiii': {
+    id: 'gioan-xxiii',
+    doTinCay: 'Có văn khố',
+    type: 'Nhân vật',
+    name: 'Thánh Giáo hoàng Gioan XXIII',
+    altName: 'Angelo Giuseppe Roncalli (1881 – 1963), Giáo hoàng 1958 – 1963',
+    period: 'Tại vị: 1958 – 1963',
+    description: 'Vị Giáo hoàng đã ban Tông hiến Venerabilium Nostrorum ngày 24/11/1960 lập Hàng Giáo phẩm Việt Nam, và ba ngày sau ký sắc chỉ Quod Venerabiles Fratres khai sinh Giáo phận Mỹ Tho. Cùng năm ấy, ngài đang chuẩn bị Công Đồng Vatican II — công đồng mà chính ngài triệu tập và khai mạc ngày 11/10/1962, cuộc canh tân toàn diện nhất của Giáo hội trong thế kỷ XX. Ngài qua đời ngày 03/06/1963 và được tôn phong Hiển thánh ngày 27/04/2014.',
+    image: '/images/tudien_dgh_gioan_xxiii.jpg',
+    imageCaption: 'Thánh Giáo hoàng Gioan XXIII (Angelo Giuseppe Roncalli), ảnh chụp trong triều đại 1958–1963. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Acta Apostolicae Sedis; Annuario Pontificio',
+    refs: [
+      'Gioan XXIII, Tông hiến "Venerabilium Nostrorum", 24/11/1960 — AAS 53 (1961), tr. 346–350.',
+      'Gioan XXIII, Sắc chỉ "Quod Venerabiles Fratres", 27/11/1960 — AAS 53 (1961), tr. 474.',
+      'J.N.D. Kelly & M.J. Walsh, The Oxford Dictionary of Popes, Oxford University Press, 2010.'
+    ]
+  },
+
+  'dac-lo': {
+    id: 'dac-lo',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Ba mươi năm, bốn lần bị trục xuất', body: 'Sinh tại Avignon năm 1593, vào Dòng Tên năm 1612, rời Lisbon năm 1619, tới Macao rồi vào Đàng Trong năm 1624. Năm 1627 ra Đàng Ngoài, bị trục xuất năm 1630. Trở lại Đàng Trong giai đoạn 1640–1645, bị bắt, bị kết án tử rồi giảm thành trục xuất vĩnh viễn. Về châu Âu vận động suốt gần mười năm, cuối đời bị cử đi Ba Tư và qua đời tại Isfahan ngày 05/11/1660, cách Việt Nam nửa vòng trái đất.' },
+      { title: 'Ba cuốn sách năm 1651', body: 'Trong cùng một năm, nhà in Bộ Truyền Bá Đức Tin tại Rôma cho ra ba tác phẩm của ngài: «Dictionarium Annamiticum Lusitanum et Latinum» (từ điển Việt–Bồ–La), «Linguae Annamiticae seu Tunchinensis Brevis Declaratio» (sách văn phạm ngắn) và «Cathechismus pro iis qui volunt suscipere Baptismum» — tức Phép giảng tám ngày, cuốn sách văn xuôi đầu tiên in bằng chữ quốc ngữ, in song song Latinh và quốc ngữ.' },
+      { title: 'Công lớn nhất có lẽ không phải cuốn từ điển', body: 'Điều ngài làm có hậu quả lâu dài nhất là suốt những năm ở Rôma và Paris, ngài kiên trì thuyết phục Toà Thánh cử Giám mục sang Việt Nam — vì chỉ Giám mục mới truyền chức được, và chỉ khi có linh mục người Việt thì đạo mới sống sót qua những lần trục xuất người Âu. Nỗ lực ấy dẫn thẳng tới Hội Thừa sai Paris và tông sắc năm 1659. Chín năm sau tông sắc, bốn linh mục Việt Nam đầu tiên chịu chức.' },
+    ],
+    gocKhuat: [
+      { title: 'Câu văn năm 1653 và cuộc tranh cãi chưa dứt', body: 'Trong «Divers voyages et missions» (Paris, 1653), cha Đắc Lộ viết ngài tin rằng nước Pháp, vương quốc đạo đức nhất thế giới, sẽ cấp cho ngài «plusieurs soldats» — nhiều chiến sĩ — để đi «chinh phục toàn cõi Đông phương», mà quy phục Chúa Giêsu Kitô, và nhất là ở đó ngài sẽ tìm được cách có các Giám mục. Người phê phán đọc câu này là lời mời quân đội Pháp sang phương Đông. Người bênh vực chỉ vào chính vế sau của câu — điều ngài xin là Giám mục — và vào ngữ cảnh tu đức thế kỷ XVII, nơi chữ «chiến sĩ» thường chỉ người rao giảng. Cuộc tranh luận này chưa có hồi kết và trang này không đứng về phía nào; điều tối thiểu phải làm là ghi rằng câu văn ấy có thật và đọc được theo hai cách.' },
+      { title: 'Năm 2019: Đà Nẵng dừng đặt tên đường mang tên ngài', body: 'Cuối năm 2019, Sở Văn hoá và Thể thao Đà Nẵng lấy ý kiến cho đề án đặt tên gần 140 đường phố và công trình, trong đó có tên Alexandre de Rhodes và Francisco de Pina. Một nhóm nhà nghiên cứu văn hoá và lịch sử gửi kiến nghị phản đối, với lý do hai vị hoạt động trong bối cảnh thuộc địa. Thành phố quyết định dừng vô thời hạn việc đặt hai tên đường này. Đây là sự việc có thật, xảy ra gần đây, và cho thấy vị trí của cha Đắc Lộ trong ký ức người Việt tới nay vẫn chưa yên.' },
+      { title: 'Ngài không phát minh ra chữ quốc ngữ', body: 'Cách nói «cha Đắc Lộ sáng chế chữ quốc ngữ» là một rút gọn sai. Người đặt nền là các thừa sai Bồ Đào Nha đi trước, đứng đầu là cha Francisco de Pina — chính thầy dạy tiếng Việt của ngài — cùng Gaspar do Amaral và António Barbosa, những người đã soạn các bản từ vựng Việt–Bồ và Bồ–Việt mà cha Đắc Lộ nói rõ trong lời tựa từ điển 1651 là ngài có dùng. Công của ngài là hệ thống hoá, bổ sung phần Latinh và đưa được cả công trình lên máy in ở Rôma — đủ lớn để không cần phóng đại thêm.' },
+      { title: 'Những con số là do chính ngài đưa ra', body: 'Con số khoảng 6.700 người chịu phép rửa ở Đàng Ngoài trong ba năm, cũng như nhiều số liệu khác về giai đoạn này, đến từ chính các tường thuật của cha Đắc Lộ gửi về châu Âu — thể loại văn bản vừa là báo cáo vừa là vận động quyên góp và nhân sự. Không có nguồn độc lập đối chiếu. Nên đọc chúng như lời của người trong cuộc, không phải như số liệu thống kê.' },
+      { title: 'Bị chính anh em cùng dòng phản đối', body: 'Việc ngài vận động Toà Thánh cử Giám mục người Pháp sang Đông phương đụng thẳng vào quyền bảo trợ của vương triều Bồ Đào Nha, và bị nhiều tu sĩ Dòng Tên Bồ Đào Nha ở Macao xem là phản bội. Đó là một lý do khiến bề trên cử ngài đi Ba Tư năm 1654 thay vì để ngài tiếp tục việc Đông Á. Ngài chết ở Isfahan mà chưa bao giờ được trở lại Việt Nam.' },
+    ],
+    type: 'Nhân vật',
+    name: 'Lm. Alexandre de Rhodes (Cha Đắc Lộ)',
+    altName: 'Alexandre de Rhodes, S.J. (1593 – 1660)',
+    period: '1593 – 1660',
+    description: 'Thừa sai Dòng Tên sinh tại Avignon, đến Đàng Trong năm 1624, mở cửa Đàng Ngoài năm 1627 và bị trục xuất năm 1630; trở lại Đàng Trong 1640–1645 rồi bị trục xuất vĩnh viễn. Năm 1651 tại Rôma, nhà in Bộ Truyền Bá Đức Tin cho ra ba tác phẩm của ngài: Dictionarium Annamiticum Lusitanum et Latinum (Từ điển Việt–Bồ–La), sách văn phạm Linguae Annamiticae Brevis Declaratio và Phép giảng tám ngày — bộ ba khai sinh chữ Quốc ngữ in. Cần nói cho đúng: ngài là người hệ thống hoá và công bố, còn công đặt nền thuộc về các thừa sai Bồ Đào Nha trước đó, đứng đầu là cha Francisco de Pina. Công lớn thứ hai của ngài là suốt những năm ở châu Âu đã vận động Toà Thánh cử Giám mục cho Việt Nam để có thể truyền chức cho người bản xứ — nỗ lực dẫn thẳng tới Hội Thừa sai Paris và tông sắc 1659. Ngài qua đời tại Isfahan, Ba Tư, ngày 05/11/1660.',
+    image: '/images/alexandre_de_rhodes.jpg',
+    imageCaption: 'Chân dung cha Alexandre de Rhodes. Nguồn: Wikimedia Commons, phạm vi công cộng.',
+    source: 'Dictionarium Annamiticum Lusitanum et Latinum (Rôma, 1651)',
+    refs: [
+      'A. de Rhodes, Dictionarium Annamiticum Lusitanum et Latinum, Rôma, Typis Sacrae Congregationis de Propaganda Fide, 1651.',
+      'A. de Rhodes, Divers voyages et missions, Paris, 1653; Histoire du Royaume de Tunquin, Lyon, 1651.',
+      'Đỗ Quang Chính, Lịch sử chữ Quốc ngữ 1620–1659, Sài Gòn, 1972.',
+      'Roland Jacques, Portuguese Pioneers of Vietnamese Linguistics, Orchid Press, 2002 — phân định lại công trạng giữa de Pina và de Rhodes.'
+    ]
+  },
+
+  'francisco-de-pina': {
+    id: 'francisco-de-pina',
+    doTinCay: 'Có văn khố',
+    sections: [
+      { title: 'Người đầu tiên giảng bằng tiếng Việt không cần thông ngôn', body: 'Đến Đàng Trong năm 1617, de Pina học tiếng Việt theo cách không ai làm trước đó: sống trong dân, nghe người bản xứ nói, và tìm cách ghi lại đúng thanh điệu — thứ mà mọi thừa sai trước ngài đều bó tay. Trong một lá thư còn giữ được, ngài than rằng các anh em khác cứ giảng qua thông ngôn nên nói mãi không ai hiểu, và ngài cho rằng phải nắm được thanh điệu thì mới nói được tiếng này.' },
+      { title: 'Trường dạy tiếng Việt đầu tiên', body: 'Tại Thanh Chiêm (Kẻ Chàm), dinh trấn Quảng Nam, ngài mở lớp dạy tiếng Việt cho các thừa sai mới tới. Hai học trò được nhắc đến nhiều nhất là Alexandre de Rhodes và António de Fontes, cả hai đến năm 1624. Ngôi trường đó, chứ không phải một thư phòng ở Rôma, mới là nơi chữ quốc ngữ thật sự thành hình.' },
+    ],
+    gocKhuat: [
+      { title: 'Người làm nhiều nhất lại là người ít được nhắc nhất', body: 'De Pina chết đuối ở vịnh Đà Nẵng ngày 15/12/1625, mới bốn mươi tuổi, khi ra thuyền lấy hàng và bị lật thuyền — ngài biết bơi nhưng vướng áo dòng. Ngài chết trước khi kịp in bất cứ thứ gì mang tên mình. Toàn bộ vinh dự vì thế dồn cho người học trò biết viết sách và có đường tới nhà in Rôma. Mãi tới năm 2002, công trình «Portuguese Pioneers of Vietnamese Linguistics» của Roland Jacques — công bố và phân tích thủ bút của chính de Pina — mới trả lại tên cho ngài trong giới nghiên cứu quốc tế.' },
+      { title: 'Năm 2019 tên ngài cũng bị gạt khỏi đề án đặt tên đường', body: 'Trong đề án đặt tên đường của Đà Nẵng năm 2019, tên Francisco de Pina được đề xuất cùng với Alexandre de Rhodes, và cũng bị dừng cùng lúc sau kiến nghị phản đối. Nghịch lý là ngài bị loại vì gắn với bối cảnh thuộc địa, dù ngài mất năm 1625 — hơn hai trăm ba mươi năm trước khi tàu chiến Pháp bắn vào Đà Nẵng, chính nơi ngài chết đuối.' },
+    ],
+    type: 'Nhân vật',
+    name: 'Lm. Francisco de Pina',
+    altName: 'Francisco de Pina, S.J. (1585 – 1625)',
+    period: '1585 – 1625',
+    description: 'Thừa sai Dòng Tên người Bồ Đào Nha, sinh tại Guarda, đến Đàng Trong năm 1617. Ngài là người phương Tây đầu tiên nói tiếng Việt thông thạo đến mức giảng đạo trực tiếp không cần thông ngôn, và là người đầu tiên dùng mẫu tự Latinh ghi âm tiếng Việt một cách có hệ thống — kể cả việc nhận ra và ký hiệu hoá các thanh điệu. Tại Thanh Chiêm (Kẻ Chàm) ngài mở lớp dạy tiếng Việt cho thừa sai; hai học trò nổi tiếng nhất là Alexandre de Rhodes và António de Fontes. Ngài chết đuối ở vịnh Đà Nẵng ngày 15/12/1625 khi ra thuyền lấy hàng, mới bốn mươi tuổi — trước khi kịp in bất cứ thứ gì mang tên mình.',
+    source: 'Roland Jacques, Portuguese Pioneers of Vietnamese Linguistics (2002)',
+    refs: [
+      'Roland Jacques, Portuguese Pioneers of Vietnamese Linguistics prior to 1650, Bangkok, Orchid Press, 2002 — công bố và phân tích lá thư thủ bút của Francisco de Pina.',
+      'Archivum Romanum Societatis Iesu (ARSI), Japonica-Sinica 69 — thư của F. de Pina, khoảng 1622–1623.',
+      'Đỗ Quang Chính, Lịch sử chữ Quốc ngữ 1620–1659, Sài Gòn, 1972.'
+    ]
+  },
+
+  'buzomi': {
+    id: 'buzomi',
+    doTinCay: 'Có văn khố',
+    type: 'Nhân vật',
+    name: 'Lm. Francesco Buzomi',
+    altName: 'Francesco Buzomi, S.J. (1576 – 1639)',
+    period: '1576 – 1639',
+    description: 'Thừa sai Dòng Tên người Napoli, bề trên nhóm tu sĩ cập bến Cửa Hàn ngày 18/01/1615 — nhóm đã lập cơ sở truyền giáo thường trú đầu tiên trên đất Việt. Ngài phụ trách xứ truyền giáo Đàng Trong trong hơn hai mươi năm, qua nhiều đợt bị hạn chế và trục xuất, dựng các cộng đoàn ở Hội An, Nước Mặn và Thanh Chiêm. Ngài qua đời tại Macao năm 1639.',
+    source: 'Archivum Romanum Societatis Iesu; Hội đồng Giám mục Việt Nam',
+    refs: [
+      'Archivum Romanum Societatis Iesu (ARSI), Japonica-Sinica — báo cáo thường niên của xứ truyền giáo Đàng Trong.',
+      'C. Borri, Relatione della nuova missione, Rôma, 1631.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, mục 18/01/1615.'
+    ]
+  },
+
+  'anre-phu-yen': {
+    id: 'anre-phu-yen',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Thầy bị bắt thay cho người khác', body: 'Lệnh bắt của quan trấn thủ nhắm vào một thầy giảng lớn tuổi cũng tên Anrê. Khi lính tới không gặp người ấy, họ bắt thầy Anrê trẻ tuổi đang có mặt. Nghĩa là cái chết mở đầu cho toàn bộ danh sách tử đạo Việt Nam bắt đầu bằng một sự nhầm lẫn — hoặc, tuỳ cách nhìn, bằng việc một người trẻ nhận lấy phần của người khác.' },
+      { title: 'Thi hài và thủ cấp đi hai hướng, không ở lại Việt Nam', body: 'Cha Đắc Lộ đưa thi hài xuống thuyền về Macao an táng, và mang thủ cấp về đặt tại nhà Bề trên Cả Dòng Tên ở Rôma. Người Công giáo Việt Nam đầu tiên chết vì đức tin trên đất Việt không có phần mộ nào trên đất Việt.' },
+      { title: 'Không có tên trong danh sách 117 vị', body: 'Thầy được tôn phong riêng ở bậc Chân phước ngày 05/3/2000, tức là mười hai năm sau lễ tuyên thánh 117 vị năm 1988 và tới nay vẫn ở bậc Chân phước. Rất nhiều trang giáo xứ ghi nhầm thầy vào danh sách 117 Thánh Tử Đạo.' },
+    ],
+    type: 'Nhân vật',
+    name: 'Chân phước Anrê Phú Yên',
+    altName: 'Thầy giảng Anrê (khoảng 1625 – 1644)',
+    period: 'Khoảng 1625 – 26/07/1644',
+    description: 'Người Công giáo Việt Nam đầu tiên đổ máu vì đức tin. Quê Phú Yên, được cha Alexandre de Rhodes đưa về Hội An học năm 1642; ngày 31/07/1643 thầy cùng các bạn khấn dâng mình trọn đời phục vụ Giáo hội trong tổ chức Thầy Giảng. Bị bắt tại Quảng Nam thay cho một thầy giảng lớn tuổi hơn cùng tên, thầy bị xử trảm tại Kẻ Chàm ngày 26/07/1644, mới mười chín tuổi. Cha Đắc Lộ chứng kiến tận nơi, đưa thi hài về Macao an táng và mang thủ cấp về nhà Bề trên Cả Dòng Tên ở Rôma. Đức Gioan Phaolô II tôn phong Chân phước ngày 05/03/2000.',
+    image: '/images/ghvn_cuong_muc_trang_sach.jpg',
+    imageCaption: 'Trang Khâm Định Việt Sử Thông Giám Cương Mục ghi mốc 1533; đây là tư liệu bối cảnh lịch sử, không phải chân dung Anrê Phú Yên.',
+    gallery: [
+      {
+        src: '/images/ghvn_map_cochinchina_1650.jpg',
+        caption: 'Bản đồ Đàng Trong khoảng năm 1650, giúp định vị Quảng Nam, Thanh Chiêm và mạng lưới truyền giáo thời Anrê. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/ghvn_cuong_muc_quyen_thu.jpg',
+        caption: 'Quyển thủ Khâm Định Việt Sử Thông Giám Cương Mục, bộ quốc sử triều Nguyễn. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/ghvn_cuong_muc_trang_sach.jpg',
+        caption: 'Trang Cương Mục ghi mốc Nguyên Hòa nguyên niên và I-nê-khu; dùng để đặt Anrê trong chuỗi lịch sử buổi đầu, không phải chứng tích trực tiếp về ngài. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/alexandre_de_rhodes.jpg',
+        caption: 'Chân dung Alexandre de Rhodes, người chứng kiến cuộc tử đạo và viết tường thuật về Anrê. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/ghvn_alexandre_de_rhodes.jpg',
+        caption: 'Một bản chân dung khác của Alexandre de Rhodes trong bộ tư liệu lịch sử. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/ghvn_divers_voyages_1653.jpg',
+        caption: 'Bìa Divers voyages et missions (Paris, 1653), sách có các tường thuật truyền giáo thế kỷ XVII. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/ghvn_dictionarium_1651.jpg',
+        caption: 'Bìa Dictionarium Annamiticum Lusitanum et Latinum (Rôma, 1651), tư liệu cùng thời kỳ truyền giáo tại Đàng Trong. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+      },
+      {
+        src: '/images/tu_dien_viet_bo_la_1651.jpg',
+        caption: 'Một bản hình khác của Từ điển Việt-Bồ-La năm 1651. Đây là tư liệu ngôn ngữ liên quan bối cảnh, không phải thánh tích của Anrê.'
+      },
+      {
+        src: '/images/ruins_st_pauls.jpg',
+        caption: 'Di tích nhà thờ Thánh Phaolô tại Macao, nơi truyền thống tư liệu ghi thi hài Anrê được đưa về an táng. Ảnh hiện trạng, không phải ảnh ngôi mộ thế kỷ XVII.'
+      },
+      {
+        src: '/images/lichsu_ba_giong_lang_1882_hires.jpg',
+        caption: 'Bản khắc làng Ba Giồng năm 1882, tư liệu hình ảnh sớm về một cộng đoàn Công giáo Nam Bộ sau thời Anrê; không phải nơi tử đạo của Anrê.'
+      },
+      {
+        src: '/images/lichsu_ba_giong_martyre_1882_hires.jpg',
+        caption: 'Bản khắc cuộc tử đạo Ba Giồng năm 1862, in năm 1882. Đưa vào để phân biệt truyền thống tử đạo Nam Bộ về sau với cuộc tử đạo Anrê năm 1644.'
+      },
+      {
+        src: '/images/lichsu_ba_giong_fuite_1882_hires.jpg',
+        caption: 'Bản khắc giáo hữu Ba Giồng tháo chạy năm 1862, thuộc lớp tư liệu thế kỷ XIX, không phải thánh tích trực tiếp của Anrê.'
+      },
+      {
+        src: '/images/lichsu_lmc_ba_giong_martyre_1882.jpg',
+        caption: 'Bản in trên Les Missions Catholiques năm 1882 về Ba Giồng. Nguồn: Gallica (BnF).'
+      },
+      {
+        src: '/images/lichsu_hoa_trai_bia_sach_1882.jpg',
+        caption: 'Trang bìa sách Martyre de vingt-sept Chrétiens (Lyon, 1882), tư liệu về Ba Giồng và lịch sử tử đạo Nam Bộ thế kỷ XIX.'
+      }
+    ],
+    source: 'A. de Rhodes, La glorieuse mort d’André, catéchiste (Paris, 1653)',
+    refs: [
+      'A. de Rhodes, La glorieuse mort d’André, catéchiste de la Cochinchine, Paris, 1653.',
+      'Hồ sơ tuyên phong Chân phước — Bộ Phong Thánh, 2000.',
+      'Hội đồng Giám mục Việt Nam, Biên niên sử Giáo hội Công giáo Việt Nam, mục 26/07/1644.'
+    ]
+  },
+
+  'mep': {
+    id: 'mep',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Không thể tách hoàn toàn khỏi bộ máy thuộc địa', body: 'MEP là hội dòng đã đào tạo và gửi sang Việt Nam phần lớn các Giám mục Đại diện Tông toà, và cũng là hội dòng có nhiều người chết vì đạo nhất tại đây. Nhưng cùng lúc đó, một số thành viên của Hội — rõ nhất là Giám mục Pellerin trong uỷ ban của Napoléon III năm 1857 và trên chiến hạm Némésis năm 1858 — đã trực tiếp cổ vũ và tham gia can thiệp quân sự. Sau khi Pháp lập nền cai trị, các cơ sở của Hội hoạt động trong khuôn khổ chính quyền thuộc địa và hưởng sự bảo hộ của nó. Cả hai mặt đều có thật, và một trang khảo cứu tử tế phải để chúng cạnh nhau.' },
+      { title: 'Nhưng chính MEP cũng là nơi giữ lại ký ức mà Việt Nam đã mất', body: 'Văn khố Hội Thừa sai Paris ở phố Bac, nay do Viện Nghiên cứu Pháp – Á quản lý, là kho tư liệu gốc lớn nhất còn lại về Giáo hội Việt Nam thời cấm đạo: thư từ, sổ rửa tội, bản đồ, ảnh chụp thế kỷ XIX. Rất nhiều điều người Việt hôm nay biết được về chính họ đạo của mình là nhờ những trang giấy được giữ ở Paris, sau khi bản gốc trong nước đã mất vì chiến tranh và thời gian.' },
+    ],
+    type: 'Nhân vật',
+    name: 'Hội Thừa Sai Paris (MEP)',
+    altName: 'Missions Étrangères de Paris — thành lập 1658 – 1663',
+    period: 'Từ năm 1658',
+    description: 'Hội các linh mục triều được lập tại Paris để đưa người sang Á Đông với một mục tiêu ghi rõ trong quy chế: đào tạo hàng giáo sĩ bản quốc, chứ không phải thay thế họ mãi mãi. Hội hình thành quanh François Pallu và Pierre Lambert de la Motte sau khi hai vị được bổ nhiệm Giám mục năm 1658; chủng viện ở phố Bac, Paris được vua Pháp công nhận năm 1663. Trong ba trăm năm sau đó, MEP là hội dòng in dấu sâu nhất lên lịch sử Giáo hội Việt Nam: gần như toàn bộ các Giám mục Đại diện Tông toà Đàng Trong và Đàng Ngoài đều là người của Hội, và văn khố của Hội tại Paris — nay do Viện Nghiên cứu Pháp–Á (IRFA) quản lý — là kho tư liệu gốc lớn nhất về Giáo hội Việt Nam thời cấm đạo.',
+    source: 'Văn khố Hội Thừa sai Paris (AMEP); IRFA',
+    refs: [
+      'Văn khố Hội Thừa sai Paris (AMEP), 128 rue du Bac, Paris — phông Tonkin và Cochinchine.',
+      'IRFA, Notices biographiques des missionnaires, irfa.paris — tiểu sử từng thừa sai.',
+      'A. Launay, Histoire générale de la Société des Missions Étrangères, Paris, 1894, 3 tập.',
+      'Hội đồng Giám mục Việt Nam, Chronology of the Catholic Church in Vietnam, mục 11/11/1659 và 1663.'
+    ]
+  },
+
+  'padroado': {
+    id: 'padroado',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Truyền giáo đi chung thuyền với thương mại và súng đạn', body: 'Theo chế độ bảo trợ, vua Bồ Đào Nha vừa có quyền đề cử giám mục vừa có nghĩa vụ chi tiền và chở người. Hệ quả là suốt hơn một thế kỷ, thừa sai đến Việt Nam đi trên chính những con tàu chở hàng và vũ khí, và các chúa Nguyễn hiểu rất rõ điều đó — họ đón thừa sai vì muốn giữ mối buôn bán với người Bồ, chứ không phải vì mến đạo. Việc đạo và việc buôn dính vào nhau ngay từ ngày đầu, và không thể tách ra khi kể lại.' },
+      { title: 'Cùng một hệ văn kiện đã chia đôi thế giới cho hai vương triều', body: 'Chuỗi văn kiện làm nền cho chế độ bảo trợ — Romanus Pontifex (1455), Inter Caetera (1493), Praecelsae Devotionis (1514) — cũng chính là chuỗi văn kiện mà giới nghiên cứu hiện đại gọi là «học thuyết khám phá», nền tảng pháp lý cho việc các cường quốc châu Âu chiếm hữu đất đai ngoài châu Âu. Đây là một chương mà chính Giáo hội ngày nay nhìn lại một cách phê phán.' },
+    ],
+    type: 'Sự kiện',
+    name: 'Chế độ Bảo trợ Bồ Đào Nha (Padroado)',
+    altName: 'Padroado Real — quyền bảo trợ truyền giáo của vua Bồ Đào Nha',
+    period: 'Thế kỷ XV – XIX',
+    description: 'Cơ chế qua đó Toà Thánh nhượng cho vua Bồ Đào Nha quyền — và nghĩa vụ — tổ chức, tài trợ và đề cử nhân sự cho các xứ truyền giáo trong vùng ảnh hưởng của mình, dựa trên chuỗi văn kiện Romanus Pontifex (1455), Inter Caetera (1493) và Praecelsae Devotionis (1514). Theo cơ chế ấy, Việt Nam thuộc quyền tài phán của Địa phận Malacca (1557) rồi Địa phận Macao (1576), và mọi thừa sai đến Việt Nam đều phải đi qua Lisbon hoặc Macao. Khi Bộ Truyền Bá Đức Tin lập các Hạt Đại diện Tông toà năm 1659 và cử Giám mục Pháp sang, xung đột tài phán bùng nổ và kéo dài hàng chục năm — đây là bối cảnh phải hiểu để đọc đúng những căng thẳng giữa các thừa sai Dòng Tên Bồ Đào Nha và các Giám mục MEP ở Đàng Trong cuối thế kỷ XVII.',
+    source: 'Bullarium Patronatus Portugalliae Regum',
+    refs: [
+      'Bullarium Patronatus Portugalliae Regum in Ecclesiis Africae, Asiae atque Oceaniae, Lisbon, 1868–1879.',
+      'Nicôla V, "Romanus Pontifex", 1455; Alexanđê VI, "Inter Caetera", 1493; Lêô X, "Praecelsae Devotionis", 1514.',
+      'C. R. Boxer, The Portuguese Seaborne Empire 1415–1825, London, 1969.',
+      'H. Chappoulie, Aux origines d’une Église: Rome et les missions d’Indochine au XVIIe siècle, Paris, 1943.'
+    ]
+  },
+
+  'francisco-garcia': {
+    id: 'francisco-garcia',
+    doTinCay: 'Truyền thống',
+    gocKhuat: [
+      { title: 'Mốc 1723 dựa trên truyền khẩu nhiều hơn văn khố', body: 'Việc cha Francisco José García là linh mục đầu tiên tới Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè từ năm 1723 được nhắc lại trong nhiều tài liệu của giáo phận, nhưng dấu vết trong văn khố Dòng Phanxicô rất mỏng. Lý do dễ hiểu: ngài hoạt động đúng vào giai đoạn Quốc Chúa Nguyễn Phúc Chu đang thi hành các lệnh cấm đạo, nên mọi việc phải làm lén và ghi chép càng ít càng an toàn. Nhưng lý do dễ hiểu không biến truyền khẩu thành văn khố, và mục này ghi rõ điều đó.' },
+    ],
+    type: 'Nhân vật',
+    name: 'Lm. Francisco José García (OFM)',
+    period: 'Đầu thế kỷ XVIII',
+    description: 'Thừa sai Dòng Phanxicô người Tây Ban Nha, được ghi nhận là linh mục đầu tiên đặt chân tới vùng Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè từ năm 1723, tổ chức các cộng đoàn tín hữu sơ khai. Ngài hoạt động đúng vào giai đoạn Quốc Chúa Nguyễn Phúc Chu đang thi hành các lệnh cấm đạo — nghĩa là toàn bộ công việc phải làm lén, và đó là lý do dấu vết văn khố về giai đoạn này rất mỏng.',
+    source: 'Biên niên sử Dòng Phanxicô tỉnh dòng Philippines',
+    refs: [
+      'Archivo Franciscano Ibero-Oriental (AFIO), Madrid — hồ sơ tỉnh dòng San Gregorio Magno, Philippines.',
+      'Toà Giám mục Mỹ Tho, Kỷ yếu Giáo phận Mỹ Tho — phần lịch sử các họ đạo tiên khởi.',
+      'Ofmvn.org, Lịch sử Dòng Phanxicô tại Việt Nam.'
+    ]
+  },
+
+  'theodule-hamon': {
+    id: 'theodule-hamon',
+    doTinCay: 'Có văn khố',
+    gocKhuat: [
+      { title: 'Cuốn sách viết hai mươi năm sau, bởi một người không có mặt', body: '«Martyre de vingt-sept Chrétiens» in năm 1882, kể lại biến cố năm 1862 — hai mươi năm sau. Cha Hamon không chứng kiến vụ tàn sát; ngài tới Ba Giồng sau đó, thu thập lời kể của người sống sót và năm 1872 quy tập hài cốt. Đây là sử liệu quý nhất còn lại về biến cố ấy, và cũng là sử liệu duy nhất — nghĩa là gần như mọi điều người ta biết về Ba Giồng năm 1862 đều đi qua đúng một ngòi bút, của một thừa sai Pháp, viết cho độc giả Pháp, vào lúc Nam Kỳ đã thành thuộc địa.' },
+    ],
+    type: 'Nhân vật',
+    name: 'Lm. Théodule Hamon (MEP)',
+    period: 'Thế kỷ XIX',
+    description: 'Linh mục Hội Thừa sai Paris, từng coi sóc họ đạo Mỹ Tho và Ba Giồng. Năm 1872 ngài quy tập hài cốt các vị tử đạo Ba Giồng, và năm 1882 cho xuất bản tập Martyre de vingt-sept Chrétiens thuật lại cuộc tàn sát năm 1862 — cùng với những bản khắc minh hoạ nay là tư liệu hình ảnh sớm nhất còn lại về vùng đất này.',
+    source: 'Th. Hamon, Martyre de vingt-sept Chrétiens (1882)',
+    refs: [
+      'Th. Hamon (MEP), Martyre de vingt-sept Chrétiens, 1882.',
+      'IRFA, Notices biographiques — hồ sơ thừa sai HAMON Théodule, irfa.paris.',
+      'Văn khố Hội Thừa sai Paris (AMEP), phông Cochinchine occidentale.'
+    ]
+  }
+};
+
+/**
  * Khung chân dung nhân vật. Nhiều cha sở thời sơ khai (1860–1956) không còn
  * ảnh tư liệu nào trong kho lưu trữ MEP/IRFA; những trường hợp đó hiển thị ô
  * trống có chú thích thay vì mượn ảnh nhà thờ làm ảnh chân dung.
@@ -1581,9 +2762,115 @@ export const PASTOR_TIMELINE: PastorTimelineRow[] = [
   ...PASTOR_GAPS.map((g) => ({ ...g, sortKey: startYear(g.period) ?? 0 }))
 ].sort((a, b) => a.sortKey - b.sortKey);
 
+export const NON_PASTOR_BIOS: DetailedBioRecord[] = [
+  {
+    id: 'thanh-phero-nguyen-van-luu',
+    name: 'Thánh Phêrô Nguyễn Văn Lựu',
+    saintName: 'Thánh Phêrô',
+    role: 'Linh mục Tử Đạo (1812 - 1861)',
+    period: 'Tử đạo ngày 07/04/1861 tại Mỹ Tho',
+    birth: 'Năm 1812 tại Gò Vấp, tỉnh Gia Định',
+    death: '07/04/1861 tại pháp trường Mỹ Tho',
+    origin: 'Gò Vấp, Giáo phận Đàng Trong',
+    source: 'Hồ sơ Phong Thánh; Báo cáo của các thừa sai MEP',
+    image: '/images/thanh_phero_luu.png',
+    shortDesc: 'Vị linh mục tử đạo can trường, quản nhiệm họ đạo Ba Giồng và các vùng phụ cận. Bị bắt năm 1860 khi vào đồn Mỹ Tho thăm viếng giáo dân, ngài bị xử trảm ngày 07/04/1861 và thi hài được rước về Ba Giồng. Ngài được Giáo phận Mỹ Tho nhận làm Thánh Bổn mạng.',
+    chronology: [
+      {
+        time: '1812 - 1853',
+        title: 'Thân thế và Ơn gọi',
+        content: 'Sinh tại Gò Vấp, dâng mình cho Chúa từ nhỏ. Ngài theo học tại Chủng viện Penang (Malaysia) và thụ phong linh mục.'
+      },
+      {
+        time: 'Trước 1860',
+        title: 'Sứ vụ mục tử',
+        content: 'Coi sóc các họ đạo Mặc Bắc, Sa Đéc, và sau đó là vùng Ba Giồng, Mỹ Tho. Ngài nổi tiếng là vị mục tử hiền lành, tận tâm giảng dạy và không ngại gian khổ để ban các bí tích cho giáo dân.'
+      },
+      {
+        time: '1860 - 07/04/1861',
+        title: 'Bị bắt và Tử đạo',
+        content: 'Năm 1860, khi lén vào đồn Mỹ Tho để thăm viếng và xưng tội cho giáo dân đang bị giam cầm, ngài bị lính phát hiện. Bị điệu ra tra khảo, ngài dõng dạc nhận mình là "đạo trưởng" và chấp nhận chịu mọi cực hình. Bị xử trảm ngày 07/04/1861 tại pháp trường ngoài thành Mỹ Tho.'
+      }
+    ],
+    milestones: [
+      'Năm 1861: Chịu phúc tử đạo tại Mỹ Tho.',
+      'Ngày 02/05/1909: Được Đức Thánh Cha Piô X suy tôn Chân phước.',
+      'Ngày 19/06/1988: Được Đức Thánh Cha Gioan Phaolô II phong Hiển Thánh.',
+      'Là Thánh Bổn mạng của Giáo phận Mỹ Tho.'
+    ]
+  },
+  {
+    id: 'cha-eugene-faron',
+    name: 'Lm. Eugène Faron (MEP)',
+    saintName: 'Thừa sai Hội Thừa Sai Paris',
+    role: 'Tuyên uý Quân y viện Mỹ Tho & Người xây Nhà thờ Thánh Tâm',
+    period: 'Phục vụ tại Mỹ Tho các năm 1878 và từ 1882',
+    birth: 'Sinh năm 1845 tại Pháp',
+    death: 'Tháng 7/1895, tang lễ cử hành tại Mỹ Tho',
+    priestOrdination: 'Thụ phong linh mục ngày 11/06/1870',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 1189',
+    source: 'Hồ sơ lưu trữ IRFA 1189',
+    image: '/images/cha_faron.jpg',
+    shortDesc: 'Vị linh mục thừa sai gắn bó với các thương binh, bệnh nhân và quân nhân Pháp tại Mỹ Tho. Ngài khởi đầu với vai trò tuyên uý quân y viện, sau đó quyên góp và xây dựng nhà thờ Thánh Tâm dành cho người Pháp và cộng đoàn Công giáo tại trung tâm tỉnh lỵ.',
+    chronology: [],
+    milestones: []
+  },
+  {
+    id: 'cha-adrien-launay',
+    name: 'Lm. Adrien Launay (MEP)',
+    saintName: 'Thừa sai Hội Thừa Sai Paris',
+    role: 'Cha phó kiêm Tuyên uý Quân y viện Mỹ Tho (1878 – 1879)',
+    period: '1878 – 1879',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 1325',
+    source: 'Hồ sơ lưu trữ IRFA 1325',
+    image: '/images/cha_launay.jpg',
+    shortDesc: 'Phục vụ tại Mỹ Tho trong hai năm 1878-1879 với tư cách cha phó và tuyên uý. Về sau, ngài trở thành sử gia lỗi lạc của Hội Thừa Sai Paris, ghi chép và lưu giữ phần lớn lịch sử truyền giáo tại Viễn Đông.',
+    chronology: [],
+    milestones: []
+  },
+  {
+    id: 'cha-jacques-hirbec',
+    name: 'Lm. Jacques Hirbec (MEP)',
+    saintName: 'Thừa sai Hội Thừa Sai Paris',
+    role: 'Tuyên uý Quân y viện Mỹ Tho',
+    period: 'Từ năm 1879',
+    origin: 'Hội Thừa Sai Paris (MEP) — Hồ sơ lưu trữ IRFA số 1061',
+    source: 'Hồ sơ lưu trữ IRFA 1061',
+    image: '/images/cha_hirbec.jpg',
+    shortDesc: 'Được Đức cha Colombert bổ nhiệm làm tuyên uý quân y viện Mỹ Tho năm 1879. Sau một thời gian ngắn phải đi dưỡng bệnh, ngài lại trở về tiếp tục nhiệm sở này, đồng hành cùng các bệnh nhân và giáo dân.',
+    chronology: [],
+    milestones: []
+  },
+  {
+    id: 'cha-thieng',
+    name: 'Cha Thiềng',
+    saintName: '',
+    role: 'Linh mục bản xứ',
+    period: 'Trước năm 1861',
+    origin: 'Giáo phận Tây Đàng Trong',
+    source: 'Các báo cáo của Thừa sai MEP năm 1861',
+    shortDesc: 'Vị linh mục bản xứ lão thành, năm 1861 dù đã 80 tuổi vẫn bị quan quân triều đình giam giữ tại đồn Mỹ Tho trong đợt bách hại dữ dội. Gương sáng của ngài và các giáo dân bị giam cầm đã làm chứng cho đức tin mãnh liệt của cộng đoàn tiên khởi.',
+    chronology: [],
+    milestones: []
+  },
+  {
+    id: 'cha-phien',
+    name: 'Cha Phiên',
+    saintName: '',
+    role: 'Linh mục phụ tá',
+    period: 'Năm 1861',
+    origin: 'Giáo phận Tây Đàng Trong',
+    source: 'Các báo cáo của Thừa sai MEP (Cha Renier, Cha Guillou)',
+    shortDesc: 'Linh mục bản xứ phụ tá cho Cha Bề trên Guillou trong giai đoạn 1861. Ngài được giao coi sóc ngôi nhà thờ lá nhỏ đầu tiên của họ đạo Mỹ Tho khi Cha Guillou bận rộn với các công tác mục vụ và cứu trợ giáo dân.',
+    chronology: [],
+    milestones: []
+  }
+];
+
 export const ALL_COMMUNITY_BIOS: DetailedBioRecord[] = [
   ...BISHOPS_EXTENDED_DATA,
   ...PASTORS_EXTENDED_DATA,
+  ...NON_PASTOR_BIOS,
   POPE_LEO_XIV_BIO
 ];
 
@@ -2230,6 +3517,189 @@ export const CHAPLAINS_EXTENDED_DATA: DetailedBioRecord[] = [
  */
 export const PRE1960_ORDINARIES: DetailedBioRecord[] = [
   {
+    id: 'dgm-lambert-de-la-motte',
+    name: 'Đức cha Pierre Lambert de la Motte',
+    saintName: '',
+    role: 'Đại diện Tông toà Đàng Trong (1659 – 1679)',
+    period: '1659 – 1679',
+    birth: '16/01/1624 tại Lisieux, Pháp',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    priestOrdination: 'Thụ phong linh mục ngày 27/12/1655',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Berytus năm 1660',
+    image: '/images/lambert_de_la_motte.png',
+    source: 'Tài liệu Tòa Thánh, Hội Thừa sai Paris',
+    shortDesc: 'Vị Đại diện Tông tòa tiên khởi của Đàng Trong, đồng sáng lập Hội Thừa sai Paris (MEP) và đấng sáng lập Dòng Mến Thánh Giá. Ngài đặt nền móng vững chắc cho việc tổ chức Hàng giáo sĩ bản địa.',
+    chronology: [
+      { time: '1659', title: 'Tông sắc Super Cathedram', content: 'Được Đức Thánh Cha Alexander VII bổ nhiệm làm Đại diện Tông tòa Đàng Trong.' },
+      { time: '1664', title: 'Công đồng Juthia', content: 'Cùng với Đức cha Pallu soạn thảo "Huấn thị Monita" (Monita ad Missionarios) làm kim chỉ nam truyền giáo cho các thừa sai MEP.' },
+      { time: '1670', title: 'Công đồng Phố Hiến', content: 'Triệu tập Công đồng Phố Hiến và lập Dòng nữ Mến Thánh Giá đầu tiên tại Đàng Trong và Đàng Ngoài.' },
+      { time: '1679', title: 'Qua đời và An táng', content: 'Ngài qua đời ngày 15/06/1679 tại Ayutthaya, Thái Lan. Thi hài ngài được an táng tại Nhà thờ Thánh Giuse (St. Joseph\'s Church) ở cố đô Ayutthaya.' }
+    ],
+    milestones: [
+      'Vị Giám mục đầu tiên cai quản Giáo hội Đàng Trong.',
+      'Đồng tác giả Huấn thị Monita - nền tảng truyền giáo Á Châu.',
+      'Sáng lập Dòng nữ Mến Thánh Giá (1670).',
+      'Được an táng tại Nhà thờ Thánh Giuse, Ayutthaya (Thái Lan).'
+    ]
+  },
+  {
+    id: 'dgm-mahot',
+    name: 'Đức cha Guillaume Mahot',
+    saintName: '',
+    role: 'Đại diện Tông toà Đàng Trong (1680 – 1684)',
+    period: '1680 – 1684',
+    birth: 'Năm 1630 tại Giáo phận Sées, Pháp',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    priestOrdination: 'Thụ phong linh mục năm 1656',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Bida năm 1682',
+    source: 'Hội Thừa sai Paris',
+    shortDesc: 'Vị Đại diện Tông tòa thứ 2 của Đàng Trong. Ngài đã nỗ lực gìn giữ giáo phận trong giai đoạn bị bách hại dữ dội dưới thời các chúa Nguyễn.',
+    chronology: [
+      { time: '1680', title: 'Kế nhiệm', content: 'Được Tòa Thánh bổ nhiệm làm Đại diện Tông tòa Đàng Trong sau khi Đức cha Lambert de la Motte qua đời.' },
+      { time: '1682', title: 'Tấn phong Giám mục', content: 'Được tấn phong Giám mục tại Ayutthaya (Thái Lan) bởi Đức cha Laneau.' },
+      { time: '1684', title: 'Qua đời và An táng', content: 'Qua đời ngày 04/06/1684 tại Ayutthaya, Thái Lan. Được an táng tại Nhà thờ Thánh Giuse ở Ayutthaya, cùng nơi an nghỉ với vị tiền nhiệm.' }
+    ],
+    milestones: [
+      'Đại diện Tông tòa thứ 2 của Đàng Trong.',
+      'An táng tại Nhà thờ Thánh Giuse, Ayutthaya (Thái Lan).'
+    ]
+  },
+  {
+    id: 'dgm-perez',
+    name: 'Đức cha François Perez',
+    saintName: '',
+    role: 'Đại diện Tông toà Đàng Trong (1687 – 1728)',
+    period: '1687 – 1728',
+    birth: 'Năm 1643 tại Ayutthaya (Thái Lan)',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Bugia năm 1691',
+    source: 'Hội Thừa sai Paris',
+    shortDesc: 'Vị Giám mục sinh trưởng tại Thái Lan, là người gốc Á đầu tiên cai quản Đàng Trong suốt hơn 40 năm.',
+    chronology: [
+      { time: '1687', title: 'Kế nhiệm', content: 'Được Tòa Thánh bổ nhiệm làm Đại diện Tông tòa Đàng Trong. Ngài là Giám mục có xuất thân châu Á đầu tiên của khu vực.' },
+      { time: '1728', title: 'Qua đời và An táng', content: 'Qua đời ngày 20/09/1728 tại Ayutthaya. An táng tại Nhà thờ Thánh Giuse, Thái Lan.' }
+    ],
+    milestones: [
+      'Thời gian cai quản Đàng Trong kéo dài kỷ lục: hơn 41 năm.',
+      'An táng tại Nhà thờ Thánh Giuse, Ayutthaya (Thái Lan).'
+    ]
+  },
+  {
+    id: 'dgm-alexandris',
+    name: 'Đức cha Alexandre de Alexandris',
+    saintName: '',
+    role: 'Đại diện Tông toà Đàng Trong (1728 – 1738)',
+    period: '1728 – 1738',
+    birth: 'Năm 1684 tại Ý',
+    origin: 'Dòng Barnabites (CRSP)',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Nabaca năm 1726',
+    source: 'Hội Thừa sai Paris',
+    shortDesc: 'Vị Giám mục người Ý thuộc dòng Barnabites, cai quản Đàng Trong trong một thập kỷ.',
+    chronology: [
+      { time: '1728', title: 'Kế nhiệm', content: 'Kế nhiệm Đức cha Perez làm Đại diện Tông tòa Đàng Trong.' },
+      { time: '1738', title: 'Qua đời và An táng', content: 'Qua đời ngày 10/10/1738 tại Macao. An táng tại nhà thờ Thánh Phaolô ở Macao.' }
+    ],
+    milestones: [
+      'Đại diện Tông tòa thứ 4 của Đàng Trong.',
+      'An táng tại Macao.'
+    ]
+  },
+  {
+    id: 'dgm-lefebvre-arnaud',
+    name: 'Đức cha Arnaud-Antoine Lefèbvre',
+    saintName: '',
+    role: 'Đại diện Tông toà Đàng Trong (1741 – 1760)',
+    period: '1741 – 1760',
+    birth: '20/08/1709 tại Giáo phận Amiens, Pháp',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    priestOrdination: 'Thụ phong linh mục năm 1733',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Neadoli năm 1743',
+    source: 'Hội Thừa sai Paris',
+    shortDesc: 'Cai quản Đàng Trong trong thời kỳ cấm đạo khắc nghiệt dưới thời chúa Nguyễn Phúc Khoát.',
+    chronology: [
+      { time: '1741', title: 'Kế nhiệm', content: 'Được Tòa Thánh chọn làm Đại diện Tông tòa Đàng Trong.' },
+      { time: '1750', title: 'Bị bách hại và trục xuất', content: 'Chứng kiến cuộc bách hại lớn, ngài cùng nhiều thừa sai bị chúa Võ Vương (Nguyễn Phúc Khoát) bắt giam và trục xuất khỏi Đàng Trong.' },
+      { time: '1760', title: 'Qua đời và An táng', content: 'Qua đời ngày 27/03/1760 trên đường sang Xiêm. Thi hài được đưa về an táng tại Nhà thờ Thánh Giuse, Ayutthaya (Thái Lan).' }
+    ],
+    milestones: [
+      'Trải qua cuộc bách hại diện rộng năm 1750.',
+      'An táng tại Nhà thờ Thánh Giuse, Ayutthaya (Thái Lan).'
+    ]
+  },
+  {
+    id: 'dgm-piguel',
+    name: 'Đức cha Guillaume Piguel',
+    saintName: '',
+    role: 'Đại diện Tông toà Đàng Trong (1762 – 1771)',
+    period: '1762 – 1771',
+    birth: '04/12/1722 tại Giáo phận Nantes, Pháp',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Canatha năm 1764',
+    source: 'Hội Thừa sai Paris',
+    shortDesc: 'Vị Giám mục thứ 6 của Đàng Trong, là đấng truyền chức Giám mục cho Đức cha Bá Đa Lộc.',
+    chronology: [
+      { time: '1762', title: 'Kế nhiệm', content: 'Được bổ nhiệm làm Đại diện Tông tòa Đàng Trong.' },
+      { time: '1771', title: 'Qua đời và An táng', content: 'Qua đời ngày 21/06/1771 tại Prambey Chhom (Campuchia) / vùng giáp ranh Hòn Đất (Hà Tiên). Ngài được an táng tại khu vực truyền giáo này.' }
+    ],
+    milestones: [
+      'Đại diện Tông tòa thứ 6 của Đàng Trong.',
+      'Người tấn phong Giám mục cho Đức cha Pigneau de Behaine (Bá Đa Lộc).',
+      'An táng tại Hòn Đất (Kiên Giang, Việt Nam).'
+    ]
+  },
+  {
+    id: 'dgm-pigneau-de-behaine',
+    name: 'Đức cha Pierre Pigneau de Behaine',
+    saintName: 'Bá Đa Lộc',
+    role: 'Đại diện Tông toà Đàng Trong (1771 – 1799)',
+    period: '1771 – 1799',
+    birth: '02/11/1741 tại Origny-en-Thiérache, Pháp',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    priestOrdination: 'Thụ phong linh mục năm 1765',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Adran năm 1774',
+    image: '/images/pigneau_de_behaine.jpg', 
+    source: 'Hội Thừa sai Paris',
+    shortDesc: 'Nhân vật lịch sử quan trọng cuối thế kỷ XVIII, có vai trò lớn trong sự nghiệp của vua Gia Long và việc biên soạn tự vị An Nam.',
+    chronology: [
+      { time: '1771', title: 'Giám mục Đàng Trong', content: 'Bắt đầu cai quản Hạt Đại diện Tông tòa Đàng Trong giữa lúc loạn lạc Tây Sơn.' },
+      { time: '1772', title: 'Từ điển An Nam', content: 'Hoàn thành bản thảo Dictionarium Annamitico-Latinum (Tự vị An Nam - Latinh).' },
+      { time: '1787', title: 'Hiệp ước Versailles', content: 'Đại diện Nguyễn Ánh ký Hiệp ước Versailles với triều đình Pháp nhằm tìm kiếm viện trợ quân sự.' },
+      { time: '1799', title: 'Qua đời và Điếu văn', content: 'Qua đời ngày 09/10/1799 tại Thị Nại (Quy Nhơn). Vua Gia Long đã tổ chức quốc tang vô cùng trọng thể. Tại khu mộ phần của ngài có bình phong khắc dòng chữ Hán mang nội dung: "Thượng Đế nhơn từ cứu vớt Bá Đa Lộc linh hồn kim dĩ văn thế khiết thăng thiên quốc hưởng chân phước vô cùng".' },
+      { time: 'An táng (Cũ)', title: 'Lăng Cha Cả (Sài Gòn)', content: 'Thi hài ngài ban đầu được an táng tại Sài Gòn (Tân Bình ngày nay), khu vực này từ đó dân gian gọi là Lăng Cha Cả.' },
+      { time: 'Hiện tại', title: 'Lưu trữ tại MEP (Pháp)', content: 'Năm 1983, khu lăng mộ bị giải tỏa. Di cốt của ngài được đưa về Pháp và hiện đang được lưu giữ trang trọng tại Hội Thừa sai Paris (MEP).' }
+    ],
+    milestones: [
+      'Soạn thảo từ điển Dictionarium Annamitico-Latinum (1772).',
+      'Đóng vai trò chủ chốt trong Hiệp ước Versailles (1787).',
+      'An táng ban đầu tại Lăng Cha Cả (Sài Gòn), nay di cốt lưu tại Paris.'
+    ]
+  },
+  {
+    id: 'dgm-cuenot',
+    name: 'Đức cha Étienne-Théodore Cuénot',
+    saintName: 'Cố Thể',
+    role: 'Đại diện Tông toà Đàng Trong (1840 – 1844)',
+    period: '1840 – 1844',
+    birth: '08/02/1802 tại Le Bélieu, Pháp',
+    origin: 'Hội Thừa sai Paris (MEP)',
+    priestOrdination: 'Thụ phong linh mục ngày 24/09/1825',
+    bishopConsecration: 'Tấn phong Giám mục hiệu toà Metellopolis năm 1833',
+    image: '/images/cuenot.png',
+    source: 'Hồ sơ Thánh tử đạo',
+    shortDesc: 'Vị Giám mục cuối cùng cai quản toàn bộ Đàng Trong trước khi chia tách thành Đông - Tây năm 1844. Ngài gánh vác giáo phận trong giai đoạn cấm đạo khốc liệt nhất và là một Thánh tử đạo.',
+    chronology: [
+      { time: '1840', title: 'Cai quản Đàng Trong', content: 'Kế nhiệm Đức cha Taberd cai quản toàn Đàng Trong. Ngài tổ chức Công đồng Gò Thị (1841) nhằm củng cố hàng giáo sĩ bản xứ.' },
+      { time: '1844', title: 'Chia tách Đàng Trong', content: 'Đề nghị Tòa Thánh chia Đàng Trong làm hai (Đông và Tây). Ngài nhận phần Đông Đàng Trong (Quy Nhơn ngày nay).' },
+      { time: '1861', title: 'Tử đạo và An táng', content: 'Bị bắt ngày 24/10/1861. Ngài kiệt sức và qua đời trong ngục thất Bình Định ngày 08/02/1861 trước khi nhận án trảm quyết. Thi hài ngài ban đầu được an táng tại Gò Thị. Một phần thánh tích của ngài nay được tôn kính tại Chủng viện Qui Nhơn, phần khác lưu giữ tại Hội Thừa sai Paris. Được Đức Gioan Phaolô II phong Hiển thánh năm 1988.' }
+    ],
+    milestones: [
+      'Đại diện Tông tòa cuối cùng của Đàng Trong nguyên vẹn.',
+      'Truyền chức cho rất nhiều linh mục người Việt bất chấp cấm đạo.',
+      'Được tuyên Thánh Tử Đạo Việt Nam năm 1988.',
+      'Thánh tích hiện lưu giữ tại Qui Nhơn và Paris.'
+    ]
+  },
+  {
     id: 'dgm-lefebvre',
     name: 'Đức cha Dominique Lefebvre',
     saintName: 'Cố Ngãi',
@@ -2543,7 +4013,7 @@ export const BDH_BIOS: DetailedBioRecord[] = [
       'Giáo viên môn Toán tại Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho. Phó nội vụ trong nhiệm kỳ 2013 – 2019, sau đó quản lý Ban Giáo Lý Thiếu Nhi của giáo xứ cho đến nay. Chữ "Thầy" trước tên là danh xưng nghề giáo.',
     chronology: [],
     milestones: [
-      'Trưởng được sai đến với Xứ Đoàn để phục vụ, và mang theo cái nghề Chúa đã trao cho mình ngoài đời: thầy giáo dạy Toán tại Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho — chữ «Thầy» trước tên là danh xưng nghề giáo. Việc đứng lớp và việc dạy đức tin cho thiếu nhi vốn cùng một công việc truyền đạt, chỉ khác đối tượng và khác nội dung, nên phần việc trưởng nhận trong Xứ Đoàn về sau là điều tự nhiên. Theo cách đối chiếu của bản khảo cứu, trưởng có mặt ngay trong Ban Điều Hành đời đầu sau ngày tái lập năm 2005.',
+      'Trưởng được sai đến với Xứ Đoàn để phục vụ, và mang theo cái nghề Chúa đã trao cho mình ngoài đời: thầy giáo dạy Toán tại Trường THCS Lê Ngọc Hân, thành phố Mỹ Tho — chữ "Thầy" trước tên là danh xưng nghề giáo. Việc đứng lớp và việc dạy đức tin cho thiếu nhi vốn cùng một công việc truyền đạt, chỉ khác đối tượng và khác nội dung, nên phần việc trưởng nhận trong Xứ Đoàn về sau là điều tự nhiên. Theo cách đối chiếu của bản khảo cứu, trưởng có mặt ngay trong Ban Điều Hành đời đầu sau ngày tái lập năm 2005.',
       'Khoảng 2013 đến 2019, trưởng làm Xứ Đoàn Phó nội vụ — theo Nội Quy tương ứng với Phó đặc trách quản trị của Ban Thường vụ — trong nhiệm kỳ mà Xứ Đoàn và Ban Giáo Lý lần đầu đi chung một đường lối.',
       'Rồi Ban Điều Hành từ nhiệm năm 2019 và Xứ Đoàn bước vào năm năm không có ban. Trưởng không rời đi. Từ năm 2020 đến nay, trưởng quản lý Ban Giáo Lý Thiếu Nhi của Giáo xứ Chánh Toà Mỹ Tho, song song với trưởng Matthêu Lê Hoàng Thiên Phúc trông coi sinh hoạt Thiếu Nhi Thánh Thể. Suốt quãng lặng dài nhất trong lịch sử điều hành của Xứ Đoàn, phần giáo lý của giáo xứ không đứt mạch — điều mà một bảng phân công để trống không ghi lại được, nhưng những lớp học vẫn mở đều mỗi tuần thì có.'
     ]
@@ -2593,7 +4063,7 @@ export const BDH_BIOS: DetailedBioRecord[] = [
       'Nhưng dấu ấn lớn nhất của trưởng nằm ở đúng những năm mà bảng phân công của Xứ Đoàn để trống. Từ 2020 đến 2024, khi Xứ Đoàn không có Ban Điều Hành chính thức, trưởng là người được giao trông coi sinh hoạt Thiếu Nhi Thánh Thể, song song với thầy Augustinô Võ Tấn Hoàng Việt quản lý Ban Giáo Lý Thiếu Nhi của giáo xứ. Không có cơ cấu đứng sau, không có nhiệm kỳ để dựa vào, mỗi việc phải xử lý theo từng vụ — tuỳ hoàn cảnh, tuỳ người phụ trách, tuỳ nhu cầu trước mắt. Xứ Đoàn đi qua được năm năm ấy phần lớn là nhờ vậy.',
       'Tháng 6 năm 2025, sau khi Huynh Trưởng đoàn bày tỏ nguyện vọng tái lập Ban Điều Hành, cha Tuyên Uý Phêrô Nguyễn Ngọc bổ nhiệm trưởng làm Xứ Đoàn Trưởng, nhiệm kỳ hai năm theo Nội Quy. Cùng năm, trưởng được tín nhiệm làm Uỷ viên ban Phụng vụ Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho, nhiệm kỳ 2025 – 2030.',
       'Cuối năm 2025, trong ít tháng ngắn ngủi của nhiệm kỳ, trưởng cùng trưởng Phêrô Lê Gia Huy đưa chương trình ngành Hiệp Sĩ và khăn Hiệp Sĩ vào sinh hoạt chính thức — lần đầu tiên hệ thống ngành của Xứ Đoàn đủ mặt; và cùng trưởng Gia Huy với trưởng Batôlômêô Nguyễn Phúc Khang xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn, lộ trình nội bộ mà Xứ Đoàn thiếu suốt hai mươi năm.',
-      'Ngày 12 tháng 12 năm 2025, nhân Đêm Thánh Ca «Ánh Sáng Hy Vọng» của Giáo hạt Mỹ Tho tổ chức tại Nhà thờ Chánh Toà, Ban Điều Hành được cho ngưng nhiệm vụ, sớm hơn dự định. Nhưng hai công trình kia thì ở lại — chúng đã thành nếp sinh hoạt, và nếp thì không gỡ ra được bằng một quyết định. Trưởng cũng ở lại, quay về hỗ trợ đúng mảng truyền thông đã bắt đầu từ bảy năm trước, lần này không cần chức danh nào.'
+      'Ngày 12 tháng 12 năm 2025, nhân Đêm Thánh Ca "Ánh Sáng Hy Vọng" của Giáo hạt Mỹ Tho tổ chức tại Nhà thờ Chánh Toà, Ban Điều Hành được cho ngưng nhiệm vụ, sớm hơn dự định. Nhưng hai công trình kia thì ở lại — chúng đã thành nếp sinh hoạt, và nếp thì không gỡ ra được bằng một quyết định. Trưởng cũng ở lại, quay về hỗ trợ đúng mảng truyền thông đã bắt đầu từ bảy năm trước, lần này không cần chức danh nào.'
     ]
   },
   {
@@ -2613,7 +4083,7 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     chronology: [],
     milestones: [
       'Trưởng được sai đến phục vụ vào đúng quãng Xứ Đoàn không có gì để trao lại: năm năm liền không có Ban Điều Hành chính thức, nghĩa là không có chức danh nào để nhận, cũng không có nhiệm kỳ nào để hết. Việc phục vụ khi ấy không đi kèm một tước hiệu nào, và trưởng vẫn nhận lấy.',
-      'Từ 2020 đến 2024, trưởng cùng anh chị em khác hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc duy trì và tổ chức sinh hoạt Thiếu Nhi Thánh Thể. Trưởng cũng được trao trách nhiệm Trưởng Ban Sinh Hoạt của Xứ Đoàn — phần việc lo các buổi sinh hoạt vòng tròn, trò chơi và chuyên môn; bản khảo cứu chưa xác định được nhiệm kỳ của chức này nên tạm để trống. Công việc không tên, không ai bổ nhiệm, và cũng không có gì để ghi vào bảng phân công.',
+      'Từ 2020 đến 2024, trưởng cùng anh chị em khác hỗ trợ trưởng Matthêu Lê Hoàng Thiên Phúc duy trì và tổ chức sinh hoạt Thiếu Nhi Thánh Thể. Trưởng cũng được trao trách nhiệm Trưởng Ban Sinh Hoạt của Xứ Đoàn — phần việc lo các buổi sinh hoạt vòng tròn, trò chơi và chuyên môn. Chức trưởng ban này đã qua nhiều nhiệm kỳ kế tiếp nhau; các trưởng không còn nhớ chính xác mốc thời gian, nên bản khảo cứu để trống thay vì ghi một niên đại không ai kiểm được. Công việc không tên, không ai bổ nhiệm, và cũng không có gì để ghi vào bảng phân công.',
       'Tháng 6 năm 2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn, trưởng được tín nhiệm trao chức Xứ Đoàn Phó nội vụ — theo Nội Quy tương ứng với Phó đặc trách quản trị. Nhiệm kỳ kết thúc sớm ngày 12/12/2025. Nhưng việc một người đã âm thầm gánh phần nặng nhất vào lúc chưa ai trao cho mình chức vụ nào, rồi được cộng đoàn đặt đúng vào chỗ ấy khi cơ cấu trở lại, tự nó đã là một dấu ấn — và là thứ dấu ấn mà một quyết định ngưng nhiệm vụ không xoá được.'
     ]
   },
@@ -2638,7 +4108,7 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     milestones: [
       'Năm 2018, trưởng được sai đến phục vụ Xứ Đoàn, và phần việc được trao là mảng truyền thông: ghi hình, hình ảnh và loan tin sinh hoạt. Từ 2018 đến 2020, trưởng làm Phó Ban Truyền Thông, cùng trưởng Matthêu Lê Hoàng Thiên Phúc làm trưởng ban — hai người trẻ được giao lo cho Xứ Đoàn có cái để nhớ lại về sau.',
       'Rồi đến những năm 2020 – 2024, khi Xứ Đoàn không có Ban Điều Hành chính thức. Trưởng nằm trong nhóm người ở lại giữ cho sinh hoạt khỏi đứt mạch — phần việc không tên mà phải năm năm sau nhìn lại mới thấy hết giá trị.',
-      'Tháng 6 năm 2025, trưởng được tín nhiệm trao chức Xứ Đoàn Phó ngoại vụ, theo Nội Quy tương ứng với Phó đặc trách huấn luyện: quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch các chương trình lớn. Cùng năm, trưởng trở lại hỗ trợ mảng truyền thông đã khởi đầu bảy năm trước. Trưởng cũng từng được trao trách nhiệm Trưởng Ban Trực của Xứ Đoàn, phần việc giữ trật tự và trông coi các em trong giờ sinh hoạt và giờ lễ; bản khảo cứu chưa xác định được nhiệm kỳ của chức này nên tạm để trống.',
+      'Tháng 6 năm 2025, trưởng được tín nhiệm trao chức Xứ Đoàn Phó ngoại vụ, theo Nội Quy tương ứng với Phó đặc trách huấn luyện: quản lý nhân sự Huynh Trưởng đoàn, phân công và bổ nhiệm, tổ chức đào tạo nội bộ và lên kế hoạch các chương trình lớn. Cùng năm, trưởng trở lại hỗ trợ mảng truyền thông đã khởi đầu bảy năm trước. Trưởng cũng từng được trao trách nhiệm Trưởng Ban Trực của Xứ Đoàn, phần việc giữ trật tự và trông coi các em trong giờ sinh hoạt và giờ lễ. Ban Trực cũng đã qua nhiều nhiệm kỳ kế tiếp nhau — từ tháng 6/2025 do trưởng Têrêsa Trần Ngọc Tú Trân phụ trách — nhưng mốc thời gian của các nhiệm kỳ trước thì các trưởng không còn nhớ chính xác, nên bản khảo cứu để trống.',
       'Cuối năm 2025, trưởng cùng trưởng Thiên Phúc đưa chương trình ngành Hiệp Sĩ và khăn Hiệp Sĩ vào sinh hoạt chính thức, giúp các em lớn có môi trường tiếp tục đào luyện; và cùng trưởng Thiên Phúc với trưởng Batôlômêô Nguyễn Phúc Khang xây dựng chương trình đào tạo Huynh Trưởng Xứ Đoàn — một lộ trình rõ ràng cho Dự Trưởng, Trợ Tá và các anh chị đang phục vụ các ngành.',
       'Nhiệm kỳ khép lại ngày 12/12/2025. Chương trình thì vẫn còn đó, và trưởng thì vẫn còn ở lại.'
     ]
@@ -2682,7 +4152,7 @@ export const BDH_BIOS: DetailedBioRecord[] = [
     shortDesc: 'Thủ quỹ của Ban Điều Hành tái lập tháng 6/2025. Theo Nội Quy, thủ quỹ do Xứ Đoàn Trưởng và hai phó đề cử.',
     chronology: [],
     milestones: [
-      'Trưởng được sai đến phục vụ ở lứa mới nhất của Xứ Đoàn, giữa lúc guồng máy vừa được dựng lại sau năm năm bỏ trống. Tháng 6 năm 2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn, trưởng được các trưởng trong Ban Thường vụ đề cử và được cha Tuyên Uý chấp thuận trao chức Thủ Quỹ Đoàn — đúng theo Nội Quy, thủ quỹ do Xứ Đoàn Trưởng và hai phó đề cử. Trước đó trưởng đã được trao trách nhiệm Trưởng Ban Sinh Hoạt của Xứ Đoàn, phần việc lo các buổi sinh hoạt vòng tròn, trò chơi và chuyên môn — mảng gần các em nhất trong mọi phần việc của một Huynh Trưởng; bản khảo cứu chưa xác định được nhiệm kỳ của chức này nên tạm để trống.',
+      'Trưởng được sai đến phục vụ ở lứa mới nhất của Xứ Đoàn, giữa lúc guồng máy vừa được dựng lại sau năm năm bỏ trống. Tháng 6 năm 2025, khi Ban Điều Hành được tái lập theo thỉnh nguyện của Huynh Trưởng đoàn, trưởng được các trưởng trong Ban Thường vụ đề cử và được cha Tuyên Uý chấp thuận trao chức Thủ Quỹ Đoàn — đúng theo Nội Quy, thủ quỹ do Xứ Đoàn Trưởng và hai phó đề cử. Trước đó trưởng đã được trao trách nhiệm Trưởng Ban Sinh Hoạt của Xứ Đoàn, phần việc lo các buổi sinh hoạt vòng tròn, trò chơi và chuyên môn — mảng gần các em nhất trong mọi phần việc của một Huynh Trưởng. Chức trưởng ban này đã qua nhiều nhiệm kỳ kế tiếp nhau; các trưởng không còn nhớ chính xác mốc thời gian, nên bản khảo cứu để trống thay vì ghi một niên đại không ai kiểm được.',
       'Nhiệm kỳ kết thúc sớm ngày 12 tháng 12 năm 2025, nên phần việc của trưởng trong Ban Điều Hành chỉ kéo dài hơn nửa năm. Bản khảo cứu ghi lại đúng chừng ấy và để trống phần còn lại, thay vì tô thêm cho đầy — một trang sử để ngỏ vẫn tử tế hơn một trang sử được viết hộ.'
     ]
   }
@@ -2705,7 +4175,7 @@ export const TRO_UY_BIOS: DetailedBioRecord[] = [
     chronology: [],
     milestones: [
       'Sơ được hội dòng và Phong trào sai đến với Xứ Đoàn Chánh Toà để phục vụ việc huấn luyện. Sơ thuộc lớp Huấn Luyện Viên đầu tiên của Liên đoàn Các Thánh Tử Đạo Việt Nam — Giáo phận Mỹ Tho, và ý nghĩa của cột mốc ấy lớn hơn vẻ ngoài của nó: những năm đầu sau khi Liên đoàn thành lập năm 2011, giáo phận chưa có Huấn Luyện Viên của riêng mình. Chính ghi chép của Liên đoàn nhìn nhận ban huấn luyện và ban điều hành sa mạc khi đó chủ yếu là các trưởng Huấn Luyện Viên của Liên đoàn Anrê Phú Yên — Giáo phận Sài Gòn. Lớp Huấn Luyện Viên đầu tiên của Mỹ Tho là lúc giáo phận thôi phải đi mượn người dạy.',
-      'Hai năm 2018 – 2019, sơ đồng hành với Xứ Đoàn Chánh Toà trong vai trò Trợ Uý, phụ trách và hướng dẫn lớp Huynh Trưởng, đồng thời theo sát sinh hoạt thường kỳ của Phong trào. Theo bảng cấp hiệu Thiếu Nhi Thánh Thể, Trợ Uý là tu sĩ nam nữ phục vụ Phong trào, mang khăn đỏ viền trắng với khẩu hiệu «Nhiệt Thành» — trùng hợp thay, cũng chính là tên hội dòng của sơ: Dòng Nữ Tử Nhiệt Thành Thánh Tâm Chúa Giêsu.',
+      'Hai năm 2018 – 2019, sơ đồng hành với Xứ Đoàn Chánh Toà trong vai trò Trợ Uý, phụ trách và hướng dẫn lớp Huynh Trưởng, đồng thời theo sát sinh hoạt thường kỳ của Phong trào. Theo bảng cấp hiệu Thiếu Nhi Thánh Thể, Trợ Uý là tu sĩ nam nữ phục vụ Phong trào, mang khăn đỏ viền trắng với khẩu hiệu "Nhiệt Thành" — trùng hợp thay, cũng chính là tên hội dòng của sơ: Dòng Nữ Tử Nhiệt Thành Thánh Tâm Chúa Giêsu.',
       'Hiện sơ là Bề trên của hội dòng tại Việt Nam. Hai năm bên một xứ đoàn nhỏ là một chương ngắn trong đời tu của sơ, nhưng với Xứ Đoàn thì đó là hai năm đầu tiên có một Trợ Uý thật sự đứng lớp — và lớp Huynh Trưởng ấy về sau chính là những người gánh Xứ Đoàn qua năm năm không có Ban Điều Hành.'
     ],
   }

@@ -1,10 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import KhungTrang from '../KhungTrang';
+import { CuaSoAnh } from '../CuaSo';
 
 export default function Trang() {
+  const [anh, setAnh] = useState<{ src: string; caption: string } | null>(null);
+
   return (
     <KhungTrang
       tieuDe="Tư Liệu Tham Khảo"
@@ -248,12 +252,61 @@ export default function Trang() {
             </li>
           </ol>
 
+          <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--color-red)', margin: '16px 0 6px' }}>
+            E. Di Sản Văn Hóa & Sự Hình Thành Chữ Quốc Ngữ (Thế kỷ 17)
+          </h4>
+          <p style={{ fontSize: '0.78rem', color: 'var(--color-subtle)', lineHeight: 1.7, margin: '0 0 14px' }}>
+            Quá trình truyền giáo tại Việt Nam đã để lại một di sản văn hóa vô giá cho dân tộc: <strong>Chữ Quốc ngữ</strong>. Từ những nỗ lực phiên âm tiếng Việt sơ khai của Francisco de Pina, Gaspar do Amaral và António Barbosa, Cha <strong>Alexandre de Rhodes (Đắc Lộ)</strong> đã tổng hợp và điển chế hóa hệ thống chữ viết này, in thành hai tác phẩm kinh điển tại Rôma năm 1651.
+          </p>
+
+          <div className="responsive-grid" style={{ marginBottom: '16px' }}>
+            {[
+              {
+                src: '/images/tu-lieu-derhodes.jpg',
+                title: 'Alexandre de Rhodes (1591–1660)',
+                desc: 'Giáo sĩ dòng Tên người Avignon, Pháp. Người có công lớn nhất trong việc hệ thống hóa và xuất bản các sách in bằng chữ Quốc ngữ đầu tiên. Ngài cũng là người vận động Tòa Thánh thành lập chế độ Đại diện Tông tòa tại Việt Nam.'
+              },
+              {
+                src: '/images/tu-lieu-dictionarium.jpg',
+                title: 'Từ điển Việt - Bồ - La (1651)',
+                desc: 'Dictionarium Annamiticum Lusitanum et Latinum — Cuốn từ điển ba ngôn ngữ (Việt - Bồ Đào Nha - Latinh) in tại xưởng in của Thánh bộ Truyền bá Đức Tin (Propaganda Fide) ở Rôma, đánh dấu sự chuẩn hóa đầu tiên của chữ Quốc ngữ.'
+              },
+              {
+                src: '/images/tu-lieu-catechismus.jpg',
+                title: 'Phép giảng tám ngày (1651)',
+                desc: 'Catechismus in octo dies divisus — Tác phẩm văn xuôi đầu tiên được viết bằng chữ Quốc ngữ, in song ngữ Latinh và tiếng Việt, nhằm phục vụ công cuộc truyền giáo.'
+              }
+            ].map((img, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '10px',
+                  padding: '8px',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setAnh({ src: img.src, caption: `${img.title} — ${img.desc}` })}
+              >
+                <div style={{ position: 'relative', width: '100%', height: '200px', borderRadius: '6px', overflow: 'hidden' }}>
+                  <Image src={img.src} alt={img.title} fill sizes="240px" style={{ objectFit: 'contain', backgroundColor: '#f9f9f9' }} />
+                </div>
+                <div style={{ fontWeight: 800, fontSize: '0.84rem', marginTop: '10px', color: 'var(--color-dark)' }}>
+                  {img.title}
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'var(--color-subtle)', marginTop: '4px', lineHeight: 1.5 }}>{img.desc}</div>
+              </div>
+            ))}
+          </div>
+
           <p style={{ fontSize: '0.75rem', color: 'var(--color-subtle)', lineHeight: 1.7, margin: '16px 0 0', fontStyle: 'italic' }}>
             Ảnh tư liệu do Giáo xứ Chánh Tòa Mỹ Tho cung cấp, trừ: bản khắc nhà thờ 1877, bản khắc làng Ba Giồng 1882 và
             trang bìa sách tử đạo 1882 lấy từ bộ sưu tập số hoá của Thư viện Quốc gia Pháp (Gallica); các chân dung thừa
             sai lấy từ văn khố IRFA. Bản khảo cứu cập nhật tháng 8/2026.
           </p>
         </section>
+      <CuaSoAnh anh={anh} onClose={() => setAnh(null)} />
     </KhungTrang>
   );
 }

@@ -2236,9 +2236,20 @@ body {
   margin: 18px 0;
 }
 
-.floating-img-270 { float: right; width: 270px; margin-left: 20px; margin-bottom: 12px; }
-.floating-img-290 { float: right; width: 290px; margin-left: 20px; margin-bottom: 12px; }
-.floating-img-250 { float: right; width: 250px; margin-left: 20px; margin-bottom: 12px; }
+.floating-img-270,
+.floating-img-290,
+.floating-img-250 {
+  float: none;
+  width: min(290px, 100%);
+  margin: 0 0 18px 24px;
+  clear: right;
+}
+
+.doc-para:has(+ .floating-img-270),
+.doc-para:has(+ .floating-img-290),
+.doc-para:has(+ .floating-img-250) {
+  display: flow-root;
+}
 
 @media (max-width: 900px) {
   .main-layout {
@@ -2348,6 +2359,12 @@ body {
 
 /* Màn hình hẹp: bỏ float để chữ không bị bóp thành cột hẹp */
 @media (max-width: 720px) {
+  .floating-img-270,
+  .floating-img-290,
+  .floating-img-250 {
+    width: min(420px, 100%) !important;
+    margin: 14px auto !important;
+  }
   .doc-figure-right,
   .doc-figure-left {
     float: none;
@@ -2356,6 +2373,30 @@ body {
     max-width: 420px;
   }
   .doc-para { text-align: left; }
+}
+
+@media (max-width: 560px) {
+  .history-breadcrumb { padding: 9px 12px !important; }
+  .history-breadcrumb > div { gap: 5px !important; font-size: 0.72rem !important; }
+  .history-breadcrumb > div > div:first-child {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+  .history-breadcrumb > div > div:first-child::-webkit-scrollbar { display: none; }
+  .history-chapter-nav > div { padding: 6px 10px !important; }
+  .history-chapter-nav a { padding: 6px 10px !important; font-size: 0.75rem !important; }
+  .main-layout h1 { font-size: 1.75rem !important; }
+  .doc-para { font-size: 0.92rem; line-height: 1.72; }
+  .doc-box { padding: 12px; }
+  .history-modal {
+    max-height: calc(100dvh - 20px) !important;
+    border-radius: 16px !important;
+  }
+  .history-modal-hero { height: 190px !important; }
+  .history-modal-body { padding: 18px !important; }
 }
 
 /* Cột ảnh trong bảng niên biểu cha sở */
@@ -2540,4 +2581,25 @@ body {
 
 @media (max-width: 560px) {
   .dtg-lat-sau { text-align: left; align-items: flex-start; }
+}
+
+/* =========================================================================
+   CỬA SỔ TỪ ĐIỂN
+   ========================================================================= */
+.term-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-red);
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.term-link:hover {
+  background-color: rgba(153, 27, 27, 0.1);
+  color: var(--color-dark);
 }

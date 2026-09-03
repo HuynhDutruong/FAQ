@@ -5,20 +5,26 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Eye, ScrollText } from 'lucide-react';
 import KhungTrang from '../KhungTrang';
-import { CuaSoLyLich, CuaSoAnh } from '../CuaSo';
+import { CuaSoLyLich, CuaSoAnh, CuaSoTuDien } from '../CuaSo';
 import MetaUpdater from '@/components/MetaUpdater';
 import {
   BISHOPS_EXTENDED_DATA,
+  PASTORS_EXTENDED_DATA,
   PRE1960_ORDINARIES,
-  PortraitFrame
+  PortraitFrame,
+  NON_PASTOR_BIOS,
+  TU_DIEN
 } from '../duLieu';
-import type { DetailedBioRecord } from '../duLieu';
+import type { DetailedBioRecord, TuDienRecord } from '../duLieu';
 
 export default function Trang() {
   const [lyLich, setLyLich] = useState<DetailedBioRecord | null>(null);
   const [anh, setAnh] = useState<{ src: string; caption: string } | null>(null);
+  const [tuDien, setTuDien] = useState<TuDienRecord | null>(null);
 
-  const allBios = [...BISHOPS_EXTENDED_DATA, ...PRE1960_ORDINARIES];
+  const allBios = [...BISHOPS_EXTENDED_DATA, ...PASTORS_EXTENDED_DATA, ...PRE1960_ORDINARIES, ...NON_PASTOR_BIOS];
+
+  const moTuDien = (id: string) => setTuDien(TU_DIEN[id] || null);
 
   const moLyLich = (b: DetailedBioRecord | null) => {
     setLyLich(b);
@@ -96,12 +102,108 @@ export default function Trang() {
           Giáo phận Mỹ Tho ngày nay trải rộng trên vùng đồng bằng sông Cửu Long — tỉnh Tiền Giang, tỉnh Long An và gần hai phần ba tỉnh Đồng Tháp — một lãnh thổ hơn <strong>9.262 km²</strong> với <strong>114 giáo xứ</strong>, gần <strong>181 linh mục</strong> và khoảng <strong>137.000 giáo dân</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[1]</sup> Nhưng cái vóc dáng ấy không xuất hiện trong một sớm một chiều. Nó được đúc nên từ hơn ba thế kỷ lịch sử — lịch sử của những người lặng lẽ khai phá, của những vị chứng nhân đổ máu, và của những vị mục tử kiên trì xây dựng. Đọc lịch sử Giáo phận Mỹ Tho là đọc lịch sử đức tin của cả một vùng đất.
         </p>
 
+        <figure className="doc-figure doc-figure-left">
+          <button
+            type="button" className="tntt-thumb-btn"
+            onClick={() => moAnh({
+              src: '/images/ghvn_map_cochinchina_1650.jpg',
+              caption: 'Bản đồ "Carte de la Cochinchine" do Cha Alexandre de Rhodes biên soạn khoảng năm 1650. Đây là một trong những tấm bản đồ phương Tây chi tiết đầu tiên vẽ xứ Đàng Trong, thể hiện sự am hiểu địa lý phục vụ cho công cuộc truyền giáo. Nguồn: Wikimedia Commons, phạm vi công cộng.'
+            })}
+            aria-label="Phóng to Bản đồ Đàng Trong"
+          >
+            <Image
+              src="/images/ghvn_map_cochinchina_1650.jpg"
+              alt="Bản đồ Đàng Trong của Cha Đắc Lộ, khoảng năm 1650"
+              width={3024} height={2179}
+              sizes="(max-width: 720px) 92vw, 320px"
+              style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
+            />
+          </button>
+          <figcaption className="doc-caption">
+            "Carte de la Cochinchine" do Cha Alexandre de Rhodes biên soạn khoảng năm 1650.
+          </figcaption>
+        </figure>
+
+        <h3 className="doc-heading" style={{ marginTop: '2.5rem' }}>Những bước chân đầu tiên (1533 – 1659)</h3>
+
         <p className="doc-para">
-          Ánh sáng Tin Mừng đến vùng Đàng Trong từ giữa thế kỷ XVII, qua bàn tay của các thừa sai Dòng Tên, tiếp nối bởi Hội Thừa Sai Paris (MEP) và các tu sĩ Phanxicô. Năm <strong>1659</strong>, Giáo hoàng Alexander VII lập hai Phủ Doãn Tông Tòa <em>Đàng Trong</em> và <em>Đàng Ngoài</em> — nền tảng hành chính đầu tiên của Giáo hội Việt Nam.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[2]</sup> Vùng đất Nam Bộ, khi đó còn hoang vu, bắt đầu đón nhận người Công giáo từ khoảng năm <strong>1700</strong>. Trước áp lực các đợt cấm đạo của chúa Nguyễn tại miền Trung, nhiều gia đình tín hữu từ Phú Yên xuôi thuyền vào Nam, định cư tại những vùng đất mới chưa có dân cư đông đúc. Họ đặt lều ở Ba Giồng — một dải gò đất nổi cao giữa đồng lầy, thuộc vùng Định Tường.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[3]</sup> Những ngôi mộ cổ có bia khắc hình thập giá còn lưu lại trong khuôn viên Trung tâm Hành hương Ba Giồng hôm nay, có niên đại từ năm <strong>1663–1664</strong>, là bằng chứng sống động cho sự hiện diện Kitô giáo từ buổi khai nguyên.
+          Ánh sáng Tin Mừng không đột ngột xuất hiện vào năm 1659, mà đã trải qua hơn một thế kỷ âm thầm gieo hạt. Dấu vết đầu tiên của Kitô giáo tại Việt Nam được ghi nhận trong chính sử là vào năm <strong>1533</strong>. Sách <em>Khâm Định Việt Sử Thông Giám Cương Mục</em> (Quyển 33) ghi lại chiếu chỉ cấm đạo dưới đời vua Lê Trang Tông: <em>"Tháng 3, năm Nguyên Hòa thứ 1... có người Tây dương tên là <button className="term-link" onClick={() => moTuDien('i-ne-khu')}>I-nê-khu</button> lén lút đến xã Ninh Cường, xã Quần Anh thuộc huyện Nam Chân và xã Trà Lũ thuộc huyện Giao Thủy ngấm ngầm truyền tà giáo..."</em>. "I-nê-khu" chính là cách phiên âm tên Inhaxio (Ignacio) — vị thừa sai vô danh đã để lại dấu chân đầu tiên trên đất Việt.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+          <figure className="doc-figure" style={{ margin: 0, float: 'none', width: '100%' }}>
+            <button
+              type="button" className="tntt-thumb-btn"
+              onClick={() => moAnh({
+                src: '/images/ghvn_cuong_muc_quyen_thu.jpg',
+                caption: 'Quyển thủ của Khâm Định Việt Sử Thông Giám Cương Mục, bộ quốc sử do Quốc sử quán triều Nguyễn biên soạn.'
+              })}
+            >
+              <Image src="/images/ghvn_cuong_muc_quyen_thu.jpg" alt="Quyển thủ Cương Mục" width={800} height={635} sizes="(max-width: 720px) 46vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+            </button>
+            <figcaption className="doc-caption">Khâm Định Việt Sử Thông Giám Cương Mục.</figcaption>
+          </figure>
+          
+          <figure className="doc-figure" style={{ margin: 0, float: 'none', width: '100%' }}>
+            <button
+              type="button" className="tntt-thumb-btn"
+              onClick={() => moAnh({
+                src: '/images/ghvn_cuong_muc_trang_sach.jpg',
+                caption: 'Trang sách trong Cương Mục ghi chép về sự kiện năm Nguyên Hòa thứ 1 (1533) — văn bản chữ Hán đầu tiên nhắc đến đạo Công giáo ("tà giáo") và tên "I-nê-khu".'
+              })}
+            >
+              <Image src="/images/ghvn_cuong_muc_trang_sach.jpg" alt="Trang sách Cương Mục năm 1533" width={777} height={506} sizes="(max-width: 720px) 46vw, 320px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+            </button>
+            <figcaption className="doc-caption">Trang mộc bản ghi chép sự kiện năm 1533.</figcaption>
+          </figure>
+        </div>
+
+        <p className="doc-para">
+          Hành trình truyền giáo thực sự mang tính hệ thống bắt đầu vào <strong>đầu thế kỷ XVII</strong>. Năm <strong>1615</strong>, để tránh cuộc bách hại đạo khốc liệt tại Nhật Bản, các thừa sai Dòng Tên (Jesuits) như Francesco Buzomi và Diego Carvalho đã cập bến Cửa Hàn (Đà Nẵng) rồi tiến vào Hội An. Họ nhanh chóng hòa nhập và lập nên cộng đoàn đầu tiên tại Đàng Trong.
         </p>
 
         <p className="doc-para">
-          Từ năm <strong>1722</strong>, các thừa sai Phanxicô người Tây Ban Nha từ Philippines bắt đầu coi sóc vùng này. Linh mục <strong>Francisco José García (OFM)</strong> được ghi nhận là người đầu tiên đặt chân đến Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè từ năm 1723, tổ chức các cộng đoàn nhỏ, dạy giáo lý và cử hành các bí tích.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[4]</sup> Sang thế kỷ XIX, vai trò ấy dần chuyển sang Hội Thừa Sai Paris — những linh mục triều người Pháp đảm nhận việc đào tạo hàng giáo sĩ bản địa và phát triển hệ thống họ đạo có tổ chức, đặt nền móng cho một giáo phận tương lai. Nhưng trước khi giáo phận ấy ra đời, cộng đoàn đức tin non trẻ phải vượt qua những thử thách khốc liệt nhất trong lịch sử của mình.
+          Nhưng bước ngoặt vĩ đại nhất của lịch sử Giáo hội — và của cả văn hóa Việt Nam — gắn liền với tên tuổi của linh mục <button className="term-link" onClick={() => moTuDien('dac-lo')}>Alexandre de Rhodes (Đắc Lộ)</button>. Đến Đàng Trong năm 1624, ngài cùng các thừa sai khác (Francisco de Pina, Gaspar do Amaral...) đã nghe, học và phiên âm tiếng Việt bằng mẫu tự Latinh. Năm <strong>1651</strong> tại Rôma, ngài xuất bản cuốn <em>Từ điển Việt-Bồ-La (Dictionarium Annamiticum Lusitanum et Latinum)</em>. Công trình này không chỉ là cẩm nang truyền giáo mà còn khai sinh ra <strong>Chữ Quốc Ngữ</strong> — thứ chữ viết giúp người Việt Nam hội nhập thế giới hiện đại.
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+          <figure className="doc-figure" style={{ margin: 0, float: 'none', width: '100%' }}>
+            <button
+              type="button" className="tntt-thumb-btn"
+              onClick={() => moAnh({ src: '/images/ghvn_alexandre_de_rhodes.jpg', caption: 'Chân dung Cha Alexandre de Rhodes (Đắc Lộ, 1591–1660) — người có công lớn trong việc khai sinh Chữ Quốc Ngữ.' })}
+            >
+              <Image src="/images/ghvn_alexandre_de_rhodes.jpg" alt="Alexandre de Rhodes" width={1126} height={1400} sizes="(max-width: 720px) 30vw, 200px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+            </button>
+            <figcaption className="doc-caption">Cha Alexandre de Rhodes.</figcaption>
+          </figure>
+          
+          <figure className="doc-figure" style={{ margin: 0, float: 'none', width: '100%' }}>
+            <button
+              type="button" className="tntt-thumb-btn"
+              onClick={() => moAnh({ src: '/images/ghvn_dictionarium_1651.jpg', caption: 'Bìa cuốn Từ điển Việt-Bồ-La xuất bản tại Rôma năm 1651. Tài liệu vô giá ấn định hình hài đầu tiên của chữ Quốc Ngữ.' })}
+            >
+              <Image src="/images/ghvn_dictionarium_1651.jpg" alt="Dictionarium Annamiticum" width={560} height={810} sizes="(max-width: 720px) 30vw, 200px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+            </button>
+            <figcaption className="doc-caption">Từ điển Việt-Bồ-La (1651).</figcaption>
+          </figure>
+
+          <figure className="doc-figure" style={{ margin: 0, float: 'none', width: '100%' }}>
+            <button
+              type="button" className="tntt-thumb-btn"
+              onClick={() => moAnh({ src: '/images/ghvn_divers_voyages_1653.jpg', caption: 'Bìa cuốn Hành trình và Truyền giáo (Divers Voyages et Missions) xuất bản năm 1653 tại Paris.' })}
+            >
+              <Image src="/images/ghvn_divers_voyages_1653.jpg" alt="Divers Voyages 1653" width={781} height={1024} sizes="(max-width: 720px) 30vw, 200px" style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+            </button>
+            <figcaption className="doc-caption">Hành trình và Truyền giáo (1653).</figcaption>
+          </figure>
+        </div>
+
+        <p className="doc-para">
+          Chính nhờ nền móng vững chắc từ những vị thừa sai tiên khởi, ngày 9 tháng 9 năm <strong>1659</strong>, Giáo hoàng <button className="term-link" onClick={() => moTuDien('alexandre-vii')}>Alexanđê VII</button> đã ban <button className="term-link" onClick={() => moTuDien('super-cathedram-1659')}>sắc chỉ Super Cathedram</button> lập hai Phủ Doãn Tông Tòa <em>Đàng Trong</em> và <em>Đàng Ngoài</em> — cột mốc hành chính đầu tiên của Giáo hội Việt Nam.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[2]</sup> Vùng đất Nam Bộ, khi đó còn hoang vu, bắt đầu đón nhận người Công giáo từ khoảng năm <strong>1700</strong>. Trước áp lực các đợt cấm đạo của chúa Nguyễn tại miền Trung, nhiều gia đình tín hữu từ Phú Yên xuôi thuyền vào Nam, định cư tại những vùng đất mới chưa có dân cư đông đúc. Họ đặt lều ở <button className="term-link" onClick={() => moTuDien('ba-giong')}>Ba Giồng</button> — một dải gò đất nổi cao giữa đồng lầy, thuộc vùng Định Tường.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[3]</sup> Những ngôi mộ cổ có bia khắc hình thập giá còn lưu lại trong khuôn viên Trung tâm Hành hương Ba Giồng hôm nay, có niên đại từ năm <strong>1663–1664</strong>, là bằng chứng sống động cho sự hiện diện Kitô giáo từ buổi khai nguyên.
+        </p>
+
+        <p className="doc-para">
+          Từ năm <strong>1722</strong>, các thừa sai Phanxicô người Tây Ban Nha từ Philippines bắt đầu coi sóc vùng này. Linh mục <button className="term-link" onClick={() => moTuDien('francisco-garcia')}>Francisco José García (OFM)</button> được ghi nhận là người đầu tiên đặt chân đến Mỹ Tho, Cái Mơn, Cái Nhum và Cái Bè từ năm 1723, tổ chức các cộng đoàn nhỏ, dạy giáo lý và cử hành các bí tích.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[4]</sup> Sang thế kỷ XIX, vai trò ấy dần chuyển sang Hội Thừa Sai Paris — những linh mục triều người Pháp đảm nhận việc đào tạo hàng giáo sĩ bản địa và phát triển hệ thống họ đạo có tổ chức, đặt nền móng cho một giáo phận tương lai. Nhưng trước khi giáo phận ấy ra đời, cộng đoàn đức tin non trẻ phải vượt qua những thử thách khốc liệt nhất trong lịch sử của mình.
         </p>
 
         <figure className="doc-figure doc-figure-right">
@@ -127,11 +229,11 @@ export default function Trang() {
         </figure>
 
         <p className="doc-para">
-          Dưới ba triều vua nhà Nguyễn — <strong>Minh Mạng</strong> (1820–1840), <strong>Thiệu Trị</strong> (1841–1847) và đặc biệt là <strong>Tự Đức</strong> (1848–1883) — hàng trăm linh mục và hàng chục ngàn giáo dân bị tử hình vì đức tin trên khắp đất nước. Năm 1988, Đức Thánh Giáo hoàng Gioan Phaolô II tôn phong <strong>117 Thánh Tử Đạo Việt Nam</strong>, trong đó nhiều vị gắn liền với vùng đất Nam Kỳ.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[5]</sup>
+          Dưới ba triều vua nhà Nguyễn — <button className="term-link" onClick={() => moTuDien('minh-mang')}>Minh Mạng</button> (1820–1840), <button className="term-link" onClick={() => moTuDien('thieu-tri')}>Thiệu Trị</button> (1841–1847) và đặc biệt là <button className="term-link" onClick={() => moTuDien('tu-duc')}>Tự Đức</button> (1848–1883) — hàng trăm linh mục và hàng chục ngàn giáo dân bị tử hình vì đức tin trên khắp đất nước. Năm 1988, Đức Thánh Giáo hoàng Gioan Phaolô II tôn phong <strong>117 Thánh Tử Đạo Việt Nam</strong>, trong đó nhiều vị gắn liền với vùng đất Nam Kỳ.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[5]</sup>
         </p>
 
         <p className="doc-para">
-          Tại vùng Định Tường, Cha <strong>Phêrô Nguyễn Văn Lựu</strong> (1812–1861) là nhân vật trung tâm của thời kỳ bi hùng này. Sinh tại Gò Vấp, Gia Định, ngài theo học tại Chủng viện Pénang (Penang, Malaysia) trước khi thụ phong linh mục và phục vụ lần lượt ở Mặc Bắc, Sa Đéc, Mỹ Tho. Từ năm <strong>1853</strong>, ngài làm cha sở họ đạo Ba Giồng.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[6]</sup> Cuối năm 1860, khi tình hình bách hại trở nên nguy cấp, ngài vẫn kiên trì cải trang vào ngục thăm viếng và trao Mình Thánh Chúa cho các giáo hữu bị giam cầm. Bị phát giác và dẫn ra trước quan án, ngài khảng khái tuyên bố: <em style={{ color: 'var(--color-dark)' }}>«Đạo Thánh đã thấm nhập vào xương tủy tôi rồi, tôi làm sao bỏ được. Vả lại, một người giáo hữu thường, một thầy giảng còn không có quyền bỏ đạo, huống chi tôi đây là đạo trưởng.»</em><sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[7]</sup> Ngày <strong>7 tháng 4 năm 1861</strong>, ngài bị xử trảm tại pháp trường ngoài thành Mỹ Tho. Đức Giáo hoàng Gioan Phaolô II tôn phong ngài <strong>Hiển Thánh ngày 19/6/1988</strong>, và Giáo phận Mỹ Tho sau đó chọn ngài làm <strong>Thánh Bổn Mạng</strong>, mừng lễ ngày 7/4 hàng năm.
+          Tại vùng Định Tường, Cha <button className="term-link" onClick={() => moLyLich(allBios.find(b => b.id === 'thanh-phero-nguyen-van-luu') || null)}>Phêrô Nguyễn Văn Lựu</button> (1812–1861) là nhân vật trung tâm của thời kỳ bi hùng này. Sinh tại Gò Vấp, Gia Định, ngài theo học tại Chủng viện Pénang (Penang, Malaysia) trước khi thụ phong linh mục và phục vụ lần lượt ở Mặc Bắc, Sa Đéc, Mỹ Tho. Từ năm <strong>1853</strong>, ngài làm cha sở họ đạo Ba Giồng.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[6]</sup> Cuối năm 1860, khi tình hình bách hại trở nên nguy cấp, ngài vẫn kiên trì cải trang vào ngục thăm viếng và trao Mình Thánh Chúa cho các giáo hữu bị giam cầm. Bị phát giác và dẫn ra trước quan án, ngài khảng khái tuyên bố: <em style={{ color: 'var(--color-dark)' }}>«Đạo Thánh đã thấm nhập vào xương tủy tôi rồi, tôi làm sao bỏ được. Vả lại, một người giáo hữu thường, một thầy giảng còn không có quyền bỏ đạo, huống chi tôi đây là đạo trưởng.»</em><sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[7]</sup> Ngày <strong>7 tháng 4 năm 1861</strong>, ngài bị xử trảm tại pháp trường ngoài thành Mỹ Tho. Đức Giáo hoàng Gioan Phaolô II tôn phong ngài <button className="term-link" onClick={() => moTuDien('hien-thanh-tu-dao')}>Hiển Thánh ngày 19/6/1988</button>, và Giáo phận Mỹ Tho sau đó chọn ngài làm <button className="term-link" onClick={() => moLyLich(allBios.find(b => b.id === 'thanh-phero-nguyen-van-luu') || null)}>Thánh Bổn Mạng</button>, mừng lễ ngày 7/4 hàng năm.
         </p>
 
         <p className="doc-para">
@@ -146,7 +248,7 @@ export default function Trang() {
         </p>
 
         <p className="doc-para">
-          Sau cái chết của Cha Phêrô Lựu, cuộc bách hại không dừng lại. Năm <strong>1862</strong>, chiếu chỉ <em>Phân Sáp</em> được thi hành triệt để: quan quân vây họ đạo Ba Giồng trong đêm, ra lệnh giải tán các làng Công giáo và phân tán giáo dân vào các làng ngoại đạo. Một phần giáo hữu tháo chạy qua sông trong đêm khuya — cảnh tượng đó được ghi lại trong bản khắc gỗ <em>«Fuite des chrétiens de Ba-Giong»</em> của Cha Hamon: hàng trăm người lội giữa dòng nước tối, trên bờ vẫn còn thấy bóng thánh giá nhà thờ dưới trăng non. Nhưng phần lớn không thoát kịp. <strong>25 vị bô lão</strong> — chức việc cao niên của họ đạo — bị bắt và dẫn về chợ Cổ Chi, một địa điểm mà dân gian gọi là «gò Chết Chém», cách Ba Giồng khoảng 2 km. Trước lưỡi gươm hành quyết, các ngài đồng loạt khẳng định đức tin, kiên quyết không chối đạo.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[8]</sup> Thêm hai người chết khi trốn chạy — nâng tổng số lên <strong>27 vị tử đạo</strong> mà Cha Théodule Hamon đã ghi chép lại mười năm sau, khi thân thức đến Ba Giồng để chủ trì lễ cải táng hài cốt các ngài.
+          Sau cái chết của Cha Phêrô Lựu, cuộc bách hại không dừng lại. Năm <strong>1862</strong>, <button className="term-link" onClick={() => moTuDien('phan-sap')}>chiếu chỉ Phân Sáp</button> (ban ngày 05/8/1861) được thi hành triệt để: quan quân vây họ đạo Ba Giồng trong đêm, ra lệnh giải tán các làng Công giáo và phân tán giáo dân vào các làng ngoại đạo. Một phần giáo hữu tháo chạy qua sông trong đêm khuya — cảnh tượng đó được ghi lại trong bản khắc gỗ <em>«Fuite des chrétiens de Ba-Giong»</em> của Cha Hamon: hàng trăm người lội giữa dòng nước tối, trên bờ vẫn còn thấy bóng thánh giá nhà thờ dưới trăng non. Nhưng phần lớn không thoát kịp. <strong>25 vị bô lão</strong> — chức việc cao niên của họ đạo — bị bắt và dẫn về chợ Cổ Chi, một địa điểm mà dân gian gọi là «gò Chết Chém», cách Ba Giồng khoảng 2 km. Trước lưỡi gươm hành quyết, các ngài đồng loạt khẳng định đức tin, kiên quyết không chối đạo.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[8]</sup> Thêm hai người chết khi trốn chạy — nâng tổng số lên <strong>27 vị tử đạo</strong> mà Cha <button className="term-link" onClick={() => moTuDien('theodule-hamon')}>Théodule Hamon</button> đã ghi chép lại mười năm sau, khi thân thức đến Ba Giồng để chủ trì lễ cải táng hài cốt các ngài.
         </p>
 
         <div className="doc-box">
@@ -202,7 +304,7 @@ export default function Trang() {
         </p>
 
         <p className="doc-para">
-          Máu của các vị tử đạo không chảy vô ích. Sau khi Pháp chiếm Nam Kỳ (1862–1867), áp lực bách hại giảm bớt và cộng đoàn Công giáo dần hồi phục. Từ năm <strong>1844</strong>, họ đạo Mỹ Tho thuộc quyền cai quản của <strong>Địa phận Tây Đàng Trong</strong> — về sau gọi là Sài Gòn. Chín vị Đại Diện Tông Tòa kế tiếp nhau trong hơn một thế kỷ là các Đấng Bản Quyền của vùng đất này; các ngài đặt viên đá xây nhà thờ, bổ nhiệm cha sở và hướng dẫn đời sống đức tin của người Công giáo Mỹ Tho qua suốt thời kỳ Pháp thuộc, kháng chiến và phân liệt đất nước. <em>Nhấn vào từng vị để xem lý lịch đầy đủ.</em>
+          Máu của các vị tử đạo không chảy vô ích. Kể từ Sắc lệnh <em>Super Cathedram</em> năm <strong>1659</strong>, toàn bộ miền Nam nước Việt thuộc về <strong>Hạt Đại diện Tông tòa Đàng Trong</strong>. Đến năm <strong>1844</strong>, do nhu cầu mục vụ và hoàn cảnh cấm cách, <button className="term-link" onClick={() => moTuDien('chia-dang-trong-1844')}>Đàng Trong được chia cắt</button>, và Mỹ Tho rơi vào quyền cai quản của <strong>Tây Đàng Trong</strong> (về sau gọi là Sài Gòn). Các vị Đại diện Tông tòa — từ những đấng tiên khởi cai quản toàn Đàng Trong cho đến các Giám mục Tây Đàng Trong sau này — đã liên tục dẫn dắt đời sống đức tin của cộng đoàn vượt qua ba thế kỷ bách hại, chiến tranh và chuyển mình. <em>Nhấn vào từng vị để xem lý lịch đầy đủ.</em>
         </p>
 
         <div style={{ display: 'grid', gap: '10px', marginBottom: '8px' }}>
@@ -240,7 +342,7 @@ export default function Trang() {
         </p>
 
         <p className="doc-para">
-          Hành trình dài hơn một thế kỷ ấy kết thúc vào một buổi chiều tháng 11 lịch sử. Ngày <strong>24 tháng 11 năm 1960</strong>, Thánh Giáo hoàng <strong>Gioan XXIII</strong> ban hành Tông hiến <em>«Venerabilium Nostrorum»</em>, chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam. Địa phận Tây Đàng Trong — lúc này mang tên Sài Gòn — được nâng lên hàng Tổng Giáo phận, và cùng văn kiện ấy, ngày <strong>27 tháng 11</strong>, Tòa Thánh ban hành Sắc chỉ <em>«Quod Venerabiles Fratres»</em>: <strong>bốn tỉnh Định Tường, Long An, Kiến Tường và Kiến Phong</strong> được tách ra để lập thành <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>), thuộc Giáo tỉnh Sài Gòn.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[9]</sup>
+          Hành trình dài hơn một thế kỷ ấy kết thúc vào một buổi chiều tháng 11 lịch sử. Ngày <strong>24 tháng 11 năm 1960</strong>, Thánh Giáo hoàng <strong>Gioan XXIII</strong> ban hành <button className="term-link" onClick={() => moTuDien('venerabilium-nostrorum-1960')}>Tông hiến «Venerabilium Nostrorum»</button>, chính thức thiết lập Hàng Giáo Phẩm Công Giáo Việt Nam. Địa phận Tây Đàng Trong — lúc này mang tên Sài Gòn — được nâng lên hàng Tổng Giáo phận, và cùng văn kiện ấy, ngày <strong>27 tháng 11</strong>, Tòa Thánh ban hành <button className="term-link" onClick={() => moTuDien('quod-venerabiles-fratres-1960')}>Sắc chỉ «Quod Venerabiles Fratres»</button>: <strong>bốn tỉnh Định Tường, Long An, Kiến Tường và Kiến Phong</strong> được tách ra để lập thành <strong>Giáo phận Mỹ Tho</strong> (<em>Dioecesis Mythoensis</em>), thuộc Giáo tỉnh Sài Gòn.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[9]</sup>
         </p>
 
         <figure className="doc-figure doc-figure-right">
@@ -266,7 +368,7 @@ export default function Trang() {
         </figure>
 
         <p className="doc-para">
-          Cùng lúc đó, ngôi thánh đường do Cha <strong>Lucien Régnier</strong> — mà giáo dân quen gọi thân thương là <em>Cha Gẫm</em> — khởi công ngày 11/8/1906 và hoàn thành năm 1910, được nâng lên thành <strong>Nhà thờ Chính Tòa</strong>, mang tước hiệu <strong>Đức Mẹ Vô Nhiễm Nguyên Tội</strong>. Kiến trúc Hy Lạp–Rôma Phục Hưng, cao 24 m, dài 53 m, rộng 17 m — ngôi thánh đường từng phải hạ thấp chiều cao so với thiết kế ban đầu vì nền đất sình lầy — nay trở thành <em>nhà thờ mẹ</em> của cả một giáo phận.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[10]</sup> Vị Giám mục Tiên khởi được bổ nhiệm là <strong>Đức Cha Giuse Trần Văn Thiện</strong>.
+          Cùng lúc đó, ngôi thánh đường do Cha <button className="term-link" onClick={() => moLyLich(allBios.find(b => b.id === 'cha-regnier-co-gam') || null)}>Lucien Régnier</button> — mà giáo dân quen gọi thân thương là <em>Cha Gẫm</em> — khởi công ngày 11/8/1906 và hoàn thành năm 1910, được nâng lên thành <strong>Nhà thờ Chính Tòa</strong>, mang tước hiệu <strong>Đức Mẹ Vô Nhiễm Nguyên Tội</strong>. Kiến trúc Hy Lạp–Rôma Phục Hưng, cao 24 m, dài 53 m, rộng 17 m — ngôi thánh đường từng phải hạ thấp chiều cao so với thiết kế ban đầu vì nền đất sình lầy — nay trở thành <em>nhà thờ mẹ</em> của cả một giáo phận.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[10]</sup> Vị Giám mục Tiên khởi được bổ nhiệm là <button className="term-link" onClick={() => moLyLich(allBios.find(b => b.id === 'duc-cha-tran-van-thien') || null)}>Đức Cha Giuse Trần Văn Thiện</button>.
         </p>
 
         <p className="doc-para">
@@ -350,7 +452,7 @@ export default function Trang() {
         </p>
 
         <p className="doc-para">
-          Sau hơn sáu mươi năm phát triển, Giáo phận Mỹ Tho hôm nay là một cộng đồng đức tin trưởng thành và sống động. Địa giới bao gồm tỉnh <strong>Tiền Giang</strong>, tỉnh <strong>Long An</strong> và khoảng <strong>2/3 tỉnh Đồng Tháp</strong> (phần phía bắc sông Tiền), tổng diện tích hơn <strong>9.262 km²</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[11]</sup> Đức Giám mục Chính tòa hiện nay là <strong>Đức Cha Phêrô Nguyễn Văn Khảm</strong> (sinh 02/10/1952), được Đức Thánh Cha Phanxicô bổ nhiệm ngày 26/7/2014. Tiến sĩ Thần học Mục vụ tại Đại học Công giáo Hoa Kỳ (2001–2004), ngài còn là Tổng Thư ký Hội đồng Giám mục Việt Nam (2016–2022) và Viện trưởng Học viện Công giáo Việt Nam (từ 2024).<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[12]</sup>
+          Sau hơn sáu mươi năm phát triển, Giáo phận Mỹ Tho hôm nay là một cộng đồng đức tin trưởng thành và sống động. Địa giới bao gồm tỉnh <strong>Tiền Giang</strong>, tỉnh <strong>Long An</strong> và khoảng <strong>2/3 tỉnh Đồng Tháp</strong> (phần phía bắc sông Tiền), tổng diện tích hơn <strong>9.262 km²</strong>.<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[11]</sup> Đức Giám mục Chính tòa hiện nay là <button className="term-link" onClick={() => moLyLich(allBios.find(b => b.id === 'duc-cha-nguyen-van-kham') || null)}>Đức Cha Phêrô Nguyễn Văn Khảm</button> (sinh 02/10/1952), được Đức Thánh Cha Phanxicô bổ nhiệm ngày 26/7/2014. Tiến sĩ Thần học Mục vụ tại Đại học Công giáo Hoa Kỳ (2001–2004), ngài còn là Tổng Thư ký Hội đồng Giám mục Việt Nam (2016–2022) và Viện trưởng Học viện Công giáo Việt Nam (từ 2024).<sup style={{ color: 'var(--color-red)', fontSize: '0.72rem' }}>[12]</sup>
         </p>
 
         <p className="doc-para">
@@ -398,6 +500,64 @@ export default function Trang() {
 
       </section>
 
+        <section id="phu-luc" style={{ marginBottom: '36px' }}>
+          <div style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--color-dark)', margin: '32px 0 6px' }}>
+            Phụ Lục: Tiểu sử các Linh mục và Thừa sai liên đới
+          </div>
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 14px' }}>
+            Thông tin chi tiết về các vị linh mục đã góp phần đặt nền móng đức tin cho Giáo phận trong thời kỳ sơ khai nhưng không giữ cương vị Giám mục hay Đại diện Tông tòa. 
+            Để xem danh sách các đời Cha sở của Nhà thờ Chánh Tòa Mỹ Tho, xin vui lòng xem tại trang <Link href="/gioi-thieu/giao-xu#lich-su" style={{ color: 'var(--color-red)', textDecoration: 'underline' }}>Giáo Xứ Chánh Tòa</Link>.
+          </p>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: '16px',
+              marginTop: '16px'
+            }}
+          >
+            {NON_PASTOR_BIOS.map((bio) => (
+              <div
+                key={bio.id}
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => moLyLich(bio)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    moLyLich(bio);
+                  }
+                }}
+                aria-label={`Xem lý lịch ${bio.name}`}
+              >
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  <div style={{ flexShrink: 0, width: '60px', height: '60px' }}>
+                    <PortraitFrame src={bio.image} name={bio.name} width={60} height={60} />
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 800, color: 'var(--color-dark)', fontSize: '0.95rem' }}>{bio.name}</div>
+                    <div style={{ color: 'var(--color-red)', fontSize: '0.8rem', fontWeight: 600 }}>{bio.role}</div>
+                  </div>
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', lineHeight: 1.6 }}>
+                  {bio.shortDesc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       <MetaUpdater
         title={lyLich ? `${lyLich.name} — ${lyLich.role}` : undefined}
         description={lyLich ? lyLich.shortDesc : undefined}
@@ -406,6 +566,7 @@ export default function Trang() {
       />
       <CuaSoLyLich bio={lyLich} onClose={() => setLyLich(null)} />
       <CuaSoAnh anh={anh} onClose={() => setAnh(null)} />
+      <CuaSoTuDien tuDien={tuDien} onClose={() => setTuDien(null)} />
     </KhungTrang>
   );
 }

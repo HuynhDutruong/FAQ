@@ -16,11 +16,10 @@ import {
   PASTOR_TIMELINE,
   PRIESTS_SERVED,
   ROMAN,
-  SUNDAY_MASS_NOTES
-,
-  CHA_PHO_BIOS
-,
-  PortraitFrame
+  SUNDAY_MASS_NOTES,
+  CHA_PHO_BIOS,
+  PortraitFrame,
+  NON_PASTOR_BIOS
 } from '../duLieu';
 import type { DetailedBioRecord } from '../duLieu';
 
@@ -902,6 +901,64 @@ export default function Trang() {
               Bí tích Hòa Giải (Giải tội): Trước và sau tất cả các Thánh lễ trong tuần hoặc liên hệ trực tiếp văn phòng
               nhà xứ.
             </div>
+          </div>
+        </section>
+
+        <section id="phu-luc" style={{ marginBottom: '36px' }}>
+          <div style={{ fontWeight: 800, fontSize: '1.15rem', color: 'var(--color-dark)', margin: '32px 0 6px' }}>
+            Phụ Lục: Tiểu sử các Linh mục phục vụ và liên đới
+          </div>
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.75, margin: '0 0 14px' }}>
+            Thông tin chi tiết về các vị linh mục đã phục vụ tại Giáo xứ hoặc có những đóng góp to lớn cho cộng đoàn nhưng không giữ cương vị Chánh sở.
+          </p>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: '16px',
+              marginTop: '16px'
+            }}
+          >
+            {NON_PASTOR_BIOS.map((bio) => (
+              <div
+                key={bio.id}
+                style={{
+                  backgroundColor: 'var(--color-card-bg)',
+                  border: '1px solid var(--color-border-subtle)',
+                  borderRadius: '12px',
+                  padding: '16px',
+                  boxShadow: '0 1px 4px rgba(0,0,0,0.02)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px',
+                  cursor: 'pointer'
+                }}
+                onClick={() => moLyLich(bio)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    moLyLich(bio);
+                  }
+                }}
+                aria-label={`Xem lý lịch ${bio.name}`}
+              >
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  <div style={{ flexShrink: 0, width: '60px', height: '60px' }}>
+                    <PortraitFrame src={bio.image} name={bio.name} width={60} height={60} />
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 800, color: 'var(--color-dark)', fontSize: '0.95rem' }}>{bio.name}</div>
+                    <div style={{ color: 'var(--color-red)', fontSize: '0.8rem', fontWeight: 600 }}>{bio.role}</div>
+                  </div>
+                </div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--color-subtle)', lineHeight: 1.6 }}>
+                  {bio.shortDesc}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

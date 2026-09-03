@@ -16,7 +16,8 @@ import {
   Compass,
   ArrowRight,
   Share2,
-  Quote
+  Quote,
+  User
 } from 'lucide-react';
 import { BIBLE_BOOKS, BIBLE_SUMMARY_INFO, BibleBookInfo, Testament, BibleBookGroup, getBibleBookArtwork } from '@/lib/bible';
 import { getCatholicBookIntro } from '@/lib/bible/bibleIntroductions';
@@ -222,6 +223,25 @@ export default function KinhThanhPage() {
                 <Sparkles size={13} color="#34D399" />
                 <span>1.189 Chương Đầy Đủ</span>
               </div>
+              <Link
+                href="/kinh-thanh/nhan-vat"
+                style={{
+                  padding: '4px 12px',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgba(217, 119, 6, 0.2)',
+                  border: '1px solid rgba(217, 119, 6, 0.4)',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  color: '#FDE68A',
+                  textDecoration: 'none'
+                }}
+              >
+                <User size={13} color="#FDE68A" />
+                <span>Từ Điển Nhân Vật</span>
+              </Link>
             </div>
           </div>
         </div>
